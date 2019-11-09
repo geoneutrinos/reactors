@@ -27,7 +27,7 @@ export function getCrustFlux(lon: number, lat: number): CrustFlux{
     }
 
     // force the antimeridian to be the most western edge
-    if (lon == 180){
+    if (lon === 180){
         lon = -180;
     }
 
