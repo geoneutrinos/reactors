@@ -1,7 +1,6 @@
 import json
 
 import pyexcel
-import pyexcel_xlsx
 
 import logging
 logging.basicConfig(level=logging.INFO)
