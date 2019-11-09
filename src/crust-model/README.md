@@ -1,6 +1,6 @@
 Crust Model
 ===========
-This module has the lookup table for unocilated crust neutrino fluxes from Huang et. al. 2013 10.1002/ggge.20129
+This module has the lookup table for the unoscillated crust neutrino fluxes from Huang et. al. 2013 10.1002/ggge.20129
 
 Files
 -----
