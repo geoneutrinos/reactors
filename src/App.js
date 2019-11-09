@@ -1,9 +1,10 @@
 import React from 'react';
+import { getCrustFlux } from './crust-model'
 
 function App() {
   return (
     <div className="App">
-      Hello World
+      {JSON.stringify(getCrustFlux(0,0))}
     </div>
   );
 }
