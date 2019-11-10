@@ -31,6 +31,12 @@ export function getCrustFlux(lon: number, lat: number): CrustFlux{
         lon = -180;
     }
 
+    // force south pole to be just north of it so that cells 
+    // which actually exist are returned
+    if (lat === -90){
+        lat = -89.9;
+    }
+
     if (lat < -90 || lat > 90){
         throw new RangeError("lat out of range")
     }
