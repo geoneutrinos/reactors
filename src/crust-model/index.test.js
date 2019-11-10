@@ -35,11 +35,21 @@ describe.each([
 // test some edge behavior
 // The expected values were extracted manually from the excel spreadsheet
 describe.each([
-    [0, 0, {u:0.91460944, th:0.83559626, k:3.99834172}], // should give the cell with midpoint 0.5,-0.5 (lon,lat)
-    [180, 0, {u:0.38942915, th:0.32793336, k:1.85241163}], // should give the cell with midpoint -179.5,-0.5 (lon,lat)
-    [-179.9, 0, {u:0.38942915, th:0.32793336, k:1.85241163}], // should give the cell with midpoint -179.5,-0.5 (lon,lat)
-    [0, 90, {u:1.47552052, th:1.39473895, k:6.20690978}], // should give the cell with midpoint 0.5,89.5 (lon,lat)
-])('getCrustFlux(%i, %i', (lon, lat, expected) => {
+    [0, 0, {u:0.915, th:0.836, k:3.998}], // should give the cell with midpoint 0.5,-0.5 (lon,lat)
+    [180, 0, {u:0.389, th:0.328, k:1.852}], // should give the cell with midpoint -179.5,-0.5 (lon,lat)
+    [-179.9, 0, {u:0.389, th:0.328, k:1.852}], // should give the cell with midpoint -179.5,-0.5 (lon,lat)
+    [0, 90, {u:1.476, th:1.395, k:6.207}], // should give the cell with midpoint 0.5,89.5 (lon,lat)
+
+    // The following is around the same cell
+    [-157.5, -19.7, {u: 0.360, th:0.298, k:1.735}],
+    [-157.5, -19.3, {u: 0.360, th:0.298, k:1.735}],
+    [-157.2, -19.3, {u: 0.360, th:0.298, k:1.735}],
+    [-157.7, -19.3, {u: 0.360, th:0.298, k:1.735}],
+    [-157.99, -19.7, {u: 0.360, th:0.298, k:1.735}],
+    [-157.01, -19.3, {u: 0.360, th:0.298, k:1.735}],
+    [-157.5, -19.99, {u: 0.360, th:0.298, k:1.735}],
+    [-157.5, -19.01, {u: 0.360, th:0.298, k:1.735}],
+])('getCrustFlux(%f, %f', (lon, lat, expected) => {
     test(`get expected result (${lon}, ${lat})`, () => {
         expect(getCrustFlux(lon, lat)).toEqual(expected)
     });

@@ -23,9 +23,10 @@ for row in raw_data[2:]:
     if row[0] == "":
         # This should be the end of the data, to just stop
         break
-    data["u"].append(float(row[U_COL]))
-    data["th"].append(float(row[TH_COL]))
-    data["k"].append(float(row[K_COL]))
+    # precision in the excel is 3, so keep that
+    data["u"].append(round(float(row[U_COL]), 3))
+    data["th"].append(round(float(row[TH_COL]), 3))
+    data["k"].append(round(float(row[K_COL]), 3))
 
 # the input data is on a 1x1 degree grid of lon lats
 expected_array_length = 360 * 180
@@ -33,6 +34,7 @@ assert(len(data["u"]) == expected_array_length)
 assert(len(data["th"]) == expected_array_length)
 assert(len(data["k"]) == expected_array_length)
 
+json.encoder.FLOAT_REPR = lambda f: ("%.3f" % f)
 for element, flux in data.items():
     with open(f"crust_{element}.json", "w") as f:
-        json.dump(flux, f)
+        json.dump(flux, f, separators=(',', ':'))

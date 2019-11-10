@@ -41,9 +41,10 @@ export function getCrustFlux(lon: number, lat: number): CrustFlux{
     const shiftedLat = lat + 90;
 
     const flooredLon = Math.floor(shiftedLon);
-    const flooredLat = Math.floor(shiftedLat);
+    // 180 offset because the arrays start in the north west corner
+    const flooredLat = Math.floor(180 - shiftedLat);
 
-    const rowIndexOffset = (180 - flooredLat) * rowLength;
+    const rowIndexOffset = flooredLat * rowLength;
     const gridIndex = rowIndexOffset + flooredLon;
 
     return {
