@@ -35,3 +35,22 @@ export function normalNeutrinoOscilationSpectrum(dist: number): Float32Array{
 
     return oscspec.map((value, index) => normalNeutrinoFlavor((index+1)*0.01, dist))
 }
+
+function invertedNeutrinoFlavor(Ev: number, dist: number): number{
+  const oscarg21 = 1.27 * dmsq21 * dist * 1000;
+  const oscarg31 = 1.27 * dmsq31Inverted * dist * 1000;
+  const oscarg32 = 1.27 * dmsq32Inverted * dist * 1000;
+
+  const supr21 = c4t13Inverted * s22t12 * (Math.sin(oscarg21/Ev) ** 2);
+  const supr31 = s22t13Inverted * c2t12 * (Math.sin(oscarg31/Ev) ** 2);
+  const supr32 = s22t13Inverted * s2t12 * (Math.sin(oscarg32/Ev) ** 2);
+  
+  return 1 - supr21 - supr31 - supr32;
+}
+
+export function invertedNeutrinoOscilationSpectrum(dist: number): Float32Array{
+    const oscspec = new Float32Array(1000);
+    oscspec.fill(0);
+
+    return oscspec.map((value, index) => invertedNeutrinoFlavor((index+1)*0.01, dist))
+}
