@@ -1,4 +1,4 @@
-import {crossSectionSV2003, crossSectionVB1999} from './neutron-cross-section'
+import {crossSectionSV2003, crossSectionVB1999} from './neutrino-cross-section'
 
 // These are the values in Table 1 of Strumia & Vissani 2003
 describe.each([

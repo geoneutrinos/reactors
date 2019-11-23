@@ -1,7 +1,7 @@
 import { ELECTRON_REST_MASS, NEUTRON_REST_MASS, PROTON_REST_MASS } from './constants'
 
 /** 
- * Calculates the neutrino/neutron cross section, sometimes called sigma
+ * Calculates the neutrino cross section, sometimes called sigma
  * 
  * Impliments Equation 25 in Strumia, A., & Vissani, F. (2003). Precise quasielastic 
  * neutrino/nucleon cross-section. Physics Letters, Section B: Nuclear, Elementary 
@@ -28,7 +28,7 @@ export function crossSectionSV2003(Ev: number): number{
 }
 
 /**
- * Calculates the neutrino/neutron cross section, sometimes called sigma
+ * Calculates the neutrino cross section, sometimes called sigma
  * Impliments P. Vogel, J.F. Beacom, Phys. Rev. D 60 (1999)
  * 
  * @param {number} Ev -  Energy of the neutrino in MeV
@@ -36,5 +36,6 @@ export function crossSectionSV2003(Ev: number): number{
  */
 export function crossSectionVB1999(Ev: number): number{
   const Ee = Math.max(ELECTRON_REST_MASS, Ev - (NEUTRON_REST_MASS - PROTON_REST_MASS));
+
   return 9.52e-44 * Math.sqrt((Ee * Ee) - (ELECTRON_REST_MASS * ELECTRON_REST_MASS)) * Ee;
 }
