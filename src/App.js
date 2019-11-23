@@ -1,10 +1,20 @@
 import React from 'react';
 import { getCrustFlux } from './crust-model'
 import { normalNeutrinoOscilationSpectrum, invertedNeutrinoOscilationSpectrum } from './physics/neutrino-oscillation'
+import { cores } from './reactor-cores'
 import {memoize} from 'lodash';
 
 let memoed_nuosc = memoize(normalNeutrinoOscilationSpectrum)
 let memoedi_nuosc = memoize(invertedNeutrinoOscilationSpectrum)
+
+const CoreList = () => {
+  let items = Object.keys(cores).map((key) => <li key={key}>{key}</li>)
+  return (
+    <ul>
+      {items}
+    </ul>
+  )
+}
 
 class App extends React.Component {
   constructor(props) {
@@ -37,6 +47,7 @@ class App extends React.Component {
         {this.state.normal}<br/>
         {this.state.invert}<br/>
         {this.state.normal - this.state.invert}<br/>
+        <CoreList />
       </div>
     );
   }
