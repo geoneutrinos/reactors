@@ -16,6 +16,63 @@ function mevRange(count = 1000, start = 0, stop = 10) {
 
 const bins = mevRange();
 
+const FUEL_FRACTIONS = {
+  "LEU": {
+    "U235":  0.56,
+    "U238":  0.08, 
+    "PU239": 0.30,
+    "PU241": 0.06
+  },
+  "FBR": {
+    "U235":  0.56,
+    "U238":  0.08, 
+    "PU239": 0.30,
+    "PU241": 0.06
+  },
+  "HEU": {
+    "U235":  1,
+    "U238":  0, 
+    "PU239": 0,
+    "PU241": 0
+  },
+  "GCR": {
+    "U235":  0.7248,
+    "U238":  0.0423, 
+    "PU239": 0.2127,
+    "PU241": 0.0202
+  },
+  "PHWR": {
+    "U235":  0.52,
+    "U238":  0.05, 
+    "PU239": 0.42,
+    "PU241": 0.01
+  },
+  "LEU_MOX": {
+    "U235":  0.39,
+    "U238":  0.08, 
+    "PU239": 0.42,
+    "PU241": 0.11
+  },
+  "FBR_MOX": {
+    "U235":  0.39,
+    "U238":  0.08, 
+    "PU239": 0.42,
+    "PU241": 0.11
+  }
+}
+
+const databaseToKnown:{ [key: string]: string; } = {
+   "LEU": "LEU",
+   "PWR": "LEU",
+   "BWR": "LEU",
+   "LWGR": "LEU",
+   "HWLWR": "LEU",
+   "PHWR": "PHWR",
+   "GCR": "GCR",
+   "HEU": "HEU",
+   "FBR": "FBR",
+}
+
 class LoadFactor {
   date: Date;
   load: number;
@@ -86,6 +143,14 @@ export class ReactorCore {
     if (a.custom === false && b.custom === true){return -1}
     return 0;
   }
+
+  spectrumType(){
+    let t = databaseToKnown[this.type]
+    if (this.mox === true){
+      return t + "_MOX"
+    }
+    return t
+  }
 }
 export const defaultCoreList = Object.keys(cores).map((core) =>{
   const c = core as keyof typeof cores;
@@ -111,3 +176,5 @@ export const defaultCoreList = Object.keys(cores).map((core) =>{
     loads: LFs
   })
 });
+console.log(defaultCoreList[0])
+console.log(defaultCoreList[0].spectrumType())
