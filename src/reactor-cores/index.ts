@@ -2,21 +2,24 @@ import { reactors as cores, times, loads } from './reactor-database/reactors.jso
 import { partialInteractionRate } from '../physics/reactor-antineutrinos'
 import { neutrinoEnergyFor } from '../physics/helpers'
 import {crossSectionSV2003, crossSectionVB1999} from '../physics/neutrino-cross-section'
-import { FISSION_ENERGIES, Isotopes} from '../physics/constants'
-import { range, memoize, zip } from 'lodash';
+import { FISSION_ENERGIES, ELEMENTARY_CHARGE ,Isotopes} from '../physics/constants'
+import { range, zip } from 'lodash';
 import { project } from 'ecef-projector';
+import {LazyGetter} from 'lazy-get-decorator';
 
 export { cores, times, loads };
+
+const SECONDS_PER_YEAR = 365.25 * 24 * 60 * 60;
 
 function mevRange(count = 1000, start = 0, stop = 10) {
   // TODO figure out how to deal with a start not a zero
   const binSize = (stop - start) / count;
-  return new Float64Array(range(binSize / 2, stop, binSize))
+  return new Float32Array(range(binSize / 2, stop, binSize))
 }
 
 const bins = mevRange();
 
-const FUEL_FRACTIONS = {
+const FUEL_FRACTIONS: {[type: string]: {[key: string]: number}} = {
   "LEU": {
     "U235":  0.56,
     "U238":  0.08, 
@@ -61,17 +64,6 @@ const FUEL_FRACTIONS = {
   }
 }
 
-const databaseToKnown:{ [key: string]: string; } = {
-   "LEU": "LEU",
-   "PWR": "LEU",
-   "BWR": "LEU",
-   "LWGR": "LEU",
-   "HWLWR": "LEU",
-   "PHWR": "PHWR",
-   "GCR": "GCR",
-   "HEU": "HEU",
-   "FBR": "FBR",
-}
 
 class LoadFactor {
   date: Date;
@@ -86,19 +78,6 @@ class LoadFactor {
     // This is finding the "zeroith" day of the next month, which will result
     // in the last day of the month we want being returned
     this.days = new Date(this.date.getFullYear(), this.date.getMonth() + 1, 0).getDate();
-
-    //this.spectrumSV2003 = bins.map((Ev) => {
-    //  return Object.keys(Isotopes).map((v) => {
-    //    const isotope: Isotopes = v as Isotopes;
-    //    return partialInteractionRate(Ev, FISSION_ENERGIES[isotope], memoedCrossSectionSV2003, neutrinoEnergyFor(isotope))
-    //  }).reduce((previousValue, currentValue) => previousValue + currentValue, 0)
-    //})
-    //this.spectrumVB1999 = bins.map((Ev) =>{
-    //  return Object.keys(Isotopes).map((v) => {
-    //    const isotope: Isotopes = v as Isotopes;
-    //    return partialInteractionRate(Ev, FISSION_ENERGIES[isotope], crossSectionVB1999, neutrinoEnergyFor(isotope))
-    //  }).reduce((previousValue, currentValue) => previousValue + currentValue, 0)
-    //})
   }
 }
 
@@ -144,7 +123,50 @@ export class ReactorCore {
     return 0;
   }
 
-  spectrumType(){
+  @LazyGetter()
+  get spectrumSV2003(){
+      return bins.map((Ev) => {
+        return Object.keys(Isotopes).map((v) => {
+          const isotope: Isotopes = v as Isotopes;
+          const fuelFraction = FUEL_FRACTIONS[this.spectrumType][v];
+          return 1e22 * (SECONDS_PER_YEAR/ELEMENTARY_CHARGE) * fuelFraction * partialInteractionRate(Ev, FISSION_ENERGIES[isotope], crossSectionSV2003, neutrinoEnergyFor(isotope))
+        }).reduce((previousValue, currentValue) => previousValue + currentValue, 0)
+      })
+  }
+
+  @LazyGetter()
+  get spectrumVB1999(){
+    return bins.map((Ev) =>{
+      return Object.keys(Isotopes).map((v) => {
+        const isotope: Isotopes = v as Isotopes;
+        const fuelFraction = FUEL_FRACTIONS[this.spectrumType][v];
+        return 1e22 * (SECONDS_PER_YEAR/ELEMENTARY_CHARGE) * fuelFraction * partialInteractionRate(Ev, FISSION_ENERGIES[isotope], crossSectionVB1999, neutrinoEnergyFor(isotope))
+      }).reduce((previousValue, currentValue) => previousValue + currentValue, 0)
+    })
+  }
+
+  spectrum(method:string){
+    if (method === "SV2003"){
+      return this.spectrumSV2003
+    }
+    if (method === "VB1999"){
+      return this.spectrumVB1999
+    }
+  }
+
+  @LazyGetter()
+  get spectrumType(): string{
+    const databaseToKnown:{ [key: string]: string; } = {
+       "LEU": "LEU",
+       "PWR": "LEU",
+       "BWR": "LEU",
+       "LWGR": "LEU",
+       "HWLWR": "LEU",
+       "PHWR": "PHWR",
+       "GCR": "GCR",
+       "HEU": "HEU",
+       "FBR": "FBR",
+    }
     let t = databaseToKnown[this.type]
     if (this.mox === true){
       return t + "_MOX"
@@ -176,5 +198,3 @@ export const defaultCoreList = Object.keys(cores).map((core) =>{
     loads: LFs
   })
 });
-console.log(defaultCoreList[0])
-console.log(defaultCoreList[0].spectrumType())

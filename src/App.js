@@ -7,9 +7,9 @@ import {memoize} from 'lodash';
 let memoed_nuosc = memoize(normalNeutrinoOscilationSpectrum)
 let memoedi_nuosc = memoize(invertedNeutrinoOscilationSpectrum)
 
-const CoreList = () => {
-  let items = defaultCoreList.sort(ReactorCore.sortCompare).map((core) => (<li key={core.name}>
-    {core.name}
+const CoreList = ({coreList}) => {
+  let items = coreList.sort(ReactorCore.sortCompare).map((core) => (<li key={core.name}>
+    {core.name} - {core.spectrumType} - {core.spectrumSV2003[500]} - {core.spectrumVB1999[500]}
     </li>))
   return (
     <ul>
@@ -22,12 +22,19 @@ class App extends React.Component {
   constructor(props) {
     super(props)
     this.state ={
+      ready: false,
       crustFlux: "",
       normal: "",
-      inverted: ""
+      inverted: "",
+      coreList: defaultCoreList
     }
   }
   componentDidMount = () => {
+    setTimeout(() => {
+      this.state.coreList.map((core) => core.spectrumSV2003)
+      this.state.coreList.map((core) => core.spectrumVB1999)
+      this.setState({ ready: true })
+    }, 10)
     setInterval(() => {
       const lat = Math.random() * 180 - 90;
       const lon = Math.random() * 360 - 180;
@@ -39,17 +46,20 @@ class App extends React.Component {
         console.log(lon, lat)
       }
       this.setState({crustFlux: crustFlux, normal: normal, invert: invert});
-    }, 1)
+    }, 500)
   }
 
   render() {
+    if (this.state.ready === false){
+      return <div>Doing an initial model run...</div>
+    }
     return (
       <div className="App">
         {this.state.crustFlux}<br/>
         {this.state.normal}<br/>
         {this.state.invert}<br/>
         {this.state.normal - this.state.invert}<br/>
-        <CoreList />
+        <CoreList coreList={this.state.coreList} />
       </div>
     );
   }
