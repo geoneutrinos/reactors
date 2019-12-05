@@ -1,22 +1,19 @@
 import React from 'react';
-import { getCrustFlux } from './crust-model'
-import { normalNeutrinoOscilationSpectrum, invertedNeutrinoOscilationSpectrum } from './physics/neutrino-oscillation'
-import { defaultCoreList, ReactorCore } from './reactor-cores'
-import {memoize} from 'lodash';
 
-let memoed_nuosc = memoize(normalNeutrinoOscilationSpectrum)
-let memoedi_nuosc = memoize(invertedNeutrinoOscilationSpectrum)
+import { Map, Marker, Popup, TileLayer } from 'react-leaflet'
+import { Container, Row, Col} from 'react-bootstrap';
 
-const CoreList = ({coreList}) => {
-  let items = coreList.sort(ReactorCore.sortCompare).map((core) => (<li key={core.name}>
-    {core.name} - {core.spectrumType} - {core.spectrumSV2003[500]} - {core.spectrumVB1999[500]}
-    </li>))
-  return (
-    <ul>
-      {items}
-    </ul>
-  )
-}
+import 'leaflet/dist/leaflet.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+import L from 'leaflet';
+delete L.Icon.Default.prototype._getIconUrl;
+
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
+  iconUrl: require('leaflet/dist/images/marker-icon.png'),
+  shadowUrl: require('leaflet/dist/images/marker-shadow.png'),
+});
 
 class App extends React.Component {
   constructor(props) {
@@ -26,27 +23,16 @@ class App extends React.Component {
       crustFlux: "",
       normal: "",
       inverted: "",
-      coreList: defaultCoreList
+      //coreList: defaultCoreList
     }
   }
   componentDidMount = () => {
-    setTimeout(() => {
-      this.state.coreList.map((core) => core.spectrumSV2003)
-      this.state.coreList.map((core) => core.spectrumVB1999)
-      this.setState({ ready: true })
-    }, 10)
-    setInterval(() => {
-      const lat = Math.random() * 180 - 90;
-      const lon = Math.random() * 360 - 180;
-      const dist = Math.floor(Math.random() * 6000);
-      const crustFlux = JSON.stringify(getCrustFlux(lon,lat));
-      const normal= JSON.stringify(memoed_nuosc(dist)[0]);
-      const invert = JSON.stringify(memoedi_nuosc(dist)[0]);
-      if (crustFlux === '{}'){
-        console.log(lon, lat)
-      }
-      this.setState({crustFlux: crustFlux, normal: normal, invert: invert});
-    }, 500)
+    //setTimeout(() => {
+    //  this.state.coreList.map((core) => core.spectrumSV2003)
+    //  this.state.coreList.map((core) => core.spectrumVB1999)
+    //  this.setState({ ready: true })
+    //}, 10)
+    this.setState({ ready: true })
   }
 
   render() {
@@ -54,13 +40,22 @@ class App extends React.Component {
       return <div>Doing an initial model run...</div>
     }
     return (
-      <div className="App">
-        {this.state.crustFlux}<br/>
-        {this.state.normal}<br/>
-        {this.state.invert}<br/>
-        {this.state.normal - this.state.invert}<br/>
-        <CoreList coreList={this.state.coreList} />
-      </div>
+      <Container fluid={true}>
+        <Row style={{minHeight: "100vh"}}>
+          <Col>
+            <Map style={{height: "100%"}} center={[0,0]} zoom={2}>
+              <TileLayer
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
+              />
+              <Marker position={[51.505, -0.09]}>
+                <Popup>A pretty CSS3 popup.<br />Easily customizable.</Popup>
+              </Marker>
+            </Map>
+          </Col>
+          <Col lg={4}><h1>Reactors</h1></Col>
+        </Row>
+      </Container>
     );
   }
 }
