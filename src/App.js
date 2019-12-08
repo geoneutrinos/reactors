@@ -138,7 +138,13 @@ class App extends React.Component {
     this.setState({crossSection: event.currentTarget.value}, this.updateSpectrum)
   }
   mapMouseMove = (event) =>{
-    const {lat, lng} = event.latlng;
+    let {lat, lng} = event.latlng;
+    while (lng > 180){
+     lng = lng - 360;
+    }
+    while (lng < -180){
+      lng = lng + 360;
+    }
     this.setState({detector: {...this.state.detector, lat:lat, lon:lng}}, this.updateSpectrum)
   }
   render() {
