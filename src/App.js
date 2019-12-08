@@ -3,7 +3,7 @@ import React from 'react';
 import { Container, Row, Col, Tab, Tabs, Card, Form, InputGroup } from 'react-bootstrap';
 
 //import { NuSpectrumPlot } from './ui/plot'
-import { NuMap } from './ui';
+import { NuMap, StatsPanel } from './ui';
 import { defaultCoreList, ReactorCore } from './reactor-cores';
 import { presets } from './detectors';
 
@@ -44,16 +44,16 @@ class App extends React.Component {
         crustSignal: true
       },
       spectrum: {
-        total: null,
-        iaea: null,
-        closest: null,
-        custom: null,
-        geoU: null,
-        geoTh: null
+        total: (new Float64Array(1000)).fill(0),
+        iaea: (new Float64Array(1000)).fill(0),
+        closest: (new Float64Array(1000)).fill(0),
+        custom: (new Float64Array(1000)).fill(0),
+        geoU: (new Float64Array(1000)).fill(0),
+        geoTh: (new Float64Array(1000)).fill(0)
       },
       distances: {
-        closestIAEA: null,
-        closestUser: null
+        closestIAEA: 10000,
+        closestUser: 10000
       }
     }
   }
@@ -66,7 +66,12 @@ class App extends React.Component {
     this.setState({ ready: true })
   }
 
+  updateSpectrum = () => {
+    
+  }
+
   render() {
+    console.debug(this.state)
     //const presetGroups = groupBy(presets,(detector) => detector.region)
     //const presetOptions = Object.keys(presetGroups).map((key)=> {
     //  const group = presetGroups[key];
@@ -81,10 +86,10 @@ class App extends React.Component {
     return (
       <Container fluid={true}>
         <Row style={{ minHeight: "100vh" }}>
-          <Col>
+          <Col style={{minHeight:"50vh"}}>
             <NuMap coreList={this.state.coreList} />
           </Col>
-          <Col lg={4}>
+          <Col lg={4} style={{maxHeight:"100vh", overflow:"scroll"}}>
             <h3>Reactor Antineutrinos</h3>
             <h1>Plot Goes Here</h1>
             <Tabs defaultActiveKey="detector">
@@ -92,7 +97,7 @@ class App extends React.Component {
                 <Card>
                   <Card.Body>
                     <Card.Title>Spectrum Stats</Card.Title>
-                    Stats Panel
+                    <StatsPanel spectrum={this.state.spectrum} distances={this.state.distances}/>
                   </Card.Body>
                 </Card>
                 <Card>

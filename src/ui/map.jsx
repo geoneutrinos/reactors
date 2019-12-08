@@ -3,7 +3,6 @@ import { Map, Popup, TileLayer, LayerGroup, Circle, LayersControl } from 'react-
 
 export class NuMap extends React.Component {
     render() {
-        console.log(this.props)
         const CoreCircles = this.props.coreList.map((core) => {
             let color;
             switch (core.spectrumType) {
