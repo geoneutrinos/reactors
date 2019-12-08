@@ -1,22 +1,50 @@
-.App {
-  text-align: center;
+.total.line { 
+  stroke: black;
+  stroke-width: 2;
+  /*stroke-dasharray: 1, 1; */
+  fill: yellow;
+}
+.reac.line { 
+  stroke: black;
+  stroke-width: 0.5;
+  stroke-dasharray: 2, 1;
+  fill: none;
+}
+.iaea.line { 
+  stroke: none;
+  stroke-width: 0.5;
+  stroke-dasharray: 2, 1;
+  fill: green;
+}
+.c_reac.line{ 
+  stroke: none;
+  fill: #999;
+}
+.geo_u.line{ 
+  stroke: blue;
+  stroke-width: 2;
+  fill: none;
+}
+.geo_th.line{ 
+  stroke: red;
+  stroke-width: 2;
+  fill: none;
+}
+#detector_icon{
+  position: absolute;
+  top: 0px;
+  pointer-events: none;
+}
+#reactor_icon{
+  position: absolute;
+  top: 0px;
+  pointer-events: none;
 }
 
-.App-logo {
-  height: 40vmin;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #09d3ac;
+.axis path,
+.axis line {
+  fill: none;
+  stroke: grey;
+  stroke-width: 1;
+  shape-rendering: crispEdges;
 }

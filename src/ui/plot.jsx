@@ -21,10 +21,8 @@ function squish_array(two_d_array){
 }
 
 export class NuSpectrumPlot extends React.Component {
-  constructor(props){
-    super(props)
-
-    this.spectrum = props.spectrum;
+  componentDidUpdate(props){
+    this.updateLines()
   }
   resize = () => {
     // update width
@@ -52,28 +50,28 @@ export class NuSpectrumPlot extends React.Component {
     this.updateLines();
 
   }
-
   updateLines = () => {
     function for_plot(arr){
+      arr = [...arr];
       arr = arr.slice(100,899);
       arr.push(0);
       return arr;
     }
 
-    this._x.domain([0, d3.max(this.spectrum.total, function(d, i) { return i; })- 200]);
-    this._y.domain([0, d3.max(this.spectrum.total, function(d) { return d; })]);
+    this._x.domain([0, d3.max(this.props.spectrum.total, function(d, i) { return i; })- 200]);
+    this._y.domain([0, d3.max(this.props.spectrum.total, function(d) { return d; })]);
     this._svg.select(".reac")
-      .attr("d", this._valueline(for_plot(this.spectrum.custom)));
+      .attr("d", this._valueline(for_plot(this.props.spectrum.custom)));
     this._svg.select(".c_reac")
-      .attr("d", this._valueline(for_plot(this.spectrum.closest)));
+      .attr("d", this._valueline(for_plot(this.props.spectrum.closest)));
     this._svg.select(".geo_u")
-      .attr("d", this._valueline(this.spectrum.geo_u.slice(100,900)));
+      .attr("d", this._valueline(this.props.spectrum.geoU.slice(100,900)));
     this._svg.select(".geo_th")
-      .attr("d", this._valueline(this.spectrum.geo_th.slice(100,900)));
+      .attr("d", this._valueline(this.props.spectrum.geoTh.slice(100,900)));
     this._svg.select(".total")
-      .attr("d", this._valueline(for_plot(this.spectrum.total)));
+      .attr("d", this._valueline(for_plot(this.props.spectrum.total)));
     this._svg.select(".iaea")
-      .attr("d", this._valueline(for_plot(squish_array([this.spectrum.iaea, this.spectrum.custom]))));
+      .attr("d", this._valueline(for_plot(squish_array([this.props.spectrum.iaea, this.props.spectrum.custom]))));
     this._svg.select("#yaxis")
       .call(this._yAxis);
     this._svg.select(".x.axis")

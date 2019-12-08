@@ -1,16 +1,20 @@
 import React from 'react';
 
+import { project } from 'ecef-projector';
 import { Container, Row, Col, Tab, Tabs, Card, Form, InputGroup } from 'react-bootstrap';
 
-//import { NuSpectrumPlot } from './ui/plot'
+import { normalNeutrinoOscilationSpectrum, invertedNeutrinoOscilationSpectrum} from './physics/neutrino-oscillation'
+
+import { NuSpectrumPlot } from './ui/plot'
 import { NuMap, StatsPanel } from './ui';
 import { defaultCoreList, ReactorCore } from './reactor-cores';
 import { presets } from './detectors';
 
-import { groupBy } from 'lodash';
+import { groupBy, zip, sum, memoize } from 'lodash';
 
 import 'leaflet/dist/leaflet.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css';
 
 import L from 'leaflet';
 delete L.Icon.Default.prototype._getIconUrl;
@@ -21,16 +25,19 @@ L.Icon.Default.mergeOptions({
   shadowUrl: require('leaflet/dist/images/marker-shadow.png'),
 });
 
+
+const MEM_normalNeutrinoOscilationSpectrum = memoize(normalNeutrinoOscilationSpectrum)
+const MEM_invertedNeutrinoOscilationSpectrum = memoize(invertedNeutrinoOscilationSpectrum)
+
 class App extends React.Component {
   constructor(props) {
     super(props)
+    this.plot = React.createRef();
+
     this.state = {
-      ready: false,
       coreList: defaultCoreList,
-      physics: {
-        crossSection: "SV2003",
-        massOrdering: "normal", // or "inverted"
-      },
+      crossSection: "SV2003",
+      massOrdering: "normal", // or "inverted"
       detector: {
         follow: true,
         preset: "Boulby",
@@ -58,30 +65,86 @@ class App extends React.Component {
     }
   }
   componentDidMount = () => {
-    //setTimeout(() => {
-    //  this.state.coreList.map((core) => core.spectrumSV2003)
-    //  this.state.coreList.map((core) => core.spectrumVB1999)
-    //  this.setState({ ready: true })
-    //}, 10)
-    this.setState({ ready: true })
+    setTimeout(() => {
+      this.state.coreList.map((core) => core.spectrumSV2003)
+      this.state.coreList.map((core) => core.spectrumVB1999)
+      this.updateSpectrum();
+    }, 10)
   }
 
   updateSpectrum = () => {
-    
+    let closestCoreSpectrum = (new Float64Array(1000)).fill(0);
+    let IAEACoreSpectrum = (new Float64Array(1000)).fill(0);
+    let CustomCoreSpectrum = (new Float64Array(1000)).fill(0);
+    let closestUser, closestIAEA;
+
+    let currentDistUser = 1e10;
+    let currentDistIAEA = 1e10;
+
+    const {lat, lon, elevation} = this.state.detector;
+    const [x, y, z] = project(lat, lon, elevation).map((n)=> n/1000);
+
+    this.state.coreList.map((core) => {
+      let dist = Math.hypot(x - core.x, y - core.y, z - core.z);
+
+      if (dist > 100){
+        dist = Math.round(dist)
+      }
+
+      let spectrum;
+      switch (this.state.crossSection){
+        case "VB1999":
+          spectrum = core.spectrumVB1999;
+          break;
+        case "SV2003":
+        default:
+          spectrum = core.spectrumSV2003;
+          break;
+      }
+
+      let oscillation;
+      switch (this.state.massOrdering){
+        case ("inverted"):
+          oscillation = MEM_invertedNeutrinoOscilationSpectrum(dist);
+          break;
+        case ("normal"):
+        default:
+          oscillation = MEM_normalNeutrinoOscilationSpectrum(dist);
+          break
+      }
+
+      const signal = zip(spectrum, oscillation).map(([spec, osc])=>{
+        return (spec * osc * core.power)/(dist ** 2)
+      });
+
+      IAEACoreSpectrum = zip(IAEACoreSpectrum, signal).map(sum)
+    });
+    console.log('stateupdate')
+    this.setState({
+      spectrum: {
+        total: IAEACoreSpectrum,
+        iaea: IAEACoreSpectrum,
+        closest: (new Float64Array(1000)).fill(0),
+        custom: (new Float64Array(1000)).fill(0),
+        geoU: (new Float64Array(1000)).fill(0),
+        geoTh: (new Float64Array(1000)).fill(0)
+      },
+    })
+  }
+  changeMassOrder = (event) =>{
+    this.setState({massOrdering: event.currentTarget.value}, this.updateSpectrum)
+  }
+  changeCrossSection = (event) =>{
+    this.setState({crossSection: event.currentTarget.value}, this.updateSpectrum)
   }
 
   render() {
-    console.debug(this.state)
     //const presetGroups = groupBy(presets,(detector) => detector.region)
     //const presetOptions = Object.keys(presetGroups).map((key)=> {
     //  const group = presetGroups[key];
     //  const options = group.map((detector) => <option key={detector.name} value={detector.name}>{detector.name} ({detector.overburden} mwe)</option>)
     //  return <optgroup key={key} label={key}>{options}</optgroup>
     //})
-
-    if (this.state.ready === false) {
-      return <div>Doing an initial model run...</div>
-    }
 
     return (
       <Container fluid={true}>
@@ -91,7 +154,7 @@ class App extends React.Component {
           </Col>
           <Col lg={4} style={{maxHeight:"100vh", overflow:"scroll"}}>
             <h3>Reactor Antineutrinos</h3>
-            <h1>Plot Goes Here</h1>
+            <NuSpectrumPlot ref={this.plot}  spectrum={this.state.spectrum} />
             <Tabs defaultActiveKey="detector">
               <Tab eventKey="detector" title="Detector">
                 <Card>
@@ -105,14 +168,14 @@ class App extends React.Component {
                     <Card.Title>Physics</Card.Title>
                     <Form.Group controlId="neutrinoMassOrder">
                       <Form.Label>Neutrino Mass Ordering</Form.Label>
-                      <Form.Control as="select" value={this.state.physics.massOrdering}>
+                      <Form.Control as="select" onChange={this.changeMassOrder} value={this.state.massOrdering}>
                         <option value="normal">Normal</option>
                         <option value="inverted">Inverted</option>
                       </Form.Control>
                     </Form.Group>
                     <Form.Group controlId="neutrinoCrossSection">
                       <Form.Label>Neutrino Cross Section</Form.Label>
-                      <Form.Control as="select" value={this.state.physics.crossSection}>
+                      <Form.Control as="select" onChange={this.changeCrossSection} value={this.state.crossSection}>
                         <option value="VB1999">Vogel and Beacom (1999)</option>
                         <option value="SV2003">Strumia and Vissani (2003)</option>
                       </Form.Control>
