@@ -1,10 +1,13 @@
 import React from 'react';
 
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Tab, Tabs, Card, Form, InputGroup } from 'react-bootstrap';
 
 //import { NuSpectrumPlot } from './ui/plot'
-import { NuMap } from './ui/map'
-import { defaultCoreList} from './reactor-cores'
+import { NuMap } from './ui';
+import { defaultCoreList, ReactorCore } from './reactor-cores';
+import { presets } from './detectors';
+
+import { groupBy } from 'lodash';
 
 import 'leaflet/dist/leaflet.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -23,10 +26,35 @@ class App extends React.Component {
     super(props)
     this.state = {
       ready: false,
-      crustFlux: "",
-      normal: "",
-      inverted: "",
-      coreList: defaultCoreList
+      coreList: defaultCoreList,
+      physics: {
+        crossSection: "SV2003",
+        massOrdering: "normal", // or "inverted"
+      },
+      detector: {
+        follow: true,
+        preset: "Boulby",
+        lat: 54.555129,
+        lon: -0.80089,
+        elevation: -1050,
+      },
+      geoneutrino: {
+        mantleSignal: 8.2, //TNU
+        ThURatio: 3.9, //no units
+        crustSignal: true
+      },
+      spectrum: {
+        total: null,
+        iaea: null,
+        closest: null,
+        custom: null,
+        geoU: null,
+        geoTh: null
+      },
+      distances: {
+        closestIAEA: null,
+        closestUser: null
+      }
     }
   }
   componentDidMount = () => {
@@ -39,6 +67,12 @@ class App extends React.Component {
   }
 
   render() {
+    //const presetGroups = groupBy(presets,(detector) => detector.region)
+    //const presetOptions = Object.keys(presetGroups).map((key)=> {
+    //  const group = presetGroups[key];
+    //  const options = group.map((detector) => <option key={detector.name} value={detector.name}>{detector.name} ({detector.overburden} mwe)</option>)
+    //  return <optgroup key={key} label={key}>{options}</optgroup>
+    //})
 
     if (this.state.ready === false) {
       return <div>Doing an initial model run...</div>
@@ -50,7 +84,85 @@ class App extends React.Component {
           <Col>
             <NuMap coreList={this.state.coreList} />
           </Col>
-          <Col lg={4}><h1>Reactors</h1></Col>
+          <Col lg={4}>
+            <h3>Reactor Antineutrinos</h3>
+            <h1>Plot Goes Here</h1>
+            <Tabs defaultActiveKey="detector">
+              <Tab eventKey="detector" title="Detector">
+                <Card>
+                  <Card.Body>
+                    <Card.Title>Spectrum Stats</Card.Title>
+                    Stats Panel
+                  </Card.Body>
+                </Card>
+                <Card>
+                  <Card.Body>
+                    <Card.Title>Physics</Card.Title>
+                    <Form.Group controlId="neutrinoMassOrder">
+                      <Form.Label>Neutrino Mass Ordering</Form.Label>
+                      <Form.Control as="select" value={this.state.physics.massOrdering}>
+                        <option value="normal">Normal</option>
+                        <option value="inverted">Inverted</option>
+                      </Form.Control>
+                    </Form.Group>
+                    <Form.Group controlId="neutrinoCrossSection">
+                      <Form.Label>Neutrino Cross Section</Form.Label>
+                      <Form.Control as="select" value={this.state.physics.crossSection}>
+                        <option value="VB1999">Vogel and Beacom (1999)</option>
+                        <option value="SV2003">Strumia and Vissani (2003)</option>
+                      </Form.Control>
+                    </Form.Group>
+                  </Card.Body>
+                </Card>
+                <Card>
+                  <Card.Body>
+                    <Card.Title>Detector Location</Card.Title>
+                    <Form.Group controlId="detectorLat">
+                      <Form.Label>Latitude</Form.Label>
+                      <InputGroup>
+                        <Form.Control value={this.state.detector.lat} type="number" placeholder="0" step="0.1" />
+                        <InputGroup.Append>
+                          <InputGroup.Text>deg N</InputGroup.Text>
+                        </InputGroup.Append>
+                      </InputGroup>
+                    </Form.Group>
+                    <Form.Group controlId="detectorLon">
+                      <Form.Label>Longitude</Form.Label>
+                      <InputGroup>
+                      <Form.Control value={this.state.detector.lon} type="number" placeholder="0" step="0.1" />
+                        <InputGroup.Append>
+                          <InputGroup.Text>deg E</InputGroup.Text>
+                        </InputGroup.Append>
+                      </InputGroup>
+                    </Form.Group>
+                    <Form.Group controlId="detectorElevation">
+                      <Form.Label>Elevation</Form.Label>
+                      <InputGroup>
+                      <Form.Control value={this.state.detector.elevation} type="number" placeholder="0" step="1" />
+                        <InputGroup.Append>
+                          <InputGroup.Text>meters</InputGroup.Text>
+                        </InputGroup.Append>
+                      </InputGroup>
+                    </Form.Group>
+                  </Card.Body>
+                </Card>
+              </Tab>
+              <Tab eventKey="reactors" title="Reactors">
+                <ul>
+                  {this.state.coreList.sort(ReactorCore.sortCompare).map((core)=> <li key={core.name}>{core.name}</li>)}
+                </ul>
+              </Tab>
+              <Tab eventKey="geonu" title="GeoNu">
+                GeoNu content
+              </Tab>
+              <Tab eventKey="output" title="Output">
+                Output content
+              </Tab>
+              <Tab eventKey="about" title="About">
+                About content
+              </Tab>
+            </Tabs>
+          </Col>
         </Row>
       </Container>
     );

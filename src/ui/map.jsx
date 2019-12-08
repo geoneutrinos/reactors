@@ -23,13 +23,13 @@ export class NuMap extends React.Component {
             const CorePopup = <Popup>
                 <b>Core Name:</b> {core.name}<br />
                 <b>Design Power:</b> {core.power} MW<br />
-                <b>Position (N,E) </b> {core.lat}, ${core.lon}<br />
+                <b>Position (N,E) </b> {core.lat}, {core.lon}<br />
                 <b>Elevation</b> {core.elevation} m<br />
                 <b>Type:</b> {core.type}&nbsp;
         <b>Mox:</b> {JSON.stringify(core.mox)}<br />
                 <small>Elevation is height above the WGS84 reference ellipsoid</small>
             </Popup>
-            return (<Circle radius={250} color={color} center={{ lat: core.lat, lon: core.lon }}>{CorePopup}</Circle>)
+            return (<Circle key={core.name} radius={250} color={color} center={{ lat: core.lat, lon: core.lon }}>{CorePopup}</Circle>)
         })
         return (< Map style={{ height: "100%" }} center={[0, 0]} zoom={2} >
             <TileLayer
