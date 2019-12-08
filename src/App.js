@@ -137,7 +137,10 @@ class App extends React.Component {
   changeCrossSection = (event) =>{
     this.setState({crossSection: event.currentTarget.value}, this.updateSpectrum)
   }
-
+  mapMouseMove = (event) =>{
+    const {lat, lng} = event.latlng;
+    this.setState({detector: {...this.state.detector, lat:lat, lon:lng}}, this.updateSpectrum)
+  }
   render() {
     //const presetGroups = groupBy(presets,(detector) => detector.region)
     //const presetOptions = Object.keys(presetGroups).map((key)=> {
@@ -150,7 +153,7 @@ class App extends React.Component {
       <Container fluid={true}>
         <Row style={{ minHeight: "100vh" }}>
           <Col style={{minHeight:"50vh"}}>
-            <NuMap coreList={this.state.coreList} />
+            <NuMap onMousemove={this.mapMouseMove} coreList={this.state.coreList} />
           </Col>
           <Col lg={4} style={{maxHeight:"100vh", overflow:"scroll"}}>
             <h3>Reactor Antineutrinos</h3>

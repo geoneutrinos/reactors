@@ -2,6 +2,9 @@ import React from 'react';
 import { Map, Popup, TileLayer, LayerGroup, Circle, LayersControl } from 'react-leaflet'
 
 export class NuMap extends React.Component {
+    shouldComponentUpdate(){
+        return false;
+    }
     render() {
         const CoreCircles = this.props.coreList.map((core) => {
             let color;
@@ -30,7 +33,8 @@ export class NuMap extends React.Component {
             </Popup>
             return (<Circle key={core.name} radius={250} color={color} center={{ lat: core.lat, lon: core.lon }}>{CorePopup}</Circle>)
         })
-        return (< Map style={{ height: "100%" }} center={[0, 0]} zoom={2} >
+        return (
+        < Map onMousemove={this.props.onMousemove} style={{ height: "100%" }} center={[0, 0]} zoom={2} >
             <TileLayer
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
