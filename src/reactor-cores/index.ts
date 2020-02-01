@@ -1,7 +1,7 @@
 import { reactors as cores, times, loads } from './reactor-database/reactors.json'
 import { partialInteractionRate } from '../physics/reactor-antineutrinos'
 import { neutrinoEnergyFor } from '../physics/helpers'
-import {crossSectionSV2003, crossSectionVB1999} from '../physics/neutrino-cross-section'
+import {crossSectionSV2003, crossSectionVB1999, crossSectionElectronAntineutrinoES, crossSectionMuTauAntineutrinoES} from '../physics/neutrino-cross-section'
 import { FISSION_ENERGIES, ELEMENTARY_CHARGE ,Isotopes} from '../physics/constants'
 import { range, zip } from 'lodash';
 import { project } from 'ecef-projector';
@@ -141,6 +141,28 @@ export class ReactorCore {
         const isotope: Isotopes = v as Isotopes;
         const fuelFraction = FUEL_FRACTIONS[this.spectrumType][v];
         return 1e22 * (SECONDS_PER_YEAR/ELEMENTARY_CHARGE) * fuelFraction * partialInteractionRate(Ev, FISSION_ENERGIES[isotope], crossSectionVB1999, neutrinoEnergyFor(isotope))
+      }).reduce((previousValue, currentValue) => previousValue + currentValue, 0)
+    })
+  }
+
+  @LazyGetter()
+  get spectrumESANTI(){
+    return bins.map((Ev) =>{
+      return Object.keys(Isotopes).map((v) => {
+        const isotope: Isotopes = v as Isotopes;
+        const fuelFraction = FUEL_FRACTIONS[this.spectrumType][v];
+        return 1e22 * (SECONDS_PER_YEAR/ELEMENTARY_CHARGE) * fuelFraction * partialInteractionRate(Ev, FISSION_ENERGIES[isotope], crossSectionElectronAntineutrinoES, neutrinoEnergyFor(isotope))
+      }).reduce((previousValue, currentValue) => previousValue + currentValue, 0)
+    })
+  }
+
+  @LazyGetter()
+  get spectrumESMUTAU(){
+    return bins.map((Ev) =>{
+      return Object.keys(Isotopes).map((v) => {
+        const isotope: Isotopes = v as Isotopes;
+        const fuelFraction = FUEL_FRACTIONS[this.spectrumType][v];
+        return 1e22 * (SECONDS_PER_YEAR/ELEMENTARY_CHARGE) * fuelFraction * partialInteractionRate(Ev, FISSION_ENERGIES[isotope], crossSectionMuTauAntineutrinoES, neutrinoEnergyFor(isotope))
       }).reduce((previousValue, currentValue) => previousValue + currentValue, 0)
     })
   }

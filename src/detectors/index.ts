@@ -14,6 +14,7 @@ export const presets: DetecorPreset[] = [
     {name: "Jinping", lat:28.15, lon: 101.71, elevation:0, overburden:6720, region:"Asia"},
     {name: "Kamioka", lat:36.41, lon: 137.30, elevation:0, overburden:2050, region:"Asia"},
     {name: "Lake Baikal", lat:51.771, lon: 104.398, elevation:0, overburden:1100, region:"Asia"},
+    {name: "Yemilab", lat:37.188639, lon: 128.659406, elevation:0, overburden:2500, region:"Asia"},
     //Europe
     {name: "Baksan", lat:43.24, lon: 42.70, elevation:0, overburden:4900, region:"Europe"},
     {name: "Boulby", lat:54.555129, lon: -0.80089, elevation:-1050, overburden:2805, region:"Europe"},

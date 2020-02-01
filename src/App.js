@@ -7,6 +7,7 @@ import { normalNeutrinoOscilationSpectrum, invertedNeutrinoOscilationSpectrum} f
 
 import { NuSpectrumPlot } from './ui/plot'
 import { NuMap, StatsPanel } from './ui';
+import Plot from 'react-plotly.js';
 import { defaultCoreList, ReactorCore } from './reactor-cores';
 import { presets } from './detectors';
 
@@ -28,6 +29,8 @@ L.Icon.Default.mergeOptions({
 
 const MEM_normalNeutrinoOscilationSpectrum = memoize(normalNeutrinoOscilationSpectrum)
 const MEM_invertedNeutrinoOscilationSpectrum = memoize(invertedNeutrinoOscilationSpectrum)
+
+let iaea = (new Float64Array(1000)).fill(0)
 
 class App extends React.Component {
   constructor(props) {
@@ -84,7 +87,7 @@ class App extends React.Component {
     const {lat, lon, elevation} = this.state.detector;
     const [x, y, z] = project(lat, lon, elevation).map((n)=> n/1000);
 
-    this.state.coreList.map((core) => {
+    const coreSignals = this.state.coreList.map((core) => {
       let dist = Math.hypot(x - core.x, y - core.y, z - core.z);
 
       if (dist > 100){
@@ -93,6 +96,12 @@ class App extends React.Component {
 
       let spectrum;
       switch (this.state.crossSection){
+        case "ESMUTAU":
+          spectrum = core.spectrumESMUTAU;
+          break;
+        case "ESANTI":
+          spectrum = core.spectrumESANTI;
+          break;
         case "VB1999":
           spectrum = core.spectrumVB1999;
           break;
@@ -113,13 +122,17 @@ class App extends React.Component {
           break
       }
 
+      if (this.state.crossSection === "ESMUTAU"){
+        oscillation = oscillation.map((v) => 1 - v)
+      }
+
       const signal = zip(spectrum, oscillation).map(([spec, osc])=>{
         return (spec * osc * core.power)/(dist ** 2)
       });
+      return signal
 
-      IAEACoreSpectrum = zip(IAEACoreSpectrum, signal).map(sum)
     });
-    console.log('stateupdate')
+    IAEACoreSpectrum = zip(...coreSignals).map(sum)
     this.setState({
       spectrum: {
         total: IAEACoreSpectrum,
@@ -161,9 +174,36 @@ class App extends React.Component {
           <Col style={{minHeight:"50vh"}}>
             <NuMap onMousemove={this.mapMouseMove} coreList={this.state.coreList} />
           </Col>
-          <Col lg={4} style={{maxHeight:"100vh", overflow:"scroll"}}>
+          <Col lg={6} style={{maxHeight:"100vh", overflow:"scroll"}}>
             <h3>Reactor Antineutrinos</h3>
-            <NuSpectrumPlot ref={this.plot}  spectrum={this.state.spectrum} />
+            <Plot
+              data={[
+                {
+                  x: (new Float64Array(1000)).map((v, i) => i * 0.01 + 0.005),
+                  y: this.state.spectrum.iaea,
+                  name: 'Reactor Cores',
+                  type: 'scatter',
+                  mode: 'lines',
+                  fill: 'tozerox',
+                  marker: { color: 'green' },
+                },
+              ]}
+              layout={{ 
+                showlegend: true,
+                legend: {
+                  x: 1,
+                  xanchor: 'right',
+                  y: 1
+                },
+                autosize:true, 
+                xaxis: {
+                  title: {text: "Antineutrino Energy E (MeV)"}
+                },
+                yaxis: {title: {text:"Rate dR/dE (TNU/MeV)"}}
+              }}
+              useResizeHandler={true}
+              style={{width: "100%"}}
+            />
             <Tabs defaultActiveKey="detector">
               <Tab eventKey="detector" title="Detector">
                 <Card>
@@ -185,8 +225,10 @@ class App extends React.Component {
                     <Form.Group controlId="neutrinoCrossSection">
                       <Form.Label>Neutrino Cross Section</Form.Label>
                       <Form.Control as="select" onChange={this.changeCrossSection} value={this.state.crossSection}>
-                        <option value="VB1999">Vogel and Beacom (1999)</option>
-                        <option value="SV2003">Strumia and Vissani (2003)</option>
+                        <option value="VB1999">IBD: Vogel and Beacom (1999)</option>
+                        <option value="SV2003">IBD: Strumia and Vissani (2003)</option>
+                        <option value="ESANTI">Elastic Scattering: Electron Antineutrino</option>
+                        <option value="ESMUTAU">Elastic Scattering: Mu Tau Antineutrino</option>
                       </Form.Control>
                     </Form.Group>
                   </Card.Body>

@@ -1,4 +1,5 @@
-import { ELECTRON_REST_MASS, NEUTRON_REST_MASS, PROTON_REST_MASS } from './constants'
+import { ELECTRON_REST_MASS, NEUTRON_REST_MASS, PROTON_REST_MASS, HBAR_C, FERMI_COUPLING_CONSTANT } from './constants'
+import { memoize } from 'lodash';
 
 /** 
  * Calculates the neutrino cross section, sometimes called sigma
@@ -38,4 +39,30 @@ export function crossSectionVB1999(Ev: number): number{
   const Ee = Math.max(ELECTRON_REST_MASS, Ev - (NEUTRON_REST_MASS - PROTON_REST_MASS));
 
   return 9.52e-44 * Math.sqrt((Ee * Ee) - (ELECTRON_REST_MASS * ELECTRON_REST_MASS)) * Ee;
+}
+
+
+export function crossSectionElectronAntineutrinoES(Ev: number): number {
+  const weakMixingAngle =  0.23122; // sin**2(Theta)
+
+  //const prefactor = (fermiCouplingConstant ** 2 * ELECTRON_REST_MASS)/(6 * Math.PI);
+  const prefactor = ((((FERMI_COUPLING_CONSTANT / 1e6) ** 2) * ELECTRON_REST_MASS) * HBAR_C ** 2) / (6 * Math.PI)
+
+  const term1 = 1 + 4 * weakMixingAngle + 16 * weakMixingAngle ** 2;
+  const term2 = (3 * weakMixingAngle * 6 * weakMixingAngle ** 2) * (ELECTRON_REST_MASS/Ev);
+
+  return prefactor * Ev * (term1 - term2);
+
+}
+
+export function crossSectionMuTauAntineutrinoES(Ev: number): number {
+  const weakMixingAngle =  0.23122; // sin**2(Theta)
+
+  const prefactor = ((((FERMI_COUPLING_CONSTANT / 1e6) ** 2) * ELECTRON_REST_MASS) * HBAR_C ** 2) / (6 * Math.PI)
+
+  const term1 = 1 - 4 * weakMixingAngle + 16 * weakMixingAngle ** 2;
+  const term2 = (3 * weakMixingAngle * 6 * weakMixingAngle ** 2) * (ELECTRON_REST_MASS/Ev);
+
+  return prefactor * Ev * (term1 - term2);
+
 }

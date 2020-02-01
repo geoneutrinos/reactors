@@ -3,6 +3,8 @@ export const ELEMENTARY_CHARGE = 1.602176634e-19; //Coulombs (exact as of 20 May
 export const ELECTRON_REST_MASS = 0.5109989461 // MeV
 export const NEUTRON_REST_MASS = 939.565413 // MeV
 export const PROTON_REST_MASS = 938.2720813 //MeV
+export const FERMI_COUPLING_CONSTANT = 1.1663787e-5 // GeV-2
+export const HBAR_C = 197.3269804e-13 // MeV cm (exact)
 
 export const FISSION_ENERGIES = { //MeV
   "U235":  201.912,

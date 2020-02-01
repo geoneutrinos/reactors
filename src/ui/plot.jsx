@@ -21,6 +21,9 @@ function squish_array(two_d_array){
 }
 
 export class NuSpectrumPlot extends React.Component {
+  shouldComponentUpdate(){
+    return false;
+  }
   componentDidUpdate(props){
     this.updateLines()
   }
