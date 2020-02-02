@@ -30,8 +30,6 @@ L.Icon.Default.mergeOptions({
 const MEM_normalNeutrinoOscilationSpectrum = memoize(normalNeutrinoOscilationSpectrum)
 const MEM_invertedNeutrinoOscilationSpectrum = memoize(invertedNeutrinoOscilationSpectrum)
 
-let iaea = (new Float64Array(1000)).fill(0)
-
 class App extends React.Component {
   constructor(props) {
     super(props)
@@ -41,6 +39,8 @@ class App extends React.Component {
       coreList: defaultCoreList,
       crossSection: "SV2003",
       massOrdering: "normal", // or "inverted"
+      reactorLFStart: new Date("2018-01"),
+      reactorLFEnd: new Date("2018-12"),
       detector: {
         follow: true,
         preset: "Boulby",
@@ -69,8 +69,8 @@ class App extends React.Component {
   }
   componentDidMount = () => {
     setTimeout(() => {
-      this.state.coreList.map((core) => core.spectrumSV2003)
-      this.state.coreList.map((core) => core.spectrumVB1999)
+      //this.state.coreList.map((core) => core.spectrumSV2003)
+      //this.state.coreList.map((core) => core.spectrumVB1999)
       this.updateSpectrum();
     }, 10)
   }
@@ -89,6 +89,7 @@ class App extends React.Component {
 
     const coreSignals = this.state.coreList.map((core) => {
       let dist = Math.hypot(x - core.x, y - core.y, z - core.z);
+      const lf = core.loadFactor(this.state.reactorLFStart, this.state.reactorLFEnd)
 
       if (dist > 100){
         dist = Math.round(dist)
@@ -127,7 +128,7 @@ class App extends React.Component {
       }
 
       const signal = zip(spectrum, oscillation).map(([spec, osc])=>{
-        return (spec * osc * core.power)/(dist ** 2)
+        return (spec * osc * core.power * lf)/(dist ** 2)
       });
       return signal
 
@@ -203,6 +204,7 @@ class App extends React.Component {
               }}
               useResizeHandler={true}
               style={{width: "100%"}}
+              config={{toImageButtonOptions:{width: 900, height: 500, scale:2}}}
             />
             <Tabs defaultActiveKey="detector">
               <Tab eventKey="detector" title="Detector">

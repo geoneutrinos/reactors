@@ -123,6 +123,17 @@ export class ReactorCore {
     return 0;
   }
 
+  loadFactor(start = new Date("2003-01"), stop = new Date("2018-12")){
+    if (this.custom === true){
+      return 1;
+    }
+    const loads = this.loads.filter((load) => (load.date >= start) && (load.date <= stop));
+    const totalDays = loads.reduce((a,b) => a + b.days, 0);
+    const weightedLoads = loads.map((load) => load.load * (load.days/totalDays));
+    return weightedLoads.reduce((a,b) => a + b);
+  }
+
+
   @LazyGetter()
   get spectrumSV2003(){
       return bins.map((Ev) => {
