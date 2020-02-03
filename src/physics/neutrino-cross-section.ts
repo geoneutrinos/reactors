@@ -1,4 +1,4 @@
-import { ELECTRON_REST_MASS, NEUTRON_REST_MASS, PROTON_REST_MASS, HBAR_C, FERMI_COUPLING_CONSTANT } from './constants'
+import { ELECTRON_REST_MASS, NEUTRON_REST_MASS, PROTON_REST_MASS, HBAR_C, FERMI_COUPLING_CONSTANT, WEAK_MIXING_ANGLE } from './constants'
 import { memoize } from 'lodash';
 
 /** 
@@ -41,28 +41,52 @@ export function crossSectionVB1999(Ev: number): number{
   return 9.52e-44 * Math.sqrt((Ee * Ee) - (ELECTRON_REST_MASS * ELECTRON_REST_MASS)) * Ee;
 }
 
+enum NeutrinoType {
+  electronNeutrino,
+  electronAntineutino,
+  muTauAntineutrino
+}
 
-export function crossSectionElectronAntineutrinoES(Ev: number): number {
-  const weakMixingAngle =  0.23122; // sin**2(Theta)
+function crossSectionElasticScattering(Ev: number, neutrinoType: NeutrinoType): number {
+  let cL: number;
+  let cR: number;
+  switch (neutrinoType) { // Table I
+    case NeutrinoType.electronNeutrino: {
+      cL = 0.5 + WEAK_MIXING_ANGLE;
+      cR = WEAK_MIXING_ANGLE;
+      break;
+    }
+    case NeutrinoType.electronAntineutino: {
+      cL = WEAK_MIXING_ANGLE;
+      cR = 0.5 + WEAK_MIXING_ANGLE;
+      break;
+    }
+    case NeutrinoType.muTauAntineutrino: {
+      cL = WEAK_MIXING_ANGLE;
+      cR = -0.5 + WEAK_MIXING_ANGLE;
+    }
+  }
 
-  //const prefactor = (fermiCouplingConstant ** 2 * ELECTRON_REST_MASS)/(6 * Math.PI);
-  const prefactor = ((((FERMI_COUPLING_CONSTANT / 1e6) ** 2) * ELECTRON_REST_MASS) * HBAR_C ** 2) / (6 * Math.PI)
+  const TEmax = Ev/(1 + ELECTRON_REST_MASS/(2 * Ev)); // Equation 9
 
-  const term1 = 1 + 4 * weakMixingAngle + 16 * weakMixingAngle ** 2;
-  const term2 = (3 * weakMixingAngle * 6 * weakMixingAngle ** 2) * (ELECTRON_REST_MASS/Ev);
+  // The following impliments equation 11... it's big so there will be
+  // 4 terms to make the equation the following: term1(term2 + term3 - term4)
+  
+  const FERMI_COUPLING_CONSTANT_MeV = FERMI_COUPLING_CONSTANT / 1e6
 
-  return prefactor * Ev * (term1 - term2);
+  const term1 = (2 * (FERMI_COUPLING_CONSTANT_MeV ** 2) * (HBAR_C ** 2)) * Ev / Math.PI;
+  const term2 = cL ** 2 * TEmax / Ev;
+  const term3 = cR ** 2 * (1/3) * (1 - (1 - TEmax/Ev) ** 3);
+  const term4 = cL * cR * (ELECTRON_REST_MASS * TEmax ** 2) / (2 * Ev ** 2);
+
+  return term1 * (term2 + term3 - term4);
 
 }
 
-export function crossSectionMuTauAntineutrinoES(Ev: number): number {
-  const weakMixingAngle =  0.23122; // sin**2(Theta)
+export const crossSectionElectronAntineutrinoES = memoize((Ev: number) => {
+  return crossSectionElasticScattering(Ev, NeutrinoType.electronAntineutino)
+})
 
-  const prefactor = ((((FERMI_COUPLING_CONSTANT / 1e6) ** 2) * ELECTRON_REST_MASS) * HBAR_C ** 2) / (6 * Math.PI)
-
-  const term1 = 1 - 4 * weakMixingAngle + 16 * weakMixingAngle ** 2;
-  const term2 = (3 * weakMixingAngle * 6 * weakMixingAngle ** 2) * (ELECTRON_REST_MASS/Ev);
-
-  return prefactor * Ev * (term1 - term2);
-
-}
+export const crossSectionMuTauAntineutrinoES = memoize((Ev: number) => {
+  return crossSectionElasticScattering(Ev, NeutrinoType.muTauAntineutrino)
+})
