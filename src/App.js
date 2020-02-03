@@ -27,9 +27,6 @@ L.Icon.Default.mergeOptions({
 });
 
 
-const MEM_normalNeutrinoOscilationSpectrum = memoize(normalNeutrinoOscilationSpectrum)
-const MEM_invertedNeutrinoOscilationSpectrum = memoize(invertedNeutrinoOscilationSpectrum)
-
 class App extends React.Component {
   constructor(props) {
     super(props)
@@ -115,11 +112,11 @@ class App extends React.Component {
       let oscillation;
       switch (this.state.massOrdering){
         case ("inverted"):
-          oscillation = MEM_invertedNeutrinoOscilationSpectrum(dist);
+          oscillation = invertedNeutrinoOscilationSpectrum(dist);
           break;
         case ("normal"):
         default:
-          oscillation = MEM_normalNeutrinoOscilationSpectrum(dist);
+          oscillation = normalNeutrinoOscilationSpectrum(dist);
           break
       }
 
