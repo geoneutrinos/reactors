@@ -12,7 +12,7 @@ import { memoize } from 'lodash';
  * @param {number} Ev -  Energy of the neutrino in MeV
  * @returns {number} - Cross secton area in cm^2
  */
-export function crossSectionSV2003(Ev: number): number{
+export const crossSectionSV2003 = memoize((Ev: number):number => {
   const a = -0.07056;
   const b = 0.02018;
   const c = -0.001953;
@@ -26,7 +26,7 @@ export function crossSectionSV2003(Ev: number): number{
   const Pe = Math.sqrt(Ee ** 2 - ELECTRON_REST_MASS ** 2) // positron energy
 
   return 1e-43 * Pe * Ee * sve;
-}
+})
 
 /**
  * Calculates the neutrino cross section, sometimes called sigma
@@ -35,11 +35,11 @@ export function crossSectionSV2003(Ev: number): number{
  * @param {number} Ev -  Energy of the neutrino in MeV
  * @returns {number} - Cross secton area in cm^2
  */
-export function crossSectionVB1999(Ev: number): number{
+export const crossSectionVB1999 = memoize((Ev: number): number => {
   const Ee = Math.max(ELECTRON_REST_MASS, Ev - (NEUTRON_REST_MASS - PROTON_REST_MASS));
 
   return 9.52e-44 * Math.sqrt((Ee * Ee) - (ELECTRON_REST_MASS * ELECTRON_REST_MASS)) * Ee;
-}
+})
 
 enum NeutrinoType {
   electronNeutrino,
