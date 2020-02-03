@@ -15,6 +15,8 @@ import json
 
 for root, dirs, files in os.walk("data"):
     for file in files:
+        if not file.endswith(".knt"):
+            continue
         src = os.path.join(root, file)
         with open(src) as f:
             data = f.read().splitlines()
@@ -29,6 +31,10 @@ for root, dirs, files in os.walk("data"):
             bv, ev = float(d[0]), float(d[1])
 
             processed.append(ev)
+
+        total = sum(processed)
+
+        processed = [elm/total for elm in processed]
 
         while processed[-1] == 0:
             del processed[-1]
