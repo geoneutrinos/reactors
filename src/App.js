@@ -10,6 +10,11 @@ import { NuMap, StatsPanel } from './ui';
 import Plot from 'react-plotly.js';
 import { defaultCoreList, ReactorCore } from './reactor-cores';
 import { presets } from './detectors';
+import { getCrustFlux } from './crust-model';
+import { antineutrinoSpectrum238U, antineutrinoSpectrum232Th} from './antineutrino-spectrum';
+import { crossSectionSV2003 } from './physics/neutrino-cross-section';
+import { SECONDS_PER_YEAR } from './physics/constants'
+
 
 import { groupBy, zip, sum, memoize } from 'lodash';
 
@@ -131,14 +136,24 @@ class App extends React.Component {
 
     });
     IAEACoreSpectrum = zip(...coreSignals).map(sum)
+
+    const crustFlux = getCrustFlux(lon, lat)
+
+    const geoU = antineutrinoSpectrum238U.map((v, i)=> {
+      return v * crustFlux.u * 1e6 * SECONDS_PER_YEAR * crossSectionSV2003((0.005 + i/100)) * 1e32 * 0.5581;
+    })
+    const geoTh = antineutrinoSpectrum232Th.map((v, i)=> {
+      return v * crustFlux.th * 1e6 * SECONDS_PER_YEAR * crossSectionSV2003((0.005 + i/100)) * 1e32 * 0.5581;
+    })
+
     this.setState({
       spectrum: {
         total: IAEACoreSpectrum,
         iaea: IAEACoreSpectrum,
         closest: (new Float64Array(1000)).fill(0),
         custom: (new Float64Array(1000)).fill(0),
-        geoU: (new Float64Array(1000)).fill(0),
-        geoTh: (new Float64Array(1000)).fill(0)
+        geoU: geoU,
+        geoTh: geoTh
       },
     })
   }
@@ -184,6 +199,24 @@ class App extends React.Component {
                   mode: 'lines',
                   fill: 'tozerox',
                   marker: { color: 'green' },
+                },
+                {
+                  x: (new Float64Array(1000)).map((v, i) => i * 0.01 + 0.005),
+                  y: this.state.spectrum.geoU,
+                  name: 'GeoU',
+                  type: 'scatter',
+                  mode: 'lines',
+                  fill: 'tozerox',
+                  marker: { color: 'blue' },
+                },
+                {
+                  x: (new Float64Array(1000)).map((v, i) => i * 0.01 + 0.005),
+                  y: this.state.spectrum.geoTh,
+                  name: 'GeoTh',
+                  type: 'scatter',
+                  mode: 'lines',
+                  fill: 'tozerox',
+                  marker: { color: 'red' },
                 },
               ]}
               layout={{ 

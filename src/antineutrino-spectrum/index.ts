@@ -16,7 +16,7 @@ function resample(antineutrinoSpectrum: number[], start:number, stop:number, siz
     const sliceSize = Math.floor(binWidth * 1000)
 
     return output.map((v, i) => {
-        return antineutrinoSpectrum.slice(i * sliceSize, i * sliceSize + sliceSize).reduce((p, c) => p + c, 0)
+        return antineutrinoSpectrum.slice(i * sliceSize, i * sliceSize + sliceSize).reduce((p, c) => p + c * 100, 0)
     });
 }
 
