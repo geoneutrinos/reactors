@@ -11,8 +11,8 @@ import Plot from 'react-plotly.js';
 import { defaultCoreList, ReactorCore } from './reactor-cores';
 import { presets } from './detectors';
 import { getCrustFlux } from './crust-model';
-import { antineutrinoSpectrum238U, antineutrinoSpectrum232Th} from './antineutrino-spectrum';
-import { crossSectionSV2003 } from './physics/neutrino-cross-section';
+import { antineutrinoSpectrum238U, antineutrinoSpectrum232Th, antineutrinoSpectrum40K} from './antineutrino-spectrum';
+import { crossSectionSV2003, crossSectionElectronAntineutrinoES, crossSectionMuTauAntineutrinoES, crossSectionVB1999 } from './physics/neutrino-cross-section';
 import { SECONDS_PER_YEAR } from './physics/constants'
 
 
@@ -30,6 +30,8 @@ L.Icon.Default.mergeOptions({
   iconUrl: require('leaflet/dist/images/marker-icon.png'),
   shadowUrl: require('leaflet/dist/images/marker-shadow.png'),
 });
+
+const evBins = (new Float64Array(1000)).map((v, i) => i * 0.01 + 0.005)
 
 
 class App extends React.Component {
@@ -61,7 +63,8 @@ class App extends React.Component {
         closest: (new Float64Array(1000)).fill(0),
         custom: (new Float64Array(1000)).fill(0),
         geoU: (new Float64Array(1000)).fill(0),
-        geoTh: (new Float64Array(1000)).fill(0)
+        geoTh: (new Float64Array(1000)).fill(0),
+        geoK: (new Float64Array(1000)).fill(0)
       },
       distances: {
         closestIAEA: 10000,
@@ -138,12 +141,31 @@ class App extends React.Component {
     IAEACoreSpectrum = zip(...coreSignals).map(sum)
 
     const crustFlux = getCrustFlux(lon, lat)
-
+    
+    let crossSection;
+    switch (this.state.crossSection){
+      case "ESMUTAU":
+        crossSection = crossSectionMuTauAntineutrinoES;
+        break;
+      case "ESANTI":
+        crossSection = crossSectionElectronAntineutrinoES;
+        break;
+      case "VB1999":
+        crossSection = crossSectionVB1999;
+        break;
+      case "SV2003":
+      default:
+        crossSection = crossSectionSV2003;
+        break;
+    }
     const geoU = antineutrinoSpectrum238U.map((v, i)=> {
-      return v * crustFlux.u * 1e6 * SECONDS_PER_YEAR * crossSectionSV2003((0.005 + i/100)) * 1e32 * 0.5581;
+      return v * crustFlux.u * 1e6 * SECONDS_PER_YEAR * crossSection((0.005 + i/100)) * 1e32 * 0.5581;
     })
     const geoTh = antineutrinoSpectrum232Th.map((v, i)=> {
-      return v * crustFlux.th * 1e6 * SECONDS_PER_YEAR * crossSectionSV2003((0.005 + i/100)) * 1e32 * 0.5581;
+      return v * crustFlux.th * 1e6 * SECONDS_PER_YEAR * crossSection((0.005 + i/100)) * 1e32 * 0.5581;
+    })
+    const geoK = antineutrinoSpectrum40K.map((v, i)=> {
+      return v * crustFlux.th * 1e6 * SECONDS_PER_YEAR * crossSection((0.005 + i/100)) * 1e32 * 0.5581;
     })
 
     this.setState({
@@ -153,7 +175,8 @@ class App extends React.Component {
         closest: (new Float64Array(1000)).fill(0),
         custom: (new Float64Array(1000)).fill(0),
         geoU: geoU,
-        geoTh: geoTh
+        geoTh: geoTh,
+        geoK: geoK
       },
     })
   }
@@ -174,34 +197,34 @@ class App extends React.Component {
     this.setState({detector: {...this.state.detector, lat:lat, lon:lng}}, this.updateSpectrum)
   }
   render() {
-    //const presetGroups = groupBy(presets,(detector) => detector.region)
-    //const presetOptions = Object.keys(presetGroups).map((key)=> {
-    //  const group = presetGroups[key];
-    //  const options = group.map((detector) => <option key={detector.name} value={detector.name}>{detector.name} ({detector.overburden} mwe)</option>)
-    //  return <optgroup key={key} label={key}>{options}</optgroup>
-    //})
+    const presetGroups = groupBy(presets,(detector) => detector.region)
+    const presetOptions = Object.keys(presetGroups).map((key)=> {
+      const group = presetGroups[key];
+      const options = group.map((detector) => <option key={detector.name} value={detector.name}>{detector.name} ({detector.overburden} mwe)</option>)
+      return <optgroup key={key} label={key}>{options}</optgroup>
+    })
 
     return (
       <Container fluid={true}>
         <Row style={{ minHeight: "100vh" }}>
           <Col style={{minHeight:"50vh"}}>
-            <NuMap onMousemove={this.mapMouseMove} coreList={this.state.coreList} />
+            <NuMap onMousemove={this.mapMouseMove} coreList={this.state.coreList} detectorList={presets} />
           </Col>
           <Col lg={6} style={{maxHeight:"100vh", overflow:"scroll"}}>
             <h3>Reactor Antineutrinos</h3>
             <Plot
               data={[
                 {
-                  x: (new Float64Array(1000)).map((v, i) => i * 0.01 + 0.005),
-                  y: this.state.spectrum.iaea,
-                  name: 'Reactor Cores',
+                  x: evBins,
+                  y: this.state.spectrum.geoK,
+                  name: 'GeoK',
                   type: 'scatter',
                   mode: 'lines',
                   fill: 'tozerox',
-                  marker: { color: 'green' },
+                  marker: { color: 'yellow' },
                 },
                 {
-                  x: (new Float64Array(1000)).map((v, i) => i * 0.01 + 0.005),
+                  x: evBins,
                   y: this.state.spectrum.geoU,
                   name: 'GeoU',
                   type: 'scatter',
@@ -210,13 +233,22 @@ class App extends React.Component {
                   marker: { color: 'blue' },
                 },
                 {
-                  x: (new Float64Array(1000)).map((v, i) => i * 0.01 + 0.005),
+                  x: evBins,
                   y: this.state.spectrum.geoTh,
                   name: 'GeoTh',
                   type: 'scatter',
                   mode: 'lines',
                   fill: 'tozerox',
                   marker: { color: 'red' },
+                },
+                {
+                  x: evBins,
+                  y: this.state.spectrum.iaea,
+                  name: 'Reactor Cores',
+                  type: 'scatter',
+                  mode: 'lines',
+                  fill: 'tozerox',
+                  marker: { color: 'green' },
                 },
               ]}
               layout={{ 
