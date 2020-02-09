@@ -46,8 +46,7 @@ class App extends React.Component {
       reactorLFStart: new Date("2018-01"),
       reactorLFEnd: new Date("2018-12"),
       detector: {
-        follow: true,
-        preset: "Boulby",
+        current: "follow",
         lat: 54.555129,
         lon: -0.80089,
         elevation: -1050,
@@ -134,8 +133,10 @@ class App extends React.Component {
         oscillation = oscillation.map((v) => 1 - v)
       }
 
+      const distsq = dist ** 2;
+      const power = core.power;
       const signal = zip(spectrum, oscillation).map(([spec, osc])=>{
-        return (spec * osc * core.power * lf)/(dist ** 2)
+        return (spec * osc * power * lf)/distsq
       });
 
       if (dist < currentDistIAEA && sum(signal) > 0){
@@ -199,7 +200,21 @@ class App extends React.Component {
   changeCrossSection = (event) =>{
     this.updateSpectrum({crossSection: event.currentTarget.value})
   }
+  changeDetectorMode = (event) =>{
+    const value = event.currentTarget.value;
+    let newDetector = {current: value};
+    if (value !== 'custom' && value !== 'follow'){
+      let preset = presets.find(detector => detector.name === value);
+      newDetector.lat = preset.lat;
+      newDetector.lon = preset.lon;
+      newDetector.elevation = preset.elevation;
+    }
+    this.updateSpectrum({detector:{...this.state.detector, ...newDetector}})
+  }
   mapMouseMove = (event) =>{
+    if (this.state.detector.current !== 'follow'){
+      return null;
+    }
     let {lat, lng} = event.latlng;
     while (lng > 180){
      lng = lng - 360;
@@ -321,6 +336,14 @@ class App extends React.Component {
                 <Card>
                   <Card.Body>
                     <Card.Title>Detector Location</Card.Title>
+                    <Form.Group controlId="presetMode">
+                      <Form.Label>Detector Presets/Modes</Form.Label>
+                      <Form.Control as="select" onChange={this.changeDetectorMode} value={this.state.detector.current}>
+                        <option value="follow">Follow Cursor on Map</option>
+                        <option value="custom">Custom Detector Location</option>
+                        {presetOptions}
+                      </Form.Control>
+                    </Form.Group>
                     <Form.Group controlId="detectorLat">
                       <Form.Label>Latitude</Form.Label>
                       <InputGroup>

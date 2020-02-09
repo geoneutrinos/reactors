@@ -1,5 +1,8 @@
 import React from 'react';
 import { Map, Popup, TileLayer, LayerGroup, Circle, LayersControl } from 'react-leaflet'
+import 'leaflet-contextmenu';
+
+import 'leaflet-contextmenu/dist/leaflet.contextmenu.css';
 
 export class NuMap extends React.Component {
     shouldComponentUpdate() {
@@ -46,7 +49,12 @@ export class NuMap extends React.Component {
         })
 
         return (
-            < Map onMousemove={this.props.onMousemove} style={{ height: "100%" }} center={[0, 0]} zoom={2} >
+            < Map onMousemove={this.props.onMousemove} style={{ height: "100%", cursor:"crosshair"}} center={[0, 0]} zoom={2} 
+            contextmenu= {true} contextmenuWidth={ 150} contextmenuItems={ [{
+                text: 'Place Detector Here',
+                callback: (e) => console.log(e)
+            }]}
+            >
                 <TileLayer
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
