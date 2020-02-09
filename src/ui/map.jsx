@@ -1,14 +1,10 @@
 import React from 'react';
-import { Map, Popup, TileLayer, LayerGroup, Circle, LayersControl } from 'react-leaflet'
+import { Map, Popup, TileLayer, LayerGroup, Circle, LayersControl, Marker} from 'react-leaflet'
 import 'leaflet-contextmenu';
 
 import 'leaflet-contextmenu/dist/leaflet.contextmenu.css';
 
 export class NuMap extends React.Component {
-    shouldComponentUpdate() {
-        return false;
-    }
-
     render() {
         const CoreCircles = this.props.coreList.map((core) => {
             let color;
@@ -44,21 +40,31 @@ export class NuMap extends React.Component {
             <Popup>
                 <b>Detector Name:</b> {detector.name}<br />
                 <b>Overburden:</b> {detector.overburden} mwe<br />
+                <button onClick={() => this.props.changeDetector({current: detector.name, lat:detector.lat, lon:detector.lon, elevation:detector.elevation})}>Place Detector Here</button>
             </Popup>)
             return (<Circle key={detector.name} radius={250} color={color} center={{ lat: detector.lat, lon: detector.lon }}>{DetectorPopup}</Circle>)
         })
 
         return (
-            < Map onMousemove={this.props.onMousemove} style={{ height: "100%", cursor:"crosshair"}} center={[0, 0]} zoom={2} 
-            contextmenu= {true} contextmenuWidth={ 150} contextmenuItems={ [{
-                text: 'Place Detector Here',
-                callback: (e) => console.log(e)
-            }]}
+            < Map onMousemove={this.props.onMousemove} style={{ height: "100%", cursor: "crosshair" }} center={[0, 0]} zoom={2}
+                contextmenu={true} contextmenuWidth={150} contextmenuItems={[
+                    {
+                        text: 'Place Detector Here',
+                        callback: (e) => this.props.changeDetector({ current: "custom", elevation: 0, lat: e.latlng.lat, lon: e.latlng.lng })
+                    },
+                    '-',
+                    {
+                        text: 'Follow Cursor',
+                        callback: (e) => this.props.changeDetector({ current: "follow"})
+                    },
+                ]}
             >
                 <TileLayer
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
                 />
+
+                <Marker position={{lat:this.props.detector.lat, lng:this.props.detector.lon}} />
 
                 <LayersControl position="topright">
                     <LayersControl.Overlay checked name='Reactor Cores'>

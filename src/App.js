@@ -46,7 +46,7 @@ class App extends React.Component {
       reactorLFStart: new Date("2018-01"),
       reactorLFEnd: new Date("2018-12"),
       detector: {
-        current: "follow",
+        current: "Boulby",
         lat: 54.555129,
         lon: -0.80089,
         elevation: -1050,
@@ -211,6 +211,9 @@ class App extends React.Component {
     }
     this.updateSpectrum({detector:{...this.state.detector, ...newDetector}})
   }
+  changeDetector = (newDetector) => {
+    this.updateSpectrum({detector:{...this.state.detector, ...newDetector}})
+  }
   mapMouseMove = (event) =>{
     if (this.state.detector.current !== 'follow'){
       return null;
@@ -236,10 +239,15 @@ class App extends React.Component {
       <Container fluid={true}>
         <Row style={{ minHeight: "100vh" }}>
           <Col style={{minHeight:"50vh"}}>
-            <NuMap onMousemove={this.mapMouseMove} coreList={this.state.coreList} detectorList={presets} />
+            <NuMap 
+            onMousemove={this.mapMouseMove} 
+            coreList={this.state.coreList} 
+            detectorList={presets} 
+            detector={this.state.detector}
+            changeDetector={this.changeDetector}
+            />
           </Col>
           <Col lg={6} style={{maxHeight:"100vh", overflow:"scroll"}}>
-            <h3>Reactor Antineutrinos</h3>
             <Plot
               data={[
                 {
@@ -288,6 +296,7 @@ class App extends React.Component {
                 },
               ]}
               layout={{ 
+                title: `Antineutrino Spectrum: ${["custom", "follow"].includes(this.state.detector.current) ? "Custom Location" : this.state.detector.current} (${this.state.detector.lat.toFixed(1)}N, ${this.state.detector.lon.toFixed(1)}E)`,
                 showlegend: true,
                 legend: {
                   x: 1,
