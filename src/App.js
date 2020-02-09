@@ -68,6 +68,7 @@ class App extends React.Component {
       },
       distances: {
         closestIAEA: 10000,
+        closestIAEAName: "",
         closestUser: 10000
       }
     }
@@ -80,28 +81,29 @@ class App extends React.Component {
     }, 10)
   }
 
-  updateSpectrum = () => {
-    let closestCoreSpectrum = (new Float64Array(1000)).fill(0);
-    let IAEACoreSpectrum = (new Float64Array(1000)).fill(0);
+  updateSpectrum = (newState = {}) => {
+    const state = {...this.state, ...newState}
+    let closestCoreSpectrum;
+    let IAEACoreSpectrum;
     let CustomCoreSpectrum = (new Float64Array(1000)).fill(0);
     let closestUser, closestIAEA;
 
     let currentDistUser = 1e10;
     let currentDistIAEA = 1e10;
 
-    const {lat, lon, elevation} = this.state.detector;
+    const {lat, lon, elevation} = state.detector;
     const [x, y, z] = project(lat, lon, elevation).map((n)=> n/1000);
 
-    const coreSignals = this.state.coreList.map((core) => {
+    const coreSignals = state.coreList.map((core) => {
       let dist = Math.hypot(x - core.x, y - core.y, z - core.z);
-      const lf = core.loadFactor(this.state.reactorLFStart, this.state.reactorLFEnd)
+      const lf = core.loadFactor(state.reactorLFStart, state.reactorLFEnd)
 
       if (dist > 100){
         dist = Math.round(dist)
       }
 
       let spectrum;
-      switch (this.state.crossSection){
+      switch (state.crossSection){
         case "ESMUTAU":
           spectrum = core.spectrumESMUTAU;
           break;
@@ -118,7 +120,7 @@ class App extends React.Component {
       }
 
       let oscillation;
-      switch (this.state.massOrdering){
+      switch (state.massOrdering){
         case ("inverted"):
           oscillation = invertedNeutrinoOscilationSpectrum(dist);
           break;
@@ -128,22 +130,27 @@ class App extends React.Component {
           break
       }
 
-      if (this.state.crossSection === "ESMUTAU"){
+      if (state.crossSection === "ESMUTAU"){
         oscillation = oscillation.map((v) => 1 - v)
       }
 
       const signal = zip(spectrum, oscillation).map(([spec, osc])=>{
         return (spec * osc * core.power * lf)/(dist ** 2)
       });
-      return signal
 
+      if (dist < currentDistIAEA && sum(signal) > 0){
+        currentDistIAEA = dist;
+        closestCoreSpectrum = signal;
+        closestIAEA = core.name;
+      }
+      return signal
     });
     IAEACoreSpectrum = zip(...coreSignals).map(sum)
 
     const crustFlux = getCrustFlux(lon, lat)
     
     let crossSection;
-    switch (this.state.crossSection){
+    switch (state.crossSection){
       case "ESMUTAU":
         crossSection = crossSectionMuTauAntineutrinoES;
         break;
@@ -169,22 +176,28 @@ class App extends React.Component {
     })
 
     this.setState({
+      ...state,
       spectrum: {
         total: IAEACoreSpectrum,
         iaea: IAEACoreSpectrum,
-        closest: (new Float64Array(1000)).fill(0),
+        closest: closestCoreSpectrum,
         custom: (new Float64Array(1000)).fill(0),
         geoU: geoU,
         geoTh: geoTh,
         geoK: geoK
       },
+      distances: {
+        closestIAEA: currentDistIAEA,
+        closestIAEAName: closestIAEA,
+        closestUser: 10000
+      }
     })
   }
   changeMassOrder = (event) =>{
-    this.setState({massOrdering: event.currentTarget.value}, this.updateSpectrum)
+    this.updateSpectrum({massOrdering: event.currentTarget.value})
   }
   changeCrossSection = (event) =>{
-    this.setState({crossSection: event.currentTarget.value}, this.updateSpectrum)
+    this.updateSpectrum({crossSection: event.currentTarget.value})
   }
   mapMouseMove = (event) =>{
     let {lat, lng} = event.latlng;
@@ -194,7 +207,7 @@ class App extends React.Component {
     while (lng < -180){
       lng = lng + 360;
     }
-    this.setState({detector: {...this.state.detector, lat:lat, lon:lng}}, this.updateSpectrum)
+    this.updateSpectrum({detector: {...this.state.detector, lat:lat, lon:lng}})
   }
   render() {
     const presetGroups = groupBy(presets,(detector) => detector.region)
@@ -249,6 +262,14 @@ class App extends React.Component {
                   mode: 'lines',
                   fill: 'tozerox',
                   marker: { color: 'green' },
+                },
+                {
+                  x: evBins,
+                  y: this.state.spectrum.closest,
+                  name: `Closest IAEA Core\n (${this.state.distances.closestIAEAName})`,
+                  type: 'scatter',
+                  mode: 'lines',
+                  marker: { dash:'dot'},
                 },
               ]}
               layout={{ 

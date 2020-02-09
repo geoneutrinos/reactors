@@ -40,6 +40,7 @@ export class NuMap extends React.Component {
             const DetectorPopup = (
             <Popup>
                 <b>Detector Name:</b> {detector.name}<br />
+                <b>Overburden:</b> {detector.overburden} mwe<br />
             </Popup>)
             return (<Circle key={detector.name} radius={250} color={color} center={{ lat: detector.lat, lon: detector.lon }}>{DetectorPopup}</Circle>)
         })
