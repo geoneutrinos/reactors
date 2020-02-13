@@ -14,7 +14,7 @@ import { getCrustFlux } from './crust-model';
 import { averageSurvivalProbabilityNormal, averageSurvivalProbabilityInverted } from './physics/neutrino-oscillation';
 import { antineutrinoSpectrum238U, antineutrinoSpectrum232Th, antineutrinoSpectrum40K} from './antineutrino-spectrum';
 import { crossSectionSV2003, crossSectionElectronAntineutrinoES, crossSectionMuTauAntineutrinoES, crossSectionVB1999 } from './physics/neutrino-cross-section';
-import { SECONDS_PER_YEAR } from './physics/constants'
+import { SECONDS_PER_YEAR, ISOTOPIC_NEUTRINO_LUMINOSITY, ISOTOPIC_NATURAL_ABUNDANCE } from './physics/constants'
 
 
 import { groupBy, zip, sum, memoize } from 'lodash';
@@ -53,8 +53,9 @@ class App extends React.Component {
         elevation: -1050,
       },
       geoneutrino: {
-        mantleSignal: 8.2, //TNU
-        ThURatio: 3.9, //no units
+        U238flux: 1e6, // cm-2 s-1
+        ThURatio: 3.9, // no units
+        KURatio: 1e4, // no units
         crustSignal: true
       },
       spectrum: {
@@ -177,14 +178,17 @@ class App extends React.Component {
         survivalProbability = averageSurvivalProbabilityNormal;
         break;
     }
+    const uMantleFlux = this.state.geoneutrino.U238flux;
     const geoU = antineutrinoSpectrum238U.map((v, i)=> {
-      return v * crustFlux.u * 1e6 * SECONDS_PER_YEAR * crossSection((0.005 + i/100)) * 1e32 * survivalProbability;
+      return v * (crustFlux.u * 1e6 + uMantleFlux) * SECONDS_PER_YEAR * crossSection((0.005 + i/100)) * 1e32 * survivalProbability;
     })
+    const thMantleFlux = uMantleFlux * this.state.geoneutrino.ThURatio * (ISOTOPIC_NEUTRINO_LUMINOSITY.TH232/ISOTOPIC_NEUTRINO_LUMINOSITY.U238) * (ISOTOPIC_NATURAL_ABUNDANCE.TH232/ISOTOPIC_NATURAL_ABUNDANCE.U238);
     const geoTh = antineutrinoSpectrum232Th.map((v, i)=> {
-      return v * crustFlux.th * 1e6 * SECONDS_PER_YEAR * crossSection((0.005 + i/100)) * 1e32 * survivalProbability;
+      return v * (crustFlux.th * 1e6 + thMantleFlux) * SECONDS_PER_YEAR * crossSection((0.005 + i/100)) * 1e32 * survivalProbability;
     })
+    const kMantleFlux = uMantleFlux * this.state.geoneutrino.KURatio * (ISOTOPIC_NEUTRINO_LUMINOSITY.K40/ISOTOPIC_NEUTRINO_LUMINOSITY.U238) * (ISOTOPIC_NATURAL_ABUNDANCE.K40/ISOTOPIC_NATURAL_ABUNDANCE.U238);
     const geoK = antineutrinoSpectrum40K.map((v, i)=> {
-      return v * crustFlux.th * 1e6 * SECONDS_PER_YEAR * crossSection((0.005 + i/100)) * 1e32 * survivalProbability;
+      return v * (crustFlux.th * 1e6 + kMantleFlux) * SECONDS_PER_YEAR * crossSection((0.005 + i/100)) * 1e32 * survivalProbability;
     })
 
     this.setState({
@@ -318,7 +322,11 @@ class App extends React.Component {
                 xaxis: {
                   title: {text: "Antineutrino Energy E (MeV)"}
                 },
-                yaxis: {title: {text:"Rate dR/dE (TNU/MeV)"}}
+                yaxis: {
+                  rangemode: 'nonnegative',
+                  autorange: true,
+                  title: {text:"Rate dR/dE (NIU/MeV)"}
+                }
               }}
               useResizeHandler={true}
               style={{width: "100%"}}
@@ -400,7 +408,32 @@ class App extends React.Component {
                 </ul>
               </Tab>
               <Tab eventKey="geonu" title="GeoNu">
-                GeoNu content
+                <Card>
+                  <Card.Body>
+                    <Card.Title>Mantle Flux</Card.Title>
+                    <Form.Group controlId="u238flux">
+                      <Form.Label><sup>238</sup>U Mantle Flux</Form.Label>
+                      <InputGroup>
+                        <Form.Control value={this.state.geoneutrino.U238flux} type="number" placeholder="0" step="0.1" />
+                        <InputGroup.Append>
+                          <InputGroup.Text>cm<sup>-2</sup>s<sup>-1</sup></InputGroup.Text>
+                        </InputGroup.Append>
+                      </InputGroup>
+                    </Form.Group>
+                    <Form.Group controlId="thuratio">
+                      <Form.Label>Th/U Ratio</Form.Label>
+                      <InputGroup>
+                        <Form.Control value={this.state.geoneutrino.ThURatio} type="number" placeholder="0" step="0.1" />
+                      </InputGroup>
+                    </Form.Group>
+                    <Form.Group controlId="kuratio">
+                      <Form.Label>K/U Ratio</Form.Label>
+                      <InputGroup>
+                        <Form.Control value={this.state.geoneutrino.KURatio} type="number" placeholder="0" step="0.1" />
+                      </InputGroup>
+                    </Form.Group>
+                  </Card.Body>
+                </Card>
               </Tab>
               <Tab eventKey="output" title="Output">
                 Output content
