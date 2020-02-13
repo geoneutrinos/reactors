@@ -11,6 +11,7 @@ import Plot from 'react-plotly.js';
 import { defaultCoreList, ReactorCore } from './reactor-cores';
 import { presets } from './detectors';
 import { getCrustFlux } from './crust-model';
+import { averageSurvivalProbabilityNormal, averageSurvivalProbabilityInverted } from './physics/neutrino-oscillation';
 import { antineutrinoSpectrum238U, antineutrinoSpectrum232Th, antineutrinoSpectrum40K} from './antineutrino-spectrum';
 import { crossSectionSV2003, crossSectionElectronAntineutrinoES, crossSectionMuTauAntineutrinoES, crossSectionVB1999 } from './physics/neutrino-cross-section';
 import { SECONDS_PER_YEAR } from './physics/constants'
@@ -166,14 +167,24 @@ class App extends React.Component {
         crossSection = crossSectionSV2003;
         break;
     }
+    let survivalProbability;
+    switch (state.massOrdering){
+      case ("inverted"):
+        survivalProbability = averageSurvivalProbabilityInverted;
+        break;
+      case ("normal"):
+      default:
+        survivalProbability = averageSurvivalProbabilityNormal;
+        break;
+    }
     const geoU = antineutrinoSpectrum238U.map((v, i)=> {
-      return v * crustFlux.u * 1e6 * SECONDS_PER_YEAR * crossSection((0.005 + i/100)) * 1e32 * 0.5581;
+      return v * crustFlux.u * 1e6 * SECONDS_PER_YEAR * crossSection((0.005 + i/100)) * 1e32 * survivalProbability;
     })
     const geoTh = antineutrinoSpectrum232Th.map((v, i)=> {
-      return v * crustFlux.th * 1e6 * SECONDS_PER_YEAR * crossSection((0.005 + i/100)) * 1e32 * 0.5581;
+      return v * crustFlux.th * 1e6 * SECONDS_PER_YEAR * crossSection((0.005 + i/100)) * 1e32 * survivalProbability;
     })
     const geoK = antineutrinoSpectrum40K.map((v, i)=> {
-      return v * crustFlux.th * 1e6 * SECONDS_PER_YEAR * crossSection((0.005 + i/100)) * 1e32 * 0.5581;
+      return v * crustFlux.th * 1e6 * SECONDS_PER_YEAR * crossSection((0.005 + i/100)) * 1e32 * survivalProbability;
     })
 
     this.setState({

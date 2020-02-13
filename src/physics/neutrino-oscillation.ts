@@ -19,6 +19,9 @@ const c2t12 = 1 - s2t12;
 const s22t13Normal = 4 * s2t13Normal * (1-s2t13Normal);
 const s22t13Inverted = 4 * s2t13Inverted * (1-s2t13Inverted);
 
+export const averageSurvivalProbabilityNormal = c4t13Normal * (1. - s22t12 * 0.5) + s2t13Normal * s2t13Normal;
+export const averageSurvivalProbabilityInverted = c4t13Inverted * (1. - s22t12 * 0.5) + s2t13Inverted * s2t13Inverted;
+
 function normalNeutrinoFlavor(Ev: number, dist: number): number{
   const oscarg21 = 1.27 * dmsq21 * dist * 1000;
   const oscarg31 = 1.27 * dmsq31Normal * dist * 1000;

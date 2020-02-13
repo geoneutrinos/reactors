@@ -28,3 +28,32 @@ export const V_FIT_PARAMS:VFitIsotopes = {
   PU239: [4.757, -5.392, 2.563, -6.596e-1, 7.820e-2, -3.536e-3], // Huber 2011 (phys rev c) table 3
   PU241: [2.990, -2.882, 1.278, -3.343e-1, 3.905e-2, -1.754e-3] // Huber 2011 (phys rev c) table 3
 }
+
+export const ISOTOPIC_NEUTRINO_LUMINOSITY = {
+  K40: 231.402, // Beta Decay
+  K40_EC: 27.785, // Not Used in the webapp
+  TH232: 16.229,
+  U235: 319.841,
+  U238: 74.601,
+}
+
+export const ISOTOPIC_NATURAL_ABUNDANCE = {
+  K40: 0.0117,
+  TH232: 100,
+  U235: 0.7200,
+  U238: 99.2745,
+}
+
+export const ISOTOPIC_HALF_LIFE = { //Gy
+  K40: 1.277,
+  TH232: 14.05,
+  U235: 0.7038,
+  U238: 4.468,
+}
+
+export const ISOTOPIC_NEUTRINOS_PER_DECAY = {
+  K40: 1,
+  TH232: 4,
+  U235: 4,
+  U238: 6,
+}
