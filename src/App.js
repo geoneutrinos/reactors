@@ -7,7 +7,6 @@ import { normalNeutrinoOscilationSpectrum, invertedNeutrinoOscilationSpectrum} f
 
 import { NuSpectrumPlot } from './ui/plot'
 import { NuMap, StatsPanel } from './ui';
-import Plot from 'react-plotly.js';
 import { defaultCoreList, ReactorCore } from './reactor-cores';
 import { presets } from './detectors';
 import { getCrustFlux } from './crust-model';
@@ -32,7 +31,6 @@ L.Icon.Default.mergeOptions({
   shadowUrl: require('leaflet/dist/images/marker-shadow.png'),
 });
 
-const evBins = (new Float64Array(1000)).map((v, i) => i * 0.01 + 0.005)
 
 
 class App extends React.Component {
@@ -263,75 +261,7 @@ class App extends React.Component {
             />
           </Col>
           <Col lg={6} style={{maxHeight:"100vh", overflow:"scroll"}}>
-            <Plot
-              data={[
-                {
-                  x: evBins,
-                  y: this.state.spectrum.geoK,
-                  name: 'GeoK',
-                  type: 'scatter',
-                  mode: 'lines',
-                  fill: 'tozerox',
-                  marker: { color: 'yellow' },
-                },
-                {
-                  x: evBins,
-                  y: this.state.spectrum.geoU,
-                  name: 'GeoU',
-                  type: 'scatter',
-                  mode: 'lines',
-                  fill: 'tozerox',
-                  marker: { color: 'blue' },
-                },
-                {
-                  x: evBins,
-                  y: this.state.spectrum.geoTh,
-                  name: 'GeoTh',
-                  type: 'scatter',
-                  mode: 'lines',
-                  fill: 'tozerox',
-                  marker: { color: 'red' },
-                },
-                {
-                  x: evBins,
-                  y: this.state.spectrum.iaea,
-                  name: 'Reactor Cores',
-                  type: 'scatter',
-                  mode: 'lines',
-                  fill: 'tozerox',
-                  marker: { color: 'green' },
-                },
-                {
-                  x: evBins,
-                  y: this.state.spectrum.closest,
-                  name: `Closest IAEA Core\n (${this.state.distances.closestIAEAName})`,
-                  type: 'scatter',
-                  mode: 'lines',
-                  marker: { dash:'dot'},
-                },
-              ]}
-              layout={{ 
-                title: `Antineutrino Spectrum: ${["custom", "follow"].includes(this.state.detector.current) ? "Custom Location" : this.state.detector.current} (${this.state.detector.lat.toFixed(1)}N, ${this.state.detector.lon.toFixed(1)}E)`,
-                showlegend: true,
-                legend: {
-                  x: 1,
-                  xanchor: 'right',
-                  y: 1
-                },
-                autosize:true, 
-                xaxis: {
-                  title: {text: "Antineutrino Energy E (MeV)"}
-                },
-                yaxis: {
-                  rangemode: 'nonnegative',
-                  autorange: true,
-                  title: {text:"Rate dR/dE (NIU/MeV)"}
-                }
-              }}
-              useResizeHandler={true}
-              style={{width: "100%"}}
-              config={{toImageButtonOptions:{width: 900, height: 500, scale:2}}}
-            />
+            <NuSpectrumPlot {...this.state}/>
             <Tabs defaultActiveKey="detector">
               <Tab eventKey="detector" title="Detector">
                 <Card>
