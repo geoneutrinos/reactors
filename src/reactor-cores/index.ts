@@ -94,6 +94,7 @@ export class ReactorCore {
   y: number;
   z: number;
   custom: boolean;
+  loadOverride?: number
 
   constructor({name, lat, lon, elevation, type, mox, power, custom=false, loads}: 
     {name:string, lat: number, lon:number, elevation:number, type:string, mox:boolean, power:number, custom?:boolean, loads:LoadFactor[]}){
@@ -121,6 +122,13 @@ export class ReactorCore {
     if (a.custom === true && b.custom === false){return 1}
     if (a.custom === false && b.custom === true){return -1}
     return 0;
+  }
+
+  setLoadOverride(load: number){
+    this.loadOverride = load;
+  }
+  setDefaultLoad(){
+    delete this.loadOverride;
   }
 
   loadFactor(start = new Date("2003-01"), stop = new Date("2018-12")){

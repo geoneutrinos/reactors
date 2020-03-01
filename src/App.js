@@ -1,13 +1,13 @@
 import React from 'react';
 
 import { project } from 'ecef-projector';
-import { Container, Row, Col, Tab, Tabs, Card, Form, InputGroup } from 'react-bootstrap';
+import { Container, Row, Col, Tab, Tabs, Card, Form, InputGroup} from 'react-bootstrap';
 
 import { normalNeutrinoOscilationSpectrum, invertedNeutrinoOscilationSpectrum} from './physics/neutrino-oscillation'
 
 import { NuSpectrumPlot } from './ui/plot'
-import { NuMap, StatsPanel } from './ui';
-import { defaultCoreList, ReactorCore } from './reactor-cores';
+import { NuMap, StatsPanel, CoreList } from './ui';
+import { defaultCoreList} from './reactor-cores';
 import { presets } from './detectors';
 import { getCrustFlux } from './crust-model';
 import { averageSurvivalProbabilityNormal, averageSurvivalProbabilityInverted } from './physics/neutrino-oscillation';
@@ -16,7 +16,7 @@ import { crossSectionSV2003, crossSectionElectronAntineutrinoES, crossSectionMuT
 import { SECONDS_PER_YEAR, ISOTOPIC_NEUTRINO_LUMINOSITY, ISOTOPIC_NATURAL_ABUNDANCE } from './physics/constants'
 
 
-import { groupBy, zip, sum, memoize } from 'lodash';
+import { groupBy, zip, sum} from 'lodash';
 
 import 'leaflet/dist/leaflet.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -84,10 +84,11 @@ class App extends React.Component {
     const state = {...this.state, ...newState}
     let closestCoreSpectrum;
     let IAEACoreSpectrum;
-    let CustomCoreSpectrum = (new Float64Array(1000)).fill(0);
-    let closestUser, closestIAEA;
+    //let CustomCoreSpectrum = (new Float64Array(1000)).fill(0);
+    //let closestUser;
+    let closestIAEA;
 
-    let currentDistUser = 1e10;
+    //let currentDistUser = 1e10;
     let currentDistIAEA = 1e10;
 
     const {lat, lon, elevation} = state.detector;
@@ -333,9 +334,7 @@ class App extends React.Component {
                 </Card>
               </Tab>
               <Tab eventKey="reactors" title="Reactors">
-                <ul>
-                  {this.state.coreList.sort(ReactorCore.sortCompare).map((core)=> <li key={core.name}>{core.name}</li>)}
-                </ul>
+                <CoreList {...this.state} />
               </Tab>
               <Tab eventKey="geonu" title="GeoNu">
                 <Card>
