@@ -3,7 +3,7 @@ import { partialInteractionRate } from '../physics/reactor-antineutrinos'
 import { neutrinoEnergyFor } from '../physics/helpers'
 import {crossSectionSV2003, crossSectionVB1999, crossSectionElectronAntineutrinoES, crossSectionMuTauAntineutrinoES} from '../physics/neutrino-cross-section'
 import { FISSION_ENERGIES, ELEMENTARY_CHARGE ,Isotopes} from '../physics/constants'
-import { range, zip } from 'lodash';
+import { range, zip, cloneDeep } from 'lodash';
 import { project } from 'ecef-projector';
 import {LazyGetter} from 'lazy-get-decorator';
 
@@ -124,14 +124,10 @@ export class ReactorCore {
     return 0;
   }
 
-  setLoadOverride(load: number){
-    this.loadOverride = load;
-  }
-  setDefaultLoad(){
-    delete this.loadOverride;
-  }
-
   loadFactor(start = new Date("2003-01"), stop = new Date("2018-12")){
+    if (this.loadOverride !== undefined){
+      return this.loadOverride;
+    }
     if (this.custom === true){
       return 1;
     }
@@ -215,7 +211,20 @@ export class ReactorCore {
     return t
   }
 }
-export const defaultCoreList = Object.keys(cores).map((core) =>{
+
+export function customLoad(core: ReactorCore, load:number): ReactorCore {
+  const newCore = cloneDeep(core);
+  newCore.loadOverride = load;
+  return newCore;
+}
+
+export function defaultLoad(core: ReactorCore): ReactorCore {
+  const newCore = cloneDeep(core);
+  delete newCore.loadOverride;
+  return newCore;
+}
+
+const defaultCoreList = Object.keys(cores).map((core) =>{
   const c = core as keyof typeof cores;
   const coreParams = cores[c]
   const coreLFs:number[] = loads[c]
@@ -239,3 +248,12 @@ export const defaultCoreList = Object.keys(cores).map((core) =>{
     loads: LFs
   })
 });
+
+interface CoresObject{
+  [key: string]: ReactorCore
+}
+
+export const defaultCores = defaultCoreList.reduce(
+  (previous: CoresObject, current: ReactorCore) => {
+    return { ...previous, [current.name]: current }
+  }, {})

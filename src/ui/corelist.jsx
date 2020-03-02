@@ -2,15 +2,18 @@ import React, { useState } from 'react';
 import {Card, Form, ListGroup} from 'react-bootstrap';
 import {ReactorCore} from '../reactor-cores';
 
-export function CoreList({coreList, reactorLFStart, reactorLFEnd}) {
+export function CoreList({cores, reactorLFStart, reactorLFEnd}) {
     const [filter, setFilter ] = useState("");
 
-    function test(value, filter){
+    const coreObjs = Object.values(cores);
+
+
+    function testCore(core, filter){
         if (filter === ""){
             return true
         }
         const reg = new RegExp(filter, 'i')
-        return reg.test(value)
+        return reg.test(core.name)
     }
 
     return (
@@ -22,12 +25,22 @@ export function CoreList({coreList, reactorLFStart, reactorLFEnd}) {
                 </Form>
             </Card.Header>
             <ListGroup variant="flush">
-                {coreList.filter((core) => test(core.name, filter)).sort(ReactorCore.sortCompare).map((core) => (
-                    <ListGroup.Item key={core.name}>
+                {coreObjs.filter((core) => testCore(core, filter)).sort(ReactorCore.sortCompare).map((core) => {
+                    const lf = core.loadFactor(reactorLFStart, reactorLFEnd);
+                    let variant = "secondary";
+                    if (lf > 1){
+                        variant = "danger"
+                    }else if (lf > 0.75){
+                        variant = "success";
+                    } else if (lf > 0) {
+                        variant = "warning"
+                    }
+                    return (<ListGroup.Item key={core.name} variant={variant}>
                         <h6>{core.name}</h6>
-                        Load Factor: {(core.loadFactor(reactorLFStart, reactorLFEnd) * 100).toFixed(1)}%
-                    </ListGroup.Item>
-                ))}
+                        Load Factor: {(lf * 100).toFixed(1)}%<br />
+                        Operating Power: { (lf * core.power).toFixed(0)} MW
+                    </ListGroup.Item>)
+                })}
             </ListGroup>
         </Card>
     )

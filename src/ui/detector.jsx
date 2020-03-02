@@ -30,7 +30,7 @@ export class StatsPanel extends React.Component {
                 <i>R</i><sub>total</sub> = {data.total_tnu.toFixed(1)} {unit}<br />
                 <i>R</i><sub>reac</sub> = {data.reactors_tnu.toFixed(1)} {unit}<br />
                 <i>R</i><sub>closest</sub> = {data.closest_tnu.toFixed(1)} {unit} ({(data.closest_tnu / data.total_tnu * 100).toFixed(1)} % of total)<br />
-                <i>D</i><sub>closest</sub> = {data.closest_distance.toFixed(2)} km<br />
+                <i>D</i><sub>closest</sub> = {data.closest_distance > 100000? "N/A": data.closest_distance.toFixed(2)} km<br />
                 <span style={{ "display": userDisplay(data.custom_tnu) }}><i>D</i><sub>user</sub> = {data.custom_distance.toFixed(3)} km<br /></span>
                 <span style={{ "display": userDisplay(data.custom_tnu) }}><i>R</i><sub>user</sub> = {data.custom_tnu.toFixed(1)} {unit}<br /></span>
                 <i>R</i><sub>E &lt; 3.275 MeV</sub> = {data.total_tnu_geo.toFixed(1)} {unit}<br />

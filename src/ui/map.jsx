@@ -6,7 +6,7 @@ import 'leaflet-contextmenu/dist/leaflet.contextmenu.css';
 
 export class NuMap extends React.Component {
     render() {
-        const CoreCircles = this.props.coreList.map((core) => {
+        const CoreCircles = Object.values(this.props.cores).map((core) => {
             let color;
             switch (core.spectrumType) {
                 case "PHWR":

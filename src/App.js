@@ -7,7 +7,7 @@ import { normalNeutrinoOscilationSpectrum, invertedNeutrinoOscilationSpectrum} f
 
 import { NuSpectrumPlot } from './ui/plot'
 import { NuMap, StatsPanel, CoreList } from './ui';
-import { defaultCoreList} from './reactor-cores';
+import { defaultCores, customLoad, defaultLoad} from './reactor-cores';
 import { presets } from './detectors';
 import { getCrustFlux } from './crust-model';
 import { averageSurvivalProbabilityNormal, averageSurvivalProbabilityInverted } from './physics/neutrino-oscillation';
@@ -39,7 +39,7 @@ class App extends React.Component {
     this.plot = React.createRef();
 
     this.state = {
-      coreList: defaultCoreList,
+      cores: defaultCores,
       crossSection: "SV2003",
       massOrdering: "normal", // or "inverted"
       reactorLFStart: new Date("2018-01"),
@@ -80,13 +80,22 @@ class App extends React.Component {
     }, 10)
   }
 
+  powerDownCores = () => {
+    const newCores = Object.values(this.state.cores).map(core => customLoad(core, 0))
+    this.updateSpectrum({cores: newCores.reduce((prev, next)=> ({...prev, [next.name]: next}), {})})
+  }
+  powerUpCores = () => {
+    const newCores = Object.values(this.state.cores).map(core => defaultLoad(core, 0))
+    this.updateSpectrum({cores: newCores.reduce((prev, next)=> ({...prev, [next.name]: next}), {})})
+  }
+
   updateSpectrum = (newState = {}) => {
     const state = {...this.state, ...newState}
-    let closestCoreSpectrum;
+    let closestCoreSpectrum = (new Float64Array(1000)).fill(0);
     let IAEACoreSpectrum;
     //let CustomCoreSpectrum = (new Float64Array(1000)).fill(0);
     //let closestUser;
-    let closestIAEA;
+    let closestIAEA = "None";
 
     //let currentDistUser = 1e10;
     let currentDistIAEA = 1e10;
@@ -94,7 +103,7 @@ class App extends React.Component {
     const {lat, lon, elevation} = state.detector;
     const [x, y, z] = project(lat, lon, elevation).map((n)=> n/1000);
 
-    const coreSignals = state.coreList.map((core) => {
+    const coreSignals = Object.values(state.cores).map((core) => {
       let dist = Math.hypot(x - core.x, y - core.y, z - core.z);
       const lf = core.loadFactor(state.reactorLFStart, state.reactorLFEnd)
 
@@ -255,7 +264,7 @@ class App extends React.Component {
           <Col style={{minHeight:"50vh"}}>
             <NuMap 
             onMousemove={this.mapMouseMove} 
-            coreList={this.state.coreList} 
+            cores={this.state.cores} 
             detectorList={presets} 
             detector={this.state.detector}
             changeDetector={this.changeDetector}
@@ -334,6 +343,8 @@ class App extends React.Component {
                 </Card>
               </Tab>
               <Tab eventKey="reactors" title="Reactors">
+                <button onClick={() => this.powerDownCores()}>Turn Off All The Cores</button>
+                <button onClick={() => this.powerUpCores()}>Turn On All The Cores</button>
                 <CoreList {...this.state} />
               </Tab>
               <Tab eventKey="geonu" title="GeoNu">
