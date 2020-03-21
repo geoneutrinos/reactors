@@ -314,7 +314,7 @@ class App extends React.Component {
                     <Form.Group controlId="detectorLat">
                       <Form.Label>Latitude</Form.Label>
                       <InputGroup>
-                        <Form.Control value={this.state.detector.lat} type="number" placeholder="0" step="0.1" />
+                        <Form.Control value={this.state.detector.lat} type="number" placeholder="0" step="0.1" readOnly/>
                         <InputGroup.Append>
                           <InputGroup.Text>deg N</InputGroup.Text>
                         </InputGroup.Append>
@@ -323,7 +323,7 @@ class App extends React.Component {
                     <Form.Group controlId="detectorLon">
                       <Form.Label>Longitude</Form.Label>
                       <InputGroup>
-                      <Form.Control value={this.state.detector.lon} type="number" placeholder="0" step="0.1" />
+                      <Form.Control value={this.state.detector.lon} type="number" placeholder="0" step="0.1" readOnly/>
                         <InputGroup.Append>
                           <InputGroup.Text>deg E</InputGroup.Text>
                         </InputGroup.Append>
@@ -332,7 +332,7 @@ class App extends React.Component {
                     <Form.Group controlId="detectorElevation">
                       <Form.Label>Elevation</Form.Label>
                       <InputGroup>
-                      <Form.Control value={this.state.detector.elevation} type="number" placeholder="0" step="1" />
+                      <Form.Control value={this.state.detector.elevation} type="number" placeholder="0" step="1" readOnly/>
                         <InputGroup.Append>
                           <InputGroup.Text>meters</InputGroup.Text>
                         </InputGroup.Append>
@@ -353,7 +353,7 @@ class App extends React.Component {
                     <Form.Group controlId="u238flux">
                       <Form.Label><sup>238</sup>U Mantle Flux</Form.Label>
                       <InputGroup>
-                        <Form.Control value={this.state.geoneutrino.U238flux} type="number" placeholder="0" step="0.1" />
+                        <Form.Control value={this.state.geoneutrino.U238flux} type="number" placeholder="0" step="0.1" readOnly/>
                         <InputGroup.Append>
                           <InputGroup.Text>cm<sup>-2</sup>s<sup>-1</sup></InputGroup.Text>
                         </InputGroup.Append>
@@ -362,13 +362,13 @@ class App extends React.Component {
                     <Form.Group controlId="thuratio">
                       <Form.Label>Th/U Ratio</Form.Label>
                       <InputGroup>
-                        <Form.Control value={this.state.geoneutrino.ThURatio} type="number" placeholder="0" step="0.1" />
+                        <Form.Control value={this.state.geoneutrino.ThURatio} type="number" placeholder="0" step="0.1" readOnly/>
                       </InputGroup>
                     </Form.Group>
                     <Form.Group controlId="kuratio">
                       <Form.Label>K/U Ratio</Form.Label>
                       <InputGroup>
-                        <Form.Control value={this.state.geoneutrino.KURatio} type="number" placeholder="0" step="0.1" />
+                        <Form.Control value={this.state.geoneutrino.KURatio} type="number" placeholder="0" step="0.1" readOnly/>
                       </InputGroup>
                     </Form.Group>
                   </Card.Body>

@@ -21,7 +21,7 @@ export function CoreList({cores, reactorLFStart, reactorLFEnd}) {
             <Card.Header>
                 <Form inline>
                     <h5 className="mr-auto">Core List</h5>
-                    <Form.Control value={filter} onInput={({target:{ value }}) => setFilter(value)} type="search" placeholder="Filter Core List" className="mr-sm-2" />
+                    <Form.Control value={filter} onChange={({target:{ value }}) => setFilter(value)} type="search" placeholder="Filter Core List" className="mr-sm-2" />
                 </Form>
             </Card.Header>
             <ListGroup variant="flush">
