@@ -20,7 +20,6 @@ import { groupBy, zip, sum} from 'lodash';
 
 import 'leaflet/dist/leaflet.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
 
 import L from 'leaflet';
 delete L.Icon.Default.prototype._getIconUrl;
