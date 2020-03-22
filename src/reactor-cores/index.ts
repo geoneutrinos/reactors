@@ -95,6 +95,7 @@ export class ReactorCore {
   z: number;
   custom: boolean;
   loadOverride?: number
+  lf_cache: {[key: string]: number}
 
   constructor({name, lat, lon, elevation, type, mox, power, custom=false, loads}: 
     {name:string, lat: number, lon:number, elevation:number, type:string, mox:boolean, power:number, custom?:boolean, loads:LoadFactor[]}){
@@ -107,7 +108,8 @@ export class ReactorCore {
     this.mox = mox;
     this.power = power;
     this.custom = custom;
-    this.loads = loads
+    this.loads = loads;
+    this.lf_cache = {}
   }
 
   static sortCompare(a: ReactorCore, b: ReactorCore){
@@ -131,10 +133,18 @@ export class ReactorCore {
     if (this.custom === true){
       return 1;
     }
+    const lf_key = JSON.stringify([start, stop]);
+
+    if (this.lf_cache[lf_key] !== undefined){
+      return this.lf_cache[lf_key]
+    }
+
     const loads = this.loads.filter((load) => (load.date >= start) && (load.date <= stop));
     const totalDays = loads.reduce((a,b) => a + b.days, 0);
     const weightedLoads = loads.map((load) => load.load * (load.days/totalDays));
-    return weightedLoads.reduce((a,b) => a + b);
+    const lf =  weightedLoads.reduce((a,b) => a + b);
+    this.lf_cache[lf_key] = lf;
+    return this.lf_cache[lf_key]
   }
 
 
