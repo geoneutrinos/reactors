@@ -7,7 +7,7 @@ import { normalNeutrinoOscilationSpectrum, invertedNeutrinoOscilationSpectrum} f
 
 import { NuSpectrumPlot } from './ui/plot'
 import { NuMap, StatsPanel, CoreList } from './ui';
-import { defaultCores, customLoad, defaultLoad} from './reactor-cores';
+import { defaultCores} from './reactor-cores';
 import { presets } from './detectors';
 import { getCrustFlux } from './crust-model';
 import { averageSurvivalProbabilityNormal, averageSurvivalProbabilityInverted } from './physics/neutrino-oscillation';
@@ -30,6 +30,7 @@ L.Icon.Default.mergeOptions({
   shadowUrl: require('leaflet/dist/images/marker-shadow.png'),
 });
 
+let cores = defaultCores;
 
 
 class App extends React.Component {
@@ -38,7 +39,7 @@ class App extends React.Component {
     this.plot = React.createRef();
 
     this.state = {
-      cores: defaultCores,
+      coresVersion: 0,
       crossSection: "SV2003",
       massOrdering: "normal", // or "inverted"
       reactorLFStart: new Date("2018-01"),
@@ -80,12 +81,12 @@ class App extends React.Component {
   }
 
   powerDownCores = () => {
-    const newCores = Object.values(this.state.cores).map(core => customLoad(core, 0))
-    this.updateSpectrum({cores: newCores.reduce((prev, next)=> ({...prev, [next.name]: next}), {})})
+    Object.values(cores).map(core => core.setCustomLoad(0))
+    this.updateSpectrum({coresVersion: this.state.coresVersion + 1})
   }
   powerUpCores = () => {
-    const newCores = Object.values(this.state.cores).map(core => defaultLoad(core, 0))
-    this.updateSpectrum({cores: newCores.reduce((prev, next)=> ({...prev, [next.name]: next}), {})})
+    Object.values(cores).map(core => core.clearCustomLoad())
+    this.updateSpectrum({coresVersion: this.statecoresVersion + 1})
   }
 
   updateSpectrum = (newState = {}) => {
@@ -102,58 +103,18 @@ class App extends React.Component {
     const {lat, lon, elevation} = state.detector;
     const [x, y, z] = project(lat, lon, elevation).map((n)=> n/1000);
 
-    const coreSignals = Object.values(state.cores).map((core) => {
-      let dist = Math.hypot(x - core.x, y - core.y, z - core.z);
+    const coreSignals = Object.values(cores).map((core) => {
+      const dist = Math.hypot(x - core.x, y - core.y, z - core.z);
       const lf = core.loadFactor(state.reactorLFStart, state.reactorLFEnd)
 
-      if (dist > 100){
-        dist = Math.round(dist)
-      }
+      const newCore = core.setSignal(dist, lf, state.massOrdering, state.crossSection);
 
-      let spectrum;
-      switch (state.crossSection){
-        case "ESMUTAU":
-          spectrum = core.spectrumESMUTAU;
-          break;
-        case "ESANTI":
-          spectrum = core.spectrumESANTI;
-          break;
-        case "VB1999":
-          spectrum = core.spectrumVB1999;
-          break;
-        case "SV2003":
-        default:
-          spectrum = core.spectrumSV2003;
-          break;
-      }
-
-      let oscillation;
-      switch (state.massOrdering){
-        case ("inverted"):
-          oscillation = invertedNeutrinoOscilationSpectrum(dist);
-          break;
-        case ("normal"):
-        default:
-          oscillation = normalNeutrinoOscilationSpectrum(dist);
-          break
-      }
-
-      if (state.crossSection === "ESMUTAU"){
-        oscillation = oscillation.map((v) => 1 - v)
-      }
-
-      const distsq = dist ** 2;
-      const power = core.power;
-      const signal = zip(spectrum, oscillation).map(([spec, osc])=>{
-        return (spec * osc * power * lf)/distsq
-      });
-
-      if (dist < currentDistIAEA && sum(signal) > 0){
-        currentDistIAEA = dist;
-        closestCoreSpectrum = signal;
+      if (newCore.detectorDistance < currentDistIAEA && newCore.detectorAnySignal){
+        currentDistIAEA = newCore.detectorDistance;
+        closestCoreSpectrum = newCore.detectorSignal;
         closestIAEA = core.name;
       }
-      return signal
+      return newCore.detectorSignal;
     });
     IAEACoreSpectrum = zip(...coreSignals).map(sum)
 
@@ -200,6 +161,7 @@ class App extends React.Component {
 
     this.setState({
       ...state,
+      //cores: newCores,
       spectrum: {
         total: IAEACoreSpectrum,
         iaea: IAEACoreSpectrum,
@@ -263,7 +225,7 @@ class App extends React.Component {
           <Col style={{minHeight:"50vh"}}>
             <NuMap 
             onMousemove={this.mapMouseMove} 
-            cores={this.state.cores} 
+            cores={cores} 
             detectorList={presets} 
             detector={this.state.detector}
             changeDetector={this.changeDetector}
@@ -344,7 +306,7 @@ class App extends React.Component {
               <Tab eventKey="reactors" title="Reactors">
                 <button onClick={() => this.powerDownCores()}>Turn Off All The Cores</button>
                 <button onClick={() => this.powerUpCores()}>Turn On All The Cores</button>
-                <CoreList {...this.state} />
+                <CoreList cores={cores} {...this.state} />
               </Tab>
               <Tab eventKey="geonu" title="GeoNu">
                 <Card>

@@ -38,7 +38,8 @@ export function CoreList({cores, reactorLFStart, reactorLFEnd}) {
                     return (<ListGroup.Item key={core.name} variant={variant}>
                         <h6>{core.name}</h6>
                         Load Factor: {(lf * 100).toFixed(1)}%<br />
-                        Operating Power: { (lf * core.power).toFixed(0)} MW
+                        Operating Power: { (lf * core.power).toFixed(0)} MW< br/>
+                        Signal: {core.detectorNIU}
                     </ListGroup.Item>)
                 })}
             </ListGroup>
