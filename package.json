@@ -19,7 +19,7 @@
     "lodash": "^4.17.15",
     "plotly.js": "^1.52.3",
     "react": "^16.13.1",
-    "react-bootstrap": "^1.0.0-beta.17",
+    "react-bootstrap": "^1.0.0",
     "react-dom": "^16.13.1",
     "react-leaflet": "^2.6.3",
     "react-plotly.js": "^2.4.0",
@@ -48,5 +48,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "prettier": "^2.0.1"
   }
 }
