@@ -1,15 +1,20 @@
 import React from "react";
 import Plot from "react-plotly.js";
 
+import {sum} from 'lodash';
+
 const evBins = new Float64Array(1000).map((v, i) => i * 0.01 + 0.005);
 
-export function NuSpectrumPlot({cores, distances, spectrum, detector }) {
-    const coreList = Object.values(cores)
-    const closestActiveIAEACore = coreList.filter((core) => core.detectorAnySignal && !core.custom).sort((a, b) => a.detectorDistance - b.detectorDistance)[0]
+export function NuSpectrumPlot({cores, spectrum, detector }) {
+  const coreList = Object.values(cores)
+  const closestActiveIAEACore = coreList.filter((core) => core.detectorAnySignal && !core.custom).sort((a, b) => a.detectorDistance - b.detectorDistance)[0]
 
-    const totalCoreSignal = coreList.reduce((previous, current) => {
-      return previous.map((value, index) => value + current.detectorSignal[index])
-    }, (new Float64Array(1000)).fill(0))
+  const totalCoreSignal = coreList.reduce((previous, current) => {
+    return previous.map((value, index) => value + current.detectorSignal[index])
+  }, (new Float64Array(1000)).fill(0))
+
+  const closestActiveIAEACoreSignal = closestActiveIAEACore?.detectorSignal || (new Float32Array(1000)).fill(0);
+
 
   const data = [
     {
@@ -19,7 +24,8 @@ export function NuSpectrumPlot({cores, distances, spectrum, detector }) {
       type: "scatter",
       mode: "lines",
       fill: "tozerox",
-      marker: { color: "yellow" }
+      marker: { color: "yellow" },
+      visible: sum(spectrum.geoK) > 0,
     },
     {
       x: evBins,
@@ -28,7 +34,8 @@ export function NuSpectrumPlot({cores, distances, spectrum, detector }) {
       type: "scatter",
       mode: "lines",
       fill: "tozerox",
-      marker: { color: "blue" }
+      marker: { color: "blue" },
+      visible: sum(spectrum.geoU) > 0,
     },
     {
       x: evBins,
@@ -37,7 +44,8 @@ export function NuSpectrumPlot({cores, distances, spectrum, detector }) {
       type: "scatter",
       mode: "lines",
       fill: "tozerox",
-      marker: { color: "red" }
+      marker: { color: "red" },
+      visible: sum(spectrum.geoTh) > 0,
     },
     {
       x: evBins,
@@ -46,17 +54,20 @@ export function NuSpectrumPlot({cores, distances, spectrum, detector }) {
       type: "scatter",
       mode: "lines",
       fill: "tozerox",
-      marker: { color: "green" }
+      marker: { color: "green" },
+      visible: sum(totalCoreSignal) > 0
     },
     {
       x: evBins,
-      y: closestActiveIAEACore?.detectorSignal,
+      y: closestActiveIAEACoreSignal,
       name: `Closest IAEA Core\n (${closestActiveIAEACore?.name || ""})`,
       type: "scatter",
       mode: "lines",
-      marker: { dash: "dot" }
-    }
+      marker: { dash: "dot" },
+      visible: sum(closestActiveIAEACoreSignal) > 0
+    },
   ];
+
   const layout = {
     title: `Antineutrino Spectrum: ${
       ["custom", "follow"].includes(detector.current)
