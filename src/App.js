@@ -3,8 +3,6 @@ import React from 'react';
 import { project } from 'ecef-projector';
 import { Container, Row, Col, Tab, Tabs, Card, Form, InputGroup} from 'react-bootstrap';
 
-import { normalNeutrinoOscilationSpectrum, invertedNeutrinoOscilationSpectrum} from './physics/neutrino-oscillation'
-
 import { NuSpectrumPlot } from './ui/plot'
 import { NuMap, StatsPanel, CoreList } from './ui';
 import { defaultCores} from './reactor-cores';
@@ -16,7 +14,7 @@ import { crossSectionSV2003, crossSectionElectronAntineutrinoES, crossSectionMuT
 import { SECONDS_PER_YEAR, ISOTOPIC_NEUTRINO_LUMINOSITY, ISOTOPIC_NATURAL_ABUNDANCE } from './physics/constants'
 
 
-import { groupBy, zip, sum} from 'lodash';
+import { groupBy} from 'lodash';
 
 import 'leaflet/dist/leaflet.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -57,19 +55,10 @@ class App extends React.Component {
         crustSignal: true
       },
       spectrum: {
-        total: (new Float64Array(1000)).fill(0),
-        iaea: (new Float64Array(1000)).fill(0),
-        closest: (new Float64Array(1000)).fill(0),
-        custom: (new Float64Array(1000)).fill(0),
         geoU: (new Float64Array(1000)).fill(0),
         geoTh: (new Float64Array(1000)).fill(0),
         geoK: (new Float64Array(1000)).fill(0)
       },
-      distances: {
-        closestIAEA: 10000,
-        closestIAEAName: "",
-        closestUser: 10000
-      }
     }
   }
   componentDidMount = () => {
@@ -91,32 +80,16 @@ class App extends React.Component {
 
   updateSpectrum = (newState = {}) => {
     const state = {...this.state, ...newState}
-    let closestCoreSpectrum = (new Float64Array(1000)).fill(0);
-    let IAEACoreSpectrum;
-    //let CustomCoreSpectrum = (new Float64Array(1000)).fill(0);
-    //let closestUser;
-    let closestIAEA = "None";
-
-    //let currentDistUser = 1e10;
-    let currentDistIAEA = 1e10;
 
     const {lat, lon, elevation} = state.detector;
     const [x, y, z] = project(lat, lon, elevation).map((n)=> n/1000);
 
-    const coreSignals = Object.values(cores).map((core) => {
+    Object.values(cores).forEach((core) => {
       const dist = Math.hypot(x - core.x, y - core.y, z - core.z);
       const lf = core.loadFactor(state.reactorLFStart, state.reactorLFEnd)
 
-      const newCore = core.setSignal(dist, lf, state.massOrdering, state.crossSection);
-
-      if (newCore.detectorDistance < currentDistIAEA && newCore.detectorAnySignal){
-        currentDistIAEA = newCore.detectorDistance;
-        closestCoreSpectrum = newCore.detectorSignal;
-        closestIAEA = core.name;
-      }
-      return newCore.detectorSignal;
+      core.setSignal(dist, lf, state.massOrdering, state.crossSection);
     });
-    IAEACoreSpectrum = zip(...coreSignals).map(sum)
 
     const crustFlux = getCrustFlux(lon, lat)
     
@@ -163,19 +136,10 @@ class App extends React.Component {
       ...state,
       //cores: newCores,
       spectrum: {
-        total: IAEACoreSpectrum,
-        iaea: IAEACoreSpectrum,
-        closest: closestCoreSpectrum,
-        custom: (new Float64Array(1000)).fill(0),
         geoU: geoU,
         geoTh: geoTh,
         geoK: geoK
       },
-      distances: {
-        closestIAEA: currentDistIAEA,
-        closestIAEAName: closestIAEA,
-        closestUser: 10000
-      }
     })
   }
   changeMassOrder = (event) =>{
@@ -232,13 +196,13 @@ class App extends React.Component {
             />
           </Col>
           <Col lg={6} style={{maxHeight:"100vh", overflow:"scroll"}}>
-            <NuSpectrumPlot {...this.state}/>
-            <Tabs defaultActiveKey="detector">
+            <NuSpectrumPlot cores={cores} {...this.state}/>
+            <Tabs unmountOnExit={true} defaultActiveKey="detector">
               <Tab eventKey="detector" title="Detector">
                 <Card>
                   <Card.Body>
                     <Card.Title>Spectrum Stats</Card.Title>
-                    <StatsPanel spectrum={this.state.spectrum} distances={this.state.distances}/>
+                    <StatsPanel cores={cores} spectrum={this.state.spectrum}/>
                   </Card.Body>
                 </Card>
                 <Card>

@@ -3,7 +3,7 @@ import { partialInteractionRate } from '../physics/reactor-antineutrinos'
 import { neutrinoEnergyFor } from '../physics/helpers'
 import {crossSectionSV2003, crossSectionVB1999, crossSectionElectronAntineutrinoES, crossSectionMuTauAntineutrinoES} from '../physics/neutrino-cross-section'
 import { FISSION_ENERGIES, ELEMENTARY_CHARGE ,Isotopes} from '../physics/constants'
-import { range, zip, cloneDeep, sum } from 'lodash';
+import { range, zip, sum } from 'lodash';
 import { project } from 'ecef-projector';
 import {LazyGetter} from 'lazy-get-decorator';
 import { invertedNeutrinoOscilationSpectrum, normalNeutrinoOscilationSpectrum } from '../physics/neutrino-oscillation'
