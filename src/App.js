@@ -129,7 +129,7 @@ class App extends React.Component {
     })
     const kMantleFlux = uMantleFlux * this.state.geoneutrino.KURatio * (ISOTOPIC_NEUTRINO_LUMINOSITY.K40/ISOTOPIC_NEUTRINO_LUMINOSITY.U238) * (ISOTOPIC_NATURAL_ABUNDANCE.K40/ISOTOPIC_NATURAL_ABUNDANCE.U238);
     const geoK = antineutrinoSpectrum40K.map((v, i)=> {
-      return v * (crustFlux.th * 1e6 + kMantleFlux) * SECONDS_PER_YEAR * crossSection((0.005 + i/100)) * 1e32 * survivalProbability;
+      return v * (crustFlux.k * 1e6 + kMantleFlux) * SECONDS_PER_YEAR * crossSection((0.005 + i/100)) * 1e32 * survivalProbability;
     })
 
     this.setState({
