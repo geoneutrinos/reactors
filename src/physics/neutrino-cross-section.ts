@@ -71,13 +71,15 @@ function crossSectionElasticScattering(Ev: number, neutrinoType: NeutrinoType): 
 
   // The following impliments equation 11... it's big so there will be
   // 4 terms to make the equation the following: term1(term2 + term3 - term4)
+
+  const y = TEmax / Ev;
   
   const FERMI_COUPLING_CONSTANT_MeV = FERMI_COUPLING_CONSTANT / 1e6
 
-  const term1 = (2 * (FERMI_COUPLING_CONSTANT_MeV ** 2) * (HBAR_C ** 2)) * Ev / Math.PI;
-  const term2 = cL ** 2 * TEmax / Ev;
-  const term3 = cR ** 2 * (1/3) * (1 - (1 - TEmax/Ev) ** 3);
-  const term4 = cL * cR * (ELECTRON_REST_MASS * TEmax ** 2) / (2 * Ev ** 2);
+  const term1 = (2 * (FERMI_COUPLING_CONSTANT_MeV ** 2) * (HBAR_C ** 2)) * ELECTRON_REST_MASS * Ev / Math.PI;
+  const term2 = cL ** 2 * y;
+  const term3 = cR ** 2 * (1/3) * (1 - (1 - y) ** 3);
+  const term4 = cL * cR * (ELECTRON_REST_MASS/(2 * Ev)) * y ** 2;
 
   return term1 * (term2 + term3 - term4);
 
