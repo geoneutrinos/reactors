@@ -1,20 +1,21 @@
 import React from 'react';
 
 import { project } from 'ecef-projector';
-import { Container, Row, Col, Tab, Tabs, Card, Form, InputGroup} from 'react-bootstrap';
+import { Container, Row, Col, Tab, Tabs, Card, Form, InputGroup } from 'react-bootstrap';
 
 import { NuSpectrumPlot } from './ui/plot'
 import { NuMap, StatsPanel, CoreList } from './ui';
-import { defaultCores} from './reactor-cores';
+import { defaultCores } from './reactor-cores';
 import { presets } from './detectors';
 import { getCrustFlux } from './crust-model';
 import { averageSurvivalProbabilityNormal, averageSurvivalProbabilityInverted } from './physics/neutrino-oscillation';
-import { antineutrinoSpectrum238U, antineutrinoSpectrum232Th, antineutrinoSpectrum40K} from './antineutrino-spectrum';
+import { antineutrinoSpectrum238U, antineutrinoSpectrum232Th, antineutrinoSpectrum40K } from './antineutrino-spectrum';
 import { crossSectionSV2003, crossSectionElectronAntineutrinoES, crossSectionMuTauAntineutrinoES, crossSectionVB1999 } from './physics/neutrino-cross-section';
-import { SECONDS_PER_YEAR, ISOTOPIC_NEUTRINO_LUMINOSITY, ISOTOPIC_NATURAL_ABUNDANCE } from './physics/constants'
+import { SECONDS_PER_YEAR, ISOTOPIC_NATURAL_ABUNDANCE } from './physics/constants';
+import { ISOTOPIC_NEUTRINO_LUMINOSITY } from './physics/derived';
 
 
-import { groupBy} from 'lodash';
+import { groupBy } from 'lodash';
 
 import 'leaflet/dist/leaflet.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -71,18 +72,18 @@ class App extends React.Component {
 
   powerDownCores = () => {
     Object.values(cores).map(core => core.setCustomLoad(0))
-    this.updateSpectrum({coresVersion: this.state.coresVersion + 1})
+    this.updateSpectrum({ coresVersion: this.state.coresVersion + 1 })
   }
   powerUpCores = () => {
     Object.values(cores).map(core => core.clearCustomLoad())
-    this.updateSpectrum({coresVersion: this.statecoresVersion + 1})
+    this.updateSpectrum({ coresVersion: this.statecoresVersion + 1 })
   }
 
   updateSpectrum = (newState = {}) => {
-    const state = {...this.state, ...newState}
+    const state = { ...this.state, ...newState }
 
-    const {lat, lon, elevation} = state.detector;
-    const [x, y, z] = project(lat, lon, elevation).map((n)=> n/1000);
+    const { lat, lon, elevation } = state.detector;
+    const [x, y, z] = project(lat, lon, elevation).map((n) => n / 1000);
 
     Object.values(cores).forEach((core) => {
       const dist = Math.hypot(x - core.x, y - core.y, z - core.z);
@@ -92,9 +93,9 @@ class App extends React.Component {
     });
 
     const crustFlux = getCrustFlux(lon, lat)
-    
+
     let crossSection;
-    switch (state.crossSection){
+    switch (state.crossSection) {
       case "ESMUTAU":
         crossSection = crossSectionMuTauAntineutrinoES;
         break;
@@ -110,7 +111,7 @@ class App extends React.Component {
         break;
     }
     let survivalProbability;
-    switch (state.massOrdering){
+    switch (state.massOrdering) {
       case ("inverted"):
         survivalProbability = averageSurvivalProbabilityInverted;
         break;
@@ -120,16 +121,16 @@ class App extends React.Component {
         break;
     }
     const uMantleFlux = this.state.geoneutrino.U238flux;
-    const geoU = antineutrinoSpectrum238U.map((v, i)=> {
-      return v * (crustFlux.u * 1e6 + uMantleFlux) * SECONDS_PER_YEAR * crossSection((0.005 + i/100)) * 1e32 * survivalProbability;
+    const geoU = antineutrinoSpectrum238U.map((v, i) => {
+      return v * (crustFlux.u * 1e6 + uMantleFlux) * SECONDS_PER_YEAR * crossSection((0.005 + i / 100)) * 1e32 * survivalProbability;
     })
-    const thMantleFlux = uMantleFlux * this.state.geoneutrino.ThURatio * (ISOTOPIC_NEUTRINO_LUMINOSITY.TH232/ISOTOPIC_NEUTRINO_LUMINOSITY.U238) * (ISOTOPIC_NATURAL_ABUNDANCE.TH232/ISOTOPIC_NATURAL_ABUNDANCE.U238);
-    const geoTh = antineutrinoSpectrum232Th.map((v, i)=> {
-      return v * (crustFlux.th * 1e6 + thMantleFlux) * SECONDS_PER_YEAR * crossSection((0.005 + i/100)) * 1e32 * survivalProbability;
+    const thMantleFlux = uMantleFlux * this.state.geoneutrino.ThURatio * (ISOTOPIC_NEUTRINO_LUMINOSITY.TH232 / ISOTOPIC_NEUTRINO_LUMINOSITY.U238) * (ISOTOPIC_NATURAL_ABUNDANCE.TH232 / ISOTOPIC_NATURAL_ABUNDANCE.U238);
+    const geoTh = antineutrinoSpectrum232Th.map((v, i) => {
+      return v * (crustFlux.th * 1e6 + thMantleFlux) * SECONDS_PER_YEAR * crossSection((0.005 + i / 100)) * 1e32 * survivalProbability;
     })
-    const kMantleFlux = uMantleFlux * this.state.geoneutrino.KURatio * (ISOTOPIC_NEUTRINO_LUMINOSITY.K40/ISOTOPIC_NEUTRINO_LUMINOSITY.U238) * (ISOTOPIC_NATURAL_ABUNDANCE.K40/ISOTOPIC_NATURAL_ABUNDANCE.U238);
-    const geoK = antineutrinoSpectrum40K.map((v, i)=> {
-      return v * (crustFlux.k * 1e6 + kMantleFlux) * SECONDS_PER_YEAR * crossSection((0.005 + i/100)) * 1e32 * survivalProbability;
+    const kMantleFlux = uMantleFlux * this.state.geoneutrino.KURatio * (ISOTOPIC_NEUTRINO_LUMINOSITY.K40 / ISOTOPIC_NEUTRINO_LUMINOSITY.U238) * (ISOTOPIC_NATURAL_ABUNDANCE.K40 / ISOTOPIC_NATURAL_ABUNDANCE.U238);
+    const geoK = antineutrinoSpectrum40K.map((v, i) => {
+      return v * (crustFlux.k * 1e6 + kMantleFlux) * SECONDS_PER_YEAR * crossSection((0.005 + i / 100)) * 1e32 * survivalProbability;
     })
 
     this.setState({
@@ -142,42 +143,42 @@ class App extends React.Component {
       },
     })
   }
-  changeMassOrder = (event) =>{
-    this.updateSpectrum({massOrdering: event.currentTarget.value})
+  changeMassOrder = (event) => {
+    this.updateSpectrum({ massOrdering: event.currentTarget.value })
   }
-  changeCrossSection = (event) =>{
-    this.updateSpectrum({crossSection: event.currentTarget.value})
+  changeCrossSection = (event) => {
+    this.updateSpectrum({ crossSection: event.currentTarget.value })
   }
-  changeDetectorMode = (event) =>{
+  changeDetectorMode = (event) => {
     const value = event.currentTarget.value;
-    let newDetector = {current: value};
-    if (value !== 'custom' && value !== 'follow'){
+    let newDetector = { current: value };
+    if (value !== 'custom' && value !== 'follow') {
       let preset = presets.find(detector => detector.name === value);
       newDetector.lat = preset.lat;
       newDetector.lon = preset.lon;
       newDetector.elevation = preset.elevation;
     }
-    this.updateSpectrum({detector:{...this.state.detector, ...newDetector}})
+    this.updateSpectrum({ detector: { ...this.state.detector, ...newDetector } })
   }
   changeDetector = (newDetector) => {
-    this.updateSpectrum({detector:{...this.state.detector, ...newDetector}})
+    this.updateSpectrum({ detector: { ...this.state.detector, ...newDetector } })
   }
-  mapMouseMove = (event) =>{
-    if (this.state.detector.current !== 'follow'){
+  mapMouseMove = (event) => {
+    if (this.state.detector.current !== 'follow') {
       return null;
     }
-    let {lat, lng} = event.latlng;
-    while (lng > 180){
-     lng = lng - 360;
+    let { lat, lng } = event.latlng;
+    while (lng > 180) {
+      lng = lng - 360;
     }
-    while (lng < -180){
+    while (lng < -180) {
       lng = lng + 360;
     }
-    this.updateSpectrum({detector: {...this.state.detector, lat:lat, lon:lng}})
+    this.updateSpectrum({ detector: { ...this.state.detector, lat: lat, lon: lng } })
   }
   render() {
-    const presetGroups = groupBy(presets,(detector) => detector.region)
-    const presetOptions = Object.keys(presetGroups).map((key)=> {
+    const presetGroups = groupBy(presets, (detector) => detector.region)
+    const presetOptions = Object.keys(presetGroups).map((key) => {
       const group = presetGroups[key];
       const options = group.map((detector) => <option key={detector.name} value={detector.name}>{detector.name} ({detector.overburden} mwe)</option>)
       return <optgroup key={key} label={key}>{options}</optgroup>
@@ -186,23 +187,23 @@ class App extends React.Component {
     return (
       <Container fluid={true}>
         <Row style={{ minHeight: "100vh" }}>
-          <Col style={{minHeight:"50vh"}}>
-            <NuMap 
-            onMousemove={this.mapMouseMove} 
-            cores={cores} 
-            detectorList={presets} 
-            detector={this.state.detector}
-            changeDetector={this.changeDetector}
+          <Col style={{ minHeight: "50vh" }}>
+            <NuMap
+              onMousemove={this.mapMouseMove}
+              cores={cores}
+              detectorList={presets}
+              detector={this.state.detector}
+              changeDetector={this.changeDetector}
             />
           </Col>
-          <Col lg={6} style={{maxHeight:"100vh", overflow:"scroll"}}>
-            <NuSpectrumPlot cores={cores} {...this.state}/>
+          <Col lg={6} style={{ maxHeight: "100vh", overflow: "scroll" }}>
+            <NuSpectrumPlot cores={cores} {...this.state} />
             <Tabs unmountOnExit={true} defaultActiveKey="detector">
               <Tab eventKey="detector" title="Detector">
                 <Card>
                   <Card.Body>
                     <Card.Title>Spectrum Stats</Card.Title>
-                    <StatsPanel cores={cores} spectrum={this.state.spectrum}/>
+                    <StatsPanel cores={cores} spectrum={this.state.spectrum} />
                   </Card.Body>
                 </Card>
                 <Card>
@@ -240,7 +241,7 @@ class App extends React.Component {
                     <Form.Group controlId="detectorLat">
                       <Form.Label>Latitude</Form.Label>
                       <InputGroup>
-                        <Form.Control value={this.state.detector.lat} type="number" placeholder="0" step="0.1" readOnly/>
+                        <Form.Control value={this.state.detector.lat} type="number" placeholder="0" step="0.1" readOnly />
                         <InputGroup.Append>
                           <InputGroup.Text>deg N</InputGroup.Text>
                         </InputGroup.Append>
@@ -249,7 +250,7 @@ class App extends React.Component {
                     <Form.Group controlId="detectorLon">
                       <Form.Label>Longitude</Form.Label>
                       <InputGroup>
-                      <Form.Control value={this.state.detector.lon} type="number" placeholder="0" step="0.1" readOnly/>
+                        <Form.Control value={this.state.detector.lon} type="number" placeholder="0" step="0.1" readOnly />
                         <InputGroup.Append>
                           <InputGroup.Text>deg E</InputGroup.Text>
                         </InputGroup.Append>
@@ -258,7 +259,7 @@ class App extends React.Component {
                     <Form.Group controlId="detectorElevation">
                       <Form.Label>Elevation</Form.Label>
                       <InputGroup>
-                      <Form.Control value={this.state.detector.elevation} type="number" placeholder="0" step="1" readOnly/>
+                        <Form.Control value={this.state.detector.elevation} type="number" placeholder="0" step="1" readOnly />
                         <InputGroup.Append>
                           <InputGroup.Text>meters</InputGroup.Text>
                         </InputGroup.Append>
@@ -279,7 +280,7 @@ class App extends React.Component {
                     <Form.Group controlId="u238flux">
                       <Form.Label><sup>238</sup>U Mantle Flux</Form.Label>
                       <InputGroup>
-                        <Form.Control value={this.state.geoneutrino.U238flux} type="number" placeholder="0" step="0.1" readOnly/>
+                        <Form.Control value={this.state.geoneutrino.U238flux} type="number" placeholder="0" step="0.1" readOnly />
                         <InputGroup.Append>
                           <InputGroup.Text>cm<sup>-2</sup>s<sup>-1</sup></InputGroup.Text>
                         </InputGroup.Append>
@@ -288,13 +289,13 @@ class App extends React.Component {
                     <Form.Group controlId="thuratio">
                       <Form.Label>Th/U Ratio</Form.Label>
                       <InputGroup>
-                        <Form.Control value={this.state.geoneutrino.ThURatio} type="number" placeholder="0" step="0.1" readOnly/>
+                        <Form.Control value={this.state.geoneutrino.ThURatio} type="number" placeholder="0" step="0.1" readOnly />
                       </InputGroup>
                     </Form.Group>
                     <Form.Group controlId="kuratio">
                       <Form.Label>K/U Ratio</Form.Label>
                       <InputGroup>
-                        <Form.Control value={this.state.geoneutrino.KURatio} type="number" placeholder="0" step="0.1" readOnly/>
+                        <Form.Control value={this.state.geoneutrino.KURatio} type="number" placeholder="0" step="0.1" readOnly />
                       </InputGroup>
                     </Form.Group>
                   </Card.Body>
