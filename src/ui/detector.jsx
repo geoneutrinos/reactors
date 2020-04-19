@@ -6,7 +6,7 @@ function Num({v, p}){
 }
 
 export function StatsPanel({cores, spectrum}) {
-    const unit = "NIU";
+    const NIU = <span title="Neutrino Interaction Unit">NIU</span>
 
     const coreList = Object.values(cores)
     const closestActiveCore = coreList.filter((core) => core.detectorAnySignal).sort((a, b) => a.detectorDistance - b.detectorDistance)[0]
@@ -38,15 +38,14 @@ export function StatsPanel({cores, spectrum}) {
 
     return (
         <div>
-            <i>R</i><sub>total</sub> = {totalNIU.toFixed(1)} {unit}<br />
-            <i>R</i><sub>reac</sub> = {totalCoreSignal.toFixed(1)} {unit}<br />
-            <i>R</i><sub>closest</sub> = {closestNIU.toFixed(1)} {unit} ({(closestNIU / totalNIU * 100).toFixed(1)} % of total)<br />
+            <i>R</i><sub>total</sub> = {totalNIU.toFixed(1)} {NIU}<br />
+            <i>R</i><sub>reac</sub> = {totalCoreSignal.toFixed(1)} {NIU}<br />
+            <i>R</i><sub>closest</sub> = {closestNIU.toFixed(1)} {NIU} ({(closestNIU / totalNIU * 100).toFixed(1)} % of total)<br />
             <i>D</i><sub>closest</sub> = {closestDistace > 100000? "N/A": closestDistace.toFixed(2)} km<br />
             <span style={{ "display": customDisplay}}><i>D</i><sub>user</sub> = {customClosestDistance.toFixed(3)} km<br /></span>
-            <span style={{ "display": customDisplay}}><i>R</i><sub>user</sub> = {customClosestNIU.toFixed(1)} {unit}<br /></span>
-            <i>R</i><sub>geo</sub> = <Num v={geoTotalNIU} p={1}/> {unit} (U = <Num v={geoUNIU} p={1}/>, Th = <Num v={geoThNIU} p={1}/>, K = <Num v={geoKNIU} p={1}/>)<br />
-            <small>NIU = Neutrino interaction unit</small><br />
-            <small>1 {unit} = 1 interaction/10<sup>32</sup> targets/year</small><br />
+            <span style={{ "display": customDisplay}}><i>R</i><sub>user</sub> = {customClosestNIU.toFixed(1)} {NIU}<br /></span>
+            <i>R</i><sub>geo</sub> = <Num v={geoTotalNIU} p={1}/> {NIU} (U = <Num v={geoUNIU} p={1}/>, Th = <Num v={geoThNIU} p={1}/>, K = <Num v={geoKNIU} p={1}/>)<br />
+            <small>1 {NIU} (Neutrino Interaction Unit) = 1 interaction/10<sup>32</sup> targets/year</small><br />
             <small>1 kT H<sub>2</sub>O contains 0.668559x10<sup>32</sup> free protons</small>
         </div>
     );
