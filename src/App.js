@@ -4,7 +4,7 @@ import { project } from 'ecef-projector';
 import { Container, Row, Col, Tab, Tabs, Card, Form, InputGroup } from 'react-bootstrap';
 
 import { NuSpectrumPlot } from './ui/plot'
-import { NuMap, StatsPanel, CoreList } from './ui';
+import { NuMap, StatsPanel, CoreList, MantleFlux, CrustFlux } from './ui';
 import { defaultCores } from './reactor-cores';
 import { presets } from './detectors';
 import { getCrustFlux } from './crust-model';
@@ -87,7 +87,15 @@ class App extends React.Component {
       core.setSignal(dist, lf, state.massOrdering, state.crossSection);
     });
 
-    const crustFlux = getCrustFlux(lon, lat)
+    let crustFlux = {
+      u: 0,
+      th: 0,
+      k: 0,
+    }
+
+    if (state.geoneutrino.crustSignal === true){
+      crustFlux = getCrustFlux(lon, lat)
+    }
 
     let crossSection;
     switch (state.crossSection) {
@@ -267,32 +275,8 @@ class App extends React.Component {
                 <CoreList cores={cores} {...this.state} incrimentCoresVersions={this.incrimentCoresVersions} />
               </Tab>
               <Tab eventKey="geonu" title="GeoNu">
-                <Card>
-                  <Card.Body>
-                    <Card.Title>Mantle Flux</Card.Title>
-                    <Form.Group controlId="u238flux">
-                      <Form.Label><sup>238</sup>U Mantle Flux</Form.Label>
-                      <InputGroup>
-                        <Form.Control value={this.state.geoneutrino.U238flux} type="number" placeholder="0" step="0.1" readOnly />
-                        <InputGroup.Append>
-                          <InputGroup.Text>cm<sup>-2</sup>s<sup>-1</sup></InputGroup.Text>
-                        </InputGroup.Append>
-                      </InputGroup>
-                    </Form.Group>
-                    <Form.Group controlId="thuratio">
-                      <Form.Label>Th/U Ratio</Form.Label>
-                      <InputGroup>
-                        <Form.Control value={this.state.geoneutrino.ThURatio} type="number" placeholder="0" step="0.1" readOnly />
-                      </InputGroup>
-                    </Form.Group>
-                    <Form.Group controlId="kuratio">
-                      <Form.Label>K/U Ratio</Form.Label>
-                      <InputGroup>
-                        <Form.Control value={this.state.geoneutrino.KURatio} type="number" placeholder="0" step="0.1" readOnly />
-                      </InputGroup>
-                    </Form.Group>
-                  </Card.Body>
-                </Card>
+                <MantleFlux {...this.state} updateSpectrum={this.updateSpectrum}/>
+                <CrustFlux {...this.state} updateSpectrum={this.updateSpectrum}/>
               </Tab>
               <Tab eventKey="output" title="Output">
                 Output content

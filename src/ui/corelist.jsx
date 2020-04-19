@@ -37,7 +37,7 @@ const CoreListItem = ({
     incrimentCoresVersions();
   };
   return (
-    <ListGroup.Item key={core.name} variant={variant}>
+    <ListGroup.Item variant={variant}>
       <h6>{core.name}</h6>
       <ButtonGroup size="sm">
         <Button onClick={fullPower} variant="secondary">
@@ -128,6 +128,7 @@ export const CoreList = ({
           .sort(ReactorCore.sortCompare)
           .map((core) => (
             <CoreListItem
+              key={core.name}
               core={core}
               reactorLFStart={reactorLFStart}
               reactorLFEnd={reactorLFEnd}
