@@ -70,12 +70,7 @@ class App extends React.Component {
     }, 10)
   }
 
-  powerDownCores = () => {
-    Object.values(cores).map(core => core.setCustomLoad(0))
-    this.updateSpectrum({ coresVersion: this.state.coresVersion + 1 })
-  }
-  powerUpCores = () => {
-    Object.values(cores).map(core => core.clearCustomLoad())
+  incrimentCoresVersions = () => {
     this.updateSpectrum({ coresVersion: this.statecoresVersion + 1 })
   }
 
@@ -269,9 +264,7 @@ class App extends React.Component {
                 </Card>
               </Tab>
               <Tab eventKey="reactors" title="Reactors">
-                <button onClick={() => this.powerDownCores()}>Turn Off All The Cores</button>
-                <button onClick={() => this.powerUpCores()}>Turn On All The Cores</button>
-                <CoreList cores={cores} {...this.state} />
+                <CoreList cores={cores} {...this.state} incrimentCoresVersions={this.incrimentCoresVersions} />
               </Tab>
               <Tab eventKey="geonu" title="GeoNu">
                 <Card>
