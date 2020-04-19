@@ -72,7 +72,7 @@ export const MantleFlux = ({ geoneutrino, updateSpectrum }) => {
               value={U238flux}
               type="number"
               placeholder="0"
-              step="1000"
+              step="100000"
               onChange={handleChange}
             />
             <InputGroup.Append>
