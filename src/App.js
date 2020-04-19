@@ -123,15 +123,15 @@ class App extends React.Component {
         survivalProbability = averageSurvivalProbabilityNormal;
         break;
     }
-    const uMantleFlux = this.state.geoneutrino.U238flux;
+    const uMantleFlux = state.geoneutrino.U238flux;
     const geoU = antineutrinoSpectrum238U.map((v, i) => {
       return v * (crustFlux.u * 1e6 + uMantleFlux) * SECONDS_PER_YEAR * crossSection((0.005 + i / 100)) * 1e32 * survivalProbability;
     })
-    const thMantleFlux = uMantleFlux * this.state.geoneutrino.ThURatio * (ISOTOPIC_NEUTRINO_LUMINOSITY.TH232 / ISOTOPIC_NEUTRINO_LUMINOSITY.U238) * (ISOTOPIC_NATURAL_ABUNDANCE.TH232 / ISOTOPIC_NATURAL_ABUNDANCE.U238);
+    const thMantleFlux = uMantleFlux * state.geoneutrino.ThURatio * (ISOTOPIC_NEUTRINO_LUMINOSITY.TH232 / ISOTOPIC_NEUTRINO_LUMINOSITY.U238) * (ISOTOPIC_NATURAL_ABUNDANCE.TH232 / ISOTOPIC_NATURAL_ABUNDANCE.U238);
     const geoTh = antineutrinoSpectrum232Th.map((v, i) => {
       return v * (crustFlux.th * 1e6 + thMantleFlux) * SECONDS_PER_YEAR * crossSection((0.005 + i / 100)) * 1e32 * survivalProbability;
     })
-    const kMantleFlux = uMantleFlux * this.state.geoneutrino.KURatio * (ISOTOPIC_NEUTRINO_LUMINOSITY.K40 / ISOTOPIC_NEUTRINO_LUMINOSITY.U238) * (ISOTOPIC_NATURAL_ABUNDANCE.K40 / ISOTOPIC_NATURAL_ABUNDANCE.U238);
+    const kMantleFlux = uMantleFlux * state.geoneutrino.KURatio * (ISOTOPIC_NEUTRINO_LUMINOSITY.K40 / ISOTOPIC_NEUTRINO_LUMINOSITY.U238) * (ISOTOPIC_NATURAL_ABUNDANCE.K40 / ISOTOPIC_NATURAL_ABUNDANCE.U238);
     const geoK = antineutrinoSpectrum40K.map((v, i) => {
       return v * (crustFlux.k * 1e6 + kMantleFlux) * SECONDS_PER_YEAR * crossSection((0.005 + i / 100)) * 1e32 * survivalProbability;
     })
