@@ -4,20 +4,20 @@
   "private": true,
   "homepage": ".",
   "dependencies": {
-    "@types/jest": "^25.1.4",
-    "@types/lodash": "^4.14.149",
-    "@types/node": "^13.9.2",
-    "@types/react": "^16.9.25",
-    "@types/react-dom": "^16.9.5",
+    "@types/jest": "^25.2.1",
+    "@types/lodash": "^4.14.150",
+    "@types/node": "^13.13.0",
+    "@types/react": "^16.9.34",
+    "@types/react-dom": "^16.9.6",
     "bootstrap": "^4.4.1",
-    "d3": "^5.15.0",
+    "d3": "^5.15.1",
     "ecef-projector": "^1.0.1",
     "gh-pages": "^2.2.0",
     "lazy-get-decorator": "^2.2.0",
     "leaflet": "^1.6.0",
     "leaflet-contextmenu": "^1.4.0",
     "lodash": "^4.17.15",
-    "plotly.js": "^1.52.3",
+    "plotly.js": "^1.53.0",
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.0",
     "react-dom": "^16.13.1",
@@ -50,6 +50,6 @@
     ]
   },
   "devDependencies": {
-    "prettier": "^2.0.1"
+    "prettier": "^2.0.4"
   }
 }
