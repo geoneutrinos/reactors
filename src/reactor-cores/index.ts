@@ -289,10 +289,10 @@ const defaultCoreList = Object.keys(cores).map((core) =>{
   const c = core as keyof typeof cores;
   const coreParams = cores[c]
   const coreLFs:number[] = loads[c]
-  const lat:number = coreParams.lat as number;
-  const lon:number = coreParams.lon as number;
-  const elevation:number = coreParams.elevation as number;
-  const power:number = coreParams.power as number;
+  const lat:number = coreParams.lat;
+  const lon:number = coreParams.lon;
+  const elevation:number = coreParams.elevation;
+  const power:number = coreParams.power;
   const LFs = zip(times, coreLFs).map(([time, load]) => {
     const date:string = time!
     const lf:number = load!

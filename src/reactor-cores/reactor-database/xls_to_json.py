@@ -93,12 +93,12 @@ for name in all_names:
         try:
             loads[name].extend([reactor_data[year][name][month] for month in [str(d) for d in range(1,13)]])
             reactors[name] = {
-                'lat' : reactor_data[year][name]['lat'],
-                'lon' : reactor_data[year][name]['lon'],
-                'power' : reactor_data[year][name]['power'],
+                'lat' : float(reactor_data[year][name]['lat']),
+                'lon' : float(reactor_data[year][name]['lon']),
+                'power' : float(reactor_data[year][name]['power']),
                 'type' : reactor_data[year][name]['type'].strip(),
                 'mox' : reactor_data[year][name]['mox'],
-                'elevation': ele, # above WGS85 (not above EGM96)
+                'elevation': float(ele), # above WGS85 (not above EGM96)
                 }
             #logging.warn((name, reactors[name]))
         except KeyError:
@@ -115,4 +115,4 @@ print(json.dumps({
     "reactors": reactors,
     "times": times,
     "loads": loads,
-    }))
+    }, sort_keys=True, separators=(',', ':')))
