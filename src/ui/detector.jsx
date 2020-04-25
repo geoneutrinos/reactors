@@ -46,7 +46,7 @@ export function StatsPanel({cores, spectrum}) {
             <span style={{ "display": customDisplay}}><i>R</i><sub>user</sub> = {customClosestNIU.toFixed(1)} {NIU}<br /></span>
             <i>R</i><sub>geo</sub> = <Num v={geoTotalNIU} p={1}/> {NIU} (U = <Num v={geoUNIU} p={1}/>, Th = <Num v={geoThNIU} p={1}/>, K = <Num v={geoKNIU} p={1}/>)<br />
             <small>1 {NIU} (Neutrino Interaction Unit) = 1 interaction/10<sup>32</sup> targets/year</small><br />
-            <small>1 kT H<sub>2</sub>O contains 0.668559x10<sup>32</sup> free protons</small>
+            <small>1 kT H<sub>2</sub>O contains 0.668559x10<sup>32</sup> free protons and 3.342795x10<sup>32</sup> electron targets</small><br />
         </div>
     );
 }
