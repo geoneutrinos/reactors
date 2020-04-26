@@ -67,7 +67,7 @@ class App extends React.Component {
     setTimeout(() => {
       //this.state.coreList.map((core) => core.spectrumSV2003)
       //this.state.coreList.map((core) => core.spectrumVB1999)
-      this.updateSpectrum();
+      this.incrimentCoresVersions();
     }, 10)
   }
 
@@ -201,6 +201,9 @@ class App extends React.Component {
             />
           </Col>
           <Col lg={6} style={{ maxHeight: "100vh", overflow: "scroll" }}>
+           {this.state.coresVersion === 0 &&
+            <h1>Loading...</h1>
+            }
             <NuSpectrumPlot cores={cores} {...this.state} />
             <Tabs unmountOnExit={true} defaultActiveKey="detector">
               <Tab eventKey="detector" title="Detector">
