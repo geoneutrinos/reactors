@@ -5,6 +5,7 @@ import { Container, Row, Col, Tab, Tabs, Card, Form, InputGroup } from 'react-bo
 
 import { NuSpectrumPlot } from './ui/plot'
 import { NuMap, StatsPanel, CoreList, MantleFlux, CrustFlux } from './ui';
+import { CoreIAEARange } from './ui/core-iaea-select'
 import { defaultCores } from './reactor-cores';
 import { presets } from './detectors';
 import { getCrustFlux } from './crust-model';
@@ -41,8 +42,8 @@ class App extends React.Component {
       coresVersion: 0,
       crossSection: "SV2003",
       massOrdering: "normal", // or "inverted"
-      reactorLFStart: new Date("2018-01"),
-      reactorLFEnd: new Date("2018-12"),
+      reactorLFStart: new Date("2018-01-01T00:00:00Z"),
+      reactorLFEnd: new Date("2018-12-01T00:00:00Z"),
       detector: {
         current: "Boulby",
         lat: 54.555129,
@@ -272,6 +273,7 @@ class App extends React.Component {
                 </Card>
               </Tab>
               <Tab eventKey="reactors" title="Reactors">
+                <CoreIAEARange {...this.state} updateSpectrum={this.updateSpectrum}/>
                 <CoreList cores={cores} {...this.state} incrimentCoresVersions={this.incrimentCoresVersions} />
               </Tab>
               <Tab eventKey="geonu" title="GeoNu">

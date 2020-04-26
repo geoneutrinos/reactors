@@ -74,11 +74,11 @@ class LoadFactor {
   constructor({ date, load}: 
     { date: string; load: number}
     ) {
-    this.date = new Date(date);
+    this.date = new Date(date + "-01T00:00:00Z");
     this.load = load / 100;
     // This is finding the "zeroith" day of the next month, which will result
     // in the last day of the month we want being returned
-    this.days = new Date(this.date.getFullYear(), this.date.getMonth() + 1, 0).getDate();
+    this.days = new Date(Date.UTC(this.date.getUTCFullYear(), this.date.getUTCMonth() + 1)).getUTCDate();
   }
 }
 
@@ -136,7 +136,7 @@ export class ReactorCore {
     return 0;
   }
 
-  loadFactor(start = new Date("2003-01"), stop = new Date("2018-12")){
+  loadFactor(start = new Date(Date.UTC(2003, 0)), stop = new Date(Date.UTC(2018, 11))){
     if (this.loadOverride !== undefined){
       return this.loadOverride;
     }
