@@ -61,6 +61,12 @@ const CoreListItem = ({
     core.setCustomLoad(0);
     incrimentCoresVersions();
   };
+  let dist = core.detectorDistance.toFixed(0);
+  if (core.detectorDistance < 10) {
+    dist = core.detectorDistance.toFixed(2);
+  } else if (core.detectorDistance < 100) {
+    dist = core.detectorDistance.toFixed(1);
+  }
   return (
     <ListGroup.Item variant={variant}>
       <h6>{core.name}</h6>
@@ -83,6 +89,7 @@ const CoreListItem = ({
           <br />
           Signal: {core.detectorNIU.toFixed(3)} NIU
           <br />
+          Distance: {dist} KM
         </Col>
         <Col xl>
           Lat: {core.lat.toFixed(4)} N<br />
