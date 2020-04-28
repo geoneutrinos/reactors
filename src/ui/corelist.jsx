@@ -41,14 +41,6 @@ const CoreListItem = ({
   incrimentCoresVersions,
 }) => {
   const lf = core.loadFactor(reactorLFStart, reactorLFEnd);
-  let variant = "secondary";
-  if (lf > 1) {
-    variant = "danger";
-  } else if (lf > 0.75) {
-    variant = "success";
-  } else if (lf > 0) {
-    variant = "warning";
-  }
   const fullPower = () => {
     core.setCustomLoad(1);
     incrimentCoresVersions();
@@ -68,7 +60,7 @@ const CoreListItem = ({
     dist = core.detectorDistance.toFixed(1);
   }
   return (
-    <ListGroup.Item variant={variant}>
+    <ListGroup.Item>
       <h6>{core.name}</h6>
       <Row>
         <Col xl="auto">
@@ -87,16 +79,15 @@ const CoreListItem = ({
           Load Factor: {(lf * 100).toFixed(1)}%<br />
           Operating Power: {(lf * core.power).toFixed(0)} MW
           <br />
+          Type: <CoreType core={core} /><br />
+
           Signal: {core.detectorNIU.toFixed(3)} NIU
-          <br />
-          Distance: {dist} KM
         </Col>
         <Col xl>
           Lat: {core.lat.toFixed(4)} N<br />
           Lon: {core.lon.toFixed(4)} E<br />
-          Elevation: {core.elevation} meters
-          <br />
-          Type: <CoreType core={core} />
+          Elevation: {core.elevation} meters<br />
+          Distance: {dist} km
         </Col>
       </Row>
     </ListGroup.Item>
@@ -110,6 +101,7 @@ export const CoreList = ({
   incrimentCoresVersions,
 }) => {
   const [filter, setFilter] = useState("");
+  const [sortMethod, setSortMethod] = useState("name");
 
   const coreObjs = Object.values(cores);
 
@@ -134,11 +126,22 @@ export const CoreList = ({
     incrimentCoresVersions();
   };
 
+  const sortFunctions ={
+    name: ReactorCore.sortCompare,
+    distance: (a, b) => a.detectorDistance - b.detectorDistance,
+    signal: (a, b) => b.detectorNIU - a.detectorNIU,
+  }
+
   return (
     <Card>
       <Card.Header>
         <Form inline>
           <h5 className="mr-auto">Core List</h5>
+          <Form.Control onChange={(event) => setSortMethod(event.target.value)} as="select">
+            <option value="name">Sort By: Name</option>
+            <option value="distance">Sort By: Distance</option>
+            <option value="signal">Sort By: Signal</option>
+          </Form.Control>
           <Dropdown>
             <Dropdown.Toggle variant="success" id="dropdown-basic">
               Control all Cores
@@ -168,7 +171,7 @@ export const CoreList = ({
       <ListGroup variant="flush">
         {coreObjs
           .filter((core) => testCore(core, filter))
-          .sort(ReactorCore.sortCompare)
+          .sort(sortFunctions[sortMethod])
           .map((core) => (
             <CoreListItem
               key={core.name}
