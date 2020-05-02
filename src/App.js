@@ -4,7 +4,7 @@ import { project } from 'ecef-projector';
 import { Container, Row, Col, Tab, Tabs, Card, Form, InputGroup } from 'react-bootstrap';
 
 import { NuSpectrumPlot } from './ui/plot'
-import { NuMap, StatsPanel, CoreList, MantleFlux, CrustFlux } from './ui';
+import { NuMap, StatsPanel, CoreList, MantleFlux, CrustFlux, DetectorPhysicsPane } from './ui';
 import { CoreIAEARange } from './ui/reactors-core-iaea-select'
 import { defaultCores } from './reactor-cores';
 import { presets } from './detectors';
@@ -147,11 +147,11 @@ class App extends React.Component {
       },
     })
   }
-  changeMassOrder = (event) => {
-    this.updateSpectrum({ massOrdering: event.currentTarget.value })
+  setMassOrdering = (value) => {
+    this.updateSpectrum({ massOrdering: value })
   }
-  changeCrossSection = (event) => {
-    this.updateSpectrum({ crossSection: event.currentTarget.value })
+  setCrossSection = (value) => {
+    this.updateSpectrum({ crossSection: value })
   }
   changeDetectorMode = (event) => {
     const value = event.currentTarget.value;
@@ -208,27 +208,7 @@ class App extends React.Component {
             <Tabs unmountOnExit={true} defaultActiveKey="detector">
               <Tab eventKey="detector" title="Detector">
                 <StatsPanel cores={cores} spectrum={this.state.spectrum} />
-                <Card>
-                  <Card.Body>
-                    <Card.Title>Physics</Card.Title>
-                    <Form.Group controlId="neutrinoMassOrder">
-                      <Form.Label>Neutrino Mass Ordering</Form.Label>
-                      <Form.Control as="select" onChange={this.changeMassOrder} value={this.state.massOrdering}>
-                        <option value="normal">Normal</option>
-                        <option value="inverted">Inverted</option>
-                      </Form.Control>
-                    </Form.Group>
-                    <Form.Group controlId="neutrinoCrossSection">
-                      <Form.Label>Neutrino Cross Section</Form.Label>
-                      <Form.Control as="select" onChange={this.changeCrossSection} value={this.state.crossSection}>
-                        <option value="VB1999">IBD: Vogel and Beacom (1999)</option>
-                        <option value="SV2003">IBD: Strumia and Vissani (2003)</option>
-                        <option value="ESANTI">Elastic Scattering: Electron Antineutrino</option>
-                        <option value="ESMUTAU">Elastic Scattering: Mu Tau Antineutrino</option>
-                      </Form.Control>
-                    </Form.Group>
-                  </Card.Body>
-                </Card>
+                <DetectorPhysicsPane {...this.state} setCrossSection={this.setCrossSection} setMassOrdering={this.setMassOrdering}/>
                 <Card>
                   <Card.Body>
                     <Card.Title>Detector Location</Card.Title>
