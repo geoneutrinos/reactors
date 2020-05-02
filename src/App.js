@@ -5,7 +5,7 @@ import { Container, Row, Col, Tab, Tabs, Card, Form, InputGroup } from 'react-bo
 
 import { NuSpectrumPlot } from './ui/plot'
 import { NuMap, StatsPanel, CoreList, MantleFlux, CrustFlux } from './ui';
-import { CoreIAEARange } from './ui/core-iaea-select'
+import { CoreIAEARange } from './ui/reactors-core-iaea-select'
 import { defaultCores } from './reactor-cores';
 import { presets } from './detectors';
 import { getCrustFlux } from './crust-model';
@@ -207,12 +207,7 @@ class App extends React.Component {
             <NuSpectrumPlot cores={cores} {...this.state} />
             <Tabs unmountOnExit={true} defaultActiveKey="detector">
               <Tab eventKey="detector" title="Detector">
-                <Card>
-                  <Card.Body>
-                    <Card.Title>Spectrum Stats</Card.Title>
-                    <StatsPanel cores={cores} spectrum={this.state.spectrum} />
-                  </Card.Body>
-                </Card>
+                <StatsPanel cores={cores} spectrum={this.state.spectrum} />
                 <Card>
                   <Card.Body>
                     <Card.Title>Physics</Card.Title>
