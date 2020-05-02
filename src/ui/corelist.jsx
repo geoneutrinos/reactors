@@ -76,17 +76,23 @@ const CoreListItem = ({
             </Button>
           </ButtonGroup>
           <br />
+          Type: <CoreType core={core} />
+          <br />
+          <span title="The Reference thermal power of the plant expressed in MW(th). The reactor thermal power is the net heat transferred from the fuel to the coolant.">
+            Thermal Capacity:
+          </span>{" "}
+          {core.power} MW
+          <br />
           Load Factor: {(lf * 100).toFixed(1)}%<br />
           Operating Power: {(lf * core.power).toFixed(0)} MW
           <br />
-          Type: <CoreType core={core} /><br />
-
           Signal: {core.detectorNIU.toFixed(3)} NIU
         </Col>
         <Col xl>
           Lat: {core.lat.toFixed(4)} N<br />
           Lon: {core.lon.toFixed(4)} E<br />
-          Elevation: {core.elevation} meters<br />
+          Elevation: {core.elevation} meters
+          <br />
           Distance: {dist} km
         </Col>
       </Row>
@@ -126,18 +132,21 @@ export const CoreList = ({
     incrimentCoresVersions();
   };
 
-  const sortFunctions ={
+  const sortFunctions = {
     name: ReactorCore.sortCompare,
     distance: (a, b) => a.detectorDistance - b.detectorDistance,
     signal: (a, b) => b.detectorNIU - a.detectorNIU,
-  }
+  };
 
   return (
     <Card>
       <Card.Header>
         <Form inline>
           <h5 className="mr-auto">Core List</h5>
-          <Form.Control onChange={(event) => setSortMethod(event.target.value)} as="select">
+          <Form.Control
+            onChange={(event) => setSortMethod(event.target.value)}
+            as="select"
+          >
             <option value="name">Sort By: Name</option>
             <option value="distance">Sort By: Distance</option>
             <option value="signal">Sort By: Signal</option>
