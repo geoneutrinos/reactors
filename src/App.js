@@ -1,10 +1,10 @@
 import React from 'react';
 
 import { project } from 'ecef-projector';
-import { Container, Row, Col, Tab, Tabs, Card, Form, InputGroup } from 'react-bootstrap';
+import { Container, Row, Col, Tab, Tabs } from 'react-bootstrap';
 
 import { NuSpectrumPlot } from './ui/plot'
-import { NuMap, StatsPanel, CoreList, MantleFlux, CrustFlux, DetectorPhysicsPane } from './ui';
+import { NuMap, StatsPanel, CoreList, MantleFlux, CrustFlux, DetectorPhysicsPane, DetectorLocationPane } from './ui';
 import { CoreIAEARange } from './ui/reactors-core-iaea-select'
 import { defaultCores } from './reactor-cores';
 import { presets } from './detectors';
@@ -15,8 +15,6 @@ import { crossSectionSV2003, crossSectionElectronAntineutrinoES, crossSectionMuT
 import { SECONDS_PER_YEAR, ISOTOPIC_NATURAL_ABUNDANCE } from './physics/constants';
 import { ISOTOPIC_NEUTRINO_LUMINOSITY } from './physics/derived';
 
-
-import { groupBy } from 'lodash';
 
 import 'leaflet/dist/leaflet.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -153,7 +151,7 @@ class App extends React.Component {
   setCrossSection = (value) => {
     this.updateSpectrum({ crossSection: value })
   }
-  changeDetectorMode = (event) => {
+  setDetectorMode = (event) => {
     const value = event.currentTarget.value;
     let newDetector = { current: value };
     if (value !== 'custom' && value !== 'follow') {
@@ -164,7 +162,7 @@ class App extends React.Component {
     }
     this.updateSpectrum({ detector: { ...this.state.detector, ...newDetector } })
   }
-  changeDetector = (newDetector) => {
+  setDetector = (newDetector) => {
     this.updateSpectrum({ detector: { ...this.state.detector, ...newDetector } })
   }
   mapMouseMove = (event) => {
@@ -181,13 +179,6 @@ class App extends React.Component {
     this.updateSpectrum({ detector: { ...this.state.detector, lat: lat, lon: lng } })
   }
   render() {
-    const presetGroups = groupBy(presets, (detector) => detector.region)
-    const presetOptions = Object.keys(presetGroups).map((key) => {
-      const group = presetGroups[key];
-      const options = group.map((detector) => <option key={detector.name} value={detector.name}>{detector.name} ({detector.overburden} mwe)</option>)
-      return <optgroup key={key} label={key}>{options}</optgroup>
-    })
-
     return (
       <Container fluid={true}>
         <Row style={{ minHeight: "100vh" }}>
@@ -197,7 +188,7 @@ class App extends React.Component {
               cores={cores}
               detectorList={presets}
               detector={this.state.detector}
-              changeDetector={this.changeDetector}
+              changeDetector={this.setDetector}
             />
           </Col>
           <Col lg={6} style={{ maxHeight: "100vh", overflow: "scroll" }}>
@@ -209,47 +200,8 @@ class App extends React.Component {
               <Tab eventKey="detector" title="Detector">
                 <StatsPanel cores={cores} spectrum={this.state.spectrum} />
                 <DetectorPhysicsPane {...this.state} setCrossSection={this.setCrossSection} setMassOrdering={this.setMassOrdering}/>
-                <Card>
-                  <Card.Body>
-                    <Card.Title>Detector Location</Card.Title>
-                    <Form.Group controlId="presetMode">
-                      <Form.Label>Detector Presets/Modes</Form.Label>
-                      <Form.Control as="select" onChange={this.changeDetectorMode} value={this.state.detector.current}>
-                        <option value="follow">Follow Cursor on Map</option>
-                        <option value="custom">Custom Detector Location</option>
-                        {presetOptions}
-                      </Form.Control>
-                    </Form.Group>
-                    <Form.Group controlId="detectorLat">
-                      <Form.Label>Latitude</Form.Label>
-                      <InputGroup>
-                        <Form.Control value={this.state.detector.lat} type="number" placeholder="0" step="0.1" readOnly />
-                        <InputGroup.Append>
-                          <InputGroup.Text>deg N</InputGroup.Text>
-                        </InputGroup.Append>
-                      </InputGroup>
-                    </Form.Group>
-                    <Form.Group controlId="detectorLon">
-                      <Form.Label>Longitude</Form.Label>
-                      <InputGroup>
-                        <Form.Control value={this.state.detector.lon} type="number" placeholder="0" step="0.1" readOnly />
-                        <InputGroup.Append>
-                          <InputGroup.Text>deg E</InputGroup.Text>
-                        </InputGroup.Append>
-                      </InputGroup>
-                    </Form.Group>
-                    <Form.Group controlId="detectorElevation">
-                      <Form.Label>Elevation</Form.Label>
-                      <InputGroup>
-                        <Form.Control value={this.state.detector.elevation} type="number" placeholder="0" step="1" readOnly />
-                        <InputGroup.Append>
-                          <InputGroup.Text>meters</InputGroup.Text>
-                        </InputGroup.Append>
-                      </InputGroup>
-                    </Form.Group>
-                  </Card.Body>
-                </Card>
-              </Tab>
+                <DetectorLocationPane {...this.state} setDetectorMode={this.setDetectorMode} updateSpectrum={this.updateSpectrum}/>
+             </Tab>
               <Tab eventKey="reactors" title="Reactors">
                 <CoreIAEARange {...this.state} updateSpectrum={this.updateSpectrum}/>
                 <CoreList cores={cores} {...this.state} incrimentCoresVersions={this.incrimentCoresVersions} />
