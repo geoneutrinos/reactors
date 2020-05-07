@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import {
   Card,
   Form,
@@ -107,7 +107,22 @@ export const CoreList = ({
   incrimentCoresVersions,
 }) => {
   const [filter, setFilter] = useState("");
+  const [displayLength, setDisplayLength] = useState(10);
   const [sortMethod, setSortMethod] = useState("name");
+  const [visible, setVisible] = useState(false);
+
+  const cardRef = useRef(this)
+
+  useEffect(()=>{
+    let options = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0
+    }
+
+    let observer = new IntersectionObserver((entries, observer) => {setVisible(entries[0].isIntersecting)}, options);
+    observer.observe(cardRef.current)
+  }, [])
 
   const coreObjs = Object.values(cores);
 
@@ -138,19 +153,16 @@ export const CoreList = ({
     signal: (a, b) => b.detectorNIU - a.detectorNIU,
   };
 
+  const coresForRender = visible ? coreObjs
+  .filter((core) => testCore(core, filter))
+  .sort(sortFunctions[sortMethod])
+  .slice(0, displayLength) : []
+
   return (
-    <Card>
+    <Card ref={cardRef}>
       <Card.Header>
         <Form inline>
           <h5 className="mr-auto">Core List</h5>
-          <Form.Control
-            onChange={(event) => setSortMethod(event.target.value)}
-            as="select"
-          >
-            <option value="name">Sort By: Name</option>
-            <option value="distance">Sort By: Distance</option>
-            <option value="signal">Sort By: Signal</option>
-          </Form.Control>
           <Dropdown>
             <Dropdown.Toggle variant="success" id="dropdown-basic">
               Control all Cores
@@ -178,10 +190,30 @@ export const CoreList = ({
         </Form>
       </Card.Header>
       <ListGroup variant="flush">
-        {coreObjs
-          .filter((core) => testCore(core, filter))
-          .sort(sortFunctions[sortMethod])
-          .map((core) => (
+        <ListGroup.Item>
+        <Row>
+          <Col xs={4}>
+          <h6>Core List Display Options</h6>
+          <Form.Control
+            onChange={(event) => setDisplayLength(parseInt(event.target.value))}
+            as="select"
+          >
+            <option value="10">Show: First 10 Cores</option>
+            <option value="1000000">Show: All Cores</option>
+          </Form.Control>
+          <Form.Control
+            onChange={(event) => setSortMethod(event.target.value)}
+            as="select"
+          >
+            <option value="name">Sort By: Name</option>
+            <option value="distance">Sort By: Distance</option>
+            <option value="signal">Sort By: Signal</option>
+          </Form.Control>
+          </Col>
+        </Row>
+        </ListGroup.Item>
+        {
+          coresForRender.map((core) => (
             <CoreListItem
               key={core.name}
               core={core}
