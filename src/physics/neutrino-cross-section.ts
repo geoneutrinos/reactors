@@ -1,6 +1,10 @@
 import { ELECTRON_REST_MASS, NEUTRON_REST_MASS, PROTON_REST_MASS, HBAR_C, FERMI_COUPLING_CONSTANT, WEAK_MIXING_ANGLE } from './constants'
 import { memoize } from 'lodash';
 
+export interface CrossSection {
+  (Ev: number): number
+}
+
 /** 
  * Calculates the neutrino cross section, sometimes called sigma
  * 
@@ -12,7 +16,7 @@ import { memoize } from 'lodash';
  * @param {number} Ev -  Energy of the neutrino in MeV
  * @returns {number} - Cross secton area in cm^2
  */
-export const crossSectionSV2003 = memoize((Ev: number):number => {
+export const crossSectionSV2003: CrossSection = memoize((Ev) => {
   const a = -0.07056;
   const b = 0.02018;
   const c = -0.001953;
@@ -35,7 +39,7 @@ export const crossSectionSV2003 = memoize((Ev: number):number => {
  * @param {number} Ev -  Energy of the neutrino in MeV
  * @returns {number} - Cross secton area in cm^2
  */
-export const crossSectionVB1999 = memoize((Ev: number): number => {
+export const crossSectionVB1999: CrossSection = memoize((Ev) => {
   const Ee = Math.max(ELECTRON_REST_MASS, Ev - (NEUTRON_REST_MASS - PROTON_REST_MASS));
 
   return 9.52e-44 * Math.sqrt((Ee * Ee) - (ELECTRON_REST_MASS * ELECTRON_REST_MASS)) * Ee;
@@ -85,10 +89,10 @@ function crossSectionElasticScattering(Ev: number, neutrinoType: NeutrinoType): 
 
 }
 
-export const crossSectionElectronAntineutrinoES = memoize((Ev: number) => {
+export const crossSectionElectronAntineutrinoES: CrossSection = memoize((Ev) => {
   return crossSectionElasticScattering(Ev, NeutrinoType.electronAntineutino)
 })
 
-export const crossSectionMuTauAntineutrinoES = memoize((Ev: number) => {
+export const crossSectionMuTauAntineutrinoES: CrossSection = memoize((Ev) => {
   return crossSectionElasticScattering(Ev, NeutrinoType.muTauAntineutrino)
 })

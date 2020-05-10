@@ -198,7 +198,7 @@ class App extends React.Component {
             <NuSpectrumPlot cores={cores} {...this.state} />
             <Tabs unmountOnExit={false} defaultActiveKey="detector">
               <Tab eventKey="detector" title="Detector">
-                <StatsPanel cores={cores} spectrum={this.state.spectrum} />
+                <StatsPanel cores={cores} spectrum={this.state.spectrum} crossSection={this.state.crossSection}/>
                 <DetectorPhysicsPane {...this.state} setCrossSection={this.setCrossSection} setMassOrdering={this.setMassOrdering}/>
                 <DetectorLocationPane {...this.state} setDetectorMode={this.setDetectorMode} updateSpectrum={this.updateSpectrum}/>
              </Tab>

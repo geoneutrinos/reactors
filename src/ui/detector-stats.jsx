@@ -2,11 +2,33 @@ import React from "react";
 import { sum } from "lodash";
 import { Card } from 'react-bootstrap';
 
+import { rateToFlux232Th, rateToFlux238U, rateToFlux40K } from '../antineutrino-spectrum'
+import { ISOTOPIC_NEUTRINO_LUMINOSITY } from '../physics/derived'
+import { ISOTOPIC_NATURAL_ABUNDANCE } from '../physics/constants'
+
 function Num({ v, p }) {
-  return <span title={v}>{v.toFixed(p)}</span>;
+  return <span title={v.toString()}>{v.toFixed(p)}</span>;
 }
 
-export function StatsPanel({ cores, spectrum }) {
+const geoThURatio = (R232Th, R238U, crossSection) => {
+  const R = R232Th / R238U;
+  const C = rateToFlux232Th[crossSection] / rateToFlux238U[crossSection]
+  const l = ISOTOPIC_NEUTRINO_LUMINOSITY.U238 / ISOTOPIC_NEUTRINO_LUMINOSITY.TH232
+  const NA = ISOTOPIC_NATURAL_ABUNDANCE.U238 / ISOTOPIC_NATURAL_ABUNDANCE.TH232
+
+  return R * C * l * NA
+}
+
+const geoKURatio = (R40K, R238U, crossSection) => {
+  const R = R40K / R238U;
+  const C = rateToFlux40K[crossSection] / rateToFlux238U[crossSection]
+  const l = ISOTOPIC_NEUTRINO_LUMINOSITY.U238 / ISOTOPIC_NEUTRINO_LUMINOSITY.K40
+  const NA = ISOTOPIC_NATURAL_ABUNDANCE.U238 / ISOTOPIC_NATURAL_ABUNDANCE.K40
+
+  return R * C * l * NA
+}
+
+export function StatsPanel({ cores, spectrum, crossSection }) {
   const NIU = <span title="Neutrino Interaction Unit">NIU</span>;
 
   const coreList = Object.values(cores);
@@ -35,6 +57,11 @@ export function StatsPanel({ cores, spectrum }) {
   const geoUNIU = sum(spectrum.geoU) * 0.01;
   const geoThNIU = sum(spectrum.geoTh) * 0.01;
   const geoKNIU = sum(spectrum.geoK) * 0.01;
+
+  const geoThU = geoThURatio(geoThNIU, geoUNIU, crossSection)
+  const geoKU = geoKURatio(geoKNIU, geoUNIU, crossSection)
+
+  const geoKUVald = isNaN(geoKU) ? "none" : "inline"
 
   const geoTotalNIU = geoUNIU + geoThNIU + geoKNIU;
 
@@ -73,6 +100,10 @@ export function StatsPanel({ cores, spectrum }) {
         <sub>geo</sub> = <Num v={geoTotalNIU} p={1} /> {NIU} (U ={" "}
         <Num v={geoUNIU} p={1} />, Th = <Num v={geoThNIU} p={1} />, K ={" "}
         <Num v={geoKNIU} p={1} />)<br />
+        Th/U<sub>geo</sub> = <Num v={geoThU} p={1} /><br />
+        <span style={{ display: geoKUVald }}>
+          K/U<sub>geo</sub> = <Num v={geoKU} p={0} /><br />
+        </span>
         <small>
           1 {NIU} (Neutrino Interaction Unit) = 1 interaction/10<sup>32</sup>{" "}
           targets/year
