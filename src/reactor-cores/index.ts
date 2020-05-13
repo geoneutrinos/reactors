@@ -5,7 +5,6 @@ import {crossSectionSV2003, crossSectionVB1999, crossSectionElectronAntineutrino
 import { FISSION_ENERGIES, ELEMENTARY_CHARGE ,Isotopes} from '../physics/constants'
 import { range, zip, sum } from 'lodash';
 import { project } from 'ecef-projector';
-import {LazyGetter} from 'lazy-get-decorator';
 import { invertedNeutrinoOscilationSpectrum, normalNeutrinoOscilationSpectrum } from '../physics/neutrino-oscillation'
 
 export { cores, times, loads };
@@ -65,6 +64,39 @@ const FUEL_FRACTIONS: {[type: string]: {[key: string]: number}} = {
   }
 }
 
+function spectrum(spectrumType:string, crossSection:(Ev: number) => number){
+  return bins.map((Ev) => {
+      return Object.keys(Isotopes).map((v) => {
+        const isotope: Isotopes = v as Isotopes;
+        const fuelFraction = FUEL_FRACTIONS[spectrumType][v];
+        const fisionEnery = FISSION_ENERGIES[isotope];
+        const neutrinoEnergy = neutrinoEnergyFor(isotope)
+        const rate = partialInteractionRate(Ev, fisionEnery, crossSection, neutrinoEnergy)
+
+        return 1e22 * (SECONDS_PER_YEAR/ELEMENTARY_CHARGE) * fuelFraction * rate;
+
+      }).reduce((previousValue, currentValue) => previousValue + currentValue, 0)
+  })
+}
+
+function fuelMixSpectrum(crossSection:(Ev: number) => number){
+  return Object.fromEntries(
+    Object.keys(FUEL_FRACTIONS).map((spectrumType) => {
+      return [spectrumType, spectrum(spectrumType, crossSection)]
+    })
+  )
+}
+
+interface Spectrums {
+  [crossSection: string]: {[type: string]: Float32Array}
+}
+
+const spectrums: Spectrums= {
+  SV2003: fuelMixSpectrum(crossSectionSV2003),
+  VB1999: fuelMixSpectrum(crossSectionVB1999),
+  ESANTI: fuelMixSpectrum(crossSectionElectronAntineutrinoES),
+  ESMUTAU: fuelMixSpectrum(crossSectionMuTauAntineutrinoES),
+}
 
 interface LoadFactor {
   date: Date;
@@ -83,48 +115,54 @@ const LoadFactor = (date: string, load: number): LoadFactor => {
   }
 }
 
-export class ReactorCore {
-  name: string;
-  lat: number;
-  lon: number;
-  elevation: number;
-  type: string;
-  mox: boolean;
-  power: number; // this is the design power of the core
-  loads: LoadFactor[];
-  x: number;
-  y: number;
-  z: number;
-  custom: boolean;
-  loadOverride?: number
+interface ReactorCore{
+ name: string;
+ lat: number;
+ lon: number;
+ elevation: number;
+ type: string;
+ mox: boolean;
+ power: number;
+ custom: boolean;
+ loads: LoadFactor[];
+ x: number;
+ y: number;
+ z: number;
+ spectrumType: string;
+ loadOverride?: number;
+ lf_cache: {[key: string]: number};
+ detectorDistance: number;
+ detectorSignal: Float32Array;
+ detectorAnySignal: boolean;
+ detectorNIU: number;
 
-  lf_cache: {[key: string]: number};
-  detectorDistance: number;
-  detectorSignal: Float32Array;
-  detectorAnySignal: boolean;
-  detectorNIU: number;
+ spectrum: (crossSection:string) => Float32Array;
+ setCustomLoad: (load:number) => ReactorCore;
+ setSignal:  (dist:number, lf:number, massOrdering:string, crossSection:string) => ReactorCore;
+ clearCustomLoad: () => ReactorCore;
+ loadFactor: (start?:Date, stop?:Date) => number;
+}
 
-  constructor({name, lat, lon, elevation, type, mox, power, custom=false, loads}: 
-    {name:string, lat: number, lon:number, elevation:number, type:string, mox:boolean, power:number, custom?:boolean, loads:LoadFactor[]}){
-    this.name = name;
-    this.lat = lat;
-    this.lon = lon;
-    this.elevation = elevation;
-    [this.x, this.y, this.z] = project(lat, lon, elevation).map((n)=> n/1000);
-    this.type = type;
-    this.mox = mox;
-    this.power = power;
-    this.custom = custom;
-    this.loads = loads;
-    this.lf_cache = {};
-    this.detectorDistance = 0;
-    this.detectorSignal = (new Float32Array(1000)).fill(0);
-    this.detectorAnySignal= false;
-    this.detectorNIU = 0;
-  }
+function ReactorCore({name, lat, lon, elevation, type, mox, power, custom=false, loads}: 
+  {name:string, lat: number, lon:number, elevation:number, type:string, mox:boolean, power:number, custom?:boolean, loads:LoadFactor[]}): ReactorCore{
+    const [x, y, z] = project(lat, lon, elevation).map((n)=> n/1000);
+    const databaseToKnown:{ [key: string]: string; } = {
+       "LEU": "LEU",
+       "PWR": "LEU",
+       "BWR": "LEU",
+       "LWGR": "LEU",
+       "HWLWR": "LEU",
+       "PHWR": "PHWR",
+       "GCR": "GCR",
+       "HEU": "HEU",
+       "FBR": "FBR",
+    }
+    let spectrumType:string = databaseToKnown[type]
+    if (mox === true){
+      spectrumType = spectrumType + "_MOX"
+    }
 
-
-  loadFactor(start = new Date(Date.UTC(2003, 0)), stop = new Date(Date.UTC(2018, 11))){
+  function loadFactor(this: ReactorCore, start = new Date(Date.UTC(2003, 0)), stop = new Date(Date.UTC(2018, 11))){
     if (this.loadOverride !== undefined){
       return this.loadOverride;
     }
@@ -145,98 +183,7 @@ export class ReactorCore {
     return this.lf_cache[lf_key]
   }
 
-  @LazyGetter()
-  get spectrumSV2003(){
-    return bins.map((Ev) => {
-        return Object.keys(Isotopes).map((v) => {
-          const isotope: Isotopes = v as Isotopes;
-          const fuelFraction = FUEL_FRACTIONS[this.spectrumType][v];
-          return 1e22 * (SECONDS_PER_YEAR/ELEMENTARY_CHARGE) * fuelFraction * partialInteractionRate(Ev, FISSION_ENERGIES[isotope], crossSectionSV2003, neutrinoEnergyFor(isotope))
-        }).reduce((previousValue, currentValue) => previousValue + currentValue, 0)
-    })
-  }
-
-  @LazyGetter()
-  get spectrumVB1999(){
-    return bins.map((Ev) =>{
-      return Object.keys(Isotopes).map((v) => {
-        const isotope: Isotopes = v as Isotopes;
-        const fuelFraction = FUEL_FRACTIONS[this.spectrumType][v];
-        return 1e22 * (SECONDS_PER_YEAR/ELEMENTARY_CHARGE) * fuelFraction * partialInteractionRate(Ev, FISSION_ENERGIES[isotope], crossSectionVB1999, neutrinoEnergyFor(isotope))
-      }).reduce((previousValue, currentValue) => previousValue + currentValue, 0)
-    })
-  }
-
-  @LazyGetter()
-  get spectrumESANTI(){
-    return bins.map((Ev) =>{
-      return Object.keys(Isotopes).map((v) => {
-        const isotope: Isotopes = v as Isotopes;
-        const fuelFraction = FUEL_FRACTIONS[this.spectrumType][v];
-        return 1e22 * (SECONDS_PER_YEAR/ELEMENTARY_CHARGE) * fuelFraction * partialInteractionRate(Ev, FISSION_ENERGIES[isotope], crossSectionElectronAntineutrinoES, neutrinoEnergyFor(isotope))
-      }).reduce((previousValue, currentValue) => previousValue + currentValue, 0)
-    })
-  }
-
-  @LazyGetter()
-  get spectrumESMUTAU(){
-    return bins.map((Ev) =>{
-      return Object.keys(Isotopes).map((v) => {
-        const isotope: Isotopes = v as Isotopes;
-        const fuelFraction = FUEL_FRACTIONS[this.spectrumType][v];
-        return 1e22 * (SECONDS_PER_YEAR/ELEMENTARY_CHARGE) * fuelFraction * partialInteractionRate(Ev, FISSION_ENERGIES[isotope], crossSectionMuTauAntineutrinoES, neutrinoEnergyFor(isotope))
-      }).reduce((previousValue, currentValue) => previousValue + currentValue, 0)
-    })
-  }
-
-  @LazyGetter()
-  get spectrumType(): string{
-    const databaseToKnown:{ [key: string]: string; } = {
-       "LEU": "LEU",
-       "PWR": "LEU",
-       "BWR": "LEU",
-       "LWGR": "LEU",
-       "HWLWR": "LEU",
-       "PHWR": "PHWR",
-       "GCR": "GCR",
-       "HEU": "HEU",
-       "FBR": "FBR",
-    }
-    let t = databaseToKnown[this.type]
-    if (this.mox === true){
-      return t + "_MOX"
-    }
-    return t
-  }
-
-  spectrum(method:string){
-    switch (method){
-      case "ESMUTAU":
-        return this.spectrumESMUTAU;
-      case "ESANTI":
-        return this.spectrumESANTI;
-      case "VB1999":
-        return this.spectrumVB1999;
-      case "SV2004":
-      default:
-        return this.spectrumSV2003;
-    }
-  }
-
-  setCustomLoad = (load:number): ReactorCore => {
-    const newCore = this
-    newCore.loadOverride = load;
-    return newCore;
-  }
-
-  clearCustomLoad = (): ReactorCore => {
-    const newCore = this
-    delete newCore.loadOverride;
-    return newCore;
-  }
-
-  setSignal(dist:number, lf:number, massOrdering:string, crossSection:string): ReactorCore{
-    const newCore = this
+  function setSignal(this: ReactorCore, dist:number, lf:number, massOrdering:string, crossSection:string): ReactorCore{
     const spectrum = this.spectrum(crossSection);
     const power = this.power;
     const distsq = dist ** 2;
@@ -264,14 +211,39 @@ export class ReactorCore {
       return (spec * oscillation[idx] * power * lf)/distsq
     })
 
-    newCore.detectorSignal = signal;
-    newCore.detectorDistance = dist;
-    newCore.detectorNIU = sum(signal) * 0.01
-    newCore.detectorAnySignal = (newCore.detectorNIU> 0)
+    const detectorNIU = sum(signal) * 0.01
+    const detectorAnySignal = (detectorNIU> 0)
 
-    return newCore
+    return {...this, detectorSignal:signal, detectorDistance: dist, detectorNIU:detectorNIU, detectorAnySignal: detectorAnySignal}
   }
-}
+
+    return {
+      name: name,
+      lat: lat,
+      lon: lon,
+      elevation: elevation,
+      type: type,
+      mox: mox,
+      power: power,
+      custom: custom,
+      loads: loads,
+      x: x,
+      y: y,
+      z: z,
+      spectrumType: spectrumType,
+      lf_cache: {},
+      spectrum: function(crossSection:string) { return spectrums[crossSection][this.spectrumType] },
+      setCustomLoad: function(load:number) { return {...this, loadOverride:load}},
+      clearCustomLoad: function() { return {...this, loadOverride:undefined}},
+      loadFactor: loadFactor,
+      detectorDistance: 0,
+      detectorSignal: (new Float32Array(1000)).fill(0),
+      detectorAnySignal: false,
+      detectorNIU: 0,
+      setSignal: setSignal,
+    }
+  }
+
 
 const defaultCoreList = Object.keys(cores).map((core) =>{
   const c = core as keyof typeof cores;
@@ -286,7 +258,7 @@ const defaultCoreList = Object.keys(cores).map((core) =>{
     const lf:number = load!
     return LoadFactor(date, lf)
   });
-  return new ReactorCore({
+  return ReactorCore({
     name: c,
     lat: lat,
     lon: lon,

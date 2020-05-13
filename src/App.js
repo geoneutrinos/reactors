@@ -28,7 +28,7 @@ L.Icon.Default.mergeOptions({
   shadowUrl: require('leaflet/dist/images/marker-shadow.png'),
 });
 
-let cores = defaultCores;
+//let cores = defaultCores;
 
 
 class App extends React.Component {
@@ -37,6 +37,7 @@ class App extends React.Component {
     this.plot = React.createRef();
 
     this.state = {
+      cores: defaultCores,
       coresVersion: 0,
       crossSection: "SV2003",
       massOrdering: "normal", // or "inverted"
@@ -63,8 +64,6 @@ class App extends React.Component {
   }
   componentDidMount = () => {
     setTimeout(() => {
-      //this.state.coreList.map((core) => core.spectrumSV2003)
-      //this.state.coreList.map((core) => core.spectrumVB1999)
       this.incrimentCoresVersions();
     }, 10)
   }
@@ -79,12 +78,12 @@ class App extends React.Component {
     const { lat, lon, elevation } = state.detector;
     const [x, y, z] = project(lat, lon, elevation).map((n) => n / 1000);
 
-    Object.values(cores).forEach((core) => {
+    const newCores = Object.fromEntries(Object.entries(state.cores).map(([name, core]) => {
       const dist = Math.hypot(x - core.x, y - core.y, z - core.z);
       const lf = core.loadFactor(state.reactorLFStart, state.reactorLFEnd)
 
-      core.setSignal(dist, lf, state.massOrdering, state.crossSection);
-    });
+      return [name, core.setSignal(dist, lf, state.massOrdering, state.crossSection)];
+    }));
 
     let crustFlux = {
       u: 0,
@@ -137,7 +136,7 @@ class App extends React.Component {
 
     this.setState({
       ...state,
-      //cores: newCores,
+      cores: newCores,
       spectrum: {
         geoU: geoU,
         geoTh: geoTh,
@@ -185,7 +184,7 @@ class App extends React.Component {
           <Col style={{ minHeight: "50vh" }}>
             <NuMap
               onMousemove={this.mapMouseMove}
-              cores={cores}
+              cores={defaultCores}
               detectorList={presets}
               detector={this.state.detector}
               changeDetector={this.setDetector}
@@ -195,16 +194,16 @@ class App extends React.Component {
            {this.state.coresVersion === 0 &&
             <h1>Loading...</h1>
             }
-            <NuSpectrumPlot cores={cores} {...this.state} />
+            <NuSpectrumPlot cores={this.state.cores} {...this.state} />
             <Tabs unmountOnExit={false} defaultActiveKey="detector">
               <Tab eventKey="detector" title="Detector">
-                <StatsPanel cores={cores} spectrum={this.state.spectrum} crossSection={this.state.crossSection}/>
+                <StatsPanel cores={this.state.cores} spectrum={this.state.spectrum} crossSection={this.state.crossSection}/>
                 <DetectorPhysicsPane {...this.state} setCrossSection={this.setCrossSection} setMassOrdering={this.setMassOrdering}/>
                 <DetectorLocationPane {...this.state} setDetectorMode={this.setDetectorMode} updateSpectrum={this.updateSpectrum}/>
              </Tab>
               <Tab eventKey="reactors" title="Reactors">
                 <CoreIAEARange {...this.state} updateSpectrum={this.updateSpectrum}/>
-                <CoreList cores={cores} {...this.state} incrimentCoresVersions={this.incrimentCoresVersions} />
+                <CoreList cores={this.state.cores} {...this.state} updateSpectrum={this.updateSpectrum} />
               </Tab>
               <Tab eventKey="geonu" title="GeoNu">
                 <MantleFlux {...this.state} updateSpectrum={this.updateSpectrum}/>

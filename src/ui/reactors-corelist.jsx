@@ -35,23 +35,24 @@ const CoreType = ({ core }) => {
 };
 
 const CoreListItem = ({
+  cores,
   core,
   reactorLFStart,
   reactorLFEnd,
-  incrimentCoresVersions,
+  updateSpectrum,
 }) => {
   const lf = core.loadFactor(reactorLFStart, reactorLFEnd);
   const fullPower = () => {
-    core.setCustomLoad(1);
-    incrimentCoresVersions();
+    const newCores = {...cores, [core.name]: core.setCustomLoad(1)};
+    updateSpectrum({cores: newCores})
   };
   const iaeaPower = () => {
-    core.clearCustomLoad();
-    incrimentCoresVersions();
+    const newCores = {...cores, [core.name]: core.clearCustomLoad()};
+    updateSpectrum({cores: newCores})
   };
   const noPower = () => {
-    core.setCustomLoad(0);
-    incrimentCoresVersions();
+    const newCores = {...cores, [core.name]: core.setCustomLoad(0)};
+    updateSpectrum({cores: newCores})
   };
   let dist = core.detectorDistance.toFixed(0);
   if (core.detectorDistance < 10) {
@@ -104,7 +105,7 @@ export const CoreList = ({
   cores,
   reactorLFStart,
   reactorLFEnd,
-  incrimentCoresVersions,
+  updateSpectrum,
 }) => {
   const [filter, setFilter] = useState("");
   const [displayLength, setDisplayLength] = useState(10);
@@ -135,16 +136,16 @@ export const CoreList = ({
   };
 
   const fullPowerAll = () => {
-    Object.values(cores).map((core) => core.setCustomLoad(1));
-    incrimentCoresVersions();
+    const newCores = Object.fromEntries(Object.entries(cores).map(([name, core]) => [name, core.setCustomLoad(1)]));
+    updateSpectrum({cores: newCores})
   };
   const noPowerAll = () => {
-    Object.values(cores).map((core) => core.setCustomLoad(0));
-    incrimentCoresVersions();
+    const newCores = Object.fromEntries(Object.entries(cores).map(([name, core]) => [name, core.setCustomLoad(0)]));
+    updateSpectrum({cores: newCores})
   };
   const iaeaPowerAll = () => {
-    Object.values(cores).map((core) => core.clearCustomLoad());
-    incrimentCoresVersions();
+    const newCores = Object.fromEntries(Object.entries(cores).map(([name, core]) => [name, core.clearCustomLoad()]));
+    updateSpectrum({cores: newCores})
   };
 
   const sortFunctions = {
@@ -217,9 +218,10 @@ export const CoreList = ({
             <CoreListItem
               key={core.name}
               core={core}
+              cores={cores}
               reactorLFStart={reactorLFStart}
               reactorLFEnd={reactorLFEnd}
-              incrimentCoresVersions={incrimentCoresVersions}
+              updateSpectrum={updateSpectrum}
             />
           ))}
       </ListGroup>
