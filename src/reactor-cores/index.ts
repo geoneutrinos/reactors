@@ -66,19 +66,20 @@ const FUEL_FRACTIONS: {[type: string]: {[key: string]: number}} = {
 }
 
 
-class LoadFactor {
+interface LoadFactor {
   date: Date;
   load: number;
   days: number;
+}
 
-  constructor({ date, load}: 
-    { date: string; load: number}
-    ) {
-    this.date = new Date(date + "-01T00:00:00Z");
-    this.load = load / 100;
+const LoadFactor = (date: string, load: number): LoadFactor => {
+  const dateObj = new Date(date + "-01T00:00:00Z");
+  return {
+    date : dateObj,
+    load: load / 100,
     // This is finding the "zeroith" day of the next month, which will result
     // in the last day of the month we want being returned
-    this.days = new Date(Date.UTC(this.date.getUTCFullYear(), this.date.getUTCMonth() + 1)).getUTCDate();
+    days: new Date(Date.UTC(dateObj.getUTCFullYear(), dateObj.getUTCMonth() + 1)).getUTCDate()
   }
 }
 
@@ -122,19 +123,6 @@ export class ReactorCore {
     this.detectorNIU = 0;
   }
 
-  static sortCompare(a: ReactorCore, b: ReactorCore){
-    const nameCompare = (a: string, b:string) => {
-      if (a < b) {return -1};
-      if (a > b) {return 1};
-      return 0;
-    }
-    if (a.custom === b.custom){
-      return nameCompare(a.name.toUpperCase(), b.name.toUpperCase())
-    }
-    if (a.custom === true && b.custom === false){return 1}
-    if (a.custom === false && b.custom === true){return -1}
-    return 0;
-  }
 
   loadFactor(start = new Date(Date.UTC(2003, 0)), stop = new Date(Date.UTC(2018, 11))){
     if (this.loadOverride !== undefined){
@@ -296,7 +284,7 @@ const defaultCoreList = Object.keys(cores).map((core) =>{
   const LFs = zip(times, coreLFs).map(([time, load]) => {
     const date:string = time!
     const lf:number = load!
-    return new LoadFactor({date: date, load: lf})
+    return LoadFactor(date, lf)
   });
   return new ReactorCore({
     name: c,
@@ -309,6 +297,20 @@ const defaultCoreList = Object.keys(cores).map((core) =>{
     loads: LFs
   })
 });
+
+export function coreNameSortCompare(a: ReactorCore, b: ReactorCore){
+    const nameCompare = (a: string, b:string) => {
+      if (a < b) {return -1};
+      if (a > b) {return 1};
+      return 0;
+    }
+    if (a.custom === b.custom){
+      return nameCompare(a.name.toUpperCase(), b.name.toUpperCase())
+    }
+    if (a.custom === true && b.custom === false){return 1}
+    if (a.custom === false && b.custom === true){return -1}
+    return 0;
+  }
 
 interface CoresObject{
   [key: string]: ReactorCore

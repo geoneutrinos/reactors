@@ -9,7 +9,7 @@ import {
   Row,
   Col,
 } from "react-bootstrap";
-import { ReactorCore } from "../reactor-cores";
+import { coreNameSortCompare } from "../reactor-cores";
 
 const CoreType = ({ core }) => {
   const coreDef = {
@@ -148,7 +148,7 @@ export const CoreList = ({
   };
 
   const sortFunctions = {
-    name: ReactorCore.sortCompare,
+    name: coreNameSortCompare,
     distance: (a, b) => a.detectorDistance - b.detectorDistance,
     signal: (a, b) => b.detectorNIU - a.detectorNIU,
   };
