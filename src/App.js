@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 
 import { project } from 'ecef-projector';
 import { Container, Row, Col, Tab, Tabs } from 'react-bootstrap';
@@ -31,14 +31,11 @@ L.Icon.Default.mergeOptions({
 //let cores = defaultCores;
 
 
-class App extends React.Component {
-  constructor(props) {
-    super(props)
-    this.plot = React.createRef();
+function App(props){
+  const [appLoaded, setAppLoaded] = useState(false);
 
-    this.state = {
+  const [state, setState] = useState({
       cores: defaultCores,
-      coresVersion: 0,
       crossSection: XSNames.SV2003,
       massOrdering: "normal", // or "inverted"
       reactorLFStart: new Date("2018-01-01T00:00:00Z"),
@@ -60,29 +57,20 @@ class App extends React.Component {
         geoTh: (new Float64Array(1000)).fill(0),
         geoK: (new Float64Array(1000)).fill(0)
       },
-    }
-  }
-  componentDidMount = () => {
-    setTimeout(() => {
-      this.incrimentCoresVersions();
-    }, 10)
-  }
+  })
+  useEffect(() => updateSpectrum({}), [])
 
-  incrimentCoresVersions = () => {
-    this.updateSpectrum({ coresVersion: this.statecoresVersion + 1 })
-  }
+  const updateSpectrum = (newState = {}) => {
+    const nstate = { ...state, ...newState }
 
-  updateSpectrum = (newState = {}) => {
-    const state = { ...this.state, ...newState }
-
-    const { lat, lon, elevation } = state.detector;
+    const { lat, lon, elevation } = nstate.detector;
     const [x, y, z] = project(lat, lon, elevation).map((n) => n / 1000);
 
-    const newCores = Object.fromEntries(Object.entries(state.cores).map(([name, core]) => {
+    const newCores = Object.fromEntries(Object.entries(nstate.cores).map(([name, core]) => {
       const dist = Math.hypot(x - core.x, y - core.y, z - core.z);
-      const lf = core.loadFactor(state.reactorLFStart, state.reactorLFEnd)
+      const lf = core.loadFactor(nstate.reactorLFStart, nstate.reactorLFEnd)
 
-      return [name, core.setSignal(dist, lf, state.massOrdering, state.crossSection)];
+      return [name, core.setSignal(dist, lf, nstate.massOrdering, nstate.crossSection)];
     }));
 
     let crustFlux = {
@@ -91,14 +79,14 @@ class App extends React.Component {
       k: 0,
     }
 
-    if (state.geoneutrino.crustSignal === true){
+    if (nstate.geoneutrino.crustSignal === true){
       crustFlux = getCrustFlux(lon, lat)
     }
 
-    const crossSection = XSFuncs[state.crossSection]
+    const crossSection = XSFuncs[nstate.crossSection]
 
     let survivalProbability;
-    switch (state.massOrdering) {
+    switch (nstate.massOrdering) {
       case ("inverted"):
         survivalProbability = averageSurvivalProbabilityInverted;
         break;
@@ -107,21 +95,22 @@ class App extends React.Component {
         survivalProbability = averageSurvivalProbabilityNormal;
         break;
     }
-    const uMantleFlux = state.geoneutrino.U238flux;
+    const uMantleFlux = nstate.geoneutrino.U238flux;
     const geoU = antineutrinoSpectrum238U.map((v, i) => {
       return v * (crustFlux.u * 1e6 + uMantleFlux) * SECONDS_PER_YEAR * crossSection((0.005 + i / 100)) * 1e32 * survivalProbability;
     })
-    const thMantleFlux = uMantleFlux * state.geoneutrino.ThURatio * (ISOTOPIC_NEUTRINO_LUMINOSITY.TH232 / ISOTOPIC_NEUTRINO_LUMINOSITY.U238) * (ISOTOPIC_NATURAL_ABUNDANCE.TH232 / ISOTOPIC_NATURAL_ABUNDANCE.U238);
+    const thMantleFlux = uMantleFlux * nstate.geoneutrino.ThURatio * (ISOTOPIC_NEUTRINO_LUMINOSITY.TH232 / ISOTOPIC_NEUTRINO_LUMINOSITY.U238) * (ISOTOPIC_NATURAL_ABUNDANCE.TH232 / ISOTOPIC_NATURAL_ABUNDANCE.U238);
     const geoTh = antineutrinoSpectrum232Th.map((v, i) => {
       return v * (crustFlux.th * 1e6 + thMantleFlux) * SECONDS_PER_YEAR * crossSection((0.005 + i / 100)) * 1e32 * survivalProbability;
     })
-    const kMantleFlux = uMantleFlux * state.geoneutrino.KURatio * (ISOTOPIC_NEUTRINO_LUMINOSITY.K40 / ISOTOPIC_NEUTRINO_LUMINOSITY.U238) * (ISOTOPIC_NATURAL_ABUNDANCE.K40 / ISOTOPIC_NATURAL_ABUNDANCE.U238);
+    const kMantleFlux = uMantleFlux * nstate.geoneutrino.KURatio * (ISOTOPIC_NEUTRINO_LUMINOSITY.K40 / ISOTOPIC_NEUTRINO_LUMINOSITY.U238) * (ISOTOPIC_NATURAL_ABUNDANCE.K40 / ISOTOPIC_NATURAL_ABUNDANCE.U238);
     const geoK = antineutrinoSpectrum40K.map((v, i) => {
       return v * (crustFlux.k * 1e6 + kMantleFlux) * SECONDS_PER_YEAR * crossSection((0.005 + i / 100)) * 1e32 * survivalProbability;
     })
 
-    this.setState({
-      ...state,
+    setAppLoaded(true)
+    setState({
+      ...nstate,
       cores: newCores,
       spectrum: {
         geoU: geoU,
@@ -130,13 +119,13 @@ class App extends React.Component {
       },
     })
   }
-  setMassOrdering = (value) => {
-    this.updateSpectrum({ massOrdering: value })
+  const setMassOrdering = (value) => {
+    updateSpectrum({ massOrdering: value })
   }
-  setCrossSection = (value) => {
-    this.updateSpectrum({ crossSection: value })
+  const setCrossSection = (value) => {
+    updateSpectrum({ crossSection: value })
   }
-  setDetectorMode = (event) => {
+  const setDetectorMode = (event) => {
     const value = event.currentTarget.value;
     let newDetector = { current: value };
     if (value !== 'custom' && value !== 'follow') {
@@ -145,13 +134,13 @@ class App extends React.Component {
       newDetector.lon = preset.lon;
       newDetector.elevation = preset.elevation;
     }
-    this.updateSpectrum({ detector: { ...this.state.detector, ...newDetector } })
+    updateSpectrum({ detector: { ...state.detector, ...newDetector } })
   }
-  setDetector = (newDetector) => {
-    this.updateSpectrum({ detector: { ...this.state.detector, ...newDetector } })
+  const setDetector = (newDetector) => {
+    updateSpectrum({ detector: { ...state.detector, ...newDetector } })
   }
-  mapMouseMove = (event) => {
-    if (this.state.detector.current !== 'follow') {
+  const mapMouseMove = (event) => {
+    if (state.detector.current !== 'follow') {
       return null;
     }
     let { lat, lng } = event.latlng;
@@ -161,39 +150,38 @@ class App extends React.Component {
     while (lng < -180) {
       lng = lng + 360;
     }
-    this.updateSpectrum({ detector: { ...this.state.detector, lat: lat, lon: lng } })
+    updateSpectrum({ detector: { ...state.detector, lat: lat, lon: lng } })
   }
-  render() {
-    return (
+  return (
       <Container fluid={true}>
         <Row style={{ minHeight: "100vh" }}>
           <Col style={{ minHeight: "50vh" }}>
             <NuMap
-              onMousemove={this.mapMouseMove}
+              onMousemove={mapMouseMove}
               cores={defaultCores}
               detectorList={presets}
-              detector={this.state.detector}
-              changeDetector={this.setDetector}
+              detector={state.detector}
+              changeDetector={setDetector}
             />
           </Col>
           <Col lg={6} style={{ maxHeight: "100vh", overflow: "scroll" }}>
-           {this.state.coresVersion === 0 &&
+           {!appLoaded &&
             <h1>Loading...</h1>
             }
-            <NuSpectrumPlot cores={this.state.cores} {...this.state} />
+            <NuSpectrumPlot cores={state.cores} {...state} />
             <Tabs unmountOnExit={false} defaultActiveKey="detector">
               <Tab eventKey="detector" title="Detector">
-                <StatsPanel cores={this.state.cores} spectrum={this.state.spectrum} crossSection={this.state.crossSection}/>
-                <DetectorPhysicsPane {...this.state} setCrossSection={this.setCrossSection} setMassOrdering={this.setMassOrdering} XSNames={XSNames}/>
-                <DetectorLocationPane {...this.state} setDetectorMode={this.setDetectorMode} updateSpectrum={this.updateSpectrum}/>
+                <StatsPanel cores={state.cores} spectrum={state.spectrum} crossSection={state.crossSection}/>
+                <DetectorPhysicsPane {...state} setCrossSection={setCrossSection} setMassOrdering={setMassOrdering} XSNames={XSNames}/>
+                <DetectorLocationPane {...state} setDetectorMode={setDetectorMode} updateSpectrum={updateSpectrum}/>
              </Tab>
               <Tab eventKey="reactors" title="Reactors">
-                <CoreIAEARange {...this.state} updateSpectrum={this.updateSpectrum}/>
-                <CoreList cores={this.state.cores} {...this.state} updateSpectrum={this.updateSpectrum} />
+                <CoreIAEARange {...state} updateSpectrum={updateSpectrum}/>
+                <CoreList cores={state.cores} {...state} updateSpectrum={updateSpectrum} />
               </Tab>
               <Tab eventKey="geonu" title="GeoNu">
-                <MantleFlux {...this.state} updateSpectrum={this.updateSpectrum}/>
-                <CrustFlux {...this.state} updateSpectrum={this.updateSpectrum}/>
+                <MantleFlux {...state} updateSpectrum={updateSpectrum}/>
+                <CrustFlux {...state} updateSpectrum={updateSpectrum}/>
               </Tab>
               <Tab eventKey="output" title="Output">
                 Output content
@@ -205,8 +193,7 @@ class App extends React.Component {
           </Col>
         </Row>
       </Container>
-    );
-  }
+  );
 }
 
 export default App;
