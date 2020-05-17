@@ -5,6 +5,19 @@ export interface CrossSection {
   (Ev: number): number
 }
 
+enum NeutrinoType {
+  electronNeutrino,
+  electronAntineutino,
+  muTauAntineutrino
+}
+
+export enum XSNames {
+  VB1999 = "IBD: Vogel and Beacom (1999)",
+  SV2003 = "IBD: Strumia and Vissani (2003)",
+  ESANTI = "Elastic Scattering: Electron Antineutrino",
+  ESMUTAU = "Elastic Scattering: Mu Tau Antineutrino",
+}
+
 /** 
  * Calculates the neutrino cross section, sometimes called sigma
  * 
@@ -16,7 +29,7 @@ export interface CrossSection {
  * @param {number} Ev -  Energy of the neutrino in MeV
  * @returns {number} - Cross secton area in cm^2
  */
-export const crossSectionSV2003: CrossSection = memoize((Ev) => {
+const crossSectionSV2003: CrossSection = memoize((Ev) => {
   const a = -0.07056;
   const b = 0.02018;
   const c = -0.001953;
@@ -39,37 +52,24 @@ export const crossSectionSV2003: CrossSection = memoize((Ev) => {
  * @param {number} Ev -  Energy of the neutrino in MeV
  * @returns {number} - Cross secton area in cm^2
  */
-export const crossSectionVB1999: CrossSection = memoize((Ev) => {
+const crossSectionVB1999: CrossSection = memoize((Ev) => {
   const Ee = Math.max(ELECTRON_REST_MASS, Ev - (NEUTRON_REST_MASS - PROTON_REST_MASS));
 
   return 9.52e-44 * Math.sqrt((Ee * Ee) - (ELECTRON_REST_MASS * ELECTRON_REST_MASS)) * Ee;
 })
 
-enum NeutrinoType {
-  electronNeutrino,
-  electronAntineutino,
-  muTauAntineutrino
-}
-
 function crossSectionElasticScattering(Ev: number, neutrinoType: NeutrinoType): number {
-  let cL: number;
-  let cR: number;
-  switch (neutrinoType) { // Table I
-    case NeutrinoType.electronNeutrino: {
-      cL = 0.5 + WEAK_MIXING_ANGLE;
-      cR = WEAK_MIXING_ANGLE;
-      break;
-    }
-    case NeutrinoType.electronAntineutino: {
-      cL = WEAK_MIXING_ANGLE;
-      cR = 0.5 + WEAK_MIXING_ANGLE;
-      break;
-    }
-    case NeutrinoType.muTauAntineutrino: {
-      cL = WEAK_MIXING_ANGLE;
-      cR = -0.5 + WEAK_MIXING_ANGLE;
-    }
-  }
+  // Table I
+  const cL = {
+    [NeutrinoType.electronNeutrino]: 0.5 + WEAK_MIXING_ANGLE,
+    [NeutrinoType.electronAntineutino]: WEAK_MIXING_ANGLE,
+    [NeutrinoType.muTauAntineutrino]: WEAK_MIXING_ANGLE,
+  }[neutrinoType]
+  const cR = {
+    [NeutrinoType.electronNeutrino]: WEAK_MIXING_ANGLE,
+    [NeutrinoType.electronAntineutino]: 0.5 + WEAK_MIXING_ANGLE,
+    [NeutrinoType.muTauAntineutrino]: -0.5 + WEAK_MIXING_ANGLE,
+  }[neutrinoType]
 
   const TEmax = Ev/(1 + ELECTRON_REST_MASS/(2 * Ev)); // Equation 9
 
@@ -89,10 +89,17 @@ function crossSectionElasticScattering(Ev: number, neutrinoType: NeutrinoType): 
 
 }
 
-export const crossSectionElectronAntineutrinoES: CrossSection = memoize((Ev) => {
+const crossSectionElectronAntineutrinoES: CrossSection = memoize((Ev) => {
   return crossSectionElasticScattering(Ev, NeutrinoType.electronAntineutino)
 })
 
-export const crossSectionMuTauAntineutrinoES: CrossSection = memoize((Ev) => {
+const crossSectionMuTauAntineutrinoES: CrossSection = memoize((Ev) => {
   return crossSectionElasticScattering(Ev, NeutrinoType.muTauAntineutrino)
 })
+
+export const XSFuncs: {[key in XSNames]: CrossSection} = {
+  [XSNames.VB1999]: crossSectionVB1999,
+  [XSNames.SV2003]: crossSectionSV2003,
+  [XSNames.ESANTI]: crossSectionElectronAntineutrinoES,
+  [XSNames.ESMUTAU]: crossSectionMuTauAntineutrinoES,
+}

@@ -11,7 +11,7 @@ import { presets } from './detectors';
 import { getCrustFlux } from './crust-model';
 import { averageSurvivalProbabilityNormal, averageSurvivalProbabilityInverted } from './physics/neutrino-oscillation';
 import { antineutrinoSpectrum238U, antineutrinoSpectrum232Th, antineutrinoSpectrum40K } from './antineutrino-spectrum';
-import { crossSectionSV2003, crossSectionElectronAntineutrinoES, crossSectionMuTauAntineutrinoES, crossSectionVB1999 } from './physics/neutrino-cross-section';
+import { XSFuncs, XSNames } from './physics/neutrino-cross-section';
 import { SECONDS_PER_YEAR, ISOTOPIC_NATURAL_ABUNDANCE } from './physics/constants';
 import { ISOTOPIC_NEUTRINO_LUMINOSITY } from './physics/derived';
 
@@ -39,7 +39,7 @@ class App extends React.Component {
     this.state = {
       cores: defaultCores,
       coresVersion: 0,
-      crossSection: "SV2003",
+      crossSection: XSNames.SV2003,
       massOrdering: "normal", // or "inverted"
       reactorLFStart: new Date("2018-01-01T00:00:00Z"),
       reactorLFEnd: new Date("2018-12-01T00:00:00Z"),
@@ -95,22 +95,8 @@ class App extends React.Component {
       crustFlux = getCrustFlux(lon, lat)
     }
 
-    let crossSection;
-    switch (state.crossSection) {
-      case "ESMUTAU":
-        crossSection = crossSectionMuTauAntineutrinoES;
-        break;
-      case "ESANTI":
-        crossSection = crossSectionElectronAntineutrinoES;
-        break;
-      case "VB1999":
-        crossSection = crossSectionVB1999;
-        break;
-      case "SV2003":
-      default:
-        crossSection = crossSectionSV2003;
-        break;
-    }
+    const crossSection = XSFuncs[state.crossSection]
+
     let survivalProbability;
     switch (state.massOrdering) {
       case ("inverted"):
@@ -198,7 +184,7 @@ class App extends React.Component {
             <Tabs unmountOnExit={false} defaultActiveKey="detector">
               <Tab eventKey="detector" title="Detector">
                 <StatsPanel cores={this.state.cores} spectrum={this.state.spectrum} crossSection={this.state.crossSection}/>
-                <DetectorPhysicsPane {...this.state} setCrossSection={this.setCrossSection} setMassOrdering={this.setMassOrdering}/>
+                <DetectorPhysicsPane {...this.state} setCrossSection={this.setCrossSection} setMassOrdering={this.setMassOrdering} XSNames={XSNames}/>
                 <DetectorLocationPane {...this.state} setDetectorMode={this.setDetectorMode} updateSpectrum={this.updateSpectrum}/>
              </Tab>
               <Tab eventKey="reactors" title="Reactors">

@@ -5,13 +5,7 @@ import antineutrinoSpectrum238UData from "./data/AntineutrinoSpectrum_238U.knt.j
 
 import { SECONDS_PER_YEAR } from "../physics/constants";
 
-import {
-  crossSectionSV2003,
-  crossSectionVB1999,
-  crossSectionElectronAntineutrinoES,
-  crossSectionMuTauAntineutrinoES,
-  CrossSection,
-} from "../physics/neutrino-cross-section";
+import { XSFuncs, CrossSection } from "../physics/neutrino-cross-section";
 
 interface RateToFlux {
   SV2003: number;
@@ -19,15 +13,6 @@ interface RateToFlux {
   ESANTI: number;
   ESMUTAU: number;
 }
-
-// TODO: See if this can be pushed up to TS or something
-// importable from the neutrino-cross-section module
-const crossSections = {
-  SV2003: crossSectionSV2003,
-  VB1999: crossSectionVB1999,
-  ESANTI: crossSectionElectronAntineutrinoES,
-  ESMUTAU: crossSectionMuTauAntineutrinoES,
-};
 
 /**
  *
@@ -90,25 +75,25 @@ function rateToFlux(spectrum: number[], crossSection: CrossSection): number {
 }
 
 export const rateToFlux238U = Object.fromEntries(
-  Object.entries(crossSections).map(([key, val]) => [
+  Object.entries(XSFuncs).map(([key, val]) => [
     key,
     rateToFlux(antineutrinoSpectrum238UData, val),
   ])
 );
 export const rateToFlux235U = Object.fromEntries(
-  Object.entries(crossSections).map(([key, val]) => [
+  Object.entries(XSFuncs).map(([key, val]) => [
     key,
     rateToFlux(antineutrinoSpectrum235UData, val),
   ])
 );
 export const rateToFlux232Th = Object.fromEntries(
-  Object.entries(crossSections).map(([key, val]) => [
+  Object.entries(XSFuncs).map(([key, val]) => [
     key,
     rateToFlux(antineutrinoSpectrum232ThData, val),
   ])
 );
 export const rateToFlux40K = Object.fromEntries(
-  Object.entries(crossSections).map(([key, val]) => [
+  Object.entries(XSFuncs).map(([key, val]) => [
     key,
     rateToFlux(antineutrinoSpectrum40KData, val),
   ])

@@ -6,6 +6,7 @@ export const DetectorPhysicsPane = ({
   crossSection,
   setMassOrdering,
   setCrossSection,
+  XSNames,
 }) => {
   return (
     <Card>
@@ -29,14 +30,9 @@ export const DetectorPhysicsPane = ({
             onChange={(event) => setCrossSection(event.target.value)}
             value={crossSection}
           >
-            <option value="VB1999">IBD: Vogel and Beacom (1999)</option>
-            <option value="SV2003">IBD: Strumia and Vissani (2003)</option>
-            <option value="ESANTI">
-              Elastic Scattering: Electron Antineutrino
-            </option>
-            <option value="ESMUTAU">
-              Elastic Scattering: Mu Tau Antineutrino
-            </option>
+            {Object.values(XSNames).map( name => {
+            return <option value={name}>{name}</option>
+            })}
           </Form.Control>
         </Form.Group>
       </Card.Body>

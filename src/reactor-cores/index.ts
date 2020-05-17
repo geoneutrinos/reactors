@@ -1,7 +1,7 @@
 import { reactors as cores, times, loads } from './reactor-database/reactors.json'
 import { partialInteractionRate } from '../physics/reactor-antineutrinos'
 import { neutrinoEnergyFor } from '../physics/helpers'
-import {crossSectionSV2003, crossSectionVB1999, crossSectionElectronAntineutrinoES, crossSectionMuTauAntineutrinoES} from '../physics/neutrino-cross-section'
+import { XSFuncs } from '../physics/neutrino-cross-section'
 import { FISSION_ENERGIES, ELEMENTARY_CHARGE ,Isotopes} from '../physics/constants'
 import { range, zip, sum } from 'lodash';
 import { project } from 'ecef-projector';
@@ -87,16 +87,9 @@ function fuelMixSpectrum(crossSection:(Ev: number) => number){
   )
 }
 
-interface Spectrums {
-  [crossSection: string]: {[type: string]: Float32Array}
-}
-
-const spectrums: Spectrums= {
-  SV2003: fuelMixSpectrum(crossSectionSV2003),
-  VB1999: fuelMixSpectrum(crossSectionVB1999),
-  ESANTI: fuelMixSpectrum(crossSectionElectronAntineutrinoES),
-  ESMUTAU: fuelMixSpectrum(crossSectionMuTauAntineutrinoES),
-}
+const spectrums = Object.fromEntries(
+  Object.entries(XSFuncs).map(([name, func]) => [name, fuelMixSpectrum(func)])
+)
 
 interface LoadFactor {
   date: Date;
