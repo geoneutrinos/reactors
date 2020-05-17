@@ -170,7 +170,7 @@ export function CoreDirectionPlot({ cores }) {
       ]}
       useResizeHandler={true}
       style={{ width: "100%", height: "50vh", minHeight: "400px"}}
-      config={{ toImageButtonOptions: { width: 900, height: 500, scale: 2 } }}
+      config={{ toImageButtonOptions: { width: 900, height: 900, scale: 2 } }}
     />
   );
 }
