@@ -33,8 +33,6 @@ L.Icon.Default.mergeOptions({
 const defaultDetector = presets.find(detector => detector.name === "Boulby")
 
 function App(props){
-  const [appLoaded, setAppLoaded] = useState(false);
-
   const [massOrdering, setMassOrdering] = useState("normal")
   const [crossSection, setCrossSection] = useState(XSNames.SV2003)
   const [detector, setDetector] = useState({current: defaultDetector.name, ...defaultDetector})
@@ -42,24 +40,13 @@ function App(props){
 
   const [coreMods, setCoreMods] = useState({})
 
-  const [state, setState] = useState({
-      geoneutrino: {
-        U238flux: 1e6, // cm-2 s-1
-        ThURatio: 3.9, // no units
-        KURatio: 1e4, // no units
-        crustSignal: true
-      },
-  })
-  useEffect(() => updateSpectrum({}), [])
-
-  const updateSpectrum = (newState = {}) => {
-    const nstate = { ...state, ...newState }
-
-    setAppLoaded(true)
-    setState({
-      ...nstate,
+  //geonu state
+  const [includeCrust, setIncludeCrust] = useState(true)
+  const [geoFluxRatios, setGeoFluxRatios] = useState({
+      U238flux: 1e6, // cm-2 s-1
+      ThURatio: 3.9, // no units
+      KURatio: 1e4, // no units
     })
-  }
 
   const { lat, lon, elevation } = detector;
   const [x, y, z] = project(lat, lon, elevation).map((n) => n / 1000);
@@ -78,7 +65,7 @@ function App(props){
     k: 0,
   }
 
-  if (state.geoneutrino.crustSignal === true){
+  if (includeCrust === true){
     crustFlux = getCrustFlux(detector.lon, detector.lat)
   }
 
@@ -89,15 +76,15 @@ function App(props){
     "normal": averageSurvivalProbabilityNormal,
   }[massOrdering]
 
-  const uMantleFlux = state.geoneutrino.U238flux;
+  const uMantleFlux = geoFluxRatios.U238flux;
   const geoU = antineutrinoSpectrum238U.map((v, i) => {
     return v * (crustFlux.u * 1e6 + uMantleFlux) * SECONDS_PER_YEAR * XSFunc((0.005 + i / 100)) * 1e32 * survivalProbability;
   })
-  const thMantleFlux = uMantleFlux * state.geoneutrino.ThURatio * (ISOTOPIC_NEUTRINO_LUMINOSITY.TH232 / ISOTOPIC_NEUTRINO_LUMINOSITY.U238) * (ISOTOPIC_NATURAL_ABUNDANCE.TH232 / ISOTOPIC_NATURAL_ABUNDANCE.U238);
+  const thMantleFlux = uMantleFlux * geoFluxRatios.ThURatio * (ISOTOPIC_NEUTRINO_LUMINOSITY.TH232 / ISOTOPIC_NEUTRINO_LUMINOSITY.U238) * (ISOTOPIC_NATURAL_ABUNDANCE.TH232 / ISOTOPIC_NATURAL_ABUNDANCE.U238);
   const geoTh = antineutrinoSpectrum232Th.map((v, i) => {
     return v * (crustFlux.th * 1e6 + thMantleFlux) * SECONDS_PER_YEAR * XSFunc((0.005 + i / 100)) * 1e32 * survivalProbability;
   })
-  const kMantleFlux = uMantleFlux * state.geoneutrino.KURatio * (ISOTOPIC_NEUTRINO_LUMINOSITY.K40 / ISOTOPIC_NEUTRINO_LUMINOSITY.U238) * (ISOTOPIC_NATURAL_ABUNDANCE.K40 / ISOTOPIC_NATURAL_ABUNDANCE.U238);
+  const kMantleFlux = uMantleFlux * geoFluxRatios.KURatio * (ISOTOPIC_NEUTRINO_LUMINOSITY.K40 / ISOTOPIC_NEUTRINO_LUMINOSITY.U238) * (ISOTOPIC_NATURAL_ABUNDANCE.K40 / ISOTOPIC_NATURAL_ABUNDANCE.U238);
   const geoK = antineutrinoSpectrum40K.map((v, i) => {
     return v * (crustFlux.k * 1e6 + kMantleFlux) * SECONDS_PER_YEAR * XSFunc((0.005 + i / 100)) * 1e32 * survivalProbability;
   })
@@ -118,9 +105,6 @@ function App(props){
             />
           </Col>
           <Col lg={6} style={{ maxHeight: "100vh", overflow: "scroll" }}>
-           {!appLoaded &&
-            <h1>Loading...</h1>
-            }
             <NuSpectrumPlot detector={detector} cores={cores} spectrum={spectrum}/>
             <Tabs unmountOnExit={false} defaultActiveKey="detector">
               <Tab eventKey="detector" title="Detector">
@@ -133,8 +117,8 @@ function App(props){
                 <CoreList cores={cores} reactorLF={reactorLF} coreMods={coreMods} setCoreMods={setCoreMods}/>
               </Tab>
               <Tab eventKey="geonu" title="GeoNu">
-                <MantleFlux {...state} updateSpectrum={updateSpectrum}/>
-                <CrustFlux {...state} updateSpectrum={updateSpectrum}/>
+                <MantleFlux geoFluxRatios={geoFluxRatios} setGeoFluxRatios={setGeoFluxRatios} />
+                <CrustFlux includeCrust={includeCrust} setIncludeCrust={setIncludeCrust}/>
               </Tab>
               <Tab eventKey="output" title="Output">
                 Output content

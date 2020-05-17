@@ -2,22 +2,17 @@ import React, { useState } from "react";
 
 import { Card, Form, InputGroup } from "react-bootstrap";
 
-export const CrustFlux = ({ geoneutrino, updateSpectrum }) => {
-  const changeHandler = (event) => {
-    updateSpectrum({
-      geoneutrino: { ...geoneutrino, crustSignal: event.target.checked },
-    });
-  };
+export const CrustFlux = ({ includeCrust, setIncludeCrust }) => {
   return (
     <Card>
       <Card.Header>Crust Flux</Card.Header>
       <Card.Body>
         <Form.Check
-          checked={geoneutrino.crustSignal}
+          checked={includeCrust}
           id="crustSignalSlider"
           type="switch"
           label="Include Crust Signal"
-          onChange={changeHandler}
+          onChange={(event) => setIncludeCrust(event.target.checked)}
         />
         <small>
           We use a pre-computed model of the crust flux provided by W.F.
@@ -30,10 +25,10 @@ export const CrustFlux = ({ geoneutrino, updateSpectrum }) => {
   );
 };
 
-export const MantleFlux = ({ geoneutrino, updateSpectrum }) => {
-  const [U238flux, setU238flux] = useState(geoneutrino.U238flux);
-  const [ThURatio, setThURatio] = useState(geoneutrino.ThURatio);
-  const [KURatio, setKURatio] = useState(geoneutrino.KURatio);
+export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios }) => {
+  const [U238flux, setU238flux] = useState(geoFluxRatios.U238flux);
+  const [ThURatio, setThURatio] = useState(geoFluxRatios.ThURatio);
+  const [KURatio, setKURatio] = useState(geoFluxRatios.KURatio);
 
   const handleChange = (event) => {
     const id = event.target.id;
@@ -46,11 +41,9 @@ export const MantleFlux = ({ geoneutrino, updateSpectrum }) => {
     setters[id](value);
 
     try {
-      updateSpectrum({
-        geoneutrino: {
-          ...geoneutrino,
+      setGeoFluxRatios({
+          ...geoFluxRatios,
           [id]: parseFloat(value),
-        },
       });
     } catch {
       // Do Nothing
