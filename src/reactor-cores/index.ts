@@ -1,7 +1,7 @@
 import { reactors as cores, times, loads } from './reactor-database/reactors.json'
 import { partialInteractionRate } from '../physics/reactor-antineutrinos'
 import { neutrinoEnergyFor } from '../physics/helpers'
-import { XSFuncs } from '../physics/neutrino-cross-section'
+import { XSFuncs, XSNames } from '../physics/neutrino-cross-section'
 import { FISSION_ENERGIES, ELEMENTARY_CHARGE ,Isotopes} from '../physics/constants'
 import { range, zip, sum } from 'lodash';
 import { project } from 'ecef-projector';
@@ -194,7 +194,7 @@ function ReactorCore({name, lat, lon, elevation, type, mox, power, custom=false,
         break
     }
 
-    if (crossSection === "ESMUTAU"){
+    if (crossSection === XSNames.ESMUTAU){
       oscillation = oscillation.map((v) => 1 - v)
     }
 
