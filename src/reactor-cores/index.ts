@@ -5,7 +5,7 @@ import { XSFuncs, XSNames } from '../physics/neutrino-cross-section'
 import { FISSION_ENERGIES, ELEMENTARY_CHARGE ,Isotopes} from '../physics/constants'
 import { range, zip, sum } from 'lodash';
 import { project } from 'ecef-projector';
-import { invertedNeutrinoOscilationSpectrum, normalNeutrinoOscilationSpectrum } from '../physics/neutrino-oscillation'
+import { MassOrdering, invertedNeutrinoOscilationSpectrum, normalNeutrinoOscilationSpectrum } from '../physics/neutrino-oscillation'
 
 export { cores, times, loads };
 
@@ -130,7 +130,7 @@ interface ReactorCore{
  detectorNIU: number;
 
  spectrum: (crossSection:string) => Float32Array;
- setSignal:  (dist:number, lf:number, massOrdering:string, crossSection:string) => ReactorCore;
+ setSignal:  (dist:number, lf:number, massOrdering:MassOrdering, crossSection:string) => ReactorCore;
  loadFactor: (start?:Date, stop?:Date) => number;
 }
 
@@ -174,7 +174,7 @@ function ReactorCore({name, lat, lon, elevation, type, mox, power, custom=false,
     return this.lf_cache[lf_key]
   }
 
-  function setSignal(this: ReactorCore, dist:number, lf:number, massOrdering:string, crossSection:string): ReactorCore{
+  function setSignal(this: ReactorCore, dist:number, lf:number, massOrdering:MassOrdering, crossSection:string): ReactorCore{
     const spectrum = this.spectrum(crossSection);
     const power = this.power;
     const distsq = dist ** 2;
@@ -183,16 +183,10 @@ function ReactorCore({name, lat, lon, elevation, type, mox, power, custom=false,
       dist = Math.round(dist)
     }
 
-    let oscillation: Float32Array;
-    switch (massOrdering){
-      case ("inverted"):
-        oscillation = invertedNeutrinoOscilationSpectrum(dist);
-        break;
-      case ("normal"):
-      default:
-        oscillation = normalNeutrinoOscilationSpectrum(dist);
-        break
-    }
+    let oscillation = {
+      [MassOrdering.Inverted]: invertedNeutrinoOscilationSpectrum(dist),
+      [MassOrdering.Normal]: normalNeutrinoOscilationSpectrum(dist),
+    }[massOrdering]
 
     if (crossSection === XSNames.ESMUTAU){
       oscillation = oscillation.map((v) => 1 - v)

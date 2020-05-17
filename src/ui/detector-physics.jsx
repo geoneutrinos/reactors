@@ -1,6 +1,8 @@
 import React from "react";
 import { Card, Form } from "react-bootstrap";
 
+import { MassOrdering } from '../physics/neutrino-oscillation'
+
 export const DetectorPhysicsPane = ({
   massOrdering,
   crossSection,
@@ -19,8 +21,7 @@ export const DetectorPhysicsPane = ({
             onChange={(event) => setMassOrdering(event.target.value)}
             value={massOrdering}
           >
-            <option value="normal">Normal</option>
-            <option value="inverted">Inverted</option>
+            {Object.values(MassOrdering).map( order => <option value={order}>{order}</option>)}
           </Form.Control>
         </Form.Group>
         <Form.Group controlId="neutrinoCrossSection">

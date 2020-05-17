@@ -1,20 +1,16 @@
 import {XSFuncs, XSNames} from "../physics/neutrino-cross-section";
-import { averageSurvivalProbabilityNormal, averageSurvivalProbabilityInverted } from '../physics/neutrino-oscillation';
+import { MassOrdering, averageSurvivalProbabilityNormal, averageSurvivalProbabilityInverted } from '../physics/neutrino-oscillation';
 import { antineutrinoSpectrum238U, antineutrinoSpectrum232Th, antineutrinoSpectrum40K } from '../antineutrino-spectrum';
 import { SECONDS_PER_YEAR, ISOTOPIC_NATURAL_ABUNDANCE } from '../physics/constants';
 import { ISOTOPIC_NEUTRINO_LUMINOSITY } from '../physics/derived';
 
-enum MassOrdering {
-    inverted = "inverted",
-    normal = "normal",
-}
 
 export function mantleGeoSpectrum(crossSection:XSNames, massOrdering:MassOrdering, geoFluxRatios:any, crustFlux:any){
   const XSFunc = XSFuncs[crossSection]
 
   const survivalProbability = {
-    "inverted": averageSurvivalProbabilityInverted,
-    "normal": averageSurvivalProbabilityNormal,
+    [MassOrdering.Inverted]: averageSurvivalProbabilityInverted,
+    [MassOrdering.Normal]: averageSurvivalProbabilityNormal,
   }[massOrdering]
 
   const uMantleFlux = geoFluxRatios.U238flux;

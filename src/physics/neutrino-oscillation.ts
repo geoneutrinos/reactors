@@ -1,5 +1,10 @@
 import { memoize } from 'lodash';
 
+export enum MassOrdering {
+    Inverted = "Inverted",
+    Normal = "Normal",
+}
+
 const s2t12 = 0.297;
 const dmsq21 = 7.37e-5;
 const s2t13Normal =  0.0215;

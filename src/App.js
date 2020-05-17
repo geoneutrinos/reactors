@@ -11,6 +11,7 @@ import { presets } from './detectors';
 import { getCrustFlux } from './crust-model';
 import {mantleGeoSpectrum} from "./mantle"
 import { XSNames } from './physics/neutrino-cross-section';
+import { MassOrdering } from './physics/neutrino-oscillation';
 
 
 import 'leaflet/dist/leaflet.css';
@@ -30,7 +31,7 @@ L.Icon.Default.mergeOptions({
 const defaultDetector = presets.find(detector => detector.name === "Boulby")
 
 function App(props){
-  const [massOrdering, setMassOrdering] = useState("normal")
+  const [massOrdering, setMassOrdering] = useState(MassOrdering.Normal)
   const [crossSection, setCrossSection] = useState(XSNames.SV2003)
   const [detector, setDetector] = useState({current: defaultDetector.name, ...defaultDetector})
   const [reactorLF, setReactorLF] = useState({start: new Date("2018-01-01T00:00:00Z"), end: new Date("2018-12-01T00:00:00Z")})
