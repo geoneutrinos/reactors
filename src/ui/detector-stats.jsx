@@ -6,8 +6,11 @@ import { rateToFlux232Th, rateToFlux238U, rateToFlux40K } from '../antineutrino-
 import { ISOTOPIC_NEUTRINO_LUMINOSITY } from '../physics/derived'
 import { ISOTOPIC_NATURAL_ABUNDANCE } from '../physics/constants'
 
-function Num({ v, p }) {
-  return <span title={v.toString()}>{v.toFixed(p)}</span>;
+function Num({ v, p, func}) {
+  if (func===undefined){
+    func = (v) => v
+  }
+  return <span title={v.toString()}>{func(v).toFixed(p)}</span>;
 }
 
 const geoThURatio = (R232Th, R238U, crossSection) => {
@@ -98,11 +101,14 @@ export function StatsPanel({ cores, spectrum, crossSection }) {
         </span>
         <i>R</i>
         <sub>geo</sub> = <Num v={geoTotalNIU} p={1} /> {NIU} (U ={" "}
-        <Num v={geoUNIU} p={1} />, Th = <Num v={geoThNIU} p={1} />, K ={" "}
-        <Num v={geoKNIU} p={1} />)<br />
-        Th/U<sub>geo</sub> = <Num v={geoThU} p={1} /><br />
+        <Num v={geoUNIU} p={1} />, Th = <Num v={geoThNIU} p={1} />
         <span style={{ display: geoKUVald }}>
-          K/U<sub>geo</sub> = <Num v={geoKU} p={0} /><br />
+          ,{" "}K = <Num v={geoKNIU} p={1} />
+        </span>
+        )<br />
+        Th/U<sub>geo</sub> = <Num v={geoThU} p={2} /><br />
+        <span style={{ display: geoKUVald }}>
+          K/U<sub>geo</sub> = <Num v={geoKU} p={0} func={(v) => Math.round(v/100) * 100}/><br />
         </span>
         <small>
           1 {NIU} (Neutrino Interaction Unit) = 1 interaction/10<sup>32</sup>{" "}
@@ -110,8 +116,8 @@ export function StatsPanel({ cores, spectrum, crossSection }) {
         </small>
         <br />
         <small>
-          1 kT H<sub>2</sub>O contains 0.668559x10<sup>32</sup> free proton and
-          3.342795x10<sup>32</sup> electron targets
+          1 kT H<sub>2</sub>O contains 6.68x10<sup>31</sup> free proton and
+          33.4x10<sup>31</sup> electron targets
         </small>
         <br />
       </Card.Body>
