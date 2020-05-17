@@ -21,7 +21,7 @@ const presetOptions = Object.keys(presetGroups).map((key) => {
 
 export const DetectorLocationPane = ({
   detector,
-  setDetectorMode,
+  setDetector,
   updateSpectrum,
 }) => {
   const [internalDetector, setinternalDetector] = useState({
@@ -59,6 +59,18 @@ export const DetectorLocationPane = ({
       updateSpectrum({ detector: { ...detector, [key]: parsed } });
     }
   };
+
+  const setDetectorMode = (event) => {
+    const value = event.currentTarget.value;
+    let newDetector = { current: value };
+    if (value !== 'custom' && value !== 'follow') {
+      let preset = presets.find(detector => detector.name === value);
+      newDetector.lat = preset.lat;
+      newDetector.lon = preset.lon;
+      newDetector.elevation = preset.elevation;
+    }
+    setDetector({ ...detector, ...newDetector })
+  }
 
   return (
     <Card>

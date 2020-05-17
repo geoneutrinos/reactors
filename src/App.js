@@ -30,117 +30,39 @@ L.Icon.Default.mergeOptions({
 
 //let cores = defaultCores;
 
+const defaultDetector = presets.find(detector => detector.name === "Boulby")
 
 function App(props){
   const [appLoaded, setAppLoaded] = useState(false);
 
+  const [massOrdering, setMassOrdering] = useState("normal")
+  const [crossSection, setCrossSection] = useState(XSNames.SV2003)
+  const [detector, setDetector] = useState({current: defaultDetector.name, ...defaultDetector})
+
   const [state, setState] = useState({
-      cores: defaultCores,
-      crossSection: XSNames.SV2003,
-      massOrdering: "normal", // or "inverted"
       reactorLFStart: new Date("2018-01-01T00:00:00Z"),
       reactorLFEnd: new Date("2018-12-01T00:00:00Z"),
-      detector: {
-        current: "Boulby",
-        lat: 54.555129,
-        lon: -0.80089,
-        elevation: -1050,
-      },
       geoneutrino: {
         U238flux: 1e6, // cm-2 s-1
         ThURatio: 3.9, // no units
         KURatio: 1e4, // no units
         crustSignal: true
       },
-      spectrum: {
-        geoU: (new Float64Array(1000)).fill(0),
-        geoTh: (new Float64Array(1000)).fill(0),
-        geoK: (new Float64Array(1000)).fill(0)
-      },
   })
   useEffect(() => updateSpectrum({}), [])
 
   const updateSpectrum = (newState = {}) => {
+    console.log("newState", newState)
     const nstate = { ...state, ...newState }
-
-    const { lat, lon, elevation } = nstate.detector;
-    const [x, y, z] = project(lat, lon, elevation).map((n) => n / 1000);
-
-    const newCores = Object.fromEntries(Object.entries(nstate.cores).map(([name, core]) => {
-      const dist = Math.hypot(x - core.x, y - core.y, z - core.z);
-      const lf = core.loadFactor(nstate.reactorLFStart, nstate.reactorLFEnd)
-
-      return [name, core.setSignal(dist, lf, nstate.massOrdering, nstate.crossSection)];
-    }));
-
-    let crustFlux = {
-      u: 0,
-      th: 0,
-      k: 0,
-    }
-
-    if (nstate.geoneutrino.crustSignal === true){
-      crustFlux = getCrustFlux(lon, lat)
-    }
-
-    const crossSection = XSFuncs[nstate.crossSection]
-
-    let survivalProbability;
-    switch (nstate.massOrdering) {
-      case ("inverted"):
-        survivalProbability = averageSurvivalProbabilityInverted;
-        break;
-      case ("normal"):
-      default:
-        survivalProbability = averageSurvivalProbabilityNormal;
-        break;
-    }
-    const uMantleFlux = nstate.geoneutrino.U238flux;
-    const geoU = antineutrinoSpectrum238U.map((v, i) => {
-      return v * (crustFlux.u * 1e6 + uMantleFlux) * SECONDS_PER_YEAR * crossSection((0.005 + i / 100)) * 1e32 * survivalProbability;
-    })
-    const thMantleFlux = uMantleFlux * nstate.geoneutrino.ThURatio * (ISOTOPIC_NEUTRINO_LUMINOSITY.TH232 / ISOTOPIC_NEUTRINO_LUMINOSITY.U238) * (ISOTOPIC_NATURAL_ABUNDANCE.TH232 / ISOTOPIC_NATURAL_ABUNDANCE.U238);
-    const geoTh = antineutrinoSpectrum232Th.map((v, i) => {
-      return v * (crustFlux.th * 1e6 + thMantleFlux) * SECONDS_PER_YEAR * crossSection((0.005 + i / 100)) * 1e32 * survivalProbability;
-    })
-    const kMantleFlux = uMantleFlux * nstate.geoneutrino.KURatio * (ISOTOPIC_NEUTRINO_LUMINOSITY.K40 / ISOTOPIC_NEUTRINO_LUMINOSITY.U238) * (ISOTOPIC_NATURAL_ABUNDANCE.K40 / ISOTOPIC_NATURAL_ABUNDANCE.U238);
-    const geoK = antineutrinoSpectrum40K.map((v, i) => {
-      return v * (crustFlux.k * 1e6 + kMantleFlux) * SECONDS_PER_YEAR * crossSection((0.005 + i / 100)) * 1e32 * survivalProbability;
-    })
 
     setAppLoaded(true)
     setState({
       ...nstate,
-      cores: newCores,
-      spectrum: {
-        geoU: geoU,
-        geoTh: geoTh,
-        geoK: geoK
-      },
     })
   }
-  const setMassOrdering = (value) => {
-    updateSpectrum({ massOrdering: value })
-  }
-  const setCrossSection = (value) => {
-    updateSpectrum({ crossSection: value })
-  }
-  const setDetectorMode = (event) => {
-    const value = event.currentTarget.value;
-    let newDetector = { current: value };
-    if (value !== 'custom' && value !== 'follow') {
-      let preset = presets.find(detector => detector.name === value);
-      newDetector.lat = preset.lat;
-      newDetector.lon = preset.lon;
-      newDetector.elevation = preset.elevation;
-    }
-    updateSpectrum({ detector: { ...state.detector, ...newDetector } })
-  }
-  const setDetector = (newDetector) => {
-    updateSpectrum({ detector: { ...state.detector, ...newDetector } })
-  }
+
   const mapMouseMove = (event) => {
-    if (state.detector.current !== 'follow') {
+    if (detector.current !== 'follow') {
       return null;
     }
     let { lat, lng } = event.latlng;
@@ -150,8 +72,55 @@ function App(props){
     while (lng < -180) {
       lng = lng + 360;
     }
-    updateSpectrum({ detector: { ...state.detector, lat: lat, lon: lng } })
+    setDetector({ ...detector, lat: lat, lon: lng })
   }
+
+  const { lat, lon, elevation } = detector;
+  const [x, y, z] = project(lat, lon, elevation).map((n) => n / 1000);
+
+  const cores = Object.fromEntries(Object.entries(defaultCores).map(([name, core]) => {
+    const dist = Math.hypot(x - core.x, y - core.y, z - core.z);
+    const lf = core.loadFactor(state.reactorLFStart, state.reactorLFEnd)
+
+    return [name, core.setSignal(dist, lf, massOrdering, crossSection)];
+  }));
+
+  let crustFlux = {
+    u: 0,
+    th: 0,
+    k: 0,
+  }
+
+  if (state.geoneutrino.crustSignal === true){
+    crustFlux = getCrustFlux(detector.lon, detector.lat)
+  }
+
+  const XSFunc = XSFuncs[crossSection]
+
+  const survivalProbability = {
+    "inverted": averageSurvivalProbabilityInverted,
+    "normal": averageSurvivalProbabilityNormal,
+  }[massOrdering]
+  console.log("survivalProb", survivalProbability)
+
+  const uMantleFlux = state.geoneutrino.U238flux;
+  const geoU = antineutrinoSpectrum238U.map((v, i) => {
+    return v * (crustFlux.u * 1e6 + uMantleFlux) * SECONDS_PER_YEAR * XSFunc((0.005 + i / 100)) * 1e32 * survivalProbability;
+  })
+  const thMantleFlux = uMantleFlux * state.geoneutrino.ThURatio * (ISOTOPIC_NEUTRINO_LUMINOSITY.TH232 / ISOTOPIC_NEUTRINO_LUMINOSITY.U238) * (ISOTOPIC_NATURAL_ABUNDANCE.TH232 / ISOTOPIC_NATURAL_ABUNDANCE.U238);
+  const geoTh = antineutrinoSpectrum232Th.map((v, i) => {
+    return v * (crustFlux.th * 1e6 + thMantleFlux) * SECONDS_PER_YEAR * XSFunc((0.005 + i / 100)) * 1e32 * survivalProbability;
+  })
+  const kMantleFlux = uMantleFlux * state.geoneutrino.KURatio * (ISOTOPIC_NEUTRINO_LUMINOSITY.K40 / ISOTOPIC_NEUTRINO_LUMINOSITY.U238) * (ISOTOPIC_NATURAL_ABUNDANCE.K40 / ISOTOPIC_NATURAL_ABUNDANCE.U238);
+  const geoK = antineutrinoSpectrum40K.map((v, i) => {
+    return v * (crustFlux.k * 1e6 + kMantleFlux) * SECONDS_PER_YEAR * XSFunc((0.005 + i / 100)) * 1e32 * survivalProbability;
+  })
+  const spectrum ={
+    geoU:geoU,
+    geoTh: geoTh,
+    geoK: geoK,
+  }
+  console.log(spectrum)
   return (
       <Container fluid={true}>
         <Row style={{ minHeight: "100vh" }}>
@@ -160,7 +129,7 @@ function App(props){
               onMousemove={mapMouseMove}
               cores={defaultCores}
               detectorList={presets}
-              detector={state.detector}
+              detector={detector}
               changeDetector={setDetector}
             />
           </Col>
@@ -168,16 +137,16 @@ function App(props){
            {!appLoaded &&
             <h1>Loading...</h1>
             }
-            <NuSpectrumPlot cores={state.cores} {...state} />
+            <NuSpectrumPlot detector={detector} cores={cores} spectrum={spectrum}/>
             <Tabs unmountOnExit={false} defaultActiveKey="detector">
               <Tab eventKey="detector" title="Detector">
-                <StatsPanel cores={state.cores} spectrum={state.spectrum} crossSection={state.crossSection}/>
-                <DetectorPhysicsPane {...state} setCrossSection={setCrossSection} setMassOrdering={setMassOrdering} XSNames={XSNames}/>
-                <DetectorLocationPane {...state} setDetectorMode={setDetectorMode} updateSpectrum={updateSpectrum}/>
+                <StatsPanel cores={cores} spectrum={spectrum} crossSection={crossSection}/>
+                <DetectorPhysicsPane crossSection={crossSection} massOrdering={massOrdering} setCrossSection={setCrossSection} setMassOrdering={setMassOrdering} XSNames={XSNames}/>
+                <DetectorLocationPane detector={detector} setDetector={setDetector} updateSpectrum={updateSpectrum}/>
              </Tab>
               <Tab eventKey="reactors" title="Reactors">
                 <CoreIAEARange {...state} updateSpectrum={updateSpectrum}/>
-                <CoreList cores={state.cores} {...state} updateSpectrum={updateSpectrum} />
+                <CoreList cores={cores} {...state} updateSpectrum={updateSpectrum} />
               </Tab>
               <Tab eventKey="geonu" title="GeoNu">
                 <MantleFlux {...state} updateSpectrum={updateSpectrum}/>
