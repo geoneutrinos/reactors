@@ -130,9 +130,7 @@ interface ReactorCore{
  detectorNIU: number;
 
  spectrum: (crossSection:string) => Float32Array;
- setCustomLoad: (load:number) => ReactorCore;
  setSignal:  (dist:number, lf:number, massOrdering:string, crossSection:string) => ReactorCore;
- clearCustomLoad: () => ReactorCore;
  loadFactor: (start?:Date, stop?:Date) => number;
 }
 
@@ -226,8 +224,6 @@ function ReactorCore({name, lat, lon, elevation, type, mox, power, custom=false,
       spectrumType: spectrumType,
       lf_cache: {},
       spectrum: function(crossSection:string) { return spectrums[crossSection][this.spectrumType] },
-      setCustomLoad: function(load:number) { return {...this, loadOverride:load}},
-      clearCustomLoad: function() { return {...this, loadOverride:undefined}},
       loadFactor: loadFactor,
       detectorDistance: 0,
       detectorSignal: (new Float32Array(1000)).fill(0),

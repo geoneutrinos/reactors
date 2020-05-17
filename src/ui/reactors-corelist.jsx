@@ -35,24 +35,23 @@ const CoreType = ({ core }) => {
 };
 
 const CoreListItem = ({
-  cores,
   core,
-  reactorLFStart,
-  reactorLFEnd,
-  updateSpectrum,
+  reactorLF,
+  coreMods,
+  setCoreMods,
 }) => {
-  const lf = core.loadFactor(reactorLFStart, reactorLFEnd);
+  const lf = core.loadFactor(reactorLF.start, reactorLF.end);
   const fullPower = () => {
-    const newCores = {...cores, [core.name]: core.setCustomLoad(1)};
-    updateSpectrum({cores: newCores})
+    const newMods = {...coreMods, [core.name]: {loadOverride: 1}};
+    setCoreMods(newMods)
   };
   const iaeaPower = () => {
-    const newCores = {...cores, [core.name]: core.clearCustomLoad()};
-    updateSpectrum({cores: newCores})
+    const newMods = {...coreMods, [core.name]: {loadOverride: undefined}};
+    setCoreMods(newMods)
   };
   const noPower = () => {
-    const newCores = {...cores, [core.name]: core.setCustomLoad(0)};
-    updateSpectrum({cores: newCores})
+    const newMods = {...coreMods, [core.name]: {loadOverride: 0}};
+    setCoreMods(newMods)
   };
   let dist = core.detectorDistance.toFixed(0);
   if (core.detectorDistance < 10) {
@@ -103,9 +102,9 @@ const CoreListItem = ({
 
 export const CoreList = ({
   cores,
-  reactorLFStart,
-  reactorLFEnd,
-  updateSpectrum,
+  reactorLF,
+  coreMods,
+  setCoreMods,
 }) => {
   const [filter, setFilter] = useState("");
   const [displayLength, setDisplayLength] = useState(10);
@@ -136,16 +135,16 @@ export const CoreList = ({
   };
 
   const fullPowerAll = () => {
-    const newCores = Object.fromEntries(Object.entries(cores).map(([name, core]) => [name, core.setCustomLoad(1)]));
-    updateSpectrum({cores: newCores})
+    const coreMods = Object.fromEntries(Object.entries(cores).map(([name, core]) => [name, {loadOverride: 1}]));
+    setCoreMods(coreMods)
   };
   const noPowerAll = () => {
-    const newCores = Object.fromEntries(Object.entries(cores).map(([name, core]) => [name, core.setCustomLoad(0)]));
-    updateSpectrum({cores: newCores})
+    const coreMods = Object.fromEntries(Object.entries(cores).map(([name, core]) => [name, {loadOverride: 0}]));
+    setCoreMods(coreMods)
   };
   const iaeaPowerAll = () => {
-    const newCores = Object.fromEntries(Object.entries(cores).map(([name, core]) => [name, core.clearCustomLoad()]));
-    updateSpectrum({cores: newCores})
+    const coreMods = Object.fromEntries(Object.entries(cores).map(([name, core]) => [name, {loadOverride: undefined}]));
+    setCoreMods(coreMods)
   };
 
   const sortFunctions = {
@@ -218,10 +217,9 @@ export const CoreList = ({
             <CoreListItem
               key={core.name}
               core={core}
-              cores={cores}
-              reactorLFStart={reactorLFStart}
-              reactorLFEnd={reactorLFEnd}
-              updateSpectrum={updateSpectrum}
+              reactorLF={reactorLF}
+              coreMods={coreMods}
+              setCoreMods={setCoreMods}
             />
           ))}
       </ListGroup>

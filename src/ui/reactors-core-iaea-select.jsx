@@ -6,16 +6,15 @@ const years = range(2003, 2019);
 const months = range(1, 13);
 
 export const CoreIAEARange = ({
-  reactorLFStart,
-  reactorLFEnd,
-  updateSpectrum,
+  reactorLF,
+  setReactorLF
 }) => {
-  const [startYear, setStartYear] = useState(reactorLFStart.getUTCFullYear());
+  const [startYear, setStartYear] = useState(reactorLF.start.getUTCFullYear());
   const [startMonth, setStartMonth] = useState(
-    reactorLFStart.getUTCMonth() + 1
+    reactorLF.start.getUTCMonth() + 1
   );
-  const [endYear, setEndYear] = useState(reactorLFEnd.getUTCFullYear());
-  const [endMonth, setEndMonth] = useState(reactorLFEnd.getUTCMonth() + 1);
+  const [endYear, setEndYear] = useState(reactorLF.end.getUTCFullYear());
+  const [endMonth, setEndMonth] = useState(reactorLF.end.getUTCMonth() + 1);
 
   const checkAndSet = ({ startYear, startMonth, endYear, endMonth }) => {
     if (endYear < startYear) {
@@ -29,9 +28,9 @@ export const CoreIAEARange = ({
     setStartMonth(startMonth);
     setEndYear(endYear);
     setEndMonth(endMonth);
-    updateSpectrum({
-      reactorLFStart: new Date(Date.UTC(startYear, startMonth - 1)),
-      reactorLFEnd: new Date(Date.UTC(endYear, endMonth - 1)),
+    setReactorLF({
+      start: new Date(Date.UTC(startYear, startMonth - 1)),
+      end: new Date(Date.UTC(endYear, endMonth - 1)),
     });
   };
 

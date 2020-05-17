@@ -14,7 +14,7 @@ import "leaflet-contextmenu/dist/leaflet.contextmenu.css";
 
 const DetectorCircles = React.memo(function DetectorCircles({
   detectors,
-  changeDetector,
+  setDetector,
 }) {
   const color = "#9d00ff";
   return detectors.map((detector) => {
@@ -26,12 +26,7 @@ const DetectorCircles = React.memo(function DetectorCircles({
         <br />
         <button
           onClick={() =>
-            changeDetector({
-              current: detector.name,
-              lat: detector.lat,
-              lon: detector.lon,
-              elevation: detector.elevation,
-            })
+            setDetector({current: detector.name, ...detector})
           }
         >
           Place Detector Here
@@ -101,12 +96,24 @@ const CoreCircles = React.memo(function CoreCircles({ cores }) {
 });
 
 export function NuMap({
-  onMousemove,
   detector,
-  changeDetector,
+  setDetector,
   cores,
   detectorList,
 }) {
+  const mapMouseMove = (event) => {
+    if (detector.current !== 'follow') {
+      return null;
+    }
+    let { lat, lng } = event.latlng;
+    while (lng > 180) {
+      lng = lng - 360;
+    }
+    while (lng < -180) {
+      lng = lng + 360;
+    }
+    setDetector({ ...detector, lat: lat, lon: lng })
+  }
   const mapStyle = {
     height: "100%",
     cursor: "crosshair",
@@ -118,7 +125,7 @@ export function NuMap({
       {
         text: "Place Detector Here",
         callback: (e) =>
-          changeDetector({
+        setDetector({
             current: "custom",
             elevation: 0,
             lat: e.latlng.lat,
@@ -128,13 +135,17 @@ export function NuMap({
       "-",
       {
         text: "Follow Cursor",
-        callback: (e) => changeDetector({ current: "follow" }),
+        callback: (e) => setDetector({ current: "follow",
+            elevation: 0,
+            lat: e.latlng.lat,
+            lon: e.latlng.lng,
+       }),
       },
     ],
   };
   return (
     <Map
-      onMousemove={onMousemove}
+      onMousemove={mapMouseMove}
       style={mapStyle}
       center={[0, 0]}
       zoom={2}
@@ -157,7 +168,7 @@ export function NuMap({
           <LayerGroup>
             <DetectorCircles
               detectors={detectorList}
-              changeDetector={changeDetector}
+              setDetector={setDetector}
             />
           </LayerGroup>
         </LayersControl.Overlay>

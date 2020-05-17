@@ -38,10 +38,11 @@ function App(props){
   const [massOrdering, setMassOrdering] = useState("normal")
   const [crossSection, setCrossSection] = useState(XSNames.SV2003)
   const [detector, setDetector] = useState({current: defaultDetector.name, ...defaultDetector})
+  const [reactorLF, setReactorLF] = useState({start: new Date("2018-01-01T00:00:00Z"), end: new Date("2018-12-01T00:00:00Z")})
+
+  const [coreMods, setCoreMods] = useState({})
 
   const [state, setState] = useState({
-      reactorLFStart: new Date("2018-01-01T00:00:00Z"),
-      reactorLFEnd: new Date("2018-12-01T00:00:00Z"),
       geoneutrino: {
         U238flux: 1e6, // cm-2 s-1
         ThURatio: 3.9, // no units
@@ -52,7 +53,6 @@ function App(props){
   useEffect(() => updateSpectrum({}), [])
 
   const updateSpectrum = (newState = {}) => {
-    console.log("newState", newState)
     const nstate = { ...state, ...newState }
 
     setAppLoaded(true)
@@ -61,28 +61,15 @@ function App(props){
     })
   }
 
-  const mapMouseMove = (event) => {
-    if (detector.current !== 'follow') {
-      return null;
-    }
-    let { lat, lng } = event.latlng;
-    while (lng > 180) {
-      lng = lng - 360;
-    }
-    while (lng < -180) {
-      lng = lng + 360;
-    }
-    setDetector({ ...detector, lat: lat, lon: lng })
-  }
-
   const { lat, lon, elevation } = detector;
   const [x, y, z] = project(lat, lon, elevation).map((n) => n / 1000);
 
   const cores = Object.fromEntries(Object.entries(defaultCores).map(([name, core]) => {
-    const dist = Math.hypot(x - core.x, y - core.y, z - core.z);
-    const lf = core.loadFactor(state.reactorLFStart, state.reactorLFEnd)
+    const modCore = {...core, ...coreMods[name]}
+    const dist = Math.hypot(x - modCore.x, y - modCore.y, z - modCore.z);
+    const lf = modCore.loadFactor(reactorLF.start, reactorLF.end)
 
-    return [name, core.setSignal(dist, lf, massOrdering, crossSection)];
+    return [name, modCore.setSignal(dist, lf, massOrdering, crossSection)];
   }));
 
   let crustFlux = {
@@ -101,7 +88,6 @@ function App(props){
     "inverted": averageSurvivalProbabilityInverted,
     "normal": averageSurvivalProbabilityNormal,
   }[massOrdering]
-  console.log("survivalProb", survivalProbability)
 
   const uMantleFlux = state.geoneutrino.U238flux;
   const geoU = antineutrinoSpectrum238U.map((v, i) => {
@@ -120,17 +106,15 @@ function App(props){
     geoTh: geoTh,
     geoK: geoK,
   }
-  console.log(spectrum)
   return (
       <Container fluid={true}>
         <Row style={{ minHeight: "100vh" }}>
           <Col style={{ minHeight: "50vh" }}>
             <NuMap
-              onMousemove={mapMouseMove}
               cores={defaultCores}
               detectorList={presets}
               detector={detector}
-              changeDetector={setDetector}
+              setDetector={setDetector}
             />
           </Col>
           <Col lg={6} style={{ maxHeight: "100vh", overflow: "scroll" }}>
@@ -142,11 +126,11 @@ function App(props){
               <Tab eventKey="detector" title="Detector">
                 <StatsPanel cores={cores} spectrum={spectrum} crossSection={crossSection}/>
                 <DetectorPhysicsPane crossSection={crossSection} massOrdering={massOrdering} setCrossSection={setCrossSection} setMassOrdering={setMassOrdering} XSNames={XSNames}/>
-                <DetectorLocationPane detector={detector} setDetector={setDetector} updateSpectrum={updateSpectrum}/>
+                <DetectorLocationPane detector={detector} setDetector={setDetector}/>
              </Tab>
               <Tab eventKey="reactors" title="Reactors">
-                <CoreIAEARange {...state} updateSpectrum={updateSpectrum}/>
-                <CoreList cores={cores} {...state} updateSpectrum={updateSpectrum} />
+                <CoreIAEARange reactorLF={reactorLF} setReactorLF={setReactorLF}/>
+                <CoreList cores={cores} reactorLF={reactorLF} coreMods={coreMods} setCoreMods={setCoreMods}/>
               </Tab>
               <Tab eventKey="geonu" title="GeoNu">
                 <MantleFlux {...state} updateSpectrum={updateSpectrum}/>

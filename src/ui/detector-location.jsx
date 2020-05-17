@@ -22,7 +22,6 @@ const presetOptions = Object.keys(presetGroups).map((key) => {
 export const DetectorLocationPane = ({
   detector,
   setDetector,
-  updateSpectrum,
 }) => {
   const [internalDetector, setinternalDetector] = useState({
     lat: detector.lat,
@@ -56,7 +55,7 @@ export const DetectorLocationPane = ({
     }
 
     if (!isNaN(parsed) && parsed !== detector[key]) {
-      updateSpectrum({ detector: { ...detector, [key]: parsed } });
+      setDetector({ ...detector, current:"custom", [key]: parsed });
     }
   };
 
