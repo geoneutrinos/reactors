@@ -96,6 +96,10 @@ interface LoadFactor {
   load: number;
   days: number;
 }
+interface Direction {
+  phi: number;
+  elev: number;
+}
 
 const LoadFactor = (date: string, load: number): LoadFactor => {
   const dateObj = new Date(date + "-01T00:00:00Z");
@@ -128,9 +132,10 @@ interface ReactorCore{
  detectorSignal: Float32Array;
  detectorAnySignal: boolean;
  detectorNIU: number;
+ direction: Direction;
 
  spectrum: (crossSection:string) => Float32Array;
- setSignal:  (dist:number, lf:number, massOrdering:MassOrdering, crossSection:string) => ReactorCore;
+ setSignal:  (dist:number, lf:number, massOrdering:MassOrdering, crossSection:string, direction:Direction) => ReactorCore;
  loadFactor: (start?:Date, stop?:Date) => number;
 }
 
@@ -174,7 +179,7 @@ function ReactorCore({name, lat, lon, elevation, type, mox, power, custom=false,
     return this.lf_cache[lf_key]
   }
 
-  function setSignal(this: ReactorCore, dist:number, lf:number, massOrdering:MassOrdering, crossSection:string): ReactorCore{
+  function setSignal(this: ReactorCore, dist:number, lf:number, massOrdering:MassOrdering, crossSection:string, direction: Direction): ReactorCore{
     const spectrum = this.spectrum(crossSection);
     const power = this.power;
     const distsq = dist ** 2;
@@ -199,7 +204,7 @@ function ReactorCore({name, lat, lon, elevation, type, mox, power, custom=false,
     const detectorNIU = sum(signal) * 0.01
     const detectorAnySignal = (detectorNIU> 0)
 
-    return {...this, detectorSignal:signal, detectorDistance: dist, detectorNIU:detectorNIU, detectorAnySignal: detectorAnySignal}
+    return {...this, detectorSignal:signal, detectorDistance: dist, detectorNIU:detectorNIU, detectorAnySignal: detectorAnySignal, direction: direction}
   }
 
     return {
@@ -224,6 +229,7 @@ function ReactorCore({name, lat, lon, elevation, type, mox, power, custom=false,
       detectorAnySignal: false,
       detectorNIU: 0,
       setSignal: setSignal,
+      direction: {phi: 0, elev: 0},
     }
   }
 

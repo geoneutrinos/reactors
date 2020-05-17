@@ -62,7 +62,7 @@ function coreCircleColor(type) {
 const CoreCircles = React.memo(function CoreCircles({ cores }) {
   const coreList = Object.values(cores);
   return coreList.map((core) => {
-    const color = coreCircleColor(core.type);
+    const color = coreCircleColor(core.spectrumType);
     const CorePopup = (
       <Popup>
         <b>Core Name:</b> {core.name}

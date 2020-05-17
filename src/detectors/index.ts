@@ -1,3 +1,5 @@
+import {zip} from 'lodash';
+
 type DetecorPreset = {
     name: string,
     lat: number,
@@ -41,3 +43,35 @@ export const presets: DetecorPreset[] = [
     // South America
     {name: "ANDES", lat:-30.25, lon: -69.88, elevation:0, overburden:4200, region:"South America"},
 ]
+
+interface Detector {
+    current: string,
+    lat: number,
+    lon: number,
+    elevation: number
+}
+
+export const detectorENUProjector = (detector: Detector) => {
+  type Row = [number, number, number]
+  const {sin, cos, atan2, hypot} = Math;
+  const lon = detector.lon * Math.PI/180
+  const lat = detector.lat * Math.PI/180
+  const ECEFtoENU: [Row, Row, Row] = [
+    [-sin(lon)           ,  cos(lon)           , 0       ],
+    [-sin(lat) * cos(lon), -sin(lat) * sin(lon), cos(lat)],
+    [ cos(lat) * cos(lon),  cos(lat) * sin(lon), sin(lat)],
+  ]
+
+  return (dxyz:[number, number, number]) => {
+    const enu = {
+      x: zip(ECEFtoENU[0], dxyz).map(([a, b]) => a! * b!).reduce((a,b) => a +b, 0),
+      y: zip(ECEFtoENU[1], dxyz).map(([a, b]) => a! * b!).reduce((a,b) => a +b, 0),
+      z: zip(ECEFtoENU[2], dxyz).map(([a, b]) => a! * b!).reduce((a,b) => a +b, 0),
+    }
+
+    return {
+      phi:atan2(enu.y, enu.x) * (180/Math.PI),
+      elev: 90 - atan2(hypot(enu.x, enu.y), enu.z) * (180/Math.PI)
+    }
+  }
+}
