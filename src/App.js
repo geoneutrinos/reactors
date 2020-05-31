@@ -120,13 +120,6 @@ function App(props) {
                 spectrum={spectrum}
                 crossSection={crossSection}
               />
-              <DetectorPhysicsPane
-                crossSection={crossSection}
-                massOrdering={massOrdering}
-                setCrossSection={setCrossSection}
-                setMassOrdering={setMassOrdering}
-                XSNames={XSNames}
-              />
               <DetectorLocationPane
                 detector={detector}
                 setDetector={setDetector}
@@ -152,6 +145,15 @@ function App(props) {
               <CrustFlux
                 includeCrust={includeCrust}
                 setIncludeCrust={setIncludeCrust}
+              />
+            </Tab>
+            <Tab eventKey="physics" title="Physics">
+              <DetectorPhysicsPane
+                crossSection={crossSection}
+                massOrdering={massOrdering}
+                setCrossSection={setCrossSection}
+                setMassOrdering={setMassOrdering}
+                XSNames={XSNames}
               />
             </Tab>
             <Tab eventKey="output" title="Output">
