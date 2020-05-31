@@ -116,8 +116,8 @@ export function StatsPanel({ cores, spectrum, crossSection }) {
         </small>
         <br />
         <small>
-          1 kT H<sub>2</sub>O contains 6.68x10<sup>31</sup> free proton and
-          33.4x10<sup>31</sup> electron targets
+          1 kT H<sub>2</sub>O contains 6.686x10<sup>31</sup> free proton and
+          3.343x10<sup>32</sup> electron targets
         </small>
         <br />
       </Card.Body>
