@@ -9,6 +9,10 @@ import {
   Row,
   Col,
 } from "react-bootstrap";
+import {zip} from 'lodash';
+
+import { saveAs } from "file-saver";
+
 import { coreNameSortCompare } from "../reactor-cores";
 
 const CoreType = ({ core }) => {
@@ -59,6 +63,12 @@ const CoreListItem = ({
   } else if (core.detectorDistance < 100) {
     dist = core.detectorDistance.toFixed(1);
   }
+  const downloadCore = () => {
+    const bins = core.detectorSignal.map((n,i) => 0.005 + i * 0.01)
+    const csv = zip(bins, core.detectorSignal).map(([bin, sig]) => `${bin.toFixed(3)}, ${sig}`)
+    const data = new Blob(["bin center (MeV), NIU\n", csv.join("\n")])
+    saveAs(data, `corespec_${core.name}.csv`)
+  }
   return (
     <ListGroup.Item>
       <h6>{core.name}</h6>
@@ -75,7 +85,13 @@ const CoreListItem = ({
               Turn Core Off
             </Button>
           </ButtonGroup>
-          <br />
+        </Col>
+        <Col xl>
+          <Button onClick={() => downloadCore()} size="sm" variant="success">Downlaod Core Spectrum</Button>
+        </Col>
+      </Row>
+      <Row>
+        <Col xl="auto">
           Type: <CoreType core={core} />
           <br />
           <span title="The Reference thermal power of the plant expressed in MW(th). The reactor thermal power is the net heat transferred from the fuel to the coolant.">
