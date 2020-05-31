@@ -109,7 +109,8 @@ const CoreListItem = ({
           Lon: {core.lon.toFixed(4)} E<br />
           Elevation: {core.elevation} meters
           <br />
-          Distance: {dist} km
+          Distance: {dist} km< br/>
+          φ: {core.direction.phi.toFixed(1)} θ: {core.direction.elev.toFixed(1)}
         </Col>
       </Row>
     </ListGroup.Item>
