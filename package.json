@@ -4,15 +4,16 @@
   "private": true,
   "homepage": ".",
   "dependencies": {
-    "@types/jest": "^25.2.1",
-    "@types/lodash": "^4.14.150",
-    "@types/node": "^13.13.0",
-    "@types/react": "^16.9.34",
-    "@types/react-dom": "^16.9.6",
-    "bootstrap": "^4.4.1",
+    "@types/jest": "^25.2.3",
+    "@types/lodash": "^4.14.154",
+    "@types/node": "^13.13.9",
+    "@types/react": "^16.9.35",
+    "@types/react-dom": "^16.9.8",
+    "bootstrap": "^4.5.0",
     "d3": "^5.15.1",
     "ecef-projector": "^1.0.1",
-    "gh-pages": "^2.2.0",
+    "file-saver": "^2.0.2",
+    "gh-pages": "^3.0.0",
     "leaflet": "^1.6.0",
     "leaflet-contextmenu": "^1.4.0",
     "lodash": "^4.17.15",
@@ -23,7 +24,7 @@
     "react-leaflet": "^2.6.3",
     "react-plotly.js": "^2.4.0",
     "react-scripts": "3.4.1",
-    "typescript": "^3.8.3"
+    "typescript": "^3.9.3"
   },
   "scripts": {
     "predeploy": "npm run build",
