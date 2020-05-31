@@ -12,6 +12,7 @@ import {
   CrustFlux,
   DetectorPhysicsPane,
   DetectorLocationPane,
+  Visible,
 } from "./ui";
 import { CoreIAEARange } from "./ui/reactors-core-iaea-select";
 import { defaultCores } from "./reactor-cores";
@@ -114,6 +115,7 @@ function App(props) {
           />
           <Tabs unmountOnExit={false} defaultActiveKey="detector">
             <Tab eventKey="detector" title="Detector">
+              <Visible>
               <CoreDirectionPlot cores={cores} />
               <StatsPanel
                 cores={cores}
@@ -124,6 +126,7 @@ function App(props) {
                 detector={detector}
                 setDetector={setDetector}
               />
+              </Visible>
             </Tab>
             <Tab eventKey="reactors" title="Reactors">
               <CoreIAEARange
