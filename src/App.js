@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from "react";
 
 import { project } from "ecef-projector";
-import { Container, Row, Col, Tab, Tabs } from "react-bootstrap";
+import { Container, Row, Col, Tab, Tabs, Button } from "react-bootstrap";
 
 import { NuSpectrumPlot, CoreDirectionPlot } from "./ui/plot";
 import {
@@ -15,7 +15,7 @@ import {
   Visible,
 } from "./ui";
 import { CoreIAEARange } from "./ui/reactors-core-iaea-select";
-import { defaultCores } from "./reactor-cores";
+import { defaultCores, ReactorCore } from "./reactor-cores";
 import { presets, detectorENUProjector } from "./detectors";
 import { getCrustFlux } from "./crust-model";
 import { mantleGeoSpectrum } from "./mantle";
@@ -51,6 +51,7 @@ function App(props) {
   });
 
   const [coreMods, setCoreMods] = useState({});
+  const [customCores, setCustomCores] = useState({})
 
   //geonu state
   const [includeCrust, setIncludeCrust] = useState(true);
@@ -67,8 +68,10 @@ function App(props) {
       const { lat, lon, elevation } = detector;
       const [x, y, z] = project(lat, lon, elevation).map((n) => n / 1000);
 
+      const tmpCores = {...defaultCores, ...customCores}
+
       return Object.fromEntries(
-        Object.entries(defaultCores).map(([name, core]) => {
+        Object.entries(tmpCores).map(([name, core]) => {
           const modCore = { ...core, ...coreMods[name] };
           const dist = Math.hypot(x - modCore.x, y - modCore.y, z - modCore.z);
           const lf = modCore.loadFactor(reactorLF.start, reactorLF.end);
@@ -81,7 +84,7 @@ function App(props) {
           ];
         })
       )},
-    [coreMods, reactorLF, crossSection, massOrdering, detector]
+    [coreMods, reactorLF, crossSection, massOrdering, detector, customCores]
   );
 
   const crustFlux = {
@@ -129,6 +132,7 @@ function App(props) {
               </Visible>
             </Tab>
             <Tab eventKey="reactors" title="Reactors">
+              <Button onClick={() => setCustomCores({"custom1": ReactorCore({custom: true, name: "custom1", lat: 0, lon:0, elevation: 0, power:1000, fisionFractions:{U235:1, U238:0, PU239: 0, PU241:0}})})}>Add Custom Core</Button>
               <CoreIAEARange
                 reactorLF={reactorLF}
                 setReactorLF={setReactorLF}

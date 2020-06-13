@@ -3,7 +3,7 @@ import { partialInteractionRate } from '../physics/reactor-antineutrinos'
 import { neutrinoEnergyFor } from '../physics/helpers'
 import { XSFuncs, XSNames } from '../physics/neutrino-cross-section'
 import { FISSION_ENERGIES, ELEMENTARY_CHARGE ,Isotopes} from '../physics/constants'
-import { range, zip, sum } from 'lodash';
+import { range, zip, sum, memoize } from 'lodash';
 import { project } from 'ecef-projector';
 import { MassOrdering, invertedNeutrinoOscilationSpectrum, normalNeutrinoOscilationSpectrum } from '../physics/neutrino-oscillation'
 
@@ -19,7 +19,14 @@ function mevRange(count = 1000, start = 0, stop = 10) {
 
 const bins = mevRange();
 
-const FUEL_FRACTIONS: {[type: string]: {[key: string]: number}} = {
+interface FisionFractions {
+  [Isotopes.U235]: number;
+  [Isotopes.U238]: number;
+  [Isotopes.PU239]: number;
+  [Isotopes.PU241]: number
+}
+
+const FUEL_FRACTIONS: {[type: string]: FisionFractions} = {
   "LEU": {
     "U235":  0.56,
     "U238":  0.08, 
@@ -64,11 +71,11 @@ const FUEL_FRACTIONS: {[type: string]: {[key: string]: number}} = {
   }
 }
 
-function spectrum(spectrumType:string, crossSection:(Ev: number) => number){
+function spectrum(fisionFractions: FisionFractions, crossSection:(Ev: number) => number){
   return bins.map((Ev) => {
       return Object.keys(Isotopes).map((v) => {
         const isotope: Isotopes = v as Isotopes;
-        const fuelFraction = FUEL_FRACTIONS[spectrumType][v];
+        const fuelFraction = fisionFractions[isotope];
         const fisionEnery = FISSION_ENERGIES[isotope];
         const neutrinoEnergy = neutrinoEnergyFor(isotope)
         const rate = partialInteractionRate(Ev, fisionEnery, crossSection, neutrinoEnergy)
@@ -79,17 +86,9 @@ function spectrum(spectrumType:string, crossSection:(Ev: number) => number){
   })
 }
 
-function fuelMixSpectrum(crossSection:(Ev: number) => number){
-  return Object.fromEntries(
-    Object.keys(FUEL_FRACTIONS).map((spectrumType) => {
-      return [spectrumType, spectrum(spectrumType, crossSection)]
-    })
-  )
-}
-
-const spectrums = Object.fromEntries(
-  Object.entries(XSFuncs).map(([name, func]) => [name, fuelMixSpectrum(func)])
-)
+const spectrums = memoize((fisionFractions:FisionFractions, crossSection: XSNames) => {
+  return spectrum(fisionFractions, XSFuncs[crossSection])
+}, (...args) => JSON.stringify(args))
 
 interface LoadFactor {
   date: Date;
@@ -133,30 +132,16 @@ interface ReactorCore{
  detectorAnySignal: boolean;
  detectorNIU: number;
  direction: Direction;
+ fisionFractions: FisionFractions;
 
- spectrum: (crossSection:string) => Float32Array;
- setSignal:  (dist:number, lf:number, massOrdering:MassOrdering, crossSection:string, direction:Direction) => ReactorCore;
+ spectrum: (crossSection:XSNames) => Float32Array;
+ setSignal:  (dist:number, lf:number, massOrdering:MassOrdering, crossSection:XSNames, direction:Direction) => ReactorCore;
  loadFactor: (start?:Date, stop?:Date) => number;
 }
 
-function ReactorCore({name, lat, lon, elevation, type, mox, power, custom=false, loads}: 
-  {name:string, lat: number, lon:number, elevation:number, type:string, mox:boolean, power:number, custom?:boolean, loads:LoadFactor[]}): ReactorCore{
+export function ReactorCore({name, lat, lon, elevation, power=0, fisionFractions, type="custom", spectrumType="custom", mox=false, custom=false, loads=[]}: 
+  {name:string, lat: number, lon:number, elevation:number, type:string, spectrumType:string, mox:boolean, power:number, custom?:boolean, loads:LoadFactor[], fisionFractions:FisionFractions}): ReactorCore{
     const [x, y, z] = project(lat, lon, elevation).map((n)=> n/1000);
-    const databaseToKnown:{ [key: string]: string; } = {
-       "LEU": "LEU",
-       "PWR": "LEU",
-       "BWR": "LEU",
-       "LWGR": "LEU",
-       "HWLWR": "LEU",
-       "PHWR": "PHWR",
-       "GCR": "GCR",
-       "HEU": "HEU",
-       "FBR": "FBR",
-    }
-    let spectrumType:string = databaseToKnown[type]
-    if (mox === true){
-      spectrumType = spectrumType + "_MOX"
-    }
 
   function loadFactor(this: ReactorCore, start = new Date(Date.UTC(2003, 0)), stop = new Date(Date.UTC(2018, 11))){
     if (this.loadOverride !== undefined){
@@ -179,7 +164,7 @@ function ReactorCore({name, lat, lon, elevation, type, mox, power, custom=false,
     return this.lf_cache[lf_key]
   }
 
-  function setSignal(this: ReactorCore, dist:number, lf:number, massOrdering:MassOrdering, crossSection:string, direction: Direction): ReactorCore{
+  function setSignal(this: ReactorCore, dist:number, lf:number, massOrdering:MassOrdering, crossSection:XSNames, direction: Direction): ReactorCore{
     const spectrum = this.spectrum(crossSection);
     const power = this.power;
     const distsq = dist ** 2;
@@ -222,7 +207,8 @@ function ReactorCore({name, lat, lon, elevation, type, mox, power, custom=false,
       z: z,
       spectrumType: spectrumType,
       lf_cache: {},
-      spectrum: function(crossSection:string) { return spectrums[crossSection][this.spectrumType] },
+      fisionFractions: fisionFractions,
+      spectrum: function(crossSection:XSNames) { return spectrums(this.fisionFractions, crossSection) },
       loadFactor: loadFactor,
       detectorDistance: 0,
       detectorSignal: (new Float32Array(1000)).fill(0),
@@ -247,12 +233,31 @@ const defaultCoreList = Object.keys(cores).map((core) =>{
     const lf:number = load!
     return LoadFactor(date, lf)
   });
+    const databaseToKnown:{ [key: string]: string; } = {
+       "LEU": "LEU",
+       "PWR": "LEU",
+       "BWR": "LEU",
+       "LWGR": "LEU",
+       "HWLWR": "LEU",
+       "PHWR": "PHWR",
+       "GCR": "GCR",
+       "HEU": "HEU",
+       "FBR": "FBR",
+    }
+    let spectrumType = databaseToKnown[coreParams.type]
+    if (coreParams.mox === 1){
+      spectrumType = spectrumType + "_MOX"
+    }
+
+    const fisionFractions = FUEL_FRACTIONS[spectrumType]
   return ReactorCore({
     name: c,
     lat: lat,
     lon: lon,
     elevation: elevation,
     type: coreParams.type,
+    spectrumType: spectrumType,
+    fisionFractions: fisionFractions,
     mox: Boolean(coreParams.mox),
     power: power,
     loads: LFs
