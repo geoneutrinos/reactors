@@ -21,7 +21,7 @@ export const DetectorPhysicsPane = ({
             onChange={(event) => setMassOrdering(event.target.value)}
             value={massOrdering}
           >
-            {Object.values(MassOrdering).map( order => <option value={order}>{order}</option>)}
+            {Object.values(MassOrdering).map( order => <option key={order} value={order}>{order}</option>)}
           </Form.Control>
         </Form.Group>
         <Form.Group controlId="neutrinoCrossSection">
@@ -32,7 +32,7 @@ export const DetectorPhysicsPane = ({
             value={crossSection}
           >
             {Object.values(XSNames).map( name => {
-            return <option value={name}>{name}</option>
+            return <option key={name} value={name}>{name}</option>
             })}
           </Form.Control>
         </Form.Group>

@@ -184,7 +184,7 @@ export const CoreList = ({
         <Form inline>
           <h5 className="mr-auto">Core List</h5>
           <Dropdown>
-            <Dropdown.Toggle variant="primary" id="dropdown-basic">
+            <Dropdown.Toggle variant="primary" id="dropdown-custom-roes">
               Custom Cores
             </Dropdown.Toggle>
 
@@ -198,7 +198,7 @@ export const CoreList = ({
             </Dropdown.Menu>
           </Dropdown>
           <Dropdown>
-            <Dropdown.Toggle variant="success" id="dropdown-basic">
+            <Dropdown.Toggle variant="success" id="dropdown-all-cores">
               Control all Cores
             </Dropdown.Toggle>
 
