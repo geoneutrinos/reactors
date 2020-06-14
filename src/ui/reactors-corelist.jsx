@@ -78,9 +78,10 @@ const CoreListItem = ({
             <Button onClick={fullPower} variant="secondary">
               Set to 100% Load
             </Button>
+            {core.type !== "custom" &&
             <Button onClick={iaeaPower} variant="secondary">
               Use IAEA LF Data
-            </Button>
+            </Button>}
             <Button onClick={noPower} variant="secondary">
               Turn Core Off
             </Button>
