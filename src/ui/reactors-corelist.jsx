@@ -122,6 +122,8 @@ export const CoreList = ({
   reactorLF,
   coreMods,
   setCoreMods,
+  addCustomModal,
+  manCustomModal
 }) => {
   const [filter, setFilter] = useState("");
   const [displayLength, setDisplayLength] = useState(10);
@@ -180,6 +182,20 @@ export const CoreList = ({
       <Card.Header>
         <Form inline>
           <h5 className="mr-auto">Core List</h5>
+          <Dropdown>
+            <Dropdown.Toggle variant="primary" id="dropdown-basic">
+              Custom Cores
+            </Dropdown.Toggle>
+
+            <Dropdown.Menu>
+              <Dropdown.Item onClick={addCustomModal}>
+                Add Custom Core
+              </Dropdown.Item>
+              <Dropdown.Item onClick={manCustomModal}>
+                Manage Custom Cores
+              </Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
           <Dropdown>
             <Dropdown.Toggle variant="success" id="dropdown-basic">
               Control all Cores

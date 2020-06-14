@@ -1,9 +1,10 @@
 import React, { useState, useMemo } from "react";
 
 import { project } from "ecef-projector";
-import { Container, Row, Col, Tab, Tabs, Button } from "react-bootstrap";
+import { Container, Row, Col, Tab, Tabs } from "react-bootstrap";
 
 import { NuSpectrumPlot, CoreDirectionPlot } from "./ui/plot";
+import {AddCustomCoreModal, ManageCustomCoreModal} from './ui/reactors-core-custom';
 import {
   NuMap,
   StatsPanel,
@@ -15,7 +16,7 @@ import {
   Visible,
 } from "./ui";
 import { CoreIAEARange } from "./ui/reactors-core-iaea-select";
-import { defaultCores, ReactorCore } from "./reactor-cores";
+import { defaultCores } from "./reactor-cores";
 import { presets, detectorENUProjector } from "./detectors";
 import { getCrustFlux } from "./crust-model";
 import { mantleGeoSpectrum } from "./mantle";
@@ -62,6 +63,11 @@ function App(props) {
   });
 
 
+  // UI State
+  const [addCustomModal, setAddCustomModal] = useState(false)
+  const [manCustomModal, setManCustomModal] = useState(false)
+
+
   const cores = useMemo(
     () => {
       const enuProject = detectorENUProjector(detector)
@@ -105,6 +111,7 @@ function App(props) {
         <Col style={{ minHeight: "50vh" }}>
           <NuMap
             cores={defaultCores}
+            customCores={customCores}
             detectorList={presets}
             detector={detector}
             setDetector={setDetector}
@@ -132,12 +139,15 @@ function App(props) {
               </Visible>
             </Tab>
             <Tab eventKey="reactors" title="Reactors">
-              <Button onClick={() => setCustomCores({"custom1": ReactorCore({custom: true, name: "custom1", lat: 0, lon:0, elevation: 0, power:1000, fisionFractions:{U235:1, U238:0, PU239: 0, PU241:0}})})}>Add Custom Core</Button>
+              <AddCustomCoreModal show={addCustomModal} customCores={customCores} setCustomCores={setCustomCores} close={() => setAddCustomModal(false)} />
+              <ManageCustomCoreModal show={manCustomModal} customCores={customCores} setCustomCores={setCustomCores} close={() => setManCustomModal(false)} />
               <CoreIAEARange
                 reactorLF={reactorLF}
                 setReactorLF={setReactorLF}
               />
               <CoreList
+                addCustomModal={() => setAddCustomModal(true)}
+                manCustomModal={() => setManCustomModal(true)}
                 cores={cores}
                 reactorLF={reactorLF}
                 coreMods={coreMods}

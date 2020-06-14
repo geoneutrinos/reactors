@@ -20,7 +20,24 @@ export function NuSpectrumPlot({ cores, spectrum, detector }) {
   const closestActiveIAEACoreSignal =
     closestActiveIAEACore?.detectorSignal || new Float32Array(1000).fill(0);
 
+  const customCores = coreList.filter((core) => core.custom === true)
+  const customCoreSignal = customCores.reduce((previous, current) => {
+    return previous.map(
+      (value, index) => value + current.detectorSignal[index]
+    );
+  }, new Float64Array(1000).fill(0));
+
   const data = [
+    {
+      x: evBins,
+      y: customCoreSignal,
+      name: "Custom Cores",
+      type: "scatter",
+      mode: "lines",
+      fill: "none",
+      marker: { color: "black" },
+      visible: sum(customCoreSignal) > 0,
+    },
     {
       x: evBins,
       y: spectrum.geoK,
@@ -111,7 +128,8 @@ export function CoreDirectionPlot({ cores }) {
   const PHWRcores = coreArr.filter((core) => core.spectrumType === "PHWR")
   const GCRcores = coreArr.filter((core) => core.spectrumType === "GCR")
   const LEUMoxCores = coreArr.filter((core) => core.spectrumType === "LEU_MOX")
-  const AllOtherCores = coreArr.filter((core) => core.spectrumType !== "LEU_MOX" && core.spectrumType !== "GCR" && core.spectrumType !== "PHWR")
+  const CustomCores = coreArr.filter((core) => core.spectrumType === "custom")
+  const AllOtherCores = coreArr.filter((core) => core.spectrumType !== "LEU_MOX" && core.spectrumType !== "GCR" && core.spectrumType !== "PHWR" && core.type !== "custom")
   return (
     <Plot
       data={[
@@ -126,6 +144,19 @@ export function CoreDirectionPlot({ cores }) {
           hovertemplate: "%{text}",
           marker: {
             color: "#009000"
+          }
+        },
+        {
+          name: "Custom Cores",
+          showlegend: false,
+          type: "scatterpolar",
+          r: CustomCores.map((core) => core.direction.elev),
+          theta: CustomCores.map((core) => core.direction.phi),
+          text: CustomCores.map((core) => core.name),
+          mode: "markers",
+          hovertemplate: "%{text}",
+          marker: {
+            color: "#000"
           }
         },
         {

@@ -48,6 +48,8 @@ const DetectorCircles = React.memo(function DetectorCircles({
 
 function coreCircleColor(type) {
   switch (type) {
+    case "custom":
+      return "#000"
     case "PHWR":
       return "#ff0000";
     case "GCR":
@@ -59,8 +61,8 @@ function coreCircleColor(type) {
   }
 }
 
-const CoreCircles = React.memo(function CoreCircles({ cores }) {
-  const coreList = Object.values(cores);
+const CoreCircles = React.memo(function CoreCircles({ cores, customCores }) {
+  const coreList = Object.values({...cores, ...customCores});
   return coreList.map((core) => {
     const color = coreCircleColor(core.spectrumType);
     const CorePopup = (
@@ -85,7 +87,7 @@ const CoreCircles = React.memo(function CoreCircles({ cores }) {
     return (
       <Circle
         key={core.name}
-        radius={250}
+        radius={1000}
         color={color}
         center={{ lat: core.lat, lon: core.lon }}
       >
@@ -99,6 +101,7 @@ export function NuMap({
   detector,
   setDetector,
   cores,
+  customCores,
   detectorList,
 }) {
   const mapMouseMove = (event) => {
@@ -161,7 +164,7 @@ export function NuMap({
       <LayersControl position="topright">
         <LayersControl.Overlay checked name="Reactor Cores">
           <LayerGroup>
-            <CoreCircles cores={cores} />
+            <CoreCircles cores={cores} customCores={customCores}/>
           </LayerGroup>
         </LayersControl.Overlay>
         <LayersControl.Overlay checked name="Detector Locations">
