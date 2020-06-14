@@ -3,7 +3,7 @@ import React from "react";
 import { Modal, Button, Table } from "react-bootstrap";
 import { ReactorCore } from "../reactor-cores";
 
-export const AddCustomCoreModal = ({show, customCores, setCustomCores, close}) => {
+export const AddCustomCoreModal = ({lat, lon, show, customCores, setCustomCores, close}) => {
   let defaultName = "Custom Core 1";
   let c = 1;
   while (defaultName in customCores){
@@ -13,8 +13,8 @@ export const AddCustomCoreModal = ({show, customCores, setCustomCores, close}) =
     const save = () => {
         const newCore = ReactorCore({
             name: defaultName,
-            lat: 0,
-            lon: 0,
+            lat: lat === undefined? 0 : lat,
+            lon: lon === undefined? 0: lon,
             power: 1000,
             elevation: 0,
             custom: true,

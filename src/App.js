@@ -65,7 +65,13 @@ function App(props) {
 
   // UI State
   const [addCustomModal, setAddCustomModal] = useState(false)
+  const [addCustomModalXY, setAddCustomModalXY] = useState({})
   const [manCustomModal, setManCustomModal] = useState(false)
+
+  const addCustomModelWithLoc = ({lon, lat}) => {
+    setAddCustomModal(true)
+    setAddCustomModalXY({lon:lon, lat:lat})
+  }
 
 
   const cores = useMemo(
@@ -115,6 +121,7 @@ function App(props) {
             detectorList={presets}
             detector={detector}
             setDetector={setDetector}
+            setCore={addCustomModelWithLoc}
           />
         </Col>
         <Col lg={6} style={{ maxHeight: "100vh", overflow: "scroll" }}>
@@ -139,7 +146,7 @@ function App(props) {
               </Visible>
             </Tab>
             <Tab eventKey="reactors" title="Reactors">
-              <AddCustomCoreModal show={addCustomModal} customCores={customCores} setCustomCores={setCustomCores} close={() => setAddCustomModal(false)} />
+              <AddCustomCoreModal {...addCustomModalXY} show={addCustomModal} customCores={customCores} setCustomCores={setCustomCores} close={() =>{ setAddCustomModalXY({}); setAddCustomModal(false)}} />
               <ManageCustomCoreModal show={manCustomModal} customCores={customCores} setCustomCores={setCustomCores} close={() => setManCustomModal(false)} />
               <CoreIAEARange
                 reactorLF={reactorLF}

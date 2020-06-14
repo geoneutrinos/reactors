@@ -100,6 +100,7 @@ const CoreCircles = React.memo(function CoreCircles({ cores, customCores }) {
 export function NuMap({
   detector,
   setDetector,
+  setCore,
   cores,
   customCores,
   detectorList,
@@ -123,7 +124,7 @@ export function NuMap({
   };
   const contextMenu = {
     contextmenu: true,
-    contextmenuWidth: 150,
+    contextmenuWidth: 175,
     contextmenuItems: [
       {
         text: "Place Detector Here",
@@ -131,6 +132,14 @@ export function NuMap({
         setDetector({
             current: "custom",
             elevation: 0,
+            lat: e.latlng.lat,
+            lon: e.latlng.lng,
+          }),
+      },
+      {
+        text: "Place Custom Core Here",
+        callback: (e) =>
+        setCore({
             lat: e.latlng.lat,
             lon: e.latlng.lng,
           }),
