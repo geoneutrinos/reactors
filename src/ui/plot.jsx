@@ -134,12 +134,12 @@ export function CoreDirectionPlot({ cores }) {
     <Plot
       data={[
         {
-          name: "All Other Cores",
+          name: "", //All other
           showlegend: false,
           type: "scatterpolar",
           r: AllOtherCores.map((core) => core.direction.elev),
           theta: AllOtherCores.map((core) => core.direction.phi),
-          text: AllOtherCores.map((core) => core.name),
+          text: AllOtherCores.map((core) => `${core.name} (${core.type})`),
           mode: "markers",
           hovertemplate: "%{text}",
           marker: {
@@ -160,12 +160,12 @@ export function CoreDirectionPlot({ cores }) {
           }
         },
         {
-          name: "GCR Cores",
+          name: "", //GCR Cores
           type: "scatterpolar",
           showlegend: false,
           r: GCRcores.map((core) => core.direction.elev),
           theta: GCRcores.map((core) => core.direction.phi),
-          text: GCRcores.map((core) => core.name),
+          text: GCRcores.map((core) => `${core.name} (${core.type})`),
           mode: "markers",
           hovertemplate: "%{text}",
           marker: {
@@ -173,12 +173,12 @@ export function CoreDirectionPlot({ cores }) {
           }
         },
         {
-          name: "LEU MOX Cores",
+          name: "", //LEU MOX COres
           type: "scatterpolar",
           showlegend: false,
           r: LEUMoxCores.map((core) => core.direction.elev),
           theta: LEUMoxCores.map((core) => core.direction.phi),
-          text: LEUMoxCores.map((core) => core.name),
+          text: LEUMoxCores.map((core) => `${core.name} (${core.type} MOX)`),
           mode: "markers",
           hovertemplate: "%{text}",
           marker: {
@@ -186,12 +186,12 @@ export function CoreDirectionPlot({ cores }) {
           }
         },
         {
-          name: "PHWR Cores",
+          name: "", //PHWR Cores
           type: "scatterpolar",
           showlegend: false,
           r: PHWRcores.map((core) => core.direction.elev),
           theta: PHWRcores.map((core) => core.direction.phi),
-          text: PHWRcores.map((core) => core.name),
+          text: PHWRcores.map((core) => `${core.name} (${core.type})`),
           mode: "markers",
           hovertemplate: "%{text}",
           marker: {
