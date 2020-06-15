@@ -40,6 +40,8 @@ export const AddCustomCoreModal = ({
   useEffect(() => setCoreLon(lon === undefined ? 0 : lon), [lon]);
   useEffect(() => setName(defaultName), [defaultName]);
 
+  const isValid = [power, elevation, coreLat, coreLon].every((value) => !(isNaN(parseFloat(value))))
+
   const save = () => {
     const newCore = ReactorCore({
       name: name,
@@ -81,10 +83,13 @@ export const AddCustomCoreModal = ({
             </Form.Label>
             <Col sm="9">
               <InputGroup>
-                <Form.Control onChange={(e) => setCoreLat(e.target.value)} type="number" value={coreLat} />
+                <Form.Control isInvalid={isNaN(parseFloat(coreLat))} onChange={(e) => setCoreLat(e.target.value)} type="number" value={coreLat} />
                 <InputGroup.Append>
                   <InputGroup.Text>deg N</InputGroup.Text>
                 </InputGroup.Append>
+                <Form.Control.Feedback type="invalid">
+                  Must be a number
+                </Form.Control.Feedback>
               </InputGroup>
             </Col>
           </Form.Group>
@@ -94,10 +99,13 @@ export const AddCustomCoreModal = ({
             </Form.Label>
             <Col sm="9">
               <InputGroup>
-                <Form.Control onChange={(e) => setCoreLon(e.target.value)} type="number" value={coreLon} />
+                <Form.Control isInvalid={isNaN(parseFloat(coreLon))} onChange={(e) => setCoreLon(e.target.value)} type="number" value={coreLon} />
                 <InputGroup.Append>
                   <InputGroup.Text>deg E</InputGroup.Text>
                 </InputGroup.Append>
+                <Form.Control.Feedback type="invalid">
+                  Must be a number
+                </Form.Control.Feedback>
               </InputGroup>
             </Col>
           </Form.Group>
@@ -107,10 +115,13 @@ export const AddCustomCoreModal = ({
             </Form.Label>
             <Col sm="9">
               <InputGroup>
-                <Form.Control onChange={(e) => setElevation(e.target.value)} type="number" value={elevation} />
+                <Form.Control isInvalid={isNaN(parseFloat(elevation))} onChange={(e) => setElevation(e.target.value)} type="number" value={elevation} />
                 <InputGroup.Append>
                   <InputGroup.Text>meters</InputGroup.Text>
                 </InputGroup.Append>
+                <Form.Control.Feedback type="invalid">
+                  Must be a number
+                </Form.Control.Feedback>
               </InputGroup>
             </Col>
           </Form.Group>
@@ -120,10 +131,13 @@ export const AddCustomCoreModal = ({
             </Form.Label>
             <Col sm="9">
               <InputGroup>
-                <Form.Control type="number" onChange={(e) => setPower(e.target.value)} value={power} />
+                <Form.Control isInvalid={isNaN(parseFloat(power))} type="number" onChange={(e) => setPower(e.target.value)} value={power} />
                 <InputGroup.Append>
                   <InputGroup.Text>MW</InputGroup.Text>
                 </InputGroup.Append>
+                <Form.Control.Feedback type="invalid">
+                  Must be a number
+                </Form.Control.Feedback>
               </InputGroup>
             </Col>
           </Form.Group>
@@ -133,7 +147,7 @@ export const AddCustomCoreModal = ({
         <Button variant="secondary" onClick={close}>
           Close
         </Button>
-        <Button variant="primary" onClick={save}>
+        <Button disabled={!isValid} variant="primary" onClick={save}>
           Add Core
         </Button>
       </Modal.Footer>
@@ -167,7 +181,7 @@ export const ManageCustomCoreModal = ({
   const coreNmaes = Object.keys(customCores);
 
   const CoreList = coreNmaes.map((core) => (
-    <ManageCustomCoreItem
+    <ManageCustomCoreItem key={core}
       core={customCores[core]}
       delCore={() => {
         let nc = { ...customCores };
@@ -194,7 +208,7 @@ export const ManageCustomCoreModal = ({
     </tr>
   </thead>
   <tbody>
-      {coreNmaes.length > 0 ? CoreList : <tr>No Custom Cores</tr>}
+      {coreNmaes.length > 0 && CoreList}
   </tbody>
 </Table>
       </Modal.Body>
