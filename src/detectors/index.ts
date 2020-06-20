@@ -11,7 +11,7 @@ type DetecorPreset = {
 export const presets: DetecorPreset[] = [
     //Asia
     {name: "Guemseong", lat:35.05, lon: 126.70, elevation:0, overburden:950, region:"Asia"},
-    {name: "INO", lat:9.95, lon: 77.28, elevation:0, overburden:3000, region:"Asia"},
+    {name: "INO", lat:9.95, lon: 77.28, elevation:317, overburden:3000, region:"Asia"},
     {name: "Jiangmen", lat:22.12, lon: 112.51, elevation:-481.25, overburden:2100, region:"Asia"},
     {name: "Jinping", lat:28.15, lon: 101.71, elevation:1500, overburden:6720, region:"Asia"},
     {name: "Kamioka", lat:36.41, lon: 137.30, elevation:368, overburden:2050, region:"Asia"},
@@ -27,7 +27,7 @@ export const presets: DetecorPreset[] = [
     // Mediterranean Sea
     {name: "Antares", lat:42.80, lon: 6.17, elevation:-2500, overburden:2500, region:"Mediterranean Sea"},
     {name: "Nestor", lat:36.63, lon: 21.58, elevation:-4000, overburden:4000, region:"Mediterranean Sea"},
-    {name: "NEMO Test", lat:37.551, lon: 15.384, elevation:2080, overburden:2080, region:"Mediterranean Sea"},
+    {name: "NEMO Test", lat:37.551, lon: 15.384, elevation:-2080, overburden:2080, region:"Mediterranean Sea"},
     // North America
     {name: "IMB", lat:41.75, lon: -81.29, elevation:0, overburden:1570, region:"North America"},
     {name: "KURF", lat:37.38, lon: -80.66, elevation:0, overburden:1400, region:"North America"},
