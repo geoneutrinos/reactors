@@ -19,14 +19,14 @@ function mevRange(count = 1000, start = 0, stop = 10) {
 
 const bins = mevRange();
 
-interface FisionFractions {
+interface FissionFractions {
   [Isotopes.U235]: number;
   [Isotopes.U238]: number;
   [Isotopes.PU239]: number;
   [Isotopes.PU241]: number
 }
 
-const FUEL_FRACTIONS: {[type: string]: FisionFractions} = {
+const FISSION_FRACTIONS: {[type: string]: FissionFractions} = {
   "LEU": {
     "U235":  0.56,
     "U238":  0.08, 
@@ -71,22 +71,22 @@ const FUEL_FRACTIONS: {[type: string]: FisionFractions} = {
   }
 }
 
-function spectrum(fisionFractions: FisionFractions, crossSection:(Ev: number) => number){
+function spectrum(fisionFractions: FissionFractions, crossSection:(Ev: number) => number){
   return bins.map((Ev) => {
       return Object.keys(Isotopes).map((v) => {
         const isotope: Isotopes = v as Isotopes;
-        const fuelFraction = fisionFractions[isotope];
+        const fissionFraction = fisionFractions[isotope];
         const fisionEnery = FISSION_ENERGIES[isotope];
         const neutrinoEnergy = neutrinoEnergyFor(isotope)
         const rate = partialInteractionRate(Ev, fisionEnery, crossSection, neutrinoEnergy)
 
-        return 1e22 * (SECONDS_PER_YEAR/ELEMENTARY_CHARGE) * fuelFraction * rate;
+        return 1e22 * (SECONDS_PER_YEAR/ELEMENTARY_CHARGE) * fissionFraction * rate;
 
       }).reduce((previousValue, currentValue) => previousValue + currentValue, 0)
   })
 }
 
-const spectrums = memoize((fisionFractions:FisionFractions, crossSection: XSNames) => {
+const spectrums = memoize((fisionFractions:FissionFractions, crossSection: XSNames) => {
   return spectrum(fisionFractions, XSFuncs[crossSection])
 }, (...args) => JSON.stringify(args))
 
@@ -132,7 +132,7 @@ interface ReactorCore{
  detectorAnySignal: boolean;
  detectorNIU: number;
  direction: Direction;
- fisionFractions: FisionFractions;
+ fisionFractions: FissionFractions;
 
  spectrum: (crossSection:XSNames) => Float32Array;
  setSignal:  (dist:number, lf:number, massOrdering:MassOrdering, crossSection:XSNames, direction:Direction) => ReactorCore;
@@ -140,7 +140,7 @@ interface ReactorCore{
 }
 
 export function ReactorCore({name, lat, lon, elevation, power=0, fisionFractions, type="custom", spectrumType="custom", mox=false, custom=false, loads=[]}: 
-  {name:string, lat: number, lon:number, elevation:number, type:string, spectrumType:string, mox:boolean, power:number, custom?:boolean, loads:LoadFactor[], fisionFractions:FisionFractions}): ReactorCore{
+  {name:string, lat: number, lon:number, elevation:number, type:string, spectrumType:string, mox:boolean, power:number, custom?:boolean, loads:LoadFactor[], fisionFractions:FissionFractions}): ReactorCore{
     const [x, y, z] = project(lat, lon, elevation).map((n)=> n/1000);
 
   function loadFactor(this: ReactorCore, start = new Date(Date.UTC(2003, 0)), stop = new Date(Date.UTC(2018, 11))){
@@ -249,7 +249,7 @@ const defaultCoreList = Object.keys(cores).map((core) =>{
       spectrumType = spectrumType + "_MOX"
     }
 
-    const fisionFractions = FUEL_FRACTIONS[spectrumType]
+    const fisionFractions = FISSION_FRACTIONS[spectrumType]
   return ReactorCore({
     name: c,
     lat: lat,
