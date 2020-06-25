@@ -8,6 +8,8 @@ import {
   Col,
   Row,
   InputGroup,
+  DropdownButton,
+  Dropdown,
 } from "react-bootstrap";
 import { ReactorCore } from "../reactor-cores";
 
@@ -19,16 +21,20 @@ export const AddCustomCoreModal = ({
   setCustomCores,
   close,
 }) => {
-
-
-  let defaultName
+  let defaultName;
   let c = 1;
   do {
-    defaultName = defaultName = `Custom Core ${c}`
-    c +=1
-  } while (defaultName in customCores)
+    defaultName = defaultName = `Custom Core ${c}`;
+    c += 1;
+  } while (defaultName in customCores);
 
-  const [name, setName] = useState(defaultName)
+  const suggestions = [
+    { name: "ATR", lat: 43.586, lon: -112.965, power: 250, elevation: 1520 },
+    { name: "HFIR", lat: 35.918, lon: -84.304, power: 85, elevation: 267 },
+    { name: "Geo Reactor", lat: 0, lon: 0, power: 1e6, elevation: -6378137 },
+  ];
+
+  const [name, setName] = useState(defaultName);
 
   const [power, setPower] = useState(1000);
   const [elevation, setElevation] = useState(0);
@@ -40,7 +46,9 @@ export const AddCustomCoreModal = ({
   useEffect(() => setCoreLon(lon === undefined ? 0 : lon), [lon]);
   useEffect(() => setName(defaultName), [defaultName]);
 
-  const isValid = [power, elevation, coreLat, coreLon].every((value) => !(isNaN(parseFloat(value))))
+  const isValid = [power, elevation, coreLat, coreLon].every(
+    (value) => !isNaN(parseFloat(value))
+  );
 
   const save = () => {
     const newCore = ReactorCore({
@@ -58,22 +66,43 @@ export const AddCustomCoreModal = ({
       },
     });
     setCustomCores({ ...customCores, [newCore.name]: newCore });
-    setName(defaultName)
+    setName(defaultName);
     close();
   };
+
+  const selectPreset = (preset) =>{
+    setName(preset.name);
+    setCoreLon(preset.lon);
+    setCoreLat(preset.lat);
+    setPower(preset.power);
+    setElevation(preset.elevation);
+  }
+  const SuggestItems = suggestions.map((suggestion) => <Dropdown.Item key={suggestion.name} onClick={() => selectPreset(suggestion)}>{suggestion.name}</Dropdown.Item>)
+  
   return (
     <Modal show={show} onHide={close}>
       <Modal.Header closeButton>
         <Modal.Title>Add Custom Core</Modal.Title>
       </Modal.Header>
       <Modal.Body>
+        <Form.Group as={Row} controlId="presets">
+          <Form.Label column sm="3"></Form.Label>
+          <Col sm="9">
+            <DropdownButton id="customCorePreset" title="Preset Suggestions">
+              {SuggestItems}
+            </DropdownButton>
+          </Col>
+        </Form.Group>
         <Form>
           <Form.Group as={Row} controlId="customCoreName">
             <Form.Label column sm="3">
               Core Name
             </Form.Label>
             <Col sm="9">
-              <Form.Control onChange={(e) => setName(e.target.value)} defaultValue={name} />
+              <Form.Control
+                onChange={(e) => setName(e.target.value)}
+                value={name}
+              />
             </Col>
           </Form.Group>
 
@@ -83,7 +112,12 @@ export const AddCustomCoreModal = ({
             </Form.Label>
             <Col sm="9">
               <InputGroup>
-                <Form.Control isInvalid={isNaN(parseFloat(coreLat))} onChange={(e) => setCoreLat(e.target.value)} type="number" value={coreLat} />
+                <Form.Control
+                  isInvalid={isNaN(parseFloat(coreLat))}
+                  onChange={(e) => setCoreLat(e.target.value)}
+                  type="number"
+                  value={coreLat}
+                />
                 <InputGroup.Append>
                   <InputGroup.Text>deg N</InputGroup.Text>
                 </InputGroup.Append>
@@ -99,7 +133,12 @@ export const AddCustomCoreModal = ({
             </Form.Label>
             <Col sm="9">
               <InputGroup>
-                <Form.Control isInvalid={isNaN(parseFloat(coreLon))} onChange={(e) => setCoreLon(e.target.value)} type="number" value={coreLon} />
+                <Form.Control
+                  isInvalid={isNaN(parseFloat(coreLon))}
+                  onChange={(e) => setCoreLon(e.target.value)}
+                  type="number"
+                  value={coreLon}
+                />
                 <InputGroup.Append>
                   <InputGroup.Text>deg E</InputGroup.Text>
                 </InputGroup.Append>
@@ -115,7 +154,12 @@ export const AddCustomCoreModal = ({
             </Form.Label>
             <Col sm="9">
               <InputGroup>
-                <Form.Control isInvalid={isNaN(parseFloat(elevation))} onChange={(e) => setElevation(e.target.value)} type="number" value={elevation} />
+                <Form.Control
+                  isInvalid={isNaN(parseFloat(elevation))}
+                  onChange={(e) => setElevation(e.target.value)}
+                  type="number"
+                  value={elevation}
+                />
                 <InputGroup.Append>
                   <InputGroup.Text>meters</InputGroup.Text>
                 </InputGroup.Append>
@@ -131,7 +175,12 @@ export const AddCustomCoreModal = ({
             </Form.Label>
             <Col sm="9">
               <InputGroup>
-                <Form.Control isInvalid={isNaN(parseFloat(power))} type="number" onChange={(e) => setPower(e.target.value)} value={power} />
+                <Form.Control
+                  isInvalid={isNaN(parseFloat(power))}
+                  type="number"
+                  onChange={(e) => setPower(e.target.value)}
+                  value={power}
+                />
                 <InputGroup.Append>
                   <InputGroup.Text>MW</InputGroup.Text>
                 </InputGroup.Append>
@@ -181,7 +230,8 @@ export const ManageCustomCoreModal = ({
   const coreNmaes = Object.keys(customCores);
 
   const CoreList = coreNmaes.map((core) => (
-    <ManageCustomCoreItem key={core}
+    <ManageCustomCoreItem
+      key={core}
       core={customCores[core]}
       delCore={() => {
         let nc = { ...customCores };
@@ -197,20 +247,18 @@ export const ManageCustomCoreModal = ({
       </Modal.Header>
       <Modal.Body>
         <Table responsive>
-  <thead>
-    <tr>
-      <th></th>
-      <th>Name</th>
-      <th>Lat</th>
-      <th>Lon</th>
-      <th>Elevation</th>
-      <th>Power</th>
-    </tr>
-  </thead>
-  <tbody>
-      {coreNmaes.length > 0 && CoreList}
-  </tbody>
-</Table>
+          <thead>
+            <tr>
+              <th></th>
+              <th>Name</th>
+              <th>Lat</th>
+              <th>Lon</th>
+              <th>Elevation</th>
+              <th>Power</th>
+            </tr>
+          </thead>
+          <tbody>{coreNmaes.length > 0 && CoreList}</tbody>
+        </Table>
       </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={close}>
