@@ -12,6 +12,7 @@ import {
   Dropdown,
 } from "react-bootstrap";
 import { ReactorCore } from "../reactor-cores";
+import { Isotopes } from "../physics/constants";
 
 export const AddCustomCoreModal = ({
   lat,
@@ -42,6 +43,13 @@ export const AddCustomCoreModal = ({
   const [coreLat, setCoreLat] = useState(lat);
   const [coreLon, setCoreLon] = useState(lon);
 
+  const [fissionFractions, setFissionFractions] = useState({
+    [Isotopes.U235]: 1,
+    [Isotopes.U238]: 0,
+    [Isotopes.PU239]: 0,
+    [Isotopes.PU241]: 0,
+  })
+
   useEffect(() => setCoreLat(lat === undefined ? 0 : lat), [lat]);
   useEffect(() => setCoreLon(lon === undefined ? 0 : lon), [lon]);
   useEffect(() => setName(defaultName), [defaultName]);
@@ -59,10 +67,10 @@ export const AddCustomCoreModal = ({
       elevation: parseFloat(elevation),
       custom: true,
       fisionFractions: {
-        U235: 1,
-        U238: 0,
-        PU239: 0,
-        PU241: 0,
+        U235: fissionFractions[Isotopes.U235],
+        U238: fissionFractions[Isotopes.U238],
+        PU239: fissionFractions[Isotopes.PU239],
+        PU241: fissionFractions[Isotopes.PU241],
       },
     });
     setCustomCores({ ...customCores, [newCore.name]: newCore });
@@ -70,15 +78,46 @@ export const AddCustomCoreModal = ({
     close();
   };
 
-  const selectPreset = (preset) =>{
+  const selectPreset = (preset) => {
     setName(preset.name);
     setCoreLon(preset.lon);
     setCoreLat(preset.lat);
     setPower(preset.power);
     setElevation(preset.elevation);
-  }
-  const SuggestItems = suggestions.map((suggestion) => <Dropdown.Item key={suggestion.name} onClick={() => selectPreset(suggestion)}>{suggestion.name}</Dropdown.Item>)
-  
+  };
+  const SuggestItems = suggestions.map((suggestion) => (
+    <Dropdown.Item
+      key={suggestion.name}
+      onClick={() => selectPreset(suggestion)}
+    >
+      {suggestion.name}
+    </Dropdown.Item>
+  ));
+
+  const fissionFractionsInputs = Object.keys(Isotopes).map((isotope) => {
+    return (
+      <Form.Group key={isotope} controlId={isotope}>
+        <InputGroup>
+          <InputGroup.Prepend>
+            <InputGroup.Text>{isotope}</InputGroup.Text>
+          </InputGroup.Prepend>
+          <Form.Control
+            isInvalid={isNaN(parseFloat(power))}
+            type="number"
+            onChange={(e) => setFissionFractions({...fissionFractions, [Isotopes[isotope]]: e.target.value})}
+            value={fissionFractions[Isotopes[isotope]]}
+            step={0.01}
+            min={0}
+            max={1}
+          />
+          <Form.Control.Feedback type="invalid">
+            Must be a number
+          </Form.Control.Feedback>
+        </InputGroup>
+      </Form.Group>
+    );
+  });
+
   return (
     <Modal show={show} onHide={close}>
       <Modal.Header closeButton>
@@ -105,7 +144,6 @@ export const AddCustomCoreModal = ({
               />
             </Col>
           </Form.Group>
-
           <Form.Group as={Row} controlId="customCoreLat">
             <Form.Label column sm="3">
               Latitude
@@ -190,6 +228,8 @@ export const AddCustomCoreModal = ({
               </InputGroup>
             </Col>
           </Form.Group>
+          <h6>Fission Fractions</h6>These should all sum to 1 (currently {Object.values(fissionFractions).map((v) => parseFloat(v)).reduce((a,b) => a+b, 0)})
+          {fissionFractionsInputs}
         </Form>
       </Modal.Body>
       <Modal.Footer>
