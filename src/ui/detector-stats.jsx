@@ -1,35 +1,45 @@
 import React from "react";
 import { sum } from "lodash";
-import { Card } from 'react-bootstrap';
+import { Card, Table } from "react-bootstrap";
 
-import { rateToFlux232Th, rateToFlux238U, rateToFlux40K } from '../antineutrino-spectrum'
-import { ISOTOPIC_NEUTRINO_LUMINOSITY } from '../physics/derived'
-import { ISOTOPIC_NATURAL_ABUNDANCE } from '../physics/constants'
+import { Elements } from "./elements";
 
-function Num({ v, p, func}) {
-  if (func===undefined){
-    func = (v) => v
+import {
+  rateToFlux232Th,
+  rateToFlux238U,
+  rateToFlux40K,
+} from "../antineutrino-spectrum";
+import { ISOTOPIC_NEUTRINO_LUMINOSITY } from "../physics/derived";
+import { ISOTOPIC_NATURAL_ABUNDANCE } from "../physics/constants";
+
+const { U238, Th232, K40 } = Elements;
+
+function Num({ v, p, func }) {
+  if (func === undefined) {
+    func = (v) => v;
   }
   return <span title={v.toString()}>{func(v).toFixed(p)}</span>;
 }
 
 const geoThURatio = (R232Th, R238U, crossSection) => {
   const R = R232Th / R238U;
-  const C = rateToFlux232Th[crossSection] / rateToFlux238U[crossSection]
-  const l = ISOTOPIC_NEUTRINO_LUMINOSITY.U238 / ISOTOPIC_NEUTRINO_LUMINOSITY.TH232
-  const NA = ISOTOPIC_NATURAL_ABUNDANCE.U238 / ISOTOPIC_NATURAL_ABUNDANCE.TH232
+  const C = rateToFlux232Th[crossSection] / rateToFlux238U[crossSection];
+  const l =
+    ISOTOPIC_NEUTRINO_LUMINOSITY.U238 / ISOTOPIC_NEUTRINO_LUMINOSITY.TH232;
+  const NA = ISOTOPIC_NATURAL_ABUNDANCE.U238 / ISOTOPIC_NATURAL_ABUNDANCE.TH232;
 
-  return R * C * l * NA
-}
+  return R * C * l * NA;
+};
 
 const geoKURatio = (R40K, R238U, crossSection) => {
   const R = R40K / R238U;
-  const C = rateToFlux40K[crossSection] / rateToFlux238U[crossSection]
-  const l = ISOTOPIC_NEUTRINO_LUMINOSITY.U238 / ISOTOPIC_NEUTRINO_LUMINOSITY.K40
-  const NA = ISOTOPIC_NATURAL_ABUNDANCE.U238 / ISOTOPIC_NATURAL_ABUNDANCE.K40
+  const C = rateToFlux40K[crossSection] / rateToFlux238U[crossSection];
+  const l =
+    ISOTOPIC_NEUTRINO_LUMINOSITY.U238 / ISOTOPIC_NEUTRINO_LUMINOSITY.K40;
+  const NA = ISOTOPIC_NATURAL_ABUNDANCE.U238 / ISOTOPIC_NATURAL_ABUNDANCE.K40;
 
-  return R * C * l * NA
-}
+  return R * C * l * NA;
+};
 
 export function StatsPanel({ cores, spectrum, crossSection }) {
   const NIU = <span title="Neutrino Interaction Unit">NIU</span>;
@@ -44,82 +54,188 @@ export function StatsPanel({ cores, spectrum, crossSection }) {
     (a, b) => a.detectorDistance - b.detectorDistance
   )[0];
   // Close Things
+  const closestName = closestActiveCore?.name || "";
   const closestNIU = closestActiveCore?.detectorNIU || 0;
   const closestDistace = closestActiveCore?.detectorDistance || 1000000;
 
   const totalCoreSignal = sum(coreList.map((core) => core.detectorNIU));
 
   // custom cores
+  const customClosestName = closestCustomCore?.name || "";
   const customClosestNIU = closestCustomCore?.detectorNIU || 0;
   const customClosestDistance = closestCustomCore?.detectorDistance || 1000000;
   const customTotalSignal = sum(customCores.map((core) => core.detectorNIU));
 
-  const customDisplay = customTotalSignal > 0 ? "inline" : "none";
+  const customDisplay = customTotalSignal > 0 ? "block" : "none";
 
   // geo thigns
   const geoUNIU = sum(spectrum.geoU) * 0.01;
   const geoThNIU = sum(spectrum.geoTh) * 0.01;
   const geoKNIU = sum(spectrum.geoK) * 0.01;
 
-  const geoThU = geoThURatio(geoThNIU, geoUNIU, crossSection)
-  const geoKU = geoKURatio(geoKNIU, geoUNIU, crossSection)
+  const geoThU = geoThURatio(geoThNIU, geoUNIU, crossSection);
+  const geoKU = geoKURatio(geoKNIU, geoUNIU, crossSection);
 
-  const geoKUVald = isNaN(geoKU) ? "none" : "inline"
+  const geoKUVald = isNaN(geoKU) ? "none" : "auto";
 
   const geoTotalNIU = geoUNIU + geoThNIU + geoKNIU;
 
   // finally
   const totalNIU = totalCoreSignal + geoTotalNIU;
 
+  const tableProps = { style: { width: "auto" }, borderless: true, size: "sm" };
+
   return (
     <Card>
       <Card.Body>
-        <Card.Title>Spectrum Stats</Card.Title>
-        <i>R</i>
-        <sub>total</sub> = {totalNIU.toFixed(1)} {NIU}
-        <br />
-        <i>R</i>
-        <sub>reac</sub> = {totalCoreSignal.toFixed(1)} {NIU}
-        <br />
-        <i>R</i>
-        <sub>closest</sub> = {closestNIU.toFixed(1)} {NIU} (
-        {((closestNIU / totalNIU) * 100).toFixed(1)} % of total)
-        <br />
-        <i>D</i>
-        <sub>closest</sub> ={" "}
-        {closestDistace > 100000 ? "N/A" : closestDistace.toFixed(2)} km
-        <br />
-        <span style={{ display: customDisplay }}>
-          <i>D</i>
-          <sub>user</sub> = {customClosestDistance.toFixed(3)} km
+        <Card.Title>Spectrum Stats <small>({crossSection})</small></Card.Title>
+
+        <Table {...tableProps}>
+          <tbody>
+            <tr>
+              <td>
+                <i>R</i>
+                <sub>total</sub>
+              </td>
+              <td>
+                {totalNIU.toFixed(1)} {NIU}
+              </td>
+            </tr>
+          </tbody>
+        </Table>
+
+        <hr />
+        <h6>IAEA Cores</h6>
+        <Table {...tableProps}>
+          <tbody>
+            <tr>
+              <td>
+                <i>R</i>
+                <sub>reac</sub>
+              </td>
+              <td>
+                {totalCoreSignal.toFixed(1)} {NIU}
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <i>R</i>
+                <sub>closest</sub>
+              </td>
+              <td>
+                {closestNIU.toFixed(1)} {NIU} (
+                {((closestNIU / totalNIU) * 100).toFixed(1)} % of total)
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <i>D</i>
+                <sub>closest</sub>
+              </td>
+              <td>
+                {closestDistace > 100000 ? "N/A" : closestDistace.toFixed(2)} km
+                ({closestName})
+              </td>
+            </tr>
+          </tbody>
+        </Table>
+
+        <div style={{ display: customDisplay }}>
+          <hr />
+          <h6>Custom Cores</h6>
+          <Table {...tableProps}>
+            <tbody>
+              <tr>
+                <td>
+                  <i>R</i>
+                  <sub>custom</sub>
+                </td>
+                <td>
+                  {customTotalSignal.toFixed(1)} {NIU}
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <i>R</i>
+                  <sub>closest</sub>
+                </td>
+                <td>
+                  {customClosestNIU.toFixed(1)} {NIU}{" "}
+                  {((customClosestNIU / totalNIU) * 100).toFixed(1)} % of total)
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <i>D</i>
+                  <sub>closest</sub>
+                </td>
+                <td>
+                  {customClosestDistance.toFixed(3)} km ({customClosestName})
+                </td>
+              </tr>
+            </tbody>
+          </Table>
+        </div>
+        <div>
+          <hr />
+          <h6>Geoneutrinos</h6>
+          <Table {...tableProps}>
+            <tbody>
+              <tr>
+                <td>
+                  <i>R</i>
+                  <sub>geo</sub>
+                </td>
+                <td>
+                  <Num v={geoTotalNIU} p={1} /> {NIU}
+                </td>
+                <td>
+                  (
+                  <Num v={geoUNIU} p={1} /> {U238}, <Num v={geoThNIU} p={1} />{" "}
+                  {Th232}
+                  <span style={{ display: geoKUVald }}>
+                    , <Num v={geoKNIU} p={1} /> {K40}
+                  </span>
+                  )
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <i>(Th/U)</i>
+                  <sub>geo</sub>
+                </td>
+                <td>
+                  <Num v={geoThU} p={2} />
+                </td>
+              </tr>
+              <tr style={{ display: geoKUVald }}>
+                <td>
+                  <i>(K/U)</i>
+                  <sub>geo</sub>
+                </td>
+                <td>
+                  <Num
+                    v={geoKU}
+                    p={0}
+                    func={(v) => Math.round(v / 100) * 100}
+                  />
+                </td>
+              </tr>
+            </tbody>
+          </Table>
+        </div>
+        <hr />
+        <div>
+          <small>
+            1 {NIU} (Neutrino Interaction Unit) = 1 interaction/10<sup>32</sup>{" "}
+            targets/year
+          </small>
           <br />
-        </span>
-        <span style={{ display: customDisplay }}>
-          <i>R</i>
-          <sub>user</sub> = {customClosestNIU.toFixed(1)} {NIU}
-          <br />
-        </span>
-        <i>R</i>
-        <sub>geo</sub> = <Num v={geoTotalNIU} p={1} /> {NIU} (U ={" "}
-        <Num v={geoUNIU} p={1} />, Th = <Num v={geoThNIU} p={1} />
-        <span style={{ display: geoKUVald }}>
-          ,{" "}K = <Num v={geoKNIU} p={1} />
-        </span>
-        )<br />
-        Th/U<sub>geo</sub> = <Num v={geoThU} p={2} /><br />
-        <span style={{ display: geoKUVald }}>
-          K/U<sub>geo</sub> = <Num v={geoKU} p={0} func={(v) => Math.round(v/100) * 100}/><br />
-        </span>
-        <small>
-          1 {NIU} (Neutrino Interaction Unit) = 1 interaction/10<sup>32</sup>{" "}
-          targets/year
-        </small>
-        <br />
-        <small>
-          1 kT H<sub>2</sub>O contains 6.686x10<sup>31</sup> free proton and
-          3.343x10<sup>32</sup> electron targets
-        </small>
-        <br />
+          <small>
+            1 kT H<sub>2</sub>O contains 6.686x10<sup>31</sup> free proton and
+            3.343x10<sup>32</sup> electron targets
+          </small>
+        </div>
       </Card.Body>
     </Card>
   );

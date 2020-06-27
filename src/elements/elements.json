@@ -1,0 +1,3188 @@
+[
+ {
+  "atomic_number": 1,
+  "atomic_symbol": "H",
+  "isotopic_composition": 0.999885,
+  "mass_number": 1,
+  "notes": "m",
+  "relative_atomic_mass": 1.00782503223,
+  "standard_atomic_weight": "[1.00784,1.00811]"
+ },
+ {
+  "atomic_number": 1,
+  "atomic_symbol": "D",
+  "isotopic_composition": 0.000115,
+  "mass_number": 2,
+  "notes": "m",
+  "relative_atomic_mass": 2.01410177812,
+  "standard_atomic_weight": "[1.00784,1.00811]"
+ },
+ {
+  "atomic_number": 1,
+  "atomic_symbol": "T",
+  "isotopic_composition": "",
+  "mass_number": 3,
+  "notes": "m",
+  "relative_atomic_mass": 3.0160492779,
+  "standard_atomic_weight": "[1.00784,1.00811]"
+ },
+ {
+  "atomic_number": 2,
+  "atomic_symbol": "He",
+  "isotopic_composition": 1.34e-06,
+  "mass_number": 3,
+  "notes": "g,r",
+  "relative_atomic_mass": 3.0160293201,
+  "standard_atomic_weight": 4.002602
+ },
+ {
+  "atomic_number": 2,
+  "atomic_symbol": "He",
+  "isotopic_composition": 0.99999866,
+  "mass_number": 4,
+  "notes": "g,r",
+  "relative_atomic_mass": 4.00260325413,
+  "standard_atomic_weight": 4.002602
+ },
+ {
+  "atomic_number": 3,
+  "atomic_symbol": "Li",
+  "isotopic_composition": 0.0759,
+  "mass_number": 6,
+  "notes": "m",
+  "relative_atomic_mass": 6.0151228874,
+  "standard_atomic_weight": "[6.938,6.997]"
+ },
+ {
+  "atomic_number": 3,
+  "atomic_symbol": "Li",
+  "isotopic_composition": 0.9241,
+  "mass_number": 7,
+  "notes": "m",
+  "relative_atomic_mass": 7.0160034366,
+  "standard_atomic_weight": "[6.938,6.997]"
+ },
+ {
+  "atomic_number": 4,
+  "atomic_symbol": "Be",
+  "isotopic_composition": 1,
+  "mass_number": 9,
+  "notes": "",
+  "relative_atomic_mass": 9.012183065,
+  "standard_atomic_weight": 9.0121831
+ },
+ {
+  "atomic_number": 5,
+  "atomic_symbol": "B",
+  "isotopic_composition": 0.199,
+  "mass_number": 10,
+  "notes": "m",
+  "relative_atomic_mass": 10.01293695,
+  "standard_atomic_weight": "[10.806,10.821]"
+ },
+ {
+  "atomic_number": 5,
+  "atomic_symbol": "B",
+  "isotopic_composition": 0.801,
+  "mass_number": 11,
+  "notes": "m",
+  "relative_atomic_mass": 11.00930536,
+  "standard_atomic_weight": "[10.806,10.821]"
+ },
+ {
+  "atomic_number": 6,
+  "atomic_symbol": "C",
+  "isotopic_composition": 0.9893,
+  "mass_number": 12,
+  "notes": "",
+  "relative_atomic_mass": 12.0,
+  "standard_atomic_weight": "[12.0096,12.0116]"
+ },
+ {
+  "atomic_number": 6,
+  "atomic_symbol": "C",
+  "isotopic_composition": 0.0107,
+  "mass_number": 13,
+  "notes": "",
+  "relative_atomic_mass": 13.00335483507,
+  "standard_atomic_weight": "[12.0096,12.0116]"
+ },
+ {
+  "atomic_number": 6,
+  "atomic_symbol": "C",
+  "isotopic_composition": "",
+  "mass_number": 14,
+  "notes": "",
+  "relative_atomic_mass": 14.0032419884,
+  "standard_atomic_weight": "[12.0096,12.0116]"
+ },
+ {
+  "atomic_number": 7,
+  "atomic_symbol": "N",
+  "isotopic_composition": 0.99636,
+  "mass_number": 14,
+  "notes": "",
+  "relative_atomic_mass": 14.00307400443,
+  "standard_atomic_weight": "[14.00643,14.00728]"
+ },
+ {
+  "atomic_number": 7,
+  "atomic_symbol": "N",
+  "isotopic_composition": 0.00364,
+  "mass_number": 15,
+  "notes": "",
+  "relative_atomic_mass": 15.00010889888,
+  "standard_atomic_weight": "[14.00643,14.00728]"
+ },
+ {
+  "atomic_number": 8,
+  "atomic_symbol": "O",
+  "isotopic_composition": 0.99757,
+  "mass_number": 16,
+  "notes": "",
+  "relative_atomic_mass": 15.99491461957,
+  "standard_atomic_weight": "[15.99903,15.99977]"
+ },
+ {
+  "atomic_number": 8,
+  "atomic_symbol": "O",
+  "isotopic_composition": 0.00038,
+  "mass_number": 17,
+  "notes": "",
+  "relative_atomic_mass": 16.9991317565,
+  "standard_atomic_weight": "[15.99903,15.99977]"
+ },
+ {
+  "atomic_number": 8,
+  "atomic_symbol": "O",
+  "isotopic_composition": 0.00205,
+  "mass_number": 18,
+  "notes": "",
+  "relative_atomic_mass": 17.99915961286,
+  "standard_atomic_weight": "[15.99903,15.99977]"
+ },
+ {
+  "atomic_number": 9,
+  "atomic_symbol": "F",
+  "isotopic_composition": 1,
+  "mass_number": 19,
+  "notes": "",
+  "relative_atomic_mass": 18.99840316273,
+  "standard_atomic_weight": 18.998403163
+ },
+ {
+  "atomic_number": 10,
+  "atomic_symbol": "Ne",
+  "isotopic_composition": 0.9048,
+  "mass_number": 20,
+  "notes": "g,m",
+  "relative_atomic_mass": 19.9924401762,
+  "standard_atomic_weight": 20.1797
+ },
+ {
+  "atomic_number": 10,
+  "atomic_symbol": "Ne",
+  "isotopic_composition": 0.0027,
+  "mass_number": 21,
+  "notes": "g,m",
+  "relative_atomic_mass": 20.993846685,
+  "standard_atomic_weight": 20.1797
+ },
+ {
+  "atomic_number": 10,
+  "atomic_symbol": "Ne",
+  "isotopic_composition": 0.0925,
+  "mass_number": 22,
+  "notes": "g,m",
+  "relative_atomic_mass": 21.991385114,
+  "standard_atomic_weight": 20.1797
+ },
+ {
+  "atomic_number": 11,
+  "atomic_symbol": "Na",
+  "isotopic_composition": 1,
+  "mass_number": 23,
+  "notes": "",
+  "relative_atomic_mass": 22.989769282,
+  "standard_atomic_weight": 22.98976928
+ },
+ {
+  "atomic_number": 12,
+  "atomic_symbol": "Mg",
+  "isotopic_composition": 0.7899,
+  "mass_number": 24,
+  "notes": "",
+  "relative_atomic_mass": 23.985041697,
+  "standard_atomic_weight": "[24.304,24.307]"
+ },
+ {
+  "atomic_number": 12,
+  "atomic_symbol": "Mg",
+  "isotopic_composition": 0.1,
+  "mass_number": 25,
+  "notes": "",
+  "relative_atomic_mass": 24.985836976,
+  "standard_atomic_weight": "[24.304,24.307]"
+ },
+ {
+  "atomic_number": 12,
+  "atomic_symbol": "Mg",
+  "isotopic_composition": 0.1101,
+  "mass_number": 26,
+  "notes": "",
+  "relative_atomic_mass": 25.982592968,
+  "standard_atomic_weight": "[24.304,24.307]"
+ },
+ {
+  "atomic_number": 13,
+  "atomic_symbol": "Al",
+  "isotopic_composition": 1,
+  "mass_number": 27,
+  "notes": "",
+  "relative_atomic_mass": 26.98153853,
+  "standard_atomic_weight": 26.9815385
+ },
+ {
+  "atomic_number": 14,
+  "atomic_symbol": "Si",
+  "isotopic_composition": 0.92223,
+  "mass_number": 28,
+  "notes": "",
+  "relative_atomic_mass": 27.97692653465,
+  "standard_atomic_weight": "[28.084,28.086]"
+ },
+ {
+  "atomic_number": 14,
+  "atomic_symbol": "Si",
+  "isotopic_composition": 0.04685,
+  "mass_number": 29,
+  "notes": "",
+  "relative_atomic_mass": 28.9764946649,
+  "standard_atomic_weight": "[28.084,28.086]"
+ },
+ {
+  "atomic_number": 14,
+  "atomic_symbol": "Si",
+  "isotopic_composition": 0.03092,
+  "mass_number": 30,
+  "notes": "",
+  "relative_atomic_mass": 29.973770136,
+  "standard_atomic_weight": "[28.084,28.086]"
+ },
+ {
+  "atomic_number": 15,
+  "atomic_symbol": "P",
+  "isotopic_composition": 1,
+  "mass_number": 31,
+  "notes": "",
+  "relative_atomic_mass": 30.97376199842,
+  "standard_atomic_weight": 30.973761998
+ },
+ {
+  "atomic_number": 16,
+  "atomic_symbol": "S",
+  "isotopic_composition": 0.9499,
+  "mass_number": 32,
+  "notes": "",
+  "relative_atomic_mass": 31.9720711744,
+  "standard_atomic_weight": "[32.059,32.076]"
+ },
+ {
+  "atomic_number": 16,
+  "atomic_symbol": "S",
+  "isotopic_composition": 0.0075,
+  "mass_number": 33,
+  "notes": "",
+  "relative_atomic_mass": 32.9714589098,
+  "standard_atomic_weight": "[32.059,32.076]"
+ },
+ {
+  "atomic_number": 16,
+  "atomic_symbol": "S",
+  "isotopic_composition": 0.0425,
+  "mass_number": 34,
+  "notes": "",
+  "relative_atomic_mass": 33.967867004,
+  "standard_atomic_weight": "[32.059,32.076]"
+ },
+ {
+  "atomic_number": 16,
+  "atomic_symbol": "S",
+  "isotopic_composition": 0.0001,
+  "mass_number": 36,
+  "notes": "",
+  "relative_atomic_mass": 35.96708071,
+  "standard_atomic_weight": "[32.059,32.076]"
+ },
+ {
+  "atomic_number": 17,
+  "atomic_symbol": "Cl",
+  "isotopic_composition": 0.7576,
+  "mass_number": 35,
+  "notes": "m",
+  "relative_atomic_mass": 34.968852682,
+  "standard_atomic_weight": "[35.446,35.457]"
+ },
+ {
+  "atomic_number": 17,
+  "atomic_symbol": "Cl",
+  "isotopic_composition": 0.2424,
+  "mass_number": 37,
+  "notes": "m",
+  "relative_atomic_mass": 36.965902602,
+  "standard_atomic_weight": "[35.446,35.457]"
+ },
+ {
+  "atomic_number": 18,
+  "atomic_symbol": "Ar",
+  "isotopic_composition": 0.003336,
+  "mass_number": 36,
+  "notes": "g,r",
+  "relative_atomic_mass": 35.967545105,
+  "standard_atomic_weight": 39.948
+ },
+ {
+  "atomic_number": 18,
+  "atomic_symbol": "Ar",
+  "isotopic_composition": 0.000629,
+  "mass_number": 38,
+  "notes": "g,r",
+  "relative_atomic_mass": 37.96273211,
+  "standard_atomic_weight": 39.948
+ },
+ {
+  "atomic_number": 18,
+  "atomic_symbol": "Ar",
+  "isotopic_composition": 0.996035,
+  "mass_number": 40,
+  "notes": "g,r",
+  "relative_atomic_mass": 39.9623831237,
+  "standard_atomic_weight": 39.948
+ },
+ {
+  "atomic_number": 19,
+  "atomic_symbol": "K",
+  "isotopic_composition": 0.932581,
+  "mass_number": 39,
+  "notes": "",
+  "relative_atomic_mass": 38.9637064864,
+  "standard_atomic_weight": 39.0983
+ },
+ {
+  "atomic_number": 19,
+  "atomic_symbol": "K",
+  "isotopic_composition": 0.000117,
+  "mass_number": 40,
+  "notes": "",
+  "relative_atomic_mass": 39.963998166,
+  "standard_atomic_weight": 39.0983
+ },
+ {
+  "atomic_number": 19,
+  "atomic_symbol": "K",
+  "isotopic_composition": 0.067302,
+  "mass_number": 41,
+  "notes": "",
+  "relative_atomic_mass": 40.9618252579,
+  "standard_atomic_weight": 39.0983
+ },
+ {
+  "atomic_number": 20,
+  "atomic_symbol": "Ca",
+  "isotopic_composition": 0.96941,
+  "mass_number": 40,
+  "notes": "g",
+  "relative_atomic_mass": 39.962590863,
+  "standard_atomic_weight": 40.078
+ },
+ {
+  "atomic_number": 20,
+  "atomic_symbol": "Ca",
+  "isotopic_composition": 0.00647,
+  "mass_number": 42,
+  "notes": "g",
+  "relative_atomic_mass": 41.95861783,
+  "standard_atomic_weight": 40.078
+ },
+ {
+  "atomic_number": 20,
+  "atomic_symbol": "Ca",
+  "isotopic_composition": 0.00135,
+  "mass_number": 43,
+  "notes": "g",
+  "relative_atomic_mass": 42.95876644,
+  "standard_atomic_weight": 40.078
+ },
+ {
+  "atomic_number": 20,
+  "atomic_symbol": "Ca",
+  "isotopic_composition": 0.02086,
+  "mass_number": 44,
+  "notes": "g",
+  "relative_atomic_mass": 43.95548156,
+  "standard_atomic_weight": 40.078
+ },
+ {
+  "atomic_number": 20,
+  "atomic_symbol": "Ca",
+  "isotopic_composition": 4e-05,
+  "mass_number": 46,
+  "notes": "g",
+  "relative_atomic_mass": 45.953689,
+  "standard_atomic_weight": 40.078
+ },
+ {
+  "atomic_number": 20,
+  "atomic_symbol": "Ca",
+  "isotopic_composition": 0.00187,
+  "mass_number": 48,
+  "notes": "g",
+  "relative_atomic_mass": 47.95252276,
+  "standard_atomic_weight": 40.078
+ },
+ {
+  "atomic_number": 21,
+  "atomic_symbol": "Sc",
+  "isotopic_composition": 1,
+  "mass_number": 45,
+  "notes": "",
+  "relative_atomic_mass": 44.95590828,
+  "standard_atomic_weight": 44.955908
+ },
+ {
+  "atomic_number": 22,
+  "atomic_symbol": "Ti",
+  "isotopic_composition": 0.0825,
+  "mass_number": 46,
+  "notes": "",
+  "relative_atomic_mass": 45.95262772,
+  "standard_atomic_weight": 47.867
+ },
+ {
+  "atomic_number": 22,
+  "atomic_symbol": "Ti",
+  "isotopic_composition": 0.0744,
+  "mass_number": 47,
+  "notes": "",
+  "relative_atomic_mass": 46.95175879,
+  "standard_atomic_weight": 47.867
+ },
+ {
+  "atomic_number": 22,
+  "atomic_symbol": "Ti",
+  "isotopic_composition": 0.7372,
+  "mass_number": 48,
+  "notes": "",
+  "relative_atomic_mass": 47.94794198,
+  "standard_atomic_weight": 47.867
+ },
+ {
+  "atomic_number": 22,
+  "atomic_symbol": "Ti",
+  "isotopic_composition": 0.0541,
+  "mass_number": 49,
+  "notes": "",
+  "relative_atomic_mass": 48.94786568,
+  "standard_atomic_weight": 47.867
+ },
+ {
+  "atomic_number": 22,
+  "atomic_symbol": "Ti",
+  "isotopic_composition": 0.0518,
+  "mass_number": 50,
+  "notes": "",
+  "relative_atomic_mass": 49.94478689,
+  "standard_atomic_weight": 47.867
+ },
+ {
+  "atomic_number": 23,
+  "atomic_symbol": "V",
+  "isotopic_composition": 0.0025,
+  "mass_number": 50,
+  "notes": "",
+  "relative_atomic_mass": 49.94715601,
+  "standard_atomic_weight": 50.9415
+ },
+ {
+  "atomic_number": 23,
+  "atomic_symbol": "V",
+  "isotopic_composition": 0.9975,
+  "mass_number": 51,
+  "notes": "",
+  "relative_atomic_mass": 50.94395704,
+  "standard_atomic_weight": 50.9415
+ },
+ {
+  "atomic_number": 24,
+  "atomic_symbol": "Cr",
+  "isotopic_composition": 0.04345,
+  "mass_number": 50,
+  "notes": "",
+  "relative_atomic_mass": 49.94604183,
+  "standard_atomic_weight": 51.9961
+ },
+ {
+  "atomic_number": 24,
+  "atomic_symbol": "Cr",
+  "isotopic_composition": 0.83789,
+  "mass_number": 52,
+  "notes": "",
+  "relative_atomic_mass": 51.94050623,
+  "standard_atomic_weight": 51.9961
+ },
+ {
+  "atomic_number": 24,
+  "atomic_symbol": "Cr",
+  "isotopic_composition": 0.09501,
+  "mass_number": 53,
+  "notes": "",
+  "relative_atomic_mass": 52.94064815,
+  "standard_atomic_weight": 51.9961
+ },
+ {
+  "atomic_number": 24,
+  "atomic_symbol": "Cr",
+  "isotopic_composition": 0.02365,
+  "mass_number": 54,
+  "notes": "",
+  "relative_atomic_mass": 53.93887916,
+  "standard_atomic_weight": 51.9961
+ },
+ {
+  "atomic_number": 25,
+  "atomic_symbol": "Mn",
+  "isotopic_composition": 1,
+  "mass_number": 55,
+  "notes": "",
+  "relative_atomic_mass": 54.93804391,
+  "standard_atomic_weight": 54.938044
+ },
+ {
+  "atomic_number": 26,
+  "atomic_symbol": "Fe",
+  "isotopic_composition": 0.05845,
+  "mass_number": 54,
+  "notes": "",
+  "relative_atomic_mass": 53.93960899,
+  "standard_atomic_weight": 55.845
+ },
+ {
+  "atomic_number": 26,
+  "atomic_symbol": "Fe",
+  "isotopic_composition": 0.91754,
+  "mass_number": 56,
+  "notes": "",
+  "relative_atomic_mass": 55.93493633,
+  "standard_atomic_weight": 55.845
+ },
+ {
+  "atomic_number": 26,
+  "atomic_symbol": "Fe",
+  "isotopic_composition": 0.02119,
+  "mass_number": 57,
+  "notes": "",
+  "relative_atomic_mass": 56.93539284,
+  "standard_atomic_weight": 55.845
+ },
+ {
+  "atomic_number": 26,
+  "atomic_symbol": "Fe",
+  "isotopic_composition": 0.00282,
+  "mass_number": 58,
+  "notes": "",
+  "relative_atomic_mass": 57.93327443,
+  "standard_atomic_weight": 55.845
+ },
+ {
+  "atomic_number": 27,
+  "atomic_symbol": "Co",
+  "isotopic_composition": 1,
+  "mass_number": 59,
+  "notes": "",
+  "relative_atomic_mass": 58.93319429,
+  "standard_atomic_weight": 58.933194
+ },
+ {
+  "atomic_number": 28,
+  "atomic_symbol": "Ni",
+  "isotopic_composition": 0.68077,
+  "mass_number": 58,
+  "notes": "r",
+  "relative_atomic_mass": 57.93534241,
+  "standard_atomic_weight": 58.6934
+ },
+ {
+  "atomic_number": 28,
+  "atomic_symbol": "Ni",
+  "isotopic_composition": 0.26223,
+  "mass_number": 60,
+  "notes": "r",
+  "relative_atomic_mass": 59.93078588,
+  "standard_atomic_weight": 58.6934
+ },
+ {
+  "atomic_number": 28,
+  "atomic_symbol": "Ni",
+  "isotopic_composition": 0.011399,
+  "mass_number": 61,
+  "notes": "r",
+  "relative_atomic_mass": 60.93105557,
+  "standard_atomic_weight": 58.6934
+ },
+ {
+  "atomic_number": 28,
+  "atomic_symbol": "Ni",
+  "isotopic_composition": 0.036346,
+  "mass_number": 62,
+  "notes": "r",
+  "relative_atomic_mass": 61.92834537,
+  "standard_atomic_weight": 58.6934
+ },
+ {
+  "atomic_number": 28,
+  "atomic_symbol": "Ni",
+  "isotopic_composition": 0.009255,
+  "mass_number": 64,
+  "notes": "r",
+  "relative_atomic_mass": 63.92796682,
+  "standard_atomic_weight": 58.6934
+ },
+ {
+  "atomic_number": 29,
+  "atomic_symbol": "Cu",
+  "isotopic_composition": 0.6915,
+  "mass_number": 63,
+  "notes": "r",
+  "relative_atomic_mass": 62.92959772,
+  "standard_atomic_weight": 63.546
+ },
+ {
+  "atomic_number": 29,
+  "atomic_symbol": "Cu",
+  "isotopic_composition": 0.3085,
+  "mass_number": 65,
+  "notes": "r",
+  "relative_atomic_mass": 64.9277897,
+  "standard_atomic_weight": 63.546
+ },
+ {
+  "atomic_number": 30,
+  "atomic_symbol": "Zn",
+  "isotopic_composition": 0.4917,
+  "mass_number": 64,
+  "notes": "r",
+  "relative_atomic_mass": 63.92914201,
+  "standard_atomic_weight": 65.38
+ },
+ {
+  "atomic_number": 30,
+  "atomic_symbol": "Zn",
+  "isotopic_composition": 0.2773,
+  "mass_number": 66,
+  "notes": "r",
+  "relative_atomic_mass": 65.92603381,
+  "standard_atomic_weight": 65.38
+ },
+ {
+  "atomic_number": 30,
+  "atomic_symbol": "Zn",
+  "isotopic_composition": 0.0404,
+  "mass_number": 67,
+  "notes": "r",
+  "relative_atomic_mass": 66.92712775,
+  "standard_atomic_weight": 65.38
+ },
+ {
+  "atomic_number": 30,
+  "atomic_symbol": "Zn",
+  "isotopic_composition": 0.1845,
+  "mass_number": 68,
+  "notes": "r",
+  "relative_atomic_mass": 67.92484455,
+  "standard_atomic_weight": 65.38
+ },
+ {
+  "atomic_number": 30,
+  "atomic_symbol": "Zn",
+  "isotopic_composition": 0.0061,
+  "mass_number": 70,
+  "notes": "r",
+  "relative_atomic_mass": 69.9253192,
+  "standard_atomic_weight": 65.38
+ },
+ {
+  "atomic_number": 31,
+  "atomic_symbol": "Ga",
+  "isotopic_composition": 0.60108,
+  "mass_number": 69,
+  "notes": "",
+  "relative_atomic_mass": 68.9255735,
+  "standard_atomic_weight": 69.723
+ },
+ {
+  "atomic_number": 31,
+  "atomic_symbol": "Ga",
+  "isotopic_composition": 0.39892,
+  "mass_number": 71,
+  "notes": "",
+  "relative_atomic_mass": 70.92470258,
+  "standard_atomic_weight": 69.723
+ },
+ {
+  "atomic_number": 32,
+  "atomic_symbol": "Ge",
+  "isotopic_composition": 0.2057,
+  "mass_number": 70,
+  "notes": "",
+  "relative_atomic_mass": 69.92424875,
+  "standard_atomic_weight": 72.63
+ },
+ {
+  "atomic_number": 32,
+  "atomic_symbol": "Ge",
+  "isotopic_composition": 0.2745,
+  "mass_number": 72,
+  "notes": "",
+  "relative_atomic_mass": 71.922075826,
+  "standard_atomic_weight": 72.63
+ },
+ {
+  "atomic_number": 32,
+  "atomic_symbol": "Ge",
+  "isotopic_composition": 0.0775,
+  "mass_number": 73,
+  "notes": "",
+  "relative_atomic_mass": 72.923458956,
+  "standard_atomic_weight": 72.63
+ },
+ {
+  "atomic_number": 32,
+  "atomic_symbol": "Ge",
+  "isotopic_composition": 0.365,
+  "mass_number": 74,
+  "notes": "",
+  "relative_atomic_mass": 73.921177761,
+  "standard_atomic_weight": 72.63
+ },
+ {
+  "atomic_number": 32,
+  "atomic_symbol": "Ge",
+  "isotopic_composition": 0.0773,
+  "mass_number": 76,
+  "notes": "",
+  "relative_atomic_mass": 75.921402726,
+  "standard_atomic_weight": 72.63
+ },
+ {
+  "atomic_number": 33,
+  "atomic_symbol": "As",
+  "isotopic_composition": 1,
+  "mass_number": 75,
+  "notes": "",
+  "relative_atomic_mass": 74.92159457,
+  "standard_atomic_weight": 74.921595
+ },
+ {
+  "atomic_number": 34,
+  "atomic_symbol": "Se",
+  "isotopic_composition": 0.0089,
+  "mass_number": 74,
+  "notes": "r",
+  "relative_atomic_mass": 73.922475934,
+  "standard_atomic_weight": 78.971
+ },
+ {
+  "atomic_number": 34,
+  "atomic_symbol": "Se",
+  "isotopic_composition": 0.0937,
+  "mass_number": 76,
+  "notes": "r",
+  "relative_atomic_mass": 75.919213704,
+  "standard_atomic_weight": 78.971
+ },
+ {
+  "atomic_number": 34,
+  "atomic_symbol": "Se",
+  "isotopic_composition": 0.0763,
+  "mass_number": 77,
+  "notes": "r",
+  "relative_atomic_mass": 76.919914154,
+  "standard_atomic_weight": 78.971
+ },
+ {
+  "atomic_number": 34,
+  "atomic_symbol": "Se",
+  "isotopic_composition": 0.2377,
+  "mass_number": 78,
+  "notes": "r",
+  "relative_atomic_mass": 77.91730928,
+  "standard_atomic_weight": 78.971
+ },
+ {
+  "atomic_number": 34,
+  "atomic_symbol": "Se",
+  "isotopic_composition": 0.4961,
+  "mass_number": 80,
+  "notes": "r",
+  "relative_atomic_mass": 79.9165218,
+  "standard_atomic_weight": 78.971
+ },
+ {
+  "atomic_number": 34,
+  "atomic_symbol": "Se",
+  "isotopic_composition": 0.0873,
+  "mass_number": 82,
+  "notes": "r",
+  "relative_atomic_mass": 81.9166995,
+  "standard_atomic_weight": 78.971
+ },
+ {
+  "atomic_number": 35,
+  "atomic_symbol": "Br",
+  "isotopic_composition": 0.5069,
+  "mass_number": 79,
+  "notes": "",
+  "relative_atomic_mass": 78.9183376,
+  "standard_atomic_weight": "[79.901,79.907]"
+ },
+ {
+  "atomic_number": 35,
+  "atomic_symbol": "Br",
+  "isotopic_composition": 0.4931,
+  "mass_number": 81,
+  "notes": "",
+  "relative_atomic_mass": 80.9162897,
+  "standard_atomic_weight": "[79.901,79.907]"
+ },
+ {
+  "atomic_number": 36,
+  "atomic_symbol": "Kr",
+  "isotopic_composition": 0.00355,
+  "mass_number": 78,
+  "notes": "g,m",
+  "relative_atomic_mass": 77.92036494,
+  "standard_atomic_weight": 83.798
+ },
+ {
+  "atomic_number": 36,
+  "atomic_symbol": "Kr",
+  "isotopic_composition": 0.02286,
+  "mass_number": 80,
+  "notes": "g,m",
+  "relative_atomic_mass": 79.91637808,
+  "standard_atomic_weight": 83.798
+ },
+ {
+  "atomic_number": 36,
+  "atomic_symbol": "Kr",
+  "isotopic_composition": 0.11593,
+  "mass_number": 82,
+  "notes": "g,m",
+  "relative_atomic_mass": 81.91348273,
+  "standard_atomic_weight": 83.798
+ },
+ {
+  "atomic_number": 36,
+  "atomic_symbol": "Kr",
+  "isotopic_composition": 0.115,
+  "mass_number": 83,
+  "notes": "g,m",
+  "relative_atomic_mass": 82.91412716,
+  "standard_atomic_weight": 83.798
+ },
+ {
+  "atomic_number": 36,
+  "atomic_symbol": "Kr",
+  "isotopic_composition": 0.56987,
+  "mass_number": 84,
+  "notes": "g,m",
+  "relative_atomic_mass": 83.9114977282,
+  "standard_atomic_weight": 83.798
+ },
+ {
+  "atomic_number": 36,
+  "atomic_symbol": "Kr",
+  "isotopic_composition": 0.17279,
+  "mass_number": 86,
+  "notes": "g,m",
+  "relative_atomic_mass": 85.9106106269,
+  "standard_atomic_weight": 83.798
+ },
+ {
+  "atomic_number": 37,
+  "atomic_symbol": "Rb",
+  "isotopic_composition": 0.7217,
+  "mass_number": 85,
+  "notes": "g",
+  "relative_atomic_mass": 84.9117897379,
+  "standard_atomic_weight": 85.4678
+ },
+ {
+  "atomic_number": 37,
+  "atomic_symbol": "Rb",
+  "isotopic_composition": 0.2783,
+  "mass_number": 87,
+  "notes": "g",
+  "relative_atomic_mass": 86.909180531,
+  "standard_atomic_weight": 85.4678
+ },
+ {
+  "atomic_number": 38,
+  "atomic_symbol": "Sr",
+  "isotopic_composition": 0.0056,
+  "mass_number": 84,
+  "notes": "g,r",
+  "relative_atomic_mass": 83.9134191,
+  "standard_atomic_weight": 87.62
+ },
+ {
+  "atomic_number": 38,
+  "atomic_symbol": "Sr",
+  "isotopic_composition": 0.0986,
+  "mass_number": 86,
+  "notes": "g,r",
+  "relative_atomic_mass": 85.9092606,
+  "standard_atomic_weight": 87.62
+ },
+ {
+  "atomic_number": 38,
+  "atomic_symbol": "Sr",
+  "isotopic_composition": 0.07,
+  "mass_number": 87,
+  "notes": "g,r",
+  "relative_atomic_mass": 86.9088775,
+  "standard_atomic_weight": 87.62
+ },
+ {
+  "atomic_number": 38,
+  "atomic_symbol": "Sr",
+  "isotopic_composition": 0.8258,
+  "mass_number": 88,
+  "notes": "g,r",
+  "relative_atomic_mass": 87.9056125,
+  "standard_atomic_weight": 87.62
+ },
+ {
+  "atomic_number": 39,
+  "atomic_symbol": "Y",
+  "isotopic_composition": 1,
+  "mass_number": 89,
+  "notes": "",
+  "relative_atomic_mass": 88.9058403,
+  "standard_atomic_weight": 88.90584
+ },
+ {
+  "atomic_number": 40,
+  "atomic_symbol": "Zr",
+  "isotopic_composition": 0.5145,
+  "mass_number": 90,
+  "notes": "g",
+  "relative_atomic_mass": 89.9046977,
+  "standard_atomic_weight": 91.224
+ },
+ {
+  "atomic_number": 40,
+  "atomic_symbol": "Zr",
+  "isotopic_composition": 0.1122,
+  "mass_number": 91,
+  "notes": "g",
+  "relative_atomic_mass": 90.9056396,
+  "standard_atomic_weight": 91.224
+ },
+ {
+  "atomic_number": 40,
+  "atomic_symbol": "Zr",
+  "isotopic_composition": 0.1715,
+  "mass_number": 92,
+  "notes": "g",
+  "relative_atomic_mass": 91.9050347,
+  "standard_atomic_weight": 91.224
+ },
+ {
+  "atomic_number": 40,
+  "atomic_symbol": "Zr",
+  "isotopic_composition": 0.1738,
+  "mass_number": 94,
+  "notes": "g",
+  "relative_atomic_mass": 93.9063108,
+  "standard_atomic_weight": 91.224
+ },
+ {
+  "atomic_number": 40,
+  "atomic_symbol": "Zr",
+  "isotopic_composition": 0.028,
+  "mass_number": 96,
+  "notes": "g",
+  "relative_atomic_mass": 95.9082714,
+  "standard_atomic_weight": 91.224
+ },
+ {
+  "atomic_number": 41,
+  "atomic_symbol": "Nb",
+  "isotopic_composition": 1,
+  "mass_number": 93,
+  "notes": "",
+  "relative_atomic_mass": 92.906373,
+  "standard_atomic_weight": 92.90637
+ },
+ {
+  "atomic_number": 42,
+  "atomic_symbol": "Mo",
+  "isotopic_composition": 0.1453,
+  "mass_number": 92,
+  "notes": "g",
+  "relative_atomic_mass": 91.90680796,
+  "standard_atomic_weight": 95.95
+ },
+ {
+  "atomic_number": 42,
+  "atomic_symbol": "Mo",
+  "isotopic_composition": 0.0915,
+  "mass_number": 94,
+  "notes": "g",
+  "relative_atomic_mass": 93.9050849,
+  "standard_atomic_weight": 95.95
+ },
+ {
+  "atomic_number": 42,
+  "atomic_symbol": "Mo",
+  "isotopic_composition": 0.1584,
+  "mass_number": 95,
+  "notes": "g",
+  "relative_atomic_mass": 94.90583877,
+  "standard_atomic_weight": 95.95
+ },
+ {
+  "atomic_number": 42,
+  "atomic_symbol": "Mo",
+  "isotopic_composition": 0.1667,
+  "mass_number": 96,
+  "notes": "g",
+  "relative_atomic_mass": 95.90467612,
+  "standard_atomic_weight": 95.95
+ },
+ {
+  "atomic_number": 42,
+  "atomic_symbol": "Mo",
+  "isotopic_composition": 0.096,
+  "mass_number": 97,
+  "notes": "g",
+  "relative_atomic_mass": 96.90601812,
+  "standard_atomic_weight": 95.95
+ },
+ {
+  "atomic_number": 42,
+  "atomic_symbol": "Mo",
+  "isotopic_composition": 0.2439,
+  "mass_number": 98,
+  "notes": "g",
+  "relative_atomic_mass": 97.90540482,
+  "standard_atomic_weight": 95.95
+ },
+ {
+  "atomic_number": 42,
+  "atomic_symbol": "Mo",
+  "isotopic_composition": 0.0982,
+  "mass_number": 100,
+  "notes": "g",
+  "relative_atomic_mass": 99.9074718,
+  "standard_atomic_weight": 95.95
+ },
+ {
+  "atomic_number": 43,
+  "atomic_symbol": "Tc",
+  "isotopic_composition": "",
+  "mass_number": 97,
+  "notes": "",
+  "relative_atomic_mass": 96.9063667,
+  "standard_atomic_weight": "[98]"
+ },
+ {
+  "atomic_number": 43,
+  "atomic_symbol": "Tc",
+  "isotopic_composition": "",
+  "mass_number": 98,
+  "notes": "",
+  "relative_atomic_mass": 97.9072124,
+  "standard_atomic_weight": "[98]"
+ },
+ {
+  "atomic_number": 43,
+  "atomic_symbol": "Tc",
+  "isotopic_composition": "",
+  "mass_number": 99,
+  "notes": "",
+  "relative_atomic_mass": 98.9062508,
+  "standard_atomic_weight": "[98]"
+ },
+ {
+  "atomic_number": 44,
+  "atomic_symbol": "Ru",
+  "isotopic_composition": 0.0554,
+  "mass_number": 96,
+  "notes": "g",
+  "relative_atomic_mass": 95.90759025,
+  "standard_atomic_weight": 101.07
+ },
+ {
+  "atomic_number": 44,
+  "atomic_symbol": "Ru",
+  "isotopic_composition": 0.0187,
+  "mass_number": 98,
+  "notes": "g",
+  "relative_atomic_mass": 97.9052868,
+  "standard_atomic_weight": 101.07
+ },
+ {
+  "atomic_number": 44,
+  "atomic_symbol": "Ru",
+  "isotopic_composition": 0.1276,
+  "mass_number": 99,
+  "notes": "g",
+  "relative_atomic_mass": 98.9059341,
+  "standard_atomic_weight": 101.07
+ },
+ {
+  "atomic_number": 44,
+  "atomic_symbol": "Ru",
+  "isotopic_composition": 0.126,
+  "mass_number": 100,
+  "notes": "g",
+  "relative_atomic_mass": 99.9042143,
+  "standard_atomic_weight": 101.07
+ },
+ {
+  "atomic_number": 44,
+  "atomic_symbol": "Ru",
+  "isotopic_composition": 0.1706,
+  "mass_number": 101,
+  "notes": "g",
+  "relative_atomic_mass": 100.9055769,
+  "standard_atomic_weight": 101.07
+ },
+ {
+  "atomic_number": 44,
+  "atomic_symbol": "Ru",
+  "isotopic_composition": 0.3155,
+  "mass_number": 102,
+  "notes": "g",
+  "relative_atomic_mass": 101.9043441,
+  "standard_atomic_weight": 101.07
+ },
+ {
+  "atomic_number": 44,
+  "atomic_symbol": "Ru",
+  "isotopic_composition": 0.1862,
+  "mass_number": 104,
+  "notes": "g",
+  "relative_atomic_mass": 103.9054275,
+  "standard_atomic_weight": 101.07
+ },
+ {
+  "atomic_number": 45,
+  "atomic_symbol": "Rh",
+  "isotopic_composition": 1,
+  "mass_number": 103,
+  "notes": "",
+  "relative_atomic_mass": 102.905498,
+  "standard_atomic_weight": 102.9055
+ },
+ {
+  "atomic_number": 46,
+  "atomic_symbol": "Pd",
+  "isotopic_composition": 0.0102,
+  "mass_number": 102,
+  "notes": "g",
+  "relative_atomic_mass": 101.9056022,
+  "standard_atomic_weight": 106.42
+ },
+ {
+  "atomic_number": 46,
+  "atomic_symbol": "Pd",
+  "isotopic_composition": 0.1114,
+  "mass_number": 104,
+  "notes": "g",
+  "relative_atomic_mass": 103.9040305,
+  "standard_atomic_weight": 106.42
+ },
+ {
+  "atomic_number": 46,
+  "atomic_symbol": "Pd",
+  "isotopic_composition": 0.2233,
+  "mass_number": 105,
+  "notes": "g",
+  "relative_atomic_mass": 104.9050796,
+  "standard_atomic_weight": 106.42
+ },
+ {
+  "atomic_number": 46,
+  "atomic_symbol": "Pd",
+  "isotopic_composition": 0.2733,
+  "mass_number": 106,
+  "notes": "g",
+  "relative_atomic_mass": 105.9034804,
+  "standard_atomic_weight": 106.42
+ },
+ {
+  "atomic_number": 46,
+  "atomic_symbol": "Pd",
+  "isotopic_composition": 0.2646,
+  "mass_number": 108,
+  "notes": "g",
+  "relative_atomic_mass": 107.9038916,
+  "standard_atomic_weight": 106.42
+ },
+ {
+  "atomic_number": 46,
+  "atomic_symbol": "Pd",
+  "isotopic_composition": 0.1172,
+  "mass_number": 110,
+  "notes": "g",
+  "relative_atomic_mass": 109.9051722,
+  "standard_atomic_weight": 106.42
+ },
+ {
+  "atomic_number": 47,
+  "atomic_symbol": "Ag",
+  "isotopic_composition": 0.51839,
+  "mass_number": 107,
+  "notes": "g",
+  "relative_atomic_mass": 106.9050916,
+  "standard_atomic_weight": 107.8682
+ },
+ {
+  "atomic_number": 47,
+  "atomic_symbol": "Ag",
+  "isotopic_composition": 0.48161,
+  "mass_number": 109,
+  "notes": "g",
+  "relative_atomic_mass": 108.9047553,
+  "standard_atomic_weight": 107.8682
+ },
+ {
+  "atomic_number": 48,
+  "atomic_symbol": "Cd",
+  "isotopic_composition": 0.0125,
+  "mass_number": 106,
+  "notes": "g",
+  "relative_atomic_mass": 105.9064599,
+  "standard_atomic_weight": 112.414
+ },
+ {
+  "atomic_number": 48,
+  "atomic_symbol": "Cd",
+  "isotopic_composition": 0.0089,
+  "mass_number": 108,
+  "notes": "g",
+  "relative_atomic_mass": 107.9041834,
+  "standard_atomic_weight": 112.414
+ },
+ {
+  "atomic_number": 48,
+  "atomic_symbol": "Cd",
+  "isotopic_composition": 0.1249,
+  "mass_number": 110,
+  "notes": "g",
+  "relative_atomic_mass": 109.90300661,
+  "standard_atomic_weight": 112.414
+ },
+ {
+  "atomic_number": 48,
+  "atomic_symbol": "Cd",
+  "isotopic_composition": 0.128,
+  "mass_number": 111,
+  "notes": "g",
+  "relative_atomic_mass": 110.90418287,
+  "standard_atomic_weight": 112.414
+ },
+ {
+  "atomic_number": 48,
+  "atomic_symbol": "Cd",
+  "isotopic_composition": 0.2413,
+  "mass_number": 112,
+  "notes": "g",
+  "relative_atomic_mass": 111.90276287,
+  "standard_atomic_weight": 112.414
+ },
+ {
+  "atomic_number": 48,
+  "atomic_symbol": "Cd",
+  "isotopic_composition": 0.1222,
+  "mass_number": 113,
+  "notes": "g",
+  "relative_atomic_mass": 112.90440813,
+  "standard_atomic_weight": 112.414
+ },
+ {
+  "atomic_number": 48,
+  "atomic_symbol": "Cd",
+  "isotopic_composition": 0.2873,
+  "mass_number": 114,
+  "notes": "g",
+  "relative_atomic_mass": 113.90336509,
+  "standard_atomic_weight": 112.414
+ },
+ {
+  "atomic_number": 48,
+  "atomic_symbol": "Cd",
+  "isotopic_composition": 0.0749,
+  "mass_number": 116,
+  "notes": "g",
+  "relative_atomic_mass": 115.90476315,
+  "standard_atomic_weight": 112.414
+ },
+ {
+  "atomic_number": 49,
+  "atomic_symbol": "In",
+  "isotopic_composition": 0.0429,
+  "mass_number": 113,
+  "notes": "",
+  "relative_atomic_mass": 112.90406184,
+  "standard_atomic_weight": 114.818
+ },
+ {
+  "atomic_number": 49,
+  "atomic_symbol": "In",
+  "isotopic_composition": 0.9571,
+  "mass_number": 115,
+  "notes": "",
+  "relative_atomic_mass": 114.903878776,
+  "standard_atomic_weight": 114.818
+ },
+ {
+  "atomic_number": 50,
+  "atomic_symbol": "Sn",
+  "isotopic_composition": 0.0097,
+  "mass_number": 112,
+  "notes": "g",
+  "relative_atomic_mass": 111.90482387,
+  "standard_atomic_weight": 118.71
+ },
+ {
+  "atomic_number": 50,
+  "atomic_symbol": "Sn",
+  "isotopic_composition": 0.0066,
+  "mass_number": 114,
+  "notes": "g",
+  "relative_atomic_mass": 113.9027827,
+  "standard_atomic_weight": 118.71
+ },
+ {
+  "atomic_number": 50,
+  "atomic_symbol": "Sn",
+  "isotopic_composition": 0.0034,
+  "mass_number": 115,
+  "notes": "g",
+  "relative_atomic_mass": 114.903344699,
+  "standard_atomic_weight": 118.71
+ },
+ {
+  "atomic_number": 50,
+  "atomic_symbol": "Sn",
+  "isotopic_composition": 0.1454,
+  "mass_number": 116,
+  "notes": "g",
+  "relative_atomic_mass": 115.9017428,
+  "standard_atomic_weight": 118.71
+ },
+ {
+  "atomic_number": 50,
+  "atomic_symbol": "Sn",
+  "isotopic_composition": 0.0768,
+  "mass_number": 117,
+  "notes": "g",
+  "relative_atomic_mass": 116.90295398,
+  "standard_atomic_weight": 118.71
+ },
+ {
+  "atomic_number": 50,
+  "atomic_symbol": "Sn",
+  "isotopic_composition": 0.2422,
+  "mass_number": 118,
+  "notes": "g",
+  "relative_atomic_mass": 117.90160657,
+  "standard_atomic_weight": 118.71
+ },
+ {
+  "atomic_number": 50,
+  "atomic_symbol": "Sn",
+  "isotopic_composition": 0.0859,
+  "mass_number": 119,
+  "notes": "g",
+  "relative_atomic_mass": 118.90331117,
+  "standard_atomic_weight": 118.71
+ },
+ {
+  "atomic_number": 50,
+  "atomic_symbol": "Sn",
+  "isotopic_composition": 0.3258,
+  "mass_number": 120,
+  "notes": "g",
+  "relative_atomic_mass": 119.90220163,
+  "standard_atomic_weight": 118.71
+ },
+ {
+  "atomic_number": 50,
+  "atomic_symbol": "Sn",
+  "isotopic_composition": 0.0463,
+  "mass_number": 122,
+  "notes": "g",
+  "relative_atomic_mass": 121.9034438,
+  "standard_atomic_weight": 118.71
+ },
+ {
+  "atomic_number": 50,
+  "atomic_symbol": "Sn",
+  "isotopic_composition": 0.0579,
+  "mass_number": 124,
+  "notes": "g",
+  "relative_atomic_mass": 123.9052766,
+  "standard_atomic_weight": 118.71
+ },
+ {
+  "atomic_number": 51,
+  "atomic_symbol": "Sb",
+  "isotopic_composition": 0.5721,
+  "mass_number": 121,
+  "notes": "g",
+  "relative_atomic_mass": 120.903812,
+  "standard_atomic_weight": 121.76
+ },
+ {
+  "atomic_number": 51,
+  "atomic_symbol": "Sb",
+  "isotopic_composition": 0.4279,
+  "mass_number": 123,
+  "notes": "g",
+  "relative_atomic_mass": 122.9042132,
+  "standard_atomic_weight": 121.76
+ },
+ {
+  "atomic_number": 52,
+  "atomic_symbol": "Te",
+  "isotopic_composition": 0.0009,
+  "mass_number": 120,
+  "notes": "g",
+  "relative_atomic_mass": 119.9040593,
+  "standard_atomic_weight": 127.6
+ },
+ {
+  "atomic_number": 52,
+  "atomic_symbol": "Te",
+  "isotopic_composition": 0.0255,
+  "mass_number": 122,
+  "notes": "g",
+  "relative_atomic_mass": 121.9030435,
+  "standard_atomic_weight": 127.6
+ },
+ {
+  "atomic_number": 52,
+  "atomic_symbol": "Te",
+  "isotopic_composition": 0.0089,
+  "mass_number": 123,
+  "notes": "g",
+  "relative_atomic_mass": 122.9042698,
+  "standard_atomic_weight": 127.6
+ },
+ {
+  "atomic_number": 52,
+  "atomic_symbol": "Te",
+  "isotopic_composition": 0.0474,
+  "mass_number": 124,
+  "notes": "g",
+  "relative_atomic_mass": 123.9028171,
+  "standard_atomic_weight": 127.6
+ },
+ {
+  "atomic_number": 52,
+  "atomic_symbol": "Te",
+  "isotopic_composition": 0.0707,
+  "mass_number": 125,
+  "notes": "g",
+  "relative_atomic_mass": 124.9044299,
+  "standard_atomic_weight": 127.6
+ },
+ {
+  "atomic_number": 52,
+  "atomic_symbol": "Te",
+  "isotopic_composition": 0.1884,
+  "mass_number": 126,
+  "notes": "g",
+  "relative_atomic_mass": 125.9033109,
+  "standard_atomic_weight": 127.6
+ },
+ {
+  "atomic_number": 52,
+  "atomic_symbol": "Te",
+  "isotopic_composition": 0.3174,
+  "mass_number": 128,
+  "notes": "g",
+  "relative_atomic_mass": 127.90446128,
+  "standard_atomic_weight": 127.6
+ },
+ {
+  "atomic_number": 52,
+  "atomic_symbol": "Te",
+  "isotopic_composition": 0.3408,
+  "mass_number": 130,
+  "notes": "g",
+  "relative_atomic_mass": 129.906222748,
+  "standard_atomic_weight": 127.6
+ },
+ {
+  "atomic_number": 53,
+  "atomic_symbol": "I",
+  "isotopic_composition": 1,
+  "mass_number": 127,
+  "notes": "",
+  "relative_atomic_mass": 126.9044719,
+  "standard_atomic_weight": 126.90447
+ },
+ {
+  "atomic_number": 54,
+  "atomic_symbol": "Xe",
+  "isotopic_composition": 0.000952,
+  "mass_number": 124,
+  "notes": "g,m",
+  "relative_atomic_mass": 123.905892,
+  "standard_atomic_weight": 131.293
+ },
+ {
+  "atomic_number": 54,
+  "atomic_symbol": "Xe",
+  "isotopic_composition": 0.00089,
+  "mass_number": 126,
+  "notes": "g,m",
+  "relative_atomic_mass": 125.9042983,
+  "standard_atomic_weight": 131.293
+ },
+ {
+  "atomic_number": 54,
+  "atomic_symbol": "Xe",
+  "isotopic_composition": 0.019102,
+  "mass_number": 128,
+  "notes": "g,m",
+  "relative_atomic_mass": 127.903531,
+  "standard_atomic_weight": 131.293
+ },
+ {
+  "atomic_number": 54,
+  "atomic_symbol": "Xe",
+  "isotopic_composition": 0.264006,
+  "mass_number": 129,
+  "notes": "g,m",
+  "relative_atomic_mass": 128.9047808611,
+  "standard_atomic_weight": 131.293
+ },
+ {
+  "atomic_number": 54,
+  "atomic_symbol": "Xe",
+  "isotopic_composition": 0.04071,
+  "mass_number": 130,
+  "notes": "g,m",
+  "relative_atomic_mass": 129.903509349,
+  "standard_atomic_weight": 131.293
+ },
+ {
+  "atomic_number": 54,
+  "atomic_symbol": "Xe",
+  "isotopic_composition": 0.212324,
+  "mass_number": 131,
+  "notes": "g,m",
+  "relative_atomic_mass": 130.90508406,
+  "standard_atomic_weight": 131.293
+ },
+ {
+  "atomic_number": 54,
+  "atomic_symbol": "Xe",
+  "isotopic_composition": 0.269086,
+  "mass_number": 132,
+  "notes": "g,m",
+  "relative_atomic_mass": 131.9041550856,
+  "standard_atomic_weight": 131.293
+ },
+ {
+  "atomic_number": 54,
+  "atomic_symbol": "Xe",
+  "isotopic_composition": 0.104357,
+  "mass_number": 134,
+  "notes": "g,m",
+  "relative_atomic_mass": 133.90539466,
+  "standard_atomic_weight": 131.293
+ },
+ {
+  "atomic_number": 54,
+  "atomic_symbol": "Xe",
+  "isotopic_composition": 0.088573,
+  "mass_number": 136,
+  "notes": "g,m",
+  "relative_atomic_mass": 135.907214484,
+  "standard_atomic_weight": 131.293
+ },
+ {
+  "atomic_number": 55,
+  "atomic_symbol": "Cs",
+  "isotopic_composition": 1,
+  "mass_number": 133,
+  "notes": "",
+  "relative_atomic_mass": 132.905451961,
+  "standard_atomic_weight": 132.90545196
+ },
+ {
+  "atomic_number": 56,
+  "atomic_symbol": "Ba",
+  "isotopic_composition": 0.00106,
+  "mass_number": 130,
+  "notes": "",
+  "relative_atomic_mass": 129.9063207,
+  "standard_atomic_weight": 137.327
+ },
+ {
+  "atomic_number": 56,
+  "atomic_symbol": "Ba",
+  "isotopic_composition": 0.00101,
+  "mass_number": 132,
+  "notes": "",
+  "relative_atomic_mass": 131.9050611,
+  "standard_atomic_weight": 137.327
+ },
+ {
+  "atomic_number": 56,
+  "atomic_symbol": "Ba",
+  "isotopic_composition": 0.02417,
+  "mass_number": 134,
+  "notes": "",
+  "relative_atomic_mass": 133.90450818,
+  "standard_atomic_weight": 137.327
+ },
+ {
+  "atomic_number": 56,
+  "atomic_symbol": "Ba",
+  "isotopic_composition": 0.06592,
+  "mass_number": 135,
+  "notes": "",
+  "relative_atomic_mass": 134.90568838,
+  "standard_atomic_weight": 137.327
+ },
+ {
+  "atomic_number": 56,
+  "atomic_symbol": "Ba",
+  "isotopic_composition": 0.07854,
+  "mass_number": 136,
+  "notes": "",
+  "relative_atomic_mass": 135.90457573,
+  "standard_atomic_weight": 137.327
+ },
+ {
+  "atomic_number": 56,
+  "atomic_symbol": "Ba",
+  "isotopic_composition": 0.11232,
+  "mass_number": 137,
+  "notes": "",
+  "relative_atomic_mass": 136.90582714,
+  "standard_atomic_weight": 137.327
+ },
+ {
+  "atomic_number": 56,
+  "atomic_symbol": "Ba",
+  "isotopic_composition": 0.71698,
+  "mass_number": 138,
+  "notes": "",
+  "relative_atomic_mass": 137.905247,
+  "standard_atomic_weight": 137.327
+ },
+ {
+  "atomic_number": 57,
+  "atomic_symbol": "La",
+  "isotopic_composition": 0.0008881,
+  "mass_number": 138,
+  "notes": "g",
+  "relative_atomic_mass": 137.9071149,
+  "standard_atomic_weight": 138.90547
+ },
+ {
+  "atomic_number": 57,
+  "atomic_symbol": "La",
+  "isotopic_composition": 0.9991119,
+  "mass_number": 139,
+  "notes": "g",
+  "relative_atomic_mass": 138.9063563,
+  "standard_atomic_weight": 138.90547
+ },
+ {
+  "atomic_number": 58,
+  "atomic_symbol": "Ce",
+  "isotopic_composition": 0.00185,
+  "mass_number": 136,
+  "notes": "g",
+  "relative_atomic_mass": 135.90712921,
+  "standard_atomic_weight": 140.116
+ },
+ {
+  "atomic_number": 58,
+  "atomic_symbol": "Ce",
+  "isotopic_composition": 0.00251,
+  "mass_number": 138,
+  "notes": "g",
+  "relative_atomic_mass": 137.905991,
+  "standard_atomic_weight": 140.116
+ },
+ {
+  "atomic_number": 58,
+  "atomic_symbol": "Ce",
+  "isotopic_composition": 0.8845,
+  "mass_number": 140,
+  "notes": "g",
+  "relative_atomic_mass": 139.9054431,
+  "standard_atomic_weight": 140.116
+ },
+ {
+  "atomic_number": 58,
+  "atomic_symbol": "Ce",
+  "isotopic_composition": 0.11114,
+  "mass_number": 142,
+  "notes": "g",
+  "relative_atomic_mass": 141.9092504,
+  "standard_atomic_weight": 140.116
+ },
+ {
+  "atomic_number": 59,
+  "atomic_symbol": "Pr",
+  "isotopic_composition": 1,
+  "mass_number": 141,
+  "notes": "",
+  "relative_atomic_mass": 140.9076576,
+  "standard_atomic_weight": 140.90766
+ },
+ {
+  "atomic_number": 60,
+  "atomic_symbol": "Nd",
+  "isotopic_composition": 0.27152,
+  "mass_number": 142,
+  "notes": "g",
+  "relative_atomic_mass": 141.907729,
+  "standard_atomic_weight": 144.242
+ },
+ {
+  "atomic_number": 60,
+  "atomic_symbol": "Nd",
+  "isotopic_composition": 0.12174,
+  "mass_number": 143,
+  "notes": "g",
+  "relative_atomic_mass": 142.90982,
+  "standard_atomic_weight": 144.242
+ },
+ {
+  "atomic_number": 60,
+  "atomic_symbol": "Nd",
+  "isotopic_composition": 0.23798,
+  "mass_number": 144,
+  "notes": "g",
+  "relative_atomic_mass": 143.910093,
+  "standard_atomic_weight": 144.242
+ },
+ {
+  "atomic_number": 60,
+  "atomic_symbol": "Nd",
+  "isotopic_composition": 0.08293,
+  "mass_number": 145,
+  "notes": "g",
+  "relative_atomic_mass": 144.9125793,
+  "standard_atomic_weight": 144.242
+ },
+ {
+  "atomic_number": 60,
+  "atomic_symbol": "Nd",
+  "isotopic_composition": 0.17189,
+  "mass_number": 146,
+  "notes": "g",
+  "relative_atomic_mass": 145.9131226,
+  "standard_atomic_weight": 144.242
+ },
+ {
+  "atomic_number": 60,
+  "atomic_symbol": "Nd",
+  "isotopic_composition": 0.05756,
+  "mass_number": 148,
+  "notes": "g",
+  "relative_atomic_mass": 147.9168993,
+  "standard_atomic_weight": 144.242
+ },
+ {
+  "atomic_number": 60,
+  "atomic_symbol": "Nd",
+  "isotopic_composition": 0.05638,
+  "mass_number": 150,
+  "notes": "g",
+  "relative_atomic_mass": 149.9209022,
+  "standard_atomic_weight": 144.242
+ },
+ {
+  "atomic_number": 61,
+  "atomic_symbol": "Pm",
+  "isotopic_composition": "",
+  "mass_number": 145,
+  "notes": "",
+  "relative_atomic_mass": 144.9127559,
+  "standard_atomic_weight": "[145]"
+ },
+ {
+  "atomic_number": 61,
+  "atomic_symbol": "Pm",
+  "isotopic_composition": "",
+  "mass_number": 147,
+  "notes": "",
+  "relative_atomic_mass": 146.915145,
+  "standard_atomic_weight": "[145]"
+ },
+ {
+  "atomic_number": 62,
+  "atomic_symbol": "Sm",
+  "isotopic_composition": 0.0307,
+  "mass_number": 144,
+  "notes": "g",
+  "relative_atomic_mass": 143.9120065,
+  "standard_atomic_weight": 150.36
+ },
+ {
+  "atomic_number": 62,
+  "atomic_symbol": "Sm",
+  "isotopic_composition": 0.1499,
+  "mass_number": 147,
+  "notes": "g",
+  "relative_atomic_mass": 146.9149044,
+  "standard_atomic_weight": 150.36
+ },
+ {
+  "atomic_number": 62,
+  "atomic_symbol": "Sm",
+  "isotopic_composition": 0.1124,
+  "mass_number": 148,
+  "notes": "g",
+  "relative_atomic_mass": 147.9148292,
+  "standard_atomic_weight": 150.36
+ },
+ {
+  "atomic_number": 62,
+  "atomic_symbol": "Sm",
+  "isotopic_composition": 0.1382,
+  "mass_number": 149,
+  "notes": "g",
+  "relative_atomic_mass": 148.9171921,
+  "standard_atomic_weight": 150.36
+ },
+ {
+  "atomic_number": 62,
+  "atomic_symbol": "Sm",
+  "isotopic_composition": 0.0738,
+  "mass_number": 150,
+  "notes": "g",
+  "relative_atomic_mass": 149.9172829,
+  "standard_atomic_weight": 150.36
+ },
+ {
+  "atomic_number": 62,
+  "atomic_symbol": "Sm",
+  "isotopic_composition": 0.2675,
+  "mass_number": 152,
+  "notes": "g",
+  "relative_atomic_mass": 151.9197397,
+  "standard_atomic_weight": 150.36
+ },
+ {
+  "atomic_number": 62,
+  "atomic_symbol": "Sm",
+  "isotopic_composition": 0.2275,
+  "mass_number": 154,
+  "notes": "g",
+  "relative_atomic_mass": 153.9222169,
+  "standard_atomic_weight": 150.36
+ },
+ {
+  "atomic_number": 63,
+  "atomic_symbol": "Eu",
+  "isotopic_composition": 0.4781,
+  "mass_number": 151,
+  "notes": "g",
+  "relative_atomic_mass": 150.9198578,
+  "standard_atomic_weight": 151.964
+ },
+ {
+  "atomic_number": 63,
+  "atomic_symbol": "Eu",
+  "isotopic_composition": 0.5219,
+  "mass_number": 153,
+  "notes": "g",
+  "relative_atomic_mass": 152.921238,
+  "standard_atomic_weight": 151.964
+ },
+ {
+  "atomic_number": 64,
+  "atomic_symbol": "Gd",
+  "isotopic_composition": 0.002,
+  "mass_number": 152,
+  "notes": "g",
+  "relative_atomic_mass": 151.9197995,
+  "standard_atomic_weight": 157.25
+ },
+ {
+  "atomic_number": 64,
+  "atomic_symbol": "Gd",
+  "isotopic_composition": 0.0218,
+  "mass_number": 154,
+  "notes": "g",
+  "relative_atomic_mass": 153.9208741,
+  "standard_atomic_weight": 157.25
+ },
+ {
+  "atomic_number": 64,
+  "atomic_symbol": "Gd",
+  "isotopic_composition": 0.148,
+  "mass_number": 155,
+  "notes": "g",
+  "relative_atomic_mass": 154.9226305,
+  "standard_atomic_weight": 157.25
+ },
+ {
+  "atomic_number": 64,
+  "atomic_symbol": "Gd",
+  "isotopic_composition": 0.2047,
+  "mass_number": 156,
+  "notes": "g",
+  "relative_atomic_mass": 155.9221312,
+  "standard_atomic_weight": 157.25
+ },
+ {
+  "atomic_number": 64,
+  "atomic_symbol": "Gd",
+  "isotopic_composition": 0.1565,
+  "mass_number": 157,
+  "notes": "g",
+  "relative_atomic_mass": 156.9239686,
+  "standard_atomic_weight": 157.25
+ },
+ {
+  "atomic_number": 64,
+  "atomic_symbol": "Gd",
+  "isotopic_composition": 0.2484,
+  "mass_number": 158,
+  "notes": "g",
+  "relative_atomic_mass": 157.9241123,
+  "standard_atomic_weight": 157.25
+ },
+ {
+  "atomic_number": 64,
+  "atomic_symbol": "Gd",
+  "isotopic_composition": 0.2186,
+  "mass_number": 160,
+  "notes": "g",
+  "relative_atomic_mass": 159.9270624,
+  "standard_atomic_weight": 157.25
+ },
+ {
+  "atomic_number": 65,
+  "atomic_symbol": "Tb",
+  "isotopic_composition": 1,
+  "mass_number": 159,
+  "notes": "",
+  "relative_atomic_mass": 158.9253547,
+  "standard_atomic_weight": 158.92535
+ },
+ {
+  "atomic_number": 66,
+  "atomic_symbol": "Dy",
+  "isotopic_composition": 0.00056,
+  "mass_number": 156,
+  "notes": "g",
+  "relative_atomic_mass": 155.9242847,
+  "standard_atomic_weight": 162.5
+ },
+ {
+  "atomic_number": 66,
+  "atomic_symbol": "Dy",
+  "isotopic_composition": 0.00095,
+  "mass_number": 158,
+  "notes": "g",
+  "relative_atomic_mass": 157.9244159,
+  "standard_atomic_weight": 162.5
+ },
+ {
+  "atomic_number": 66,
+  "atomic_symbol": "Dy",
+  "isotopic_composition": 0.02329,
+  "mass_number": 160,
+  "notes": "g",
+  "relative_atomic_mass": 159.9252046,
+  "standard_atomic_weight": 162.5
+ },
+ {
+  "atomic_number": 66,
+  "atomic_symbol": "Dy",
+  "isotopic_composition": 0.18889,
+  "mass_number": 161,
+  "notes": "g",
+  "relative_atomic_mass": 160.9269405,
+  "standard_atomic_weight": 162.5
+ },
+ {
+  "atomic_number": 66,
+  "atomic_symbol": "Dy",
+  "isotopic_composition": 0.25475,
+  "mass_number": 162,
+  "notes": "g",
+  "relative_atomic_mass": 161.9268056,
+  "standard_atomic_weight": 162.5
+ },
+ {
+  "atomic_number": 66,
+  "atomic_symbol": "Dy",
+  "isotopic_composition": 0.24896,
+  "mass_number": 163,
+  "notes": "g",
+  "relative_atomic_mass": 162.9287383,
+  "standard_atomic_weight": 162.5
+ },
+ {
+  "atomic_number": 66,
+  "atomic_symbol": "Dy",
+  "isotopic_composition": 0.2826,
+  "mass_number": 164,
+  "notes": "g",
+  "relative_atomic_mass": 163.9291819,
+  "standard_atomic_weight": 162.5
+ },
+ {
+  "atomic_number": 67,
+  "atomic_symbol": "Ho",
+  "isotopic_composition": 1,
+  "mass_number": 165,
+  "notes": "",
+  "relative_atomic_mass": 164.9303288,
+  "standard_atomic_weight": 164.93033
+ },
+ {
+  "atomic_number": 68,
+  "atomic_symbol": "Er",
+  "isotopic_composition": 0.00139,
+  "mass_number": 162,
+  "notes": "g",
+  "relative_atomic_mass": 161.9287884,
+  "standard_atomic_weight": 167.259
+ },
+ {
+  "atomic_number": 68,
+  "atomic_symbol": "Er",
+  "isotopic_composition": 0.01601,
+  "mass_number": 164,
+  "notes": "g",
+  "relative_atomic_mass": 163.9292088,
+  "standard_atomic_weight": 167.259
+ },
+ {
+  "atomic_number": 68,
+  "atomic_symbol": "Er",
+  "isotopic_composition": 0.33503,
+  "mass_number": 166,
+  "notes": "g",
+  "relative_atomic_mass": 165.9302995,
+  "standard_atomic_weight": 167.259
+ },
+ {
+  "atomic_number": 68,
+  "atomic_symbol": "Er",
+  "isotopic_composition": 0.22869,
+  "mass_number": 167,
+  "notes": "g",
+  "relative_atomic_mass": 166.9320546,
+  "standard_atomic_weight": 167.259
+ },
+ {
+  "atomic_number": 68,
+  "atomic_symbol": "Er",
+  "isotopic_composition": 0.26978,
+  "mass_number": 168,
+  "notes": "g",
+  "relative_atomic_mass": 167.9323767,
+  "standard_atomic_weight": 167.259
+ },
+ {
+  "atomic_number": 68,
+  "atomic_symbol": "Er",
+  "isotopic_composition": 0.1491,
+  "mass_number": 170,
+  "notes": "g",
+  "relative_atomic_mass": 169.9354702,
+  "standard_atomic_weight": 167.259
+ },
+ {
+  "atomic_number": 69,
+  "atomic_symbol": "Tm",
+  "isotopic_composition": 1,
+  "mass_number": 169,
+  "notes": "",
+  "relative_atomic_mass": 168.9342179,
+  "standard_atomic_weight": 168.93422
+ },
+ {
+  "atomic_number": 70,
+  "atomic_symbol": "Yb",
+  "isotopic_composition": 0.00123,
+  "mass_number": 168,
+  "notes": "g",
+  "relative_atomic_mass": 167.9338896,
+  "standard_atomic_weight": 173.054
+ },
+ {
+  "atomic_number": 70,
+  "atomic_symbol": "Yb",
+  "isotopic_composition": 0.02982,
+  "mass_number": 170,
+  "notes": "g",
+  "relative_atomic_mass": 169.9347664,
+  "standard_atomic_weight": 173.054
+ },
+ {
+  "atomic_number": 70,
+  "atomic_symbol": "Yb",
+  "isotopic_composition": 0.1409,
+  "mass_number": 171,
+  "notes": "g",
+  "relative_atomic_mass": 170.9363302,
+  "standard_atomic_weight": 173.054
+ },
+ {
+  "atomic_number": 70,
+  "atomic_symbol": "Yb",
+  "isotopic_composition": 0.2168,
+  "mass_number": 172,
+  "notes": "g",
+  "relative_atomic_mass": 171.9363859,
+  "standard_atomic_weight": 173.054
+ },
+ {
+  "atomic_number": 70,
+  "atomic_symbol": "Yb",
+  "isotopic_composition": 0.16103,
+  "mass_number": 173,
+  "notes": "g",
+  "relative_atomic_mass": 172.9382151,
+  "standard_atomic_weight": 173.054
+ },
+ {
+  "atomic_number": 70,
+  "atomic_symbol": "Yb",
+  "isotopic_composition": 0.32026,
+  "mass_number": 174,
+  "notes": "g",
+  "relative_atomic_mass": 173.9388664,
+  "standard_atomic_weight": 173.054
+ },
+ {
+  "atomic_number": 70,
+  "atomic_symbol": "Yb",
+  "isotopic_composition": 0.12996,
+  "mass_number": 176,
+  "notes": "g",
+  "relative_atomic_mass": 175.9425764,
+  "standard_atomic_weight": 173.054
+ },
+ {
+  "atomic_number": 71,
+  "atomic_symbol": "Lu",
+  "isotopic_composition": 0.97401,
+  "mass_number": 175,
+  "notes": "g",
+  "relative_atomic_mass": 174.9407752,
+  "standard_atomic_weight": 174.9668
+ },
+ {
+  "atomic_number": 71,
+  "atomic_symbol": "Lu",
+  "isotopic_composition": 0.02599,
+  "mass_number": 176,
+  "notes": "g",
+  "relative_atomic_mass": 175.9426897,
+  "standard_atomic_weight": 174.9668
+ },
+ {
+  "atomic_number": 72,
+  "atomic_symbol": "Hf",
+  "isotopic_composition": 0.0016,
+  "mass_number": 174,
+  "notes": "",
+  "relative_atomic_mass": 173.9400461,
+  "standard_atomic_weight": 178.49
+ },
+ {
+  "atomic_number": 72,
+  "atomic_symbol": "Hf",
+  "isotopic_composition": 0.0526,
+  "mass_number": 176,
+  "notes": "",
+  "relative_atomic_mass": 175.9414076,
+  "standard_atomic_weight": 178.49
+ },
+ {
+  "atomic_number": 72,
+  "atomic_symbol": "Hf",
+  "isotopic_composition": 0.186,
+  "mass_number": 177,
+  "notes": "",
+  "relative_atomic_mass": 176.9432277,
+  "standard_atomic_weight": 178.49
+ },
+ {
+  "atomic_number": 72,
+  "atomic_symbol": "Hf",
+  "isotopic_composition": 0.2728,
+  "mass_number": 178,
+  "notes": "",
+  "relative_atomic_mass": 177.9437058,
+  "standard_atomic_weight": 178.49
+ },
+ {
+  "atomic_number": 72,
+  "atomic_symbol": "Hf",
+  "isotopic_composition": 0.1362,
+  "mass_number": 179,
+  "notes": "",
+  "relative_atomic_mass": 178.9458232,
+  "standard_atomic_weight": 178.49
+ },
+ {
+  "atomic_number": 72,
+  "atomic_symbol": "Hf",
+  "isotopic_composition": 0.3508,
+  "mass_number": 180,
+  "notes": "",
+  "relative_atomic_mass": 179.946557,
+  "standard_atomic_weight": 178.49
+ },
+ {
+  "atomic_number": 73,
+  "atomic_symbol": "Ta",
+  "isotopic_composition": 0.0001201,
+  "mass_number": 180,
+  "notes": "",
+  "relative_atomic_mass": 179.9474648,
+  "standard_atomic_weight": 180.94788
+ },
+ {
+  "atomic_number": 73,
+  "atomic_symbol": "Ta",
+  "isotopic_composition": 0.9998799,
+  "mass_number": 181,
+  "notes": "",
+  "relative_atomic_mass": 180.9479958,
+  "standard_atomic_weight": 180.94788
+ },
+ {
+  "atomic_number": 74,
+  "atomic_symbol": "W",
+  "isotopic_composition": 0.0012,
+  "mass_number": 180,
+  "notes": "",
+  "relative_atomic_mass": 179.9467108,
+  "standard_atomic_weight": 183.84
+ },
+ {
+  "atomic_number": 74,
+  "atomic_symbol": "W",
+  "isotopic_composition": 0.265,
+  "mass_number": 182,
+  "notes": "",
+  "relative_atomic_mass": 181.94820394,
+  "standard_atomic_weight": 183.84
+ },
+ {
+  "atomic_number": 74,
+  "atomic_symbol": "W",
+  "isotopic_composition": 0.1431,
+  "mass_number": 183,
+  "notes": "",
+  "relative_atomic_mass": 182.95022275,
+  "standard_atomic_weight": 183.84
+ },
+ {
+  "atomic_number": 74,
+  "atomic_symbol": "W",
+  "isotopic_composition": 0.3064,
+  "mass_number": 184,
+  "notes": "",
+  "relative_atomic_mass": 183.95093092,
+  "standard_atomic_weight": 183.84
+ },
+ {
+  "atomic_number": 74,
+  "atomic_symbol": "W",
+  "isotopic_composition": 0.2843,
+  "mass_number": 186,
+  "notes": "",
+  "relative_atomic_mass": 185.9543628,
+  "standard_atomic_weight": 183.84
+ },
+ {
+  "atomic_number": 75,
+  "atomic_symbol": "Re",
+  "isotopic_composition": 0.374,
+  "mass_number": 185,
+  "notes": "",
+  "relative_atomic_mass": 184.9529545,
+  "standard_atomic_weight": 186.207
+ },
+ {
+  "atomic_number": 75,
+  "atomic_symbol": "Re",
+  "isotopic_composition": 0.626,
+  "mass_number": 187,
+  "notes": "",
+  "relative_atomic_mass": 186.9557501,
+  "standard_atomic_weight": 186.207
+ },
+ {
+  "atomic_number": 76,
+  "atomic_symbol": "Os",
+  "isotopic_composition": 0.0002,
+  "mass_number": 184,
+  "notes": "g",
+  "relative_atomic_mass": 183.9524885,
+  "standard_atomic_weight": 190.23
+ },
+ {
+  "atomic_number": 76,
+  "atomic_symbol": "Os",
+  "isotopic_composition": 0.0159,
+  "mass_number": 186,
+  "notes": "g",
+  "relative_atomic_mass": 185.953835,
+  "standard_atomic_weight": 190.23
+ },
+ {
+  "atomic_number": 76,
+  "atomic_symbol": "Os",
+  "isotopic_composition": 0.0196,
+  "mass_number": 187,
+  "notes": "g",
+  "relative_atomic_mass": 186.9557474,
+  "standard_atomic_weight": 190.23
+ },
+ {
+  "atomic_number": 76,
+  "atomic_symbol": "Os",
+  "isotopic_composition": 0.1324,
+  "mass_number": 188,
+  "notes": "g",
+  "relative_atomic_mass": 187.9558352,
+  "standard_atomic_weight": 190.23
+ },
+ {
+  "atomic_number": 76,
+  "atomic_symbol": "Os",
+  "isotopic_composition": 0.1615,
+  "mass_number": 189,
+  "notes": "g",
+  "relative_atomic_mass": 188.9581442,
+  "standard_atomic_weight": 190.23
+ },
+ {
+  "atomic_number": 76,
+  "atomic_symbol": "Os",
+  "isotopic_composition": 0.2626,
+  "mass_number": 190,
+  "notes": "g",
+  "relative_atomic_mass": 189.9584437,
+  "standard_atomic_weight": 190.23
+ },
+ {
+  "atomic_number": 76,
+  "atomic_symbol": "Os",
+  "isotopic_composition": 0.4078,
+  "mass_number": 192,
+  "notes": "g",
+  "relative_atomic_mass": 191.961477,
+  "standard_atomic_weight": 190.23
+ },
+ {
+  "atomic_number": 77,
+  "atomic_symbol": "Ir",
+  "isotopic_composition": 0.373,
+  "mass_number": 191,
+  "notes": "",
+  "relative_atomic_mass": 190.9605893,
+  "standard_atomic_weight": 192.217
+ },
+ {
+  "atomic_number": 77,
+  "atomic_symbol": "Ir",
+  "isotopic_composition": 0.627,
+  "mass_number": 193,
+  "notes": "",
+  "relative_atomic_mass": 192.9629216,
+  "standard_atomic_weight": 192.217
+ },
+ {
+  "atomic_number": 78,
+  "atomic_symbol": "Pt",
+  "isotopic_composition": 0.00012,
+  "mass_number": 190,
+  "notes": "",
+  "relative_atomic_mass": 189.9599297,
+  "standard_atomic_weight": 195.084
+ },
+ {
+  "atomic_number": 78,
+  "atomic_symbol": "Pt",
+  "isotopic_composition": 0.00782,
+  "mass_number": 192,
+  "notes": "",
+  "relative_atomic_mass": 191.9610387,
+  "standard_atomic_weight": 195.084
+ },
+ {
+  "atomic_number": 78,
+  "atomic_symbol": "Pt",
+  "isotopic_composition": 0.3286,
+  "mass_number": 194,
+  "notes": "",
+  "relative_atomic_mass": 193.9626809,
+  "standard_atomic_weight": 195.084
+ },
+ {
+  "atomic_number": 78,
+  "atomic_symbol": "Pt",
+  "isotopic_composition": 0.3378,
+  "mass_number": 195,
+  "notes": "",
+  "relative_atomic_mass": 194.9647917,
+  "standard_atomic_weight": 195.084
+ },
+ {
+  "atomic_number": 78,
+  "atomic_symbol": "Pt",
+  "isotopic_composition": 0.2521,
+  "mass_number": 196,
+  "notes": "",
+  "relative_atomic_mass": 195.96495209,
+  "standard_atomic_weight": 195.084
+ },
+ {
+  "atomic_number": 78,
+  "atomic_symbol": "Pt",
+  "isotopic_composition": 0.07356,
+  "mass_number": 198,
+  "notes": "",
+  "relative_atomic_mass": 197.9678949,
+  "standard_atomic_weight": 195.084
+ },
+ {
+  "atomic_number": 79,
+  "atomic_symbol": "Au",
+  "isotopic_composition": 1,
+  "mass_number": 197,
+  "notes": "",
+  "relative_atomic_mass": 196.96656879,
+  "standard_atomic_weight": 196.966569
+ },
+ {
+  "atomic_number": 80,
+  "atomic_symbol": "Hg",
+  "isotopic_composition": 0.0015,
+  "mass_number": 196,
+  "notes": "",
+  "relative_atomic_mass": 195.9658326,
+  "standard_atomic_weight": 200.592
+ },
+ {
+  "atomic_number": 80,
+  "atomic_symbol": "Hg",
+  "isotopic_composition": 0.0997,
+  "mass_number": 198,
+  "notes": "",
+  "relative_atomic_mass": 197.9667686,
+  "standard_atomic_weight": 200.592
+ },
+ {
+  "atomic_number": 80,
+  "atomic_symbol": "Hg",
+  "isotopic_composition": 0.1687,
+  "mass_number": 199,
+  "notes": "",
+  "relative_atomic_mass": 198.96828064,
+  "standard_atomic_weight": 200.592
+ },
+ {
+  "atomic_number": 80,
+  "atomic_symbol": "Hg",
+  "isotopic_composition": 0.231,
+  "mass_number": 200,
+  "notes": "",
+  "relative_atomic_mass": 199.96832659,
+  "standard_atomic_weight": 200.592
+ },
+ {
+  "atomic_number": 80,
+  "atomic_symbol": "Hg",
+  "isotopic_composition": 0.1318,
+  "mass_number": 201,
+  "notes": "",
+  "relative_atomic_mass": 200.97030284,
+  "standard_atomic_weight": 200.592
+ },
+ {
+  "atomic_number": 80,
+  "atomic_symbol": "Hg",
+  "isotopic_composition": 0.2986,
+  "mass_number": 202,
+  "notes": "",
+  "relative_atomic_mass": 201.9706434,
+  "standard_atomic_weight": 200.592
+ },
+ {
+  "atomic_number": 80,
+  "atomic_symbol": "Hg",
+  "isotopic_composition": 0.0687,
+  "mass_number": 204,
+  "notes": "",
+  "relative_atomic_mass": 203.97349398,
+  "standard_atomic_weight": 200.592
+ },
+ {
+  "atomic_number": 81,
+  "atomic_symbol": "Tl",
+  "isotopic_composition": 0.2952,
+  "mass_number": 203,
+  "notes": "",
+  "relative_atomic_mass": 202.9723446,
+  "standard_atomic_weight": "[204.382,204.385]"
+ },
+ {
+  "atomic_number": 81,
+  "atomic_symbol": "Tl",
+  "isotopic_composition": 0.7048,
+  "mass_number": 205,
+  "notes": "",
+  "relative_atomic_mass": 204.9744278,
+  "standard_atomic_weight": "[204.382,204.385]"
+ },
+ {
+  "atomic_number": 82,
+  "atomic_symbol": "Pb",
+  "isotopic_composition": 0.014,
+  "mass_number": 204,
+  "notes": "g,r",
+  "relative_atomic_mass": 203.973044,
+  "standard_atomic_weight": 207.2
+ },
+ {
+  "atomic_number": 82,
+  "atomic_symbol": "Pb",
+  "isotopic_composition": 0.241,
+  "mass_number": 206,
+  "notes": "g,r",
+  "relative_atomic_mass": 205.9744657,
+  "standard_atomic_weight": 207.2
+ },
+ {
+  "atomic_number": 82,
+  "atomic_symbol": "Pb",
+  "isotopic_composition": 0.221,
+  "mass_number": 207,
+  "notes": "g,r",
+  "relative_atomic_mass": 206.9758973,
+  "standard_atomic_weight": 207.2
+ },
+ {
+  "atomic_number": 82,
+  "atomic_symbol": "Pb",
+  "isotopic_composition": 0.524,
+  "mass_number": 208,
+  "notes": "g,r",
+  "relative_atomic_mass": 207.9766525,
+  "standard_atomic_weight": 207.2
+ },
+ {
+  "atomic_number": 83,
+  "atomic_symbol": "Bi",
+  "isotopic_composition": 1,
+  "mass_number": 209,
+  "notes": "",
+  "relative_atomic_mass": 208.9803991,
+  "standard_atomic_weight": 208.9804
+ },
+ {
+  "atomic_number": 84,
+  "atomic_symbol": "Po",
+  "isotopic_composition": "",
+  "mass_number": 209,
+  "notes": "",
+  "relative_atomic_mass": 208.9824308,
+  "standard_atomic_weight": "[209]"
+ },
+ {
+  "atomic_number": 84,
+  "atomic_symbol": "Po",
+  "isotopic_composition": "",
+  "mass_number": 210,
+  "notes": "",
+  "relative_atomic_mass": 209.9828741,
+  "standard_atomic_weight": "[209]"
+ },
+ {
+  "atomic_number": 85,
+  "atomic_symbol": "At",
+  "isotopic_composition": "",
+  "mass_number": 210,
+  "notes": "",
+  "relative_atomic_mass": 209.9871479,
+  "standard_atomic_weight": "[210]"
+ },
+ {
+  "atomic_number": 85,
+  "atomic_symbol": "At",
+  "isotopic_composition": "",
+  "mass_number": 211,
+  "notes": "",
+  "relative_atomic_mass": 210.9874966,
+  "standard_atomic_weight": "[210]"
+ },
+ {
+  "atomic_number": 86,
+  "atomic_symbol": "Rn",
+  "isotopic_composition": "",
+  "mass_number": 211,
+  "notes": "",
+  "relative_atomic_mass": 210.9906011,
+  "standard_atomic_weight": "[222]"
+ },
+ {
+  "atomic_number": 86,
+  "atomic_symbol": "Rn",
+  "isotopic_composition": "",
+  "mass_number": 220,
+  "notes": "",
+  "relative_atomic_mass": 220.0113941,
+  "standard_atomic_weight": "[222]"
+ },
+ {
+  "atomic_number": 86,
+  "atomic_symbol": "Rn",
+  "isotopic_composition": "",
+  "mass_number": 222,
+  "notes": "",
+  "relative_atomic_mass": 222.0175782,
+  "standard_atomic_weight": "[222]"
+ },
+ {
+  "atomic_number": 87,
+  "atomic_symbol": "Fr",
+  "isotopic_composition": "",
+  "mass_number": 223,
+  "notes": "",
+  "relative_atomic_mass": 223.019736,
+  "standard_atomic_weight": "[223]"
+ },
+ {
+  "atomic_number": 88,
+  "atomic_symbol": "Ra",
+  "isotopic_composition": "",
+  "mass_number": 223,
+  "notes": "",
+  "relative_atomic_mass": 223.0185023,
+  "standard_atomic_weight": "[226]"
+ },
+ {
+  "atomic_number": 88,
+  "atomic_symbol": "Ra",
+  "isotopic_composition": "",
+  "mass_number": 224,
+  "notes": "",
+  "relative_atomic_mass": 224.020212,
+  "standard_atomic_weight": "[226]"
+ },
+ {
+  "atomic_number": 88,
+  "atomic_symbol": "Ra",
+  "isotopic_composition": "",
+  "mass_number": 226,
+  "notes": "",
+  "relative_atomic_mass": 226.0254103,
+  "standard_atomic_weight": "[226]"
+ },
+ {
+  "atomic_number": 88,
+  "atomic_symbol": "Ra",
+  "isotopic_composition": "",
+  "mass_number": 228,
+  "notes": "",
+  "relative_atomic_mass": 228.0310707,
+  "standard_atomic_weight": "[226]"
+ },
+ {
+  "atomic_number": 89,
+  "atomic_symbol": "Ac",
+  "isotopic_composition": "",
+  "mass_number": 227,
+  "notes": "",
+  "relative_atomic_mass": 227.0277523,
+  "standard_atomic_weight": "[227]"
+ },
+ {
+  "atomic_number": 90,
+  "atomic_symbol": "Th",
+  "isotopic_composition": "",
+  "mass_number": 230,
+  "notes": "g",
+  "relative_atomic_mass": 230.0331341,
+  "standard_atomic_weight": 232.0377
+ },
+ {
+  "atomic_number": 90,
+  "atomic_symbol": "Th",
+  "isotopic_composition": 1,
+  "mass_number": 232,
+  "notes": "g",
+  "relative_atomic_mass": 232.0380558,
+  "standard_atomic_weight": 232.0377
+ },
+ {
+  "atomic_number": 91,
+  "atomic_symbol": "Pa",
+  "isotopic_composition": 1,
+  "mass_number": 231,
+  "notes": "",
+  "relative_atomic_mass": 231.0358842,
+  "standard_atomic_weight": 231.03588
+ },
+ {
+  "atomic_number": 92,
+  "atomic_symbol": "U",
+  "isotopic_composition": "",
+  "mass_number": 233,
+  "notes": "g,m",
+  "relative_atomic_mass": 233.0396355,
+  "standard_atomic_weight": 238.02891
+ },
+ {
+  "atomic_number": 92,
+  "atomic_symbol": "U",
+  "isotopic_composition": 5.4e-05,
+  "mass_number": 234,
+  "notes": "g,m",
+  "relative_atomic_mass": 234.0409523,
+  "standard_atomic_weight": 238.02891
+ },
+ {
+  "atomic_number": 92,
+  "atomic_symbol": "U",
+  "isotopic_composition": 0.007204,
+  "mass_number": 235,
+  "notes": "g,m",
+  "relative_atomic_mass": 235.0439301,
+  "standard_atomic_weight": 238.02891
+ },
+ {
+  "atomic_number": 92,
+  "atomic_symbol": "U",
+  "isotopic_composition": "",
+  "mass_number": 236,
+  "notes": "g,m",
+  "relative_atomic_mass": 236.0455682,
+  "standard_atomic_weight": 238.02891
+ },
+ {
+  "atomic_number": 92,
+  "atomic_symbol": "U",
+  "isotopic_composition": 0.992742,
+  "mass_number": 238,
+  "notes": "g,m",
+  "relative_atomic_mass": 238.0507884,
+  "standard_atomic_weight": 238.02891
+ },
+ {
+  "atomic_number": 93,
+  "atomic_symbol": "Np",
+  "isotopic_composition": "",
+  "mass_number": 236,
+  "notes": "",
+  "relative_atomic_mass": 236.04657,
+  "standard_atomic_weight": "[237]"
+ },
+ {
+  "atomic_number": 93,
+  "atomic_symbol": "Np",
+  "isotopic_composition": "",
+  "mass_number": 237,
+  "notes": "",
+  "relative_atomic_mass": 237.0481736,
+  "standard_atomic_weight": "[237]"
+ },
+ {
+  "atomic_number": 94,
+  "atomic_symbol": "Pu",
+  "isotopic_composition": "",
+  "mass_number": 238,
+  "notes": "",
+  "relative_atomic_mass": 238.0495601,
+  "standard_atomic_weight": "[244]"
+ },
+ {
+  "atomic_number": 94,
+  "atomic_symbol": "Pu",
+  "isotopic_composition": "",
+  "mass_number": 239,
+  "notes": "",
+  "relative_atomic_mass": 239.0521636,
+  "standard_atomic_weight": "[244]"
+ },
+ {
+  "atomic_number": 94,
+  "atomic_symbol": "Pu",
+  "isotopic_composition": "",
+  "mass_number": 240,
+  "notes": "",
+  "relative_atomic_mass": 240.0538138,
+  "standard_atomic_weight": "[244]"
+ },
+ {
+  "atomic_number": 94,
+  "atomic_symbol": "Pu",
+  "isotopic_composition": "",
+  "mass_number": 241,
+  "notes": "",
+  "relative_atomic_mass": 241.0568517,
+  "standard_atomic_weight": "[244]"
+ },
+ {
+  "atomic_number": 94,
+  "atomic_symbol": "Pu",
+  "isotopic_composition": "",
+  "mass_number": 242,
+  "notes": "",
+  "relative_atomic_mass": 242.0587428,
+  "standard_atomic_weight": "[244]"
+ },
+ {
+  "atomic_number": 94,
+  "atomic_symbol": "Pu",
+  "isotopic_composition": "",
+  "mass_number": 244,
+  "notes": "",
+  "relative_atomic_mass": 244.0642053,
+  "standard_atomic_weight": "[244]"
+ },
+ {
+  "atomic_number": 95,
+  "atomic_symbol": "Am",
+  "isotopic_composition": "",
+  "mass_number": 241,
+  "notes": "",
+  "relative_atomic_mass": 241.0568293,
+  "standard_atomic_weight": ""
+ },
+ {
+  "atomic_number": 95,
+  "atomic_symbol": "Am",
+  "isotopic_composition": "",
+  "mass_number": 243,
+  "notes": "",
+  "relative_atomic_mass": 243.0613813,
+  "standard_atomic_weight": ""
+ },
+ {
+  "atomic_number": 96,
+  "atomic_symbol": "Cm",
+  "isotopic_composition": "",
+  "mass_number": 243,
+  "notes": "",
+  "relative_atomic_mass": 243.0613893,
+  "standard_atomic_weight": ""
+ },
+ {
+  "atomic_number": 96,
+  "atomic_symbol": "Cm",
+  "isotopic_composition": "",
+  "mass_number": 244,
+  "notes": "",
+  "relative_atomic_mass": 244.0627528,
+  "standard_atomic_weight": ""
+ },
+ {
+  "atomic_number": 96,
+  "atomic_symbol": "Cm",
+  "isotopic_composition": "",
+  "mass_number": 245,
+  "notes": "",
+  "relative_atomic_mass": 245.0654915,
+  "standard_atomic_weight": ""
+ },
+ {
+  "atomic_number": 96,
+  "atomic_symbol": "Cm",
+  "isotopic_composition": "",
+  "mass_number": 246,
+  "notes": "",
+  "relative_atomic_mass": 246.0672238,
+  "standard_atomic_weight": ""
+ },
+ {
+  "atomic_number": 96,
+  "atomic_symbol": "Cm",
+  "isotopic_composition": "",
+  "mass_number": 247,
+  "notes": "",
+  "relative_atomic_mass": 247.0703541,
+  "standard_atomic_weight": ""
+ },
+ {
+  "atomic_number": 96,
+  "atomic_symbol": "Cm",
+  "isotopic_composition": "",
+  "mass_number": 248,
+  "notes": "",
+  "relative_atomic_mass": 248.0723499,
+  "standard_atomic_weight": ""
+ },
+ {
+  "atomic_number": 97,
+  "atomic_symbol": "Bk",
+  "isotopic_composition": "",
+  "mass_number": 247,
+  "notes": "",
+  "relative_atomic_mass": 247.0703073,
+  "standard_atomic_weight": ""
+ },
+ {
+  "atomic_number": 97,
+  "atomic_symbol": "Bk",
+  "isotopic_composition": "",
+  "mass_number": 249,
+  "notes": "",
+  "relative_atomic_mass": 249.0749877,
+  "standard_atomic_weight": ""
+ },
+ {
+  "atomic_number": 98,
+  "atomic_symbol": "Cf",
+  "isotopic_composition": "",
+  "mass_number": 249,
+  "notes": "",
+  "relative_atomic_mass": 249.0748539,
+  "standard_atomic_weight": ""
+ },
+ {
+  "atomic_number": 98,
+  "atomic_symbol": "Cf",
+  "isotopic_composition": "",
+  "mass_number": 250,
+  "notes": "",
+  "relative_atomic_mass": 250.0764062,
+  "standard_atomic_weight": ""
+ },
+ {
+  "atomic_number": 98,
+  "atomic_symbol": "Cf",
+  "isotopic_composition": "",
+  "mass_number": 251,
+  "notes": "",
+  "relative_atomic_mass": 251.0795886,
+  "standard_atomic_weight": ""
+ },
+ {
+  "atomic_number": 98,
+  "atomic_symbol": "Cf",
+  "isotopic_composition": "",
+  "mass_number": 252,
+  "notes": "",
+  "relative_atomic_mass": 252.0816272,
+  "standard_atomic_weight": ""
+ },
+ {
+  "atomic_number": 99,
+  "atomic_symbol": "Es",
+  "isotopic_composition": "",
+  "mass_number": 252,
+  "notes": "",
+  "relative_atomic_mass": 252.08298,
+  "standard_atomic_weight": ""
+ },
+ {
+  "atomic_number": 100,
+  "atomic_symbol": "Fm",
+  "isotopic_composition": "",
+  "mass_number": 257,
+  "notes": "",
+  "relative_atomic_mass": 257.0951061,
+  "standard_atomic_weight": ""
+ },
+ {
+  "atomic_number": 101,
+  "atomic_symbol": "Md",
+  "isotopic_composition": "",
+  "mass_number": 258,
+  "notes": "",
+  "relative_atomic_mass": 258.0984315,
+  "standard_atomic_weight": ""
+ },
+ {
+  "atomic_number": 101,
+  "atomic_symbol": "Md",
+  "isotopic_composition": "",
+  "mass_number": 260,
+  "notes": "",
+  "relative_atomic_mass": 260.10365,
+  "standard_atomic_weight": ""
+ },
+ {
+  "atomic_number": 102,
+  "atomic_symbol": "No",
+  "isotopic_composition": "",
+  "mass_number": 259,
+  "notes": "",
+  "relative_atomic_mass": 259.10103,
+  "standard_atomic_weight": ""
+ },
+ {
+  "atomic_number": 103,
+  "atomic_symbol": "Lr",
+  "isotopic_composition": "",
+  "mass_number": 262,
+  "notes": "",
+  "relative_atomic_mass": 262.10961,
+  "standard_atomic_weight": ""
+ },
+ {
+  "atomic_number": 104,
+  "atomic_symbol": "Rf",
+  "isotopic_composition": "",
+  "mass_number": 267,
+  "notes": "",
+  "relative_atomic_mass": 267.12179,
+  "standard_atomic_weight": ""
+ },
+ {
+  "atomic_number": 105,
+  "atomic_symbol": "Db",
+  "isotopic_composition": "",
+  "mass_number": 268,
+  "notes": "",
+  "relative_atomic_mass": 268.12567,
+  "standard_atomic_weight": ""
+ },
+ {
+  "atomic_number": 106,
+  "atomic_symbol": "Sg",
+  "isotopic_composition": "",
+  "mass_number": 271,
+  "notes": "",
+  "relative_atomic_mass": 271.13393,
+  "standard_atomic_weight": ""
+ },
+ {
+  "atomic_number": 107,
+  "atomic_symbol": "Bh",
+  "isotopic_composition": "",
+  "mass_number": 272,
+  "notes": "",
+  "relative_atomic_mass": 272.13826,
+  "standard_atomic_weight": ""
+ },
+ {
+  "atomic_number": 108,
+  "atomic_symbol": "Hs",
+  "isotopic_composition": "",
+  "mass_number": 270,
+  "notes": "",
+  "relative_atomic_mass": 270.13429,
+  "standard_atomic_weight": ""
+ },
+ {
+  "atomic_number": 109,
+  "atomic_symbol": "Mt",
+  "isotopic_composition": "",
+  "mass_number": 276,
+  "notes": "",
+  "relative_atomic_mass": 276.15159,
+  "standard_atomic_weight": ""
+ },
+ {
+  "atomic_number": 110,
+  "atomic_symbol": "Ds",
+  "isotopic_composition": "",
+  "mass_number": 281,
+  "notes": "",
+  "relative_atomic_mass": 281.16451,
+  "standard_atomic_weight": ""
+ },
+ {
+  "atomic_number": 111,
+  "atomic_symbol": "Rg",
+  "isotopic_composition": "",
+  "mass_number": 280,
+  "notes": "",
+  "relative_atomic_mass": 280.16514,
+  "standard_atomic_weight": ""
+ },
+ {
+  "atomic_number": 112,
+  "atomic_symbol": "Cn",
+  "isotopic_composition": "",
+  "mass_number": 285,
+  "notes": "",
+  "relative_atomic_mass": 285.17712,
+  "standard_atomic_weight": ""
+ },
+ {
+  "atomic_number": 113,
+  "atomic_symbol": "Nh",
+  "isotopic_composition": "",
+  "mass_number": 284,
+  "notes": "",
+  "relative_atomic_mass": 284.17873,
+  "standard_atomic_weight": ""
+ },
+ {
+  "atomic_number": 114,
+  "atomic_symbol": "Fl",
+  "isotopic_composition": "",
+  "mass_number": 289,
+  "notes": "",
+  "relative_atomic_mass": 289.19042,
+  "standard_atomic_weight": ""
+ },
+ {
+  "atomic_number": 115,
+  "atomic_symbol": "Mc",
+  "isotopic_composition": "",
+  "mass_number": 288,
+  "notes": "",
+  "relative_atomic_mass": 288.19274,
+  "standard_atomic_weight": ""
+ },
+ {
+  "atomic_number": 116,
+  "atomic_symbol": "Lv",
+  "isotopic_composition": "",
+  "mass_number": 293,
+  "notes": "",
+  "relative_atomic_mass": 293.20449,
+  "standard_atomic_weight": ""
+ },
+ {
+  "atomic_number": 117,
+  "atomic_symbol": "Ts",
+  "isotopic_composition": "",
+  "mass_number": 292,
+  "notes": "",
+  "relative_atomic_mass": 292.20746,
+  "standard_atomic_weight": ""
+ },
+ {
+  "atomic_number": 118,
+  "atomic_symbol": "Og",
+  "isotopic_composition": "",
+  "mass_number": 294,
+  "notes": "",
+  "relative_atomic_mass": 294.21392,
+  "standard_atomic_weight": ""
+ }
+]
