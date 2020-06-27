@@ -5,7 +5,7 @@ import { sum } from "lodash";
 
 const evBins = new Float64Array(1000).map((v, i) => i * 0.01 + 0.005);
 
-export function NuSpectrumPlot({ cores, spectrum, detector }) {
+export function NuSpectrumPlot({ cores, spectrum, detector, crossSection }) {
   const coreList = Object.values(cores);
   const closestActiveIAEACore = coreList
     .filter((core) => core.detectorAnySignal && !core.custom)
@@ -94,7 +94,7 @@ export function NuSpectrumPlot({ cores, spectrum, detector }) {
       ["custom", "follow"].includes(detector.current)
         ? "Custom Location"
         : detector.current
-    } (${detector.lat.toFixed(1)}N, ${detector.lon.toFixed(1)}E)`,
+    } (${detector.lat.toFixed(1)}N, ${detector.lon.toFixed(1)}E, ${detector.elevation.toFixed(0)}m)`,
     showlegend: true,
     legend: {
       x: 1,
@@ -103,13 +103,23 @@ export function NuSpectrumPlot({ cores, spectrum, detector }) {
     },
     autosize: true,
     xaxis: {
-      title: { text: "Antineutrino Energy E (MeV)" },
+      title: { text: `Antineutrino Energy E (MeV)` },
     },
     yaxis: {
       rangemode: "nonnegative",
       autorange: true,
-      title: { text: "Rate dR/dE (NIU/MeV)" },
+      title: { text: `Rate dR/dE (NIU/MeV)<br /><sub>${crossSection}</sub>` },
     },
+    annotations: [            
+        {
+          showarrow: false,
+          text: 'geoneutrinos.org',
+          x: 1,                    
+          xref: 'paper',           
+          y: 0,                    
+          yref: 'paper'            
+        }
+      ]
   };
   return (
     <Plot

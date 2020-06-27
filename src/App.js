@@ -129,6 +129,7 @@ function App(props) {
             detector={detector}
             cores={cores}
             spectrum={spectrum}
+            crossSection={crossSection}
           />
           <Tabs unmountOnExit={false} defaultActiveKey="detector">
             <Tab eventKey="detector" title="Detector">
