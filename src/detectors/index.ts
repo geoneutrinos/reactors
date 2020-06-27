@@ -21,7 +21,7 @@ export const presets: DetecorPreset[] = [
     {name: "Baksan", lat:43.24, lon: 42.70, elevation:1700, overburden:4900, region:"Europe"},
     {name: "Boulby", lat:54.555129, lon: -0.80089, elevation:-1050, overburden:2805, region:"Europe"},
     {name: "Canfranc", lat:42.77, lon: -0.57, elevation:1080, overburden:2450, region:"Europe"},
-    {name: "Fréjus", lat:45.14, lon: 6.69, elevation:0, overburden:4200, region:"Europe"},
+    {name: "Modane", lat:45.14, lon: 6.69, elevation:1263, overburden:4200, region:"Europe"},
     {name: "LNGS", lat:42.45, lon: 13.58, elevation:936.45, overburden:3100, region:"Europe"},
     {name: "Pyhäsalmi", lat:63.66, lon: 26.04, elevation:0, overburden:4000, region:"Europe"},
     // Mediterranean Sea
@@ -29,9 +29,9 @@ export const presets: DetecorPreset[] = [
     {name: "Nestor", lat:36.63, lon: 21.58, elevation:-4000, overburden:4000, region:"Mediterranean Sea"},
     {name: "NEMO Test", lat:37.551, lon: 15.384, elevation:-2080, overburden:2080, region:"Mediterranean Sea"},
     // North America
-    {name: "IMB", lat:41.75, lon: -81.29, elevation:0, overburden:1570, region:"North America"},
+    {name: "IMB", lat:41.75, lon: -81.29, elevation:-426, overburden:1570, region:"North America"},
     {name: "KURF", lat:37.38, lon: -80.66, elevation:0, overburden:1400, region:"North America"},
-    {name: "Soudan", lat:47.82, lon: -92.24, elevation:0, overburden:1950, region:"North America"},
+    {name: "Soudan", lat:47.82, lon: -92.24, elevation:-210, overburden:1950, region:"North America"},
     {name: "SURF", lat:44.36, lon: -103.76, elevation:192, overburden:4300, region:"North America"},
     {name: "WIPP", lat:32.37, lon: -103.79, elevation:1039, overburden:1600, region:"North America"},
     {name: "SNOLAB", lat:46.47, lon: -81.20, elevation:309, overburden:6010, region:"North America"},
