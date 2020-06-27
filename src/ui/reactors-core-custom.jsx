@@ -11,7 +11,7 @@ import {
   DropdownButton,
   Dropdown,
 } from "react-bootstrap";
-import { ReactorCore } from "../reactor-cores";
+import { ReactorCore, FISSION_FRACTIONS } from "../reactor-cores";
 import { Isotopes } from "../physics/constants";
 
 export const AddCustomCoreModal = ({
@@ -48,7 +48,7 @@ export const AddCustomCoreModal = ({
     [Isotopes.U238]: 0,
     [Isotopes.PU239]: 0,
     [Isotopes.PU241]: 0,
-  })
+  });
 
   useEffect(() => setCoreLat(lat === undefined ? 0 : lat), [lat]);
   useEffect(() => setCoreLon(lon === undefined ? 0 : lon), [lon]);
@@ -104,7 +104,12 @@ export const AddCustomCoreModal = ({
           <Form.Control
             isInvalid={isNaN(parseFloat(power))}
             type="number"
-            onChange={(e) => setFissionFractions({...fissionFractions, [Isotopes[isotope]]: e.target.value})}
+            onChange={(e) =>
+              setFissionFractions({
+                ...fissionFractions,
+                [Isotopes[isotope]]: e.target.value,
+              })
+            }
             value={fissionFractions[Isotopes[isotope]]}
             step={0.01}
             min={0}
@@ -118,6 +123,19 @@ export const AddCustomCoreModal = ({
     );
   });
 
+  const selectFissionFraction = (coreType) => {
+    const fissionFraction = FISSION_FRACTIONS[coreType];
+    setFissionFractions(fissionFraction);
+  };
+  const fissionSuggestItems = Object.keys(FISSION_FRACTIONS).map((coreType) => (
+    <Dropdown.Item
+      key={coreType}
+      onClick={() => selectFissionFraction(coreType)}
+    >
+      {coreType}
+    </Dropdown.Item>
+  ));
+
   return (
     <Modal show={show} onHide={close}>
       <Modal.Header closeButton>
@@ -127,7 +145,10 @@ export const AddCustomCoreModal = ({
         <Form.Group as={Row} controlId="presets">
           <Form.Label column sm="3"></Form.Label>
           <Col sm="9">
-            <DropdownButton id="customCorePreset" title="Preset Suggestions">
+            <DropdownButton
+              id="customCorePreset"
+              title="Core Location Suggestions"
+            >
               {SuggestItems}
             </DropdownButton>
           </Col>
@@ -228,7 +249,22 @@ export const AddCustomCoreModal = ({
               </InputGroup>
             </Col>
           </Form.Group>
-          <h6>Fission Fractions</h6>These should all sum to 1 (currently {Object.values(fissionFractions).map((v) => parseFloat(v)).reduce((a,b) => a+b, 0)})
+          <hr />
+          <h6>Fission Fractions</h6>These should all sum to 1 (currently{" "}
+          {Object.values(fissionFractions)
+            .map((v) => parseFloat(v))
+            .reduce((a, b) => a + b, 0)}
+          )
+          <Form.Group as={Row} controlId="fissionPresets">
+            <Col sm="9">
+              <DropdownButton
+                id="fissionPresets"
+                title="Fission Fraction Suggestions"
+              >
+                {fissionSuggestItems}
+              </DropdownButton>
+            </Col>
+          </Form.Group>
           {fissionFractionsInputs}
         </Form>
       </Modal.Body>
