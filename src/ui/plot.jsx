@@ -152,7 +152,8 @@ export function CoreDirectionPlot({ cores, detector }) {
         {
           showarrow: false,
           align:"right",
-          text: 'Radial Axis: Altitude (deg)<br />Angular Axis: Azimuth (deg)<br />geoneutrinos.org',
+          //text: 'Radial Axis: Altitude (deg)<br />Angular Axis: Azimuth (deg)<br />geoneutrinos.org',
+          text: 'geoneutrinos.org',
           x: 1.2,
           xref: 'paper',
           y: -0.1,
@@ -233,7 +234,7 @@ export function CoreDirectionPlot({ cores, detector }) {
     />
     <small>
     Azimuth (deg): East is 0 deg, North is 90 deg, etc.<br />
-    Altitude (deg): Horizon 0 deg, Nadir -90 deg)
+    Altitude (deg): Horizon 0 deg, Nadir -90 deg
     </small>
     </div>
   );

@@ -168,7 +168,7 @@ export function StatsPanel({ cores, spectrum, crossSection }) {
                 </td>
               <td>=</td>
                 <td>
-                  {customClosestNIU.toFixed(1)} {NIU}{" "}
+                  {customClosestNIU.toFixed(1)} {NIU}{" ("}
                   {((customClosestNIU / totalNIU) * 100).toFixed(1)} % of total)
                 </td>
               </tr>
