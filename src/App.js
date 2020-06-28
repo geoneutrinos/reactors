@@ -16,6 +16,7 @@ import {
   Visible,
 } from "./ui";
 import { CoreIAEARange } from "./ui/reactors-core-iaea-select";
+import { CalculatorPanel } from "./ui/output-calculator";
 import { defaultCores } from "./reactor-cores";
 import { presets, detectorENUProjector } from "./detectors";
 import { getCrustFlux } from "./crust-model";
@@ -34,8 +35,6 @@ L.Icon.Default.mergeOptions({
   iconUrl: require("leaflet/dist/images/marker-icon.png"),
   shadowUrl: require("leaflet/dist/images/marker-shadow.png"),
 });
-
-//let cores = defaultCores;
 
 const defaultDetector = presets.find((detector) => detector.name === "Boulby");
 
@@ -182,7 +181,7 @@ function App(props) {
               />
             </Tab>
             <Tab eventKey="output" title="Output">
-              Output content
+              <CalculatorPanel cores={cores} spectrum={spectrum} />
             </Tab>
             <Tab eventKey="about" title="About">
               About content
