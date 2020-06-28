@@ -60,6 +60,8 @@ export function StatsPanel({ cores, spectrum, crossSection }) {
 
   const totalCoreSignal = sum(coreList.map((core) => core.detectorNIU));
 
+  const iaeaCoreSignal = sum(coreList.filter(core => !core.custom).map(core => core.detectorNIU))
+
   // custom cores
   const customClosestName = closestCustomCore?.name || "";
   const customClosestNIU = closestCustomCore?.detectorNIU || 0;
@@ -116,7 +118,7 @@ export function StatsPanel({ cores, spectrum, crossSection }) {
               </td>
               <td>=</td>
               <td>
-                {totalCoreSignal.toFixed(1)} {NIU}
+                {iaeaCoreSignal.toFixed(1)} {NIU}
               </td>
             </tr>
             <tr>
