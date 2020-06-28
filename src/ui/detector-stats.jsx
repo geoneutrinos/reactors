@@ -97,6 +97,7 @@ export function StatsPanel({ cores, spectrum, crossSection }) {
                 <i>R</i>
                 <sub>total</sub>
               </td>
+              <td>=</td>
               <td>
                 {totalNIU.toFixed(1)} {NIU}
               </td>
@@ -113,6 +114,7 @@ export function StatsPanel({ cores, spectrum, crossSection }) {
                 <i>R</i>
                 <sub>reac</sub>
               </td>
+              <td>=</td>
               <td>
                 {totalCoreSignal.toFixed(1)} {NIU}
               </td>
@@ -122,6 +124,7 @@ export function StatsPanel({ cores, spectrum, crossSection }) {
                 <i>R</i>
                 <sub>closest</sub>
               </td>
+              <td>=</td>
               <td>
                 {closestNIU.toFixed(1)} {NIU} (
                 {((closestNIU / totalNIU) * 100).toFixed(1)} % of total)
@@ -132,6 +135,7 @@ export function StatsPanel({ cores, spectrum, crossSection }) {
                 <i>D</i>
                 <sub>closest</sub>
               </td>
+              <td>=</td>
               <td>
                 {closestDistace > 100000 ? "N/A" : closestDistace.toFixed(2)} km
                 ({closestName})
@@ -150,6 +154,7 @@ export function StatsPanel({ cores, spectrum, crossSection }) {
                   <i>R</i>
                   <sub>custom</sub>
                 </td>
+              <td>=</td>
                 <td>
                   {customTotalSignal.toFixed(1)} {NIU}
                 </td>
@@ -159,6 +164,7 @@ export function StatsPanel({ cores, spectrum, crossSection }) {
                   <i>R</i>
                   <sub>closest</sub>
                 </td>
+              <td>=</td>
                 <td>
                   {customClosestNIU.toFixed(1)} {NIU}{" "}
                   {((customClosestNIU / totalNIU) * 100).toFixed(1)} % of total)
@@ -169,6 +175,7 @@ export function StatsPanel({ cores, spectrum, crossSection }) {
                   <i>D</i>
                   <sub>closest</sub>
                 </td>
+              <td>=</td>
                 <td>
                   {customClosestDistance.toFixed(3)} km ({customClosestName})
                 </td>
@@ -186,6 +193,7 @@ export function StatsPanel({ cores, spectrum, crossSection }) {
                   <i>R</i>
                   <sub>geo</sub>
                 </td>
+              <td>=</td>
                 <td>
                   <Num v={geoTotalNIU} p={1} /> {NIU}
                 </td>
@@ -204,6 +212,7 @@ export function StatsPanel({ cores, spectrum, crossSection }) {
                   <i>(Th/U)</i>
                   <sub>geo</sub>
                 </td>
+              <td>=</td>
                 <td>
                   <Num v={geoThU} p={2} />
                 </td>
@@ -213,6 +222,7 @@ export function StatsPanel({ cores, spectrum, crossSection }) {
                   <i>(K/U)</i>
                   <sub>geo</sub>
                 </td>
+              <td>=</td>
                 <td>
                   <Num
                     v={geoKU}
