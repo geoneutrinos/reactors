@@ -47,6 +47,7 @@ export function StatsPanel({ cores, spectrum, crossSection }) {
   const coreList = Object.values(cores);
   const closestActiveCore = coreList
     .filter((core) => core.detectorAnySignal)
+    .filter((core) => !core.custom)
     .sort((a, b) => a.detectorDistance - b.detectorDistance)[0];
 
   const customCores = coreList.filter((core) => core.custom);
@@ -139,7 +140,7 @@ export function StatsPanel({ cores, spectrum, crossSection }) {
               </td>
               <td>=</td>
               <td>
-                {closestDistace > 100000 ? "N/A" : closestDistace.toFixed(2)} km
+                {closestDistace > 100000 ? "N/A" : Math.round(closestDistace) === closestDistace? closestDistace.toFixed(0): closestDistace.toFixed(2)} km
                 ({closestName})
               </td>
             </tr>
@@ -179,7 +180,7 @@ export function StatsPanel({ cores, spectrum, crossSection }) {
                 </td>
               <td>=</td>
                 <td>
-                  {customClosestDistance.toFixed(3)} km ({customClosestName})
+                  {Math.round(customClosestDistance) === customClosestDistance? customClosestDistance.toFixed(0): customClosestDistance.toFixed(2)} km ({customClosestName})
                 </td>
               </tr>
             </tbody>
