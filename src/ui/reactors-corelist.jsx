@@ -193,7 +193,7 @@ export const CoreList = ({
                 Add Custom Core
               </Dropdown.Item>
               <Dropdown.Item onClick={manCustomModal}>
-                Manage Custom Cores
+                Delete Custom Cores
               </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>

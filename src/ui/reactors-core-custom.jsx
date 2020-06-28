@@ -319,7 +319,7 @@ export const ManageCustomCoreModal = ({
   return (
     <Modal size="lg" show={show} onHide={close}>
       <Modal.Header closeButton>
-        <Modal.Title>Manage Custom Cores</Modal.Title>
+        <Modal.Title>Delete Custom Cores</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Table responsive>
@@ -327,10 +327,10 @@ export const ManageCustomCoreModal = ({
             <tr>
               <th></th>
               <th>Name</th>
-              <th>Lat</th>
-              <th>Lon</th>
-              <th>Elevation</th>
-              <th>Power</th>
+              <th>Lat (deg N)</th>
+              <th>Lon (deg E)</th>
+              <th>Elevation (m)</th>
+              <th>Power (MW)</th>
             </tr>
           </thead>
           <tbody>{coreNmaes.length > 0 && CoreList}</tbody>
