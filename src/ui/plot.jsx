@@ -132,7 +132,7 @@ export function NuSpectrumPlot({ cores, spectrum, detector, crossSection }) {
   );
 }
 
-export function CoreDirectionPlot({ cores }) {
+export function CoreDirectionPlot({ cores, detector }) {
   const coreArr = Object.values(cores)
 
   const PHWRcores = coreArr.filter((core) => core.spectrumType === "PHWR")
@@ -140,12 +140,33 @@ export function CoreDirectionPlot({ cores }) {
   const LEUMoxCores = coreArr.filter((core) => core.spectrumType === "LEU_MOX")
   const CustomCores = coreArr.filter((core) => core.spectrumType === "custom")
   const AllOtherCores = coreArr.filter((core) => core.spectrumType !== "LEU_MOX" && core.spectrumType !== "GCR" && core.spectrumType !== "PHWR" && core.type !== "custom")
+  const layout = {
+    title: `Core Directions: ${
+      ["custom", "follow"].includes(detector.current)
+        ? "Custom Location"
+        : detector.current
+    } (${detector.lat.toFixed(1)}N, ${detector.lon.toFixed(1)}E, ${detector.elevation.toFixed(0)}m)`,
+    showlegend: true,
+    autosize: true,
+    annotations: [            
+        {
+          showarrow: false,
+          align:"right",
+          text: 'Radial Axis: Altitude (deg)<br />Angular Axis: Azimuth (deg)<br />geoneutrinos.org',
+          x: 1.2,
+          xref: 'paper',
+          y: -0.1,
+          yref: 'paper',
+          xanchor: "right"
+        }
+      ]
+  };
   return (
+    <div>
     <Plot
       data={[
         {
-          name: "", //All other
-          showlegend: false,
+          name: "All Other Cores", //All other
           type: "scatterpolar",
           r: AllOtherCores.map((core) => core.direction.elev),
           theta: AllOtherCores.map((core) => core.direction.phi),
@@ -158,7 +179,6 @@ export function CoreDirectionPlot({ cores }) {
         },
         {
           name: "Custom Cores",
-          showlegend: false,
           type: "scatterpolar",
           r: CustomCores.map((core) => core.direction.elev),
           theta: CustomCores.map((core) => core.direction.phi),
@@ -170,9 +190,8 @@ export function CoreDirectionPlot({ cores }) {
           }
         },
         {
-          name: "", //GCR Cores
+          name: "GCR Cores", //GCR Cores
           type: "scatterpolar",
-          showlegend: false,
           r: GCRcores.map((core) => core.direction.elev),
           theta: GCRcores.map((core) => core.direction.phi),
           text: GCRcores.map((core) => `${core.name} (${core.type})`),
@@ -183,9 +202,8 @@ export function CoreDirectionPlot({ cores }) {
           }
         },
         {
-          name: "", //LEU MOX COres
+          name: "LEU MOX Cores", //LEU MOX COres
           type: "scatterpolar",
-          showlegend: false,
           r: LEUMoxCores.map((core) => core.direction.elev),
           theta: LEUMoxCores.map((core) => core.direction.phi),
           text: LEUMoxCores.map((core) => `${core.name} (${core.type} MOX)`),
@@ -196,9 +214,8 @@ export function CoreDirectionPlot({ cores }) {
           }
         },
         {
-          name: "", //PHWR Cores
+          name: "PHWR Cores", //PHWR Cores
           type: "scatterpolar",
-          showlegend: false,
           r: PHWRcores.map((core) => core.direction.elev),
           theta: PHWRcores.map((core) => core.direction.phi),
           text: PHWRcores.map((core) => `${core.name} (${core.type})`),
@@ -210,8 +227,14 @@ export function CoreDirectionPlot({ cores }) {
         },
       ]}
       useResizeHandler={true}
-      style={{ width: "100%", height: "50vh", minHeight: "400px"}}
+      style={{ width: "100%", height: "500px", minHeight: "400px"}}
       config={{ toImageButtonOptions: { width: 900, height: 900, scale: 2 } }}
+      layout={layout}
     />
+    <small>
+    Azimuth (deg): East is 0 deg, North is 90 deg, etc.<br />
+    Altitude (deg): Horizon 0 deg, Nadir -90 deg)
+    </small>
+    </div>
   );
 }
