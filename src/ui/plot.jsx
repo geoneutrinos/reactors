@@ -148,17 +148,27 @@ export function CoreDirectionPlot({ cores, detector }) {
     } (${detector.lat.toFixed(1)}N, ${detector.lon.toFixed(1)}E, ${detector.elevation.toFixed(0)}m)`,
     showlegend: true,
     autosize: true,
+    legend: {
+      x: 1,
+      xanchor: "left",
+      y: 1,
+      yanchor: "top",
+    },
+    margin :{
+      b: 110
+    },
     annotations: [            
         {
           showarrow: false,
           align:"right",
-          //text: 'Radial Axis: Altitude (deg)<br />Angular Axis: Azimuth (deg)<br />geoneutrinos.org',
-          text: 'geoneutrinos.org',
-          x: 1.2,
+          text: 'geoneutrinos.org<br />Radial Axis: Azimuth (deg): East is 0 deg, North is 90 deg, etc.<br />Angular Axis: Altitude (deg): Horizon 0 deg, Nadir -90 deg',
+          //jtext: 'geoneutrinos.org',
+          x: 0.9,
           xref: 'paper',
-          y: -0.1,
+          y: -0.075,
           yref: 'paper',
-          xanchor: "right"
+          yanchor: "top",
+          xanchor: "center"
         }
       ]
   };
@@ -232,10 +242,6 @@ export function CoreDirectionPlot({ cores, detector }) {
       config={{ toImageButtonOptions: { width: 900, height: 900, scale: 2 } }}
       layout={layout}
     />
-    <small>
-    Azimuth (deg): East is 0 deg, North is 90 deg, etc.<br />
-    Altitude (deg): Horizon 0 deg, Nadir -90 deg
-    </small>
     </div>
   );
 }
