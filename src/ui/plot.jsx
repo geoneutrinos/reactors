@@ -161,14 +161,13 @@ export function CoreDirectionPlot({ cores, detector }) {
         {
           showarrow: false,
           align:"right",
-          text: 'geoneutrinos.org<br />Radial Axis: Azimuth (deg): East is 0 deg, North is 90 deg, etc.<br />Angular Axis: Altitude (deg): Horizon 0 deg, Nadir -90 deg',
-          //jtext: 'geoneutrinos.org',
-          x: 0.9,
+          text: 'geoneutrinos.org<br />Angular Axis: Altitude (deg): East is 0 deg, North is 90 deg, etc.<br />Radial Axis: Azimuth (deg): Horizon 0 deg, Nadir -90 deg',
+          x: 1.2,
           xref: 'paper',
           y: -0.075,
           yref: 'paper',
           yanchor: "top",
-          xanchor: "center"
+          xanchor: "right"
         }
       ]
   };
