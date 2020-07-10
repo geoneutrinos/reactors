@@ -181,7 +181,7 @@ export const CoreList = ({
   return (
     <Card ref={cardRef}>
       <Card.Header>
-        <Form inline>
+        <Form inline onSubmit={e => { e.preventDefault(); }}>
           <h5 className="mr-auto">Core List</h5>
           <Dropdown>
             <Dropdown.Toggle variant="primary" id="dropdown-custom-roes">
