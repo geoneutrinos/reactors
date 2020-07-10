@@ -182,7 +182,7 @@ export function CoreDirectionPlot({ cores, detector }) {
           theta: AllOtherCores.map((core) => core.direction.phi),
           text: AllOtherCores.map((core) => `${core.name} (${core.type})`),
           mode: "markers",
-          hovertemplate: "%{text}",
+          hoverinfo: "text",
           marker: {
             color: "#009000"
           }
@@ -194,7 +194,7 @@ export function CoreDirectionPlot({ cores, detector }) {
           theta: CustomCores.map((core) => core.direction.phi),
           text: CustomCores.map((core) => core.name),
           mode: "markers",
-          hovertemplate: "%{text}",
+          hoverinfo: "text",
           marker: {
             color: "#000"
           }
@@ -206,7 +206,7 @@ export function CoreDirectionPlot({ cores, detector }) {
           theta: GCRcores.map((core) => core.direction.phi),
           text: GCRcores.map((core) => `${core.name} (${core.type})`),
           mode: "markers",
-          hovertemplate: "%{text}",
+          hoverinfo: "text",
           marker: {
             color: "#D69537"
           }
@@ -218,7 +218,7 @@ export function CoreDirectionPlot({ cores, detector }) {
           theta: LEUMoxCores.map((core) => core.direction.phi),
           text: LEUMoxCores.map((core) => `${core.name} (${core.type} MOX)`),
           mode: "markers",
-          hovertemplate: "%{text}",
+          hoverinfo: "text",
           marker: {
             color: "#0000ff"
           }
@@ -230,7 +230,7 @@ export function CoreDirectionPlot({ cores, detector }) {
           theta: PHWRcores.map((core) => core.direction.phi),
           text: PHWRcores.map((core) => `${core.name} (${core.type})`),
           mode: "markers",
-          hovertemplate: "%{text}",
+          hoverinfo: "text",
           marker: {
             color: "#ff0000"
           }

@@ -135,14 +135,13 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
 
   if (solveFor === "exposure") {
     UITime = (
-      (UIsignal + 2 * UIbackground) *
+      (UIsignal + UIbackground) *
       (sigma / UIsignal) *
       (sigma / UIsignal)
     ).toFixed(3);
   }
   if (solveFor === "significance") {
-    UISigma =
-      (UIsignal * Math.sqrt(time)) / Math.sqrt(UIsignal + 2 * UIbackground);
+    UISigma = (UIsignal * Math.sqrt(time)) / Math.sqrt(UIsignal + UIbackground);
   }
 
   return (
@@ -180,7 +179,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
           </Form.Group>
           <Form.Group controlId="e_min">
             <Form.Label>
-              E<sub>min</sub>
+              Antineutrino E<sub>min</sub>
             </Form.Label>
             <InputGroup>
               <Form.Control
@@ -189,12 +188,15 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
                 step="0.1"
                 value={eMin}
               />
+              <InputGroup.Append>
+                <InputGroup.Text>MeV</InputGroup.Text>
+              </InputGroup.Append>
             </InputGroup>
           </Form.Group>
 
           <Form.Group controlId="e_max">
             <Form.Label>
-              E<sub>max</sub>
+              Antineutrino E<sub>max</sub>
             </Form.Label>
             <InputGroup>
               <Form.Control
@@ -204,7 +206,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
                 value={eMax}
               />
               <InputGroup.Append>
-                <InputGroup.Text></InputGroup.Text>
+                <InputGroup.Text>MeV</InputGroup.Text>
               </InputGroup.Append>
             </InputGroup>
           </Form.Group>
@@ -232,7 +234,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
           </Form.Group>
         </Form>
         <div>
-          N<sub>σ</sub> = Signal * sqrt(Time) / sqrt(Signal + 2 * Background)
+          N<sub>σ</sub> = Signal * sqrt(Time) / sqrt(Signal + Background)
         </div>
       </Card.Body>
     </Card>
