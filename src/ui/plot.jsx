@@ -46,6 +46,7 @@ export function NuSpectrumPlot({ cores, spectrum, detector, crossSection }) {
       mode: "lines",
       fill: "tozerox",
       marker: { color: "yellow" },
+      line: {width: 0.7},
       visible: sum(spectrum.geoK) > 0,
     },
     {
@@ -56,6 +57,7 @@ export function NuSpectrumPlot({ cores, spectrum, detector, crossSection }) {
       mode: "lines",
       fill: "tozerox",
       marker: { color: "blue" },
+      line: {width: 0.7},
       visible: sum(spectrum.geoU) > 0,
     },
     {
@@ -66,6 +68,7 @@ export function NuSpectrumPlot({ cores, spectrum, detector, crossSection }) {
       mode: "lines",
       fill: "tozerox",
       marker: { color: "red" },
+      line: {width: 0.7},
       visible: sum(spectrum.geoTh) > 0,
     },
     {
@@ -76,6 +79,7 @@ export function NuSpectrumPlot({ cores, spectrum, detector, crossSection }) {
       mode: "lines",
       fill: "tozerox",
       marker: { color: "green" },
+      line: {width: 0.7},
       visible: sum(totalCoreSignal) > 0,
     },
     {
