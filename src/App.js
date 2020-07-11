@@ -3,20 +3,34 @@ import React, { useState, useMemo } from "react";
 import { project } from "ecef-projector";
 import { Container, Row, Col, Tab, Tabs } from "react-bootstrap";
 
-import { NuSpectrumPlot, CoreDirectionPlot } from "./ui/plot";
-import {AddCustomCoreModal, ManageCustomCoreModal} from './ui/reactors-core-custom';
 import {
+  // Left pane
   NuMap,
+
+  // Right Pane
+  NuSpectrumPlot,
+  // Detector Tab
+  CoreDirectionPlot,
   StatsPanel,
+  DetectorLocationPane,
+  //Reactors Tab
+  CoreIAEARange,
   CoreList,
+  //GeuNu Tab
   MantleFlux,
   CrustFlux,
+  //Physics Tab
   DetectorPhysicsPane,
-  DetectorLocationPane,
+  //Output Tab
+  CalculatorPanel,
+
+  // Custom Core UI
+  AddCustomCoreModal,
+  ManageCustomCoreModal,
+  //Helpers
   Visible,
 } from "./ui";
-import { CoreIAEARange } from "./ui/reactors-core-iaea-select";
-import { CalculatorPanel } from "./ui/output-calculator";
+
 import { defaultCores } from "./reactor-cores";
 import { presets, detectorENUProjector } from "./detectors";
 import { getCrustFlux } from "./crust-model";
@@ -67,9 +81,9 @@ function App(props) {
   const [addCustomModalXY, setAddCustomModalXY] = useState({})
   const [manCustomModal, setManCustomModal] = useState(false)
 
-  const addCustomModelWithLoc = ({lon, lat}) => {
+  const addCustomModelWithLoc = ({ lon, lat }) => {
     setAddCustomModal(true)
-    setAddCustomModalXY({lon:lon, lat:lat})
+    setAddCustomModalXY({ lon: lon, lat: lat })
   }
 
 
@@ -79,7 +93,7 @@ function App(props) {
       const { lat, lon, elevation } = detector;
       const [x, y, z] = project(lat, lon, elevation).map((n) => n / 1000);
 
-      const tmpCores = {...defaultCores, ...customCores}
+      const tmpCores = { ...defaultCores, ...customCores }
 
       return Object.fromEntries(
         Object.entries(tmpCores).map(([name, core]) => {
@@ -94,7 +108,8 @@ function App(props) {
             modCore.setSignal(dist, lf, massOrdering, crossSection, direction),
           ];
         })
-      )},
+      )
+    },
     [coreMods, reactorLF, crossSection, massOrdering, detector, customCores]
   );
 
@@ -133,20 +148,20 @@ function App(props) {
           <Tabs unmountOnExit={false} defaultActiveKey="detector">
             <Tab eventKey="detector" title="Detector">
               <Visible>
-              <CoreDirectionPlot cores={cores} detector={detector} />
-              <StatsPanel
-                cores={cores}
-                spectrum={spectrum}
-                crossSection={crossSection}
-              />
-              <DetectorLocationPane
-                detector={detector}
-                setDetector={setDetector}
-              />
+                <CoreDirectionPlot cores={cores} detector={detector} />
+                <StatsPanel
+                  cores={cores}
+                  spectrum={spectrum}
+                  crossSection={crossSection}
+                />
+                <DetectorLocationPane
+                  detector={detector}
+                  setDetector={setDetector}
+                />
               </Visible>
             </Tab>
             <Tab eventKey="reactors" title="Reactors">
-              <AddCustomCoreModal {...addCustomModalXY} show={addCustomModal} customCores={customCores} setCustomCores={setCustomCores} close={() =>{ setAddCustomModalXY({}); setAddCustomModal(false)}} />
+              <AddCustomCoreModal {...addCustomModalXY} show={addCustomModal} customCores={customCores} setCustomCores={setCustomCores} close={() => { setAddCustomModalXY({}); setAddCustomModal(false) }} />
               <ManageCustomCoreModal show={manCustomModal} customCores={customCores} setCustomCores={setCustomCores} close={() => setManCustomModal(false)} />
               <CoreIAEARange
                 reactorLF={reactorLF}
