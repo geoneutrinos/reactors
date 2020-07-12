@@ -174,6 +174,9 @@ function App(props) {
                 reactorLF={reactorLF}
                 coreMods={coreMods}
                 setCoreMods={setCoreMods}
+                // The following is for the download filename...
+                crossSection={crossSection}
+                detector={detector}
               />
             </Tab>
             <Tab eventKey="geonu" title="GeoNu">

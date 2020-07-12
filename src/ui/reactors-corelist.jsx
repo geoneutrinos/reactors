@@ -43,6 +43,8 @@ const CoreListItem = ({
   reactorLF,
   coreMods,
   setCoreMods,
+  crossSection,
+  detector,
 }) => {
   const lf = core.loadFactor(reactorLF.start, reactorLF.end);
   const fullPower = () => {
@@ -67,7 +69,10 @@ const CoreListItem = ({
     const bins = core.detectorSignal.map((n,i) => 0.005 + i * 0.01)
     const csv = zip(bins, core.detectorSignal).map(([bin, sig]) => `${bin.toFixed(3)}, ${sig}`)
     const data = new Blob(["bin center (MeV), NIU\n", csv.join("\n")])
-    saveAs(data, `corespec_${core.name}.csv`)
+    let filename = `corespec_${core.name}_${detector.name}_${crossSection}.csv`
+    filename = filename.replace(/\s/g, "_")
+    filename = filename.replace(/\(|\)/g, '')
+    saveAs(data, filename)
   }
   return (
     <ListGroup.Item>
@@ -124,7 +129,9 @@ export const CoreList = ({
   coreMods,
   setCoreMods,
   addCustomModal,
-  manCustomModal
+  manCustomModal,
+  detector,
+  crossSection,
 }) => {
   const [filter, setFilter] = useState("");
   const [displayLength, setDisplayLength] = useState(10);
@@ -254,6 +261,8 @@ export const CoreList = ({
               reactorLF={reactorLF}
               coreMods={coreMods}
               setCoreMods={setCoreMods}
+              detector={detector}
+              crossSection={crossSection}
             />
           ))}
       </ListGroup>
