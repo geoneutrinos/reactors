@@ -39,8 +39,8 @@ function normalNeutrinoFlavor(Ev: number, dist: number): number{
   return 1 - supr21 - supr31 - supr32;
 }
 
-export const normalNeutrinoOscilationSpectrum = memoize((dist: number): Float32Array => {
-    const oscspec = new Float32Array(1000);
+export const normalNeutrinoOscilationSpectrum = memoize((dist: number): Float64Array => {
+    const oscspec = new Float64Array(1000);
     oscspec.fill(0);
 
     return oscspec.map((value, index) => normalNeutrinoFlavor((index+1)*0.01, dist))
@@ -58,8 +58,8 @@ function invertedNeutrinoFlavor(Ev: number, dist: number): number{
   return 1 - supr21 - supr31 - supr32;
 }
 
-export const invertedNeutrinoOscilationSpectrum = memoize((dist: number): Float32Array => {
-    const oscspec = new Float32Array(1000);
+export const invertedNeutrinoOscilationSpectrum = memoize((dist: number): Float64Array => {
+    const oscspec = new Float64Array(1000);
     oscspec.fill(0);
 
     return oscspec.map((value, index) => invertedNeutrinoFlavor((index+1)*0.01, dist))

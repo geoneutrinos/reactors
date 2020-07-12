@@ -5,7 +5,7 @@ import {
 } from "./reactor-database/reactors.json";
 import { partialInteractionRate } from "../physics/reactor-antineutrinos";
 import { neutrinoEnergyFor } from "../physics/helpers";
-import { XSFuncs, XSNames } from "../physics/neutrino-cross-section";
+import { XSFuncs, XSNames, crossSectionElectronAntineutrinoFractionES } from "../physics/neutrino-cross-section";
 import {
   FISSION_ENERGIES,
   ELEMENTARY_CHARGE,
@@ -26,10 +26,12 @@ const SECONDS_PER_YEAR = 365.25 * 24 * 60 * 60;
 function mevRange(count = 1000, start = 0, stop = 10) {
   // TODO figure out how to deal with a start not a zero
   const binSize = (stop - start) / count;
-  return new Float32Array(range(binSize / 2, stop, binSize));
+  return new Float64Array(range(binSize / 2, stop, binSize));
 }
 
 const bins = mevRange();
+
+const ESEratio = bins.map(Ev => crossSectionElectronAntineutrinoFractionES(Ev))
 
 interface FissionFractions {
   [Isotopes.U235]: number;
@@ -156,13 +158,13 @@ interface ReactorCore {
   loadOverride?: number;
   lf_cache: { [key: string]: number };
   detectorDistance: number;
-  detectorSignal: Float32Array;
+  detectorSignal: Float64Array;
   detectorAnySignal: boolean;
   detectorNIU: number;
   direction: Direction;
   fisionFractions: FissionFractions;
 
-  spectrum: (crossSection: XSNames) => Float32Array;
+  spectrum: (crossSection: XSNames) => Float64Array;
   setSignal: (
     dist: number,
     lf: number,
@@ -237,7 +239,7 @@ export function ReactorCore({
     crossSection: XSNames,
     direction: Direction
   ): ReactorCore {
-    const spectrum = this.spectrum(crossSection);
+    let spectrum = this.spectrum(crossSection);
     const power = this.power;
     const distsq = dist ** 2;
 
@@ -254,8 +256,18 @@ export function ReactorCore({
       oscillation = oscillation.map((v) => 1 - v);
     }
 
+    let ESMUTauContirbution = bins.map(bin => 0)
+
+    if (crossSection === XSNames.ESTOTAL){
+      // we need the origional total specturm for this
+      ESMUTauContirbution = spectrum.map((spec, idx) => spec * (1 - ESEratio[idx]) * (1 - oscillation[idx]))
+
+      spectrum = spectrum.map((spec, idx) => spec * ESEratio[idx])
+    }
+
     const signal = spectrum.map((spec, idx) => {
-      return (spec * oscillation[idx] * power * lf) / distsq;
+
+      return ((spec * oscillation[idx] + ESMUTauContirbution[idx]) * power * lf) / distsq;
     });
 
     const detectorNIU = sum(signal) * 0.01;
@@ -292,7 +304,7 @@ export function ReactorCore({
     },
     loadFactor: loadFactor,
     detectorDistance: 0,
-    detectorSignal: new Float32Array(1000).fill(0),
+    detectorSignal: new Float64Array(1000).fill(0),
     detectorAnySignal: false,
     detectorNIU: 0,
     setSignal: setSignal,

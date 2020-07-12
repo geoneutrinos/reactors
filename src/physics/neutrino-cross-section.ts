@@ -14,6 +14,7 @@ enum NeutrinoType {
 export enum XSNames {
   VB1999 = "IBD: Vogel and Beacom (1999)",
   SV2003 = "IBD: Strumia and Vissani (2003)",
+  ESTOTAL = "Elastic Scattering: Antineutrino",
   ESANTI = "Elastic Scattering: Electron Antineutrino",
   ESMUTAU = "Elastic Scattering: Mu Tau Antineutrino",
 }
@@ -97,9 +98,18 @@ const crossSectionMuTauAntineutrinoES: CrossSection = memoize((Ev) => {
   return crossSectionElasticScattering(Ev, NeutrinoType.muTauAntineutrino)
 })
 
+const crossSectionTotalES: CrossSection = memoize((Ev) => {
+  return  crossSectionElectronAntineutrinoES(Ev) + crossSectionMuTauAntineutrinoES(Ev)
+})
+
+export const crossSectionElectronAntineutrinoFractionES = memoize((Ev) => {
+  return crossSectionElectronAntineutrinoES(Ev) / crossSectionTotalES(Ev);
+})
+
 export const XSFuncs: {[key in XSNames]: CrossSection} = {
   [XSNames.VB1999]: crossSectionVB1999,
   [XSNames.SV2003]: crossSectionSV2003,
   [XSNames.ESANTI]: crossSectionElectronAntineutrinoES,
   [XSNames.ESMUTAU]: crossSectionMuTauAntineutrinoES,
+  [XSNames.ESTOTAL]: crossSectionTotalES,
 }
