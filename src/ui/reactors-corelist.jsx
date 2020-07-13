@@ -9,11 +9,9 @@ import {
   Row,
   Col,
 } from "react-bootstrap";
-import {zip} from 'lodash';
-
-import { saveAs } from "file-saver";
 
 import { coreNameSortCompare } from "../reactor-cores";
+import {DownloadButton} from "./output-download"
 
 const CoreType = ({ core }) => {
   const coreDef = {
@@ -65,15 +63,16 @@ const CoreListItem = ({
   } else if (core.detectorDistance < 100) {
     dist = core.detectorDistance.toFixed(1);
   }
-  const downloadCore = () => {
-    const bins = core.detectorSignal.map((n,i) => 0.005 + i * 0.01)
-    const csv = zip(bins, core.detectorSignal).map(([bin, sig]) => `${bin.toFixed(3)}, ${sig}`)
-    const data = new Blob(["bin center (MeV), NIU\n", csv.join("\n")])
-    let filename = `corespec_${core.name}_${detector.name}_${crossSection}.csv`
-    filename = filename.replace(/\s/g, "_")
-    filename = filename.replace(/\(|\)/g, '')
-    saveAs(data, filename)
+
+  const downloadFilename = `corespec_${core.name}_${detector.name}_${crossSection}.csv`.replace(/\s/g, "_").replace(/\(|\)/g, '')
+  const downloadData = {
+    "bin center (MeV)": core.detectorSignal.map((n,i) => 0.005 + i * 0.01),
+    NIU: core.detectorSignal 
   }
+  const downloadFormatters = {
+    "bin center (MeV)": v => v.toFixed(3),
+  }
+
   return (
     <ListGroup.Item>
       <h6>{core.name}</h6>
@@ -93,7 +92,7 @@ const CoreListItem = ({
           </ButtonGroup>
         </Col>
         <Col xl>
-          <Button onClick={() => downloadCore()} size="sm" variant="success">Downlaod Core Spectrum</Button>
+          <DownloadButton buttonTitle="Downlaod Core Spectrum" data={downloadData} formatters={downloadFormatters} filename={downloadFilename}/>
         </Col>
       </Row>
       <Row>

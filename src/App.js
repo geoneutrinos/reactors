@@ -22,6 +22,7 @@ import {
   //Physics Tab
   DetectorPhysicsPane,
   //Output Tab
+  OutputDownload,
   CalculatorPanel,
 
   // Custom Core UI
@@ -199,7 +200,8 @@ function App(props) {
               />
             </Tab>
             <Tab eventKey="output" title="Output">
-              <CalculatorPanel cores={cores} spectrum={spectrum} />
+              <OutputDownload spectrum={spectrum} cores={cores}  crossSection={crossSection} detector={detector}/>
+              <CalculatorPanel cores={cores} spectrum={spectrum}/>
             </Tab>
             <Tab eventKey="about" title="About">
               About content
