@@ -66,7 +66,7 @@ const CoreListItem = ({
     dist = core.detectorDistance.toFixed(1);
   }
 
-  const downloadFilename = `corespec_${core.name}_${detector.current}_${invert(XSNames)[crossSection]}.csv`.replace(/\s/g, "_").replace(/\(|\)/g, '')
+  const downloadFilename = `Enu_spec10keV_${core.name}_${detector.current}_${invert(XSNames)[crossSection]}.csv`.replace(/\s/g, "_").replace(/\(|\)/g, '')
   const downloadData = {
     "bin center (MeV)": core.detectorSignal.map((n,i) => 0.005 + i * 0.01),
     NIU: core.detectorSignal 
@@ -179,6 +179,8 @@ export const CoreList = ({
     name: coreNameSortCompare,
     distance: (a, b) => a.detectorDistance - b.detectorDistance,
     signal: (a, b) => b.detectorNIU - a.detectorNIU,
+    type: (a, b) => a.type.localeCompare(b.type),
+    capacity: (a, b) => b.power - a.power,
   };
 
   const coresForRender = visible ? coreObjs
@@ -249,6 +251,8 @@ export const CoreList = ({
           >
             <option value="signal">Sort By: Signal</option>
             <option value="distance">Sort By: Distance</option>
+            <option value="capacity">Sort By: Thermal Capacity</option>
+            <option value="type">Sort By: Core Type</option>
             <option value="name">Sort By: Name</option>
           </Form.Control>
           </Col>
