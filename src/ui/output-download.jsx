@@ -1,5 +1,6 @@
 import React from 'react'
-import {zip, sum} from 'lodash'
+import {zip, sum, invert} from 'lodash'
+import { XSNames } from "../physics/neutrino-cross-section"
 
 import { Card, Button} from "react-bootstrap";
 
@@ -57,14 +58,19 @@ export const OutputDownload = ({cores, spectrum, detector, crossSection}) => {
         "IAEA cores": totalIAEA,
         [`closest IAEA Core (${closestName})`]: closestActiveCore.detectorSignal,
         ...customCoreData,
-        geoU:spectrum.geoU,
-        geoTh:spectrum.geoTh,
-        geoK:spectrum.geoK,
+        geo238U:spectrum.geoU,
+        geo232Th:spectrum.geoTh,
+        geo40K_beta:spectrum.geoK,
     }
     const downloadFormatters = {
         "bin center (MeV)": (v) => v.toFixed(3)
     }
-    const downloadFilename = `output_${detector.name}_${crossSection}.csv`.replace(/\s/g, "_").replace(/\(|\)/g, '')
+    const downloadFilename = `output_${detector.current}_${invert(XSNames)[crossSection]}.csv`.replace(/\s/g, "_").replace(/\(|\)/g, '')
+
+    if ([XSNames.IBDSV2003, XSNames.IBDVB1999].includes(crossSection)){
+        console.log(crossSection)
+        delete downloadData.geoK
+    }
 
     return <Card>
         <Card.Header>Download Model Output</Card.Header>

@@ -12,6 +12,8 @@ import {
 
 import { coreNameSortCompare } from "../reactor-cores";
 import {DownloadButton} from "./output-download"
+import {invert} from 'lodash'
+import { XSNames } from '../physics/neutrino-cross-section'
 
 const CoreType = ({ core }) => {
   const coreDef = {
@@ -64,7 +66,7 @@ const CoreListItem = ({
     dist = core.detectorDistance.toFixed(1);
   }
 
-  const downloadFilename = `corespec_${core.name}_${detector.name}_${crossSection}.csv`.replace(/\s/g, "_").replace(/\(|\)/g, '')
+  const downloadFilename = `corespec_${core.name}_${detector.current}_${invert(XSNames)[crossSection]}.csv`.replace(/\s/g, "_").replace(/\(|\)/g, '')
   const downloadData = {
     "bin center (MeV)": core.detectorSignal.map((n,i) => 0.005 + i * 0.01),
     NIU: core.detectorSignal 

@@ -55,7 +55,7 @@ const defaultDetector = presets.find((detector) => detector.name === "Boulby");
 
 function App(props) {
   const [massOrdering, setMassOrdering] = useState(MassOrdering.Normal);
-  const [crossSection, setCrossSection] = useState(XSNames.SV2003);
+  const [crossSection, setCrossSection] = useState(XSNames.IBDSV2003);
   const [detector, setDetector] = useState({
     current: defaultDetector.name,
     ...defaultDetector,
