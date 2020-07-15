@@ -1,6 +1,6 @@
 import React from 'react'
-import {zip, sum, invert} from 'lodash'
-import { XSNames } from "../physics/neutrino-cross-section"
+import {zip, sum} from 'lodash'
+import { XSNames, XSAbrev } from "../physics/neutrino-cross-section"
 
 import { Card, Button} from "react-bootstrap";
 
@@ -39,7 +39,8 @@ export const OutputDownload = ({cores, spectrum, detector, crossSection}) => {
     (a, b) => a.detectorDistance - b.detectorDistance
   )[0];
   // Close Things
-  const closestName = closestActiveCore?.name || "";
+  const closestName = closestActiveCore?.name || "none";
+  const closestSpectrum = closestActiveCore?.detectorSignal || (new Float32Array(1000)).fill(0)
 
   // custom cores
   const customClosestName = closestCustomCore?.name || "";
@@ -56,7 +57,7 @@ export const OutputDownload = ({cores, spectrum, detector, crossSection}) => {
         "bin center (MeV)": spectrum.geoU.map((n,i) => 0.005 + i * 0.01),
         total: total,
         "IAEA cores": totalIAEA,
-        [`closest IAEA Core (${closestName})`]: closestActiveCore.detectorSignal,
+        [`closest IAEA Core (${closestName})`]: closestSpectrum,
         ...customCoreData,
         geo238U:spectrum.geoU,
         geo232Th:spectrum.geoTh,
@@ -65,11 +66,10 @@ export const OutputDownload = ({cores, spectrum, detector, crossSection}) => {
     const downloadFormatters = {
         "bin center (MeV)": (v) => v.toFixed(3)
     }
-    const downloadFilename = `output_${detector.current}_${invert(XSNames)[crossSection]}.csv`.replace(/\s/g, "_").replace(/\(|\)/g, '')
+    const downloadFilename = `Enu_spec10keV_${detector.current}_${XSAbrev[crossSection]}.csv`.replace(/\s/g, "_").replace(/\(|\)/g, '')
 
     if ([XSNames.IBDSV2003, XSNames.IBDVB1999].includes(crossSection)){
-        console.log(crossSection)
-        delete downloadData.geoK
+        delete downloadData.geo40K_beta
     }
 
     return <Card>

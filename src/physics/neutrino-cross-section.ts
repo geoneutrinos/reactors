@@ -19,6 +19,14 @@ export enum XSNames {
   ESMUTAU = "Elastic Scattering: Mu Tau Antineutrino",
 }
 
+export const XSAbrev: {[key in XSNames]: string} = {
+  [XSNames.IBDVB1999]: "IBDvb99",
+  [XSNames.IBDSV2003]: "IBDsv03",
+  [XSNames.ESTOTAL]: "ESnubars",
+  [XSNames.ESANTI]: "ESnuebar",
+  [XSNames.ESMUTAU]: "ESnuxbar",
+}
+
 /** 
  * Calculates the neutrino cross section, sometimes called sigma
  * 
