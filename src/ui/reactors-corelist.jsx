@@ -135,7 +135,7 @@ export const CoreList = ({
 }) => {
   const [filter, setFilter] = useState("");
   const [displayLength, setDisplayLength] = useState(10);
-  const [sortMethod, setSortMethod] = useState("signal");
+  const [sortMethod, setSortMethod] = useState("distance");
   const [visible, setVisible] = useState(false);
 
   const cardRef = useRef(this)
@@ -238,6 +238,7 @@ export const CoreList = ({
           <Col xs={4}>
           <h6>Core List Display Options</h6>
           <Form.Control
+          value={displayLength}
             onChange={(event) => setDisplayLength(parseInt(event.target.value))}
             as="select"
           >
@@ -245,6 +246,7 @@ export const CoreList = ({
             <option value="1000000">Show: All Cores</option>
           </Form.Control>
           <Form.Control
+          value={sortMethod}
             onChange={(event) => setSortMethod(event.target.value)}
             as="select"
           >
