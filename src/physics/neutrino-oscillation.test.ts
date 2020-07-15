@@ -1,7 +1,7 @@
 import {normalNeutrinoOscilationSpectrum, invertedNeutrinoOscilationSpectrum} from './neutrino-oscillation'
 
 const betweenZeroAndOne = (val:number):boolean => {
-    return ((val => 0) && (val <= 1));
+    return ((val >= 0) && (val <= 1));
 }
 
 describe.each([

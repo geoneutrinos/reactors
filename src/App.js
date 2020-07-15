@@ -207,7 +207,8 @@ function App(props) {
               <CalculatorPanel cores={cores} spectrum={spectrum}/>
             </Tab>
             <Tab eventKey="about" title="About">
-            The model presented on this site is documented in <a href="https://arxiv.org/abs/1510.05633">arXiv:1510.05633</a>. Including information about physical constants used and source data.
+            The model presented on this site is documented in <a href="https://arxiv.org/abs/1510.05633">arXiv:1510.05633</a>.
+            Including information about physical constants used and source data. An update to this document is in progress.
             </Tab>
           </Tabs>
         </Col>
