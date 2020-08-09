@@ -21,6 +21,7 @@ import {
   CrustFlux,
   //Physics Tab
   DetectorPhysicsPane,
+  PhysicsOscillationPane,
   //Output Tab
   OutputDownload,
   CalculatorPanel,
@@ -201,6 +202,7 @@ function App(props) {
                 setMassOrdering={setMassOrdering}
                 XSNames={XSNames}
               />
+              <PhysicsOscillationPane />
             </Tab>
             <Tab eventKey="output" title="Output">
               <OutputDownload spectrum={spectrum} cores={cores}  crossSection={crossSection} detector={detector}/>

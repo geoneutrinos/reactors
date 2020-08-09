@@ -11,6 +11,7 @@ export { CalculatorPanel } from './output-calculator';
 export {AddCustomCoreModal, ManageCustomCoreModal} from './reactors-core-custom';
 export { CoreIAEARange} from './reactors-core-iaea-select'
 export {OutputDownload} from './output-download'
+export { PhysicsOscillationPane } from './physics-osc-params'
 
 
 export const Visible = ({ children }) => {

@@ -5,12 +5,12 @@ export enum MassOrdering {
     Normal = "Normal",
 }
 
-const s2t12 = 0.297;
-const dmsq21 = 7.37e-5;
-const s2t13Normal =  0.0215;
-const s2t13Inverted =  0.0216;
-const dmsq31Normal =  2.56e-3;
-const dmsq31Inverted =  2.4663e-3;
+export const s2t12 = 0.297;
+export const dmsq21 = 7.37e-5;
+export const s2t13Normal =  0.0215;
+export const s2t13Inverted =  0.0216;
+export const dmsq31Normal =  2.56e-3;
+export const dmsq31Inverted =  2.4663e-3;
 
 const c4t13Normal = (1 - s2t13Normal) * (1 - s2t13Normal);
 const c4t13Inverted = (1 - s2t13Inverted) * (1 - s2t13Inverted);
