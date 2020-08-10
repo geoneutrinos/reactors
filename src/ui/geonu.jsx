@@ -115,7 +115,7 @@ export const GeoNuSpectrumSource = ({ includeCrust, setIncludeCrust }) => {
   const data = [
     {
       y: [...rawAntineutrinoSpectrum["238U"], 0],
-      name: "238U",
+      name: "<sup>238</sup>U",
       type: "scatter",
       mode: "lines",
       fill: "none",
@@ -123,7 +123,7 @@ export const GeoNuSpectrumSource = ({ includeCrust, setIncludeCrust }) => {
     },
     {
       y: [...rawAntineutrinoSpectrum["235U"], 0],
-      name: "235U",
+      name: "<sup>235</sup>U",
       type: "scatter",
       mode: "lines",
       fill: "none",
@@ -131,7 +131,7 @@ export const GeoNuSpectrumSource = ({ includeCrust, setIncludeCrust }) => {
     },
     {
       y: [...rawAntineutrinoSpectrum["232Th"], 0],
-      name: "235U",
+      name: "<sup>232</sup>Th",
       type: "scatter",
       mode: "lines",
       fill: "none",
@@ -139,7 +139,7 @@ export const GeoNuSpectrumSource = ({ includeCrust, setIncludeCrust }) => {
     },
     {
       y: [...rawAntineutrinoSpectrum["40K"], 0],
-      name: "238U",
+      name: "<sup>40</sup>K",
       type: "scatter",
       mode: "lines",
       fill: "none",
