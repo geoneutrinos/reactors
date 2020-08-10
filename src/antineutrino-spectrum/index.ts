@@ -38,6 +38,13 @@ function resample(
   });
 }
 
+export const rawAntineutrinoSpectrum = {
+  "40K": antineutrinoSpectrum40KData,
+  "238U": antineutrinoSpectrum238UData,
+  "235U": antineutrinoSpectrum235UData,
+  "232Th": antineutrinoSpectrum232ThData,
+}
+
 export const antineutrinoSpectrum40K = resample(
   antineutrinoSpectrum40KData,
   0,

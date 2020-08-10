@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+import { rawAntineutrinoSpectrum } from '../antineutrino-spectrum'
 
 import { Card, Form, InputGroup } from "react-bootstrap";
+
+import Plot from "react-plotly.js";
 
 export const CrustFlux = ({ includeCrust, setIncludeCrust }) => {
   return (
@@ -103,6 +106,64 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios }) => {
             />
           </InputGroup>
         </Form.Group>
+      </Card.Body>
+    </Card>
+  );
+};
+
+export const GeoNuSpectrumSource = ({ includeCrust, setIncludeCrust }) => {
+  const data = [
+    {
+      y: [...rawAntineutrinoSpectrum["238U"], 0],
+      name: "238U",
+      type: "scatter",
+      mode: "lines",
+      fill: "none",
+      marker: { color: "red" },
+    },
+    {
+      y: [...rawAntineutrinoSpectrum["235U"], 0],
+      name: "235U",
+      type: "scatter",
+      mode: "lines",
+      fill: "none",
+      marker: { color: "orange" },
+    },
+    {
+      y: [...rawAntineutrinoSpectrum["232Th"], 0],
+      name: "235U",
+      type: "scatter",
+      mode: "lines",
+      fill: "none",
+      marker: { color: "green" },
+    },
+    {
+      y: [...rawAntineutrinoSpectrum["40K"], 0],
+      name: "238U",
+      type: "scatter",
+      mode: "lines",
+      fill: "none",
+      marker: { color: "blue" },
+    },
+  ]
+  var layout = {
+    title: "Geoneutrino Spectrum",
+    yaxis: {
+      title: { text: `Intensity (1/KeV/decay)` },
+      type: 'log',
+      autorange: true
+    },
+    xaxis: {
+      title: { text: `Antineutrino Energy (KeV)` },
+    }
+  };
+  return (
+    <Card>
+      <Card.Header>Geoneutrino Spectrum</Card.Header>
+      <Card.Body>
+          <p>We use geoneutrino spectrums for <sup>238</sup>U, <sup>235</sup>U, <sup>232</sup>Th, and <sup>40</sup>K
+          from <a href="https://www.awa.tohoku.ac.jp/~sanshiro/research/geoneutrino/spectrum/">Enomoto Sanshiro</a>.</p>
+          <Plot data={data} layout={layout}/>
       </Card.Body>
     </Card>
   );

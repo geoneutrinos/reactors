@@ -19,6 +19,7 @@ import {
   //GeuNu Tab
   MantleFlux,
   CrustFlux,
+  GeoNuSpectrumSource,
   //Physics Tab
   DetectorPhysicsPane,
   PhysicsOscillationPane,
@@ -190,6 +191,7 @@ function App(props) {
                 includeCrust={includeCrust}
                 setIncludeCrust={setIncludeCrust}
               />
+              <GeoNuSpectrumSource />
             </Tab>
             <Tab eventKey="solarnu" title="SolarNu">
               <h5>Coming soon</h5>
