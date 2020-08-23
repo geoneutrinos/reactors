@@ -33,6 +33,8 @@ const bins = mevRange();
 
 const ESEratio = bins.map(Ev => crossSectionElectronAntineutrinoFractionES(Ev))
 
+const cos_deg = (deg: number) => Math.cos(deg * (Math.PI/180))
+
 interface FissionFractions {
   [Isotopes.U235]: number;
   [Isotopes.U238]: number;
@@ -173,6 +175,7 @@ interface ReactorCore {
     direction: Direction
   ) => ReactorCore;
   loadFactor: (start?: Date, stop?: Date) => number;
+  cos: (other: ReactorCore) => number;
 }
 
 export function ReactorCore({
@@ -283,6 +286,10 @@ export function ReactorCore({
     };
   }
 
+  function cos(this: ReactorCore, other: ReactorCore){
+    return cos_deg(this.direction.phi - other.direction.phi) * cos_deg(this.direction.elev - other.direction.elev)
+  }
+
   return {
     name: name,
     lat: lat,
@@ -309,6 +316,7 @@ export function ReactorCore({
     detectorNIU: 0,
     setSignal: setSignal,
     direction: { phi: 0, elev: 0 },
+    cos: cos
   };
 }
 

@@ -23,6 +23,7 @@ import {
   //Physics Tab
   DetectorPhysicsPane,
   PhysicsOscillationPane,
+  PhysicsConstants,
   //Output Tab
   OutputDownload,
   CalculatorPanel,
@@ -127,7 +128,9 @@ function App(props) {
       mantleGeoSpectrum(crossSection, massOrdering, geoFluxRatios, crustFlux),
     [crossSection, massOrdering, geoFluxRatios, crustFlux]
   );
-
+  const thing = Object.values(cores).filter(a => a.detectorNIU > 0).sort((a,b) => b.detectorNIU - a.detectorNIU)
+  const [first, ...rest] = thing
+  console.log(rest.map(core => first.cos(core)))
   return (
     <Container fluid={true}>
       <Row style={{ minHeight: "100vh" }}>
@@ -205,6 +208,7 @@ function App(props) {
                 XSNames={XSNames}
               />
               <PhysicsOscillationPane />
+              <PhysicsConstants />
             </Tab>
             <Tab eventKey="output" title="Output">
               <OutputDownload spectrum={spectrum} cores={cores}  crossSection={crossSection} detector={detector}/>

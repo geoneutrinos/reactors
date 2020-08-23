@@ -8,10 +8,11 @@ export { DetectorLocationPane } from './detector-location';
 export { CoreList } from './reactors-corelist';
 export { MantleFlux, CrustFlux, GeoNuSpectrumSource } from './geonu';
 export { CalculatorPanel } from './output-calculator';
-export {AddCustomCoreModal, ManageCustomCoreModal} from './reactors-core-custom';
-export { CoreIAEARange} from './reactors-core-iaea-select'
-export {OutputDownload} from './output-download'
+export { AddCustomCoreModal, ManageCustomCoreModal } from './reactors-core-custom';
+export { CoreIAEARange } from './reactors-core-iaea-select'
+export { OutputDownload } from './output-download'
 export { PhysicsOscillationPane } from './physics-osc-params'
+export { PhysicsConstants } from './physics-constants';
 
 
 export const Visible = ({ children }) => {
