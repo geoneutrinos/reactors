@@ -17,7 +17,7 @@ export const PhysicsOscillationPane = () => {
     <Card>
       <Card.Header>Neutrino Oscillation Parameters</Card.Header>
       <Card.Body>
-          <p>Osciliation values use are from table 14.1 in <a href="https://pdg.lbl.gov/2017/reviews/rpp2017-rev-neutrino-mixing.pdf">C. Patrignani et al. (Particle Data Group), Chin. Phys. C, 40, 100001 (2016) and 2017 update</a></p>
+          <p>Osciliation values are from table 14.1 in <a href="https://pdg.lbl.gov/2017/reviews/rpp2017-rev-neutrino-mixing.pdf">C. Patrignani et al. (Particle Data Group), Chin. Phys. C, 40, 100001 (2016) and 2017 update</a></p>
         <Table {...tableProps}>
           <thead>
             <tr>
