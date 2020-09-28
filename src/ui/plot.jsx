@@ -85,7 +85,7 @@ export function NuSpectrumPlot({ cores, spectrum, detector, crossSection }) {
     {
       x: evBins,
       y: closestActiveIAEACoreSignal,
-      name: `Closest IAEA Core\n (${closestActiveIAEACore?.name || ""})`,
+      name: `Closest IAEA<br />(${closestActiveIAEACore?.name || ""})`,
       type: "scatter",
       mode: "lines",
       marker: { color: "grey" },
