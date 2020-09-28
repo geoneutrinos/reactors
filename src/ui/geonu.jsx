@@ -159,9 +159,9 @@ export const GeoNuSpectrumSource = ({ includeCrust, setIncludeCrust }) => {
   };
   return (
     <Card>
-      <Card.Header>Geoneutrino Spectrum</Card.Header>
+      <Card.Header>Geoneutrino Spectra</Card.Header>
       <Card.Body>
-          <p>We use geoneutrino spectrums for <sup>238</sup>U, <sup>235</sup>U, <sup>232</sup>Th, and <sup>40</sup>K
+          <p>Geoneutrino spectra for <sup>238</sup>U, <sup>235</sup>U, <sup>232</sup>Th, and <sup>40</sup>K
           from <a href="https://www.awa.tohoku.ac.jp/~sanshiro/research/geoneutrino/spectrum/">Enomoto Sanshiro</a>.</p>
           <Plot data={data} layout={layout}/>
       </Card.Body>
