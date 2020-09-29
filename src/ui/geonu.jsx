@@ -161,7 +161,8 @@ export const GeoNuSpectrumSource = ({ includeCrust, setIncludeCrust }) => {
     },
     xaxis: {
       title: { text: `Antineutrino Energy (MeV)` },
-    }
+    },
+    autosize: true,
   };
   return (
     <Card>
@@ -169,7 +170,10 @@ export const GeoNuSpectrumSource = ({ includeCrust, setIncludeCrust }) => {
       <Card.Body>
           <p>Geoneutrino spectra for <sup>238</sup>U, <sup>235</sup>U, <sup>232</sup>Th, and <sup>40</sup>K
           from <a href="https://www.awa.tohoku.ac.jp/~sanshiro/research/geoneutrino/spectrum/">Enomoto Sanshiro</a>.</p>
-          <Plot data={data} layout={layout}/>
+          <Plot 
+          useResizeHandler={true}
+      style={{ width: "100%" }}
+          data={data} layout={layout}/>
       </Card.Body>
     </Card>
   );
