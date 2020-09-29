@@ -64,7 +64,7 @@ export const CoreIAEARange = ({
           Monthly thermal power load factor (LF) data for the years 2003 through 2018 are from <a href="https://www.fe.infn.it/antineutrino/">INFN Antineutrinos</a>.
           If the "Use IAEA LF Data" option (this is
           the default) is selected for all or for individual cores, the thermal power is the average of the monthly LFs for
-          the following Year-Month range.
+          the selected Year-Month range.
         </p>
         <Form inline>
           <Form.Control
