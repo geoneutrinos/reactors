@@ -146,7 +146,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
 
   return (
     <Card>
-      <Card.Header>Calculator</Card.Header>
+      <Card.Header>Rate Significance Calculator</Card.Header>
       <Card.Body>
         <Form>
           <Form.Group controlId="signal">
