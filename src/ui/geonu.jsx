@@ -149,12 +149,12 @@ export const GeoNuSpectrumSource = ({ includeCrust, setIncludeCrust }) => {
   var layout = {
     title: "Geoneutrino Spectrum",
     yaxis: {
-      title: { text: `Intensity (1/KeV/decay)` },
+      title: { text: `Intensity (1/keV/decay)` },
       type: 'log',
       autorange: true
     },
     xaxis: {
-      title: { text: `Antineutrino Energy (KeV)` },
+      title: { text: `Antineutrino Energy (keV)` },
     }
   };
   return (
