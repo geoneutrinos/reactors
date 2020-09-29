@@ -186,6 +186,7 @@ function App(props) {
               />
             </Tab>
             <Tab eventKey="geonu" title="GeoNu">
+              <Visible>
               <MantleFlux
                 geoFluxRatios={geoFluxRatios}
                 setGeoFluxRatios={setGeoFluxRatios}
@@ -195,6 +196,7 @@ function App(props) {
                 setIncludeCrust={setIncludeCrust}
               />
               <GeoNuSpectrumSource />
+              </Visible>
             </Tab>
             <Tab eventKey="solarnu" title="SolarNu">
               <h5>Coming soon</h5>
