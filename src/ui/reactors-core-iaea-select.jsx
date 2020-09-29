@@ -61,10 +61,10 @@ export const CoreIAEARange = ({
       <Card.Header>IAEA Load Factor Date Range</Card.Header>
       <Card.Body>
         <p>
-          Monthly thermal power load factor (LF) data for reactor cores for the years 2003 through 2018 are 
-          from <a href="https://www.fe.infn.it/antineutrino/">.
-          If the "Use IAEA LF Data" option (this is the default) is selected for all or for individual cores, the thermal power
-          is the average of the monthly LFs for the following Year Month range.
+          Monthly thermal load factor data from 2003 to 2018 are from https://www.fe.infn.it/antineutrino/.
+          If the "Use IAEA LF Data" options are selected for the cores (this is
+          the default), a cores load factor will be the average of the loads for
+          the following Year Month range.
         </p>
         <Form inline>
           <Form.Control
