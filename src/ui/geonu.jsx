@@ -111,10 +111,13 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios }) => {
   );
 };
 
+
 export const GeoNuSpectrumSource = ({ includeCrust, setIncludeCrust }) => {
+  const x_values = (new Float32Array(4500)).map((v, i) => i /1000)
   const data = [
     {
-      y: [...rawAntineutrinoSpectrum["238U"], 0],
+      y: [...rawAntineutrinoSpectrum["238U"], 0].map(x => x * 1000),
+      x: x_values,
       name: "<sup>238</sup>U",
       type: "scatter",
       mode: "lines",
@@ -122,7 +125,8 @@ export const GeoNuSpectrumSource = ({ includeCrust, setIncludeCrust }) => {
       marker: { color: "red" },
     },
     {
-      y: [...rawAntineutrinoSpectrum["235U"], 0],
+      y: [...rawAntineutrinoSpectrum["235U"], 0].map(x => x * 1000),
+      x: x_values,
       name: "<sup>235</sup>U",
       type: "scatter",
       mode: "lines",
@@ -130,7 +134,8 @@ export const GeoNuSpectrumSource = ({ includeCrust, setIncludeCrust }) => {
       marker: { color: "orange" },
     },
     {
-      y: [...rawAntineutrinoSpectrum["232Th"], 0],
+      y: [...rawAntineutrinoSpectrum["232Th"], 0].map(x => x * 1000),
+      x: x_values,
       name: "<sup>232</sup>Th",
       type: "scatter",
       mode: "lines",
@@ -138,7 +143,8 @@ export const GeoNuSpectrumSource = ({ includeCrust, setIncludeCrust }) => {
       marker: { color: "green" },
     },
     {
-      y: [...rawAntineutrinoSpectrum["40K"], 0],
+      y: [...rawAntineutrinoSpectrum["40K"], 0].map(x => x * 1000),
+      x: x_values,
       name: "<sup>40</sup>K",
       type: "scatter",
       mode: "lines",
@@ -149,12 +155,12 @@ export const GeoNuSpectrumSource = ({ includeCrust, setIncludeCrust }) => {
   var layout = {
     title: "Geoneutrino Spectrum",
     yaxis: {
-      title: { text: `Intensity (1/keV/decay)` },
+      title: { text: `Intensity (1/MeV/decay)` },
       type: 'log',
       autorange: true
     },
     xaxis: {
-      title: { text: `Antineutrino Energy (keV)` },
+      title: { text: `Antineutrino Energy (MeV)` },
     }
   };
   return (
