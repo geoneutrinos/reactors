@@ -24,6 +24,7 @@ import {
   DetectorPhysicsPane,
   PhysicsOscillationPane,
   PhysicsConstants,
+  CrossSectionPlots,
   //Output Tab
   OutputDownload,
   CalculatorPanel,
@@ -211,6 +212,7 @@ function App(props) {
               />
               <PhysicsOscillationPane />
               <PhysicsConstants />
+              <CrossSectionPlots />
             </Tab>
             <Tab eventKey="output" title="Output">
               <OutputDownload spectrum={spectrum} cores={cores}  crossSection={crossSection} detector={detector}/>
