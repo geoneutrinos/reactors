@@ -14,6 +14,7 @@ import {
   StatsPanel,
   DetectorLocationPane,
   //Reactors Tab
+  FissionIsotopeSpectraPlots,
   CoreIAEARange,
   CoreList,
   //GeuNu Tab
@@ -170,6 +171,9 @@ function App(props) {
             <Tab eventKey="reactors" title="Reactors">
               <AddCustomCoreModal {...addCustomModalXY} show={addCustomModal} customCores={customCores} setCustomCores={setCustomCores} close={() => { setAddCustomModalXY({}); setAddCustomModal(false) }} />
               <ManageCustomCoreModal show={manCustomModal} customCores={customCores} setCustomCores={setCustomCores} close={() => setManCustomModal(false)} />
+              <Visible>
+              <FissionIsotopeSpectraPlots />
+              </Visible>
               <CoreIAEARange
                 reactorLF={reactorLF}
                 setReactorLF={setReactorLF}

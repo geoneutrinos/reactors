@@ -14,6 +14,7 @@ export { OutputDownload } from './output-download'
 export { PhysicsOscillationPane } from './physics-osc-params'
 export { PhysicsConstants } from './physics-constants';
 export { CrossSectionPlots } from './physics-plots';
+export { FissionIsotopeSpectraPlots } from './reactors-plots';
 
 
 export const Visible = ({ children }) => {
