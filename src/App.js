@@ -203,6 +203,7 @@ function App(props) {
               <h5>Coming soon</h5>
             </Tab>
             <Tab eventKey="physics" title="Physics">
+              <Visible>
               <DetectorPhysicsPane
                 crossSection={crossSection}
                 massOrdering={massOrdering}
@@ -213,6 +214,7 @@ function App(props) {
               <PhysicsOscillationPane />
               <PhysicsConstants />
               <CrossSectionPlots />
+              </Visible>
             </Tab>
             <Tab eventKey="output" title="Output">
               <OutputDownload spectrum={spectrum} cores={cores}  crossSection={crossSection} detector={detector}/>
