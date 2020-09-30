@@ -5,9 +5,12 @@ import Plot from "react-plotly.js";
 
 import { XSFuncs, XSAbrev, XSNames } from '../physics/neutrino-cross-section';
 
+// temp
+import { crossSectionElectionNeutrinoES } from '../physics/neutrino-cross-section'
+
 
 export const CrossSectionPlots = () => {
-  const bins = (new Float64Array(1000)).map((v, i) => 0.05 + i/100)
+  const bins = (new Float64Array(1000)).map((v, i) => 0.005 + i/100)
   const data = [
     {
       y: bins.map(XSFuncs[XSNames.IBDVB1999]),
@@ -26,6 +29,15 @@ export const CrossSectionPlots = () => {
       mode: "lines",
       fill: "none",
       marker: { color: "black" },
+    },
+    {
+      y: bins.map(crossSectionElectionNeutrinoES),
+      x: bins,
+      name: "ESnue",
+      type: "scatter",
+      mode: "lines",
+      fill: "none",
+      marker: { color: "red" },
     },
     {
       y: bins.map(XSFuncs[XSNames.ESANTI]),
@@ -47,7 +59,6 @@ export const CrossSectionPlots = () => {
     },
   ]
   var layout = {
-    title: "Geoneutrino Spectrum",
     yaxis: {
       title: { text: `Total Cross Section (cm<sup>2</sup>)` },
       type: 'log',
@@ -57,6 +68,11 @@ export const CrossSectionPlots = () => {
       title: { text: `Neutrino Energy (MeV)` },
     },
     autosize: true,
+    legend: {
+      x: 1,
+      xanchor: "right",
+      y: 0,
+    },
   };
   return (
     <Card>

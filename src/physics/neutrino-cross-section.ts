@@ -114,6 +114,11 @@ export const crossSectionElectronAntineutrinoFractionES = memoize((Ev) => {
   return crossSectionElectronAntineutrinoES(Ev) / crossSectionTotalES(Ev);
 })
 
+// TEMP until is implimented
+export const crossSectionElectionNeutrinoES: CrossSection = memoize((Ev) => {
+  return crossSectionElasticScattering(Ev, NeutrinoType.electronNeutrino) 
+})
+
 export const XSFuncs: {[key in XSNames]: CrossSection} = {
   [XSNames.IBDVB1999]: crossSectionVB1999,
   [XSNames.IBDSV2003]: crossSectionSV2003,
