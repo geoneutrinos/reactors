@@ -59,6 +59,7 @@ export const CrossSectionPlots = () => {
     },
   ]
   var layout = {
+    title: "Placeholder Plot Title",
     yaxis: {
       title: { text: `Total Cross Section (cm<sup>2</sup>)` },
       type: 'log',
@@ -76,7 +77,9 @@ export const CrossSectionPlots = () => {
   };
   return (
     <Card>
+      <Card.Header>Placeholder Card Header</Card.Header>
       <Card.Body>
+        <p>Description text goes here</p>
           <Plot 
           useResizeHandler={true}
             style={{ width: "100%" }}
