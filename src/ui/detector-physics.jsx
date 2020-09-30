@@ -49,7 +49,6 @@ export const DetectorPhysicsPane = ({
   return (
     <Card>
       <Card.Body>
-        <Card.Title>Physics</Card.Title>
         {CrossSectionInput}
         {MassOrderingInput}
       </Card.Body>
