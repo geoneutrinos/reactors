@@ -80,7 +80,9 @@ export const CrossSectionPlots = () => {
       <Card.Header>Cross Sections</Card.Header>
       <Card.Body>
         <p>{`Calculated inverse beta decay cross sections are from:
+        <br />
         P. Vogel and J. F. Beacom, "Angular distribution of inverse neutron decay nue +p -> e+ +n," Phys. Rev. D 60, 053003 (1999);
+        <br />
         A. Strumia and F. Vissani, "Precise quasielastic neutrino/nucleon cross-section," Phys. Lett. B 564, 42 (2003).`}
         </p>
           <Plot 
