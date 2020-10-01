@@ -83,7 +83,7 @@ export const CrossSectionPlots = () => {
           Calculated inverse beta decay cross sections are from:
         </p>
         <p>
-          {'P. Vogel and J. F. Beacom, "Angular distribution of inverse neutron decay nue +p -> e+ +n," Phys. Rev. D 60, 053003 (1999).'}
+          {'P. Vogel and J. F. Beacom, "Angular distribution of inverse neutron decay &nu;<sub>e</sub> + p -> e<sup>+</sup> + n," Phys. Rev. D 60, 053003 (1999).'}
         </p>
         <p>
           A. Strumia and F. Vissani, "Precise quasielastic neutrino/nucleon cross-section," Phys. Lett. B 564, 42 (2003).
