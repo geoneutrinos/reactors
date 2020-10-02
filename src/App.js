@@ -29,6 +29,8 @@ import {
   //Output Tab
   OutputDownload,
   CalculatorPanel,
+  //solar tab
+  Boron8SpectraPlot,
 
   // Custom Core UI
   AddCustomCoreModal,
@@ -204,7 +206,10 @@ function App(props) {
               </Visible>
             </Tab>
             <Tab eventKey="solarnu" title="SolarNu">
-              <h5>Coming soon</h5>
+              <Visible>
+                <h4>Under Development</h4>
+                <Boron8SpectraPlot />
+              </Visible>
             </Tab>
             <Tab eventKey="physics" title="Physics">
               <Visible>
