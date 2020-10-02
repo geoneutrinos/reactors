@@ -77,7 +77,7 @@ export const CrossSectionPlots = () => {
   };
   return (
     <Card>
-      <Card.Header>Cross Sections</Card.Header>
+      <Card.Header>Total Cross Sections</Card.Header>
       <Card.Body>
         <p>
           Calculated inverse beta decay cross sections are from:
