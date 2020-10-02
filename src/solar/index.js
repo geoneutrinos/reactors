@@ -3,7 +3,7 @@ import boron8 from './boron8.json';
 import {sum} from 'lodash'
 
 import {crossSectionElectionNeutrinoES} from '../physics/neutrino-cross-section'
-import { SECONDS_PER_YEAR, ELEMENTARY_CHARGE } from "../physics/constants";
+import { SECONDS_PER_YEAR } from "../physics/constants";
 
 // at some point other ephemerical caluclations should be added here
 
