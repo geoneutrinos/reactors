@@ -58,12 +58,30 @@ export const FissionFractionPane = () => {
               </tr>
               <tr>
                 <td>
-                f (GCR)
+                f (PHWR)
                 </td>
                 <td>{FISSION_FRACTIONS.PHWR.U235}</td>
                 <td>{FISSION_FRACTIONS.PHWR.U238}</td>
                 <td>{FISSION_FRACTIONS.PHWR.PU239}</td>
                 <td>{FISSION_FRACTIONS.PHWR.PU241}</td>
+              </tr>
+                <tr>
+                <td>
+                f (MOX)
+                </td>
+                <td>{FISSION_FRACTIONS.MOX.U235}</td>
+                <td>{FISSION_FRACTIONS.MOX.U238}</td>
+                <td>{FISSION_FRACTIONS.MOX.PU239}</td>
+                <td>{FISSION_FRACTIONS.MOX.PU241}</td>
+              </tr>
+                <tr>
+                <td>
+                f (LEU)
+                </td>
+                <td>{FISSION_FRACTIONS.LEU.U235}</td>
+                <td>{FISSION_FRACTIONS.LEU.U238}</td>
+                <td>{FISSION_FRACTIONS.LEU.PU239}</td>
+                <td>{FISSION_FRACTIONS.LEU.PU241}</td>
               </tr>
             </tbody>
           </Table>
