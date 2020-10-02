@@ -17,6 +17,7 @@ import {
   FissionIsotopeSpectraPlots,
   CoreIAEARange,
   CoreList,
+  FissionFractionPane,
   //GeuNu Tab
   MantleFlux,
   CrustFlux,
@@ -176,6 +177,7 @@ function App(props) {
               <Visible>
               <FissionIsotopeSpectraPlots />
               </Visible>
+              <FissionFractionPane />
               <CoreIAEARange
                 reactorLF={reactorLF}
                 setReactorLF={setReactorLF}
