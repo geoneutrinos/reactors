@@ -80,13 +80,19 @@ export const CrossSectionPlots = () => {
       <Card.Header>Total Cross Sections</Card.Header>
       <Card.Body>
         <p>
-          Calculated inverse beta decay cross sections are from:
+          Calculated inverse beta decay (IBD) cross sections are from:
         </p>
         <p>
           P. Vogel and J. F. Beacom, "Angular distribution of inverse neutron decay, <i>ν̅<sub>𝑒</sub></i> + <i>𝑝</i> ⭢ <i>𝑒</i><sup>+</sup> + <i>𝑛</i>," Phys. Rev. D 60, 053003 (1999).
         </p>
         <p>
           A. Strumia and F. Vissani, "Precise quasielastic neutrino/nucleon cross-section," Phys. Lett. B 564, 42 (2003).
+        </p>
+        <p>
+          Calculated elastic scattering (ES) cross sections are from:
+        </p>
+        <p>
+          M. Fukugita and T. Yanagida, <i>Physics of Neutrinos</i> (Springer-Verlag, Berlin Heidelberg, 2003).
         </p>
         <Plot
           useResizeHandler={true}
