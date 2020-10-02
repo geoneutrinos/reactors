@@ -10,10 +10,10 @@ export const AU = 1.660_539_006_60e-27; // kg (atomic mass aka dalton)
 
 export const FISSION_ENERGIES = {
   //MeV
-  U235: 201.912,
-  U238: 204.997,
-  PU239: 210.927,
-  PU241: 213.416,
+  U235: 201.92,
+  U238: 205.52,
+  PU239: 209.99,
+  PU241: 213.60,
 };
 
 export enum Isotopes {
