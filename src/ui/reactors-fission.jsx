@@ -47,10 +47,37 @@ export const FissionFractionPane = () => {
                 <td>
                 f (GCR)
                 </td>
-                <td>{FISSION_FRACTIONS.GCR.U235}</td>
-                <td>{FISSION_FRACTIONS.GCR.U238}</td>
-                <td>{FISSION_FRACTIONS.GCR.PU239}</td>
-                <td>{FISSION_FRACTIONS.GCR.PU241}</td>
+                <td>{FISSION_FRACTIONS.GCR.U235.toFixed(4)}</td>
+                <td>{FISSION_FRACTIONS.GCR.U238.toFixed(4)}</td>
+                <td>{FISSION_FRACTIONS.GCR.PU239.toFixed(4)}</td>
+                <td>{FISSION_FRACTIONS.GCR.PU241.toFixed(4)}</td>
+              </tr>
+              <tr>
+                <td>
+                f (PWR, BWR)
+                </td>
+                <td>{FISSION_FRACTIONS.LEU.U235.toFixed(3)}</td>
+                <td>{FISSION_FRACTIONS.LEU.U238.toFixed(3)}</td>
+                <td>{FISSION_FRACTIONS.LEU.PU239.toFixed(3)}</td>
+                <td>{FISSION_FRACTIONS.LEU.PU241.toFixed(3)}</td>
+              </tr>
+              <tr>
+                <td>
+                f (MOX)
+                </td>
+                <td>{FISSION_FRACTIONS.LEU_MOX.U235.toFixed(3)}</td>
+                <td>{FISSION_FRACTIONS.LEU_MOX.U238.toFixed(3)}</td>
+                <td>{FISSION_FRACTIONS.LEU_MOX.PU239.toFixed(3)}</td>
+                <td>{FISSION_FRACTIONS.LEU_MOX.PU241.toFixed(3)}</td>
+              </tr>
+              <tr>
+                <td>
+                f (PHWR)
+                </td>
+                <td>{FISSION_FRACTIONS.PHWR.U235.toFixed(3)}</td>
+                <td>{FISSION_FRACTIONS.PHWR.U238.toFixed(3)}</td>
+                <td>{FISSION_FRACTIONS.PHWR.PU239.toFixed(3)}</td>
+                <td>{FISSION_FRACTIONS.PHWR.PU241.toFixed(3)}</td>
               </tr>
             </tbody>
           </Table>
