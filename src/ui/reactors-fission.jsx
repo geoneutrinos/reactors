@@ -15,7 +15,11 @@ export const FissionFractionPane = () => {
             </p>
             <p>
             GCR: R. Mills, private communication, Dec. 12, 2018.
+            </p>
+            <p>
             PHWR: M. Chen, private communication, Aug. 14, 2017.
+            </p>
+            <p>
             PWR, BWR; MOX (PWR, BWR): M. Baldoncini et al., "Reference worldwide model for antineutrinos from reactors," Phys.  Rev. D91, 065002 (2015).
             </p>
             <p> Fission energies
@@ -51,6 +55,15 @@ export const FissionFractionPane = () => {
                 <td>{FISSION_FRACTIONS.GCR.U238}</td>
                 <td>{FISSION_FRACTIONS.GCR.PU239}</td>
                 <td>{FISSION_FRACTIONS.GCR.PU241}</td>
+              </tr>
+              <tr>
+                <td>
+                f (GCR)
+                </td>
+                <td>{FISSION_FRACTIONS.PHWR.U235}</td>
+                <td>{FISSION_FRACTIONS.PHWR.U238}</td>
+                <td>{FISSION_FRACTIONS.PHWR.PU239}</td>
+                <td>{FISSION_FRACTIONS.PHWR.PU241}</td>
               </tr>
             </tbody>
           </Table>
