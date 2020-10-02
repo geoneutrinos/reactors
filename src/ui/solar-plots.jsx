@@ -38,7 +38,7 @@ export const Boron8SpectraPlot = () => {
       <Card.Header><sup>8</sup>B Decay Spectrum, Flux, Rate</Card.Header>
       <Card.Body>
         <p>
-          R<sub>sol</sub> = {BORON_8_NIU} NIU (preliminary, do not use)
+          R<sub>sol</sub> = {BORON_8_NIU.toFixed(2)} NIU (preliminary, do not use)
         </p>
         <p>
           <sup>8</sup>B decay spectrum from:
