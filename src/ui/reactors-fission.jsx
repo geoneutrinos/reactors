@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, Table } from "react-bootstrap";
 
-import {FISSION_FRACTIONS} from '../reactor-cores';
+import {FISSION_FRACTIONS, POWER_FRACTIONS} from '../reactor-cores';
 import {FISSION_ENERGIES} from '../physics/constants'
 
 export const FissionFractionPane = () => {
@@ -45,7 +45,25 @@ export const FissionFractionPane = () => {
               </tr>
               <tr>
                 <td>
-                f (GCR)
+                f (PWR, BWR)
+                </td>
+                <td>{POWER_FRACTIONS.LEU.U235.toFixed(3)}</td>
+                <td>{POWER_FRACTIONS.LEU.U238.toFixed(3)}</td>
+                <td>{POWER_FRACTIONS.LEU.PU239.toFixed(3)}</td>
+                <td>{POWER_FRACTIONS.LEU.PU241.toFixed(3)}</td>
+              </tr>
+              <tr>
+                <td>
+                f (PWR/MOX)
+                </td>
+                <td>{POWER_FRACTIONS.LEU_MOX.U235.toFixed(3)}</td>
+                <td>{POWER_FRACTIONS.LEU_MOX.U238.toFixed(3)}</td>
+                <td>{POWER_FRACTIONS.LEU_MOX.PU239.toFixed(3)}</td>
+                <td>{POWER_FRACTIONS.LEU_MOX.PU241.toFixed(3)}</td>
+              </tr>
+              <tr>
+                <td>
+                p (GCR)
                 </td>
                 <td>{FISSION_FRACTIONS.GCR.U235.toFixed(4)}</td>
                 <td>{FISSION_FRACTIONS.GCR.U238.toFixed(4)}</td>
@@ -54,25 +72,7 @@ export const FissionFractionPane = () => {
               </tr>
               <tr>
                 <td>
-                f (PWR, BWR)
-                </td>
-                <td>{FISSION_FRACTIONS.LEU.U235.toFixed(3)}</td>
-                <td>{FISSION_FRACTIONS.LEU.U238.toFixed(3)}</td>
-                <td>{FISSION_FRACTIONS.LEU.PU239.toFixed(3)}</td>
-                <td>{FISSION_FRACTIONS.LEU.PU241.toFixed(3)}</td>
-              </tr>
-              <tr>
-                <td>
-                f (MOX)
-                </td>
-                <td>{FISSION_FRACTIONS.LEU_MOX.U235.toFixed(3)}</td>
-                <td>{FISSION_FRACTIONS.LEU_MOX.U238.toFixed(3)}</td>
-                <td>{FISSION_FRACTIONS.LEU_MOX.PU239.toFixed(3)}</td>
-                <td>{FISSION_FRACTIONS.LEU_MOX.PU241.toFixed(3)}</td>
-              </tr>
-              <tr>
-                <td>
-                f (PHWR)
+                P (PHWR)
                 </td>
                 <td>{FISSION_FRACTIONS.PHWR.U235.toFixed(3)}</td>
                 <td>{FISSION_FRACTIONS.PHWR.U238.toFixed(3)}</td>

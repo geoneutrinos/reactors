@@ -5,7 +5,11 @@ import {
 } from "./reactor-database/reactors.json";
 import { partialInteractionRate } from "../physics/reactor-antineutrinos";
 import { neutrinoEnergyFor } from "../physics/helpers";
-import { XSFuncs, XSNames, crossSectionElectronAntineutrinoFractionES } from "../physics/neutrino-cross-section";
+import {
+  XSFuncs,
+  XSNames,
+  crossSectionElectronAntineutrinoFractionES,
+} from "../physics/neutrino-cross-section";
 import {
   FISSION_ENERGIES,
   ELEMENTARY_CHARGE,
@@ -31,18 +35,23 @@ function mevRange(count = 1000, start = 0, stop = 10) {
 
 const bins = mevRange();
 
-const ESEratio = bins.map(Ev => crossSectionElectronAntineutrinoFractionES(Ev))
+const ESEratio = bins.map((Ev) =>
+  crossSectionElectronAntineutrinoFractionES(Ev)
+);
 
-const cos_deg = (deg: number) => Math.cos(deg * (Math.PI/180))
+const cos_deg = (deg: number) => Math.cos(deg * (Math.PI / 180));
 
-interface FissionFractions {
+interface ReactorFractions {
   [Isotopes.U235]: number;
   [Isotopes.U238]: number;
   [Isotopes.PU239]: number;
   [Isotopes.PU241]: number;
 }
 
-export const FISSION_FRACTIONS: { [type: string]: FissionFractions } = {
+interface FissionFractions extends ReactorFractions {}
+interface PowerFractions extends ReactorFractions {}
+
+export const POWER_FRACTIONS: { [type: string]: PowerFractions } = {
   LEU: {
     U235: 0.56,
     U238: 0.08,
@@ -61,18 +70,6 @@ export const FISSION_FRACTIONS: { [type: string]: FissionFractions } = {
     PU239: 0,
     PU241: 0,
   },
-  GCR: {
-    U235: 0.7248,
-    U238: 0.0423,
-    PU239: 0.2127,
-    PU241: 0.0202,
-  },
-  PHWR: {
-    U235: 0.52,
-    U238: 0.05,
-    PU239: 0.42,
-    PU241: 0.01,
-  },
   LEU_MOX: {
     U235: 0.39,
     U238: 0.08,
@@ -87,15 +84,57 @@ export const FISSION_FRACTIONS: { [type: string]: FissionFractions } = {
   },
 };
 
+export const FISSION_FRACTIONS: { [type: string]: FissionFractions } = {
+  GCR: {
+    U235: 0.7248,
+    U238: 0.0423,
+    PU239: 0.2127,
+    PU241: 0.0202,
+  },
+  PHWR: {
+    U235: 0.52,
+    U238: 0.05,
+    PU239: 0.42,
+    PU241: 0.01,
+  },
+};
+
+function fissionFractionToPowerFraction(
+  fissionFractions: FissionFractions
+): PowerFractions {
+  const total = (Object.keys(
+    fissionFractions
+  ) as (keyof FissionFractions)[]).reduce(
+    (current, isotope) =>
+      current + fissionFractions[isotope] * FISSION_ENERGIES[isotope],
+    0
+  );
+
+  let powerFraction: Partial<{ [key in Isotopes]: number }> = {};
+  let isotope: keyof FissionFractions;
+  for (isotope in fissionFractions) {
+    powerFraction[isotope] =
+      (fissionFractions[isotope] * FISSION_ENERGIES[isotope]) / total;
+  }
+
+  return powerFraction as PowerFractions;
+}
+
+const POWER_FRACTIONS_ALL: {[type: string]: PowerFractions} = {
+  GCR: fissionFractionToPowerFraction(FISSION_FRACTIONS.GCR),
+  PHWR: fissionFractionToPowerFraction(FISSION_FRACTIONS.PHWR),
+  ...POWER_FRACTIONS
+}
+
 function spectrum(
-  fisionFractions: FissionFractions,
+  powerFractions: PowerFractions,
   crossSection: (Ev: number) => number
 ) {
   return bins.map((Ev) => {
     return Object.keys(Isotopes)
       .map((v) => {
         const isotope: Isotopes = v as Isotopes;
-        const fissionFraction = fisionFractions[isotope];
+        const powerFraction = powerFractions[isotope];
         const fisionEnery = FISSION_ENERGIES[isotope];
         const neutrinoEnergy = neutrinoEnergyFor(isotope);
         const rate = partialInteractionRate(
@@ -106,7 +145,7 @@ function spectrum(
         );
 
         return (
-          1e22 * (SECONDS_PER_YEAR / ELEMENTARY_CHARGE) * fissionFraction * rate
+          1e22 * (SECONDS_PER_YEAR / ELEMENTARY_CHARGE) * powerFraction * rate
         );
       })
       .reduce((previousValue, currentValue) => previousValue + currentValue, 0);
@@ -114,8 +153,8 @@ function spectrum(
 }
 
 const spectrums = memoize(
-  (fisionFractions: FissionFractions, crossSection: XSNames) => {
-    return spectrum(fisionFractions, XSFuncs[crossSection]);
+  (powerFractions: PowerFractions, crossSection: XSNames) => {
+    return spectrum(powerFractions, XSFuncs[crossSection]);
   },
   (...args) => JSON.stringify(args)
 );
@@ -164,7 +203,7 @@ interface ReactorCore {
   detectorAnySignal: boolean;
   detectorNIU: number;
   direction: Direction;
-  fisionFractions: FissionFractions;
+  powerFractions: PowerFractions;
 
   spectrum: (crossSection: XSNames) => Float64Array;
   setSignal: (
@@ -184,7 +223,7 @@ export function ReactorCore({
   lon,
   elevation,
   power = 0,
-  fisionFractions,
+  powerFractions,
   type = "custom",
   spectrumType = "custom",
   mox = false,
@@ -201,7 +240,7 @@ export function ReactorCore({
   power: number;
   custom?: boolean;
   loads: LoadFactor[];
-  fisionFractions: FissionFractions;
+  powerFractions: PowerFractions;
 }): ReactorCore {
   const [x, y, z] = project(lat, lon, elevation).map((n) => n / 1000);
 
@@ -259,18 +298,22 @@ export function ReactorCore({
       oscillation = oscillation.map((v) => 1 - v);
     }
 
-    let ESMUTauContirbution = bins.map(bin => 0)
+    let ESMUTauContirbution = bins.map((bin) => 0);
 
-    if (crossSection === XSNames.ESTOTAL){
+    if (crossSection === XSNames.ESTOTAL) {
       // we need the origional total specturm for this
-      ESMUTauContirbution = spectrum.map((spec, idx) => spec * (1 - ESEratio[idx]) * (1 - oscillation[idx]))
+      ESMUTauContirbution = spectrum.map(
+        (spec, idx) => spec * (1 - ESEratio[idx]) * (1 - oscillation[idx])
+      );
 
-      spectrum = spectrum.map((spec, idx) => spec * ESEratio[idx])
+      spectrum = spectrum.map((spec, idx) => spec * ESEratio[idx]);
     }
 
     const signal = spectrum.map((spec, idx) => {
-
-      return ((spec * oscillation[idx] + ESMUTauContirbution[idx]) * power * lf) / distsq;
+      return (
+        ((spec * oscillation[idx] + ESMUTauContirbution[idx]) * power * lf) /
+        distsq
+      );
     });
 
     const detectorNIU = sum(signal) * 0.01;
@@ -286,8 +329,11 @@ export function ReactorCore({
     };
   }
 
-  function cos(this: ReactorCore, other: ReactorCore){
-    return cos_deg(this.direction.phi - other.direction.phi) * cos_deg(this.direction.elev - other.direction.elev)
+  function cos(this: ReactorCore, other: ReactorCore) {
+    return (
+      cos_deg(this.direction.phi - other.direction.phi) *
+      cos_deg(this.direction.elev - other.direction.elev)
+    );
   }
 
   return {
@@ -305,9 +351,9 @@ export function ReactorCore({
     z: z,
     spectrumType: spectrumType,
     lf_cache: {},
-    fisionFractions: fisionFractions,
+    powerFractions: powerFractions,
     spectrum: function (crossSection: XSNames) {
-      return spectrums(this.fisionFractions, crossSection);
+      return spectrums(this.powerFractions, crossSection);
     },
     loadFactor: loadFactor,
     detectorDistance: 0,
@@ -316,7 +362,7 @@ export function ReactorCore({
     detectorNIU: 0,
     setSignal: setSignal,
     direction: { phi: 0, elev: 0 },
-    cos: cos
+    cos: cos,
   };
 }
 
@@ -349,7 +395,7 @@ const defaultCoreList = Object.keys(cores).map((core) => {
     spectrumType = spectrumType + "_MOX";
   }
 
-  const fisionFractions = FISSION_FRACTIONS[spectrumType];
+  const powerFractions = POWER_FRACTIONS_ALL[spectrumType];
   return ReactorCore({
     name: c,
     lat: lat,
@@ -357,7 +403,7 @@ const defaultCoreList = Object.keys(cores).map((core) => {
     elevation: elevation,
     type: coreParams.type,
     spectrumType: spectrumType,
-    fisionFractions: fisionFractions,
+    powerFractions: powerFractions,
     mox: Boolean(coreParams.mox),
     power: power,
     loads: LFs,
