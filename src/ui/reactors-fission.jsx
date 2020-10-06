@@ -9,16 +9,22 @@ export const FissionFractionPane = () => {
   
     return (
       <Card>
-        <Card.Header>Fission Fractions and Energies</Card.Header>
+        <Card.Header>Fission Energies, Power and Fission Fractions</Card.Header>
         <Card.Body>
             <p>Mid-cycle fission fractions
             </p>
             <p>
             GCR: R. Mills, private communication, Dec. 12, 2018.
+            </p>
+            <p>
             PHWR: M. Chen, private communication, Aug. 14, 2017.
+            </p>
+            <p>Mid-cycle power fractions
+            </p>
+            <p>
             PWR, BWR; MOX (PWR, BWR): M. Baldoncini et al., "Reference worldwide model for antineutrinos from reactors," Phys.  Rev. D91, 065002 (2015).
             </p>
-            <p> Fission energies
+            <p> Mid-cycle fission energies
             </p>
             <p>
             V. I. Kopeikin et al., "Reactor as a Source of Antineutrinos: Thermal Fission Energy," Phys. Atom. Nucl. 67, 1892 (2004).
@@ -45,7 +51,7 @@ export const FissionFractionPane = () => {
               </tr>
               <tr>
                 <td>
-                f (PWR, BWR)
+                p (PWR, BWR)
                 </td>
                 <td>{POWER_FRACTIONS.LEU.U235.toFixed(3)}</td>
                 <td>{POWER_FRACTIONS.LEU.U238.toFixed(3)}</td>
@@ -54,7 +60,7 @@ export const FissionFractionPane = () => {
               </tr>
               <tr>
                 <td>
-                f (PWR/MOX)
+                p (PWR/MOX)
                 </td>
                 <td>{POWER_FRACTIONS.LEU_MOX.U235.toFixed(3)}</td>
                 <td>{POWER_FRACTIONS.LEU_MOX.U238.toFixed(3)}</td>
@@ -63,7 +69,7 @@ export const FissionFractionPane = () => {
               </tr>
               <tr>
                 <td>
-                p (GCR)
+                f (GCR)
                 </td>
                 <td>{FISSION_FRACTIONS.GCR.U235.toFixed(4)}</td>
                 <td>{FISSION_FRACTIONS.GCR.U238.toFixed(4)}</td>
@@ -72,7 +78,7 @@ export const FissionFractionPane = () => {
               </tr>
               <tr>
                 <td>
-                P (PHWR)
+                f (PHWR)
                 </td>
                 <td>{FISSION_FRACTIONS.PHWR.U235.toFixed(3)}</td>
                 <td>{FISSION_FRACTIONS.PHWR.U238.toFixed(3)}</td>
