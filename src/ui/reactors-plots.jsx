@@ -119,11 +119,11 @@ export const CoreDirectionSignalPlots = ({ cores }) => {
     {
       y: AllOtherCores.map((d) => d.y.detectorNIU),
       x: AllOtherCores.map((d) => d.x),
-      text: AllOtherCores.map((core) => `${core.y.name} (${core.y.type})`),
+      text: AllOtherCores.map((core) => `${core.y.name} (${core.y.type})<br>cos: ${core.x.toFixed(3)}<br>signal: ${core.y.detectorNIU.toFixed(3)}`),
       name: `All Other Cores`,
       type: "scatter",
       mode: "markers",
-      fill: "none",
+      hoverinfo: "text",
       marker: {
         color: "#009000",
       },
@@ -133,7 +133,7 @@ export const CoreDirectionSignalPlots = ({ cores }) => {
       type: "scatter",
       y: CustomCores.map((d) => d.y.detectorNIU),
       x: CustomCores.map((d) => d.x),
-      text: CustomCores.map((core) => `${core.y.name} (${core.y.type})`),
+      text: CustomCores.map((core) => `${core.y.name} (${core.y.type})<br>cos: ${core.x.toFixed(3)}<br>signal: ${core.y.detectorNIU.toFixed(3)}`),
       mode: "markers",
       hoverinfo: "text",
       marker: {
@@ -145,7 +145,7 @@ export const CoreDirectionSignalPlots = ({ cores }) => {
       type: "scatter",
       y: GCRcores.map((d) => d.y.detectorNIU),
       x: GCRcores.map((d) => d.x),
-      text: GCRcores.map((core) => `${core.y.name} (${core.y.type})`),
+      text: GCRcores.map((core) => `${core.y.name} (${core.y.type})<br>cos: ${core.x.toFixed(3)}<br>signal: ${core.y.detectorNIU.toFixed(3)}`),
       mode: "markers",
       hoverinfo: "text",
       marker: {
@@ -157,7 +157,7 @@ export const CoreDirectionSignalPlots = ({ cores }) => {
       type: "scatter",
       y: LEUMoxCores.map((d) => d.y.detectorNIU),
       x: LEUMoxCores.map((d) => d.x),
-      text: LEUMoxCores.map((core) => `${core.y.name} (${core.y.type})`),
+      text: LEUMoxCores.map((core) => `${core.y.name} (${core.y.type})<br>cos: ${core.x.toFixed(3)}<br>signal: ${core.y.detectorNIU.toFixed(3)}`),
       mode: "markers",
       hoverinfo: "text",
       marker: {
@@ -169,7 +169,7 @@ export const CoreDirectionSignalPlots = ({ cores }) => {
       type: "scatter",
       y: PHWRcores.map((d) => d.y.detectorNIU),
       x: PHWRcores.map((d) => d.x),
-      text: PHWRcores.map((core) => `${core.y.name} (${core.y.type})`),
+      text: PHWRcores.map((core) => `${core.y.name} (${core.y.type})<br>cos: ${core.x.toFixed(3)}<br>signal: ${core.y.detectorNIU.toFixed(3)}`),
       mode: "markers",
       hoverinfo: "text",
       marker: {
