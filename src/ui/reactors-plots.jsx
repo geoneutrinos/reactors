@@ -178,6 +178,7 @@ export const CoreDirectionSignalPlots = ({ cores }) => {
     },
   ];
   var layout = {
+    hovermode: "closest",
     title: `Core Direction (${first.name})`,
     yaxis: {
       title: { text: `signal (NIU)` },
