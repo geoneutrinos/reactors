@@ -91,25 +91,92 @@ export const FissionIsotopeSpectraPlots = () => {
   );
 };
 
-export const CoreDirectionSignalPlots = ({cores}) => {
+export const CoreDirectionSignalPlots = ({ cores }) => {
+  const sortedCores = Object.values(cores)
+    .filter((a) => a.detectorNIU > 0)
+    .sort((a, b) => b.detectorNIU - a.detectorNIU);
+  const [first, ...rest] = sortedCores;
+  const coreData = rest.map((core) => {
+    return { y: core, x: first.cos(core) };
+  });
 
-  const sortedCores = Object.values(cores).filter(a => a.detectorNIU > 0).sort((a,b) => b.detectorNIU - a.detectorNIU)
-  const [first, ...rest] = sortedCores
-  const coreData = rest.map(core => {
-    return {y:core, x:first.cos(core)}
-  })
+  const PHWRcores = coreData.filter((core) => core.y.spectrumType === "PHWR");
+  const GCRcores = coreData.filter((core) => core.y.spectrumType === "GCR");
+  const LEUMoxCores = coreData.filter(
+    (core) => core.y.spectrumType === "LEU_MOX"
+  );
+  const CustomCores = coreData.filter(
+    (core) => core.y.spectrumType === "custom"
+  );
+  const AllOtherCores = coreData.filter(
+    (core) =>
+      core.y.spectrumType !== "LEU_MOX" &&
+      core.y.spectrumType !== "GCR" &&
+      core.y.spectrumType !== "PHWR" &&
+      core.y.type !== "custom"
+  );
   const data = [
     {
-      y: coreData.map(d => d.y.detectorNIU),
-      x: coreData.map(d => d.x),
-      name: `coreDirection`,
+      y: AllOtherCores.map((d) => d.y.detectorNIU),
+      x: AllOtherCores.map((d) => d.x),
+      text: AllOtherCores.map((core) => `${core.y.name} (${core.y.type})`),
+      name: `All Other Cores`,
       type: "scatter",
       mode: "markers",
       fill: "none",
-      marker: { color: "green" },
-      text: coreData.map((core) => `${core.y.name} (${core.y.type})`),
+      marker: {
+        color: "#009000",
+      },
     },
-  ]
+    {
+      name: "Custom Cores",
+      type: "scatter",
+      y: CustomCores.map((d) => d.y.detectorNIU),
+      x: CustomCores.map((d) => d.x),
+      text: CustomCores.map((core) => `${core.y.name} (${core.y.type})`),
+      mode: "markers",
+      hoverinfo: "text",
+      marker: {
+        color: "#000",
+      },
+    },
+    {
+      name: "GCR Cores", //GCR Cores
+      type: "scatter",
+      y: GCRcores.map((d) => d.y.detectorNIU),
+      x: GCRcores.map((d) => d.x),
+      text: GCRcores.map((core) => `${core.y.name} (${core.y.type})`),
+      mode: "markers",
+      hoverinfo: "text",
+      marker: {
+        color: "#D69537",
+      },
+    },
+    {
+      name: "LEU MOX Cores", //LEU MOX COres
+      type: "scatter",
+      y: LEUMoxCores.map((d) => d.y.detectorNIU),
+      x: LEUMoxCores.map((d) => d.x),
+      text: LEUMoxCores.map((core) => `${core.y.name} (${core.y.type})`),
+      mode: "markers",
+      hoverinfo: "text",
+      marker: {
+        color: "#0000ff",
+      },
+    },
+    {
+      name: "PHWR Cores", //PHWR Cores
+      type: "scatter",
+      y: PHWRcores.map((d) => d.y.detectorNIU),
+      x: PHWRcores.map((d) => d.x),
+      text: PHWRcores.map((core) => `${core.y.name} (${core.y.type})`),
+      mode: "markers",
+      hoverinfo: "text",
+      marker: {
+        color: "#ff0000",
+      },
+    },
+  ];
   var layout = {
     title: `Core Direction (${first.name})`,
     yaxis: {
@@ -121,7 +188,6 @@ export const CoreDirectionSignalPlots = ({cores}) => {
     autosize: true,
     legend: {
       x: 1,
-      xanchor: "right",
       y: 1,
     },
   };
@@ -138,5 +204,4 @@ export const CoreDirectionSignalPlots = ({cores}) => {
       </Card.Body>
     </Card>
   );
-
-}
+};
