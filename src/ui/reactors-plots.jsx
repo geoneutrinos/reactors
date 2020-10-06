@@ -90,3 +90,53 @@ export const FissionIsotopeSpectraPlots = () => {
     </Card>
   );
 };
+
+export const CoreDirectionSignalPlots = ({cores}) => {
+
+  const sortedCores = Object.values(cores).filter(a => a.detectorNIU > 0).sort((a,b) => b.detectorNIU - a.detectorNIU)
+  const [first, ...rest] = sortedCores
+  const coreData = rest.map(core => {
+    return {y:core, x:first.cos(core)}
+  })
+  const data = [
+    {
+      y: coreData.map(d => d.y.detectorNIU),
+      x: coreData.map(d => d.x),
+      name: `coreDirection`,
+      type: "scatter",
+      mode: "markers",
+      fill: "none",
+      marker: { color: "green" },
+      text: coreData.map((core) => `${core.y.name} (${core.y.type})`),
+    },
+  ]
+  var layout = {
+    title: `Core Direction (${first.name})`,
+    yaxis: {
+      title: { text: `signal (NIU)` },
+    },
+    xaxis: {
+      title: { text: `cos θ` },
+    },
+    autosize: true,
+    legend: {
+      x: 1,
+      xanchor: "right",
+      y: 1,
+    },
+  };
+  return (
+    <Card>
+      <Card.Header>Core Direction Plot</Card.Header>
+      <Card.Body>
+        <Plot
+          useResizeHandler={true}
+          style={{ width: "100%" }}
+          data={data}
+          layout={layout}
+        />
+      </Card.Body>
+    </Card>
+  );
+
+}
