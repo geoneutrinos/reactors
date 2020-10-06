@@ -8,7 +8,7 @@ import { boron8, BORON_8_NIU } from "../solar";
 export const Boron8SpectraPlot = () => {
   const data = [
     {
-      y: boron8.map((x) => x[1]),
+      y: boron8.map((x) => x[1] * 10),
       x: boron8.map((x) => x[0]),
       name: "Boron 8",
       type: "scatter",
