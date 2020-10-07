@@ -120,7 +120,7 @@ export const CoreDirectionSignalPlots = ({ cores }) => {
       y: AllOtherCores.map((d) => d.y.detectorNIU),
       x: AllOtherCores.map((d) => d.x),
       text: AllOtherCores.map((core) => `${core.y.name} (${core.y.type})<br>cos: ${core.x.toFixed(3)}<br>signal: ${core.y.detectorNIU.toFixed(3)}`),
-      name: `PWR/BWR`,
+      name: `PWR,BWR`,
       type: "scatter",
       mode: "markers",
       hoverinfo: "text",
