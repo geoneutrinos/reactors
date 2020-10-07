@@ -14,7 +14,7 @@ export { OutputDownload } from './output-download'
 export { PhysicsOscillationPane } from './physics-osc-params'
 export { PhysicsConstants } from './physics-constants';
 export { CrossSectionPlots } from './physics-plots';
-export { FissionIsotopeSpectraPlots } from './reactors-plots';
+export { FissionIsotopeSpectraPlots, CoreDirectionSignalPlots } from './reactors-plots';
 export { Boron8SpectraPlot } from './solar-plots';
 export { FissionFractionPane } from './reactors-fission';
 

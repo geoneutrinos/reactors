@@ -14,6 +14,7 @@ import {
   StatsPanel,
   DetectorLocationPane,
   //Reactors Tab
+  CoreDirectionSignalPlots,
   FissionIsotopeSpectraPlots,
   CoreIAEARange,
   CoreList,
@@ -133,9 +134,6 @@ function App(props) {
       mantleGeoSpectrum(crossSection, massOrdering, geoFluxRatios, crustFlux),
     [crossSection, massOrdering, geoFluxRatios, crustFlux]
   );
-  const thing = Object.values(cores).filter(a => a.detectorNIU > 0).sort((a,b) => b.detectorNIU - a.detectorNIU)
-  const [first, ...rest] = thing
-  console.log(rest.map(core => first.cos(core)))
   return (
     <Container fluid={true}>
       <Row style={{ minHeight: "100vh" }}>
@@ -175,6 +173,7 @@ function App(props) {
               <AddCustomCoreModal {...addCustomModalXY} show={addCustomModal} customCores={customCores} setCustomCores={setCustomCores} close={() => { setAddCustomModalXY({}); setAddCustomModal(false) }} />
               <ManageCustomCoreModal show={manCustomModal} customCores={customCores} setCustomCores={setCustomCores} close={() => setManCustomModal(false)} />
               <Visible>
+              <CoreDirectionSignalPlots cores={cores} />
               <FissionIsotopeSpectraPlots />
               </Visible>
               <FissionFractionPane />

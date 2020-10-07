@@ -90,3 +90,130 @@ export const FissionIsotopeSpectraPlots = () => {
     </Card>
   );
 };
+
+export const CoreDirectionSignalPlots = ({ cores }) => {
+  const sortedCores = Object.values(cores)
+    .filter((a) => a.detectorNIU > 0)
+    .sort((a, b) => b.detectorNIU - a.detectorNIU);
+  const [first, ...rest] = sortedCores;
+  const coreData = [first, ...rest].map((core) => {
+    return { y: core, x: first.cos(core) };
+  });
+
+  const PHWRcores = coreData.filter((core) => core.y.spectrumType === "PHWR");
+  const GCRcores = coreData.filter((core) => core.y.spectrumType === "GCR");
+  const LEUMoxCores = coreData.filter(
+    (core) => core.y.spectrumType === "LEU_MOX"
+  );
+  const CustomCores = coreData.filter(
+    (core) => core.y.spectrumType === "custom"
+  );
+  const AllOtherCores = coreData.filter(
+    (core) =>
+      core.y.spectrumType !== "LEU_MOX" &&
+      core.y.spectrumType !== "GCR" &&
+      core.y.spectrumType !== "PHWR" &&
+      core.y.type !== "custom"
+  );
+  const data = [
+    {
+      y: AllOtherCores.map((d) => d.y.detectorNIU),
+      x: AllOtherCores.map((d) => d.x),
+      text: AllOtherCores.map((core) => `${core.y.name} (${core.y.type})<br>cos: ${core.x.toFixed(3)}<br>signal: ${core.y.detectorNIU.toFixed(3)}`),
+      name: `All Other`,
+      type: "scatter",
+      mode: "markers",
+      hoverinfo: "text",
+      marker: {
+        color: "#009000",
+      },
+    },
+    {
+      name: "Custom",
+      type: "scatter",
+      y: CustomCores.map((d) => d.y.detectorNIU),
+      x: CustomCores.map((d) => d.x),
+      text: CustomCores.map((core) => `${core.y.name} (${core.y.type})<br>cos: ${core.x.toFixed(3)}<br>signal: ${core.y.detectorNIU.toFixed(3)}`),
+      mode: "markers",
+      hoverinfo: "text",
+      marker: {
+        color: "#000",
+      },
+    },
+    {
+      name: "GCR", //GCR Cores
+      type: "scatter",
+      y: GCRcores.map((d) => d.y.detectorNIU),
+      x: GCRcores.map((d) => d.x),
+      text: GCRcores.map((core) => `${core.y.name} (${core.y.type})<br>cos: ${core.x.toFixed(3)}<br>signal: ${core.y.detectorNIU.toFixed(3)}`),
+      mode: "markers",
+      hoverinfo: "text",
+      marker: {
+        color: "#D69537",
+      },
+    },
+    {
+      name: "LEU MOX", //LEU MOX COres
+      type: "scatter",
+      y: LEUMoxCores.map((d) => d.y.detectorNIU),
+      x: LEUMoxCores.map((d) => d.x),
+      text: LEUMoxCores.map((core) => `${core.y.name} (${core.y.type})<br>cos: ${core.x.toFixed(3)}<br>signal: ${core.y.detectorNIU.toFixed(3)}`),
+      mode: "markers",
+      hoverinfo: "text",
+      marker: {
+        color: "#0000ff",
+      },
+    },
+    {
+      name: "PHWR", //PHWR Cores
+      type: "scatter",
+      y: PHWRcores.map((d) => d.y.detectorNIU),
+      x: PHWRcores.map((d) => d.x),
+      text: PHWRcores.map((core) => `${core.y.name} (${core.y.type})<br>cos: ${core.x.toFixed(3)}<br>signal: ${core.y.detectorNIU.toFixed(3)}`),
+      mode: "markers",
+      hoverinfo: "text",
+      marker: {
+        color: "#ff0000",
+      },
+    },
+  ];
+  var layout = {
+    hovermode: "closest",
+    title: `Core Direction (${first.name})`,
+    yaxis: {
+      title: { text: `signal (NIU)` },
+    },
+    xaxis: {
+      zeroline: false,
+      title: { text: `cos θ` },
+    },
+    autosize: true,
+    legend: {
+      x: 1,
+      y: 1,
+    },
+    annotations: [
+      {
+        showarrow: false,
+        text: "geoneutrinos.org",
+        x: 1,
+        xref: "paper",
+        y: 0,
+        yref: "paper",
+      },
+    ],
+  };
+  return (
+    <Card>
+      <Card.Header>Core Direction Plot</Card.Header>
+      <Card.Body>
+        <Plot
+          useResizeHandler={true}
+          style={{ width: "100%" }}
+          data={data}
+          layout={layout}
+        />
+      </Card.Body>
+    </Card>
+  );
+};
