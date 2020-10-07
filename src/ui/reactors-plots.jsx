@@ -192,6 +192,16 @@ export const CoreDirectionSignalPlots = ({ cores }) => {
       x: 1,
       y: 1,
     },
+    annotations: [
+      {
+        showarrow: false,
+        text: "geoneutrinos.org",
+        x: 1,
+        xref: "paper",
+        y: 0,
+        yref: "paper",
+      },
+    ],
   };
   return (
     <Card>
