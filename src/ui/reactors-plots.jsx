@@ -184,6 +184,7 @@ export const CoreDirectionSignalPlots = ({ cores }) => {
       title: { text: `signal (NIU)` },
     },
     xaxis: {
+      zeroline: false,
       title: { text: `cos θ` },
     },
     autosize: true,
