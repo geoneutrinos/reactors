@@ -96,7 +96,7 @@ export const CoreDirectionSignalPlots = ({ cores }) => {
     .filter((a) => a.detectorNIU > 0)
     .sort((a, b) => b.detectorNIU - a.detectorNIU);
   const [first, ...rest] = sortedCores;
-  const coreData = rest.map((core) => {
+  const coreData = [first, ...rest].map((core) => {
     return { y: core, x: first.cos(core) };
   });
 
@@ -120,7 +120,7 @@ export const CoreDirectionSignalPlots = ({ cores }) => {
       y: AllOtherCores.map((d) => d.y.detectorNIU),
       x: AllOtherCores.map((d) => d.x),
       text: AllOtherCores.map((core) => `${core.y.name} (${core.y.type})<br>cos: ${core.x.toFixed(3)}<br>signal: ${core.y.detectorNIU.toFixed(3)}`),
-      name: `All Other Cores`,
+      name: `All Other`,
       type: "scatter",
       mode: "markers",
       hoverinfo: "text",
@@ -129,7 +129,7 @@ export const CoreDirectionSignalPlots = ({ cores }) => {
       },
     },
     {
-      name: "Custom Cores",
+      name: "Custom",
       type: "scatter",
       y: CustomCores.map((d) => d.y.detectorNIU),
       x: CustomCores.map((d) => d.x),
@@ -141,7 +141,7 @@ export const CoreDirectionSignalPlots = ({ cores }) => {
       },
     },
     {
-      name: "GCR Cores", //GCR Cores
+      name: "GCR", //GCR Cores
       type: "scatter",
       y: GCRcores.map((d) => d.y.detectorNIU),
       x: GCRcores.map((d) => d.x),
@@ -153,7 +153,7 @@ export const CoreDirectionSignalPlots = ({ cores }) => {
       },
     },
     {
-      name: "LEU MOX Cores", //LEU MOX COres
+      name: "LEU MOX", //LEU MOX COres
       type: "scatter",
       y: LEUMoxCores.map((d) => d.y.detectorNIU),
       x: LEUMoxCores.map((d) => d.x),
@@ -165,7 +165,7 @@ export const CoreDirectionSignalPlots = ({ cores }) => {
       },
     },
     {
-      name: "PHWR Cores", //PHWR Cores
+      name: "PHWR", //PHWR Cores
       type: "scatter",
       y: PHWRcores.map((d) => d.y.detectorNIU),
       x: PHWRcores.map((d) => d.x),
