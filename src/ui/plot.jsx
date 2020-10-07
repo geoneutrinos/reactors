@@ -192,7 +192,7 @@ export function CoreDirectionPlot({ cores, detector }) {
       <Plot
         data={[
           {
-            name: "All Other Cores", //All other
+            name: "PWR,BWR", //All other
             type: "scatterpolar",
             r: AllOtherCores.map((core) => core.direction.elev),
             theta: AllOtherCores.map((core) => core.direction.phi),
@@ -216,7 +216,7 @@ export function CoreDirectionPlot({ cores, detector }) {
             },
           },
           {
-            name: "GCR Cores", //GCR Cores
+            name: "GCR", //GCR Cores
             type: "scatterpolar",
             r: GCRcores.map((core) => core.direction.elev),
             theta: GCRcores.map((core) => core.direction.phi),
@@ -228,7 +228,7 @@ export function CoreDirectionPlot({ cores, detector }) {
             },
           },
           {
-            name: "LEU MOX Cores", //LEU MOX COres
+            name: "PWR/MOX", //LEU MOX COres
             type: "scatterpolar",
             r: LEUMoxCores.map((core) => core.direction.elev),
             theta: LEUMoxCores.map((core) => core.direction.phi),
@@ -240,7 +240,7 @@ export function CoreDirectionPlot({ cores, detector }) {
             },
           },
           {
-            name: "PHWR Cores", //PHWR Cores
+            name: "PHWR", //PHWR Cores
             type: "scatterpolar",
             r: PHWRcores.map((core) => core.direction.elev),
             theta: PHWRcores.map((core) => core.direction.phi),
