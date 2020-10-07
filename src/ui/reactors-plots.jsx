@@ -120,7 +120,7 @@ export const CoreDirectionSignalPlots = ({ cores }) => {
       y: AllOtherCores.map((d) => d.y.detectorNIU),
       x: AllOtherCores.map((d) => d.x),
       text: AllOtherCores.map((core) => `${core.y.name} (${core.y.type})<br>cos: ${core.x.toFixed(3)}<br>signal: ${core.y.detectorNIU.toFixed(3)}`),
-      name: `All Other`,
+      name: `PWR/BWR`,
       type: "scatter",
       mode: "markers",
       hoverinfo: "text",
@@ -153,7 +153,7 @@ export const CoreDirectionSignalPlots = ({ cores }) => {
       },
     },
     {
-      name: "LEU MOX", //LEU MOX COres
+      name: "PWR/MOX", //LEU MOX COres
       type: "scatter",
       y: LEUMoxCores.map((d) => d.y.detectorNIU),
       x: LEUMoxCores.map((d) => d.x),
