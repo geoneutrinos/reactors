@@ -11,17 +11,17 @@ export const FissionFractionPane = () => {
       <Card>
         <Card.Header>Fission Energies, Power and Fission Fractions</Card.Header>
         <Card.Body>
-            <p> Mid-cycle fission fractions
+            <p> Mid-cycle fission fractions f
             <br />
             GCR: R. Mills, private communication, Dec. 12, 2018.
             <br />
             PHWR: M. Chen, private communication, Aug. 14, 2017.
             </p>
-            <p> Mid-cycle power fractions
+            <p> Mid-cycle power fractions p
             <br />
             M. Baldoncini et al., "Reference worldwide model for antineutrinos from reactors," Phys.  Rev. D91, 065002 (2015).
             </p>
-            <p> Mid-cycle fission energies
+            <p> Mid-cycle fission energies Q
             <br />
             V. I. Kopeikin et al., "Reactor as a Source of Antineutrinos: Thermal Fission Energy," Phys. Atom. Nucl. 67, 1892 (2004).
             </p>          
