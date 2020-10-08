@@ -1,16 +1,18 @@
 import React from 'react';
 
-import { Card } from 'react-bootstrap';
+import {FERMI_COUPLING_CONSTANT, HBAR_C, ELECTRON_REST_MASS, WEAK_MIXING_ANGLE} from '../physics/constants'
+
+import { Card, Table } from 'react-bootstrap';
 
 export const PhysicsConstants = () => {
   return (
     <Card>
       <Card.Header>Physical Constants</Card.Header>
       <Card.Body>
-        <Table {...table????}>
+        <Table>
             <thead>
               <tr>
-                <th><i>G</i><sub>F</sub> (MeV<sup>-2</sup>)</th>
+                <th><i>G</i><sub>F</sub> (GeV<sup>-2</sup>)</th>
                 <th>hc/2pi (MeV-cm)</th>
                 <th><i>m</i><sub>e</sub> (MeV)</th>
                 <th>cos theta<sub>W</sub></th>
@@ -19,16 +21,16 @@ export const PhysicsConstants = () => {
             <tbody>
               <tr>
                 <td>
-                  1.1663787e<sup>-11</sup>
+                  {FERMI_COUPLING_CONSTANT.toExponential(7)}
                 </td>
                 <td>
-                  1.973269804e<sup>-11</sup>
+                  {HBAR_C}
                 </td>
                 <td>
-                  0.5109989500
+                  {ELECTRON_REST_MASS}
                 </td>
                 <td>
-                  0.23153
+                  {WEAK_MIXING_ANGLE}
                 </td>
               </tr>
             </tbody>
