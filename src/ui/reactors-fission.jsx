@@ -19,7 +19,7 @@ export const FissionFractionPane = () => {
             </p>
             <p> Mid-cycle power fractions
             <br />
-            PWR, BWR; MOX (PWR, BWR): M. Baldoncini et al., "Reference worldwide model for antineutrinos from reactors," Phys.  Rev. D91, 065002 (2015).
+            M. Baldoncini et al., "Reference worldwide model for antineutrinos from reactors," Phys.  Rev. D91, 065002 (2015).
             </p>
             <p> Mid-cycle fission energies
             <br />
