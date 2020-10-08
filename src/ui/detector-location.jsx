@@ -19,10 +19,7 @@ const presetOptions = Object.keys(presetGroups).map((key) => {
   );
 });
 
-export const DetectorLocationPane = ({
-  detector,
-  setDetector,
-}) => {
+export const DetectorLocationPane = ({ detector, setDetector }) => {
   const [internalDetector, setinternalDetector] = useState({
     lat: detector.lat,
     lon: detector.lon,
@@ -55,21 +52,36 @@ export const DetectorLocationPane = ({
     }
 
     if (!isNaN(parsed) && parsed !== detector[key]) {
-      setDetector({ ...detector, current:"custom", [key]: parsed });
+      setDetector({ ...detector, current: "custom", [key]: parsed });
     }
   };
 
   const setDetectorMode = (event) => {
     const value = event.currentTarget.value;
     let newDetector = { current: value };
-    if (value !== 'custom' && value !== 'follow') {
-      let preset = presets.find(detector => detector.name === value);
+    if (value !== "custom" && value !== "follow" && value !== "My Location") {
+      let preset = presets.find((detector) => detector.name === value);
       newDetector.lat = preset.lat;
       newDetector.lon = preset.lon;
       newDetector.elevation = preset.elevation;
     }
-    setDetector({ ...detector, ...newDetector })
-  }
+    if (value === "My Location") {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          newDetector.lat = position.coords.latitude;
+          newDetector.lon = position.coords.longitude;
+          newDetector.elevation = position.coords.altitude || 0;
+          setDetector({ ...detector, ...newDetector });
+        },
+        () => {
+          alert("Unable to get location");
+          newDetector.current = detector.current;
+          setDetector({ ...detector, ...newDetector });
+        }
+      );
+    }
+    setDetector({ ...detector, ...newDetector });
+  };
 
   return (
     <Card>
@@ -84,6 +96,9 @@ export const DetectorLocationPane = ({
           >
             <option value="follow">Follow Cursor on Map</option>
             <option value="custom">Custom Detector Location</option>
+            <option value="My Location">
+              Use My Current Location (can take a few seconds)
+            </option>
             {presetOptions}
           </Form.Control>
         </Form.Group>
