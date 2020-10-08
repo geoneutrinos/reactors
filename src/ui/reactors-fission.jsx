@@ -11,17 +11,17 @@ export const FissionFractionPane = () => {
       <Card>
         <Card.Header>Fission Energies, Power and Fission Fractions</Card.Header>
         <Card.Body>
-            <p> Mid-cycle fission fractions f
+            <p> Mid-cycle fission fractions- <i>f</i>
             <br />
             GCR: R. Mills, private communication, Dec. 12, 2018.
             <br />
             PHWR: M. Chen, private communication, Aug. 14, 2017.
             </p>
-            <p> Mid-cycle power fractions p
+            <p> Mid-cycle power fractions- <i>p</i>
             <br />
             M. Baldoncini et al., "Reference worldwide model for antineutrinos from reactors," Phys.  Rev. D91, 065002 (2015).
             </p>
-            <p> Mid-cycle fission energies Q
+            <p> Mid-cycle fission energies- <i>Q</i>
             <br />
             V. I. Kopeikin et al., "Reactor as a Source of Antineutrinos: Thermal Fission Energy," Phys. Atom. Nucl. 67, 1892 (2004).
             </p>          
@@ -38,7 +38,7 @@ export const FissionFractionPane = () => {
             <tbody>
               <tr>
                 <td>
-                Q (MeV)
+                 <i>Q</i> (MeV)
                 </td>
                 <td>{FISSION_ENERGIES.U235}</td>
                 <td>{FISSION_ENERGIES.U238}</td>
@@ -47,7 +47,7 @@ export const FissionFractionPane = () => {
               </tr>
               <tr>
                 <td>
-                p (PWR, BWR)
+                 <i>p</i> (PWR, BWR)
                 </td>
                 <td>{POWER_FRACTIONS.LEU.U235.toFixed(3)}</td>
                 <td>{POWER_FRACTIONS.LEU.U238.toFixed(3)}</td>
@@ -56,7 +56,7 @@ export const FissionFractionPane = () => {
               </tr>
               <tr>
                 <td>
-                p (PWR/MOX)
+                 <i>p</i> (PWR/MOX)
                 </td>
                 <td>{POWER_FRACTIONS.LEU_MOX.U235.toFixed(3)}</td>
                 <td>{POWER_FRACTIONS.LEU_MOX.U238.toFixed(3)}</td>
@@ -65,7 +65,7 @@ export const FissionFractionPane = () => {
               </tr>
               <tr>
                 <td>
-                f (GCR)
+                 <i>f</i> (GCR)
                 </td>
                 <td>{FISSION_FRACTIONS.GCR.U235.toFixed(4)}</td>
                 <td>{FISSION_FRACTIONS.GCR.U238.toFixed(4)}</td>
@@ -74,7 +74,7 @@ export const FissionFractionPane = () => {
               </tr>
               <tr>
                 <td>
-                f (PHWR)
+                 <i>f</i> (PHWR)
                 </td>
                 <td>{FISSION_FRACTIONS.PHWR.U235.toFixed(3)}</td>
                 <td>{FISSION_FRACTIONS.PHWR.U238.toFixed(3)}</td>
