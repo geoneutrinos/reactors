@@ -9,6 +9,7 @@ export const PhysicsConstants = () => {
     <Card>
       <Card.Header>Physical Constants</Card.Header>
       <Card.Body>
+        <p>The listed values are from the Particle Data Group <a href="https://pdg.lbl.gov/2020/reviews/rpp2020-rev-phys-constants.pdf">at this link</a></p>
         <Table>
             <thead>
               <tr>
