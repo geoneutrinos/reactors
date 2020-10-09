@@ -29,7 +29,7 @@ export const PhysicsOscillationPane = () => {
           <tbody>
             <tr>
               <td>
-                Δm<sup>2</sup>
+                Δ<i>m</i><sup>2</sup>
                 <sub>21</sub>
               </td>
               <td>{dmsq21}</td>
@@ -37,7 +37,7 @@ export const PhysicsOscillationPane = () => {
             </tr>
             <tr>
               <td>
-                Δm<sup>2</sup>
+                Δ<i>m</i><sup>2</sup>
                 <sub>31</sub>
               </td>
               <td>{dmsq31Normal}</td>
@@ -45,14 +45,14 @@ export const PhysicsOscillationPane = () => {
             </tr>
             <tr>
               <td>
-                sin<sup>2</sup>θ<sub>12</sub>
+                sin<sup>2</sup><i>θ</i><sub>12</sub>
               </td>
               <td>{s2t12}</td>
               <td>{s2t12}</td>
             </tr>
             <tr>
               <td>
-                sin<sup>2</sup>θ<sub>13</sub>
+                sin<sup>2</sup><i>θ</i><sub>13</sub>
               </td>
               <td>{s2t13Normal}</td>
               <td>{s2t13Inverted}</td>
