@@ -12,10 +12,10 @@ export const PhysicsConstants = () => {
         <Table>
             <thead>
               <tr>
-                <th><i>G</i><sub>F</sub> (GeV<sup>-2</sup>)</th>
-                <th>hc/2pi (MeV-cm)</th>
+                <th><i>G</i><sub>F</sub>/(ħc)<sup>3</sup> (GeV<sup>-2</sup>)</th>
+                <th>ħc (MeV cm)</th>
                 <th><i>m</i><sub>e</sub> (MeV)</th>
-                <th>cos theta<sub>W</sub></th>
+                <th>sin<sup>2</sup> θ<sub>W</sub></th>
               </tr>
             </thead>
             <tbody>

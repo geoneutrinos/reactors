@@ -5,7 +5,7 @@ export const NEUTRON_REST_MASS = 939.565413; // MeV
 export const PROTON_REST_MASS = 938.2720813; //MeV
 export const FERMI_COUPLING_CONSTANT = 1.1663787e-5; // GeV-2
 export const HBAR_C = 197.3269804e-13; // MeV cm (exact)
-export const WEAK_MIXING_ANGLE = 0.2313; // ± 0.0004; arXiv:hep-ph/0212134 ???
+export const WEAK_MIXING_ANGLE = 0.23153; // ± 0.0004; https://pdg.lbl.gov/2020/reviews/rpp2020-rev-phys-constants.pdf
 export const AU = 1.660_539_006_60e-27; // kg (atomic mass aka dalton)
 
 export const FISSION_ENERGIES = {
