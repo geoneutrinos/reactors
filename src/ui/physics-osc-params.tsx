@@ -8,6 +8,8 @@ import {
   s2t13Inverted,
   dmsq31Inverted,
   dmsq31Normal,
+  averageSurvivalProbabilityNormal,
+  averageSurvivalProbabilityInverted,
 } from "../physics/neutrino-oscillation";
 
 export const PhysicsOscillationPane = () => {
@@ -17,7 +19,7 @@ export const PhysicsOscillationPane = () => {
     <Card>
       <Card.Header>Neutrino Oscillation Parameters</Card.Header>
       <Card.Body>
-          <p>Osciliation values are from table 14.1 in <a href="https://pdg.lbl.gov/2017/reviews/rpp2017-rev-neutrino-mixing.pdf">C. Patrignani et al. (Particle Data Group), Chin. Phys. C, 40, 100001 (2016) and 2017 update</a></p>
+      <p>Parameter values are from table 14.7 in <a href="https://pdg.lbl.gov/2020/reviews/rpp2020-rev-neutrino-mixing.pdf">Particle Data Group</a></p>
         <Table {...tableProps}>
           <thead>
             <tr>
@@ -56,6 +58,13 @@ export const PhysicsOscillationPane = () => {
               </td>
               <td>{s2t13Normal}</td>
               <td>{s2t13Inverted}</td>
+            </tr>
+            <tr>
+              <td>
+                P<sub>e</sub>
+              </td>
+              <td>{averageSurvivalProbabilityNormal.toFixed(4)}</td>
+              <td>{averageSurvivalProbabilityInverted.toFixed(4)}</td>
             </tr>
           </tbody>
         </Table>
