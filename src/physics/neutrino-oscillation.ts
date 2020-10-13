@@ -9,14 +9,14 @@ export const s2t12 = 0.310;
 export const dmsq21 = 7.39e-5;
 export const s2t13Normal =  0.02241;
 export const s2t13Inverted =  0.02261;
-export const dmsq31Normal =  2.523e-3;
-export const dmsq31Inverted =  -2.435e-3;
+export const dmsq32Normal = 2.449e-3;
+export const dmsq32Inverted = -2.509e-3;
+
+export const dmsq31Normal =  dmsq32Normal + dmsq21;
+export const dmsq31Inverted =  dmsq32Inverted + dmsq21;
 
 const c4t13Normal = (1 - s2t13Normal) * (1 - s2t13Normal);
 const c4t13Inverted = (1 - s2t13Inverted) * (1 - s2t13Inverted);
-
-export const dmsq32Normal = dmsq31Normal - dmsq21;
-export const dmsq32Inverted = dmsq31Inverted - dmsq21;
 
 const s22t12 = 4 * s2t12 * (1 - s2t12);
 const c2t12 = 1 - s2t12;
