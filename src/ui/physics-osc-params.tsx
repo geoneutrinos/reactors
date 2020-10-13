@@ -39,7 +39,7 @@ export const PhysicsOscillationPane = () => {
                 sin<sup>2</sup><i>θ</i><sub>13</sub>
               </th>
               <th>
-                P<sub>e</sub>
+                {"<"}P<sub>e</sub>{">"}
               </th>
             </tr>
           </thead>
@@ -48,7 +48,7 @@ export const PhysicsOscillationPane = () => {
               <td>Normal</td>
               <td>{dmsq21}</td>
               <td>{dmsq31Normal}</td>
-              <td>{s2t12}</td>
+              <td>{s2t12.toFixed(3)}</td>
               <td>{s2t13Normal}</td>
               <td>{averageSurvivalProbabilityNormal.toFixed(4)}</td>
             </tr>
@@ -56,7 +56,7 @@ export const PhysicsOscillationPane = () => {
               <td>Inverted</td>
               <td>{dmsq21}</td>
               <td>{dmsq31Inverted}</td>
-              <td>{s2t12}</td>
+              <td>{s2t12.toFixed(3)}</td>
               <td>{s2t13Inverted}</td>
               <td>{averageSurvivalProbabilityInverted.toFixed(4)}</td>
             </tr>
