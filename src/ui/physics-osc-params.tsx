@@ -13,7 +13,7 @@ import {
 } from "../physics/neutrino-oscillation";
 
 export const PhysicsOscillationPane = () => {
-  const tableProps = { style: { width: "auto" }, borderless: true, size: "sm" };
+  const tableProps = { size: "sm" };
 
   return (
     <Card>
@@ -24,46 +24,40 @@ export const PhysicsOscillationPane = () => {
           <thead>
             <tr>
               <th></th>
-              <th>Normal</th>
-              <th>Inverted</th>
+              <th>
+               δ<i>m</i><sup>2</sup>
+                <sub>21</sub> (eV<sup>2</sup>)
+              </th>
+              <th>
+                δ<i>m</i><sup>2</sup>
+                <sub>31</sub> (eV<sup>2</sup>)
+              </th>
+              <th>
+                sin<sup>2</sup><i>θ</i><sub>12</sub>
+              </th>
+              <th>
+                sin<sup>2</sup><i>θ</i><sub>13</sub>
+              </th>
+              <th>
+                P<sub>e</sub>
+              </th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>
-                Δ<i>m</i><sup>2</sup>
-                <sub>21</sub>
-              </td>
+              <td>Normal</td>
               <td>{dmsq21}</td>
-              <td>{dmsq21}</td>
-            </tr>
-            <tr>
-              <td>
-                Δ<i>m</i><sup>2</sup>
-                <sub>31</sub>
-              </td>
               <td>{dmsq31Normal}</td>
-              <td>{dmsq31Inverted}</td>
-            </tr>
-            <tr>
-              <td>
-                sin<sup>2</sup><i>θ</i><sub>12</sub>
-              </td>
               <td>{s2t12}</td>
-              <td>{s2t12}</td>
-            </tr>
-            <tr>
-              <td>
-                sin<sup>2</sup><i>θ</i><sub>13</sub>
-              </td>
               <td>{s2t13Normal}</td>
-              <td>{s2t13Inverted}</td>
+              <td>{averageSurvivalProbabilityNormal.toFixed(4)}</td>
             </tr>
             <tr>
-              <td>
-                P<sub>e</sub>
-              </td>
-              <td>{averageSurvivalProbabilityNormal.toFixed(4)}</td>
+              <td>Inverted</td>
+              <td>{dmsq21}</td>
+              <td>{dmsq31Inverted}</td>
+              <td>{s2t12}</td>
+              <td>{s2t13Inverted}</td>
               <td>{averageSurvivalProbabilityInverted.toFixed(4)}</td>
             </tr>
           </tbody>
