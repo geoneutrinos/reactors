@@ -7,10 +7,122 @@ import { XSFuncs, XSAbrev, XSNames } from '../physics/neutrino-cross-section';
 
 // temp
 import { crossSectionElectionNeutrinoES } from '../physics/neutrino-cross-section'
+import { differentialCrossSectionElasticScattering, NeutrinoType } from '../physics/neutrino-cross-section'
 
+const bins = (new Float64Array(1000)).map((v, i) => 0.005 + i/100)
+
+export const DifferentialCrossSectionPlots = () => {
+  const data = [
+    {
+      y: bins.map((Te) => differentialCrossSectionElasticScattering(10, Te, NeutrinoType.muTauAntineutrino)),
+      x: bins,
+      name: "NuXBar_10",
+      type: "scatter",
+      mode: "lines",
+      fill: "none",
+      marker: { color: "orange" },
+      line: {dash: 'dash',},
+    },
+    {
+      y: bins.filter(Te => Te < 7).map((Te) => differentialCrossSectionElasticScattering(7, Te, NeutrinoType.muTauAntineutrino)),
+      x: bins.filter(Te => Te < 7),
+      name: "NuXBar_7",
+      type: "scatter",
+      mode: "lines",
+      fill: "none",
+      marker: { color: "red" },
+      line: {dash: 'dash',},
+    },
+    {
+      y: bins.filter(Te => Te < 4).map((Te) => differentialCrossSectionElasticScattering(4, Te, NeutrinoType.muTauAntineutrino)),
+      x: bins.filter(Te => Te < 4),
+      name: "NuXBar_4",
+      type: "scatter",
+      mode: "lines",
+      fill: "none",
+      marker: { color: "blue" },
+      line: {dash: 'dash',},
+    },
+    {
+      y: bins.filter(Te => Te < 1).map((Te) => differentialCrossSectionElasticScattering(1, Te, NeutrinoType.muTauAntineutrino)),
+      x: bins.filter(Te => Te < 1),
+      name: "NuXBar_1",
+      type: "scatter",
+      mode: "lines",
+      fill: "none",
+      marker: { color: "green" },
+      line: {dash: 'dash',},
+    },
+    {
+      y: bins.map((Te) => differentialCrossSectionElasticScattering(10, Te, NeutrinoType.electronAntineutino)),
+      x: bins,
+      name: "NueBar_10",
+      type: "scatter",
+      mode: "lines",
+      fill: "none",
+      marker: { color: "orange" },
+    },
+    {
+      y: bins.filter(Te => Te < 7).map((Te) => differentialCrossSectionElasticScattering(7, Te, NeutrinoType.electronAntineutino)),
+      x: bins.filter(Te => Te < 7),
+      name: "NueBar_7",
+      type: "scatter",
+      mode: "lines",
+      fill: "none",
+      marker: { color: "red" },
+    },
+    {
+      y: bins.filter(Te => Te < 4).map((Te) => differentialCrossSectionElasticScattering(4, Te, NeutrinoType.electronAntineutino)),
+      x: bins.filter(Te => Te < 4),
+      name: "NueBar_4",
+      type: "scatter",
+      mode: "lines",
+      fill: "none",
+      marker: { color: "blue" },
+    },
+    {
+      y: bins.filter(Te => Te < 1).map((Te) => differentialCrossSectionElasticScattering(1, Te, NeutrinoType.electronAntineutino)),
+      x: bins.filter(Te => Te < 1),
+      name: "NueBar_1",
+      type: "scatter",
+      mode: "lines",
+      fill: "none",
+      marker: { color: "green" },
+    },
+  ]
+  const layout = {
+    title: "Differential Cross Sections",
+    yaxis: {
+      title: { text: `Differential Cross Section` },
+      type: 'log',
+      autorange: true
+    },
+    xaxis: {
+      title: { text: `Te (MeV)` },
+    },
+    autosize: true,
+    legend: {
+      x: 1,
+      xanchor: "left",
+      y: 1,
+    },
+  };
+  return (
+    <Card>
+      <Card.Header>Differential Cross Sections</Card.Header>
+      <Card.Body>
+        <Plot
+          useResizeHandler={true}
+          style={{ width: "100%" }}
+          data={data} layout={layout}
+        />
+      </Card.Body>
+    </Card>
+  );
+
+}
 
 export const CrossSectionPlots = () => {
-  const bins = (new Float64Array(1000)).map((v, i) => 0.005 + i/100)
   const data = [
     {
       y: bins.map(XSFuncs[XSNames.IBDVB1999]),

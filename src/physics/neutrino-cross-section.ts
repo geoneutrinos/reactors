@@ -5,7 +5,7 @@ export interface CrossSection {
   (Ev: number): number
 }
 
-enum NeutrinoType {
+export enum NeutrinoType {
   electronNeutrino,
   electronAntineutino,
   muTauAntineutrino
@@ -25,6 +25,17 @@ export const XSAbrev: {[key in XSNames]: string} = {
   [XSNames.ESTOTAL]: "ESnubars",
   [XSNames.ESANTI]: "ESnuebar",
   [XSNames.ESMUTAU]: "ESnuxbar",
+}
+
+export const ES_COEFFICIENTS_RIGHT = {
+  [NeutrinoType.electronNeutrino]: WEAK_MIXING_ANGLE,
+  [NeutrinoType.electronAntineutino]: 0.5 + WEAK_MIXING_ANGLE,
+  [NeutrinoType.muTauAntineutrino]: -0.5 + WEAK_MIXING_ANGLE,
+}
+export const ES_COEFFICIENTS_LEFT = {
+  [NeutrinoType.electronNeutrino]: 0.5 + WEAK_MIXING_ANGLE,
+  [NeutrinoType.electronAntineutino]: WEAK_MIXING_ANGLE,
+  [NeutrinoType.muTauAntineutrino]: WEAK_MIXING_ANGLE,
 }
 
 /** 
@@ -67,22 +78,30 @@ const crossSectionVB1999: CrossSection = memoize((Ev) => {
   return 9.52e-44 * Math.sqrt((Ee * Ee) - (ELECTRON_REST_MASS * ELECTRON_REST_MASS)) * Ee;
 })
 
+export function differentialCrossSectionElasticScattering(Ev: number, Te:number, neutrinoType:NeutrinoType): number{
+  const cL = ES_COEFFICIENTS_LEFT[neutrinoType]
+  const cR = ES_COEFFICIENTS_RIGHT[neutrinoType]
+
+  // The following impliments equation 11... it's big so there will be
+  // 4 terms to make the equation the following: term1(term2 + term3 - term4)
+
+  const FERMI_COUPLING_CONSTANT_MeV = FERMI_COUPLING_CONSTANT / 1e6
+
+  const term1 = (2 * (FERMI_COUPLING_CONSTANT_MeV ** 2) * (HBAR_C ** 2)) * ELECTRON_REST_MASS / Math.PI;
+  const term2 = cL ** 2;
+  const term3 = cR ** 2 * (1 - Te/Ev) ** 2;
+  const term4 = cL * cR * (ELECTRON_REST_MASS * Te)/(Ev ** 2);
+
+  return term1 * (term2 + term3 - term4);
+}
+
 function crossSectionElasticScattering(Ev: number, neutrinoType: NeutrinoType): number {
-  // Table I
-  const cL = {
-    [NeutrinoType.electronNeutrino]: 0.5 + WEAK_MIXING_ANGLE,
-    [NeutrinoType.electronAntineutino]: WEAK_MIXING_ANGLE,
-    [NeutrinoType.muTauAntineutrino]: WEAK_MIXING_ANGLE,
-  }[neutrinoType]
-  const cR = {
-    [NeutrinoType.electronNeutrino]: WEAK_MIXING_ANGLE,
-    [NeutrinoType.electronAntineutino]: 0.5 + WEAK_MIXING_ANGLE,
-    [NeutrinoType.muTauAntineutrino]: -0.5 + WEAK_MIXING_ANGLE,
-  }[neutrinoType]
+  const cL = ES_COEFFICIENTS_LEFT[neutrinoType]
+  const cR = ES_COEFFICIENTS_RIGHT[neutrinoType]
 
   const TEmax = Ev/(1 + ELECTRON_REST_MASS/(2 * Ev)); // Equation 9
 
-  // The following impliments equation 11... it's big so there will be
+  // The following impliments equation 12... it's big so there will be
   // 4 terms to make the equation the following: term1(term2 + term3 - term4)
 
   const y = TEmax / Ev;
