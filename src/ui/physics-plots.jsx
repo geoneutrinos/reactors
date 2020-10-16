@@ -16,7 +16,7 @@ export const DifferentialCrossSectionPlots = () => {
     {
       y: bins.filter(Te => Te < TEMax(10)).map((Te) => differentialCrossSectionElasticScattering(10, Te, NeutrinoType.muTauAntineutrino)),
       x: bins.filter(Te => Te < TEMax(10)),
-      name: "NuXBar_10",
+      name: "ν̅<sub>x</sub> 10 MeV",
       type: "scatter",
       mode: "lines",
       fill: "none",
@@ -26,7 +26,7 @@ export const DifferentialCrossSectionPlots = () => {
     {
       y: bins.filter(Te => Te < TEMax(7)).map((Te) => differentialCrossSectionElasticScattering(7, Te, NeutrinoType.muTauAntineutrino)),
       x: bins.filter(Te => Te < TEMax(7)),
-      name: "NuXBar_7",
+      name: "ν̅<sub>x</sub> 7 MeV",
       type: "scatter",
       mode: "lines",
       fill: "none",
@@ -36,7 +36,7 @@ export const DifferentialCrossSectionPlots = () => {
     {
       y: bins.filter(Te => Te < TEMax(4)).map((Te) => differentialCrossSectionElasticScattering(4, Te, NeutrinoType.muTauAntineutrino)),
       x: bins.filter(Te => Te < TEMax(4)),
-      name: "NuXBar_4",
+      name: "ν̅<sub>x</sub> 4 MeV",
       type: "scatter",
       mode: "lines",
       fill: "none",
@@ -46,7 +46,7 @@ export const DifferentialCrossSectionPlots = () => {
     {
       y: bins.filter(Te => Te < TEMax(1)).map((Te) => differentialCrossSectionElasticScattering(1, Te, NeutrinoType.muTauAntineutrino)),
       x: bins.filter(Te => Te < TEMax(1)),
-      name: "NuXBar_1",
+      name: "ν̅<sub>x</sub> 1 MeV",
       type: "scatter",
       mode: "lines",
       fill: "none",
@@ -56,7 +56,7 @@ export const DifferentialCrossSectionPlots = () => {
     {
       y: bins.filter(Te => Te < TEMax(10)).map((Te) => differentialCrossSectionElasticScattering(10, Te, NeutrinoType.electronAntineutino)),
       x: bins.filter(Te => Te < TEMax(10)),
-      name: "NueBar_10",
+      name: "ν̅<sub>e</sub> 10 MeV",
       type: "scatter",
       mode: "lines",
       fill: "none",
@@ -65,7 +65,7 @@ export const DifferentialCrossSectionPlots = () => {
     {
       y: bins.filter(Te => Te < TEMax(7)).map((Te) => differentialCrossSectionElasticScattering(7, Te, NeutrinoType.electronAntineutino)),
       x: bins.filter(Te => Te < TEMax(7)),
-      name: "NueBar_7",
+      name: "ν̅<sub>e</sub> 7 MeV",
       type: "scatter",
       mode: "lines",
       fill: "none",
@@ -74,7 +74,7 @@ export const DifferentialCrossSectionPlots = () => {
     {
       y: bins.filter(Te => Te < TEMax(4)).map((Te) => differentialCrossSectionElasticScattering(4, Te, NeutrinoType.electronAntineutino)),
       x: bins.filter(Te => Te < TEMax(4)),
-      name: "NueBar_4",
+      name: "ν̅<sub>e</sub> 4 MeV",
       type: "scatter",
       mode: "lines",
       fill: "none",
@@ -83,7 +83,7 @@ export const DifferentialCrossSectionPlots = () => {
     {
       y: bins.filter(Te => Te < TEMax(1)).map((Te) => differentialCrossSectionElasticScattering(1, Te, NeutrinoType.electronAntineutino)),
       x: bins.filter(Te => Te < TEMax(1)),
-      name: "NueBar_1",
+      name: "ν̅<sub>e</sub> 1 MeV",
       type: "scatter",
       mode: "lines",
       fill: "none",
@@ -93,12 +93,12 @@ export const DifferentialCrossSectionPlots = () => {
   const layout = {
     title: "Differential Cross Sections",
     yaxis: {
-      title: { text: `Differential Cross Section` },
+      title: { text: `d𝛔/dT<sub>e</sub> (cm<sup>2</sup>/MeV)` },
       type: 'log',
       autorange: true
     },
     xaxis: {
-      title: { text: `Te (MeV)` },
+      title: { text: `T<sub>e</sub> (MeV)` },
     },
     autosize: true,
     legend: {
