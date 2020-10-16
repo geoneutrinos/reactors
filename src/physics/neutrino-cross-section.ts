@@ -78,6 +78,10 @@ const crossSectionVB1999: CrossSection = memoize((Ev) => {
   return 9.52e-44 * Math.sqrt((Ee * Ee) - (ELECTRON_REST_MASS * ELECTRON_REST_MASS)) * Ee;
 })
 
+export function TEMax(Ev: number): number{
+  return Ev/(1 + ELECTRON_REST_MASS/(2 * Ev)) 
+}
+
 export function differentialCrossSectionElasticScattering(Ev: number, Te:number, neutrinoType:NeutrinoType): number{
   const cL = ES_COEFFICIENTS_LEFT[neutrinoType]
   const cR = ES_COEFFICIENTS_RIGHT[neutrinoType]
@@ -99,12 +103,10 @@ function crossSectionElasticScattering(Ev: number, neutrinoType: NeutrinoType): 
   const cL = ES_COEFFICIENTS_LEFT[neutrinoType]
   const cR = ES_COEFFICIENTS_RIGHT[neutrinoType]
 
-  const TEmax = Ev/(1 + ELECTRON_REST_MASS/(2 * Ev)); // Equation 9
-
   // The following impliments equation 12... it's big so there will be
   // 4 terms to make the equation the following: term1(term2 + term3 - term4)
 
-  const y = TEmax / Ev;
+  const y = TEMax(Ev) / Ev;
   
   const FERMI_COUPLING_CONSTANT_MeV = FERMI_COUPLING_CONSTANT / 1e6
 
