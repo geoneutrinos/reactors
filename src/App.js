@@ -28,6 +28,7 @@ import {
   PhysicsOscillationPane,
   PhysicsConstants,
   CrossSectionPlots,
+  DifferentialCrossSectionPlots,
   //Output Tab
   OutputDownload,
   CalculatorPanel,
@@ -222,6 +223,7 @@ function App(props) {
                 XSNames={XSNames}
               />
               <CrossSectionPlots />
+              <DifferentialCrossSectionPlots />
               <PhysicsOscillationPane />
               <PhysicsConstants />     
               </Visible>
