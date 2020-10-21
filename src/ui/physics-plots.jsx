@@ -10,7 +10,7 @@ import { crossSectionElectionNeutrinoES } from '../physics/neutrino-cross-sectio
 import { differentialCrossSectionElasticScattering, NeutrinoType, TEMax, differentialCrossSectionElasticScatteringAngular } from '../physics/neutrino-cross-section'
 
 const bins = (new Float64Array(1000)).map((v, i) => 0.005 + i/100)
-const cosTbins = (new Float64Array(1000)).map((v, i) => i/1000)
+const cosTbins = (new Float64Array(1001)).map((v, i) => i/1000)
 
 export const AngularDifferentialCrossSectionPlots = () => {
   const data = [
