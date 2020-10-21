@@ -78,6 +78,25 @@ const crossSectionVB1999: CrossSection = memoize((Ev) => {
   return 9.52e-44 * Math.sqrt((Ee * Ee) - (ELECTRON_REST_MASS * ELECTRON_REST_MASS)) * Ee;
 })
 
+/**
+ * Calcualtes the electron kenetic energy as a function of neutrino energy and scattering angle
+ * 
+ * Impliments equation 6
+ * @param Ev - Neutrino energy in MeV
+ * @param cosT  - Scattering angle in terms of cos theta (1 is straight)
+ */
+function TeFromEvCos(Ev:number, cosT:number): number{
+  const num = 2 * ELECTRON_REST_MASS * cosT ** 2;
+  const dem = (1 + ELECTRON_REST_MASS/Ev) ** 2 - cosT **2;
+  return num/dem
+}
+
+function differentialTeFromEvCos(Ev: number, cosT:number): number{
+  const num = 4 * ELECTRON_REST_MASS * Ev ** 2 * (Ev + ELECTRON_REST_MASS) ** 2 * cosT;
+  const dem = ((Ev + ELECTRON_REST_MASS) ** 2 - Ev ** 2 * cosT **2) ** 2
+  return num/dem;
+}
+
 export function TEMax(Ev: number): number{
   return Ev/(1 + ELECTRON_REST_MASS/(2 * Ev)) 
 }
@@ -97,6 +116,13 @@ export function differentialCrossSectionElasticScattering(Ev: number, Te:number,
   const term4 = cL * cR * (ELECTRON_REST_MASS * Te)/(Ev ** 2);
 
   return term1 * (term2 + term3 - term4);
+}
+
+export function differentialCrossSectionElasticScatteringAngular(Ev: number, cosT: number, neutrinoType:NeutrinoType): number{
+  const Te = TeFromEvCos(Ev, cosT);
+  const diffXs = differentialCrossSectionElasticScattering(Ev, Te, neutrinoType)
+  const diffTe = differentialTeFromEvCos(Ev, cosT)
+  return diffXs * diffTe;
 }
 
 function crossSectionElasticScattering(Ev: number, neutrinoType: NeutrinoType): number {

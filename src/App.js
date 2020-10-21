@@ -29,6 +29,7 @@ import {
   PhysicsConstants,
   CrossSectionPlots,
   DifferentialCrossSectionPlots,
+  AngularDifferentialCrossSectionPlots,
   //Output Tab
   OutputDownload,
   CalculatorPanel,
@@ -224,6 +225,7 @@ function App(props) {
               />
               <CrossSectionPlots />
               <DifferentialCrossSectionPlots />
+              <AngularDifferentialCrossSectionPlots />
               <PhysicsOscillationPane />
               <PhysicsConstants />     
               </Visible>
