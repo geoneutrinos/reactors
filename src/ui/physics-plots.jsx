@@ -7,9 +7,120 @@ import { XSFuncs, XSAbrev, XSNames } from '../physics/neutrino-cross-section';
 
 // temp
 import { crossSectionElectionNeutrinoES } from '../physics/neutrino-cross-section'
-import { differentialCrossSectionElasticScattering, NeutrinoType, TEMax } from '../physics/neutrino-cross-section'
+import { differentialCrossSectionElasticScattering, NeutrinoType, TEMax, differentialCrossSectionElasticScatteringAngular } from '../physics/neutrino-cross-section'
 
 const bins = (new Float64Array(1000)).map((v, i) => 0.005 + i/100)
+const cosTbins = (new Float64Array(1000)).map((v, i) => i/1000)
+
+export const AngularDifferentialCrossSectionPlots = () => {
+  const data = [
+    {
+      y: cosTbins.map((cosT) => differentialCrossSectionElasticScatteringAngular(10, cosT, NeutrinoType.muTauAntineutrino)),
+      x: cosTbins,
+      name: "ν̅<sub>x</sub> 10 MeV",
+      type: "scatter",
+      mode: "lines",
+      fill: "none",
+      marker: { color: "orange" },
+      line: {dash: 'dash',},
+    },
+    {
+      y: cosTbins.map((cosT) => differentialCrossSectionElasticScatteringAngular(7, cosT, NeutrinoType.muTauAntineutrino)),
+      x: cosTbins,
+      name: "ν̅<sub>x</sub> 7 MeV",
+      type: "scatter",
+      mode: "lines",
+      fill: "none",
+      marker: { color: "red" },
+      line: {dash: 'dash',},
+    },
+    {
+      y: cosTbins.map((cosT) => differentialCrossSectionElasticScatteringAngular(4, cosT, NeutrinoType.muTauAntineutrino)),
+      x: cosTbins,
+      name: "ν̅<sub>x</sub> 4 MeV",
+      type: "scatter",
+      mode: "lines",
+      fill: "none",
+      marker: { color: "blue" },
+      line: {dash: 'dash',},
+    },
+    {
+      y: cosTbins.map((cosT) => differentialCrossSectionElasticScatteringAngular(1, cosT, NeutrinoType.muTauAntineutrino)),
+      x: cosTbins,
+      name: "ν̅<sub>x</sub> 1 MeV",
+      type: "scatter",
+      mode: "lines",
+      fill: "none",
+      marker: { color: "green" },
+      line: {dash: 'dash',},
+    },
+    {
+      y: cosTbins.map((cosT) => differentialCrossSectionElasticScatteringAngular(10, cosT, NeutrinoType.electronAntineutino)),
+      x: cosTbins,
+      name: "ν̅<sub>e</sub> 10 MeV",
+      type: "scatter",
+      mode: "lines",
+      fill: "none",
+      marker: { color: "orange" },
+    },
+    {
+      y: cosTbins.map((cosT) => differentialCrossSectionElasticScatteringAngular(7, cosT, NeutrinoType.electronAntineutino)),
+      x: cosTbins,
+      name: "ν̅<sub>e</sub> 7 MeV",
+      type: "scatter",
+      mode: "lines",
+      fill: "none",
+      marker: { color: "red" },
+    },
+    {
+      y: cosTbins.map((cosT) => differentialCrossSectionElasticScatteringAngular(4, cosT, NeutrinoType.electronAntineutino)),
+      x: cosTbins,
+      name: "ν̅<sub>e</sub> 4 MeV",
+      type: "scatter",
+      mode: "lines",
+      fill: "none",
+      marker: { color: "blue" },
+    },
+    {
+      y: cosTbins.map((cosT) => differentialCrossSectionElasticScatteringAngular(1, cosT, NeutrinoType.electronAntineutino)),
+      x: cosTbins,
+      name: "ν̅<sub>e</sub> 1 MeV",
+      type: "scatter",
+      mode: "lines",
+      fill: "none",
+      marker: { color: "green" },
+    },
+  ]
+  const layout = {
+    title: "Angular Differential Cross Sections",
+    yaxis: {
+      title: { text: `d𝛔/dcosθ (cm<sup>2</sup>)` },
+      type: 'log',
+      autorange: true
+    },
+    xaxis: {
+      title: { text: `cosθ` },
+    },
+    autosize: true,
+    legend: {
+      x: 1,
+      xanchor: "left",
+      y: 1,
+    },
+  };
+  return (
+    <Card>
+      <Card.Header>Angular Differential Cross Sections</Card.Header>
+      <Card.Body>
+        <Plot
+          useResizeHandler={true}
+          style={{ width: "100%" }}
+          data={data} layout={layout}
+        />
+      </Card.Body>
+    </Card>
+  );
+}
 
 export const DifferentialCrossSectionPlots = () => {
   const data = [
