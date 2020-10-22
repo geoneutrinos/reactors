@@ -92,7 +92,7 @@ export const AngularDifferentialCrossSectionPlots = () => {
     },
   ]
   const layout = {
-    title: "Angular Differential Cross Sections",
+    title: "ES Differential Cross Section- cosθ",
     yaxis: {
       title: { text: `d𝛔/dcosθ (cm<sup>2</sup>)` },
       type: 'log',
@@ -110,7 +110,7 @@ export const AngularDifferentialCrossSectionPlots = () => {
   };
   return (
     <Card>
-      <Card.Header>Angular Differential Cross Sections</Card.Header>
+      <Card.Header>ES Differential Cross Section- cosθ</Card.Header>
       <Card.Body>
         <Plot
           useResizeHandler={true}
@@ -202,7 +202,7 @@ export const DifferentialCrossSectionPlots = () => {
     },
   ]
   const layout = {
-    title: "Differential Cross Sections",
+    title: "ES Differential Cross Section- T<sub>e</sub>",
     yaxis: {
       title: { text: `d𝛔/dT<sub>e</sub> (cm<sup>2</sup>/MeV)` },
       type: 'log',
@@ -220,7 +220,7 @@ export const DifferentialCrossSectionPlots = () => {
   };
   return (
     <Card>
-      <Card.Header>Differential Cross Sections</Card.Header>
+      <Card.Header>ES Differential Cross Section- T<sub>e</sub></Card.Header>
       <Card.Body>
         <Plot
           useResizeHandler={true}
@@ -303,14 +303,14 @@ export const CrossSectionPlots = () => {
       <Card.Header>Total Cross Sections</Card.Header>
       <Card.Body>
         <p>
-          Calculated inverse beta decay (IBD) cross sections are from:
+          Inverse beta decay (IBD) cross sections are from:
         <br />
           P. Vogel and J. F. Beacom, "Angular distribution of inverse neutron decay, <i>ν̅<sub>𝑒</sub></i> + <i>𝑝</i> ⭢ <i>𝑒</i><sup>+</sup> + <i>𝑛</i>," Phys. Rev. D 60, 053003 (1999).
         <br />
           A. Strumia and F. Vissani, "Precise quasielastic neutrino/nucleon cross-section," Phys. Lett. B 564, 42 (2003).
         </p>
         <p>
-          Calculated elastic scattering (ES) cross sections are from:
+          Elastic scattering (ES) cross sections are from:
         <br />
           M. Fukugita and T. Yanagida, <i>Physics of Neutrinos</i> (Springer-Verlag, Berlin Heidelberg, 2003).
         </p>
