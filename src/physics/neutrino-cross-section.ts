@@ -125,23 +125,32 @@ export function differentialCrossSectionElasticScatteringAngular(Ev: number, cos
   return diffXs * diffTe;
 }
 
-function crossSectionElasticScattering(Ev: number, neutrinoType: NeutrinoType): number {
+function crossSectionElasticScattering(Ev: number, neutrinoType: NeutrinoType, T_min:number = 5): number {
   const cL = ES_COEFFICIENTS_LEFT[neutrinoType]
   const cR = ES_COEFFICIENTS_RIGHT[neutrinoType]
 
-  // The following impliments equation 12... it's big so there will be
+  // The following impliments equation 13... it's big so there will be
   // 4 terms to make the equation the following: term1(term2 + term3 - term4)
+  const T_max = TEMax(Ev) 
+  if (T_max < T_min){
+    return 0;
+  }
 
-  const y = TEMax(Ev) / Ev;
+  const y_max = T_max / Ev;
+  const y_min = T_min / Ev;
   
   const FERMI_COUPLING_CONSTANT_MeV = FERMI_COUPLING_CONSTANT / 1e6
 
   const term1 = (2 * (FERMI_COUPLING_CONSTANT_MeV ** 2) * (HBAR_C ** 2)) * ELECTRON_REST_MASS * Ev / Math.PI;
-  const term2 = cL ** 2 * y;
-  const term3 = cR ** 2 * (1/3) * (1 - (1 - y) ** 3);
-  const term4 = cL * cR * (ELECTRON_REST_MASS/(2 * Ev)) * y ** 2;
+  const term2 = cL ** 2 * y_max;
+  const term3 = cR ** 2 * (1/3) * (1 - (1 - y_max) ** 3);
+  const term4 = cL * cR * (ELECTRON_REST_MASS/(2 * Ev)) * y_max ** 2;
 
-  return term1 * (term2 + term3 - term4);
+  const term5 = cL ** 2 * y_min;
+  const term6 = cR ** 2 * (1/3) * (1 - (1 - y_min) ** 3);
+  const term7 = cL * cR * (ELECTRON_REST_MASS/(2 * Ev)) * y_min ** 2;
+
+  return term1 * ((term2 + term3 - term4) - (term5 + term6 - term7));
 
 }
 
@@ -158,7 +167,12 @@ const crossSectionTotalES: CrossSection = memoize((Ev) => {
 })
 
 export const crossSectionElectronAntineutrinoFractionES = memoize((Ev) => {
-  return crossSectionElectronAntineutrinoES(Ev) / crossSectionTotalES(Ev);
+  const electronES = crossSectionElectronAntineutrinoES(Ev)
+  const totalES = crossSectionTotalES(Ev);
+  if (totalES === 0){
+    return 0
+  }
+  return electronES / totalES;
 })
 
 // TEMP until is implimented
