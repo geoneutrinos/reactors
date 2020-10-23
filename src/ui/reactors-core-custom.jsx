@@ -66,7 +66,7 @@ export const AddCustomCoreModal = ({
       power: parseFloat(power),
       elevation: parseFloat(elevation),
       custom: true,
-      fisionFractions: {
+      powerFractions: {
         U235: fissionFractions[Isotopes.U235],
         U238: fissionFractions[Isotopes.U238],
         PU239: fissionFractions[Isotopes.PU239],
