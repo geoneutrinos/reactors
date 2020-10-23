@@ -125,7 +125,7 @@ export function differentialCrossSectionElasticScatteringAngular(Ev: number, cos
   return diffXs * diffTe;
 }
 
-function crossSectionElasticScattering(Ev: number, neutrinoType: NeutrinoType, T_min:number = 5): number {
+function crossSectionElasticScattering(Ev: number, neutrinoType: NeutrinoType, T_min:number = 2.25): number {
   const cL = ES_COEFFICIENTS_LEFT[neutrinoType]
   const cR = ES_COEFFICIENTS_RIGHT[neutrinoType]
 
