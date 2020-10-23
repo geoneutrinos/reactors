@@ -95,10 +95,15 @@ export const CoreDirectionSignalPlots = ({ cores }) => {
   const sortedCores = Object.values(cores)
     .filter((a) => a.detectorNIU > 0)
     .sort((a, b) => b.detectorNIU - a.detectorNIU);
-  const [first, ...rest] = sortedCores;
-  const coreData = [first, ...rest].map((core) => {
+  let [first, ...rest] = sortedCores;
+  let coreData = []
+  if (first !== undefined){
+   coreData = [first, ...rest].map((core) => {
     return { y: core, x: first.cos(core) };
-  });
+   });
+  } else {
+    first = {"name": "No Cores"}
+  }
 
   const PHWRcores = coreData.filter((core) => core.y.spectrumType === "PHWR");
   const GCRcores = coreData.filter((core) => core.y.spectrumType === "GCR");
