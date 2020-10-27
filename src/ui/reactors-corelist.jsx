@@ -93,7 +93,7 @@ const CoreListItem = ({
           </ButtonGroup>
         </Col>
         <Col xl>
-          <DownloadButton buttonTitle="Downlaod Core Spectrum" data={downloadData} formatters={downloadFormatters} filename={downloadFilename}/>
+          <DownloadButton buttonTitle="Download Core Spectrum" data={downloadData} formatters={downloadFormatters} filename={downloadFilename}/>
         </Col>
       </Row>
       <Row>
