@@ -1,9 +1,9 @@
 export const SECONDS_PER_YEAR = 365.25 * 24 * 60 * 60; //seconds
 export const ELEMENTARY_CHARGE = 1.602176634e-19; //Coulombs (exact as of 20 May 2019)
-export const ELECTRON_REST_MASS = 0.5109989461; // MeV
-export const NEUTRON_REST_MASS = 939.565413; // MeV
-export const PROTON_REST_MASS = 938.2720813; //MeV
-export const FERMI_COUPLING_CONSTANT = 1.1663787e-5; // GeV-2
+export const ELECTRON_REST_MASS = 0.51099895000; // (15) MeV
+export const NEUTRON_REST_MASS = 939.56542052; // (54) MeV
+export const PROTON_REST_MASS = 938.27208816; // (29) MeV
+export const FERMI_COUPLING_CONSTANT = 1.1663787e-5; // (6) GeV-2
 export const HBAR_C = 197.3269804e-13; // MeV cm (exact)
 export const WEAK_MIXING_ANGLE = 0.23153; // ± 0.0004; https://pdg.lbl.gov/2020/reviews/rpp2020-rev-phys-constants.pdf
 export const AU = 1.660_539_006_60e-27; // kg (atomic mass aka dalton)
