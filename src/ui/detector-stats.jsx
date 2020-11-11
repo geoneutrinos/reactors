@@ -12,14 +12,11 @@ import {
 import { ISOTOPIC_NEUTRINO_LUMINOSITY } from "../physics/derived";
 import { ISOTOPIC_NATURAL_ABUNDANCE } from "../physics/constants";
 
+import { Num } from '.'
+
 const { U238, Th232, K40 } = Elements;
 
-function Num({ v, p, func }) {
-  if (func === undefined) {
-    func = (v) => v;
-  }
-  return <span title={v.toString()}>{func(v).toFixed(p)}</span>;
-}
+
 
 const geoThURatio = (R232Th, R238U, crossSection) => {
   const R = R232Th / R238U;

@@ -177,7 +177,7 @@ const LoadFactor = (date: string, load: number): LoadFactor => {
     // This is finding the "zeroith" day of the next month, which will result
     // in the last day of the month we want being returned
     days: new Date(
-      Date.UTC(dateObj.getUTCFullYear(), dateObj.getUTCMonth() + 1)
+      Date.UTC(dateObj.getUTCFullYear(), dateObj.getUTCMonth() + 1, 0)
     ).getUTCDate(),
   };
 };

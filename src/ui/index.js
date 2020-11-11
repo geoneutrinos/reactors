@@ -36,3 +36,10 @@ export const Visible = ({ children }) => {
   }, [])
   return <div ref={ref}>{visible && children}</div>
 }
+
+export const Num = ({ v, p, func }) => {
+  if (func === undefined) {
+    func = (v) => v;
+  }
+  return <span title={v.toString()}>{func(v).toFixed(p)}</span>;
+}
