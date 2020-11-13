@@ -235,7 +235,9 @@ function App(props) {
               </Visible>
             </Tab>
             <Tab eventKey="output" title="Output">
+              <Visible>
               <OutputDownload spectrum={spectrum} cores={cores}  crossSection={crossSection} detector={detector}/>
+              </Visible>
               <CalculatorPanel cores={cores} spectrum={spectrum}/>
             </Tab>
             <Tab eventKey="about" title="About">
