@@ -14,6 +14,8 @@ import { coreNameSortCompare } from "../reactor-cores";
 import {DownloadButton} from "./output-download"
 import { XSAbrev } from '../physics/neutrino-cross-section'
 
+import {Num} from '.'
+
 const CoreType = ({ core }) => {
   const coreDef = {
     LEU: "low enriched uranium reactor",
@@ -105,7 +107,7 @@ const CoreListItem = ({
           </span>{" "}
           {core.power} MW
           <br />
-          Load Factor: {(lf * 100).toFixed(1)}%<br />
+          Load Factor: <Num v={lf} p={1} func={(v) => v * 100} />%<br />
           Operating Power: {(lf * core.power).toFixed(0)} MW
           <br />
           Signal: {core.detectorNIU.toFixed(3)} NIU
