@@ -7,12 +7,12 @@ import { SECONDS_PER_YEAR } from "../physics/constants";
 
 import { XSFuncs, CrossSection } from "../physics/neutrino-cross-section";
 
-interface RateToFlux {
-  IBDSV2003: number;
-  IBDVB1999: number;
-  ESANTI: number;
-  ESMUTAU: number;
-}
+//interface RateToFlux {
+//  IBDSV2003: number;
+//  IBDVB1999: number;
+//  ESANTI: number;
+//  ESMUTAU: number;
+//}
 
 /**
  *

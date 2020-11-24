@@ -1,4 +1,4 @@
-import {crossSectionSV2003, crossSectionVB1999} from './neutrino-cross-section'
+import {XSFuncs, XSNames} from './neutrino-cross-section'
 
 // These are the values in Table 1 of Strumia & Vissani 2003
 describe.each([
@@ -10,7 +10,7 @@ describe.each([
     test(`crossSectionSV2003 returned expected cross section (${Ev}, ${expected})`, () => {
         // The paper says something like "within a few per mille" this is testing 0.003
         // so "3 per mille" which sounds like "a few" to me
-        expect(100 * (1-crossSectionSV2003(Ev)/expected)).toBeLessThan(0.3)
+        expect(100 * (1-XSFuncs[XSNames.IBDSV2003](Ev)/expected)).toBeLessThan(0.3)
     });
 })
 
@@ -21,6 +21,6 @@ describe.each([
     [12.3, 1.15207],
 ])('crossSectionVB1999(%f)', (Ev, expected) => {
     test(`crossSectionVB1999 returned expected cross section (${Ev}, ${expected})`, () => {
-        expect(crossSectionVB1999(Ev)*1e41).toBeCloseTo(expected, 5)
+        expect(XSFuncs[XSNames.IBDVB1999](Ev)*1e41).toBeCloseTo(expected, 5)
     });
 })

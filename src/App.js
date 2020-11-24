@@ -129,12 +129,14 @@ function App(props) {
     [coreMods, reactorLF, crossSection, massOrdering, detector, customCores]
   );
 
-  const crustFlux = {
-    u: 0,
-    th: 0,
-    k: 0,
-    ...(includeCrust ? getCrustFlux(detector.lon, detector.lat) : {}),
-  };
+  const crustFlux = useMemo(() => {
+    return {
+      u: 0,
+      th: 0,
+      k: 0,
+      ...(includeCrust ? getCrustFlux(detector.lon, detector.lat) : {}),
+    }
+  }, [includeCrust, detector]);
   const spectrum = useMemo(
     () =>
       mantleGeoSpectrum(crossSection, massOrdering, geoFluxRatios, crustFlux),
@@ -179,8 +181,8 @@ function App(props) {
               <AddCustomCoreModal {...addCustomModalXY} show={addCustomModal} customCores={customCores} setCustomCores={setCustomCores} close={() => { setAddCustomModalXY({}); setAddCustomModal(false) }} />
               <ManageCustomCoreModal show={manCustomModal} customCores={customCores} setCustomCores={setCustomCores} close={() => setManCustomModal(false)} />
               <Visible>
-              <CoreDirectionSignalPlots cores={cores} />
-              <FissionIsotopeSpectraPlots />
+                <CoreDirectionSignalPlots cores={cores} />
+                <FissionIsotopeSpectraPlots />
               </Visible>
               <FissionFractionPane />
               <CoreIAEARange
@@ -201,15 +203,15 @@ function App(props) {
             </Tab>
             <Tab eventKey="geonu" title="GeoNu">
               <Visible>
-              <GeoNuSpectrumSource />
-              <MantleFlux
-                geoFluxRatios={geoFluxRatios}
-                setGeoFluxRatios={setGeoFluxRatios}
-              />
-              <CrustFlux
-                includeCrust={includeCrust}
-                setIncludeCrust={setIncludeCrust}
-              />              
+                <GeoNuSpectrumSource />
+                <MantleFlux
+                  geoFluxRatios={geoFluxRatios}
+                  setGeoFluxRatios={setGeoFluxRatios}
+                />
+                <CrustFlux
+                  includeCrust={includeCrust}
+                  setIncludeCrust={setIncludeCrust}
+                />
               </Visible>
             </Tab>
             <Tab eventKey="solarnu" title="SolarNu">
@@ -220,28 +222,28 @@ function App(props) {
             </Tab>
             <Tab eventKey="physics" title="Physics">
               <Visible>
-              <DetectorPhysicsPane
-                crossSection={crossSection}
-                massOrdering={massOrdering}
-                setCrossSection={setCrossSection}
-                setMassOrdering={setMassOrdering}
-                XSNames={XSNames}
-              />
-              <CrossSectionPlots />
-              <DifferentialCrossSectionPlots />
-              <AngularDifferentialCrossSectionPlots />
-              <PhysicsOscillationPane />
-              <PhysicsConstants />     
+                <DetectorPhysicsPane
+                  crossSection={crossSection}
+                  massOrdering={massOrdering}
+                  setCrossSection={setCrossSection}
+                  setMassOrdering={setMassOrdering}
+                  XSNames={XSNames}
+                />
+                <CrossSectionPlots />
+                <DifferentialCrossSectionPlots />
+                <AngularDifferentialCrossSectionPlots />
+                <PhysicsOscillationPane />
+                <PhysicsConstants />
               </Visible>
             </Tab>
             <Tab eventKey="output" title="Output">
               <Visible>
-              <OutputDownload spectrum={spectrum} cores={cores}  crossSection={crossSection} detector={detector}/>
+                <OutputDownload spectrum={spectrum} cores={cores} crossSection={crossSection} detector={detector} />
               </Visible>
-              <CalculatorPanel cores={cores} spectrum={spectrum}/>
+              <CalculatorPanel cores={cores} spectrum={spectrum} />
             </Tab>
             <Tab eventKey="about" title="About">
-            Documentation of the model presented on this site is in preparation. An old version of the model is documented in <a href="https://arxiv.org/abs/1510.05633">arXiv:1510.05633</a>.
+              Documentation of the model presented on this site is in preparation. An old version of the model is documented in <a href="https://arxiv.org/abs/1510.05633">arXiv:1510.05633</a>.
             It includes some information about physical constants used and source data.
             </Tab>
           </Tabs>

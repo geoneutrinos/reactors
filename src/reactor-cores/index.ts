@@ -169,6 +169,7 @@ interface Direction {
   elev: number;
 }
 
+// eslint-disable-next-line
 const LoadFactor = (date: string, load: number): LoadFactor => {
   const dateObj = new Date(date + "-01T00:00:00Z");
   return {
@@ -217,6 +218,7 @@ interface ReactorCore {
   cos: (other: ReactorCore) => number;
 }
 
+// eslint-disable-next-line
 export function ReactorCore({
   name,
   lat,
