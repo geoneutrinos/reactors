@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { range } from "lodash";
 import { Form, Card } from "react-bootstrap";
 
-const years = range(2003, 2019);
+const years = range(2003, 2020);
 const months = range(1, 13);
 
 export const CoreIAEARange = ({
@@ -61,7 +61,7 @@ export const CoreIAEARange = ({
       <Card.Header>IAEA Load Factor Date Range</Card.Header>
       <Card.Body>
         <p>
-          Monthly thermal power load factor (LF) data for the years 2003 through 2018 are
+          Monthly thermal power load factor (LF) data for the years 2003 through 2019 are
           from <a href="https://www.fe.infn.it/antineutrino/">INFN Antineutrinos</a>. If
           the "Use IAEA LF Data" option (this is the default) is selected for all or for
           individual cores, the thermal power is the average of the monthly LFs for the
