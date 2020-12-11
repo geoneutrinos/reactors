@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useReducer } from "react";
 
 import { project } from "ecef-projector";
 import { Container, Row, Col, Tab, Tabs } from "react-bootstrap";
@@ -48,7 +48,9 @@ import { presets, detectorENUProjector } from "./detectors";
 import { getCrustFlux } from "./crust-model";
 import { mantleGeoSpectrum } from "./mantle";
 import { XSNames } from "./physics/neutrino-cross-section";
-import { MassOrdering } from "./physics/neutrino-oscillation";
+import {oscilation as initalOscilation} from "./physics/neutrino-oscillation";
+import {oscilationReducer} from "./physics/neutrino-oscillation";
+import {PhysicsContext} from "./state";
 
 import "leaflet/dist/leaflet.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -69,7 +71,8 @@ L.Icon.Default.mergeOptions({
 const defaultDetector = presets.find((detector) => detector.name === "Boulby");
 
 function App(props) {
-  const [massOrdering, setMassOrdering] = useState(MassOrdering.Normal);
+  const [oscilation, oscilationDispatch] = useReducer(oscilationReducer, initalOscilation)
+
   const [crossSection, setCrossSection] = useState(XSNames.IBDSV2003);
   const [detector, setDetector] = useState({
     current: defaultDetector.name,
@@ -121,12 +124,12 @@ function App(props) {
 
           return [
             name,
-            modCore.setSignal(dist, lf, massOrdering, crossSection, direction),
+            modCore.setSignal(dist, lf, oscilation, crossSection, direction),
           ];
         })
       )
     },
-    [coreMods, reactorLF, crossSection, massOrdering, detector, customCores]
+    [coreMods, reactorLF, crossSection, oscilation, detector, customCores]
   );
 
   const crustFlux = useMemo(() => {
@@ -139,10 +142,11 @@ function App(props) {
   }, [includeCrust, detector]);
   const spectrum = useMemo(
     () =>
-      mantleGeoSpectrum(crossSection, massOrdering, geoFluxRatios, crustFlux),
-    [crossSection, massOrdering, geoFluxRatios, crustFlux]
+      mantleGeoSpectrum(crossSection, oscilation, geoFluxRatios, crustFlux),
+    [crossSection, oscilation, geoFluxRatios, crustFlux]
   );
   return (
+    <PhysicsContext.Provider value={{oscilation:oscilation, oscilationDispatch:oscilationDispatch}}>
     <Container fluid={true}>
       <Row style={{ minHeight: "100vh" }}>
         <Col style={{ minHeight: "50vh" }}>
@@ -224,9 +228,7 @@ function App(props) {
               <Visible>
                 <DetectorPhysicsPane
                   crossSection={crossSection}
-                  massOrdering={massOrdering}
                   setCrossSection={setCrossSection}
-                  setMassOrdering={setMassOrdering}
                   XSNames={XSNames}
                 />
                 <CrossSectionPlots />
@@ -250,6 +252,7 @@ function App(props) {
         </Col>
       </Row>
     </Container>
+    </PhysicsContext.Provider>
   );
 }
 

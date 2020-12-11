@@ -3,11 +3,7 @@ import {
   XSNames,
   crossSectionElectronAntineutrinoFractionES,
 } from "../physics/neutrino-cross-section";
-import {
-  MassOrdering,
-  averageSurvivalProbabilityNormal,
-  averageSurvivalProbabilityInverted,
-} from "../physics/neutrino-oscillation";
+import { Oscilation } from "../physics/neutrino-oscillation";
 import {
   antineutrinoSpectrum238U,
   antineutrinoSpectrum232Th,
@@ -45,16 +41,13 @@ const extractESEandMuTau = (
 
 export function mantleGeoSpectrum(
   crossSection: XSNames,
-  massOrdering: MassOrdering,
+  oscilation: Oscilation,
   geoFluxRatios: any,
   crustFlux: any
 ) {
   const XSFunc = XSFuncs[crossSection];
 
-  let survivalProbability = {
-    [MassOrdering.Inverted]: averageSurvivalProbabilityInverted,
-    [MassOrdering.Normal]: averageSurvivalProbabilityNormal,
-  }[massOrdering];
+  let survivalProbability = oscilation.averageSurvivalProbability
 
   if (crossSection === XSNames.ESMUTAU) {
     survivalProbability = 1 - survivalProbability;

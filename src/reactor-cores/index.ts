@@ -17,11 +17,7 @@ import {
 } from "../physics/constants";
 import { range, zip, sum, memoize } from "lodash";
 import { project } from "ecef-projector";
-import {
-  MassOrdering,
-  invertedNeutrinoOscilationSpectrum,
-  normalNeutrinoOscilationSpectrum,
-} from "../physics/neutrino-oscillation";
+import { Oscilation } from "../physics/neutrino-oscillation";
 
 export { cores, times, loads };
 
@@ -210,7 +206,7 @@ interface ReactorCore {
   setSignal: (
     dist: number,
     lf: number,
-    massOrdering: MassOrdering,
+    oscilation: Oscilation,
     crossSection: XSNames,
     direction: Direction
   ) => ReactorCore;
@@ -279,7 +275,7 @@ export function ReactorCore({
     this: ReactorCore,
     dist: number,
     lf: number,
-    massOrdering: MassOrdering,
+    oscilation: Oscilation,
     crossSection: XSNames,
     direction: Direction
   ): ReactorCore {
@@ -290,14 +286,10 @@ export function ReactorCore({
     if (dist > 100) {
       dist = Math.round(dist);
     }
-
-    let oscillation = {
-      [MassOrdering.Inverted]: invertedNeutrinoOscilationSpectrum(dist),
-      [MassOrdering.Normal]: normalNeutrinoOscilationSpectrum(dist),
-    }[massOrdering];
+    let oscillationFunc = oscilation.neutrinoOscilationSpectrum(dist)
 
     if (crossSection === XSNames.ESMUTAU) {
-      oscillation = oscillation.map((v) => 1 - v);
+      oscillationFunc = oscillationFunc.map((v) => 1 - v);
     }
 
     let ESMUTauContirbution = bins.map((bin) => 0);
@@ -305,7 +297,7 @@ export function ReactorCore({
     if (crossSection === XSNames.ESTOTAL) {
       // we need the origional total specturm for this
       ESMUTauContirbution = spectrum.map(
-        (spec, idx) => spec * (1 - ESEratio[idx]) * (1 - oscillation[idx])
+        (spec, idx) => spec * (1 - ESEratio[idx]) * (1 - oscillationFunc[idx])
       );
 
       spectrum = spectrum.map((spec, idx) => spec * ESEratio[idx]);
@@ -313,7 +305,7 @@ export function ReactorCore({
 
     const signal = spectrum.map((spec, idx) => {
       return (
-        ((spec * oscillation[idx] + ESMUTauContirbution[idx]) * power * lf) /
+        ((spec * oscillationFunc[idx] + ESMUTauContirbution[idx]) * power * lf) /
         distsq
       );
     });
