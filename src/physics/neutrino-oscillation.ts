@@ -6,7 +6,7 @@ export enum MassOrdering {
 }
 
 
-interface VariableOscilationParams {
+interface VariableOscillationParams {
   s2t12: number
   dmsq21: number
   s2t13Normal: number
@@ -27,20 +27,20 @@ interface DerivedOscillationParams {
   averageSurvivalProbabilityInverted: number
   averageSurvivalProbability: number
 }
-interface OscilationFunctions {
+interface OscillationFunctions {
   normalNeutrinoFlavor: (Ev: number, dist: number) => number;
-  normalNeutrinoOscilationSpectrum: (dist: number) => Float64Array;
+  normalNeutrinoOscillationSpectrum: (dist: number) => Float64Array;
   invertedNeutrinoFlavor: (Ev: number, dist: number) => number;
-  invertedNeutrinoOscilationSpectrum: (dist: number) => Float64Array;
-  neutrinoOscilationSpectrum: (dist: number) => Float64Array;
+  invertedNeutrinoOscillationSpectrum: (dist: number) => Float64Array;
+  neutrinoOscillationSpectrum: (dist: number) => Float64Array;
 }
-interface OscilationConfig {
+interface OscillationConfig {
   massOrdering: MassOrdering
 }
-type OscilationParams = VariableOscilationParams & DerivedOscillationParams;
-export type Oscilation = OscilationParams & OscilationFunctions & OscilationConfig;
+type OscillationParams = VariableOscillationParams & DerivedOscillationParams;
+export type Oscillation = OscillationParams & OscillationFunctions & OscillationConfig;
 
-export let oscilation: Oscilation = {
+export let oscillation: Oscillation = {
   s2t12: 0,
   dmsq21: 0,
   s2t13Normal: 0,
@@ -66,16 +66,16 @@ export let oscilation: Oscilation = {
 
   // empty functions
   normalNeutrinoFlavor: (Ev, dist) => 0,
-  normalNeutrinoOscilationSpectrum: (dist) => new Float64Array(),
+  normalNeutrinoOscillationSpectrum: (dist) => new Float64Array(),
   invertedNeutrinoFlavor: (Ev, dist) => 0,
-  invertedNeutrinoOscilationSpectrum: (dist) => new Float64Array(),
-  neutrinoOscilationSpectrum: (dist) => new Float64Array(),
+  invertedNeutrinoOscillationSpectrum: (dist) => new Float64Array(),
+  neutrinoOscillationSpectrum: (dist) => new Float64Array(),
 
   // Config things
   massOrdering: MassOrdering.Normal
 }
 
-const defaultOscilationParams: VariableOscilationParams = {
+const defaultOscillationParams: VariableOscillationParams = {
   s2t12: 0.310,
   dmsq21: 7.39e-5,
   s2t13Normal:  0.02241,
@@ -85,70 +85,70 @@ const defaultOscilationParams: VariableOscilationParams = {
 }
 
 interface OsilationParamsAction{
-  arg: keyof VariableOscilationParams | keyof OscilationConfig
+  arg: keyof VariableOscillationParams | keyof OscillationConfig
   value: number | MassOrdering
 }
 
-export const oscilationReducer = (state:Oscilation, action:OsilationParamsAction): Oscilation => {
-  const oscilation = { ...state };
+export const oscillationReducer = (state:Oscillation, action:OsilationParamsAction): Oscillation => {
+  const oscillation = { ...state };
   switch (action.arg) {
     case "s2t12":
       {
         let s2t12 = action.value as number;
-        oscilation.s2t12 = s2t12;
-        oscilation.s22t12 = 4 * s2t12 * (1 - s2t12);
-        oscilation.c2t12 = 1 - s2t12;
+        oscillation.s2t12 = s2t12;
+        oscillation.s22t12 = 4 * s2t12 * (1 - s2t12);
+        oscillation.c2t12 = 1 - s2t12;
       }
       break;
 
     case "dmsq21":
       {
         let dmsq21 = action.value as number;
-        let { dmsq32Normal, dmsq32Inverted } = oscilation;
+        let { dmsq32Normal, dmsq32Inverted } = oscillation;
 
-        oscilation.dmsq21 = dmsq21;
-        oscilation.dmsq31Normal = dmsq32Normal + dmsq21;
-        oscilation.dmsq31Inverted = dmsq32Inverted + dmsq21;
+        oscillation.dmsq21 = dmsq21;
+        oscillation.dmsq31Normal = dmsq32Normal + dmsq21;
+        oscillation.dmsq31Inverted = dmsq32Inverted + dmsq21;
       }
       break;
 
     case "s2t13Normal":
       {
         let s2t13Normal = action.value  as number;
-        oscilation.s2t13Normal = s2t13Normal;
-        oscilation.c4t13Normal = (1 - s2t13Normal) ** 2;
-        oscilation.s22t13Normal = 4 * s2t13Normal * (1 - s2t13Normal);
+        oscillation.s2t13Normal = s2t13Normal;
+        oscillation.c4t13Normal = (1 - s2t13Normal) ** 2;
+        oscillation.s22t13Normal = 4 * s2t13Normal * (1 - s2t13Normal);
       }
       break;
     case "s2t13Inverted":
       {
         let s2t13Inverted = action.value as number;
-        oscilation.s2t13Inverted = s2t13Inverted;
-        oscilation.c4t13Inverted = (1 - s2t13Inverted) ** 2;
-        oscilation.s22t13Inverted = 4 * s2t13Inverted * (1 - s2t13Inverted);
+        oscillation.s2t13Inverted = s2t13Inverted;
+        oscillation.c4t13Inverted = (1 - s2t13Inverted) ** 2;
+        oscillation.s22t13Inverted = 4 * s2t13Inverted * (1 - s2t13Inverted);
       }
       break;
 
     case "dmsq32Normal":
       {
         let dmsq32Normal = action.value as number;
-        let { dmsq21 } = oscilation;
-        oscilation.dmsq32Normal = dmsq32Normal;
-        oscilation.dmsq31Normal = dmsq32Normal + dmsq21;
+        let { dmsq21 } = oscillation;
+        oscillation.dmsq32Normal = dmsq32Normal;
+        oscillation.dmsq31Normal = dmsq32Normal + dmsq21;
       }
       break;
 
     case "dmsq32Inverted":
       {
         let dmsq32Inverted = action.value as number;
-        let { dmsq21 } = oscilation;
-        oscilation.dmsq32Inverted = dmsq32Inverted;
-        oscilation.dmsq31Inverted = dmsq32Inverted + dmsq21;
+        let { dmsq21 } = oscillation;
+        oscillation.dmsq32Inverted = dmsq32Inverted;
+        oscillation.dmsq31Inverted = dmsq32Inverted + dmsq21;
       }
       break;
     case "massOrdering":{
       let massOrdering = action.value as MassOrdering;
-      oscilation.massOrdering = massOrdering;
+      oscillation.massOrdering = massOrdering;
     }
   }
 
@@ -168,19 +168,19 @@ export const oscilationReducer = (state:Oscilation, action:OsilationParamsAction
     dmsq31Inverted,
     dmsq32Inverted,
     s22t13Inverted,
-  } = oscilation;
+  } = oscillation;
 
-  oscilation.averageSurvivalProbabilityNormal =
+  oscillation.averageSurvivalProbabilityNormal =
     c4t13Normal * (1 - s22t12 * 0.5) + s2t13Normal * s2t13Normal;
-  oscilation.averageSurvivalProbabilityInverted =
+  oscillation.averageSurvivalProbabilityInverted =
     c4t13Inverted * (1 - s22t12 * 0.5) + s2t13Inverted * s2t13Inverted;
-  oscilation.averageSurvivalProbability = 
-    oscilation.massOrdering === MassOrdering.Normal
-      ? oscilation.averageSurvivalProbabilityNormal
-      : oscilation.averageSurvivalProbabilityInverted;
+  oscillation.averageSurvivalProbability = 
+    oscillation.massOrdering === MassOrdering.Normal
+      ? oscillation.averageSurvivalProbabilityNormal
+      : oscillation.averageSurvivalProbabilityInverted;
 
   // reinit functions
-  oscilation.normalNeutrinoFlavor = (Ev: number, dist: number): number => {
+  oscillation.normalNeutrinoFlavor = (Ev: number, dist: number): number => {
     const oscarg21 = 1.27 * dmsq21 * dist * 1000;
     const oscarg31 = 1.27 * dmsq31Normal * dist * 1000;
     const oscarg32 = 1.27 * dmsq32Normal * dist * 1000;
@@ -191,18 +191,18 @@ export const oscilationReducer = (state:Oscilation, action:OsilationParamsAction
 
     return 1 - supr21 - supr31 - supr32;
   };
-  oscilation.normalNeutrinoOscilationSpectrum = memoize(
+  oscillation.normalNeutrinoOscillationSpectrum = memoize(
     (dist: number): Float64Array => {
       const oscspec = new Float64Array(1000);
       oscspec.fill(0);
 
       return oscspec.map((value, index) =>
-        oscilation.normalNeutrinoFlavor((index + 1) * 0.01, dist)
+        oscillation.normalNeutrinoFlavor((index + 1) * 0.01, dist)
       );
     }
   );
 
-  oscilation.invertedNeutrinoFlavor = (Ev: number, dist: number): number => {
+  oscillation.invertedNeutrinoFlavor = (Ev: number, dist: number): number => {
     const oscarg21 = 1.27 * dmsq21 * dist * 1000;
     const oscarg31 = 1.27 * dmsq31Inverted * dist * 1000;
     const oscarg32 = 1.27 * dmsq32Inverted * dist * 1000;
@@ -213,28 +213,28 @@ export const oscilationReducer = (state:Oscilation, action:OsilationParamsAction
 
     return 1 - supr21 - supr31 - supr32;
   };
-  oscilation.invertedNeutrinoOscilationSpectrum = memoize(
+  oscillation.invertedNeutrinoOscillationSpectrum = memoize(
     (dist: number): Float64Array => {
       const oscspec = new Float64Array(1000);
       oscspec.fill(0);
 
       return oscspec.map((value, index) =>
-        oscilation.invertedNeutrinoFlavor((index + 1) * 0.01, dist)
+        oscillation.invertedNeutrinoFlavor((index + 1) * 0.01, dist)
       );
     }
   );
 
-  oscilation.neutrinoOscilationSpectrum =
-    oscilation.massOrdering === MassOrdering.Normal
-      ? oscilation.normalNeutrinoOscilationSpectrum
-      : oscilation.invertedNeutrinoOscilationSpectrum;
-  return oscilation;
+  oscillation.neutrinoOscillationSpectrum =
+    oscillation.massOrdering === MassOrdering.Normal
+      ? oscillation.normalNeutrinoOscillationSpectrum
+      : oscillation.invertedNeutrinoOscillationSpectrum;
+  return oscillation;
 }
 
-let arg: keyof VariableOscilationParams;
-for (arg in defaultOscilationParams){
-  let value = defaultOscilationParams[arg]
-  oscilation = oscilationReducer(oscilation, {arg:arg, value:value})
+let arg: keyof VariableOscillationParams;
+for (arg in defaultOscillationParams){
+  let value = defaultOscillationParams[arg]
+  oscillation = oscillationReducer(oscillation, {arg:arg, value:value})
 }
 
 export const {
@@ -254,6 +254,6 @@ export const {
   s22t13Inverted,
   averageSurvivalProbabilityNormal,
   averageSurvivalProbabilityInverted,
-  normalNeutrinoOscilationSpectrum,
-  invertedNeutrinoOscilationSpectrum
-} = oscilation;
+  normalNeutrinoOscillationSpectrum,
+  invertedNeutrinoOscillationSpectrum
+} = oscillation;

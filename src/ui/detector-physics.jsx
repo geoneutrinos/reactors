@@ -9,7 +9,7 @@ export const DetectorPhysicsPane = ({
   setCrossSection,
   XSNames,
 }) => {
-  const {oscilation, oscilationDispatch} = useContext(PhysicsContext)
+  const {oscillation, oscillationDispatch} = useContext(PhysicsContext)
 
   const CrossSectionInput = (
     <Form.Group controlId="neutrinoCrossSection">
@@ -35,8 +35,8 @@ export const DetectorPhysicsPane = ({
       <Form.Label>Neutrino Mass Ordering</Form.Label>
       <Form.Control
         as="select"
-        onChange={(event) => oscilationDispatch({arg:"massOrdering", value:event.target.value})}
-        value={oscilation.massOrdering}
+        onChange={(event) => oscillationDispatch({arg:"massOrdering", value:event.target.value})}
+        value={oscillation.massOrdering}
       >
         {Object.values(MassOrdering).map((order) => (
           <option key={order} value={order}>

@@ -17,7 +17,7 @@ import {
 } from "../physics/constants";
 import { range, zip, sum, memoize } from "lodash";
 import { project } from "ecef-projector";
-import { Oscilation } from "../physics/neutrino-oscillation";
+import { Oscillation } from "../physics/neutrino-oscillation";
 
 export { cores, times, loads };
 
@@ -206,7 +206,7 @@ interface ReactorCore {
   setSignal: (
     dist: number,
     lf: number,
-    oscilation: Oscilation,
+    oscillation: Oscillation,
     crossSection: XSNames,
     direction: Direction
   ) => ReactorCore;
@@ -275,7 +275,7 @@ export function ReactorCore({
     this: ReactorCore,
     dist: number,
     lf: number,
-    oscilation: Oscilation,
+    oscillation: Oscillation,
     crossSection: XSNames,
     direction: Direction
   ): ReactorCore {
@@ -286,7 +286,7 @@ export function ReactorCore({
     if (dist > 100) {
       dist = Math.round(dist);
     }
-    let oscillationFunc = oscilation.neutrinoOscilationSpectrum(dist)
+    let oscillationFunc = oscillation.neutrinoOscillationSpectrum(dist)
 
     if (crossSection === XSNames.ESMUTAU) {
       oscillationFunc = oscillationFunc.map((v) => 1 - v);

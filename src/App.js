@@ -48,8 +48,8 @@ import { presets, detectorENUProjector } from "./detectors";
 import { getCrustFlux } from "./crust-model";
 import { mantleGeoSpectrum } from "./mantle";
 import { XSNames } from "./physics/neutrino-cross-section";
-import {oscilation as initalOscilation} from "./physics/neutrino-oscillation";
-import {oscilationReducer} from "./physics/neutrino-oscillation";
+import {oscillation as initalOscillation} from "./physics/neutrino-oscillation";
+import {oscillationReducer} from "./physics/neutrino-oscillation";
 import {PhysicsContext} from "./state";
 
 import "leaflet/dist/leaflet.css";
@@ -71,7 +71,7 @@ L.Icon.Default.mergeOptions({
 const defaultDetector = presets.find((detector) => detector.name === "Boulby");
 
 function App(props) {
-  const [oscilation, oscilationDispatch] = useReducer(oscilationReducer, initalOscilation)
+  const [oscillation, oscillationDispatch] = useReducer(oscillationReducer, initalOscillation)
 
   const [crossSection, setCrossSection] = useState(XSNames.IBDSV2003);
   const [detector, setDetector] = useState({
@@ -124,12 +124,12 @@ function App(props) {
 
           return [
             name,
-            modCore.setSignal(dist, lf, oscilation, crossSection, direction),
+            modCore.setSignal(dist, lf, oscillation, crossSection, direction),
           ];
         })
       )
     },
-    [coreMods, reactorLF, crossSection, oscilation, detector, customCores]
+    [coreMods, reactorLF, crossSection, oscillation, detector, customCores]
   );
 
   const crustFlux = useMemo(() => {
@@ -142,11 +142,11 @@ function App(props) {
   }, [includeCrust, detector]);
   const spectrum = useMemo(
     () =>
-      mantleGeoSpectrum(crossSection, oscilation, geoFluxRatios, crustFlux),
-    [crossSection, oscilation, geoFluxRatios, crustFlux]
+      mantleGeoSpectrum(crossSection, oscillation, geoFluxRatios, crustFlux),
+    [crossSection, oscillation, geoFluxRatios, crustFlux]
   );
   return (
-    <PhysicsContext.Provider value={{oscilation:oscilation, oscilationDispatch:oscilationDispatch}}>
+    <PhysicsContext.Provider value={{oscillation:oscillation, oscillationDispatch:oscillationDispatch}}>
     <Container fluid={true}>
       <Row style={{ minHeight: "100vh" }}>
         <Col style={{ minHeight: "50vh" }}>
