@@ -1,7 +1,7 @@
 import { ELECTRON_REST_MASS, NEUTRON_REST_MASS, PROTON_REST_MASS, HBAR_C, FERMI_COUPLING_CONSTANT, WEAK_MIXING_ANGLE } from './constants'
 import { memoize } from 'lodash';
 
-export interface CrossSection {
+export interface CrossSectionFunc {
   (Ev: number): number
 }
 
@@ -49,7 +49,7 @@ export const ES_COEFFICIENTS_LEFT = {
  * @param {number} Ev -  Energy of the neutrino in MeV
  * @returns {number} - Cross secton area in cm^2
  */
-const crossSectionSV2003: CrossSection = memoize((Ev) => {
+const crossSectionSV2003: CrossSectionFunc = memoize((Ev) => {
   const a = -0.07056;
   const b = 0.02018;
   const c = -0.001953;
@@ -72,7 +72,7 @@ const crossSectionSV2003: CrossSection = memoize((Ev) => {
  * @param {number} Ev -  Energy of the neutrino in MeV
  * @returns {number} - Cross secton area in cm^2
  */
-const crossSectionVB1999: CrossSection = memoize((Ev) => {
+const crossSectionVB1999: CrossSectionFunc = memoize((Ev) => {
   const Ee = Math.max(ELECTRON_REST_MASS, Ev - (NEUTRON_REST_MASS - PROTON_REST_MASS));
 
   return 9.52e-44 * Math.sqrt((Ee * Ee) - (ELECTRON_REST_MASS * ELECTRON_REST_MASS)) * Ee;
@@ -154,15 +154,15 @@ function crossSectionElasticScattering(Ev: number, neutrinoType: NeutrinoType, T
 
 }
 
-const crossSectionElectronAntineutrinoES: CrossSection = memoize((Ev) => {
+const crossSectionElectronAntineutrinoES: CrossSectionFunc = memoize((Ev) => {
   return crossSectionElasticScattering(Ev, NeutrinoType.electronAntineutino)
 })
 
-const crossSectionMuTauAntineutrinoES: CrossSection = memoize((Ev) => {
+const crossSectionMuTauAntineutrinoES: CrossSectionFunc = memoize((Ev) => {
   return crossSectionElasticScattering(Ev, NeutrinoType.muTauAntineutrino)
 })
 
-const crossSectionTotalES: CrossSection = memoize((Ev) => {
+const crossSectionTotalES: CrossSectionFunc = memoize((Ev) => {
   return  crossSectionElectronAntineutrinoES(Ev) + crossSectionMuTauAntineutrinoES(Ev)
 })
 
@@ -176,14 +176,49 @@ export const crossSectionElectronAntineutrinoFractionES = memoize((Ev) => {
 })
 
 // TEMP until is implimented
-export const crossSectionElectionNeutrinoES: CrossSection = memoize((Ev) => {
+export const crossSectionElectionNeutrinoES: CrossSectionFunc = memoize((Ev) => {
   return crossSectionElasticScattering(Ev, NeutrinoType.electronNeutrino) 
 })
 
-export const XSFuncs: {[key in XSNames]: CrossSection} = {
+export const XSFuncs: {[key in XSNames]: CrossSectionFunc} = {
   [XSNames.IBDVB1999]: crossSectionVB1999,
   [XSNames.IBDSV2003]: crossSectionSV2003,
   [XSNames.ESANTI]: crossSectionElectronAntineutrinoES,
   [XSNames.ESMUTAU]: crossSectionMuTauAntineutrinoES,
   [XSNames.ESTOTAL]: crossSectionTotalES,
+}
+
+interface CrossSectionConfig {
+  elasticScatteringTMin: number
+  crossSection: XSNames // the current in use cross section function
+}
+interface CrossSectionFunctions {
+  crossSectionFunction: CrossSectionFunc
+}
+
+type CrossSection = CrossSectionConfig & CrossSectionFunctions
+
+interface CrossSectionAction {
+  arg: "elasticScatteringTMin" | "crossSection",
+  value: number | XSNames
+}
+
+export const crossSection: CrossSection = {
+  elasticScatteringTMin: 0,
+  crossSection: XSNames.IBDSV2003,
+  crossSectionFunction: XSFuncs[XSNames.IBDSV2003]
+}
+
+export const crossSectionReducer = (state: CrossSection, action: CrossSectionAction): CrossSection => {
+  const crossSection = {...state}
+  switch (action.arg){
+    case "crossSection":
+      {
+        let xs = action.value as XSNames
+        crossSection.crossSection = xs
+      }
+      break;
+  }
+  crossSection.crossSectionFunction = XSFuncs[crossSection.crossSection]
+  return crossSection
 }

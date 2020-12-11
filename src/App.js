@@ -47,9 +47,13 @@ import { defaultCores } from "./reactor-cores";
 import { presets, detectorENUProjector } from "./detectors";
 import { getCrustFlux } from "./crust-model";
 import { mantleGeoSpectrum } from "./mantle";
-import { XSNames } from "./physics/neutrino-cross-section";
+
+import {crossSection as initialCrossSection} from "./physics/neutrino-cross-section"
+import { crossSectionReducer} from "./physics/neutrino-cross-section"
+
 import {oscillation as initalOscillation} from "./physics/neutrino-oscillation";
 import {oscillationReducer} from "./physics/neutrino-oscillation";
+
 import {PhysicsContext} from "./state";
 
 import "leaflet/dist/leaflet.css";
@@ -72,8 +76,8 @@ const defaultDetector = presets.find((detector) => detector.name === "Boulby");
 
 function App(props) {
   const [oscillation, oscillationDispatch] = useReducer(oscillationReducer, initalOscillation)
+  const [crossSection, crossSectionDispatch] = useReducer(crossSectionReducer, initialCrossSection);
 
-  const [crossSection, setCrossSection] = useState(XSNames.IBDSV2003);
   const [detector, setDetector] = useState({
     current: defaultDetector.name,
     ...defaultDetector,
@@ -124,12 +128,12 @@ function App(props) {
 
           return [
             name,
-            modCore.setSignal(dist, lf, oscillation, crossSection, direction),
+            modCore.setSignal(dist, lf, oscillation, crossSection.crossSection, direction),
           ];
         })
       )
     },
-    [coreMods, reactorLF, crossSection, oscillation, detector, customCores]
+    [coreMods, reactorLF, crossSection.crossSection, oscillation, detector, customCores]
   );
 
   const crustFlux = useMemo(() => {
@@ -142,11 +146,17 @@ function App(props) {
   }, [includeCrust, detector]);
   const spectrum = useMemo(
     () =>
-      mantleGeoSpectrum(crossSection, oscillation, geoFluxRatios, crustFlux),
-    [crossSection, oscillation, geoFluxRatios, crustFlux]
+      mantleGeoSpectrum(crossSection.crossSection, oscillation, geoFluxRatios, crustFlux),
+    [crossSection.crossSection, oscillation, geoFluxRatios, crustFlux]
   );
+  const physicsContextValue = {
+    oscillation: oscillation,
+    oscillationDispatch: oscillationDispatch,
+    crossSection: crossSection,
+    crossSectionDispatch: crossSectionDispatch,
+  }
   return (
-    <PhysicsContext.Provider value={{oscillation:oscillation, oscillationDispatch:oscillationDispatch}}>
+    <PhysicsContext.Provider value={physicsContextValue}>
     <Container fluid={true}>
       <Row style={{ minHeight: "100vh" }}>
         <Col style={{ minHeight: "50vh" }}>
@@ -164,7 +174,6 @@ function App(props) {
             detector={detector}
             cores={cores}
             spectrum={spectrum}
-            crossSection={crossSection}
           />
           <Tabs unmountOnExit={false} defaultActiveKey="detector">
             <Tab eventKey="detector" title="Detector">
@@ -173,7 +182,6 @@ function App(props) {
                 <StatsPanel
                   cores={cores}
                   spectrum={spectrum}
-                  crossSection={crossSection}
                 />
                 <DetectorLocationPane
                   detector={detector}
@@ -201,7 +209,6 @@ function App(props) {
                 coreMods={coreMods}
                 setCoreMods={setCoreMods}
                 // The following is for the download filename...
-                crossSection={crossSection}
                 detector={detector}
               />
             </Tab>
@@ -226,11 +233,7 @@ function App(props) {
             </Tab>
             <Tab eventKey="physics" title="Physics">
               <Visible>
-                <DetectorPhysicsPane
-                  crossSection={crossSection}
-                  setCrossSection={setCrossSection}
-                  XSNames={XSNames}
-                />
+                <DetectorPhysicsPane/>
                 <CrossSectionPlots />
                 <DifferentialCrossSectionPlots />
                 <AngularDifferentialCrossSectionPlots />
@@ -240,7 +243,7 @@ function App(props) {
             </Tab>
             <Tab eventKey="output" title="Output">
               <Visible>
-                <OutputDownload spectrum={spectrum} cores={cores} crossSection={crossSection} detector={detector} />
+                <OutputDownload spectrum={spectrum} cores={cores} detector={detector} />
               </Visible>
               <CalculatorPanel cores={cores} spectrum={spectrum} />
             </Tab>

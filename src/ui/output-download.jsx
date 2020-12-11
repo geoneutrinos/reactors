@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import {zip, sum} from 'lodash'
 import { XSNames, XSAbrev } from "../physics/neutrino-cross-section"
+import {PhysicsContext} from "../state"
 
 import { Card, Button} from "react-bootstrap";
 
@@ -25,7 +26,8 @@ export const DownloadButton = ({data, formatters = {}, filename = "output.csv", 
     return <Button size="sm" variant="success" onClick={onClick}>{buttonTitle}</Button>
 }
 
-export const OutputDownload = ({cores, spectrum, detector, crossSection}) => {
+export const OutputDownload = ({cores, spectrum, detector}) => {
+    const {crossSection} = useContext(PhysicsContext)
 
   const coreList = Object.values(cores);
   const closestActiveCore = coreList
@@ -66,9 +68,9 @@ export const OutputDownload = ({cores, spectrum, detector, crossSection}) => {
     const downloadFormatters = {
         "bin center (MeV)": (v) => v.toFixed(3)
     }
-    const downloadFilename = `Enu_spec10keV_${detector.current}_${XSAbrev[crossSection]}.csv`.replace(/\s/g, "_").replace(/\(|\)/g, '')
+    const downloadFilename = `Enu_spec10keV_${detector.current}_${XSAbrev[crossSection.crossSection]}.csv`.replace(/\s/g, "_").replace(/\(|\)/g, '')
 
-    if ([XSNames.IBDSV2003, XSNames.IBDVB1999].includes(crossSection)){
+    if ([XSNames.IBDSV2003, XSNames.IBDVB1999].includes(crossSection.crossSection)){
         delete downloadData.geo40K_beta
     }
 

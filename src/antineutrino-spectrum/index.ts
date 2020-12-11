@@ -5,7 +5,7 @@ import antineutrinoSpectrum238UData from "./data/AntineutrinoSpectrum_238U.knt.j
 
 import { SECONDS_PER_YEAR } from "../physics/constants";
 
-import { XSFuncs, CrossSection } from "../physics/neutrino-cross-section";
+import { XSFuncs, CrossSectionFunc } from "../physics/neutrino-cross-section";
 
 //interface RateToFlux {
 //  IBDSV2003: number;
@@ -70,7 +70,7 @@ export const antineutrinoSpectrum238U = resample(
   1000
 );
 
-function rateToFlux(spectrum: number[], crossSection: CrossSection): number {
+function rateToFlux(spectrum: number[], crossSection: CrossSectionFunc): number {
   const targets = 1e32;
   const rate_to_flux_n = spectrum.reduce((p, v) => p + v, 0);
   const rate_to_flux_d = spectrum

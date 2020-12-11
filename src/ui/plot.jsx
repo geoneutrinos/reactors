@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import Plot from "react-plotly.js";
 
 import { sum } from "lodash";
 
+import {PhysicsContext} from '../state'
+
 const evBins = new Float64Array(1000).map((v, i) => i * 0.01 + 0.005);
 
-export function NuSpectrumPlot({ cores, spectrum, detector, crossSection }) {
+export function NuSpectrumPlot({ cores, spectrum, detector}) {
+  const { crossSection } = useContext(PhysicsContext)
   const coreList = Object.values(cores);
   const closestActiveIAEACore = coreList
     .filter((core) => core.detectorAnySignal && !core.custom)
@@ -115,7 +118,7 @@ export function NuSpectrumPlot({ cores, spectrum, detector, crossSection }) {
     },
     yaxis: {
       range: [0, ymax * 1.05],
-      title: { text: `Rate dR/dE (NIU/MeV)<br /><sub>${crossSection}</sub>` },
+      title: { text: `Rate dR/dE (NIU/MeV)<br /><sub>${crossSection.crossSection}</sub>` },
     },
     annotations: [
       {

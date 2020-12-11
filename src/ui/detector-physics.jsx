@@ -2,22 +2,20 @@ import React, { useContext } from "react";
 import { Card, Form } from "react-bootstrap";
 
 import { MassOrdering } from "../physics/neutrino-oscillation";
+import {XSNames} from "../physics/neutrino-cross-section"
 import { PhysicsContext } from "../state";
 
-export const DetectorPhysicsPane = ({
-  crossSection,
-  setCrossSection,
-  XSNames,
-}) => {
-  const {oscillation, oscillationDispatch} = useContext(PhysicsContext)
+export const DetectorPhysicsPane = () => {
+  const {oscillation, oscillationDispatch, crossSection, crossSectionDispatch} = useContext(PhysicsContext)
+
 
   const CrossSectionInput = (
     <Form.Group controlId="neutrinoCrossSection">
       <Form.Label>Neutrino Cross Section</Form.Label>
       <Form.Control
         as="select"
-        onChange={(event) => setCrossSection(event.target.value)}
-        value={crossSection}
+        onChange={(event) => crossSectionDispatch({arg:"crossSection", value:event.target.value})}
+        value={crossSection.crossSection}
       >
         {Object.values(XSNames).map((name) => {
           return (
