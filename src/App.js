@@ -146,8 +146,8 @@ function App(props) {
   }, [includeCrust, detector]);
   const spectrum = useMemo(
     () =>
-      mantleGeoSpectrum(crossSection.crossSection, oscillation, geoFluxRatios, crustFlux),
-    [crossSection.crossSection, oscillation, geoFluxRatios, crustFlux]
+      mantleGeoSpectrum(crossSection, oscillation, geoFluxRatios, crustFlux),
+    [crossSection, oscillation, geoFluxRatios, crustFlux]
   );
   const physicsContextValue = {
     oscillation: oscillation,
