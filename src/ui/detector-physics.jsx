@@ -8,6 +8,27 @@ import { PhysicsContext } from "../state";
 export const DetectorPhysicsPane = () => {
   const {oscillation, oscillationDispatch, crossSection, crossSectionDispatch} = useContext(PhysicsContext)
 
+  const TMinRage = (
+    <Form.Group controlId="tminsrange">
+      <Form.Label>
+        Elastic Scattering T<sub>min</sub>:{" "}
+        {crossSection.elasticScatteringTMin.toFixed(3)} MeV
+      </Form.Label>
+      <Form.Control
+        type="range"
+        min={0}
+        max={10}
+        step={0.001}
+        value={crossSection.elasticScatteringTMin}
+        onChange={(event) =>
+          crossSectionDispatch({
+            arg: "elasticScatteringTMin",
+            value: parseFloat(event.target.value),
+          })
+        }
+      ></Form.Control>
+    </Form.Group>
+  );
 
   const CrossSectionInput = (
     <Form.Group controlId="neutrinoCrossSection">
@@ -50,6 +71,7 @@ export const DetectorPhysicsPane = () => {
       <Card.Body>
         {CrossSectionInput}
         {MassOrderingInput}
+        {TMinRage}
       </Card.Body>
     </Card>
   );
