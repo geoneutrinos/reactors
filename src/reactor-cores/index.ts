@@ -6,16 +6,16 @@ import {
 import { partialInteractionRate } from "../physics/reactor-antineutrinos";
 import { neutrinoEnergyFor } from "../physics/helpers";
 import {
-  XSFuncs,
   XSNames,
   crossSectionElectronAntineutrinoFractionES,
+  CrossSection,
 } from "../physics/neutrino-cross-section";
 import {
   FISSION_ENERGIES,
   ELEMENTARY_CHARGE,
   Isotopes,
 } from "../physics/constants";
-import { range, zip, sum, memoize } from "lodash";
+import { zip, sum } from "lodash";
 import { project } from "ecef-projector";
 import { Oscillation } from "../physics/neutrino-oscillation";
 
@@ -23,13 +23,8 @@ export { cores, times, loads };
 
 const SECONDS_PER_YEAR = 365.25 * 24 * 60 * 60;
 
-function mevRange(count = 1000, start = 0, stop = 10) {
-  // TODO figure out how to deal with a start not a zero
-  const binSize = (stop - start) / count;
-  return new Float64Array(range(binSize / 2, stop, binSize));
-}
-
-const bins = mevRange();
+// TODO Centralize this function
+const bins = (new Float64Array(1000)).map((v, i) => 0.005 + i/100)
 
 const ESEratio = bins.map((Ev) =>
   crossSectionElectronAntineutrinoFractionES(Ev)
@@ -122,11 +117,18 @@ const POWER_FRACTIONS_ALL: {[type: string]: PowerFractions} = {
   ...POWER_FRACTIONS
 }
 
-function spectrum(
-  powerFractions: PowerFractions,
-  crossSection: (Ev: number) => number
-) {
-  return bins.map((Ev) => {
+const spectrumCache: {[index: string]: Float64Array} = {}
+
+const calcSpectrum = (crossSection:CrossSection, powerFractions: PowerFractions): Float64Array => {
+  const spectrumCacheKey = JSON.stringify({
+    ...powerFractions,
+    crossSectionFuncID:crossSection.crossSection,
+    esTMim:crossSection.elasticScatteringTMin,
+  })
+  if (spectrumCacheKey in spectrumCache){
+    return spectrumCache[spectrumCacheKey]
+  }
+  return spectrumCache[spectrumCacheKey] = bins.map((Ev) => {
     return Object.keys(Isotopes)
       .map((v) => {
         const isotope: Isotopes = v as Isotopes;
@@ -136,7 +138,7 @@ function spectrum(
         const rate = partialInteractionRate(
           Ev,
           fisionEnery,
-          crossSection,
+          crossSection.crossSectionFunction,
           neutrinoEnergy
         );
 
@@ -147,13 +149,6 @@ function spectrum(
       .reduce((previousValue, currentValue) => previousValue + currentValue, 0);
   });
 }
-
-const spectrums = memoize(
-  (powerFractions: PowerFractions, crossSection: XSNames) => {
-    return spectrum(powerFractions, XSFuncs[crossSection]);
-  },
-  (...args) => JSON.stringify(args)
-);
 
 interface LoadFactor {
   date: Date;
@@ -202,12 +197,11 @@ interface ReactorCore {
   direction: Direction;
   powerFractions: PowerFractions;
 
-  spectrum: (crossSection: XSNames) => Float64Array;
   setSignal: (
     dist: number,
     lf: number,
     oscillation: Oscillation,
-    crossSection: XSNames,
+    crossSection: CrossSection,
     direction: Direction
   ) => ReactorCore;
   loadFactor: (start?: Date, stop?: Date) => number;
@@ -276,10 +270,10 @@ export function ReactorCore({
     dist: number,
     lf: number,
     oscillation: Oscillation,
-    crossSection: XSNames,
+    crossSection: CrossSection,
     direction: Direction
   ): ReactorCore {
-    let spectrum = this.spectrum(crossSection);
+    let spectrum = calcSpectrum(crossSection, this.powerFractions)
     const power = this.power;
     const distsq = dist ** 2;
 
@@ -288,13 +282,13 @@ export function ReactorCore({
     }
     let oscillationFunc = oscillation.neutrinoOscillationSpectrum(dist)
 
-    if (crossSection === XSNames.ESMUTAU) {
+    if (crossSection.crossSection === XSNames.ESMUTAU) {
       oscillationFunc = oscillationFunc.map((v) => 1 - v);
     }
 
     let ESMUTauContirbution = bins.map((bin) => 0);
 
-    if (crossSection === XSNames.ESTOTAL) {
+    if (crossSection.crossSection === XSNames.ESTOTAL) {
       // we need the origional total specturm for this
       ESMUTauContirbution = spectrum.map(
         (spec, idx) => spec * (1 - ESEratio[idx]) * (1 - oscillationFunc[idx])
@@ -346,9 +340,6 @@ export function ReactorCore({
     spectrumType: spectrumType,
     lf_cache: {},
     powerFractions: powerFractions,
-    spectrum: function (crossSection: XSNames) {
-      return spectrums(this.powerFractions, crossSection);
-    },
     loadFactor: loadFactor,
     detectorDistance: 0,
     detectorSignal: new Float64Array(1000).fill(0),

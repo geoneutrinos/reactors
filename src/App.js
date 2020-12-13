@@ -128,12 +128,12 @@ function App(props) {
 
           return [
             name,
-            modCore.setSignal(dist, lf, oscillation, crossSection.crossSection, direction),
+            modCore.setSignal(dist, lf, oscillation, crossSection, direction),
           ];
         })
       )
     },
-    [coreMods, reactorLF, crossSection.crossSection, oscillation, detector, customCores]
+    [coreMods, reactorLF, crossSection, oscillation, detector, customCores]
   );
 
   const crustFlux = useMemo(() => {

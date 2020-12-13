@@ -49,7 +49,7 @@ export const ES_COEFFICIENTS_LEFT = {
  * @param {number} Ev -  Energy of the neutrino in MeV
  * @returns {number} - Cross secton area in cm^2
  */
-const crossSectionSV2003: CrossSectionFunc = memoize((Ev) => {
+export const crossSectionSV2003: CrossSectionFunc = memoize((Ev) => {
   const a = -0.07056;
   const b = 0.02018;
   const c = -0.001953;
@@ -72,7 +72,7 @@ const crossSectionSV2003: CrossSectionFunc = memoize((Ev) => {
  * @param {number} Ev -  Energy of the neutrino in MeV
  * @returns {number} - Cross secton area in cm^2
  */
-const crossSectionVB1999: CrossSectionFunc = memoize((Ev) => {
+export const crossSectionVB1999: CrossSectionFunc = memoize((Ev) => {
   const Ee = Math.max(ELECTRON_REST_MASS, Ev - (NEUTRON_REST_MASS - PROTON_REST_MASS));
 
   return 9.52e-44 * Math.sqrt((Ee * Ee) - (ELECTRON_REST_MASS * ELECTRON_REST_MASS)) * Ee;
