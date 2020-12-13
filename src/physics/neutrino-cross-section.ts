@@ -195,6 +195,8 @@ interface CrossSectionConfig {
 interface CrossSectionFunctions {
   crossSectionElectronAntineutrinoFractionES: CrossSectionFunc,
   crossSectionFunction: CrossSectionFunc
+  // TODO Replace with proper type interface
+  "Elastic Scattering: Antineutrino": CrossSectionFunc
 }
 
 export type CrossSection = CrossSectionConfig & CrossSectionFunctions & typeof XSFuncs
@@ -210,6 +212,7 @@ const defaultCrossSection: CrossSection = {
   crossSection: XSNames.IBDSV2003,
   crossSectionFunction: XSFuncs[XSNames.IBDSV2003],
   crossSectionElectronAntineutrinoFractionES: (Ev) => 0,
+  "Elastic Scattering: Antineutrino": crossSectionElectionNeutrinoES,
 }
 
 export const crossSectionReducer = (state: CrossSection, action: CrossSectionAction): CrossSection => {
@@ -225,6 +228,7 @@ export const crossSectionReducer = (state: CrossSection, action: CrossSectionAct
       {
         let TMin = action.value as number;
         crossSection.elasticScatteringTMin = TMin;
+        crossSection["Elastic Scattering: Antineutrino"] = memoize((Ev) => crossSectionElasticScattering(Ev, NeutrinoType.electronNeutrino, TMin));
         crossSection[XSNames.ESANTI] = memoize((Ev) => crossSectionElasticScattering(Ev, NeutrinoType.electronAntineutino, TMin));
         crossSection[XSNames.ESMUTAU] = memoize((Ev) => crossSectionElasticScattering(Ev, NeutrinoType.muTauAntineutrino, TMin));
         crossSection[XSNames.ESTOTAL] = memoize((Ev) => crossSection[XSNames.ESANTI](Ev) + crossSection[XSNames.ESMUTAU](Ev))
