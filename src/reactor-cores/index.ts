@@ -7,7 +7,6 @@ import { partialInteractionRate } from "../physics/reactor-antineutrinos";
 import { neutrinoEnergyFor } from "../physics/helpers";
 import {
   XSNames,
-  crossSectionElectronAntineutrinoFractionES,
   CrossSection,
 } from "../physics/neutrino-cross-section";
 import {
@@ -25,10 +24,6 @@ const SECONDS_PER_YEAR = 365.25 * 24 * 60 * 60;
 
 // TODO Centralize this function
 const bins = (new Float64Array(1000)).map((v, i) => 0.005 + i/100)
-
-const ESEratio = bins.map((Ev) =>
-  crossSectionElectronAntineutrinoFractionES(Ev)
-);
 
 const cos_deg = (deg: number) => Math.cos(deg * (Math.PI / 180));
 
@@ -280,7 +275,8 @@ export function ReactorCore({
     if (dist > 100) {
       dist = Math.round(dist);
     }
-    let oscillationFunc = oscillation.neutrinoOscillationSpectrum(dist)
+    let oscillationFunc = oscillation.neutrinoOscillationSpectrum(dist);
+    let ESEratio = bins.map(crossSection.crossSectionElectronAntineutrinoFractionES);
 
     if (crossSection.crossSection === XSNames.ESMUTAU) {
       oscillationFunc = oscillationFunc.map((v) => 1 - v);

@@ -166,15 +166,6 @@ const crossSectionTotalES: CrossSectionFunc = memoize((Ev) => {
   return  crossSectionElectronAntineutrinoES(Ev) + crossSectionMuTauAntineutrinoES(Ev)
 })
 
-export const crossSectionElectronAntineutrinoFractionES = memoize((Ev) => {
-  const electronES = crossSectionElectronAntineutrinoES(Ev)
-  const totalES = crossSectionTotalES(Ev);
-  if (totalES === 0){
-    return 0
-  }
-  return electronES / totalES;
-})
-
 // TEMP until is implimented
 export const crossSectionElectionNeutrinoES: CrossSectionFunc = memoize((Ev) => {
   return crossSectionElasticScattering(Ev, NeutrinoType.electronNeutrino) 
