@@ -233,7 +233,6 @@ function App(props) {
             </Tab>
             <Tab eventKey="solarnu" title="SolarNu">
               <Visible>
-                <h4>Under Development</h4>
                 <Boron8SpectraPlot boron8={boron8} />
               </Visible>
             </Tab>
