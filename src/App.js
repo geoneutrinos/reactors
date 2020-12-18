@@ -54,6 +54,8 @@ import { crossSectionReducer} from "./physics/neutrino-cross-section"
 import {oscillation as initalOscillation} from "./physics/neutrino-oscillation";
 import {oscillationReducer} from "./physics/neutrino-oscillation";
 
+import {defaultBoron8} from "./solar"
+
 import {PhysicsContext} from "./state";
 
 import "leaflet/dist/leaflet.css";
@@ -149,6 +151,10 @@ function App(props) {
       mantleGeoSpectrum(crossSection, oscillation, geoFluxRatios, crustFlux),
     [crossSection, oscillation, geoFluxRatios, crustFlux]
   );
+
+  const boron8 = useMemo(() => defaultBoron8.updateRate(crossSection), [crossSection])
+  console.log(boron8)
+
   const physicsContextValue = {
     oscillation: oscillation,
     oscillationDispatch: oscillationDispatch,
@@ -228,7 +234,7 @@ function App(props) {
             <Tab eventKey="solarnu" title="SolarNu">
               <Visible>
                 <h4>Under Development</h4>
-                <Boron8SpectraPlot />
+                <Boron8SpectraPlot boron8={boron8} />
               </Visible>
             </Tab>
             <Tab eventKey="physics" title="Physics">

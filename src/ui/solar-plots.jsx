@@ -3,13 +3,13 @@ import React from "react";
 import { Card } from "react-bootstrap";
 import Plot from "react-plotly.js";
 
-import { boron8, BORON_8_NIU } from "../solar";
+import { boron8Bins } from "../solar";
 
-export const Boron8SpectraPlot = () => {
+export const Boron8SpectraPlot = ({boron8}) => {
   const data = [
     {
-      y: boron8.map((x) => x[1] * 10),
-      x: boron8.map((x) => x[0]),
+      y: boron8.boron8Rate.map((x) => x * 10),
+      x: boron8Bins,
       name: "Boron 8",
       type: "scatter",
       mode: "lines",
@@ -38,7 +38,7 @@ export const Boron8SpectraPlot = () => {
       <Card.Header><sup>8</sup>B Decay Spectrum, Flux, Rate</Card.Header>
       <Card.Body>
         <p>
-          R<sub>sol</sub> = {BORON_8_NIU.toFixed(2)} NIU (preliminary, do not use)
+          R<sub>sol</sub> = {boron8.boron8NIU.toFixed(2)} NIU (preliminary, do not use)
         </p>
         <p>
           <sup>8</sup>B decay spectrum from:
