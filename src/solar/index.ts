@@ -27,7 +27,7 @@ export const defaultBoron8: Boron8 = {
     boron8NIU: 0,
     updateRate: function(this: Boron8, crossSection:CrossSection){
         const newBoron8 = {...this};
-        newBoron8.boron8Rate =  boron8.map(([bin, spec]) => crossSection["Elastic Scattering: Antineutrino"](bin) * spec * this.boron8Flux);
+        newBoron8.boron8Rate =  boron8.map(([bin, spec]) => crossSection["Elastic Scattering: Neutrino"](bin) * spec * this.boron8Flux);
         newBoron8.boron8NIU = sum(newBoron8.boron8Rate) * SECONDS_PER_YEAR * 1e32; // targets
         return newBoron8;
     }
