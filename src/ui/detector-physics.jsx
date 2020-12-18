@@ -9,7 +9,6 @@ export const DetectorPhysicsPane = () => {
   const {oscillation, oscillationDispatch, crossSection, crossSectionDispatch} = useContext(PhysicsContext)
 
   const [tMin, setTmin] = useState(crossSection.elasticScatteringTMin)
-  const [tMinValid, setTminValid] = useState(true)
   const [lastTmin, setLastTmin] = useState(crossSection.elasticScatteringTMin)
   if (crossSection.elasticScatteringTMin !== lastTmin){
     setTmin(crossSection.elasticScatteringTMin)
@@ -20,19 +19,15 @@ export const DetectorPhysicsPane = () => {
     setTmin(event.target.value);
     const value = parseFloat(event.target.value);
     if (value === undefined) {
-      setTminValid(false)
       return;
     }
     if (isNaN(value)) {
-      setTminValid(false)
       return;
     }
     if (value < 0) {
-      setTminValid(false)
       return;
     }
     if (value > 10) {
-      setTminValid(false)
       return;
     }
     setLastTmin(value);
@@ -53,13 +48,10 @@ export const DetectorPhysicsPane = () => {
         min={0}
         max={10}
         step={0.001}
-        isValid={tMinValid}
         value={tMin}
         onChange={tMinHandler}
-        onBlur={() => {
-          if (tMinValid) {
-            return
-          } else {
+        onBlur={()=>{
+          if (tMin !== lastTmin){
             setTmin(lastTmin)
           }
         }}
