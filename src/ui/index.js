@@ -6,7 +6,7 @@ export { StatsPanel } from './detector-stats';
 export { DetectorPhysicsPane } from './detector-physics';
 export { DetectorLocationPane } from './detector-location';
 export { CoreList } from './reactors-corelist';
-export { MantleFlux, CrustFlux, GeoNuSpectrumSource } from './geonu';
+export { MantleFlux, CrustFlux, GeoNuSpectrumSource  } from './geonu';
 export { CalculatorPanel } from './output-calculator';
 export { AddCustomCoreModal, ManageCustomCoreModal } from './reactors-core-custom';
 export { CoreIAEARange } from './reactors-core-iaea-select'

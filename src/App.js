@@ -153,8 +153,7 @@ function App(props) {
   );
 
   const boron8 = useMemo(() => defaultBoron8.updateRate(crossSection), [crossSection])
-  console.log(boron8)
-
+  
   const physicsContextValue = {
     oscillation: oscillation,
     oscillationDispatch: oscillationDispatch,

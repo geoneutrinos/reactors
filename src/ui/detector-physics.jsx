@@ -8,52 +8,24 @@ import { PhysicsContext } from "../state";
 export const DetectorPhysicsPane = () => {
   const {oscillation, oscillationDispatch, crossSection, crossSectionDispatch} = useContext(PhysicsContext)
 
-  const [tMin, setTmin] = useState(crossSection.elasticScatteringTMin)
-  const [lastTmin, setLastTmin] = useState(crossSection.elasticScatteringTMin)
-  if (crossSection.elasticScatteringTMin !== lastTmin){
-    setTmin(crossSection.elasticScatteringTMin)
-    setLastTmin(crossSection.elasticScatteringTMin)
-  }
-
-  const tMinHandler = (event) => {
-    setTmin(event.target.value);
-    const value = parseFloat(event.target.value);
-    if (value === undefined) {
-      return;
-    }
-    if (isNaN(value)) {
-      return;
-    }
-    if (value < 0) {
-      return;
-    }
-    if (value > 10) {
-      return;
-    }
-    setLastTmin(value);
-    crossSectionDispatch({
-      arg: "elasticScatteringTMin",
-      value: value,
-    });
-  };
 
   const TMinRage = (
     <Form.Group controlId="tminsrange">
       <Form.Label>
         Elastic Scattering T<sub>min</sub>:{" "}
-        {crossSection.elasticScatteringTMin.toFixed(3)} MeV
+        {crossSection.elasticScatteringTMin.toFixed(1)} MeV
       </Form.Label>
       <Form.Control
-        type="number"
+        type="range"
         min={0}
         max={10}
-        step={0.001}
-        value={tMin}
-        onChange={tMinHandler}
-        onBlur={()=>{
-          if (tMin !== lastTmin){
-            setTmin(lastTmin)
-          }
+        step={0.1}
+        value={crossSection.elasticScatteringTMin}
+        onChange={(event) =>{
+          crossSectionDispatch({
+            arg: "elasticScatteringTMin",
+            value: parseFloat(event.target.value),
+          });
         }}
       ></Form.Control>
     </Form.Group>
