@@ -1,7 +1,6 @@
 import {
-  XSFuncs,
+  CrossSection,
   XSNames,
-  crossSectionElectronAntineutrinoFractionES,
 } from "../physics/neutrino-cross-section";
 import { Oscillation } from "../physics/neutrino-oscillation";
 import {
@@ -26,12 +25,12 @@ const extractESEandMuTau = (
   spec: number,
   Ev: number,
   survivalProbability: number,
-  crossSection: XSNames
+  crossSection: CrossSection
 ) => {
-  if (crossSection !== XSNames.ESTOTAL) {
+  if (crossSection.crossSection !== XSNames.ESTOTAL) {
     return [spec, 0];
   }
-  const ESEratio = crossSectionElectronAntineutrinoFractionES(Ev);
+  const ESEratio = crossSection.crossSectionElectronAntineutrinoFractionES(Ev);
   const ESMUTauContirbution =
     spec * (1 - ESEratio) * (1 - survivalProbability) * TargetYears;
 
@@ -40,16 +39,16 @@ const extractESEandMuTau = (
 };
 
 export function mantleGeoSpectrum(
-  crossSection: XSNames,
+  crossSection: CrossSection,
   oscillation: Oscillation,
   geoFluxRatios: any,
   crustFlux: any
 ) {
-  const XSFunc = XSFuncs[crossSection];
+  const XSFunc = crossSection.crossSectionFunction
 
   let survivalProbability = oscillation.averageSurvivalProbability
 
-  if (crossSection === XSNames.ESMUTAU) {
+  if (crossSection.crossSection === XSNames.ESMUTAU) {
     survivalProbability = 1 - survivalProbability;
   }
 

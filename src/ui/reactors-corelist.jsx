@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect,useContext } from "react";
 import {
   Card,
   Form,
@@ -15,6 +15,8 @@ import {DownloadButton} from "./output-download"
 import { XSAbrev } from '../physics/neutrino-cross-section'
 
 import {Num} from '.'
+
+import {PhysicsContext} from "../state"
 
 const CoreType = ({ core }) => {
   const coreDef = {
@@ -133,8 +135,8 @@ export const CoreList = ({
   addCustomModal,
   manCustomModal,
   detector,
-  crossSection,
 }) => {
+  const {crossSection} = useContext(PhysicsContext)
   const [filter, setFilter] = useState("");
   const [displayLength, setDisplayLength] = useState(10);
   const [sortMethod, setSortMethod] = useState("distance");
@@ -270,7 +272,7 @@ export const CoreList = ({
               coreMods={coreMods}
               setCoreMods={setCoreMods}
               detector={detector}
-              crossSection={crossSection}
+              crossSection={crossSection.crossSection}
             />
           ))}
       </ListGroup>

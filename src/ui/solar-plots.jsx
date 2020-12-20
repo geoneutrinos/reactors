@@ -3,13 +3,14 @@ import React from "react";
 import { Card } from "react-bootstrap";
 import Plot from "react-plotly.js";
 
-import { boron8, BORON_8_NIU } from "../solar";
+import {SECONDS_PER_YEAR} from "../physics/constants"
+import { boron8Bins } from "../solar";
 
-export const Boron8SpectraPlot = () => {
+export const Boron8SpectraPlot = ({boron8}) => {
   const data = [
     {
-      y: boron8.map((x) => x[1] * 10),
-      x: boron8.map((x) => x[0]),
+      y: boron8.boron8Rate.map((x) => x * 1e1 * SECONDS_PER_YEAR * 1e32),
+      x: boron8Bins,
       name: "Boron 8",
       type: "scatter",
       mode: "lines",
@@ -20,7 +21,7 @@ export const Boron8SpectraPlot = () => {
   var layout = {
     title: "<sup>8</sup>B Decay Spectrum",
     yaxis: {
-      title: { text: `Intensity (1/MeV/decay)` },
+      title: { text: `dR/dE (NIU/MeV)` },
       autorange: true,
     },
     xaxis: {
@@ -38,7 +39,7 @@ export const Boron8SpectraPlot = () => {
       <Card.Header><sup>8</sup>B Decay Spectrum, Flux, Rate</Card.Header>
       <Card.Body>
         <p>
-          R<sub>sol</sub> = {BORON_8_NIU.toFixed(2)} NIU (preliminary, do not use)
+          R<sub>sol</sub> = {boron8.boron8NIU.toFixed(2)} NIU
         </p>
         <p>
           <sup>8</sup>B decay spectrum from:

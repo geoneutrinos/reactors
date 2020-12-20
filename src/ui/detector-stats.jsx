@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { sum } from "lodash";
 import { Card, Table } from "react-bootstrap";
 
@@ -11,6 +11,7 @@ import {
 } from "../antineutrino-spectrum";
 import { ISOTOPIC_NEUTRINO_LUMINOSITY } from "../physics/derived";
 import { ISOTOPIC_NATURAL_ABUNDANCE } from "../physics/constants";
+import {PhysicsContext} from "../state"
 
 import { Num } from '.'
 
@@ -38,7 +39,8 @@ const geoKURatio = (R40K, R238U, crossSection) => {
   return R * C * l * NA;
 };
 
-export function StatsPanel({ cores, spectrum, crossSection }) {
+export function StatsPanel({ cores, spectrum}) {
+  const {crossSection} = useContext(PhysicsContext)
   const NIU = <span title="Neutrino Interaction Unit">NIU</span>;
 
   const coreList = Object.values(cores);
@@ -73,8 +75,8 @@ export function StatsPanel({ cores, spectrum, crossSection }) {
   const geoThNIU = sum(spectrum.geoTh) * 0.01;
   const geoKNIU = sum(spectrum.geoK) * 0.01;
 
-  const geoThU = geoThURatio(geoThNIU, geoUNIU, crossSection);
-  const geoKU = geoKURatio(geoKNIU, geoUNIU, crossSection);
+  const geoThU = geoThURatio(geoThNIU, geoUNIU, crossSection.crossSection);
+  const geoKU = geoKURatio(geoKNIU, geoUNIU, crossSection.crossSection);
 
   const geoKUVald = isNaN(geoKU) ? "none" : "auto";
 
@@ -88,7 +90,7 @@ export function StatsPanel({ cores, spectrum, crossSection }) {
   return (
     <Card>
       <Card.Body>
-        <Card.Title>Spectrum Stats <small>({crossSection})</small></Card.Title>
+        <Card.Title>Spectrum Stats <small>({crossSection.crossSection})</small></Card.Title>
 
         <Table {...tableProps}>
           <tbody>

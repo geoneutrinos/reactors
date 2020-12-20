@@ -1,12 +1,11 @@
-import React from 'react';
+import React, {useContext} from 'react';
 
 import { Card} from "react-bootstrap";
 import Plot from "react-plotly.js";
 
-import { XSFuncs, XSAbrev, XSNames } from '../physics/neutrino-cross-section';
+import { XSAbrev, XSNames } from '../physics/neutrino-cross-section';
+import { PhysicsContext } from "../state"
 
-// temp
-import { crossSectionElectionNeutrinoES } from '../physics/neutrino-cross-section'
 import { differentialCrossSectionElasticScattering, NeutrinoType, TEMax, differentialCrossSectionElasticScatteringAngular } from '../physics/neutrino-cross-section'
 
 const bins = (new Float64Array(1000)).map((v, i) => 0.005 + i/100)
@@ -234,9 +233,10 @@ export const DifferentialCrossSectionPlots = () => {
 }
 
 export const CrossSectionPlots = () => {
+  const {crossSection} = useContext(PhysicsContext)
   const data = [
     {
-      y: bins.map(XSFuncs[XSNames.IBDVB1999]),
+      y: bins.map(crossSection[XSNames.IBDVB1999]),
       x: bins,
       name: XSAbrev[XSNames.IBDVB1999],
       type: "scatter",
@@ -245,7 +245,7 @@ export const CrossSectionPlots = () => {
       marker: { color: "blue" },
     },
     {
-      y: bins.map(XSFuncs[XSNames.IBDSV2003]),
+      y: bins.map(crossSection[XSNames.IBDSV2003]),
       x: bins,
       name: XSAbrev[XSNames.IBDSV2003],
       type: "scatter",
@@ -254,7 +254,7 @@ export const CrossSectionPlots = () => {
       marker: { color: "black" },
     },
     {
-      y: bins.map(crossSectionElectionNeutrinoES),
+      y: bins.map(crossSection["Elastic Scattering: Antineutrino"]),
       x: bins,
       name: "ESnue",
       type: "scatter",
@@ -263,7 +263,7 @@ export const CrossSectionPlots = () => {
       marker: { color: "red" },
     },
     {
-      y: bins.map(XSFuncs[XSNames.ESANTI]),
+      y: bins.map(crossSection[XSNames.ESANTI]),
       x: bins,
       name: XSAbrev[XSNames.ESANTI],
       type: "scatter",
@@ -272,7 +272,7 @@ export const CrossSectionPlots = () => {
       marker: { color: "magenta" },
     },
     {
-      y: bins.map(XSFuncs[XSNames.ESMUTAU]),
+      y: bins.map(crossSection[XSNames.ESMUTAU]),
       x: bins,
       name: XSAbrev[XSNames.ESMUTAU],
       type: "scatter",
