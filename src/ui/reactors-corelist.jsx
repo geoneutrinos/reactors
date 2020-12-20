@@ -46,9 +46,10 @@ const CoreListItem = ({
   reactorLF,
   coreMods,
   setCoreMods,
-  crossSection,
   detector,
 }) => {
+  const {crossSection} = useContext(PhysicsContext)
+
   const lf = core.loadFactor(reactorLF.start, reactorLF.end);
   const fullPower = () => {
     const newMods = {...coreMods, [core.name]: {loadOverride: 1}};
@@ -69,7 +70,7 @@ const CoreListItem = ({
     dist = core.detectorDistance.toFixed(1);
   }
 
-  const downloadFilename = `Enu_spec10keV_${core.name}_${detector.current}_${XSAbrev[crossSection]}.csv`.replace(/\s/g, "_").replace(/\(|\)/g, '')
+  const downloadFilename = `Enu_spec10keV_${core.name}_${detector.current}_${XSAbrev[crossSection.crossSection]}_Tmin${crossSection.elasticScatteringTMin.toFixed(1)}MeV.csv`.replace(/\s/g, "_").replace(/\(|\)/g, '')
   const downloadData = {
     "bin center (MeV)": core.detectorSignal.map((n,i) => 0.005 + i * 0.01),
     NIU: core.detectorSignal 

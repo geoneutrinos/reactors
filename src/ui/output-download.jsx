@@ -68,7 +68,7 @@ export const OutputDownload = ({cores, spectrum, detector}) => {
     const downloadFormatters = {
         "bin center (MeV)": (v) => v.toFixed(3)
     }
-    const downloadFilename = `Enu_spec10keV_${detector.current}_${XSAbrev[crossSection.crossSection]}.csv`.replace(/\s/g, "_").replace(/\(|\)/g, '')
+    const downloadFilename = `Enu_spec10keV_${detector.current}_${XSAbrev[crossSection.crossSection]}_Tmin${crossSection.elasticScatteringTMin.toFixed(1)}MeV.csv`.replace(/\s/g, "_").replace(/\(|\)/g, '')
 
     if ([XSNames.IBDSV2003, XSNames.IBDVB1999].includes(crossSection.crossSection)){
         delete downloadData.geo40K_beta
