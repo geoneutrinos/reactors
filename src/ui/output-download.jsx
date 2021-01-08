@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { zip, sum } from "lodash";
 import { XSNames, XSAbrev } from "../physics/neutrino-cross-section";
+import {SECONDS_PER_YEAR} from "../physics/constants";
 import { PhysicsContext } from "../state";
 
 import { Card, Button } from "react-bootstrap";
@@ -79,14 +80,6 @@ export const OutputDownload = ({ cores, spectrum, detector, boron8 }) => {
     totalCustom
   ).map((s) => sum(s));
 
-  // Right now we need to "manipulate" the boron8 data
-  const moddedBoron8Rate = boron8Rate
-    .slice(0, 100)
-    .map((rate) => {
-      return new Array(10).fill(rate);
-    })
-    .flat();
-
   const customCoreData =
     customClosestName === ""
       ? {}
@@ -103,7 +96,6 @@ export const OutputDownload = ({ cores, spectrum, detector, boron8 }) => {
     geo238U: spectrum.geoU,
     geo232Th: spectrum.geoTh,
     geo40K_beta: spectrum.geoK,
-    boron8: moddedBoron8Rate,
   };
   const downloadFormatters = {
     "bin center (MeV)": (v) => v.toFixed(3),
@@ -118,7 +110,6 @@ export const OutputDownload = ({ cores, spectrum, detector, boron8 }) => {
     [XSNames.IBDSV2003, XSNames.IBDVB1999].includes(crossSection.crossSection)
   ) {
     delete downloadData.geo40K_beta;
-    delete downloadData.boron8;
   }
 
   return (
@@ -129,6 +120,23 @@ export const OutputDownload = ({ cores, spectrum, detector, boron8 }) => {
           data={downloadData}
           formatters={downloadFormatters}
           filename={downloadFilename}
+          buttonTitle={"Download Reactor/GeoNu Output"}
+        />{" "}
+        <DownloadButton
+          data={{
+            "bin center (MeV)": boron8Rate.map((_, i) => 0.1 + 0.1 * i),
+            "boron8 (NIU)": boron8Rate.map(
+              (v) => v * 1e1 * SECONDS_PER_YEAR * 1e32
+            ),
+          }}
+          formatters={{
+            "boron8 (NIU)": (v) => v.toPrecision(7),
+            ...downloadFormatters,
+          }}
+          filename={`Enu_spec100keV_ES_Tmin${crossSection.elasticScatteringTMin.toFixed(
+            1
+          )}MeV.csv`}
+          buttonTitle={<span>Download Solar <sup>8</sup>B Output</span>}
         />
       </Card.Body>
     </Card>
