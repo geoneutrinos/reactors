@@ -19,7 +19,7 @@ export const Boron8SpectraPlot = ({boron8}) => {
     },
   ];
   var layout = {
-    title: "<sup>8</sup>B Decay Spectrum",
+    title: "<sup>8</sup>B Decay ES Rate Spectrum",
     yaxis: {
       title: { text: `dR/dE (NIU/MeV)` },
       autorange: true,
