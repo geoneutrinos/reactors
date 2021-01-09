@@ -138,7 +138,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
       (UIsignal + UIbackground) *
       (sigma / UIsignal) *
       (sigma / UIsignal)
-    ).toFixed(3);
+    ).toFixed(5);
   }
   if (solveFor === "significance") {
     UISigma = (UIsignal * Math.sqrt(time)) / Math.sqrt(UIsignal + UIbackground);
