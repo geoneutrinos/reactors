@@ -133,7 +133,7 @@ export const OutputDownload = ({ cores, spectrum, detector, boron8 }) => {
             "boron8 (NIU)": (v) => v.toPrecision(7),
             ...downloadFormatters,
           }}
-          filename={`Enu_spec100keV_ES_Tmin${crossSection.elasticScatteringTMin.toFixed(
+          filename={`Enu_spec100keV_ES_8Bsolar_Tmin${crossSection.elasticScatteringTMin.toFixed(
             1
           )}MeV.csv`}
           buttonTitle={<span>Download Solar <sup>8</sup>B Output</span>}
