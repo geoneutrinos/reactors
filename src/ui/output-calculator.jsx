@@ -212,7 +212,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
           </Form.Group>
 
           <Form.Group controlId="time">
-            <Form.Label>Time</Form.Label>
+            <Form.Label>Exposure Time for 10<sup>32</sup> Targets</Form.Label>
             <InputGroup>
               <Form.Control onChange={UIsetTime} type="number" value={UITime} />
               <InputGroup.Append>
