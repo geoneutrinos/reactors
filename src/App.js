@@ -275,11 +275,8 @@ function App(props) {
                 <CalculatorPanel cores={cores} spectrum={spectrum} />
               </Tab>
               <Tab eventKey="about" title="About">
-                Documentation of the model presented on this site is in
-                preparation. An old version of the model is documented in{" "}
+                The model presented on this site is documented in{" "}
                 <a href="https://arxiv.org/abs/1510.05633">arXiv:1510.05633</a>.
-                It includes some information about physical constants used and
-                source data.
               </Tab>
             </Tabs>
           </Col>
