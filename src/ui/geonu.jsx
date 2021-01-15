@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { rawAntineutrinoSpectrum } from '../antineutrino-spectrum'
+import React from "react";
+import { rawAntineutrinoSpectrum } from "../antineutrino-spectrum";
 
 import { Card, Form, InputGroup } from "react-bootstrap";
 
@@ -29,75 +29,66 @@ export const CrustFlux = ({ includeCrust, setIncludeCrust }) => {
 };
 
 export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios }) => {
-  const [U238flux, setU238flux] = useState(geoFluxRatios.U238flux);
-  const [ThURatio, setThURatio] = useState(geoFluxRatios.ThURatio);
-  const [KURatio, setKURatio] = useState(geoFluxRatios.KURatio);
-
-  const handleChange = (event) => {
-    const id = event.target.id;
-    const value = event.target.value;
-    const setters = {
-      U238flux: setU238flux,
-      ThURatio: setThURatio,
-      KURatio: setKURatio,
-    };
-    setters[id](value);
-
-    try {
-      setGeoFluxRatios({
-          ...geoFluxRatios,
-          [id]: parseFloat(value),
-      });
-    } catch {
-      // Do Nothing
-    }
-  };
-
   return (
     <Card>
       <Card.Header>Mantle Flux Inputs</Card.Header>
       <Card.Body>
         <Form.Group controlId="U238flux">
           <Form.Label>
-          <sup>238</sup>U Mantle Flux:{" "}
-          {U238flux.toFixed(0)} cm<sup>-2</sup>s<sup>-1</sup>
-        </Form.Label>
+            <sup>238</sup>U Mantle Flux: {geoFluxRatios.U238flux.toFixed(0)} cm
+            <sup>-2</sup>s<sup>-1</sup>
+          </Form.Label>
           <Form.Control
-            value={U238flux}
+            value={geoFluxRatios.U238flux}
             type="range"
             step={100000}
             min={0}
-            max={10000000]
-            onChange={handleChange}
+            max={10000000}
+            onChange={(event) =>
+              setGeoFluxRatios({
+                ...geoFluxRatios,
+                U238flux: parseFloat(event.target.value),
+              })
+            }
           />
         </Form.Group>
         <Form.Group controlId="ThURatio">
           <InputGroup>
-            <InputGroup.Prepend>
-              <InputGroup.Text>Th/U Ratio</InputGroup.Text>
-            </InputGroup.Prepend>
+            <Form.Label>
+              Th/U Ratio {geoFluxRatios.ThURatio.toFixed(1)}
+            </Form.Label>
             <Form.Control
-              value={ThURatio}
-              type="number"
-              placeholder="0"
-              step="0.1"
-              min="0.1"
-              onChange={handleChange}
+              value={geoFluxRatios.ThURatio}
+              type="range"
+              step={0.1}
+              min={0.1}
+              max={10}
+              onChange={(event) =>
+                setGeoFluxRatios({
+                  ...geoFluxRatios,
+                  ThURatio: parseFloat(event.target.value),
+                })
+              }
             />
           </InputGroup>
         </Form.Group>
         <Form.Group controlId="KURatio">
           <InputGroup>
-            <InputGroup.Prepend>
-              <InputGroup.Text>K/U Ratio</InputGroup.Text>
-            </InputGroup.Prepend>
+            <Form.Label>
+              K/U Ratio {geoFluxRatios.KURatio.toFixed(0)}
+            </Form.Label>
             <Form.Control
-              value={KURatio}
-              type="number"
-              placeholder="0"
-              step="1000"
-              min="1000"
-              onChange={handleChange}
+              value={geoFluxRatios.KURatio}
+              type="range"
+              step={1e3}
+              min={1e3}
+              max={3e4}
+              onChange={(event) =>
+                setGeoFluxRatios({
+                  ...geoFluxRatios,
+                  KURatio: parseFloat(event.target.value),
+                })
+              }
             />
           </InputGroup>
         </Form.Group>
@@ -106,12 +97,11 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios }) => {
   );
 };
 
-
 export const GeoNuSpectrumSource = ({ includeCrust, setIncludeCrust }) => {
-  const x_values = (new Float32Array(4500)).map((v, i) => i /1000)
+  const x_values = new Float32Array(4500).map((v, i) => i / 1000);
   const data = [
     {
-      y: [...rawAntineutrinoSpectrum["238U"], 0].map(x => x * 1000),
+      y: [...rawAntineutrinoSpectrum["238U"], 0].map((x) => x * 1000),
       x: x_values,
       name: "<sup>238</sup>U",
       type: "scatter",
@@ -120,7 +110,7 @@ export const GeoNuSpectrumSource = ({ includeCrust, setIncludeCrust }) => {
       marker: { color: "red" },
     },
     {
-      y: [...rawAntineutrinoSpectrum["235U"], 0].map(x => x * 1000),
+      y: [...rawAntineutrinoSpectrum["235U"], 0].map((x) => x * 1000),
       x: x_values,
       name: "<sup>235</sup>U",
       type: "scatter",
@@ -129,7 +119,7 @@ export const GeoNuSpectrumSource = ({ includeCrust, setIncludeCrust }) => {
       marker: { color: "orange" },
     },
     {
-      y: [...rawAntineutrinoSpectrum["232Th"], 0].map(x => x * 1000),
+      y: [...rawAntineutrinoSpectrum["232Th"], 0].map((x) => x * 1000),
       x: x_values,
       name: "<sup>232</sup>Th",
       type: "scatter",
@@ -138,7 +128,7 @@ export const GeoNuSpectrumSource = ({ includeCrust, setIncludeCrust }) => {
       marker: { color: "green" },
     },
     {
-      y: [...rawAntineutrinoSpectrum["40K"], 0].map(x => x * 1000),
+      y: [...rawAntineutrinoSpectrum["40K"], 0].map((x) => x * 1000),
       x: x_values,
       name: "<sup>40</sup>K",
       type: "scatter",
@@ -146,13 +136,13 @@ export const GeoNuSpectrumSource = ({ includeCrust, setIncludeCrust }) => {
       fill: "none",
       marker: { color: "blue" },
     },
-  ]
+  ];
   var layout = {
     title: "Geoneutrino Spectra",
     yaxis: {
       title: { text: `Intensity (1/MeV/decay)` },
-      type: 'log',
-      autorange: true
+      type: "log",
+      autorange: true,
     },
     xaxis: {
       title: { text: `Antineutrino Energy (MeV)` },
@@ -163,12 +153,20 @@ export const GeoNuSpectrumSource = ({ includeCrust, setIncludeCrust }) => {
     <Card>
       <Card.Header>Geoneutrino Spectra</Card.Header>
       <Card.Body>
-          <p>Geoneutrino spectra for <sup>238</sup>U, <sup>235</sup>U, <sup>232</sup>Th, and <sup>40</sup>K
-          from <a href="https://www.awa.tohoku.ac.jp/~sanshiro/research/geoneutrino/spectrum/">Enomoto Sanshiro</a>.</p>
-          <Plot 
+        <p>
+          Geoneutrino spectra for <sup>238</sup>U, <sup>235</sup>U,{" "}
+          <sup>232</sup>Th, and <sup>40</sup>K from{" "}
+          <a href="https://www.awa.tohoku.ac.jp/~sanshiro/research/geoneutrino/spectrum/">
+            Enomoto Sanshiro
+          </a>
+          .
+        </p>
+        <Plot
           useResizeHandler={true}
-      style={{ width: "100%" }}
-          data={data} layout={layout}/>
+          style={{ width: "100%" }}
+          data={data}
+          layout={layout}
+        />
       </Card.Body>
     </Card>
   );
