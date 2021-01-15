@@ -58,26 +58,18 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios }) => {
       <Card.Header>Mantle Flux Inputs</Card.Header>
       <Card.Body>
         <Form.Group controlId="U238flux">
-          <InputGroup>
-            <InputGroup.Prepend>
-              <InputGroup.Text>
-                <sup>238</sup>U Mantle Flux
-              </InputGroup.Text>
-            </InputGroup.Prepend>
-            <Form.Control
-              value={U238flux}
-              type="number"
-              placeholder="0"
-              step="100000"
-              min="0"
-              onChange={handleChange}
-            />
-            <InputGroup.Append>
-              <InputGroup.Text>
-                cm<sup>-2</sup>s<sup>-1</sup>
-              </InputGroup.Text>
-            </InputGroup.Append>
-          </InputGroup>
+          <Form.Label>
+          <sup>238</sup>U Mantle Flux:{" "}
+          {U238flux.toFixed(0)} cm<sup>-2</sup>s<sup>-1</sup>
+        </Form.Label>
+          <Form.Control
+            value={U238flux}
+            type="range"
+            step={100000}
+            min={0}
+            max={10000000]
+            onChange={handleChange}
+          />
         </Form.Group>
         <Form.Group controlId="ThURatio">
           <InputGroup>
