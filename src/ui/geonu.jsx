@@ -69,6 +69,7 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios }) => {
               type="number"
               placeholder="0"
               step="100000"
+              min="100000"
               onChange={handleChange}
             />
             <InputGroup.Append>
