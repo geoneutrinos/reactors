@@ -83,6 +83,12 @@ export const FISSION_FRACTIONS: { [type: string]: FissionFractions } = {
     PU239: 0.42,
     PU241: 0.01,
   },
+   VVER: {
+    U235: 0.56,
+    U238: 0.07,
+    PU239: 0.31,
+    PU241: 0.06,
+  },
 };
 
 function fissionFractionToPowerFraction(
