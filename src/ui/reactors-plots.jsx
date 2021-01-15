@@ -187,6 +187,8 @@ export const CoreDirectionSignalPlots = ({ cores }) => {
     title: `Core Direction (${first.name})`,
     yaxis: {
       title: { text: `signal (NIU)` },
+      type: 'log',
+      autorange: true
     },
     xaxis: {
       zeroline: false,
