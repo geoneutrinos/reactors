@@ -93,9 +93,6 @@ export const OutputDownload = ({ cores, spectrum, detector, boron8 }) => {
     "IAEA cores": totalIAEA,
     [`closest IAEA Core (${closestName})`]: closestSpectrum,
     ...customCoreData,
-    geo238U: spectrum.geoU,
-    geo232Th: spectrum.geoTh,
-    geo40K_beta: spectrum.geoK,
   };
   const downloadGeoData = {
     "bin center (MeV)": spectrum.geoU.map((n, i) => 0.005 + i * 0.01),
@@ -132,7 +129,7 @@ export const OutputDownload = ({ cores, spectrum, detector, boron8 }) => {
           data={downloadData}
           formatters={downloadFormatters}
           filename={downloadFilename}
-          buttonTitle={"Reactor/GeoNu"}
+          buttonTitle={"Reactor"}
         />{" "}
         <DownloadButton
           data={{
