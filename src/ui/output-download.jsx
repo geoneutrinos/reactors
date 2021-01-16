@@ -137,6 +137,9 @@ export const OutputDownload = ({ cores, spectrum, detector, boron8 }) => {
             1
           )}MeV.csv`}
           buttonTitle={<span>Download Solar <sup>8</sup>B Output</span>}
+        />{" "}
+        <DownloadButton
+          buttonTitle={"Do Not Click"}
         />
       </Card.Body>
     </Card>
