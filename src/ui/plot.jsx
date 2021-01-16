@@ -168,6 +168,7 @@ export function CoreDirectionPlot({ cores, detector }) {
     autosize: true,
     polar: {
       angularaxis: {
+        tickmode: "array",
         tickvals: [0, 45, 90, 135, 180, 225, 270, 315],
         ticktext: ["90", "45', "0", "315", "270", "225", "180", "135"],
       }
