@@ -128,7 +128,7 @@ export const OutputDownload = ({ cores, spectrum, detector, boron8 }) => {
           data={downloadData}
           formatters={downloadFormatters}
           filename={downloadFilename}
-          buttonTitle={"Reactor/GeoNu"}
+          buttonTitle={"Reactor"}
         />{" "}
         <DownloadButton
           data={{
