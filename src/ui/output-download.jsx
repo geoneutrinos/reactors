@@ -93,6 +93,9 @@ export const OutputDownload = ({ cores, spectrum, detector, boron8 }) => {
     "IAEA cores": totalIAEA,
     [`closest IAEA Core (${closestName})`]: closestSpectrum,
     ...customCoreData,
+  };
+  const downloadGeoData = {
+    "bin center (MeV)": spectrum.geoU.map((n, i) => 0.005 + i * 0.01),
     geo238U: spectrum.geoU,
     geo232Th: spectrum.geoTh,
     geo40K_beta: spectrum.geoK,
@@ -100,7 +103,12 @@ export const OutputDownload = ({ cores, spectrum, detector, boron8 }) => {
   const downloadFormatters = {
     "bin center (MeV)": (v) => v.toFixed(3),
   };
-  const downloadFilename = `Enu_spec10keV_${detector.current}_${
+  const downloadFilename = `AntiNu_spec10keV_${detector.current}_${
+    XSAbrev[crossSection.crossSection]
+  }_Tmin${crossSection.elasticScatteringTMin.toFixed(1)}MeV.csv`
+    .replace(/\s/g, "_")
+    .replace(/\(|\)/g, "");
+  const downloadGeoFilename = `GeoNu_spec10keV_${detector.current}_${
     XSAbrev[crossSection.crossSection]
   }_Tmin${crossSection.elasticScatteringTMin.toFixed(1)}MeV.csv`
     .replace(/\s/g, "_")
@@ -109,7 +117,7 @@ export const OutputDownload = ({ cores, spectrum, detector, boron8 }) => {
   if (
     [XSNames.IBDSV2003, XSNames.IBDVB1999].includes(crossSection.crossSection)
   ) {
-    delete downloadData.geo40K_beta;
+    delete downloadGeoData.geo40K_beta
   }
 
   return (
@@ -120,7 +128,7 @@ export const OutputDownload = ({ cores, spectrum, detector, boron8 }) => {
           data={downloadData}
           formatters={downloadFormatters}
           filename={downloadFilename}
-          buttonTitle={"Reactor/GeoNu"}
+          buttonTitle={"Reactor"}
         />{" "}
         <DownloadButton
           data={{
@@ -133,13 +141,16 @@ export const OutputDownload = ({ cores, spectrum, detector, boron8 }) => {
             "boron8 (NIU)": (v) => v.toPrecision(7),
             ...downloadFormatters,
           }}
-          filename={`Enu_spec100keV_ES_8Bsolar_Tmin${crossSection.elasticScatteringTMin.toFixed(
+          filename={`SolarNu_spec100keV_ES_8Bsolar_Tmin${crossSection.elasticScatteringTMin.toFixed(
             1
           )}MeV.csv`}
           buttonTitle={<span>Solar <sup>8</sup>B </span>}
         />{" "}
         <DownloadButton
-          buttonTitle={"GeoNu Placeholder- Do Not Click"}
+          data={downloadGeoData}
+          formatters={downloadFormatters}
+          filename={downloadGeoFilename}
+          buttonTitle={"GeoNu"}
         />
       </Card.Body>
     </Card>
