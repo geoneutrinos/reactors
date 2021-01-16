@@ -166,6 +166,10 @@ export function CoreDirectionPlot({ cores, detector }) {
     )}E, ${detector.elevation.toFixed(0)}m)`,
     showlegend: true,
     autosize: true,
+    angularaxis: {
+        rotation: 90,
+        direction: "clockwise"
+      }
     legend: {
       x: 1,
       xanchor: "left",
