@@ -120,7 +120,7 @@ export const OutputDownload = ({ cores, spectrum, detector, boron8 }) => {
           data={downloadData}
           formatters={downloadFormatters}
           filename={downloadFilename}
-          buttonTitle={"Download Reactor/GeoNu Output"}
+          buttonTitle={"Reactor/GeoNu"}
         />{" "}
         <DownloadButton
           data={{
@@ -136,10 +136,10 @@ export const OutputDownload = ({ cores, spectrum, detector, boron8 }) => {
           filename={`Enu_spec100keV_ES_8Bsolar_Tmin${crossSection.elasticScatteringTMin.toFixed(
             1
           )}MeV.csv`}
-          buttonTitle={<span>Download Solar <sup>8</sup>B Output</span>}
+          buttonTitle={<span>Solar <sup>8</sup>B </span>}
         />{" "}
         <DownloadButton
-          buttonTitle={"Do Not Click"}
+          buttonTitle={"GeoNu Placeholder- Do Not Click"}
         />
       </Card.Body>
     </Card>
