@@ -65,9 +65,9 @@ const CoreListItem = ({
   };
   let dist = core.detectorDistance.toFixed(0);
   if (core.detectorDistance < 10) {
-    dist = core.detectorDistance.toFixed(2);
+    dist = core.detectorDistance.toFixed(3);
   } else if (core.detectorDistance < 100) {
-    dist = core.detectorDistance.toFixed(1);
+    dist = core.detectorDistance.toFixed(2);
   }
 
   const downloadFilename = `Enu_spec10keV_${core.name}_${detector.current}_${XSAbrev[crossSection.crossSection]}_Tmin${crossSection.elasticScatteringTMin.toFixed(1)}MeV.csv`.replace(/\s/g, "_").replace(/\(|\)/g, '')
@@ -105,20 +105,20 @@ const CoreListItem = ({
         <Col xl="auto">
           Type: <CoreType core={core} />
           <br />
-          <span title="The Reference thermal power of the plant expressed in MW(th). The reactor thermal power is the net heat transferred from the fuel to the coolant.">
+          <span title="The Reference thermal power of the plant expressed in MW<sub>Th</sub>. The reactor thermal power is the net heat transferred from the fuel to the coolant.">
             Thermal Capacity:
           </span>{" "}
-          {core.power} MW
+          {core.power} MW<sub>Th</sub>
           <br />
           Load Factor: <Num v={lf} p={1} func={(v) => v * 100} />%<br />
-          Operating Power: {(lf * core.power).toFixed(0)} MW
+          Operating Power: {(lf * core.power).toFixed(0)} MW<sub>Th</sub>
           <br />
           Signal: {core.detectorNIU.toFixed(3)} NIU
         </Col>
         <Col xl>
           Lat: {core.lat.toFixed(4)} N<br />
           Lon: {core.lon.toFixed(4)} E<br />
-          Elevation: {core.elevation} meters
+          Elevation: {core.elevation} m
           <br />
           Distance: {dist} km< br/>
           φ: {core.direction.phi.toFixed(1)} θ: {core.direction.elev.toFixed(1)}
