@@ -93,9 +93,6 @@ export const OutputDownload = ({ cores, spectrum, detector, boron8 }) => {
     "IAEA cores": totalIAEA,
     [`closest IAEA Core (${closestName})`]: closestSpectrum,
     ...customCoreData,
-    geo238U: spectrum.geoU,
-    geo232Th: spectrum.geoTh,
-    geo40K_beta: spectrum.geoK,
   };
   const downloadGeoData = {
     "bin center (MeV)": spectrum.geoU.map((n, i) => 0.005 + i * 0.01),
@@ -121,7 +118,6 @@ export const OutputDownload = ({ cores, spectrum, detector, boron8 }) => {
     [XSNames.IBDSV2003, XSNames.IBDVB1999].includes(crossSection.crossSection)
   ) {
     delete downloadGeoData.geo40K_beta
-    delete downloadData.geo40K_beta;
   }
 
   return (
