@@ -255,11 +255,11 @@ function App(props) {
               </Tab>
               <Tab eventKey="physics" title="Physics">
                 <Visible>
+                  <PhysicsOscillationPane />
                   <DetectorPhysicsPane />
                   <CrossSectionPlots />
                   <DifferentialCrossSectionPlots />
                   <AngularDifferentialCrossSectionPlots />
-                  <PhysicsOscillationPane />
                   <PhysicsConstants />
                 </Visible>
               </Tab>
