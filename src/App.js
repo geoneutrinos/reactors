@@ -268,6 +268,8 @@ function App(props) {
                 </Visible>
               </Tab>
               <Tab eventKey="output" title="Output">
+                REFERENCE: When using model output in published research, please reference{" "}
+                <a href="https://arxiv.org/abs/1510.05633">arXiv:1510.05633</a>.
                 <Visible>
                   <OutputDownload
                     spectrum={spectrum}
@@ -277,13 +279,9 @@ function App(props) {
                   />
                 </Visible>
                 <CalculatorPanel cores={cores} spectrum={spectrum} />
-                Development of this web application was supported in part by Lawrence Livermore National 
-                Security, LLC. The model presented on this site is documented in{" "}
-                <a href="https://arxiv.org/abs/1510.05633">arXiv:1510.05633</a>.
-              </Tab>
-              <Tab eventKey="about" title="About">
-                Development of this web application was supported in part by Lawrence Livermore National 
-                Security, LLC. The model presented on this site is documented in{" "}
+                ACKNOWLEDGMENT: Development of this web application was supported in part by Lawrence Livermore National 
+                Security, LLC. 
+                DOCUMENTATION: The model presented on this site is documented here:{" "}
                 <a href="https://arxiv.org/abs/1510.05633">arXiv:1510.05633</a>.
               </Tab>
             </Tabs>
