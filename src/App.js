@@ -268,7 +268,7 @@ function App(props) {
                 </Visible>
               </Tab>
               <Tab eventKey="output" title="Output">
-                REFERENCE: When using model output in published research, please reference{" "}
+                REFERENCE: When using the output from this model in your research, please reference{" "}
                 <a href="https://arxiv.org/abs/1510.05633">arXiv:1510.05633</a>.
                 <Visible>
                   <OutputDownload
@@ -279,7 +279,7 @@ function App(props) {
                   />
                 </Visible>
                 <CalculatorPanel cores={cores} spectrum={spectrum} />
-                ACKNOWLEDGMENT: Development of this web application was supported in part by Lawrence Livermore National 
+                ACKNOWLEDGMENT: Development of the model and this web application was supported in part by Lawrence Livermore National 
                 Security, LLC.
               </Tab>
             </Tabs>
