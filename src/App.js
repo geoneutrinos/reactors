@@ -251,7 +251,7 @@ function App(props) {
                   <Boron8SpectraPlot boron8={boron8} />
                 </Visible>
               </Tab>
-              <Tab eventKey="physics" title="Physics">
+              <Tab eventKey="ibd/es" title="IBD/ES">
                 <Visible>
                   <DetectorPhysicsPane />
                   <CrossSectionPlots />
@@ -280,9 +280,7 @@ function App(props) {
                 </Visible>
                 <CalculatorPanel cores={cores} spectrum={spectrum} />
                 ACKNOWLEDGMENT: Development of this web application was supported in part by Lawrence Livermore National 
-                Security, LLC. 
-                DOCUMENTATION: The model presented on this site is documented here:{" "}
-                <a href="https://arxiv.org/abs/1510.05633">arXiv:1510.05633</a>.
+                Security, LLC.
               </Tab>
             </Tabs>
           </Col>
