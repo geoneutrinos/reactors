@@ -217,7 +217,6 @@ function App(props) {
                 />
                 <Visible>
                   <CoreDirectionSignalPlots cores={cores} />
-                  <FissionIsotopeSpectraPlots />
                 </Visible>
                 <CoreIAEARange
                   reactorLF={reactorLF}
@@ -265,6 +264,7 @@ function App(props) {
                   <PhysicsOscillationPane />
                   <PhysicsConstants />
                   <FissionFractionPane />
+                  <FissionIsotopeSpectraPlots />
                 </Visible>
               </Tab>
               <Tab eventKey="output" title="Output">
@@ -277,6 +277,9 @@ function App(props) {
                   />
                 </Visible>
                 <CalculatorPanel cores={cores} spectrum={spectrum} />
+                Development of this web application was supported in part by Lawrence Livermore National 
+                Security, LLC. The model presented on this site is documented in{" "}
+                <a href="https://arxiv.org/abs/1510.05633">arXiv:1510.05633</a>.
               </Tab>
               <Tab eventKey="about" title="About">
                 Development of this web application was supported in part by Lawrence Livermore National 
