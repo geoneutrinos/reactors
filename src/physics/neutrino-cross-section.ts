@@ -46,7 +46,7 @@ export const ES_COEFFICIENTS_LEFT = {
  * Particle and High-Energy Physics, 564(1–2), 42–54. 
  * https://doi.org/10.1016/S0370-2693(03)00616-6
  * 
- * @param {number} Ev -  Energy of the neutrino in MeV
+ * @param {number} Ev -  Energy of the antineutrino in MeV
  * @returns {number} - Cross section in cm^2
  */
 /** January 16, 2021
@@ -77,11 +77,16 @@ export const crossSectionSV2003: CrossSectionFunc = memoize((Ev) => {
  * Calculates the neutrino cross section, sometimes called sigma
  * Impliments P. Vogel, J.F. Beacom, Phys. Rev. D 60 (1999)
  * 
- * @param {number} Ev -  Energy of the neutrino in MeV
- * @returns {number} - Cross secton area in cm^2
+ * @param {number} Ev -  Energy of the antineutrino in MeV
+ * @returns {number} - Cross section in cm^2
  */
+/** January 16, 2021
+ * Corrected the expression for the electron energy Ee
+*/
 export const crossSectionVB1999: CrossSectionFunc = memoize((Ev) => {
-  const Ee = Math.max(ELECTRON_REST_MASS, Ev - (NEUTRON_REST_MASS - PROTON_REST_MASS));
+  const E_thresh = (((ELECTRON_REST_MASS + NEUTRON_REST_MASS) ** 2) - PROTON_REST_MASS ** 2) / (2 * PROTON_REST_MASS)
+  const Ee = Math.max(ELECTRON_REST_MASS, Ev - E_thresh + ELECTRON_REST_MASS)
+  //  const Ee = Math.max(ELECTRON_REST_MASS, Ev - (NEUTRON_REST_MASS - PROTON_REST_MASS));
 
   return 9.52e-44 * Math.sqrt((Ee * Ee) - (ELECTRON_REST_MASS * ELECTRON_REST_MASS)) * Ee;
 })
