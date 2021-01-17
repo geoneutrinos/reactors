@@ -219,7 +219,6 @@ function App(props) {
                   <CoreDirectionSignalPlots cores={cores} />
                   <FissionIsotopeSpectraPlots />
                 </Visible>
-                <FissionFractionPane />
                 <CoreIAEARange
                   reactorLF={reactorLF}
                   setReactorLF={setReactorLF}
@@ -255,12 +254,17 @@ function App(props) {
               </Tab>
               <Tab eventKey="physics" title="Physics">
                 <Visible>
-                  <PhysicsOscillationPane />
                   <DetectorPhysicsPane />
                   <CrossSectionPlots />
                   <DifferentialCrossSectionPlots />
                   <AngularDifferentialCrossSectionPlots />
+                </Visible>
+              </Tab>
+              <Tab eventKey="input" title="Input">
+                <Visible>
+                  <PhysicsOscillationPane />
                   <PhysicsConstants />
+                  <FissionFractionPane />
                 </Visible>
               </Tab>
               <Tab eventKey="output" title="Output">
