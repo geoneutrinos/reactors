@@ -70,7 +70,7 @@ const CoreListItem = ({
     dist = core.detectorDistance.toFixed(2);
   }
 
-  const downloadFilename = `Enu_spec10keV_${core.name}_${detector.current}_${XSAbrev[crossSection.crossSection]}_Tmin${crossSection.elasticScatteringTMin.toFixed(1)}MeV.csv`.replace(/\s/g, "_").replace(/\(|\)/g, '')
+  const downloadFilename = `Antinu_spec10keV_${core.name}_${detector.current}_${XSAbrev[crossSection.crossSection]}_Tmin${crossSection.elasticScatteringTMin.toFixed(1)}MeV.csv`.replace(/\s/g, "_").replace(/\(|\)/g, '')
   const downloadData = {
     "bin center (MeV)": core.detectorSignal.map((n,i) => 0.005 + i * 0.01),
     NIU: core.detectorSignal 
