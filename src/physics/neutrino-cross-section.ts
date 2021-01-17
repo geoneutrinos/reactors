@@ -47,8 +47,11 @@ export const ES_COEFFICIENTS_LEFT = {
  * https://doi.org/10.1016/S0370-2693(03)00616-6
  * 
  * @param {number} Ev -  Energy of the neutrino in MeV
- * @returns {number} - Cross secton area in cm^2
+ * @returns {number} - Cross section in cm^2
  */
+/** January 16, 2021
+ * Corrected the expression for the electron energy Ee
+*/
 export const crossSectionSV2003: CrossSectionFunc = memoize((Ev) => {
   const a = -0.07056;
   const b = 0.02018;
@@ -57,10 +60,15 @@ export const crossSectionSV2003: CrossSectionFunc = memoize((Ev) => {
   const sv = a + (b * Math.log(Ev)) + (c * Math.log(Ev) ** 3);
   const sve = Ev ** sv
 
-  const Delta = NEUTRON_REST_MASS - PROTON_REST_MASS;
+//  const Delta = NEUTRON_REST_MASS - PROTON_REST_MASS;
 
-  const Ee = Math.max(ELECTRON_REST_MASS, Ev - Delta)
-  const Pe = Math.sqrt(Ee ** 2 - ELECTRON_REST_MASS ** 2) // positron energy
+  const E_thresh = (((ELECTRON_REST_MASS + NEUTRON_REST_MASS) ** 2) - PROTON_REST_MASS ** 2) / (2 * PROTON_REST_MASS) 
+  
+//  const Ee = Math.max(ELECTRON_REST_MASS, Ev - Delta)
+  
+  const Ee = Math.max(ELECTRON_REST_MASS, Ev - E_thresh + ELECTRON_REST_MASS)
+  
+  const Pe = Math.sqrt(Ee ** 2 - ELECTRON_REST_MASS ** 2) // electron momentum
 
   return 1e-43 * Pe * Ee * sve;
 })
