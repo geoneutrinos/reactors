@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {FERMI_COUPLING_CONSTANT, HBAR_C, ELECTRON_REST_MASS, WEAK_MIXING_ANGLE} from '../physics/constants'
+import {FERMI_COUPLING_CONSTANT, HBAR_C, WEAK_MIXING_ANGLE} from '../physics/constants'
 
 import { Card, Table } from 'react-bootstrap';
 
@@ -15,7 +15,6 @@ export const PhysicsConstants = () => {
               <tr>
                 <th><i>G<sub>F</sub></i>/(<i>ħc</i>)<sup>3</sup> (GeV<sup>-2</sup>)</th>
                 <th><i>ħc</i> (MeV cm)</th>
-                <th><i>m</i><sub>e</sub> (MeV)</th>
                 <th>sin<sup>2</sup> <i>θ</i><sub>W</sub></th>
               </tr>
             </thead>
@@ -26,9 +25,6 @@ export const PhysicsConstants = () => {
                 </td>
                 <td>
                   {HBAR_C}
-                </td>
-                <td>
-                  {ELECTRON_REST_MASS}
                 </td>
                 <td>
                   {WEAK_MIXING_ANGLE}
