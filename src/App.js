@@ -190,8 +190,8 @@ function App(props) {
             <Tabs unmountOnExit={false} defaultActiveKey="detector">
               <Tab eventKey="detector" title="Detector">
                 <Visible>
-                  <CoreDirectionPlot cores={cores} detector={detector} />
                   <StatsPanel cores={cores} spectrum={spectrum} />
+                  <CoreDirectionPlot cores={cores} detector={detector} />
                   <DetectorLocationPane
                     detector={detector}
                     setDetector={setDetector}
@@ -217,9 +217,7 @@ function App(props) {
                 />
                 <Visible>
                   <CoreDirectionSignalPlots cores={cores} />
-                  <FissionIsotopeSpectraPlots />
                 </Visible>
-                <FissionFractionPane />
                 <CoreIAEARange
                   reactorLF={reactorLF}
                   setReactorLF={setReactorLF}
@@ -237,7 +235,6 @@ function App(props) {
               </Tab>
               <Tab eventKey="geonu" title="GeoNu">
                 <Visible>
-                  <GeoNuSpectrumSource />
                   <MantleFlux
                     geoFluxRatios={geoFluxRatios}
                     setGeoFluxRatios={setGeoFluxRatios}
@@ -246,6 +243,7 @@ function App(props) {
                     includeCrust={includeCrust}
                     setIncludeCrust={setIncludeCrust}
                   />
+                  <GeoNuSpectrumSource />
                 </Visible>
               </Tab>
               <Tab eventKey="solarnu" title="SolarNu">
@@ -253,17 +251,25 @@ function App(props) {
                   <Boron8SpectraPlot boron8={boron8} />
                 </Visible>
               </Tab>
-              <Tab eventKey="physics" title="Physics">
+              <Tab eventKey="ibd/es" title="IBD/ES">
                 <Visible>
                   <DetectorPhysicsPane />
                   <CrossSectionPlots />
                   <DifferentialCrossSectionPlots />
                   <AngularDifferentialCrossSectionPlots />
+                </Visible>
+              </Tab>
+              <Tab eventKey="input" title="Input">
+                <Visible>
                   <PhysicsOscillationPane />
                   <PhysicsConstants />
+                  <FissionFractionPane />
+                  <FissionIsotopeSpectraPlots />
                 </Visible>
               </Tab>
               <Tab eventKey="output" title="Output">
+                REFERENCE: When using the output from this model in your research, please reference{" "}
+                <a href="https://arxiv.org/abs/1510.05633">arXiv:1510.05633</a>.
                 <Visible>
                   <OutputDownload
                     spectrum={spectrum}
@@ -273,11 +279,8 @@ function App(props) {
                   />
                 </Visible>
                 <CalculatorPanel cores={cores} spectrum={spectrum} />
-              </Tab>
-              <Tab eventKey="about" title="About">
-                Development of this web application was supported in part by Lawrence Livermore National 
-                Security, LLC. The model presented on this site is documented in{" "}
-                <a href="https://arxiv.org/abs/1510.05633">arXiv:1510.05633</a>.
+                ACKNOWLEDGMENT: Development of the model and this web application was supported in part by Lawrence Livermore National 
+                Security, LLC.
               </Tab>
             </Tabs>
           </Col>
