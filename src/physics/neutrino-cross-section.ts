@@ -16,7 +16,7 @@ export enum XSNames {
   IBDSV2003 = "IBD: Strumia and Vissani (2003)",
   ESTOTAL = "ES: Antineutrino",
   ESANTI = "ES: Electron Antineutrino",
-  ESMUTAU = "ES: Mu/Tau Antineutrino",
+  ESMUTAU = "ES: Mu Tau Antineutrino",
 }
 
 export const XSAbrev: {[key in XSNames]: string} = {
