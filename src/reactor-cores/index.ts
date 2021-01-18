@@ -312,15 +312,15 @@ export function ReactorCore({
       dist = Math.round(dist);
     }
     let oscillationFunc = oscillation.neutrinoOscillationSpectrum(dist);
-    let ESEratio = bins.map(crossSection.crossSectionElectronAntineutrinoFractionES);
 
     if (crossSection.crossSection === XSNames.ESMUTAU) {
       oscillationFunc = oscillationFunc.map((v) => 1 - v);
     }
 
-    let ESMUTauContirbution = bins.map((bin) => 0);
+    let ESMUTauContirbution = (new Float64Array(bins.length)).fill(0)
 
     if (crossSection.crossSection === XSNames.ESTOTAL) {
+      let ESEratio = bins.map(crossSection.crossSectionElectronAntineutrinoFractionES);
       // we need the origional total specturm for this
       ESMUTauContirbution = spectrum.map(
         (spec, idx) => spec * (1 - ESEratio[idx]) * (1 - oscillationFunc[idx])
