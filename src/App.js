@@ -15,21 +15,23 @@ import {
   DetectorLocationPane,
   //Reactors Tab
   CoreDirectionSignalPlots,
-  FissionIsotopeSpectraPlots,
   CoreIAEARange,
   CoreList,
-  FissionFractionPane,
   //GeuNu Tab
   MantleFlux,
   CrustFlux,
   GeoNuSpectrumSource,
-  //Physics Tab
+  //IBD/ES Tab
   DetectorPhysicsPane,
-  PhysicsOscillationPane,
-  PhysicsConstants,
   CrossSectionPlots,
   DifferentialCrossSectionPlots,
   AngularDifferentialCrossSectionPlots,
+  //Input Tab
+  PhysicsOscillationPane,
+  PhysicsConstants,
+  ParticleMasses,
+  FissionFractionPane,
+  FissionIsotopeSpectraPlots,
   //Output Tab
   OutputDownload,
   CalculatorPanel,
@@ -262,6 +264,7 @@ function App(props) {
               <Tab eventKey="input" title="Input">
                 <Visible>
                   <PhysicsOscillationPane />
+                  <ParticleMasses />
                   <PhysicsConstants />
                   <FissionFractionPane />
                   <FissionIsotopeSpectraPlots />
