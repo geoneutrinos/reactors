@@ -39,8 +39,9 @@ export const Visible = ({ children }) => {
 }
 
 export const Num = ({ v, p, func }) => {
+  const [raw, setRaw] = useState(false)
   if (func === undefined) {
     func = (v) => v;
   }
-  return <span title={v.toString()}>{func(v).toFixed(p)}</span>;
+  return <span onDoubleClick={() => setRaw(!raw)} title={v.toString()}>{func(v).toFixed(p)}{raw? ` (${v.toString()})` : ""}</span>;
 }
