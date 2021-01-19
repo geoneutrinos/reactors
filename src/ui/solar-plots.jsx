@@ -19,7 +19,7 @@ export const Boron8SpectraPlot = ({boron8}) => {
     },
   ];
   var layout = {
-    title: "<sup>8</sup>B Decay Spectrum",
+    title: "<sup>8</sup>B Decay ES Rate Spectrum",
     yaxis: {
       title: { text: `dR/dE (NIU/MeV)` },
       autorange: true,
@@ -36,7 +36,7 @@ export const Boron8SpectraPlot = ({boron8}) => {
   };
   return (
     <Card>
-      <Card.Header><sup>8</sup>B Decay Spectrum, Flux, Rate</Card.Header>
+      <Card.Header><sup>8</sup>B Solar Neutrinos</Card.Header>
       <Card.Body>
         <p>
           R<sub>sol</sub> = {boron8.boron8NIU.toFixed(2)} NIU
