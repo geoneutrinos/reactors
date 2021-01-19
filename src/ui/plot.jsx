@@ -166,6 +166,15 @@ export function CoreDirectionPlot({ cores, detector }) {
     )}E, ${detector.elevation.toFixed(0)}m)`,
     showlegend: true,
     autosize: true,
+    polar: {
+      angularaxis: {
+        thetaunit: "degrees",
+        dtick: 45,
+        tickmode: "array",
+        tickvals: [0, 45, 90, 135, 180, 225, 270, 315],
+        ticktext: ["90&deg;", "45&deg;", "0&deg;", "315&deg;", "270&deg;", "225&deg;", "180&deg;", "135&deg;"],
+      },
+    },
     legend: {
       x: 1,
       xanchor: "left",
@@ -180,7 +189,7 @@ export function CoreDirectionPlot({ cores, detector }) {
         showarrow: false,
         align: "right",
         text:
-          "geoneutrinos.org<br />Angular Axis: Azimuth (deg): East is 0 deg, North is 90 deg, etc.<br />Radial Axis: Altitude (deg): Horizon 0 deg, Nadir -90 deg",
+          "geoneutrinos.org<br />Angular Axis: Azimuth (deg): North is 0&deg;, East is 90&deg;, etc.<br />Radial Axis: Elevation (deg): Horizon 0&deg;, Nadir -90&deg;",
         x: 1.2,
         xref: "paper",
         y: -0.075,
