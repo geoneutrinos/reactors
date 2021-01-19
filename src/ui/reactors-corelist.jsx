@@ -67,7 +67,7 @@ const CoreListItem = ({
   if (core.detectorDistance < 10) {
     dist = core.detectorDistance.toFixed(3);
   } else if (core.detectorDistance < 100) {
-    dist = core.detectorDistance.toFixed(2);
+    dist = core.detectorDistance.toFixed(3);
   }
 
   const downloadFilename = `Antinu_spec10keV_${core.name}_${detector.current}_${XSAbrev[crossSection.crossSection]}_Tmin${crossSection.elasticScatteringTMin.toFixed(1)}MeV.csv`.replace(/\s/g, "_").replace(/\(|\)/g, '')
@@ -110,7 +110,7 @@ const CoreListItem = ({
           </span>{" "}
           {core.power} MW<sub>Th</sub>
           <br />
-          Load Factor: <Num v={lf} p={1} func={(v) => v * 100} />%<br />
+          Load Factor: <Num v={lf} p={2} func={(v) => v * 100} />%<br />
           Operating Power: {(lf * core.power).toFixed(0)} MW<sub>Th</sub>
           <br />
           Signal: {core.detectorNIU.toFixed(3)} NIU
