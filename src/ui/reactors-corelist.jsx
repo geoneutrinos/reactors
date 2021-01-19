@@ -120,7 +120,7 @@ const CoreListItem = ({
           Lon: {core.lon.toFixed(4)} E<br />
           Elevation: {core.elevation} m
           <br />
-          Distance: {dist} km< br/>
+          Distance: <Num v={core.detectorDistance} p={3} /> km< br/>
           φ: {core.direction.phi.toFixed(1)} θ: {core.direction.elev.toFixed(1)}
         </Col>
       </Row>
