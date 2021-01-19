@@ -14,9 +14,9 @@ export enum NeutrinoType {
 export enum XSNames {
   IBDVB1999 = "IBD: Vogel and Beacom (1999)",
   IBDSV2003 = "IBD: Strumia and Vissani (2003)",
-  ESTOTAL = "Elastic Scattering: Antineutrino",
-  ESANTI = "Elastic Scattering: Electron Antineutrino",
-  ESMUTAU = "Elastic Scattering: Mu Tau Antineutrino",
+  ESTOTAL = "ES: Antineutrino",
+  ESANTI = "ES: Electron Antineutrino",
+  ESMUTAU = "ES: Mu Tau Antineutrino",
 }
 
 export const XSAbrev: {[key in XSNames]: string} = {

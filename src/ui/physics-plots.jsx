@@ -254,7 +254,7 @@ export const CrossSectionPlots = () => {
       marker: { color: "black" },
     },
     {
-      y: bins.map(crossSection["Elastic Scattering: Antineutrino"]),
+      y: bins.map(crossSection[XSNames.ESTOTAL]),
       x: bins,
       name: "ESnue",
       type: "scatter",
