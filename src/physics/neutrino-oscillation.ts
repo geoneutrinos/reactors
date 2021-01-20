@@ -75,6 +75,8 @@ export let oscillation: Oscillation = {
   massOrdering: MassOrdering.Normal
 }
 
+const bins = (new Float64Array(1000)).map((v, i) => 0.005 + i/100)
+
 const defaultOscillationParams: VariableOscillationParams = {
   s2t12: 0.310,
   dmsq21: 7.39e-5,
@@ -193,11 +195,8 @@ export const oscillationReducer = (state:Oscillation, action:OsilationParamsActi
   };
   oscillation.normalNeutrinoOscillationSpectrum = memoize(
     (dist: number): Float64Array => {
-      const oscspec = new Float64Array(1000);
-      oscspec.fill(0);
-
-      return oscspec.map((value, index) =>
-        oscillation.normalNeutrinoFlavor((index + 1) * 0.01, dist)
+      return bins.map((Ev) =>
+        oscillation.normalNeutrinoFlavor(Ev, dist)
       );
     }
   );
@@ -215,11 +214,8 @@ export const oscillationReducer = (state:Oscillation, action:OsilationParamsActi
   };
   oscillation.invertedNeutrinoOscillationSpectrum = memoize(
     (dist: number): Float64Array => {
-      const oscspec = new Float64Array(1000);
-      oscspec.fill(0);
-
-      return oscspec.map((value, index) =>
-        oscillation.invertedNeutrinoFlavor((index + 1) * 0.01, dist)
+      return bins.map((Ev) =>
+        oscillation.invertedNeutrinoFlavor(Ev, dist)
       );
     }
   );
