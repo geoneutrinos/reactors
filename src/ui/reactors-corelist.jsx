@@ -63,12 +63,12 @@ const CoreListItem = ({
     const newMods = {...coreMods, [core.name]: {loadOverride: 0}};
     setCoreMods(newMods)
   };
-  let dist = core.detectorDistance.toFixed(0);
-  if (core.detectorDistance < 10) {
-    dist = core.detectorDistance.toFixed(3);
-  } else if (core.detectorDistance < 100) {
-    dist = core.detectorDistance.toFixed(2);
-  }
+  //let dist = core.detectorDistance.toFixed(0);
+  //if (core.detectorDistance < 10) {
+  //  dist = core.detectorDistance.toFixed(3);
+  //} else if (core.detectorDistance < 100) {
+  //  dist = core.detectorDistance.toFixed(2);
+  //}
 
   const downloadFilename = `Antinu_spec10keV_${core.name}_${detector.current}_${XSAbrev[crossSection.crossSection]}_Tmin${crossSection.elasticScatteringTMin.toFixed(1)}MeV.csv`.replace(/\s/g, "_").replace(/\(|\)/g, '')
   const downloadData = {
@@ -111,7 +111,7 @@ const CoreListItem = ({
           {core.power} MW<sub>Th</sub>
           <br />
           Load Factor: <Num v={lf} p={1} func={(v) => v * 100} />%<br />
-          Operating Power: {(lf * core.power).toFixed(0)} MW<sub>Th</sub>
+          Operating Power: {(lf * core.power).toFixed(4)} MW<sub>Th</sub>
           <br />
           Signal: {core.detectorNIU.toFixed(3)} NIU
         </Col>
@@ -120,7 +120,7 @@ const CoreListItem = ({
           Lon: {core.lon.toFixed(4)} E<br />
           Elevation: {core.elevation} m
           <br />
-          Distance: {dist} km< br/>
+          Distance: <Num v={core.detectorDistance} p={3} /> km< br/>
           φ: {core.direction.phi.toFixed(1)} θ: {core.direction.elev.toFixed(1)}
         </Col>
       </Row>
