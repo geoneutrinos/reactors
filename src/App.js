@@ -44,6 +44,8 @@ import {
   ManageCustomCoreModal,
   //Helpers
   Visible,
+  // Experimental stuff
+  InterferencePlot,
 } from "./ui";
 
 import { defaultCores } from "./reactor-cores";
@@ -288,6 +290,9 @@ function App(props) {
                 <h2> ACKNOWLEDGMENT </h2>
                 <p> Development of the model and this web application was supported in part by Lawrence Livermore National 
                 Security, LLC. </p>
+              </Tab>
+              <Tab eventKey="experimental" title="Experimental">
+                <InterferencePlot cores={cores}/>
               </Tab>
             </Tabs>
           </Col>
