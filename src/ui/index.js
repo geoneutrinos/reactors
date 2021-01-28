@@ -40,6 +40,8 @@ export {
 export { Boron8SpectraPlot, AnalemmaPlot, Boron8KEPlot } from "./solar-plots";
 export { FissionFractionPane } from "./reactors-fission";
 
+export {InterferencePlot} from "./experimental"
+
 export const Visible = ({ children }) => {
   const [visible, setVisible] = useState(false);
 
