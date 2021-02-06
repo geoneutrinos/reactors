@@ -192,7 +192,7 @@ function App(props) {
             <Tabs unmountOnExit={false} defaultActiveKey="detector">
               <Tab eventKey="detector" title="Detector">
                 <Visible>
-                  <StatsPanel cores={cores} spectrum={spectrum} />
+                  <StatsPanel cores={cores} spectrum={spectrum} reactorLF={reactorLF}/>
                   <CoreDirectionPlot cores={cores} detector={detector} />
                   <DetectorLocationPane
                     detector={detector}
