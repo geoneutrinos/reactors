@@ -3,8 +3,95 @@ import React from "react";
 import { Card } from "react-bootstrap";
 import Plot from "react-plotly.js";
 
+import {range} from 'lodash';
+
 import {SECONDS_PER_YEAR} from "../physics/constants"
 import { boron8Bins } from "../solar";
+import {detectorSunPosition} from '../detectors'
+
+
+const times = range(0, 24).map((hour) => {
+  return range(0,365, 5).map((jd) => {
+    let d = new Date("2021-01-01T00:00:00Z")
+    d.setUTCDate(jd)
+    d.setUTCHours(hour)
+    return d
+  })
+})
+
+export const AnalemmaPlot = ({detector, cores}) => {
+  //const ana = times[1].map((date) => detectorSunPosition(detector, date))
+  //const data = [
+  //  {
+  //    y: ana.map(v => v.altitude),
+  //    x: ana.map(v => v.azimuth),
+  //    name: "solar",
+  //    type: "scatter",
+  //    mode: "lines",
+  //    fill: "none",
+  //    marker: { color: "blue" },
+  //  },
+  //];
+  let data = times.map(days => {
+    let ana = days.map(date => detectorSunPosition(detector, date))
+    return {
+      y: ana.map(v => v.altitude),
+      x: ana.map(v => v.azimuth),
+      name: "solar",
+      type: "scatter",
+      mode: "markers",
+      fill: "none",
+      marker: { color: "blue" },
+    }
+  })
+  console.log({
+    y: Object.values(cores).map(v => v.elevation),
+    x: Object.values(cores).map(v => v.phi),
+    name: "cores",
+    type: "scatter",
+    mode: "markers",
+    fill: "none",
+    marker: { color: "green" },
+})
+  data.push({
+      y: Object.values(cores).map(v => v.direction.elev * (Math.PI/180)),
+      x: Object.values(cores).map(v => -v.direction.phi * (Math.PI/180)),
+      name: "cores",
+      type: "scatter",
+      mode: "markers",
+      fill: "none",
+      marker: { color: "green" },
+  })
+  var layout = {
+    title: "Solar Analemma",
+    autosize: true,
+    //xaxis: {
+    //  range: [ -Math.PI, Math.PI ]
+    //},
+    //yaxis: {
+    //  range: [ -Math.PI/2, Math.PI/2 ]
+    //},
+    showlegend: false
+   // legend: {
+   //   x: 1,
+   //   xanchor: "right",
+   //   y: 0,
+   // },
+  };
+  return (
+    <Card>
+      <Card.Header>Solar Analemma</Card.Header>
+      <Card.Body>
+        <Plot
+          useResizeHandler={true}
+          style={{ width: "100%" }}
+          data={data}
+          layout={layout}
+        />
+      </Card.Body>
+    </Card>
+  );
+};
 
 export const Boron8SpectraPlot = ({boron8}) => {
   const data = [

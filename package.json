@@ -10,6 +10,7 @@
     "@types/node": "^14.14.7",
     "@types/react": "^16.9.56",
     "@types/react-dom": "^16.9.9",
+    "@types/suncalc": "^1.8.0",
     "bootstrap": "^4.5.3",
     "d3": "^6.2.0",
     "ecef-projector": "^1.0.1",
@@ -25,6 +26,7 @@
     "react-leaflet": "^2.6.3",
     "react-plotly.js": "^2.5.0",
     "react-scripts": "^4.0.0",
+    "suncalc": "^1.8.0",
     "typescript": "^4.0.5"
   },
   "scripts": {
