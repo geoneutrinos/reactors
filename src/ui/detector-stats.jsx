@@ -39,7 +39,7 @@ const geoKURatio = (R40K, R238U, crossSection) => {
   return R * C * l * NA;
 };
 
-export function StatsPanel({ cores, spectrum}) {
+export function StatsPanel({ cores, spectrum, reactorLF}) {
   const {crossSection} = useContext(PhysicsContext)
   const NIU = <span title="Neutrino Interaction Unit">NIU</span>;
 
@@ -108,7 +108,7 @@ export function StatsPanel({ cores, spectrum}) {
         </Table>
 
         <hr />
-        <h6>IAEA Cores</h6>
+        <h6>IAEA Cores <small>({reactorLF.start.toISOString().slice(0, 7)}/{reactorLF.end.toISOString().slice(0, 7)} Load Factor)</small></h6>
         <Table {...tableProps}>
           <tbody>
             <tr>
