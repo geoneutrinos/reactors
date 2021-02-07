@@ -108,7 +108,7 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
         </Table>
 
         <hr />
-        <h6>IAEA Cores <small>({reactorLF.start.toISOString().slice(0, 7)}/{reactorLF.end.toISOString().slice(0, 7)} Load Factor)</small></h6>
+        <h6>IAEA Cores <small>({reactorLF.start.toISOString().slice(0, 7)} through {reactorLF.end.toISOString().slice(0, 7)} avg Load Factor)</small></h6>
         <Table {...tableProps}>
           <tbody>
             <tr>
