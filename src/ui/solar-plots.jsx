@@ -22,8 +22,8 @@ export const AnalemmaPlot = ({ detector, cores }) => {
   let data = times.map((days) => {
     let fakeDetector = { ...detector, lon: 0 };
     let ana = days.map((date) => detectorSunPosition(fakeDetector, date));
-    let x = ana.map((v) => v.azimuth);
-    let y = ana.map((v) => v.altitude);
+    let x = ana.map((v) => (v.azimuth + Math.PI) * 180/Math.PI);
+    let y = ana.map((v) => v.altitude * 180/Math.PI);
     x.push(x[0]);
     y.push(y[0]);
     return {
@@ -36,20 +36,12 @@ export const AnalemmaPlot = ({ detector, cores }) => {
       marker: { color: "blue" },
     };
   });
-  console.log({
-    y: Object.values(cores).map((v) => v.elevation),
-    x: Object.values(cores).map((v) => v.phi),
-    name: "cores",
-    type: "scatter",
-    mode: "markers",
-    fill: "none",
-    marker: { color: "green" },
-  });
   data.push({
-    y: Object.values(cores).map((v) => v.direction.elev * (Math.PI / 180)),
+    y: Object.values(cores).map((v) => v.direction.elev),
     x: Object.values(cores)
-      .map((v) => -(v.direction.phi * (Math.PI / 180)) - Math.PI / 2)
-      .map((v) => (v < -Math.PI ? v + 2 * Math.PI : v)),
+      .map((v) => -(v.direction.phi * (Math.PI / 180)) + Math.PI / 2)
+      .map((v) => (v < 0 ? v + 2 * Math.PI : v))
+      .map(v => v * 180/Math.PI),
     name: "cores",
     type: "scatter",
     mode: "markers",
@@ -60,10 +52,12 @@ export const AnalemmaPlot = ({ detector, cores }) => {
     title: "Solar Analemma",
     autosize: true,
     xaxis: {
-      range: [-Math.PI, Math.PI],
+      title: "γ (deg)",
+      range: [0, 360],
     },
     yaxis: {
-      range: [-Math.PI / 2, Math.PI / 2],
+      title: "α (deg)",
+      range: [-90, 90],
     },
     showlegend: false,
   };
