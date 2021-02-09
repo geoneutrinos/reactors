@@ -18,12 +18,42 @@ const times = range(0, 24).map((hour) => {
   });
 });
 
+const plotDef = (cores, color) => {
+  return {
+    y: cores.map((v) => v.direction.elev),
+    x: cores
+      .map((v) => -(v.direction.phi * (Math.PI / 180)) + Math.PI / 2)
+      .map((v) => (v < 0 ? v + 2 * Math.PI : v))
+      .map((v) => (v * 180) / Math.PI),
+    text: cores.map((core) => `${core.name} (${core.type})`),
+    hoverinfo: "text",
+    type: "scatter",
+    mode: "markers",
+    fill: "none",
+    marker: { color: color },
+  };
+};
+
 export const AnalemmaPlot = ({ detector, cores }) => {
+  const coreData = Object.values(cores);
+  const PHWRcores = coreData.filter((core) => core.spectrumType === "PHWR");
+  const GCRcores = coreData.filter((core) => core.spectrumType === "GCR");
+  const LEUMoxCores = coreData.filter(
+    (core) => core.spectrumType === "LEU_MOX"
+  );
+  const CustomCores = coreData.filter((core) => core.spectrumType === "custom");
+  const AllOtherCores = coreData.filter(
+    (core) =>
+      core.spectrumType !== "LEU_MOX" &&
+      core.spectrumType !== "GCR" &&
+      core.spectrumType !== "PHWR" &&
+      core.type !== "custom"
+  );
   let data = times.map((days) => {
     let fakeDetector = { ...detector, lon: 0 };
     let ana = days.map((date) => detectorSunPosition(fakeDetector, date));
-    let x = ana.map((v) => (v.azimuth + Math.PI) * 180/Math.PI);
-    let y = ana.map((v) => v.altitude * 180/Math.PI);
+    let x = ana.map((v) => ((v.azimuth + Math.PI) * 180) / Math.PI);
+    let y = ana.map((v) => (v.altitude * 180) / Math.PI);
     x.push(x[0]);
     y.push(y[0]);
     return {
@@ -36,28 +66,27 @@ export const AnalemmaPlot = ({ detector, cores }) => {
       marker: { color: "blue" },
     };
   });
-  data.push({
-    y: Object.values(cores).map((v) => v.direction.elev),
-    x: Object.values(cores)
-      .map((v) => -(v.direction.phi * (Math.PI / 180)) + Math.PI / 2)
-      .map((v) => (v < 0 ? v + 2 * Math.PI : v))
-      .map(v => v * 180/Math.PI),
-    name: "cores",
-    type: "scatter",
-    mode: "markers",
-    fill: "none",
-    marker: { color: "green" },
-  });
+  data.push(plotDef(AllOtherCores, "#009000"));
+  data.push(plotDef(CustomCores, "#000"));
+  data.push(plotDef(GCRcores, "#D69537"));
+  data.push(plotDef(LEUMoxCores, "#0000ff"));
+  data.push(plotDef(PHWRcores, "#ff0000"));
+
   var layout = {
     title: "Solar Analemma",
+    hovermode: "closest",
     autosize: true,
     xaxis: {
       title: "γ (deg)",
       range: [0, 360],
+      tickmode: "array",
+      tickvals: range(0, 361, 45),
     },
     yaxis: {
       title: "α (deg)",
       range: [-90, 90],
+      tickmode: "array",
+      tickvals: range(-90, 91, 45),
     },
     showlegend: false,
   };
