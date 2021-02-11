@@ -28,14 +28,14 @@ const plotDef = (cores, color) => {
 
 export const AnalemmaPlot = ({ detector, cores, reactorLF}) => {
   // Some cals for filtering what times are shown
-  let yearOrMore = ((reactorLF.end - reactorLF.start) > 3.11e+10);
-  let startMonth = (reactorLF.start.getUTCMonth()).toString().padStart(2, "0")
+  let yearOrMore = ((reactorLF.end - reactorLF.start) >= 28857600000);
+  let startMonth = (reactorLF.start.getUTCMonth() + 1).toString().padStart(2, "0")
   let endMonth = (reactorLF.end.getUTCMonth() + 1).toString().padStart(2, "0")
   let start = new Date(`2021-${startMonth}-01T00:30:00Z`);
-  let end = new Date(`2021-${endMonth}-01T00:30:00Z`);
+  let end = new Date(`2021-${endMonth}-30T00:30:00Z`);
 
   const times = range(0, 24).map((hour) => {
-    let days = range(0, 365, 5).map((jd) => {
+    let days = range(0, 365, 2).map((jd) => {
       let d = new Date("2021-01-01T00:30:00Z");
 
       d.setUTCDate(jd);
