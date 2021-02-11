@@ -9,14 +9,6 @@ import { SECONDS_PER_YEAR } from "../physics/constants";
 import { boron8Bins } from "../solar";
 import { detectorSunPosition } from "../detectors";
 
-const times = range(0, 24).map((hour) => {
-  return range(0, 365, 10).map((jd) => {
-    let d = new Date("2021-01-01T00:30:00Z");
-    d.setUTCDate(jd);
-    d.setUTCHours(hour);
-    return d;
-  });
-});
 
 const plotDef = (cores, color) => {
   return {
@@ -34,7 +26,41 @@ const plotDef = (cores, color) => {
   };
 };
 
-export const AnalemmaPlot = ({ detector, cores }) => {
+export const AnalemmaPlot = ({ detector, cores, reactorLF}) => {
+  // Some cals for filtering what times are shown
+  let yearOrMore = ((reactorLF.end - reactorLF.start) > 3.11e+10);
+  let startMonth = (reactorLF.start.getUTCMonth() + 1).toString().padStart(2, "0")
+  let endMonth = (reactorLF.end.getUTCMonth() + 1).toString().padStart(2, "0")
+  let start = new Date(`2021-${startMonth}-01T00:30:00Z`);
+  let end = new Date(`2021-${endMonth}-01T00:30:00Z`);
+
+  const times = range(0, 24).map((hour) => {
+    let days = range(0, 365, 5).map((jd) => {
+      let d = new Date("2021-01-01T00:30:00Z");
+
+      d.setUTCDate(jd);
+      d.setUTCHours(hour);
+
+      if (yearOrMore) {
+        return d;
+      }
+      if (endMonth < startMonth) {
+        if ((d > end) && (d < start)){
+          return undefined;
+        }
+      } else {
+        if (d < start) {
+          return undefined;
+        }
+        if (d > end) {
+          return undefined;
+        }
+      }
+      return d;
+    })
+    days.push(days[0])
+    return days
+  });
   const coreData = Object.values(cores);
   const PHWRcores = coreData.filter((core) => core.spectrumType === "PHWR");
   const GCRcores = coreData.filter((core) => core.spectrumType === "GCR");
@@ -51,11 +77,9 @@ export const AnalemmaPlot = ({ detector, cores }) => {
   );
   let data = times.map((days) => {
     let fakeDetector = { ...detector, lon: 0 };
-    let ana = days.map((date) => detectorSunPosition(fakeDetector, date));
-    let x = ana.map((v) => ((v.azimuth + Math.PI) * 180) / Math.PI);
-    let y = ana.map((v) => (v.altitude * 180) / Math.PI);
-    x.push(x[0]);
-    y.push(y[0]);
+    let ana = days.map((date) => date === undefined? date: detectorSunPosition(fakeDetector, date));
+    let x = ana.map((v) => v === undefined? v: ((v.azimuth + Math.PI) * 180) / Math.PI);
+    let y = ana.map((v) => v === undefined? v: (v.altitude * 180) / Math.PI);
     return {
       y: y,
       x: x,
