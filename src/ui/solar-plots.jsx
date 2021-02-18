@@ -19,12 +19,20 @@ const plotDef = (cores, color) => {
       .map((v) => (v * 180) / Math.PI),
     text: cores.map((core) => `${core.name} (${core.type})`),
     hoverinfo: "text",
-    type: "scatter",
+    type: "scattergl",
     mode: "markers",
     fill: "none",
     marker: { color: color },
   };
 };
+
+const earthSunDist = (date) => {
+  const JD = date.valueOf() / 86400000 - 0.5 + 2440588;
+  const n = JD - 2451545;
+  const g = 357.528 + 0.9856003 * n;
+  const R = 1.00014 - 0.01671 * Math.cos(g * Math.PI/180) - 0.00014 * Math.cos(g * Math.PI/180) ** 2;
+  return R;
+}
 
 export const AnalemmaPlot = ({ detector, cores, reactorLF}) => {
   // Some cals for filtering what times are shown
@@ -81,14 +89,16 @@ export const AnalemmaPlot = ({ detector, cores, reactorLF}) => {
     let ana = days.map((date) => date === undefined? date: detectorSunPosition(fakeDetector, date));
     let x = ana.map((v) => v === undefined? v: ((v.azimuth + Math.PI) * 180) / Math.PI);
     let y = ana.map((v) => v === undefined? v: (v.altitude * 180) / Math.PI);
+    let z = days.map((date) => date === undefined? date: earthSunDist(date));
     return {
       y: y,
       x: x,
+      z: z,
       name: "solar",
-      type: "scatter",
-      mode: "lines",
+      type: "scattergl",
+      mode: "markers",
       fill: "none",
-      marker: { color: "blue" },
+      marker: { color: z, colorscale:'RdBu', cmin:0.98329, cmax: 1.01671, colorbar: {title: "Earth-Sun (au)" }},
     };
   });
   data.push(plotDef(AllOtherCores, "#009000"));
@@ -136,7 +146,7 @@ export const Boron8SpectraPlot = ({ boron8 }) => {
       y: boron8.boron8Rate.map((x) => x * 1e1 * SECONDS_PER_YEAR * 1e32),
       x: boron8Bins,
       name: "Boron 8",
-      type: "scatter",
+      type: "scattergl",
       mode: "lines",
       fill: "none",
       marker: { color: "blue" },
