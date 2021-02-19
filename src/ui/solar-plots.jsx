@@ -110,6 +110,7 @@ export const AnalemmaPlot = ({ detector, cores, reactorLF}) => {
 
   var layout = {
     title: "Solar Analemma",
+    hovermode: "closest",
     autosize: true,
     xaxis: {
       title: "γ (deg)",
