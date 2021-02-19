@@ -97,6 +97,7 @@ export const AnalemmaPlot = ({ detector, cores, reactorLF}) => {
       name: "solar",
       type: "scattergl",
       mode: "markers",
+      hoverinfo: "x+y+z",
       opacity: 0.5,
       fill: "none",
       marker: { size: 3, color: z, colorscale:'RdBu', cmin:0.98329, cmax: 1.01671, colorbar: {thickness: 15, title: "Earth-Sun (au)" }},
@@ -110,7 +111,6 @@ export const AnalemmaPlot = ({ detector, cores, reactorLF}) => {
 
   var layout = {
     title: "Solar Analemma",
-    hovermode: "closest",
     autosize: true,
     xaxis: {
       title: "γ (deg)",
