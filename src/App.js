@@ -37,6 +37,7 @@ import {
   CalculatorPanel,
   //solar tab
   Boron8SpectraPlot,
+  AnalemmaPlot,
 
   // Custom Core UI
   AddCustomCoreModal,
@@ -250,6 +251,7 @@ function App(props) {
               </Tab>
               <Tab eventKey="solarnu" title="SolarNu">
                 <Visible>
+                  <AnalemmaPlot detector={detector} cores={cores} reactorLF={reactorLF}/>
                   <Boron8SpectraPlot boron8={boron8} />
                 </Visible>
               </Tab>

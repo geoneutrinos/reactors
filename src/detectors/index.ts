@@ -1,4 +1,5 @@
 import {zip} from 'lodash';
+import SunCalc from 'suncalc';
 
 type DetecorPreset = {
     name: string,
@@ -74,4 +75,8 @@ export const detectorENUProjector = (detector: Detector) => {
       elev: 90 - atan2(hypot(enu.x, enu.y), enu.z) * (180/Math.PI)
     }
   }
+}
+
+export const detectorSunPosition = (detector: Detector, date: Date) => {
+  return SunCalc.getPosition(date, detector.lat, detector.lon)
 }

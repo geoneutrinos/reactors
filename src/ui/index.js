@@ -16,7 +16,7 @@ export { PhysicsConstants } from './physics-constants';
 export { ParticleMasses } from './physics-masses';
 export { CrossSectionPlots, DifferentialCrossSectionPlots, AngularDifferentialCrossSectionPlots } from './physics-plots';
 export { FissionIsotopeSpectraPlots, CoreDirectionSignalPlots } from './reactors-plots';
-export { Boron8SpectraPlot } from './solar-plots';
+export { Boron8SpectraPlot, AnalemmaPlot } from './solar-plots';
 export { FissionFractionPane } from './reactors-fission';
 
 
