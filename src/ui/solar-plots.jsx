@@ -89,17 +89,19 @@ export const AnalemmaPlot = ({ detector, cores, reactorLF}) => {
     let ana = days.map((date) => date === undefined? date: detectorSunPosition(fakeDetector, date));
     let x = ana.map((v) => v === undefined? v: ((v.azimuth + Math.PI) * 180) / Math.PI);
     let y = ana.map((v) => v === undefined? v: (v.altitude * 180) / Math.PI);
-    let z = days.map((date) => date === undefined? date: earthSunDist(date));
+    let z = days.map((date) => date === undefined? date: 1/(earthSunDist(date))**2);
     return {
       y: y,
       x: x,
       z: z,
+      text: z.map((zv) => `${zv.toFixed(5)} (1/au<sup>2</sup>)`),
+      hoverinfo: "text",
       name: "solar",
       type: "scattergl",
       mode: "markers",
       opacity: 0.5,
       fill: "none",
-      marker: { size: 3, color: z, colorscale:'RdBu', cmin:0.98329, cmax: 1.01671, colorbar: {thickness: 15, title: "Earth-Sun (au)" }},
+      marker: { size: 3, color: z, colorscale:'RdBu', cmin:0.9674, cmax: 1.0343, colorbar: {thickness: 15, title: "Earth-Sun (1/au<sup>2</sup>)" }},
     };
   });
   data.push(plotDef(AllOtherCores, "#009000"));
