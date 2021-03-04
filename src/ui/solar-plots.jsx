@@ -94,7 +94,7 @@ export const AnalemmaPlot = ({ detector, cores, reactorLF}) => {
       y: y,
       x: x,
       z: z,
-      text: z.map((zv) => `${zv.toFixed(5)} (1/au<sup>2</sup>)`),
+      text: z.map((zv) => `${zv === undefined? zv : zv.toFixed(5)} (1/au<sup>2</sup>)`),
       hoverinfo: "text",
       name: "solar",
       type: "scattergl",
