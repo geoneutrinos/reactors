@@ -31,6 +31,26 @@ export function NuSpectrumPlot({ cores, spectrum, detector}) {
   }, new Float64Array(1000).fill(0));
 
   const data = [
+  {
+      x: evBins,
+      y: totalCoreSignal,
+      name: "Reactor Cores",
+      type: "scatter",
+      mode: "lines",
+      fill: "tozerox",
+      marker: { color: "green" },
+      line: { width: 0.7 },
+      visible: sum(totalCoreSignal) > 0,
+    },
+    {
+      x: evBins,
+      y: closestActiveIAEACoreSignal,
+      name: `Closest IAEA<br />(${closestActiveIAEACore?.name || ""})`,
+      type: "scatter",
+      mode: "lines",
+      marker: { color: "grey" },
+      visible: sum(closestActiveIAEACoreSignal) > 0,
+    },  
     {
       x: evBins,
       y: customCoreSignal,
@@ -40,17 +60,6 @@ export function NuSpectrumPlot({ cores, spectrum, detector}) {
       fill: "none",
       marker: { color: "black" },
       visible: sum(customCoreSignal) > 0,
-    },
-    {
-      x: evBins,
-      y: spectrum.geoK,
-      name: "GeoK",
-      type: "scatter",
-      mode: "lines",
-      fill: "tozerox",
-      marker: { color: "yellow" },
-      line: { width: 0.7 },
-      visible: sum(spectrum.geoK) > 0,
     },
     {
       x: evBins,
@@ -76,23 +85,14 @@ export function NuSpectrumPlot({ cores, spectrum, detector}) {
     },
     {
       x: evBins,
-      y: totalCoreSignal,
-      name: "Reactor Cores",
+      y: spectrum.geoK,
+      name: "GeoK",
       type: "scatter",
       mode: "lines",
       fill: "tozerox",
-      marker: { color: "green" },
+      marker: { color: "yellow" },
       line: { width: 0.7 },
-      visible: sum(totalCoreSignal) > 0,
-    },
-    {
-      x: evBins,
-      y: closestActiveIAEACoreSignal,
-      name: `Closest IAEA<br />(${closestActiveIAEACore?.name || ""})`,
-      type: "scatter",
-      mode: "lines",
-      marker: { color: "grey" },
-      visible: sum(closestActiveIAEACoreSignal) > 0,
+      visible: sum(spectrum.geoK) > 0,
     },
   ];
 
