@@ -13,9 +13,12 @@ export function InterferencePlot({ cores }) {
     const currentCoreValue = core? coreList.filter((c) => c.name === core.name)[0]: closestActiveIAEACore
 
     const snapshot = () => {
+      if (closestActiveIAEACore === undefined){
+        return
+      }
         setCore(closestActiveIAEACore)
     }
-    const ratio = currentCoreValue.detectorSignal.map((v, i) => core? core.detectorSignal[i] / v : 1)
+    const ratio = currentCoreValue === undefined? []: currentCoreValue.detectorSignal.map((v, i) => core? core.detectorSignal[i] / v : 1)
 
   const data = [
     {
@@ -33,7 +36,7 @@ export function InterferencePlot({ cores }) {
   }
   return (
       <div>
-      <button onClick={() => snapshot()}>Snapshot Closest Core ({closestActiveIAEACore.name})</button>
+      <button onClick={() => snapshot()}>Snapshot Closest Core ({closestActiveIAEACore === undefined? "none" : closestActiveIAEACore.name})</button>
       
     <Plot
       data={data}
