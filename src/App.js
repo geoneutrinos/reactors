@@ -284,8 +284,8 @@ function App(props) {
                   />
                 </Visible>
                 <CalculatorPanel cores={cores} spectrum={spectrum} />
-                ACKNOWLEDGMENT: Development of the model and this web application was supported in part by Lawrence Livermore National 
-                Security, LLC.
+                <p> ACKNOWLEDGMENT: Development of the model and this web application was supported in part by Lawrence Livermore National 
+                Security, LLC. </p>
               </Tab>
             </Tabs>
           </Col>
