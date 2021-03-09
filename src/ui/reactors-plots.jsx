@@ -214,8 +214,8 @@ export const CoreDirectionSignalPlots = ({ cores }) => {
     <Card>
       <Card.Header>Core Direction Plot</Card.Header>
       <Card.Body>
-        <p> Reactor core signal in NIU versus cosine of angle w.r.t. the closest core. 1 NIU (Neutrino Interaction Unit) = 1 interaction/10<sup>32</sup>{" "}
-            targets/year.
+        <p> Reactor core signal in NIU versus the cosine of the angle w.r.t. the direction from the detector to the closest core. (1 NIU = 1 interaction/10<sup>32</sup>{" "}
+            targets/year)
         </p>
         <Plot
           useResizeHandler={true}
