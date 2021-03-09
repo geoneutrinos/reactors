@@ -189,7 +189,7 @@ export function CoreDirectionPlot({ cores, detector }) {
         showarrow: false,
         align: "right",
         text:
-          "geoneutrinos.org &emsp; <br />Angular Axis is Azimuth (deg): North is 0&deg;, East is 90&deg;, etc. &emsp; <br />Radial Axis is Elevation (deg): Horizon 0&deg;, Nadir -90&deg; &emsp; ",
+          "geoneutrinos.org <br />Angular Axis is Azimuth (deg): North is 0&deg;, East is 90&deg;, etc. <br />Radial Axis is Elevation (deg): Horizon 0&deg;, Nadir -90&deg; ",
         x: 1.2,
         xref: "paper",
         y: -0.075,
