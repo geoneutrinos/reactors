@@ -115,13 +115,13 @@ export const AnalemmaPlot = ({ detector, cores, reactorLF}) => {
     hovermode: "closest",
     autosize: true,
     xaxis: {
-      title: "Azimuth, γ (deg)",
+      title: "Azimuth (deg)",
       range: [0, 360],
       tickmode: "array",
       tickvals: range(0, 361, 45),
     },
     yaxis: {
-      title: "Elevation, α (deg)",
+      title: "Elevation (deg)",
       range: [-90, 90],
       tickmode: "array",
       tickvals: range(-90, 91, 45),
