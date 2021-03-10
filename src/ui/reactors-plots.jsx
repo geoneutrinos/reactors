@@ -63,6 +63,16 @@ export const FissionIsotopeSpectraPlots = () => {
       xanchor: "right",
       y: 1,
     },
+    annotations: [
+      {
+        showarrow: false,
+        text: "geoneutrinos.org",
+        x: 1.1,
+        xref: "paper",
+        y: -0.15,
+        yref: "paper",
+      },
+    ],
   };
   return (
     <Card>
