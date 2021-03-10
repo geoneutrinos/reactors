@@ -34,7 +34,7 @@ export function NuSpectrumPlot({ cores, spectrum, detector}) {
   {
       x: evBins,
       y: totalCoreSignal,
-      name: "Reactor Cores",
+      name: "Reactor cores",
       type: "scatter",
       mode: "lines",
       fill: "tozerox",
@@ -45,7 +45,7 @@ export function NuSpectrumPlot({ cores, spectrum, detector}) {
     {
       x: evBins,
       y: closestActiveIAEACoreSignal,
-      name: `Closest IAEA<br />(${closestActiveIAEACore?.name || ""})`,
+      name: `Closest IAEA core<br />(${closestActiveIAEACore?.name || ""})`,
       type: "scatter",
       mode: "lines",
       marker: { color: "grey" },
@@ -54,7 +54,7 @@ export function NuSpectrumPlot({ cores, spectrum, detector}) {
     {
       x: evBins,
       y: customCoreSignal,
-      name: "Custom Cores",
+      name: "Custom cores",
       type: "scatter",
       mode: "lines",
       fill: "none",
@@ -64,7 +64,7 @@ export function NuSpectrumPlot({ cores, spectrum, detector}) {
     {
       x: evBins,
       y: spectrum.geoU,
-      name: "GeoU",
+      name: "Geo <sup>238</sup>U",
       type: "scatter",
       mode: "lines",
       fill: "tozerox",
@@ -75,7 +75,7 @@ export function NuSpectrumPlot({ cores, spectrum, detector}) {
     {
       x: evBins,
       y: spectrum.geoTh,
-      name: "GeoTh",
+      name: "Geo <sup>232</sup>Th",
       type: "scatter",
       mode: "lines",
       fill: "tozerox",
@@ -86,7 +86,7 @@ export function NuSpectrumPlot({ cores, spectrum, detector}) {
     {
       x: evBins,
       y: spectrum.geoK,
-      name: "GeoK",
+      name: "Geo <sup>40</sup>K",
       type: "scatter",
       mode: "lines",
       fill: "tozerox",
