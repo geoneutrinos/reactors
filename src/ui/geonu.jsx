@@ -116,7 +116,7 @@ export const GeoNuSpectrumSource = ({ includeCrust, setIncludeCrust }) => {
       type: "scatter",
       mode: "lines",
       fill: "none",
-      marker: { color: "green" },
+      marker: { color: "purple" },
     },
     {
       y: [...rawAntineutrinoSpectrum["232Th"], 0].map((x) => x * 1000),
