@@ -107,7 +107,7 @@ export const GeoNuSpectrumSource = ({ includeCrust, setIncludeCrust }) => {
       type: "scatter",
       mode: "lines",
       fill: "none",
-      marker: { color: "red" },
+      marker: { color: "blue" },
     },
     {
       y: [...rawAntineutrinoSpectrum["235U"], 0].map((x) => x * 1000),
@@ -116,7 +116,7 @@ export const GeoNuSpectrumSource = ({ includeCrust, setIncludeCrust }) => {
       type: "scatter",
       mode: "lines",
       fill: "none",
-      marker: { color: "orange" },
+      marker: { color: "purple" },
     },
     {
       y: [...rawAntineutrinoSpectrum["232Th"], 0].map((x) => x * 1000),
@@ -125,7 +125,7 @@ export const GeoNuSpectrumSource = ({ includeCrust, setIncludeCrust }) => {
       type: "scatter",
       mode: "lines",
       fill: "none",
-      marker: { color: "green" },
+      marker: { color: "red" },
     },
     {
       y: [...rawAntineutrinoSpectrum["40K"], 0].map((x) => x * 1000),
@@ -134,7 +134,7 @@ export const GeoNuSpectrumSource = ({ includeCrust, setIncludeCrust }) => {
       type: "scatter",
       mode: "lines",
       fill: "none",
-      marker: { color: "blue" },
+      marker: { color: "yellow" },
     },
   ];
   var layout = {
