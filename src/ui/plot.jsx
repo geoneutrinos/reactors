@@ -64,7 +64,7 @@ export function NuSpectrumPlot({ cores, spectrum, detector}) {
     {
       x: evBins,
       y: spectrum.geoU,
-      name: "Geo_<sup>238</sup>U",
+      name: "Geo <sup>238</sup>U",
       type: "scatter",
       mode: "lines",
       fill: "tozerox",
@@ -75,7 +75,7 @@ export function NuSpectrumPlot({ cores, spectrum, detector}) {
     {
       x: evBins,
       y: spectrum.geoTh,
-      name: "Geo_<sup>232</sup>Th",
+      name: "Geo <sup>232</sup>Th",
       type: "scatter",
       mode: "lines",
       fill: "tozerox",
@@ -86,7 +86,7 @@ export function NuSpectrumPlot({ cores, spectrum, detector}) {
     {
       x: evBins,
       y: spectrum.geoK,
-      name: "Geo_<sup>40</sup>K",
+      name: "Geo <sup>40</sup>K",
       type: "scatter",
       mode: "lines",
       fill: "tozerox",
