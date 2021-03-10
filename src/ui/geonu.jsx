@@ -138,7 +138,7 @@ export const GeoNuSpectrumSource = ({ includeCrust, setIncludeCrust }) => {
     },
   ];
   var layout = {
-    title: "Geoneutrino &beta;<sup>+</sup>-decay Spectra",
+    title: "Geoneutrino Spectra: \u03B2<sup>+</sup>-decays ",
     yaxis: {
       title: { text: `Intensity (1/MeV/decay)` },
       type: "log",
