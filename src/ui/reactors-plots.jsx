@@ -203,9 +203,9 @@ export const CoreDirectionSignalPlots = ({ cores }) => {
       {
         showarrow: false,
         text: "geoneutrinos.org",
-        x: 1,
+        x: 1.1,
         xref: "paper",
-        y: 0,
+        y: -0.15,
         yref: "paper",
       },
     ],
