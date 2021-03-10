@@ -131,9 +131,9 @@ export const AnalemmaPlot = ({ detector, cores, reactorLF}) => {
       {
         showarrow: false,
         text: "geoneutrinos.org",
-        x: 1,
+        x: 1.1,
         xref: "paper",
-        y: 0,
+        y: -0.075,
         yref: "paper",
       },
     ],
