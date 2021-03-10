@@ -127,6 +127,16 @@ export const AnalemmaPlot = ({ detector, cores, reactorLF}) => {
       tickvals: range(-90, 91, 45),
     },
     showlegend: false,
+    annotations: [
+      {
+        showarrow: false,
+        text: "geoneutrinos.org",
+        x: 1.1,
+        xref: "paper",
+        y: -0.15,
+        yref: "paper",
+      },
+    ],
   };
   return (
     <Card>
