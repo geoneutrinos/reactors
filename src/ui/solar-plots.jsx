@@ -121,7 +121,7 @@ export const AnalemmaPlot = ({ detector, cores, reactorLF}) => {
       tickvals: range(0, 361, 45),
     },
     yaxis: {
-      title: "Elevation (deg)",
+      title: "Altitude (deg)",
       range: [-90, 90],
       tickmode: "array",
       tickvals: range(-90, 91, 45),
