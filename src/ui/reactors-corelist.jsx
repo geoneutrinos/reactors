@@ -121,7 +121,7 @@ const CoreListItem = ({
           Elevation: {core.elevation} m
           <br />
           Distance: {dist} km< br/>
-          Azim: {core.direction.phi.toFixed(1)}&deg; Elev: {core.direction.elev.toFixed(1)}&deg;
+          Azim: {core.direction.phi.toFixed(1)}&deg; Alt: {core.direction.elev.toFixed(1)}&deg;
         </Col>
       </Row>
     </ListGroup.Item>
