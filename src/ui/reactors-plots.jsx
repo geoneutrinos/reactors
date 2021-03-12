@@ -194,7 +194,7 @@ export const CoreDirectionSignalPlots = ({ cores }) => {
   ];
   var layout = {
     hovermode: "closest",
-    title: `Core Direction (${first.name})`,
+    title: `Core Directions w.r.t. ${first.name}`,
     yaxis: {
       title: { text: `signal (NIU)` },
       type: 'log',
@@ -213,17 +213,20 @@ export const CoreDirectionSignalPlots = ({ cores }) => {
       {
         showarrow: false,
         text: "geoneutrinos.org",
-        x: 1,
+        x: 1.1,
         xref: "paper",
-        y: 0,
+        y: -0.15,
         yref: "paper",
       },
     ],
   };
   return (
     <Card>
-      <Card.Header>Core Direction Plot</Card.Header>
+      <Card.Header>Core Directions Plot</Card.Header>
       <Card.Body>
+        <p> Reactor core signals in NIU versus the cosine of the angle &theta; w.r.t. the direction from the detector to the core with the highest signal (1 NIU = 1 interaction/10<sup>32</sup>{" "}
+            targets/year).
+        </p>
         <Plot
           useResizeHandler={true}
           style={{ width: "100%" }}
