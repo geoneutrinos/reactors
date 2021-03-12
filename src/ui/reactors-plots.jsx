@@ -184,7 +184,7 @@ export const CoreDirectionSignalPlots = ({ cores }) => {
   ];
   var layout = {
     hovermode: "closest",
-    title: `Core Directions (${first.name})`,
+    title: `Core Directions w.r.t. ${first.name}`,
     yaxis: {
       title: { text: `signal (NIU)` },
       type: 'log',
@@ -214,7 +214,7 @@ export const CoreDirectionSignalPlots = ({ cores }) => {
     <Card>
       <Card.Header>Core Directions Plot</Card.Header>
       <Card.Body>
-        <p> Reactor core signals in NIU versus the cosine of the angle w.r.t. the direction from the detector to the closest core (1 NIU = 1 interaction/10<sup>32</sup>{" "}
+        <p> Reactor core signals in NIU versus the cosine of the angle w.r.t. the direction from the detector to the core with the highest signal (1 NIU = 1 interaction/10<sup>32</sup>{" "}
             targets/year).
         </p>
         <Plot
