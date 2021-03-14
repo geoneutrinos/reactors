@@ -258,6 +258,7 @@ export const CoreList = ({
             <option value="signal">Sort By: Signal</option>
             <option value="distance">Sort By: Distance</option>
             <option value="capacity">Sort By: Thermal Capacity</option>
+            <option value="intensity">Sort By: Intensity</option>
             <option value="type">Sort By: Core Type</option>
             <option value="name">Sort By: Name</option>
           </Form.Control>
