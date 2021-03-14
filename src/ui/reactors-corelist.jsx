@@ -237,6 +237,9 @@ export const CoreList = ({
           />
         </Form>
       </Card.Header>
+      <Card.Body>
+        <p> Caution: Setting ALL cores to 100 percent power activates cores that have been permanently shutdown. </p>
+      </Card.Body>
       <ListGroup variant="flush">
         <ListGroup.Item>
         <Row>
