@@ -90,7 +90,7 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
   return (
     <Card>
       <Card.Body>
-        <Card.Title>Spectrum Stats <small>({crossSection.crossSection})</small></Card.Title>
+        <Card.Title>Spectrum Stats <small>({crossSection.crossSection}. See IBD/ES tab.)</small></Card.Title>
 
         <Table {...tableProps}>
           <tbody>
@@ -108,7 +108,7 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
         </Table>
 
         <hr />
-        <h6>IAEA Cores <small>({reactorLF.start.toISOString().slice(0, 7)} through {reactorLF.end.toISOString().slice(0, 7)} avg Load Factor)</small></h6>
+        <h6>IAEA Cores <small>({reactorLF.start.toISOString().slice(0, 7)} through {reactorLF.end.toISOString().slice(0, 7)} avg Load Factor. See Reactors tab.)</small></h6>
         <Table {...tableProps}>
           <tbody>
             <tr>
@@ -187,7 +187,7 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
         </div>
         <div>
           <hr />
-          <h6>Geoneutrinos</h6>
+          <h6>Geoneutrinos <small>(Crust prediction plus user-defined Mantle model. See GeoNu tab.)</small></h6>
           <Table {...tableProps}>
             <tbody>
               <tr>
