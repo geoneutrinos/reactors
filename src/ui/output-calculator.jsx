@@ -222,7 +222,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
           </Form.Group>
           <Form.Group controlId="sigma">
             <Form.Label>
-              N<sub>σ</sub>
+              N<sub>σ</sub> for 10<sup>32</sup> Targets
             </Form.Label>
             <InputGroup>
               <Form.Control
