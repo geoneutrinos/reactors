@@ -26,6 +26,7 @@ import {
   CrossSectionPlots,
   DifferentialCrossSectionPlots,
   AngularDifferentialCrossSectionPlots,
+  CumulativeDistributionFunctionPlots,
   //Input Tab
   PhysicsOscillationPane,
   PhysicsConstants,
@@ -260,6 +261,7 @@ function App(props) {
                   <DetectorPhysicsPane />
                   <CrossSectionPlots />
                   <DifferentialCrossSectionPlots />
+                  <CumulativeDistributionFunctionPlots />
                   <AngularDifferentialCrossSectionPlots />
                 </Visible>
               </Tab>

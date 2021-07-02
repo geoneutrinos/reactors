@@ -252,6 +252,133 @@ export const DifferentialCrossSectionPlots = () => {
 
 }
 
+export const CumulativeDistributionFunctionPlots = () => {
+  //const muTauTotal = sum(bins.map((Te) => differentialCrossSectionElasticScattering(10, Te, NeutrinoType.muTauAntineutrino)))
+  const cumulativeFunc = (bins, func, eV, neutrinoType) => {
+    return bins.map(function(Te){
+      this.acc += func(eV, Te, neutrinoType)
+      return this.acc
+    }, {acc:0}).map((Te, idx, arr) => Te/arr[arr.length -1])
+  }
+  const data = [
+    {
+      y: cumulativeFunc(bins.filter(Te => Te < TEMax(10)),differentialCrossSectionElasticScattering, 10,NeutrinoType.muTauAntineutrino),
+      x: bins.filter(Te => Te < TEMax(10)),
+      name: "ν̅<sub>x</sub> 10 MeV",
+      type: "scatter",
+      mode: "lines",
+      fill: "none",
+      marker: { color: "orange" },
+      line: {dash: 'dash',},
+    },
+    {
+      y: cumulativeFunc(bins.filter(Te => Te < TEMax(7)),differentialCrossSectionElasticScattering,7,NeutrinoType.muTauAntineutrino),
+      x: bins.filter(Te => Te < TEMax(7)),
+      name: "ν̅<sub>x</sub> 7 MeV",
+      type: "scatter",
+      mode: "lines",
+      fill: "none",
+      marker: { color: "red" },
+      line: {dash: 'dash',},
+    },
+    {
+      y: cumulativeFunc(bins.filter(Te => Te < TEMax(4)), differentialCrossSectionElasticScattering,4, NeutrinoType.muTauAntineutrino),
+      x: bins.filter(Te => Te < TEMax(4)),
+      name: "ν̅<sub>x</sub> 4 MeV",
+      type: "scatter",
+      mode: "lines",
+      fill: "none",
+      marker: { color: "blue" },
+      line: {dash: 'dash',},
+    },
+    {
+      y: cumulativeFunc(bins.filter(Te => Te < TEMax(1)), differentialCrossSectionElasticScattering,1, NeutrinoType.muTauAntineutrino),
+      x: bins.filter(Te => Te < TEMax(1)),
+      name: "ν̅<sub>x</sub> 1 MeV",
+      type: "scatter",
+      mode: "lines",
+      fill: "none",
+      marker: { color: "green" },
+      line: {dash: 'dash',},
+    },
+    {
+      y: cumulativeFunc(bins.filter(Te => Te < TEMax(10)), differentialCrossSectionElasticScattering, 10, NeutrinoType.electronAntineutino),
+      x: bins.filter(Te => Te < TEMax(10)),
+      name: "ν̅<sub>e</sub> 10 MeV",
+      type: "scatter",
+      mode: "lines",
+      fill: "none",
+      marker: { color: "orange" },
+    },
+    {
+      y: cumulativeFunc(bins.filter(Te => Te < TEMax(7)), differentialCrossSectionElasticScattering, 7, NeutrinoType.electronAntineutino),
+      x: bins.filter(Te => Te < TEMax(7)),
+      name: "ν̅<sub>e</sub> 7 MeV",
+      type: "scatter",
+      mode: "lines",
+      fill: "none",
+      marker: { color: "red" },
+    },
+    {
+      y: cumulativeFunc(bins.filter(Te => Te < TEMax(4)), differentialCrossSectionElasticScattering, 4, NeutrinoType.electronAntineutino),
+      x: bins.filter(Te => Te < TEMax(4)),
+      name: "ν̅<sub>e</sub> 4 MeV",
+      type: "scatter",
+      mode: "lines",
+      fill: "none",
+      marker: { color: "blue" },
+    },
+    {
+      y: cumulativeFunc(bins.filter(Te => Te < TEMax(1)), differentialCrossSectionElasticScattering, 1, NeutrinoType.electronAntineutino),
+      x: bins.filter(Te => Te < TEMax(1)),
+      name: "ν̅<sub>e</sub> 1 MeV",
+      type: "scatter",
+      mode: "lines",
+      fill: "none",
+      marker: { color: "green" },
+    },
+  ]
+  const layout = {
+    title: "ES Cumulative Differential Cross Section- T<sub>e</sub>",
+    yaxis: {
+      title: { text: `P(T≤t)` },
+      autorange: true
+    },
+    xaxis: {
+      title: { text: `T<sub>e</sub> (MeV)` },
+    },
+    autosize: true,
+    legend: {
+      x: 1,
+      xanchor: "left",
+      y: 1,
+    },
+    annotations: [
+      {
+        showarrow: false,
+        text: "geoneutrinos.org",
+        x: 1.1,
+        xref: "paper",
+        y: -0.15,
+        yref: "paper",
+      },
+    ],
+  };
+  return (
+    <Card>
+      <Card.Header>ES Cumulative Differential Cross Section- T<sub>e</sub></Card.Header>
+      <Card.Body>
+        <Plot
+          useResizeHandler={true}
+          style={{ width: "100%" }}
+          data={data} layout={layout}
+        />
+      </Card.Body>
+    </Card>
+  );
+
+}
+
 export const CrossSectionPlots = () => {
   const {crossSection} = useContext(PhysicsContext)
   const data = [
