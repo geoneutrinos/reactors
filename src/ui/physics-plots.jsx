@@ -341,7 +341,7 @@ export const CumulativeDistributionFunctionPlots = () => {
   const layout = {
     title: "ES Cumulative Differential Cross Section- T<sub>e</sub>",
     yaxis: {
-      title: { text: `P(T≤t)` },
+      title: { text: `P(T<sub>e</sub>≤t)` },
       autorange: true
     },
     xaxis: {
