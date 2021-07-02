@@ -26,6 +26,8 @@ import {
   CrossSectionPlots,
   DifferentialCrossSectionPlots,
   AngularDifferentialCrossSectionPlots,
+  CDFdifferentialCrossSectionPlots,
+  CDFAngularDifferentialCrossSectionPlots,
   //Input Tab
   PhysicsOscillationPane,
   PhysicsConstants,
@@ -260,7 +262,9 @@ function App(props) {
                   <DetectorPhysicsPane />
                   <CrossSectionPlots />
                   <DifferentialCrossSectionPlots />
+                  <CDFdifferentialCrossSectionPlots />
                   <AngularDifferentialCrossSectionPlots />
+                  <CDFAngularDifferentialCrossSectionPlots />
                 </Visible>
               </Tab>
               <Tab eventKey="input" title="Input">
