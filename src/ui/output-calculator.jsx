@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Card, Form, InputGroup } from "react-bootstrap";
 import { sum } from "lodash";
+import { Node, Provider } from "@nteract/mathjax";
 
 export const CalculatorPanel = ({ cores, spectrum }) => {
   const [signal, setSignal] = useState("all");
@@ -9,6 +10,9 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
   const [eMax, setEMax] = useState(10);
   const [time, setTime] = useState(0);
   const [sigma, setSigma] = useState(3);
+  const [deltaReactors, setDeltaReactors] = useState(0.06);
+  const [deltaGeoNu, setDeltaGeoNu] = useState(0.25);
+  const [targetScale, setTargetScale] = useState(1.0);
 
   const UIsetSelect = (event) => {
     var key = event.target.id;
@@ -104,138 +108,192 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
 
   let UIsignal = 0;
   let UIbackground = 0;
+  let UIBackgroundUncertanty = 0;
 
   if (signal === "all") {
     UIsignal = totalCoreSignal;
     UIbackground = geoTotalNIU;
+    UIBackgroundUncertanty = geoTotalNIU * deltaGeoNu;
   }
   if (signal === "closest") {
     UIsignal = closestNIU;
     UIbackground = geoTotalNIU + totalCoreSignal - closestNIU;
+    UIBackgroundUncertanty = Math.sqrt(
+      (geoTotalNIU * deltaGeoNu) ** 2 +
+        ((totalCoreSignal - closestNIU) * deltaReactors) ** 2
+    );
   }
   if (signal === "custom") {
     UIsignal = customTotalSignal;
     UIbackground = geoTotalNIU + totalCoreSignal - customTotalSignal;
+    UIBackgroundUncertanty = Math.sqrt(
+      (geoTotalNIU * deltaGeoNu) ** 2 +
+        ((totalCoreSignal - customTotalSignal) * deltaReactors) ** 2
+    );
   }
   if (signal === "geoneutrino") {
     UIbackground = totalCoreSignal;
     UIsignal = geoTotalNIU;
+    UIBackgroundUncertanty = totalCoreSignal * deltaReactors;
   }
   if (signal === "geo_u") {
     UIbackground = totalCoreSignal + geoTotalNIU - geoUNIU;
     UIsignal = geoUNIU;
+    UIBackgroundUncertanty = Math.sqrt(
+      ((geoTotalNIU - geoUNIU) * deltaGeoNu) ** 2 +
+        (totalCoreSignal * deltaReactors) ** 2
+    );
   }
   if (signal === "geo_th") {
     UIbackground = totalCoreSignal + geoTotalNIU - geoThNIU;
     UIsignal = geoThNIU;
+    UIBackgroundUncertanty = Math.sqrt(
+      ((geoTotalNIU - geoThNIU) * deltaGeoNu) ** 2 +
+        (totalCoreSignal * deltaReactors) ** 2
+    );
   }
 
   let UITime = time;
   let UISigma = sigma;
+  let UIExposureNever = false;
 
   if (solveFor === "exposure") {
-    UITime = (
-      (UIsignal + UIbackground) *
-      (sigma / UIsignal) *
-      (sigma / UIsignal)
-    ).toFixed(5);
+    UITime =
+      (sigma ** 2 * (UIsignal + UIbackground)) /
+      (UIsignal ** 2 - sigma ** 2 * UIBackgroundUncertanty ** 2) /
+      targetScale;
+    if (sigma * UIBackgroundUncertanty >= UIsignal) {
+      UITime = 0;
+      UIExposureNever = true;
+    }
+
+    UITime = UITime.toFixed(5);
   }
   if (solveFor === "significance") {
-    UISigma = (UIsignal * Math.sqrt(time)) / Math.sqrt(UIsignal + UIbackground);
+    UISigma =
+      (UIsignal * time * targetScale) /
+      Math.sqrt(
+        (UIsignal + UIbackground) * time * targetScale +
+          (UIBackgroundUncertanty * time * targetScale) ** 2
+      );
   }
 
   return (
     <Card>
       <Card.Header>Rate Significance Calculator</Card.Header>
       <Card.Body>
-        <Form>
-          <Form.Group controlId="signal">
-            <Form.Label>Signal (background)</Form.Label>
-            <Form.Control as="select" onChange={UIsetSelect} value={signal}>
-              <option value="all">All Cores (geoneutrino background)</option>
-              <option value="closest">
-                Closest Core (geonu + other reactors background)
-              </option>
-              <option value="custom">
-                Custom Core (geonu + other reactors background)
-              </option>
-              <option value="geoneutrino">
-                Geoneutrino (reactor background)
-              </option>
-              <option value="geo_u">
-                Geoneutrino U (reactor + geo Th background)
-              </option>
-              <option value="geo_th">
-                Geoneutrino Th (reactor + geo U background)
-              </option>
-            </Form.Control>
-          </Form.Group>
-          <Form.Group controlId="solve_for">
-            <Form.Label>Solve For</Form.Label>
-            <Form.Control as="select" onChange={UIsetSelect} value={solveFor}>
-              <option value="exposure">Exposure Time</option>
-              <option value="significance">Significance</option>
-            </Form.Control>
-          </Form.Group>
-          <Form.Group controlId="e_min">
-            <Form.Label>
-              Antineutrino E<sub>min</sub>
-            </Form.Label>
-            <InputGroup>
-              <Form.Control
-                onChange={UIsetEMin}
-                type="number"
-                step="0.1"
-                value={eMin}
-              />
-              <InputGroup.Append>
-                <InputGroup.Text>MeV</InputGroup.Text>
-              </InputGroup.Append>
-            </InputGroup>
-          </Form.Group>
+        <Provider>
+          <Form noValidate>
+            <Form.Group controlId="signal">
+              <Form.Label>Signal (background)</Form.Label>
+              <Form.Control as="select" onChange={UIsetSelect} value={signal}>
+                <option value="all">All Cores (geoneutrino background)</option>
+                <option value="closest">
+                  Closest Core (geonu + other reactors background)
+                </option>
+                <option value="custom">
+                  Custom Core (geonu + other reactors background)
+                </option>
+                <option value="geoneutrino">
+                  Geoneutrino (reactor background)
+                </option>
+                <option value="geo_u">
+                  Geoneutrino U (reactor + geo Th background)
+                </option>
+                <option value="geo_th">
+                  Geoneutrino Th (reactor + geo U background)
+                </option>
+              </Form.Control>
+            </Form.Group>
+            <Form.Group controlId="solve_for">
+              <Form.Label>Solve For</Form.Label>
+              <Form.Control as="select" onChange={UIsetSelect} value={solveFor}>
+                <option value="exposure">Exposure Time</option>
+                <option value="significance">Significance</option>
+              </Form.Control>
+            </Form.Group>
+            <Form.Group controlId="e_min">
+              <Form.Label>
+                Antineutrino E<sub>min</sub>
+              </Form.Label>
+              <InputGroup>
+                <Form.Control
+                  onChange={UIsetEMin}
+                  type="number"
+                  step="0.1"
+                  value={eMin}
+                />
+                <InputGroup.Append>
+                  <InputGroup.Text>MeV</InputGroup.Text>
+                </InputGroup.Append>
+              </InputGroup>
+            </Form.Group>
 
-          <Form.Group controlId="e_max">
-            <Form.Label>
-              Antineutrino E<sub>max</sub>
-            </Form.Label>
-            <InputGroup>
-              <Form.Control
-                onChange={UIsetEMax}
-                type="number"
-                step="0.1"
-                value={eMax}
-              />
-              <InputGroup.Append>
-                <InputGroup.Text>MeV</InputGroup.Text>
-              </InputGroup.Append>
-            </InputGroup>
-          </Form.Group>
+            <Form.Group controlId="e_max">
+              <Form.Label>
+                Antineutrino E<sub>max</sub>
+              </Form.Label>
+              <InputGroup>
+                <Form.Control
+                  onChange={UIsetEMax}
+                  type="number"
+                  step="0.1"
+                  value={eMax}
+                />
+                <InputGroup.Append>
+                  <InputGroup.Text>MeV</InputGroup.Text>
+                </InputGroup.Append>
+              </InputGroup>
+            </Form.Group>
 
-          <Form.Group controlId="time">
-            <Form.Label>Exposure Time for 10<sup>32</sup> Targets</Form.Label>
-            <InputGroup>
-              <Form.Control onChange={UIsetTime} type="number" value={UITime} />
-              <InputGroup.Append>
-                <InputGroup.Text>years</InputGroup.Text>
-              </InputGroup.Append>
-            </InputGroup>
-          </Form.Group>
-          <Form.Group controlId="sigma">
-            <Form.Label>
-              N<sub>σ</sub> for 10<sup>32</sup> Targets
-            </Form.Label>
-            <InputGroup>
-              <Form.Control
-                onChange={UIsetSigma}
-                type="number"
-                value={UISigma}
-              />
-            </InputGroup>
-          </Form.Group>
-        </Form>
-        <div>
-          N<sub>σ</sub> = Signal * sqrt(Time) / sqrt(Signal + Background)
-        </div>
+            <Form.Group controlId="time">
+              <Form.Label>
+                Exposure Time for{" "}
+                <Node
+                  inline
+                >{`${targetScale} \\times 10^{32} \\text{targets}`}</Node>
+              </Form.Label>
+              <InputGroup>
+                <Form.Control
+                  isInvalid={UIExposureNever}
+                  onChange={UIsetTime}
+                  type="number"
+                  value={UITime}
+                />
+                <InputGroup.Append>
+                  <InputGroup.Text>years</InputGroup.Text>
+                </InputGroup.Append>
+                <Form.Control.Feedback type="invalid">
+                  Background Uncertainty Exceeds Signal
+                </Form.Control.Feedback>
+              </InputGroup>
+            </Form.Group>
+            <Form.Group controlId="sigma">
+              <Form.Label>
+                N<sub>σ</sub> for{" "}
+                <Node
+                  inline
+                >{`${targetScale} \\times 10^{32} \\text{targets}`}</Node>
+              </Form.Label>
+              <InputGroup>
+                <Form.Control
+                  onChange={UIsetSigma}
+                  type="number"
+                  value={UISigma}
+                />
+              </InputGroup>
+            </Form.Group>
+          </Form>
+          <div>
+            <Node>{String.raw`N_{\sigma} = \frac{ S * E}{\sqrt{(S + B) * E + (\delta B * E)^2}}`}</Node>
+            Where S is the signal rate, B is the background rate,{" "}
+            <Node inline>{String.raw`\delta B`}</Node> is the background
+            uncertainty and E is exposure:{" "}
+            <Node
+              inline
+            >{`E = \\text{time} * ${targetScale} \\times 10^{32} \\text{targets}`}</Node>
+          </div>
+        </Provider>
       </Card.Body>
     </Card>
   );
