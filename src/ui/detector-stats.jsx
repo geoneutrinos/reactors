@@ -7,6 +7,7 @@ import { Elements } from "./elements";
 import {
   rateToFlux232Th,
   rateToFlux238U,
+  rateToFlux235U,
   rateToFlux40K,
 } from "../antineutrino-spectrum";
 import { ISOTOPIC_NEUTRINO_LUMINOSITY } from "../physics/derived";
@@ -15,7 +16,7 @@ import {PhysicsContext} from "../state"
 
 import { Num } from '.'
 
-const { U238, Th232, K40 } = Elements;
+const { U238, U235, Th232, K40 } = Elements;
 
 
 
@@ -70,8 +71,9 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
 
   const customDisplay = customTotalSignal > 0 ? "block" : "none";
 
-  // geo thigns
+  // geo things
   const geoUNIU = sum(spectrum.geoU) * 0.01;
+  const geoU5NIU = 0.0;
   const geoThNIU = sum(spectrum.geoTh) * 0.01;
   const geoKNIU = sum(spectrum.geoK) * 0.01;
 
@@ -80,7 +82,7 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
 
   const geoKUVald = isNaN(geoKU) ? "none" : "auto";
 
-  const geoTotalNIU = geoUNIU + geoThNIU + geoKNIU;
+  const geoTotalNIU = geoUNIU + geoU5NIU + geoThNIU + geoKNIU;
 
   // finally
   const totalNIU = totalCoreSignal + geoTotalNIU;
@@ -204,7 +206,8 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
                   <Num v={geoUNIU} p={1} /> {U238}, <Num v={geoThNIU} p={1} />{" "}
                   {Th232}
                   <span style={{ display: geoKUVald }}>
-                    , <Num v={geoKNIU} p={1} /> {K40}
+                    , <Num v={geoKNIU} p={1} /> {K40}, <Num v={geoU5NIU} p={1} />{" "}
+                  {U235}
                   </span>
                   )
                 </td>
