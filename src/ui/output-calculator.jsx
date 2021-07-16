@@ -187,21 +187,21 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
             <Form.Group controlId="signal">
               <Form.Label>Signal (background)</Form.Label>
               <Form.Control as="select" onChange={UIsetSelect} value={signal}>
-                <option value="all">All Cores (geoneutrino background)</option>
+                <option value="all">All Cores (geoneutrinos)</option>
                 <option value="closest">
-                  Closest Core (geonu + other reactors background)
+                  Closest Core (geoneutrinos + other reactors)
                 </option>
                 <option value="custom">
-                  Custom Core (geonu + other reactors background)
+                  Custom Core (geoneutrinos + other reactors)
                 </option>
                 <option value="geoneutrino">
-                  Geoneutrino (reactor background)
+                  Geoneutrino (reactors)
                 </option>
                 <option value="geo_u">
-                  Geoneutrino U (reactor + geo Th background)
+                  Geoneutrino U (reactors + geo Th)
                 </option>
                 <option value="geo_th">
-                  Geoneutrino Th (reactor + geo U background)
+                  Geoneutrino Th (reactors + geo U)
                 </option>
               </Form.Control>
             </Form.Group>
