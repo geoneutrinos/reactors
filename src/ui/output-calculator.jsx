@@ -286,9 +286,9 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
           </Form>
           <div>
             <Node>{String.raw`N_{\sigma} = \frac{ S * E}{\sqrt{(S + B) * E + (\delta B * E)^2}}`}</Node>
-            Where S is the signal rate, B is the background rate,{" "}
-            <Node inline>{String.raw`\delta B`}</Node> is the background
-            uncertainty and E is exposure:{" "}
+            Where <i>S</i> is the signal rate, <i>B</i> is the background rate,{" "}
+            <Node inline>{String.raw`\delta B`}</Node> is the systematic uncertainty of the background
+            rate, and <i>E</i> is the exposure:{" "}
             <Node
               inline
             >{`E = \\text{time} * ${targetScale} \\times 10^{32} \\text{targets}`}</Node>
