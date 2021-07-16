@@ -35,7 +35,7 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios }) => {
       <Card.Body>
         <Form.Group controlId="U238flux">
           <Form.Label>
-            <sup>238</sup>U Mantle Flux: {geoFluxRatios.U238flux.toFixed(0)} cm
+            <sup>238</sup>U Mantle Flux: {geoFluxRatios.U238flux.toExponential(1)} cm
             <sup>-2</sup>s<sup>-1</sup>
           </Form.Label>
           <Form.Control
@@ -75,7 +75,7 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios }) => {
         <Form.Group controlId="KURatio">
           <InputGroup>
             <Form.Label>
-              K/U Ratio {geoFluxRatios.KURatio.toFixed(0)}
+              K/U Ratio {geoFluxRatios.KURatio.toExponential(1)}
             </Form.Label>
             <Form.Control
               value={geoFluxRatios.KURatio}
