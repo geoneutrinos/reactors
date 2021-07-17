@@ -263,7 +263,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
                   value={UITime}
                 />
                 <InputGroup.Append>
-                  <InputGroup.Text>10<sup>32</>target-years</InputGroup.Text>
+                  <InputGroup.Text>10<sup>32</sup>target-years</InputGroup.Text>
                 </InputGroup.Append>
                 <Form.Control.Feedback type="invalid">
                   Background Uncertainty Exceeds Signal
