@@ -208,7 +208,8 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
             <Form.Group controlId="solve_for">
               <Form.Label>Solve For</Form.Label>
               <Form.Control as="select" onChange={UIsetSelect} value={solveFor}>
-                <option value="exposure">Exposure Time</option>
+  //              <option value="exposure">Exposure Time</option>
+                <option value="exposure">Exposure</option>
                 <option value="significance">Significance</option>
               </Form.Control>
             </Form.Group>
@@ -248,10 +249,11 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
 
             <Form.Group controlId="time">
               <Form.Label>
-                Exposure Time for{" "}
+  /*              Exposure Time for{" "}
                 <Node
                   inline
-                >{`${targetScale} \\times 10^{32} \\text{targets}`}</Node>
+                >{`${targetScale} \\times 10^{32} \\text{targets}`}</Node> */
+                  Exposure
               </Form.Label>
               <InputGroup>
                 <Form.Control
@@ -261,7 +263,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
                   value={UITime}
                 />
                 <InputGroup.Append>
-                  <InputGroup.Text>years</InputGroup.Text>
+                  <InputGroup.Text>10<sup>32</>target-years</InputGroup.Text>
                 </InputGroup.Append>
                 <Form.Control.Feedback type="invalid">
                   Background Uncertainty Exceeds Signal
@@ -270,10 +272,11 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
             </Form.Group>
             <Form.Group controlId="sigma">
               <Form.Label>
-                N<sub>σ</sub> for{" "}
+  /*                N<sub>σ</sub> for{" "}
                 <Node
                   inline
-                >{`${targetScale} \\times 10^{32} \\text{targets}`}</Node>
+                >{`${targetScale} \\times 10^{32} \\text{targets}`}</Node> */
+                 N<sub>σ</sub>
               </Form.Label>
               <InputGroup>
                 <Form.Control
