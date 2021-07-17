@@ -180,7 +180,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
 
   return (
     <Card>
-      <Card.Header>Rate Significance Calculator</Card.Header>
+      <Card.Header>Significance/Exposure Calculator</Card.Header>
       <Card.Body>
         <Provider>
           <Form noValidate>
