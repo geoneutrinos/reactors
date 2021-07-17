@@ -258,7 +258,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
                   value={UITime}
                 />
                 <InputGroup.Append>
-                  <InputGroup.Text>10<sup>32</sup>target-years</InputGroup.Text>
+                  <InputGroup.Text>10<sup>32</sup> target-years</InputGroup.Text>
                 </InputGroup.Append>
                 <Form.Control.Feedback type="invalid">
                   Background Uncertainty Exceeds Signal
@@ -280,12 +280,12 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
           </Form>
           <div>
             <Node>{String.raw`N_{\sigma} = \frac{ S * E}{\sqrt{(S + B) * E + (\delta B * E)^2}}`}</Node>
-            Where <i>S</i> is the signal rate, <i>B</i> is the background rate,{" "}
+            Where {" "} <Node inline>{String.raw`S`}</Node> is the signal rate, {" "} <Node inline>{String.raw`B`}</Node> is the background rate,{" "}
             <Node inline>{String.raw`\delta B`}</Node> is the systematic uncertainty of the background
-            rate, and <i>E</i> is the exposure:{" "}
+            rate, and {" "} <Node inline>{String.raw`E`}</Node> is the exposure. For rates in NIU, exposure is in {" "}
             <Node
               inline
-            >{`E = \\text{time} * ${targetScale} \\times 10^{32} \\text{targets}`}</Node>
+            >{`E = ${targetScale} \\times 10^{32} \\text{target-years.}`}</Node>
           </div>
         </Provider>
       </Card.Body>
