@@ -261,7 +261,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
                   <InputGroup.Text>10<sup>32</sup> target-years</InputGroup.Text>
                 </InputGroup.Append>
                 <Form.Control.Feedback type="invalid">
-                  Background Uncertainty Exceeds Signal
+                  Product of N<sub>σ</sub> and Background Uncertainty exceeds Signal
                 </Form.Control.Feedback>
               </InputGroup>
             </Form.Group>
@@ -273,6 +273,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
                 <Form.Control
                   onChange={UIsetSigma}
                   type="number"
+                  step="0.1"
                   value={UISigma}
                 />
               </InputGroup>
@@ -285,7 +286,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
             rate, and {" "} <Node inline>{String.raw`E`}</Node> is the exposure. For rates in NIU, exposure is in {" "}
             <Node
               inline
-            >{`E = ${targetScale} \\times 10^{32} \\text{target-years.}`}</Node>
+            >{`10^{32}`}</Node> target-years.
           </div>
         </Provider>
       </Card.Body>
