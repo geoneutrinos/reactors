@@ -14,7 +14,6 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
   const [deltaGeoNu, setDeltaGeoNu] = useState(0.25);
   const [bkgnuisance, setBkgnuisance] = useState(0);
   const [deltaBkgnuisance, setDeltaBkgnuisance] = useState(0.50);
-  const [targetScale, setTargetScale] = useState(1.0);
 
   const UIsetSelect = (event) => {
     var key = event.target.id;
@@ -133,6 +132,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
   let UIsignal = 0;
   let UIbackground = 0;
   let UIBackgroundUncertanty = 0;
+  let UItotal = 0;
 
   if (signal === "all") {
     UIsignal = totalCoreSignal;
@@ -190,12 +190,13 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
   let UITime = time;
   let UISigma = sigma;
   let UIExposureNever = false;
+  let UITotalEventlt2 = false;
 
   if (solveFor === "exposure") {
     UITime =
       (sigma ** 2 * (UIsignal + UIbackground)) /
-      (UIsignal ** 2 - sigma ** 2 * UIBackgroundUncertanty ** 2) /
-      targetScale;
+      (UIsignal ** 2 - sigma ** 2 * UIBackgroundUncertanty ** 2
+      );
     if (sigma * UIBackgroundUncertanty >= UIsignal) {
       UITime = 999999999999.9999;
       UIExposureNever = true;
@@ -205,11 +206,14 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
   }
   if (solveFor === "significance") {
     UISigma =
-      (UIsignal * time * targetScale) /
+      (UIsignal * time) /
       Math.sqrt(
-        (UIsignal + UIbackground) * time * targetScale +
-          (UIBackgroundUncertanty * time * targetScale) ** 2
+        (UIsignal + UIbackground) * time +
+          (UIBackgroundUncertanty * time) ** 2
       );
+    if ((UIsignal + UIbackground) * time <= 2) {
+      UISigma = 0;
+      UITotalEventlt2 = true; 
   }
 
   return (
@@ -311,7 +315,8 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
                   value={UITime}
                 />
                 <InputGroup.Append>
-                  <InputGroup.Text>10<sup>32</sup> &nbsp target-years</InputGroup.Text>
+                  <InputGroup.Text>10<sup>32</sup></InputGroup.Text>
+                  <InputGroup.Text>target-years</InputGroup.Text>
                 </InputGroup.Append>
                 <Form.Control.Feedback type="invalid">
                   Product of N<sub>σ</sub> and Background Uncertainty exceeds Signal
@@ -324,11 +329,15 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
               </Form.Label>
               <InputGroup>
                 <Form.Control
+                  isInvalid={UITotalEventlt2}
                   onChange={UIsetSigma}
                   type="number"
                   step="0.1"
                   value={UISigma}
                 />
+                <Form.Control.Feedback type="invalid">
+                  Total number of events is less than 2
+                </Form.Control.Feedback>
               </InputGroup>
             </Form.Group>
           </Form>
@@ -337,9 +346,8 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
             Where {" "} <Node inline>{String.raw`S`}</Node> is the signal rate, {" "} <Node inline>{String.raw`B`}</Node> is the background rate,{" "}
             <Node inline>{String.raw`\delta B`}</Node> is the systematic uncertainty of the background
             rate, and {" "} <Node inline>{String.raw`E`}</Node> is the exposure. For rates in NIU, exposure is in {" "}
-            <Node
-              inline
-            >{`10^{32}`}</Node> target-years.
+            <Node inline>{`10^{32}`}</Node> target-years. The fractional systematic uncetainties of the estimated reactor, geoneutrino, and nuisance 
+            background rates are 0.06, 0.25, and 0.50, respectively. The spectral shape of the nuisance background is flat from 0 to 10 MeV. 
           </div>
         </Provider>
       </Card.Body>
