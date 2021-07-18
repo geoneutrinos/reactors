@@ -132,7 +132,6 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
   let UIsignal = 0;
   let UIbackground = 0;
   let UIBackgroundUncertanty = 0;
-  let UItotal = 0;
 
   if (signal === "all") {
     UIsignal = totalCoreSignal;
@@ -190,7 +189,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
   let UITime = time;
   let UISigma = sigma;
   let UIExposureNever = false;
-  let UITotalEventlt2 = false;
+  let UITotalUnderTwo = false;
 
   if (solveFor === "exposure") {
     UITime =
@@ -211,9 +210,9 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
         (UIsignal + UIbackground) * time +
           (UIBackgroundUncertanty * time) ** 2
       );
-    if ((UIsignal + UIbackground) * time <= 2) {
+    if ((UIsignal + UIbackground) * time < 2) {
       UISigma = 0;
-      UITotalEventlt2 = true; 
+      UITotalUnderTwo = true;
   }
 
   return (
@@ -315,8 +314,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
                   value={UITime}
                 />
                 <InputGroup.Append>
-                  <InputGroup.Text>10<sup>32</sup></InputGroup.Text>
-                  <InputGroup.Text>target-years</InputGroup.Text>
+                  <InputGroup.Text>10<sup>32</sup> target-years</InputGroup.Text>
                 </InputGroup.Append>
                 <Form.Control.Feedback type="invalid">
                   Product of N<sub>σ</sub> and Background Uncertainty exceeds Signal
@@ -329,7 +327,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
               </Form.Label>
               <InputGroup>
                 <Form.Control
-                  isInvalid={UITotalEventlt2}
+                  isInvalid={UITotalUnderTwo}
                   onChange={UIsetSigma}
                   type="number"
                   step="0.1"
@@ -343,11 +341,10 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
           </Form>
           <div>
             <Node>{String.raw`N_{\sigma} = \frac{ S * E}{\sqrt{(S + B) * E + (\delta B * E)^2}}`}</Node>
-            Where {" "} <Node inline>{String.raw`S`}</Node> is the signal rate, {" "} <Node inline>{String.raw`B`}</Node> is the background rate,{" "}
+            Where {" "} <Node inline>{String.raw`S`}</Node> is the signal rate, {" "} <Node inline>{String.raw`B`}</Node> is the background rate, {" "}
             <Node inline>{String.raw`\delta B`}</Node> is the systematic uncertainty of the background
             rate, and {" "} <Node inline>{String.raw`E`}</Node> is the exposure. For rates in NIU, exposure is in {" "}
-            <Node inline>{`10^{32}`}</Node> target-years. The fractional systematic uncetainties of the estimated reactor, geoneutrino, and nuisance 
-            background rates are 0.06, 0.25, and 0.50, respectively. The spectral shape of the nuisance background is flat from 0 to 10 MeV. 
+            <Node inline>{`10^{32}`}</Node> target-years. The fractional systematic uncetainties of the estimated reactor, geoneutrino, and nuisance background rates are 0.06, 0.25, and 0.50, respectively. The spectral shape of the nuisance background is flat. 
           </div>
         </Provider>
       </Card.Body>
