@@ -4,7 +4,7 @@ import { sum } from "lodash";
 import { Node, Provider } from "@nteract/mathjax";
 
 export const CalculatorPanel = ({ cores, spectrum }) => {
-  const [signal, setSignal] = useState("all");
+  const [signal, setSignal] = useState("closest");
   const [solveFor, setSolveFor] = useState("exposure");
   const [eMin, setEMin] = useState(0);
   const [eMax, setEMax] = useState(10);
@@ -12,6 +12,8 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
   const [sigma, setSigma] = useState(3);
   const [deltaReactors, setDeltaReactors] = useState(0.06);
   const [deltaGeoNu, setDeltaGeoNu] = useState(0.25);
+  const [bkgnuisance, setBkgnuisance] = useState(0);
+  const [deltaBkgnuisance, setDeltaBkgnuisance] = useState(0.50);
   const [targetScale, setTargetScale] = useState(1.0);
 
   const UIsetSelect = (event) => {
@@ -24,6 +26,19 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
     selects[key](value);
   };
 
+  const UIsetBkgNuisance = (event) => {
+    const value = event.target.value;
+    let bkg_nuisance = parseFloat(value);
+    if (isNaN(bkg_nuisance)) {
+      setBkgnuisance(value);
+    } else {
+      if (bkg_nuisance < 0) {
+        bkg_nuisance = 0;
+      }
+      setBkgnuisance(bkg_nuisance);
+    }
+  };
+  
   const UIsetEMin = (event) => {
     const value = event.target.value;
     let e_min = parseFloat(value);
@@ -105,6 +120,8 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
   const geoKNIU = sum(spectrum.geoK.slice(min_i, max_i)) * 0.01;
 
   const geoTotalNIU = geoUNIU + geoThNIU + geoKNIU;
+  
+  const bkgNuisanceNIU = bkgnuisance * (eMax - eMin) * 0.1
 
   let UIsignal = 0;
   let UIbackground = 0;
@@ -112,8 +129,11 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
 
   if (signal === "all") {
     UIsignal = totalCoreSignal;
-    UIbackground = geoTotalNIU;
-    UIBackgroundUncertanty = geoTotalNIU * deltaGeoNu;
+    UIbackground = geoTotalNIU + bkgNuisanceNIU;
+    UIBackgroundUncertanty = Math.sqrt(
+      (geoTotalNIU * deltaGeoNu) ** 2 +
+       (bkgNuisanceNIU * deltaBkgnuisance) ** 2
+      );
   }
   if (signal === "closest") {
     UIsignal = closestNIU;
@@ -187,12 +207,14 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
             <Form.Group controlId="signal">
               <Form.Label>Signal (background)</Form.Label>
               <Form.Control as="select" onChange={UIsetSelect} value={signal}>
-                <option value="all">All Cores (geoneutrinos)</option>
                 <option value="closest">
                   Closest Core (geoneutrinos + other reactors)
                 </option>
                 <option value="custom">
                   Custom Core (geoneutrinos + other reactors)
+                </option>
+                <option value="all">
+                  All Cores (geoneutrinos)
                 </option>
                 <option value="geoneutrino">
                   Geoneutrino (reactors)
@@ -212,6 +234,23 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
                 <option value="significance">Significance</option>
               </Form.Control>
             </Form.Group>
+  
+              <Form.Group controlId="bkg_nuisance">
+              <Form.Label>
+                Nuisance Background
+              </Form.Label>
+              <InputGroup>
+                <Form.Control
+                  onChange={UIsetBkgNuisance}
+                  type="number"
+                  value={bkgnuisance}
+                />
+                <InputGroup.Append>
+                  <InputGroup.Text>NIU</InputGroup.Text>
+                </InputGroup.Append>
+              </InputGroup>
+            </Form.Group>
+  
             <Form.Group controlId="e_min">
               <Form.Label>
                 Antineutrino E<sub>min</sub>
