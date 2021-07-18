@@ -48,6 +48,9 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
       if (e_min < 0) {
         e_min = 0;
       }
+      if (e_min > 10) {
+        e_min = 10;
+      }
       if (eMax < e_min) {
         setEMax(e_min);
       }
@@ -308,7 +311,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
                   value={UITime}
                 />
                 <InputGroup.Append>
-                  <InputGroup.Text>10<sup>32</sup> target-years</InputGroup.Text>
+                  <InputGroup.Text>10<sup>32</sup> &nbsp target-years</InputGroup.Text>
                 </InputGroup.Append>
                 <Form.Control.Feedback type="invalid">
                   Product of N<sub>σ</sub> and Background Uncertainty exceeds Signal
@@ -336,7 +339,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
             rate, and {" "} <Node inline>{String.raw`E`}</Node> is the exposure. For rates in NIU, exposure is in {" "}
             <Node
               inline
-            >{`10^{32} `}</Node> target-years.
+            >{`10^{32}`}</Node> target-years.
           </div>
         </Provider>
       </Card.Body>
