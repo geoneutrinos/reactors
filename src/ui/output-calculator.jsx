@@ -61,6 +61,9 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
     if (isNaN(e_max)) {
       setEMax(value);
     } else {
+      if (e_max > 10) {
+        e_max = 10;
+      }
       if (e_max < eMin) {
         e_max = eMin;
       }
@@ -191,11 +194,11 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
       (UIsignal ** 2 - sigma ** 2 * UIBackgroundUncertanty ** 2) /
       targetScale;
     if (sigma * UIBackgroundUncertanty >= UIsignal) {
-      UITime = 999999999;
+      UITime = 999999999999.9999;
       UIExposureNever = true;
     }
 
-    UITime = UITime.toFixed(5);
+    UITime = UITime.toFixed(4);
   }
   if (solveFor === "significance") {
     UISigma =
@@ -333,7 +336,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
             rate, and {" "} <Node inline>{String.raw`E`}</Node> is the exposure. For rates in NIU, exposure is in {" "}
             <Node
               inline
-            >{`10^{32}`}</Node> target-years.
+            >{`10^{32} `}</Node> target-years.
           </div>
         </Provider>
       </Card.Body>
