@@ -117,7 +117,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
   // custom cores
   const customCores = coreList.filter((core) => core.custom);
   const customTotalSignal = sum(
-    customCores.map((core) => core.detectorSignal.slice(min_i, max_i))
+    customCores.map((core) => core.detectorSignal.slice(min_i, max_i)) * 0.01
   );
 
   const geoUNIU = sum(spectrum.geoU.slice(min_i, max_i)) * 0.01;
