@@ -200,6 +200,9 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
       UITime = 999999999999.9999;
       UIExposureNever = true;
     }
+    if ((UIsignal + UIbackground) * UITime < 2) {
+      UITotalUnderTwo = true;
+    }
     UITime = UITime.toFixed(4);
   }
   
