@@ -131,12 +131,12 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
 
   let UIsignal = 0;
   let UIbackground = 0;
-  let UIBackgroundUncertanty = 0;
+  let UIBackgroundUncertainty = 0;
 
   if (signal === "all") {
     UIsignal = totalCoreSignal;
     UIbackground = geoTotalNIU + bkgNuisanceNIU;
-    UIBackgroundUncertanty = Math.sqrt(
+    UIBackgroundUncertainty = Math.sqrt(
       (geoTotalNIU * deltaGeoNu) ** 2 +
         (bkgNuisanceNIU * deltaBkgnuisance) ** 2
     );
@@ -144,7 +144,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
   if (signal === "closest") {
     UIsignal = closestNIU;
     UIbackground = geoTotalNIU + bkgNuisanceNIU + totalCoreSignal - closestNIU;
-    UIBackgroundUncertanty = Math.sqrt(
+    UIBackgroundUncertainty = Math.sqrt(
       (geoTotalNIU * deltaGeoNu) ** 2 +
         (bkgNuisanceNIU * deltaBkgnuisance) ** 2 +
         ((totalCoreSignal - closestNIU) * deltaReactors) ** 2
@@ -153,7 +153,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
   if (signal === "custom") {
     UIsignal = customTotalSignal;
     UIbackground = geoTotalNIU + bkgNuisanceNIU + totalCoreSignal - customTotalSignal;
-    UIBackgroundUncertanty = Math.sqrt(
+    UIBackgroundUncertainty = Math.sqrt(
       (geoTotalNIU * deltaGeoNu) ** 2 +
         (bkgNuisanceNIU * deltaBkgnuisance) ** 2 +
         ((totalCoreSignal - customTotalSignal) * deltaReactors) ** 2
@@ -162,7 +162,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
   if (signal === "geoneutrino") {
     UIbackground = totalCoreSignal + bkgNuisanceNIU;
     UIsignal = geoTotalNIU;
-    UIBackgroundUncertanty = Math.sqrt(
+    UIBackgroundUncertainty = Math.sqrt(
       (totalCoreSignal * deltaReactors) ** 2 +
       (bkgNuisanceNIU * deltaBkgnuisance) ** 2
     );
@@ -170,7 +170,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
   if (signal === "geo_u") {
     UIbackground = totalCoreSignal + bkgNuisanceNIU + geoTotalNIU - geoUNIU;
     UIsignal = geoUNIU;
-    UIBackgroundUncertanty = Math.sqrt(
+    UIBackgroundUncertainty = Math.sqrt(
       ((geoTotalNIU - geoUNIU) * deltaGeoNu) ** 2 +
         (bkgNuisanceNIU * deltaBkgnuisance) ** 2 +
         (totalCoreSignal * deltaReactors) ** 2
@@ -179,7 +179,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
   if (signal === "geo_th") {
     UIbackground = totalCoreSignal + bkgNuisanceNIU + geoTotalNIU - geoThNIU;
     UIsignal = geoThNIU;
-    UIBackgroundUncertanty = Math.sqrt(
+    UIBackgroundUncertainty = Math.sqrt(
       ((geoTotalNIU - geoThNIU) * deltaGeoNu) ** 2 +
         (bkgNuisanceNIU * deltaBkgnuisance) ** 2 +
         (totalCoreSignal * deltaReactors) ** 2
@@ -194,25 +194,26 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
   if (solveFor === "exposure") {
     UITime =
       (sigma ** 2 * (UIsignal + UIbackground)) /
-      (UIsignal ** 2 - sigma ** 2 * UIBackgroundUncertanty ** 2
+      (UIsignal ** 2 - sigma ** 2 * UIBackgroundUncertainty ** 2
       );
-    if (sigma * UIBackgroundUncertanty >= UIsignal) {
+    if (sigma * UIBackgroundUncertainty >= UIsignal) {
       UITime = 999999999999.9999;
       UIExposureNever = true;
     }
-
     UITime = UITime.toFixed(4);
   }
+  
   if (solveFor === "significance") {
     UISigma =
       (UIsignal * time) /
       Math.sqrt(
         (UIsignal + UIbackground) * time +
-          (UIBackgroundUncertanty * time) ** 2
+          (UIBackgroundUncertainty * time) ** 2
       );
     if ((UIsignal + UIbackground) * time < 2) {
       UISigma = 0;
       UITotalUnderTwo = true;
+    }
   }
 
   return (
@@ -340,11 +341,12 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
             </Form.Group>
           </Form>
           <div>
-            <Node>{String.raw`N_{\sigma} = \frac{ S * E}{\sqrt{(S + B) * E + (\delta B * E)^2}}`}</Node>
-            Where {" "} <Node inline>{String.raw`S`}</Node> is the signal rate, {" "} <Node inline>{String.raw`B`}</Node> is the background rate, {" "}
-            <Node inline>{String.raw`\delta B`}</Node> is the systematic uncertainty of the background
-            rate, and {" "} <Node inline>{String.raw`E`}</Node> is the exposure. For rates in NIU, exposure is in {" "}
-            <Node inline>{`10^{32}`}</Node> target-years. The fractional systematic uncetainties of the estimated reactor, geoneutrino, and nuisance background rates are 0.06, 0.25, and 0.50, respectively. The spectral shape of the nuisance background is flat. 
+            <Node>{String.raw`N_{\sigma} = \frac{ S * E}{\sqrt{(S + B) * E + (\delta B * E)^2}}`}</Node> 
+            {" "} <Node inline>{String.raw`S`}</Node> is the signal rate, 
+            {" "} <Node inline>{String.raw`B`}</Node> is the background rate, 
+            {" "} <Node inline>{String.raw`\delta B`}</Node> is the systematic uncertainty of the background rate, and
+            {" "} <Node inline>{String.raw`E`}</Node> is the exposure. For rates in NIU, exposure is in 
+            {" "} <Node inline>{`10^{32}`}</Node> target-years. The fractional systematic uncetainties of the estimated reactor, geoneutrino, and nuisance background rates are 0.06, 0.25, and 0.50, respectively. The spectral shape of the nuisance background is flat. 
           </div>
         </Provider>
       </Card.Body>
