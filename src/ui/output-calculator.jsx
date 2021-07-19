@@ -199,7 +199,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
     if (sigma * UIBackgroundUncertainty >= UIsignal) {
       UIExposureNever = true;
     }
-    if ((UIsignal + UIbackground) * UITime < 2) {
+    if ((UITime >= 0) && ((UIsignal + UIbackground) * UITime < 2)) {
       UITotalUnderTwo = true;
     }
     UITime = UITime.toFixed(4);
