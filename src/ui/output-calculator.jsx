@@ -214,6 +214,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
       UISigma = 0;
       UITotalUnderTwo = true;
     }
+    UISigma = UISigma.toFixed(3);
   }
 
   return (
@@ -312,6 +313,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
                   isInvalid={UIExposureNever}
                   onChange={UIsetTime}
                   type="number"
+                  step="0.1"
                   value={UITime}
                 />
                 <InputGroup.Append>
