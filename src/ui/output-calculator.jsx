@@ -197,7 +197,6 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
       (UIsignal ** 2 - sigma ** 2 * UIBackgroundUncertainty ** 2
       );
     if (sigma * UIBackgroundUncertainty >= UIsignal) {
-      UITime = 999999999999.9999;
       UIExposureNever = true;
     }
     if ((UIsignal + UIbackground) * UITime < 2) {
@@ -315,9 +314,9 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
                 <Form.Control
                   isInvalid={UIExposureNever}
                   onChange={UIsetTime}
-                  type="number"
+                  type={UIExposureNever ? "text" :"number" }
                   step="0.1"
-                  value={UITime}
+                  value={UIExposureNever? "Infinite": UITime}
                 />
                 <InputGroup.Append>
                   <InputGroup.Text>10<sup>32</sup> target-years</InputGroup.Text>
