@@ -133,9 +133,8 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
   const geoThNIU = sum(spectrum.geoTh.slice(min_i, max_i)) * 0.01;
   const geoKNIU = sum(spectrum.geoK.slice(min_i, max_i)) * 0.01;
 // const geoU5NIU = sum(spectrum.geoU5.slice(min_i, max_i)) * 0.01;
-
-  const geoTotalNIU = geoUNIU + geoThNIU + geoKNIU;
-//  const geoTotalNIU = geoUNIU + geoThNIU + geoKNIU + geoU5NIU;
+  const geoU5NIU = 0.001;
+  const geoTotalNIU = geoUNIU + geoThNIU + geoKNIU + geoU5NIU;
   
 // for now assume a flat spectrum with maximum energy of 10 MeV 
   const bkgNuisanceNIU = bkgnuisance * (eMax - eMin) / (10 - (IBD_THRESHOLD * isIBD))
@@ -178,7 +177,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
       (bkgNuisanceNIU * deltaBkgnuisance) ** 2
     );
   }
-  if (signal === "geo_u") {
+  if (signal === "geo_u8") {
     UIbackground = totalCoreSignal + bkgNuisanceNIU + geoTotalNIU - geoUNIU;
     UIsignal = geoUNIU;
     UIBackgroundUncertainty = Math.sqrt(
@@ -201,6 +200,15 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
     UIsignal = geoKNIU;
     UIBackgroundUncertainty = Math.sqrt(
       ((geoTotalNIU - geoKNIU) * deltaGeoNu) ** 2 +
+        (bkgNuisanceNIU * deltaBkgnuisance) ** 2 +
+        (totalCoreSignal * deltaReactors) ** 2
+    );
+  }
+    if (signal === "geo_u5") {
+    UIbackground = totalCoreSignal + bkgNuisanceNIU + geoTotalNIU - geoU5NIU;
+    UIsignal = geoU5NIU;
+    UIBackgroundUncertainty = Math.sqrt(
+      ((geoTotalNIU - geoU5NIU) * deltaGeoNu) ** 2 +
         (bkgNuisanceNIU * deltaBkgnuisance) ** 2 +
         (totalCoreSignal * deltaReactors) ** 2
     );
@@ -260,14 +268,17 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
                 <option value="geoneutrino">
                   Geoneutrino (reactors)
                 </option>
-                <option value="geo_u">
-                  Geoneutrino U-238 (reactors + geo Th-232)
+                <option value="geo_u8">
+                  Geoneutrino U238 (reactors + geo Th232)
                 </option>
                 <option value="geo_th">
-                  Geoneutrino Th-232 (reactors + geo U-238)
+                  Geoneutrino Th232 (reactors + geo U238)
                 </option>
                 <option value="geo_k">
-                  Geoneutrino K-40: ES only (reactors + geo U-238 + geo Th-232)
+                  Geoneutrino K40: ES only (reactors + geo U238 + geo Th232 + geo U235)
+                </option>
+                <option value="geo_u5">
+                  Geoneutrino U235: ES only (reactors + geo U238 + geo Th232 + geo K40)
                 </option>
               </Form.Control>
             </Form.Group>
