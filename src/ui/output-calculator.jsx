@@ -9,7 +9,7 @@ import {IBD_THRESHOLD} from "../physics/derived"
 export const CalculatorPanel = ({ cores, spectrum }) => {
   const [signal, setSignal] = useState("closest");
   const [solveFor, setSolveFor] = useState("exposure");
-  const [eMin, setEMin] = useState(0);
+  const [eMin, setEMin] = useState(IBD_THRESHOLD.toFixed(3));
   const [eMax, setEMax] = useState(10);
   const [time, setTime] = useState(0);
   const [sigma, setSigma] = useState(3);
