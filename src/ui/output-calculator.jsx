@@ -325,7 +325,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
                   value={UIExposureNever? "Infinite": UITime}
                 />
                 <InputGroup.Append>
-                  <InputGroup.Text>10<sup>32</sup> target-years</InputGroup.Text>
+                  <InputGroup.Text><span>10<sup>32</sup> target-years</span></InputGroup.Text>
                 </InputGroup.Append>
                 <Form.Control.Feedback type="invalid">
                   Product of N<sub>σ</sub> and Background Uncertainty exceeds Signal
