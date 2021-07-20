@@ -9,7 +9,7 @@ import {IBD_THRESHOLD} from "../physics/derived"
 export const CalculatorPanel = ({ cores, spectrum }) => {
   const [signal, setSignal] = useState("closest");
   const [solveFor, setSolveFor] = useState("exposure");
-  const [eMin, setEMin] = useState(IBD_THRESHOLD.toFixed(3));
+  const [eMin, setEMin] = useState(IBD_THRESHOLD.toFixed(1));
   const [eMax, setEMax] = useState(10);
   const [time, setTime] = useState(0);
   const [sigma, setSigma] = useState(3);
@@ -48,8 +48,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
   
   const UIsetEMin = (event) => {
     const value = event.target.value;
-    let stateEmin = IBD_THRESHOLD.toFixed(3) * isIBD;
-//    let stateEmin = 1.806 * isIBD;
+    let stateEmin = IBD_THRESHOLD.toFixed(1) * isIBD;
     let e_min = parseFloat(value);
     if (isNaN(e_min)) {
       setEMin(value);
@@ -290,7 +289,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
                 <Form.Control
                   onChange={UIsetEMin}
                   type="number"
-                  step="0.100"
+                  step="0.1"
                   value={eMin}
                 />
                 <InputGroup.Append>
