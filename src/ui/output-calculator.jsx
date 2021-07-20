@@ -46,9 +46,9 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
     }
   };
   
-  let stateEmin = IBD_THRESHOLD.toFixed(3) * isIBD
   const UIsetEMin = (event) => {
     const value = event.target.value;
+    let stateEmin = IBD_THRESHOLD.toFixed(3) * isIBD;
     let e_min = parseFloat(value);
     if (isNaN(e_min)) {
       setEMin(value);
