@@ -132,10 +132,12 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
   const geoUNIU = sum(spectrum.geoU.slice(min_i, max_i)) * 0.01;
   const geoThNIU = sum(spectrum.geoTh.slice(min_i, max_i)) * 0.01;
   const geoKNIU = sum(spectrum.geoK.slice(min_i, max_i)) * 0.01;
+// const geoU5NIU = sum(spectrum.geoU5.slice(min_i, max_i)) * 0.01;
 
   const geoTotalNIU = geoUNIU + geoThNIU + geoKNIU;
+//  const geoTotalNIU = geoUNIU + geoThNIU + geoKNIU + geoU5NIU;
   
-// for now assume a flat spectrum with maximum energy of 10 MeV so factor of 0.1  
+// for now assume a flat spectrum with maximum energy of 10 MeV 
   const bkgNuisanceNIU = bkgnuisance * (eMax - eMin) / (10 - (IBD_THRESHOLD * isIBD))
 
   let UIsignal = 0;
@@ -190,6 +192,15 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
     UIsignal = geoThNIU;
     UIBackgroundUncertainty = Math.sqrt(
       ((geoTotalNIU - geoThNIU) * deltaGeoNu) ** 2 +
+        (bkgNuisanceNIU * deltaBkgnuisance) ** 2 +
+        (totalCoreSignal * deltaReactors) ** 2
+    );
+  }
+  if (signal === "geo_k") {
+    UIbackground = totalCoreSignal + bkgNuisanceNIU + geoTotalNIU - geoKNIU;
+    UIsignal = geoKNIU;
+    UIBackgroundUncertainty = Math.sqrt(
+      ((geoTotalNIU - geoKNIU) * deltaGeoNu) ** 2 +
         (bkgNuisanceNIU * deltaBkgnuisance) ** 2 +
         (totalCoreSignal * deltaReactors) ** 2
     );
@@ -254,6 +265,9 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
                 </option>
                 <option value="geo_th">
                   Geoneutrino Th-232 (reactors + geo U-238)
+                </option>
+                <option value="geo_k">
+                  Geoneutrino K-40: ES only (reactors + geo U-238 + geo Th-232)
                 </option>
               </Form.Control>
             </Form.Group>
