@@ -4,6 +4,7 @@ import { sum } from "lodash";
 import { Node, Provider } from "@nteract/mathjax";
 import { PhysicsContext } from "../state";
 import { XSNames } from "../physics/neutrino-cross-section";
+import {IBD_THRESHOLD} from "../physics/derived"
 
 export const CalculatorPanel = ({ cores, spectrum }) => {
   const [signal, setSignal] = useState("closest");
@@ -19,7 +20,8 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
 
   const { crossSection } = useContext(PhysicsContext)
 
-  const isIBD = [XSNames.IBDSV2003, XSNames.IBDVB1999].includes(crossSection.crossSection)
+  // Unary operator + converts true to 1 and false to 0
+  const isIBD = +([XSNames.IBDSV2003, XSNames.IBDVB1999].includes(crossSection.crossSection))
 
   const UIsetSelect = (event) => {
     var key = event.target.id;
@@ -133,7 +135,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
   const geoTotalNIU = geoUNIU + geoThNIU + geoKNIU;
   
 // for now assume a flat spectrum with maximum energy of 10 MeV so factor of 0.1  
-  const bkgNuisanceNIU = bkgnuisance * (eMax - eMin) * 0.1
+  const bkgNuisanceNIU = bkgnuisance * (eMax - eMin) / (10 - (IBD_THRESHOLD * isIBD))
 
   let UIsignal = 0;
   let UIbackground = 0;
