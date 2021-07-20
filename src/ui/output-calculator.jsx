@@ -290,7 +290,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
                 <Form.Control
                   onChange={UIsetEMin}
                   type="number"
-                  step="0.1"
+                  step="0.001"
                   value={eMin}
                 />
                 <InputGroup.Append>
