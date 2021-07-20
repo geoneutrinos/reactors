@@ -250,10 +250,10 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
                   Geoneutrino (reactors)
                 </option>
                 <option value="geo_u">
-                  Geoneutrino U (reactors + geo Th)
+                  Geoneutrino <sup>238</sup>U (reactors + geo <sup>232</sup>Th)
                 </option>
                 <option value="geo_th">
-                  Geoneutrino Th (reactors + geo U)
+                  Geoneutrino <sup>232</sup>Th (reactors + geo <sup>238</sup>U)
                 </option>
               </Form.Control>
             </Form.Group>
