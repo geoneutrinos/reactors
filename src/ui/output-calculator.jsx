@@ -52,8 +52,8 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
     if (isNaN(e_min)) {
       setEMin(value);
     } else {
-      if (e_min < (IBD_THRESHOLD * isIBD)) {
-        e_min = (IBD_THRESHOLD * isIBD);
+      if (e_min < (1.8 * isIBD)) {
+        e_min = (1.8 * isIBD);
       }
       if (e_min > 10) {
         e_min = 10;
