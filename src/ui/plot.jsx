@@ -79,7 +79,7 @@ export function NuSpectrumPlot({ cores, spectrum, detector}) {
       type: "scatter",
       mode: "lines",
       fill: "tozerox",
-      marker: { color: "blue" },
+      marker: { color: "purple" },
       line: { width: 0.7 },
       visible: sum(spectrum.geoU235) > 0,
     },
