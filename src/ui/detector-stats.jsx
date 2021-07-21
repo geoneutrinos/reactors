@@ -15,7 +15,7 @@ import {PhysicsContext} from "../state"
 
 import { Num } from '.'
 
-const { U238, Th232, K40 } = Elements;
+const { U238, U235, Th232, K40 } = Elements;
 
 
 
@@ -71,17 +71,17 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
   const customDisplay = customTotalSignal > 0 ? "block" : "none";
 
   // geo thigns
-  const geoUNIU = sum(spectrum.geoU) * 0.01;
+  const geoU238NIU = sum(spectrum.geoU) * 0.01;
   const geoU235NIU = sum(spectrum.geoU235) * 0.01;
   const geoThNIU = sum(spectrum.geoTh) * 0.01;
   const geoKNIU = sum(spectrum.geoK) * 0.01;
 
-  const geoThU = geoThURatio(geoThNIU, geoUNIU, crossSection.crossSection);
-  const geoKU = geoKURatio(geoKNIU, geoUNIU, crossSection.crossSection);
+  const geoThU = geoThURatio(geoThNIU, geoU238NIU, crossSection.crossSection);
+  const geoKU = geoKURatio(geoKNIU, geoU238NIU, crossSection.crossSection);
 
   const geoKUVald = isNaN(geoKU) ? "none" : "auto";
 
-  const geoTotalNIU = geoUNIU + geoThNIU + geoKNIU;
+  const geoTotalNIU = geoU238NIU + geoU235NIU + geoThNIU + geoKNIU;
 
   // finally
   const totalNIU = totalCoreSignal + geoTotalNIU;
@@ -193,15 +193,6 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
             <tbody>
               <tr>
                 <td>
-                  <i>R<sub>geo</sub> <sup>235</sup>U (temporary)</i>
-                </td>
-              <td>=</td>
-                <td>
-                  <Num v={geoU235NIU} p={2} /> {NIU}
-                </td>
-              </tr>
-              <tr>
-                <td>
                   <i>R</i>
                   <sub>geo</sub>
                 </td>
@@ -211,8 +202,11 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
                 </td>
                 <td>
                   (
-                  <Num v={geoUNIU} p={1} /> {U238}, <Num v={geoThNIU} p={1} />{" "}
-                  {Th232}
+                  <Num v={geoU238NIU} p={1} /> {U238}{", "}
+                  <span style={{ display: geoKUVald }}>
+                    <Num v={geoU235NIU} p={1} /> {U235}{", "}
+                  </span>
+                  <Num v={geoThNIU} p={1} /> {Th232}
                   <span style={{ display: geoKUVald }}>
                     , <Num v={geoKNIU} p={1} /> {K40}
                   </span>
@@ -221,7 +215,7 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
               </tr>
               <tr>
                 <td>
-                  <i>(Th/U)</i>
+                  <i>(Th/{U238})</i>
                   <sub>geo</sub>
                 </td>
               <td>=</td>
@@ -231,7 +225,7 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
               </tr>
               <tr style={{ display: geoKUVald }}>
                 <td>
-                  <i>(K/U)</i>
+                  <i>(K/{U238})</i>
                   <sub>geo</sub>
                 </td>
               <td>=</td>
