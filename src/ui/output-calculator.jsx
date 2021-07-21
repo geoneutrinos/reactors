@@ -13,10 +13,12 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
   const [eMax, setEMax] = useState(10);
   const [time, setTime] = useState(0);
   const [sigma, setSigma] = useState(3);
-  const [deltaReactors, setDeltaReactors] = useState(0.06);
   const [deltaGeoNu, setDeltaGeoNu] = useState(0.25);
   const [bkgnuisance, setBkgnuisance] = useState(0);
   const [deltaBkgnuisance, setDeltaBkgnuisance] = useState(0.50);
+  const [deltaReactors, setDeltaReactors] = useState(0.06);
+  // Use this systematic uncertainty on reactor signal less than E_thresh
+  const [deltaReactorsLowE, setDeltaReactorsLowE] = useState(0.20);
 
   const { crossSection } = useContext(PhysicsContext)
 
@@ -125,12 +127,24 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
 
   const closestNIU = closestActiveCore?.detectorNIU || 0;
 
+  // need to separate sums for reactor antineutrino energy above and below E_thresh
+  // systematic uncertainy is bigger below E_thresh than above
+  // so min_i and max_i get modified
+  const totalCoreSignalLowE = sum(
+    coreList.map((core) => sum(core.detectorSignal.slice(min_i, max_i)) * 0.01)
+  );
   const totalCoreSignal = sum(
     coreList.map((core) => sum(core.detectorSignal.slice(min_i, max_i)) * 0.01)
   );
 
   // custom cores
+  // need separate sums for reactor antineutrino energy above and below E_thresh
+  // systematic uncertainy is bigger below E_thresh than above
+  // so min_i and max_i get modified
   const customCores = coreList.filter((core) => core.custom);
+  const customTotalSignalLowE = sum(
+    customCores.map((core) => sum(core.detectorSignal.slice(min_i, max_i)) * 0.01)
+  );
   const customTotalSignal = sum(
     customCores.map((core) => sum(core.detectorSignal.slice(min_i, max_i)) * 0.01)
   );
@@ -138,11 +152,13 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
   const geoUNIU = sum(spectrum.geoU.slice(min_i, max_i)) * 0.01;
   const geoThNIU = sum(spectrum.geoTh.slice(min_i, max_i)) * 0.01;
   const geoKNIU = sum(spectrum.geoK.slice(min_i, max_i)) * 0.01;
-// const geoU5NIU = sum(spectrum.geoU5.slice(min_i, max_i)) * 0.01;
+  // geo U235 signal spectrum needs to go here
+  // const geoU5NIU = sum(spectrum.geoU5.slice(min_i, max_i)) * 0.01;
+  // dummy geo U235 signal
   const geoU5NIU = 0.001;
   const geoTotalNIU = geoUNIU + geoThNIU + geoKNIU + geoU5NIU;
   
-// for now assume a flat spectrum with maximum energy of 10 MeV 
+  // for now assume a flat spectrum with maximum energy of 10 MeV 
   const bkgNuisanceNIU = bkgnuisance * (eMax - eMin) / (10 - (IBD_THRESHOLD * isIBD))
 
   let UIsignal = 0;
@@ -275,16 +291,16 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
                   Geoneutrino (reactors)
                 </option>
                 <option value="geo_u8">
-                  Geoneutrino U238 (reactors + geo Th232)
+                  Geoneutrino U238 (reactors + other geoneutrino isotopes)
                 </option>
                 <option value="geo_th">
-                  Geoneutrino Th232 (reactors + geo U238)
+                  Geoneutrino Th232 (reactors + other geoneutrino isotopes)
                 </option>
                 <option value="geo_k" disabled={isIBD}>
-                  Geoneutrino K40: ES only (reactors + geo U238 + geo Th232 + geo U235)
+                  Geoneutrino K40 (reactors + other geoneutrino isotopes)
                 </option>
                 <option value="geo_u5" disabled={isIBD}>
-                  Geoneutrino U235: ES only (reactors + geo U238 + geo Th232 + geo K40)
+                  Geoneutrino U235 (reactors + other geoneutrino isotopes)
                 </option>
               </Form.Control>
             </Form.Group>
@@ -390,7 +406,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
             {" "} <Node inline>{String.raw`B`}</Node> is the background rate, 
             {" "} <Node inline>{String.raw`\delta B`}</Node> is the systematic uncertainty of the background rate, and
             {" "} <Node inline>{String.raw`E`}</Node> is the exposure. For rates in NIU, exposure is in 
-            {" "} <Node inline>{`10^{32}`}</Node> target-years. The fractional systematic uncetainties of the estimated reactor, geoneutrino, and nuisance background rates are 0.06, 0.25, and 0.50, respectively. The spectral shape of the nuisance background is flat. 
+            {" "} <Node inline>{`10^{32}`}</Node> target-years. The fractional systematic uncetainties of the estimated reactor rates are 0.06 (0.20) for antineutrino energy above (below) IBD threshold, while those for the estimated geoneutrino and nuisance background rates are 0.25 and 0.50, respectively. The spectral shape of the nuisance background is flat. 
           </div>
         </Provider>
       </Card.Body>
