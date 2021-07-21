@@ -9,7 +9,7 @@ import {IBD_THRESHOLD} from "../physics/derived"
 export const CalculatorPanel = ({ cores, spectrum }) => {
   const [signal, setSignal] = useState("closest");
   const [solveFor, setSolveFor] = useState("exposure");
-  const [eMin, setEMin] = useState(IBD_THRESHOLD.toFixed(1));
+  const [eMin, setEMin] = useState(parseFloat(IBD_THRESHOLD.toFixed(1)));
   const [eMax, setEMax] = useState(10);
   const [time, setTime] = useState(0);
   const [sigma, setSigma] = useState(3);
@@ -22,6 +22,12 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
 
   // Unary operator + converts true to 1 and false to 0
   const isIBD = +([XSNames.IBDSV2003, XSNames.IBDVB1999].includes(crossSection.crossSection))
+  if (isIBD && ["geo_k", "geo_u5"].includes(signal)){
+    setSignal("closest")
+  }
+  if (isIBD && (eMin < parseFloat(IBD_THRESHOLD.toFixed(1)))){
+    setEMin(parseFloat(IBD_THRESHOLD.toFixed(1)))
+  }
 
   const UIsetSelect = (event) => {
     var key = event.target.id;
@@ -48,7 +54,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
   
   const UIsetEMin = (event) => {
     const value = event.target.value;
-    let stateEmin = IBD_THRESHOLD.toFixed(1) * isIBD;
+    let stateEmin = parseFloat(IBD_THRESHOLD.toFixed(1)) * isIBD;
     let e_min = parseFloat(value);
     if (isNaN(e_min)) {
       setEMin(value);
@@ -274,10 +280,10 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
                 <option value="geo_th">
                   Geoneutrino Th232 (reactors + geo U238)
                 </option>
-                <option value="geo_k">
+                <option value="geo_k" disabled={isIBD}>
                   Geoneutrino K40: ES only (reactors + geo U238 + geo Th232 + geo U235)
                 </option>
-                <option value="geo_u5">
+                <option value="geo_u5" disabled={isIBD}>
                   Geoneutrino U235: ES only (reactors + geo U238 + geo Th232 + geo K40)
                 </option>
               </Form.Control>
