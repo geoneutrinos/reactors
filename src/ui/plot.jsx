@@ -74,6 +74,17 @@ export function NuSpectrumPlot({ cores, spectrum, detector}) {
     },
     {
       x: evBins,
+      y: spectrum.geoU235,
+      name: "Geo <sup>235</sup>U",
+      type: "scatter",
+      mode: "lines",
+      fill: "tozerox",
+      marker: { color: "blue" },
+      line: { width: 0.7 },
+      visible: sum(spectrum.geoU235) > 0,
+    },
+    {
+      x: evBins,
       y: spectrum.geoTh,
       name: "Geo <sup>232</sup>Th",
       type: "scatter",

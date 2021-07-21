@@ -72,6 +72,7 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
 
   // geo thigns
   const geoUNIU = sum(spectrum.geoU) * 0.01;
+  const geoU235NIU = sum(spectrum.geoU235) * 0.01;
   const geoThNIU = sum(spectrum.geoTh) * 0.01;
   const geoKNIU = sum(spectrum.geoK) * 0.01;
 
@@ -190,6 +191,15 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
           <h6>Geoneutrinos <small>(Crust prediction plus user-defined Mantle model. See GeoNu tab.)</small></h6>
           <Table {...tableProps}>
             <tbody>
+              <tr>
+                <td>
+                  <i>R<sub>geo</sub> <sup>235</sup>U (temporary)</i>
+                </td>
+              <td>=</td>
+                <td>
+                  <Num v={geoU235NIU} p={2} /> {NIU}
+                </td>
+              </tr>
               <tr>
                 <td>
                   <i>R</i>

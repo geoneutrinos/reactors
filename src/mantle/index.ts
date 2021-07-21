@@ -4,6 +4,7 @@ import {
 } from "../physics/neutrino-cross-section";
 import { Oscillation } from "../physics/neutrino-oscillation";
 import {
+  antineutrinoSpectrum235U,
   antineutrinoSpectrum238U,
   antineutrinoSpectrum232Th,
   antineutrinoSpectrum40K,
@@ -71,6 +72,29 @@ export function mantleGeoSpectrum(
     return spec * TargetYears * survivalProbability + ESMUTauContirbution;
   });
 
+  const U235FluxIsotopicScale =
+    (ISOTOPIC_NEUTRINO_LUMINOSITY.U235 / ISOTOPIC_NEUTRINO_LUMINOSITY.U238) *
+    (ISOTOPIC_NATURAL_ABUNDANCE.U235 / ISOTOPIC_NATURAL_ABUNDANCE.U238);
+
+  const U235MantleFlux = U238flux * U235FluxIsotopicScale;
+
+  const geoU235 = antineutrinoSpectrum235U.map((v, i) => {
+    const Ev = EvBinFronIndex(i);
+    const U235CrustFlux = crustFlux.u * U235FluxIsotopicScale * MICROSECOND_PER_SECOND; // Convert from cm-2 us-1 to cm-2 s-1
+    const crossSectionArea = XSFunc(Ev); // cm2
+
+    const bin = v * (U235CrustFlux + U235MantleFlux) * crossSectionArea;
+
+    const [spec, ESMUTauContirbution] = extractESEandMuTau(
+      bin,
+      Ev,
+      survivalProbability,
+      crossSection
+    );
+
+    return spec * TargetYears * survivalProbability + ESMUTauContirbution;
+  });
+
   const ThMantleFluxIsotopicScale =
     (ISOTOPIC_NEUTRINO_LUMINOSITY.TH232 / ISOTOPIC_NEUTRINO_LUMINOSITY.U238) *
     (ISOTOPIC_NATURAL_ABUNDANCE.TH232 / ISOTOPIC_NATURAL_ABUNDANCE.U238);
@@ -119,6 +143,7 @@ export function mantleGeoSpectrum(
 
   return {
     geoU: geoU,
+    geoU235: geoU235,
     geoTh: geoTh,
     geoK: geoK,
   };
