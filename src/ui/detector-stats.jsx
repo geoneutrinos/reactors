@@ -215,7 +215,7 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
               </tr>
               <tr>
                 <td>
-                  <i>(Th/{U238})</i>
+                  <i>(Th/U)</i>
                   <sub>geo</sub>
                 </td>
               <td>=</td>
@@ -225,7 +225,7 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
               </tr>
               <tr style={{ display: geoKUVald }}>
                 <td>
-                  <i>(K/{U238})</i>
+                  <i>(K/U)</i>
                   <sub>geo</sub>
                 </td>
               <td>=</td>
