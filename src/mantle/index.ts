@@ -124,7 +124,7 @@ export function mantleGeoSpectrum(
 
   const KMantleFlux = U238flux * KURatio * KMantleFluxIsotopicScale;
 
-  const geoK40 = antineutrinoSpectrum40K.map((v, i) => {
+  const geoK40_beta = antineutrinoSpectrum40K.map((v, i) => {
     const Ev = EvBinFronIndex(i);
     const KCrustFlux = crustFlux.k * MICROSECOND_PER_SECOND; // Convert from cm-2 us-1 to cm-2 s-1
     const crossSectionArea = XSFunc(Ev); // cm2
@@ -145,6 +145,6 @@ export function mantleGeoSpectrum(
     geoU238: geoU238,
     geoU235: geoU235,
     geoTh232: geoTh232,
-    geoK40: geoK40,
+    geoK40_beta: geoK40_beta,
   };
 }

@@ -96,14 +96,14 @@ export function NuSpectrumPlot({ cores, spectrum, detector}) {
     },
     {
       x: evBins,
-      y: spectrum.geoK40,
-      name: "Geo <sup>40</sup>K",
+      y: spectrum.geoK40_beta,
+      name: "Geo <sup>40</sup>K (β<sup>-</sup>)",
       type: "scatter",
       mode: "lines",
       fill: "tozerox",
       marker: { color: "yellow" },
       line: { width: 0.7 },
-      visible: sum(spectrum.geoK40) > 0,
+      visible: sum(spectrum.geoK40_beta) > 0,
     },
   ];
 

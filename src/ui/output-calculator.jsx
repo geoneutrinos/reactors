@@ -98,9 +98,9 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
 
   const geoU238NIU = sum(spectrum.geoU238.slice(min_i, max_i)) * 0.01;
   const geoTh232NIU = sum(spectrum.geoTh232.slice(min_i, max_i)) * 0.01;
-  const geoK40NIU = sum(spectrum.geoK40.slice(min_i, max_i)) * 0.01;
+  const geoK40betaNIU = sum(spectrum.geoK40_beta.slice(min_i, max_i)) * 0.01;
 
-  const geoTotalNIU = geoU238NIU + geoTh232NIU + geoK40NIU;
+  const geoTotalNIU = geoU238NIU + geoTh232NIU + geoK40betaNIU;
 
   let UIsignal = 0;
   let UIbackground = 0;

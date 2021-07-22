@@ -99,7 +99,7 @@ export const OutputDownload = ({ cores, spectrum, detector, boron8 }) => {
     geo238U: spectrum.geoU238,
     geo235U: spectrum.geoU235,
     geo232Th: spectrum.geoTh232,
-    geo40K_beta: spectrum.geoK40,
+    geo40K_beta: spectrum.geoK40_beta,
   };
   const downloadFormatters = {
     "bin center (MeV)": (v) => v.toFixed(3),

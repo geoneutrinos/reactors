@@ -74,14 +74,14 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
   const geoU238NIU = sum(spectrum.geoU238) * 0.01;
   const geoU235NIU = sum(spectrum.geoU235) * 0.01;
   const geoTh232NIU = sum(spectrum.geoTh232) * 0.01;
-  const geoK40NIU = sum(spectrum.geoK40) * 0.01;
+  const geoK40betaNIU = sum(spectrum.geoK40_beta) * 0.01;
 
   const geoThU = geoThURatio(geoTh232NIU, geoU238NIU, crossSection.crossSection);
-  const geoKU = geoKURatio(geoK40NIU, geoU238NIU, crossSection.crossSection);
+  const geoKU = geoKURatio(geoK40betaNIU, geoU238NIU, crossSection.crossSection);
 
   const geoKUVald = isNaN(geoKU) ? "none" : "auto";
 
-  const geoTotalNIU = geoU238NIU + geoU235NIU + geoTh232NIU + geoK40NIU;
+  const geoTotalNIU = geoU238NIU + geoU235NIU + geoTh232NIU + geoK40betaNIU;
 
   // finally
   const totalNIU = totalCoreSignal + geoTotalNIU;
@@ -208,7 +208,7 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
                   </span>
                   <Num v={geoTh232NIU} p={1} /> {Th232}
                   <span style={{ display: geoKUVald }}>
-                    , <Num v={geoK40NIU} p={1} /> {K40}
+                    , <Num v={geoK40betaNIU} p={1} /> {K40}
                   </span>
                   )
                 </td>
