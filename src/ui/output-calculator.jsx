@@ -96,11 +96,11 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
     customCores.map((core) => core.detectorSignal.slice(min_i, max_i))
   );
 
-  const geoUNIU = sum(spectrum.geoU.slice(min_i, max_i)) * 0.01;
-  const geoThNIU = sum(spectrum.geoTh.slice(min_i, max_i)) * 0.01;
-  const geoKNIU = sum(spectrum.geoK.slice(min_i, max_i)) * 0.01;
+  const geoU238NIU = sum(spectrum.geoU238.slice(min_i, max_i)) * 0.01;
+  const geoTh232NIU = sum(spectrum.geoTh232.slice(min_i, max_i)) * 0.01;
+  const geoK40NIU = sum(spectrum.geoK40.slice(min_i, max_i)) * 0.01;
 
-  const geoTotalNIU = geoUNIU + geoThNIU + geoKNIU;
+  const geoTotalNIU = geoU238NIU + geoTh232NIU + geoK40NIU;
 
   let UIsignal = 0;
   let UIbackground = 0;
@@ -122,12 +122,12 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
     UIsignal = geoTotalNIU;
   }
   if (signal === "geo_u") {
-    UIbackground = totalCoreSignal + geoTotalNIU - geoUNIU;
-    UIsignal = geoUNIU;
+    UIbackground = totalCoreSignal + geoTotalNIU - geoU238NIU;
+    UIsignal = geoU238NIU;
   }
   if (signal === "geo_th") {
-    UIbackground = totalCoreSignal + geoTotalNIU - geoThNIU;
-    UIsignal = geoThNIU;
+    UIbackground = totalCoreSignal + geoTotalNIU - geoTh232NIU;
+    UIsignal = geoTh232NIU;
   }
 
   let UITime = time;
