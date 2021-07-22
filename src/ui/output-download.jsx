@@ -73,9 +73,9 @@ export const OutputDownload = ({ cores, spectrum, detector, boron8 }) => {
     ...customCores.map((c) => c.detectorSignal)
   ).map((s) => sum(s));
   const total = zip(
-    spectrum.geoTh,
-    spectrum.geoU,
-    spectrum.geoK,
+    spectrum.geoTh232,
+    spectrum.geoU238,
+    spectrum.geoK40,
     totalIAEA,
     totalCustom
   ).map((s) => sum(s));
@@ -88,17 +88,18 @@ export const OutputDownload = ({ cores, spectrum, detector, boron8 }) => {
         };
 
   const downloadData = {
-    "bin center (MeV)": spectrum.geoU.map((n, i) => 0.005 + i * 0.01),
+    "bin center (MeV)": spectrum.geoU238.map((n, i) => 0.005 + i * 0.01),
     total: total,
     "IAEA cores": totalIAEA,
     [`closest IAEA Core (${closestName})`]: closestSpectrum,
     ...customCoreData,
   };
   const downloadGeoData = {
-    "bin center (MeV)": spectrum.geoU.map((n, i) => 0.005 + i * 0.01),
-    geo238U: spectrum.geoU,
-    geo232Th: spectrum.geoTh,
-    geo40K_beta: spectrum.geoK,
+    "bin center (MeV)": spectrum.geoU238.map((n, i) => 0.005 + i * 0.01),
+    geo238U: spectrum.geoU238,
+    geo235U: spectrum.geoU235,
+    geo232Th: spectrum.geoTh232,
+    geo40K_beta: spectrum.geoK40_beta,
   };
   const downloadFormatters = {
     "bin center (MeV)": (v) => v.toFixed(3),
@@ -117,7 +118,8 @@ export const OutputDownload = ({ cores, spectrum, detector, boron8 }) => {
   if (
     [XSNames.IBDSV2003, XSNames.IBDVB1999].includes(crossSection.crossSection)
   ) {
-    delete downloadGeoData.geo40K_beta
+    delete downloadGeoData.geo40K_beta;
+    delete downloadGeoData.geoU235;
   }
 
   return (
