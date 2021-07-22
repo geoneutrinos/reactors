@@ -15,7 +15,7 @@ import {PhysicsContext} from "../state"
 
 import { Num } from '.'
 
-const { U238, Th232, K40 } = Elements;
+const { U238, U235, Th232, K40 } = Elements;
 
 
 
@@ -71,16 +71,17 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
   const customDisplay = customTotalSignal > 0 ? "block" : "none";
 
   // geo thigns
-  const geoUNIU = sum(spectrum.geoU) * 0.01;
-  const geoThNIU = sum(spectrum.geoTh) * 0.01;
-  const geoKNIU = sum(spectrum.geoK) * 0.01;
+  const geoU238NIU = sum(spectrum.geoU238) * 0.01;
+  const geoU235NIU = sum(spectrum.geoU235) * 0.01;
+  const geoTh232NIU = sum(spectrum.geoTh232) * 0.01;
+  const geoK40betaNIU = sum(spectrum.geoK40_beta) * 0.01;
 
-  const geoThU = geoThURatio(geoThNIU, geoUNIU, crossSection.crossSection);
-  const geoKU = geoKURatio(geoKNIU, geoUNIU, crossSection.crossSection);
+  const geoThU = geoThURatio(geoTh232NIU, geoU238NIU, crossSection.crossSection);
+  const geoKU = geoKURatio(geoK40betaNIU, geoU238NIU, crossSection.crossSection);
 
   const geoKUVald = isNaN(geoKU) ? "none" : "auto";
 
-  const geoTotalNIU = geoUNIU + geoThNIU + geoKNIU;
+  const geoTotalNIU = geoU238NIU + geoU235NIU + geoTh232NIU + geoK40betaNIU;
 
   // finally
   const totalNIU = totalCoreSignal + geoTotalNIU;
@@ -201,10 +202,13 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
                 </td>
                 <td>
                   (
-                  <Num v={geoUNIU} p={1} /> {U238}, <Num v={geoThNIU} p={1} />{" "}
-                  {Th232}
+                  <Num v={geoU238NIU} p={1} /> {U238}{", "}
                   <span style={{ display: geoKUVald }}>
-                    , <Num v={geoKNIU} p={1} /> {K40}
+                    <Num v={geoU235NIU} p={1} /> {U235}{", "}
+                  </span>
+                  <Num v={geoTh232NIU} p={1} /> {Th232}
+                  <span style={{ display: geoKUVald }}>
+                    , <Num v={geoK40betaNIU} p={1} /> {K40}<sub>β<sup>-</sup></sub>
                   </span>
                   )
                 </td>

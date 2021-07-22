@@ -4,6 +4,7 @@ import {
 } from "../physics/neutrino-cross-section";
 import { Oscillation } from "../physics/neutrino-oscillation";
 import {
+  antineutrinoSpectrum235U,
   antineutrinoSpectrum238U,
   antineutrinoSpectrum232Th,
   antineutrinoSpectrum40K,
@@ -54,12 +55,35 @@ export function mantleGeoSpectrum(
 
   const { U238flux, ThURatio, KURatio } = geoFluxRatios;
 
-  const geoU = antineutrinoSpectrum238U.map((v, i) => {
+  const geoU238 = antineutrinoSpectrum238U.map((v, i) => {
     const Ev = EvBinFronIndex(i);
     const UCrustFlux = crustFlux.u * MICROSECOND_PER_SECOND; // Convert from cm-2 us-1 to cm-2 s-1
     const crossSectionArea = XSFunc(Ev); // cm2
 
     const bin = v * (UCrustFlux + U238flux) * crossSectionArea;
+
+    const [spec, ESMUTauContirbution] = extractESEandMuTau(
+      bin,
+      Ev,
+      survivalProbability,
+      crossSection
+    );
+
+    return spec * TargetYears * survivalProbability + ESMUTauContirbution;
+  });
+
+  const U235FluxIsotopicScale =
+    (ISOTOPIC_NEUTRINO_LUMINOSITY.U235 / ISOTOPIC_NEUTRINO_LUMINOSITY.U238) *
+    (ISOTOPIC_NATURAL_ABUNDANCE.U235 / ISOTOPIC_NATURAL_ABUNDANCE.U238);
+
+  const U235MantleFlux = U238flux * U235FluxIsotopicScale;
+
+  const geoU235 = antineutrinoSpectrum235U.map((v, i) => {
+    const Ev = EvBinFronIndex(i);
+    const U235CrustFlux = crustFlux.u * U235FluxIsotopicScale * MICROSECOND_PER_SECOND; // Convert from cm-2 us-1 to cm-2 s-1
+    const crossSectionArea = XSFunc(Ev); // cm2
+
+    const bin = v * (U235CrustFlux + U235MantleFlux) * crossSectionArea;
 
     const [spec, ESMUTauContirbution] = extractESEandMuTau(
       bin,
@@ -77,7 +101,7 @@ export function mantleGeoSpectrum(
 
   const ThMantleFlux = U238flux * ThURatio * ThMantleFluxIsotopicScale;
 
-  const geoTh = antineutrinoSpectrum232Th.map((v, i) => {
+  const geoTh232 = antineutrinoSpectrum232Th.map((v, i) => {
     const Ev = EvBinFronIndex(i);
     const ThCrustFlux = crustFlux.th * MICROSECOND_PER_SECOND; // Convert from cm-2 us-1 to cm-2 s-1
     const crossSectionArea = XSFunc(Ev); // cm2
@@ -100,7 +124,7 @@ export function mantleGeoSpectrum(
 
   const KMantleFlux = U238flux * KURatio * KMantleFluxIsotopicScale;
 
-  const geoK = antineutrinoSpectrum40K.map((v, i) => {
+  const geoK40_beta = antineutrinoSpectrum40K.map((v, i) => {
     const Ev = EvBinFronIndex(i);
     const KCrustFlux = crustFlux.k * MICROSECOND_PER_SECOND; // Convert from cm-2 us-1 to cm-2 s-1
     const crossSectionArea = XSFunc(Ev); // cm2
@@ -118,8 +142,9 @@ export function mantleGeoSpectrum(
   });
 
   return {
-    geoU: geoU,
-    geoTh: geoTh,
-    geoK: geoK,
+    geoU238: geoU238,
+    geoU235: geoU235,
+    geoTh232: geoTh232,
+    geoK40_beta: geoK40_beta,
   };
 }
