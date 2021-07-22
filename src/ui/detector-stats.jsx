@@ -208,7 +208,7 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
                   </span>
                   <Num v={geoTh232NIU} p={1} /> {Th232}
                   <span style={{ display: geoKUVald }}>
-                    , <Num v={geoK40betaNIU} p={1} /> {K40}
+                    , <Num v={geoK40betaNIU} p={1} /> {K40}<sub>β<sup>-</sup></sub>
                   </span>
                   )
                 </td>
