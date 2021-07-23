@@ -23,11 +23,15 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
   const [eMax, setEMax] = useState(10);
   const [time, setTime] = useState(0);
   const [sigma, setSigma] = useState(3);
+  // eslint-disable-next-line no-unused-vars
   const [deltaGeoNu, setDeltaGeoNu] = useState(0.25);
   const [bkgnuisance, setBkgnuisance] = useState(0);
+  // eslint-disable-next-line no-unused-vars
   const [deltaBkgnuisance, setDeltaBkgnuisance] = useState(0.5);
+  // eslint-disable-next-line no-unused-vars
   const [deltaReactorsHighE, setDeltaReactorsHighE] = useState(0.06);
   // Use this systematic uncertainty on reactor signal less than E_thresh
+  // eslint-disable-next-line no-unused-vars
   const [deltaReactorsLowE, setDeltaReactorsLowE] = useState(0.3);
 
   const { crossSection } = useContext(PhysicsContext);
