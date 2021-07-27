@@ -33,6 +33,10 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
   // Use this systematic uncertainty on reactor signal less than E_thresh
   // eslint-disable-next-line no-unused-vars
   const [deltaReactorsLowE, setDeltaReactorsLowE] = useState(0.3);
+  // detection efficiency function parameters
+  const [effMax, setEffMax] = useState(0.8);
+  const [enerStart, setEnerStart] = useState(1.9);
+  const [rampUp, setRampUp] = useState(1.0);
 
   const { crossSection } = useContext(PhysicsContext);
 
@@ -106,6 +110,45 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
     }
   };
 
+const UIsetEffMax = (event) => {
+    const value = event.target.value;
+    let eff_max = parseFloat(value);
+    if (isNaN(eff_max)) {
+      setEffMax(value);
+    } else {
+      if (eff_max < 0) {
+        eff_max = 0;
+      }
+      setEffMax(eff_max);
+    }
+  };
+  
+const UIsetEnerStart = (event) => {
+    const value = event.target.value;
+    let ener_start = parseFloat(value);
+    if (isNaN(ener_start)) {
+      setEnerStart(value);
+    } else {
+      if (ener_start < 1.8) {
+        ener_start = 1.8;
+      }
+      setEnerStart(ener_start);
+    }
+  };
+  
+  const UIsetRampUp = (event) => {
+    const value = event.target.value;
+    let ramp_up = parseFloat(value);
+    if (isNaN(ramp_up)) {
+      setRampUp(value);
+    } else {
+      if (ramp_up < 0) {
+        ramp_up = 0;
+      }
+      setRampUp(ramp_up);
+    }
+  };
+  
   const UIsetTime = (event) => {
     const value = event.target.value;
     let time = parseFloat(value);
@@ -373,7 +416,52 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
                 </InputGroup.Append>
               </InputGroup>
             </Form.Group>
+  
+            <Form.Group controlId="eff_max">
+              <Form.Label>
+                Maximum Detection Efficiency
+              </Form.Label>
+              <InputGroup>
+                <Form.Control
+                  onChange={UIsetEffMax}
+                  type="number"
+                  step="0.1"
+                  value={effMax}
+                />
+              </InputGroup>
+            </Form.Group>
 
+            <Form.Group controlId="ener_start">
+              <Form.Label>
+                Detection Efficiency Turn on Energy
+              </Form.Label>
+              <InputGroup>
+                <Form.Control
+                  onChange={UIsetEnerStart}
+                  type="number"
+                  step="0.1"
+                  value={enerStart}
+                />
+                <InputGroup.Append>
+                  <InputGroup.Text>MeV</InputGroup.Text>
+                </InputGroup.Append>
+              </InputGroup>
+            </Form.Group>
+  
+            <Form.Group controlId="ramp_up">
+              <Form.Label>
+                Detection Efficiency Ramp Up Parameter
+              </Form.Label>
+              <InputGroup>
+                <Form.Control
+                  onChange={UIsetRampUp}
+                  type="number"
+                  step="0.1"
+                  value={rampUp}
+                />
+              </InputGroup>
+            </Form.Group>
+  
             <Form.Group controlId="time">
               <Form.Label>Exposure</Form.Label>
               <InputGroup>
