@@ -147,8 +147,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
       ? getCoreSums([closestActiveCore], min_i, max_i, low_i)
       : [0, 0, 0];
 
-  //
-  // need to separate sums for reactor antineutrino energy above and below E_thresh
+  // need separate sums for reactor antineutrino energy above and below E_thresh
   // systematic uncertainy is bigger below E_thresh than above
   // so min_i and max_i get modified
   const [totalCoreSignal, totalCoreSignalLow, totalCoreSignalHigh] =
@@ -341,8 +340,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
               </InputGroup>
             </Form.Group>
 
-          <Row>
-            <Form.Group as={Col} controlId="e_min">
+            <Form.Group controlId="e_min">
               <Form.Label>
                 Antineutrino <i>E</i><sub>min</sub>
               </Form.Label>
@@ -359,7 +357,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
               </InputGroup>
             </Form.Group>
 
-            <Form.Group as={Col} controlId="e_max">
+            <Form.Group controlId="e_max">
               <Form.Label>
                 Antineutrino <i>E</i><sub>max</sub>
               </Form.Label>
@@ -375,7 +373,6 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
                 </InputGroup.Append>
               </InputGroup>
             </Form.Group>
-          </Row>
 
             <Form.Group controlId="time">
               <Form.Label>Exposure</Form.Label>
