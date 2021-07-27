@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Card, Form, InputGroup } from "react-bootstrap";
+import { Card, Form, InputGroup, Table } from "react-bootstrap";
 import { sum } from "lodash";
 import { Node, Provider } from "@nteract/mathjax";
 import { PhysicsContext } from "../state";
