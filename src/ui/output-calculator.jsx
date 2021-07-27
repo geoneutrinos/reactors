@@ -421,12 +421,14 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
             </Form.Group>
           </Form>
           <div>
-            <Node>{String.raw`N_{\sigma} = \frac{ s * \xi}{\sqrt{(s + b) * \xi + (\delta b * \xi)^2}}`}</Node>{" "}
+//            <Node>{String.raw`N_{\sigma} = \frac{ s * \xi}{\sqrt{(s + b) * \xi + (\delta b * \xi)^2}}`}</Node>{" "}
+            <Node>{String.raw`N_{\sigma} = \frac{ s * E}{\sqrt{(s + b) * E + (\delta b * E)^2}}`}</Node>{" "}
             <Node inline>{String.raw`s`}</Node> is the signal rate,{" "}
             <Node inline>{String.raw`b`}</Node> is the background rate,{" "}
             <Node inline>{String.raw`\delta b`}</Node> is the systematic
             uncertainty of the background rate, and{" "}
-            <Node inline>{String.raw`\xi`}</Node> is the exposure. For rates in
+//            <Node inline>{String.raw`\xi`}</Node> is the exposure. For rates in
+            <Node inline>{String.raw`E`}</Node> is the exposure. For rates in
             NIU, exposure is in <Node inline>{`10^{32}`}</Node> target-years.
             The fractional systematic uncetainties of the estimated reactor
             rates are 0.06 (0.30) for antineutrino energy above (below) IBD
