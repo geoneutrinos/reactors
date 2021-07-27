@@ -343,7 +343,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
 
             <Form.Group controlId="e_min">
               <Form.Label>
-                Antineutrino E<sub>min</sub>
+                Antineutrino <i>E</i><sub>min</sub>
               </Form.Label>
               <InputGroup>
                 <Form.Control
@@ -360,7 +360,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
 
             <Form.Group controlId="e_max">
               <Form.Label>
-                Antineutrino E<sub>max</sub>
+                Antineutrino <i>E</i><sub>max</sub>
               </Form.Label>
               <InputGroup>
                 <Form.Control
