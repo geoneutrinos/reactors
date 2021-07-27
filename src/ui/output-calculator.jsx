@@ -147,6 +147,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
       ? getCoreSums([closestActiveCore], min_i, max_i, low_i)
       : [0, 0, 0];
 
+  //
   // need to separate sums for reactor antineutrino energy above and below E_thresh
   // systematic uncertainy is bigger below E_thresh than above
   // so min_i and max_i get modified
