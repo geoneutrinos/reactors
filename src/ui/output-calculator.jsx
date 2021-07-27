@@ -522,6 +522,16 @@ const UIsetEnerStart = (event) => {
             </Form.Group>
           </Form>
           <div>
+            <Table>
+              <thead>
+                <tr>
+                  <th>Signal</th>
+                  <th>Background</th>
+                </tr>
+              </thead>
+            </Table>
+          </div>
+          <div>
             <Node>{String.raw`N_{\sigma} = \frac{ s * \xi }{\sqrt{(s + b) * \xi + (\delta b * \xi )^2}},`}</Node> where{" "}
             <Node inline>{String.raw`s`}</Node> is the signal rate,{" "}
             <Node inline>{String.raw`b`}</Node> is the background rate,{" "}
