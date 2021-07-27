@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Card, Form, InputGroup } from "react-bootstrap";
+import { Card, Form, InputGroup, Table } from "react-bootstrap";
 import { sum } from "lodash";
 import { Node, Provider } from "@nteract/mathjax";
 import { PhysicsContext } from "../state";
@@ -306,6 +306,7 @@ const UIsetEnerStart = (event) => {
   let UISigma = sigma;
   let UIExposureNever = false;
   let UITotalUnderTwo = false;
+  let UITotal = (UIsignal + UIbackground) * UITime
 
   if (solveFor === "exposure") {
     UITime =
@@ -333,6 +334,8 @@ const UIsetEnerStart = (event) => {
     UISigma = UISigma.toFixed(3);
   }
 
+  const tableProps = { style: { width: "auto" }, borderless: true, size: "sm" };
+  
   return (
     <Card>
       <Card.Header>Significance/Exposure Calculator</Card.Header>
@@ -526,6 +529,20 @@ const UIsetEnerStart = (event) => {
             <Node inline>{String.raw`E_\mathrm{on}`}</Node> is the turn-on energy.
           </div>
         </Provider>
+          <Table {...tableProps}>
+          <tbody>
+            <tr>
+              <td>
+                <i>N</i>
+                <sub>total</sub>
+              </td>
+              <td>=</td>
+              <td>
+                {UITotal.toFixed(1)} {NIU}
+              </td>
+            </tr>
+          </tbody>
+        </Table>
       </Card.Body>
     </Card>
   );
