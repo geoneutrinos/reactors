@@ -495,14 +495,14 @@ const UIsetEnerStart = (event) => {
                   </InputGroup.Text>
                 </InputGroup.Append>
                 <Form.Control.Feedback type="invalid">
-                  Product of N<sub>σ</sub> and Background Uncertainty exceeds
+                  Product of <i>N</i><sub>σ</sub> and Background Uncertainty exceeds
                   Signal
                 </Form.Control.Feedback>
               </InputGroup>
             </Form.Group>
             <Form.Group controlId="sigma">
               <Form.Label>
-                Significance N<sub>σ</sub>
+                Significance <i>N</i><sub>σ</sub>
               </Form.Label>
               <InputGroup>
                 <Form.Control
