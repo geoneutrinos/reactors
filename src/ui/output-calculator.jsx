@@ -520,10 +520,10 @@ const UIsetEnerStart = (event) => {
             threshold, while those for the estimated geoneutrino and nuisance
             background rates are 0.25 and 0.50, respectively. The spectral shape
             of the nuisance background is flat.
-            <Node>{String.raw`\varepsilon = \varepsilon_{max} (1 - \exp(-R * (E - E_{on}))),`}</Node>{" "}
-            <Node inline>{String.raw`\varepsilon_{max}`}</Node> is the maximum detection efficiency,{" "}
+            <Node>{String.raw`\varepsilon (E) = \varepsilon_\mathrm{max} (1 - \exp(-R * (E - E_\mathrm{on}))),`}</Node>{" "}
+            <Node inline>{String.raw`\varepsilon_\mathrm{max}`}</Node> is the maximum detection efficiency,{" "}
             <Node inline>{String.raw`R`}</Node> is the ramp-up parameter, and{" "}
-            <Node inline>{String.raw`E_{on}`}</Node> is the turn-on energy.
+            <Node inline>{String.raw`E_\mathrm{on}`}</Node> is the turn-on energy.
           </div>
         </Provider>
       </Card.Body>
