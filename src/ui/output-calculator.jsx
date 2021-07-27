@@ -239,6 +239,10 @@ const UIsetEnerStart = (event) => {
         ((totalCoreSignalLow - closestLowNIU) * deltaReactorsLowE) ** 2
     );
   }
+  if (signal === "complex") {
+  }
+  if (signal === "coretype") {
+  }
   if (signal === "custom") {
     UIsignal = customTotalSignal;
     UIbackground =
@@ -346,6 +350,12 @@ const UIsetEnerStart = (event) => {
                 <option value="closest">
                   Closest Core (geoneutrinos + other reactors)
                 </option>
+                <option value="complex">
+                  Reactor Complex (geoneutrinos + other reactors)
+                </option>
+                <option value="coretype">
+                  Reactor Type (geoneutrinos + other reactors)
+                </option>
                 <option value="custom">
                   Custom Core (geoneutrinos + other reactors)
                 </option>
@@ -438,7 +448,7 @@ const UIsetEnerStart = (event) => {
 
             <Form.Group controlId="ener_start">
               <Form.Label>
-                Detection Efficiency Turn-on Energy
+                Detection Efficiency Turn-on <i>E</i><sub>on</sub>
               </Form.Label>
               <InputGroup>
                 <Form.Control
@@ -492,7 +502,7 @@ const UIsetEnerStart = (event) => {
             </Form.Group>
             <Form.Group controlId="sigma">
               <Form.Label>
-                N<sub>σ</sub>
+                Significance N<sub>σ</sub>
               </Form.Label>
               <InputGroup>
                 <Form.Control
