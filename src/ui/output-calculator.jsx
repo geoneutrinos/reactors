@@ -508,7 +508,7 @@ const UIsetEnerStart = (event) => {
             </Form.Group>
           </Form>
           <div>
-            <Node>{String.raw`N_{\sigma} = \frac{ s * \xi }{\sqrt{(s + b) * \xi + (\delta b * \xi )^2}},`}</Node>{" "}
+            <Node>{String.raw`N_{\sigma} = \frac{ s * \xi }{\sqrt{(s + b) * \xi + (\delta b * \xi )^2}},`}</Node> where{" "}
             <Node inline>{String.raw`s`}</Node> is the signal rate,{" "}
             <Node inline>{String.raw`b`}</Node> is the background rate,{" "}
             <Node inline>{String.raw`\delta b`}</Node> is the systematic
@@ -518,9 +518,9 @@ const UIsetEnerStart = (event) => {
             The fractional systematic uncetainties of the estimated reactor
             rates are 0.06 (0.30) for antineutrino energy above (below) IBD
             threshold, while those for the estimated geoneutrino and nuisance
-            background rates are 0.25 and 0.50, respectively. The spectral shape
-            of the nuisance background is flat.
-            <Node>{String.raw`\varepsilon (E) = \varepsilon_\mathrm{max} (1 - \exp(-\rho * (E - E_\mathrm{on}))),`}</Node>{" "}
+            background rates are 0.25 and 0.50, respectively. The nuisance background energy
+            spectral shape is flat. Detection efficiency is approximated by
+            <Node>{String.raw`\varepsilon (E) = \varepsilon_\mathrm{max} (1 - \exp(-\rho * (E - E_\mathrm{on}))),`}</Node> where{" "}
             <Node inline>{String.raw`\varepsilon_\mathrm{max}`}</Node> is the maximum detection efficiency,{" "}
             <Node inline>{String.raw`\rho`}</Node> is the ramp-up parameter, and{" "}
             <Node inline>{String.raw`E_\mathrm{on}`}</Node> is the turn-on energy.
