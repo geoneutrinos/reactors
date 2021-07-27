@@ -437,7 +437,7 @@ const UIsetEnerStart = (event) => {
 
             <Form.Group controlId="ener_start">
               <Form.Label>
-                Detection Efficiency Turn on Energy
+                Detection Efficiency Turn-on Energy
               </Form.Label>
               <InputGroup>
                 <Form.Control
@@ -454,7 +454,7 @@ const UIsetEnerStart = (event) => {
   
             <Form.Group controlId="ramp_up">
               <Form.Label>
-                Detection Efficiency Ramp Up Parameter
+                Detection Efficiency Ramp-up Parameter
               </Form.Label>
               <InputGroup>
                 <Form.Control
