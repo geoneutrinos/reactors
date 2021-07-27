@@ -339,8 +339,8 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
                 </InputGroup.Append>
               </InputGroup>
             </Form.Group>
-            <Row>
-              <Col>
+//            <Row>
+//              <Col>
                 <Form.Group controlId="e_min">
                   <Form.Label>
                     Antineutrino <i>E</i><sub>min</sub>
@@ -357,8 +357,8 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
                     </InputGroup.Append>
                   </InputGroup>
                 </Form.Group>
-              </Col>
-              <Col>
+//              </Col>
+//              <Col>
                 <Form.Group controlId="e_max">
                   <Form.Label>
                     Antineutrino <i>E</i><sub>max</sub>
@@ -375,8 +375,8 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
                     </InputGroup.Append>
                   </InputGroup>
                 </Form.Group>
-              </Col>
-            </Row>
+//              </Col>
+//            </Row>
             <Form.Group controlId="time">
               <Form.Label>Exposure</Form.Label>
               <InputGroup>
