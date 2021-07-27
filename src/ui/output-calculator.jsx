@@ -417,10 +417,10 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
             </Form.Group>
           </Form>
           <div>
-            <Node>{String.raw`N_{\sigma} = \frac{ S * E}{\sqrt{(S + B) * E + (\delta B * E)^2}}`}</Node>{" "}
-            <Node inline>{String.raw`S`}</Node> is the signal rate,{" "}
-            <Node inline>{String.raw`B`}</Node> is the background rate,{" "}
-            <Node inline>{String.raw`\delta B`}</Node> is the systematic
+            <Node>{String.raw`N_{\sigma} = \frac{ s * E}{\sqrt{(s + b) * E + (\delta b * E)^2}}`}</Node>{" "}
+            <Node inline>{String.raw`s`}</Node> is the signal rate,{" "}
+            <Node inline>{String.raw`b`}</Node> is the background rate,{" "}
+            <Node inline>{String.raw`\delta b`}</Node> is the systematic
             uncertainty of the background rate, and{" "}
             <Node inline>{String.raw`E`}</Node> is the exposure. For rates in
             NIU, exposure is in <Node inline>{`10^{32}`}</Node> target-years.
