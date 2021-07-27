@@ -339,41 +339,44 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
                 </InputGroup.Append>
               </InputGroup>
             </Form.Group>
-
-            <Form.Group controlId="e_min">
-              <Form.Label>
-                Antineutrino E<sub>min</sub>
-              </Form.Label>
-              <InputGroup>
-                <Form.Control
-                  onChange={UIsetEMin}
-                  type="number"
-                  step="0.1"
-                  value={eMin}
-                />
-                <InputGroup.Append>
-                  <InputGroup.Text>MeV</InputGroup.Text>
-                </InputGroup.Append>
-              </InputGroup>
-            </Form.Group>
-
-            <Form.Group controlId="e_max">
-              <Form.Label>
-                Antineutrino E<sub>max</sub>
-              </Form.Label>
-              <InputGroup>
-                <Form.Control
-                  onChange={UIsetEMax}
-                  type="number"
-                  step="0.1"
-                  value={eMax}
-                />
-                <InputGroup.Append>
-                  <InputGroup.Text>MeV</InputGroup.Text>
-                </InputGroup.Append>
-              </InputGroup>
-            </Form.Group>
-
+            <Row>
+              <Col>
+                <Form.Group controlId="e_min">
+                  <Form.Label>
+                    Antineutrino <i>E</i><sub>min</sub>
+                  </Form.Label>
+                  <InputGroup>
+                    <Form.Control
+                      onChange={UIsetEMin}
+                      type="number"
+                      step="0.1"
+                      value={eMin}
+                    />
+                    <InputGroup.Append>
+                      <InputGroup.Text>MeV</InputGroup.Text>
+                    </InputGroup.Append>
+                  </InputGroup>
+                </Form.Group>
+              </Col>
+              <Col>
+                <Form.Group controlId="e_max">
+                  <Form.Label>
+                    Antineutrino <i>E</i><sub>max</sub>
+                  </Form.Label>
+                  <InputGroup>
+                    <Form.Control
+                      onChange={UIsetEMax}
+                      type="number"
+                      step="0.1"
+                      value={eMax}
+                    />
+                    <InputGroup.Append>
+                      <InputGroup.Text>MeV</InputGroup.Text>
+                    </InputGroup.Append>
+                  </InputGroup>
+                </Form.Group>
+              </Col>
+            </Row>
             <Form.Group controlId="time">
               <Form.Label>Exposure</Form.Label>
               <InputGroup>
@@ -416,12 +419,12 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
             </Form.Group>
           </Form>
           <div>
-            <Node>{String.raw`N_{\sigma} = \frac{ S * E}{\sqrt{(S + B) * E + (\delta B * E)^2}}`}</Node>{" "}
-            <Node inline>{String.raw`S`}</Node> is the signal rate,{" "}
-            <Node inline>{String.raw`B`}</Node> is the background rate,{" "}
-            <Node inline>{String.raw`\delta B`}</Node> is the systematic
+            <Node>{String.raw`N_{\sigma} = \frac{ s * \xi}{\sqrt{(s + b) * \xi + (\delta b * \xi)^2}}`}</Node>{" "}
+            <Node inline>{String.raw`s`}</Node> is the signal rate,{" "}
+            <Node inline>{String.raw`b`}</Node> is the background rate,{" "}
+            <Node inline>{String.raw`\delta b`}</Node> is the systematic
             uncertainty of the background rate, and{" "}
-            <Node inline>{String.raw`E`}</Node> is the exposure. For rates in
+            <Node inline>{String.raw`\xi`}</Node> is the exposure. For rates in
             NIU, exposure is in <Node inline>{`10^{32}`}</Node> target-years.
             The fractional systematic uncetainties of the estimated reactor
             rates are 0.06 (0.30) for antineutrino energy above (below) IBD
