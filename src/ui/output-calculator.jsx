@@ -306,7 +306,7 @@ const UIsetEnerStart = (event) => {
   let UISigma = sigma;
   let UIExposureNever = false;
   let UITotalUnderTwo = false;
-  let UITotal = (UIsignal + UIbackground) * UITime
+  // let UITotal = (UIsignal + UIbackground) * UITime
 
   if (solveFor === "exposure") {
     UITime =
@@ -537,7 +537,7 @@ const UIsetEnerStart = (event) => {
               </td>
               <td>=</td>
               <td>
-                {UITotal.toFixed(1)} {NIU}
+                {NIU}
               </td>
             </tr>
           </tbody>
