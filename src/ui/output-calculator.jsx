@@ -528,7 +528,6 @@ const UIsetEnerStart = (event) => {
             <Node inline>{String.raw`\rho`}</Node> is the ramp-up parameter, and{" "}
             <Node inline>{String.raw`E_\mathrm{on}`}</Node> is the turn-on energy.
           </div>
-        </Provider>
           <Table {...tableProps}>
           <tbody>
             <tr>
@@ -542,7 +541,8 @@ const UIsetEnerStart = (event) => {
               </td>
             </tr>
           </tbody>
-        </Table>
+          </Table>
+        </Provider>
       </Card.Body>
     </Card>
   );
