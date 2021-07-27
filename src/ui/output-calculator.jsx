@@ -385,7 +385,7 @@ const UIsetEnerStart = (event) => {
             </Form.Group>
 
             <Form.Group controlId="bkg_nuisance">
-              <Form.Label>Nuisance Background</Form.Label>
+              <Form.Label>Nuisance Background Rate</Form.Label>
               <InputGroup>
                 <Form.Control
                   onChange={UIsetBkgNuisance}
@@ -474,6 +474,9 @@ const UIsetEnerStart = (event) => {
                   step="0.1"
                   value={rampUp}
                 />
+                <InputGroup.Append>
+                  <InputGroup.Text>MeV<sup>-1</sup></InputGroup.Text>
+                </InputGroup.Append>
               </InputGroup>
             </Form.Group>
   
