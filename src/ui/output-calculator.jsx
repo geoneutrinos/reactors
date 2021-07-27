@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Card, Form, InputGroup, Table } from "react-bootstrap";
+import { Card, Form, InputGroup } from "react-bootstrap";
 import { sum } from "lodash";
 import { Node, Provider } from "@nteract/mathjax";
 import { PhysicsContext } from "../state";
@@ -333,8 +333,6 @@ const UIsetEnerStart = (event) => {
     }
     UISigma = UISigma.toFixed(3);
   }
-
-  const tableProps = { style: { width: "auto" }, borderless: true, size: "sm" };
   
   return (
     <Card>
@@ -528,20 +526,6 @@ const UIsetEnerStart = (event) => {
             <Node inline>{String.raw`\rho`}</Node> is the ramp-up parameter, and{" "}
             <Node inline>{String.raw`E_\mathrm{on}`}</Node> is the turn-on energy.
           </div>
-          <Table {...tableProps}>
-          <tbody>
-            <tr>
-              <td>
-                <i>N</i>
-                <sub>total</sub>
-              </td>
-              <td>=</td>
-              <td>
-                {NIU}
-              </td>
-            </tr>
-          </tbody>
-          </Table>
         </Provider>
       </Card.Body>
     </Card>
