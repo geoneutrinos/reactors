@@ -341,7 +341,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
               </InputGroup>
             </Form.Group>
 
-          <Row className="mb-3">
+          <Row>
             <Form.Group as={Col} controlId="e_min">
               <Form.Label>
                 Antineutrino <i>E</i><sub>min</sub>
