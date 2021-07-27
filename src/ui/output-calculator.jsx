@@ -19,7 +19,7 @@ const getCoreSums = (cores, min_i, max_i, low_i) => {
 export const CalculatorPanel = ({ cores, spectrum }) => {
   const [signal, setSignal] = useState("closest");
   const [solveFor, setSolveFor] = useState("exposure");
-  const [eMin, setEMin] = useState(parseFloat(IBD_THRESHOLD.toFixed(1)));
+  const [eMin, setEMin] = useState(parseFloat(IBD_THRESHOLD.toFixed(2)));
   const [eMax, setEMax] = useState(10);
   const [time, setTime] = useState(0);
   const [sigma, setSigma] = useState(3);
@@ -35,7 +35,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
   const [deltaReactorsLowE, setDeltaReactorsLowE] = useState(0.3);
   // detection efficiency function parameters
   const [effMax, setEffMax] = useState(0.8);
-  const [enerStart, setEnerStart] = useState(1.9);
+  const [enerStart, setEnerStart] = useState(parseFloat(IBD_THRESHOLD.toFixed(2)));
   const [rampUp, setRampUp] = useState(1.0);
 
   const { crossSection } = useContext(PhysicsContext);
@@ -119,18 +119,22 @@ const UIsetEffMax = (event) => {
       if (eff_max < 0) {
         eff_max = 0;
       }
+      if (eff_max > 1.0) {
+        eff_max = 1.0;
+      }
       setEffMax(eff_max);
     }
   };
   
 const UIsetEnerStart = (event) => {
     const value = event.target.value;
+    let stateEnerstart = parseFloat(IBD_THRESHOLD.toFixed(1)) * isIBD;
     let ener_start = parseFloat(value);
     if (isNaN(ener_start)) {
       setEnerStart(value);
     } else {
-      if (ener_start < 1.8) {
-        ener_start = 1.8;
+      if (ener_start < stateEnerstart) {
+        ener_start = stateEnerstart;
       }
       setEnerStart(ener_start);
     }
