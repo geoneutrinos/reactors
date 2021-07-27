@@ -508,8 +508,7 @@ const UIsetEnerStart = (event) => {
             </Form.Group>
           </Form>
           <div>
-            <Node>{String.raw`N_{\sigma} = \frac{ s * \xi }{\sqrt{(s + b) * \xi + (\delta b * \xi )^2}},`}</Node>
-            where{" "}
+            <Node>{String.raw`N_{\sigma} = \frac{ s * \xi }{\sqrt{(s + b) * \xi + (\delta b * \xi )^2}},`}</Node>{" "}
             <Node inline>{String.raw`s`}</Node> is the signal rate,{" "}
             <Node inline>{String.raw`b`}</Node> is the background rate,{" "}
             <Node inline>{String.raw`\delta b`}</Node> is the systematic
@@ -521,13 +520,10 @@ const UIsetEnerStart = (event) => {
             threshold, while those for the estimated geoneutrino and nuisance
             background rates are 0.25 and 0.50, respectively. The spectral shape
             of the nuisance background is flat.
-          </div>
-          <div>
-            <Node>{String.raw'\epsilon = \epsilon_{max} (1 - \exp(-R * (E - E_{on}))),'}</Node>
-            where{" "}
-            <Node inline>{String.raw'\epsilon_{max}'}</Node> is the maximum detection efficiency,{" "}
+            <Node>{String.raw'\varepsilon = \varepsilon_{max} (1 - \exp(-R * (E - E_{on}))),'}</Node>{" "}
+            <Node inline>{String.raw'\varepsilon_{max}'}</Node> is the maximum detection efficiency,{" "}
             <Node inline>{String.raw'R'}</Node> is the ramp-up parameter, and{" "}
-            <Node inline>{String.raw'\E_{on}'}</Node> is the turn-on energy.
+            <Node inline>{String.raw'E_{on}'}</Node> is the turn-on energy.
           </div>
         </Provider>
       </Card.Body>
