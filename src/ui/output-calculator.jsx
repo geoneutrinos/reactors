@@ -548,41 +548,33 @@ const UIsetEnerStart = (event) => {
           <div>
             <Table>
 //            <Table {...tabProps}>
-              <thead>
-                <tr>
-                  <th></th>
-                  <th></th>
-                  <th>Events</th>
-                  <th></th>
-                  <th>Uncertainty</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <i>S</i>
-                  </td>
-                  <td>=</td>
-                  <td>
-                    <Num v={UIeventsSignal} p={2} />
-                  </td>
-                  <td> </td>
-                  <td> </td>
-                </tr>
-                <tr>
-                  <td>
-                    <i>B</i>
-                  </td>
-                  <td>=</td>
-                  <td>
-                    <Num v={UIeventsBackground} p={2} />
-                  </td>
-                  <td> </td>
-                  <td>
-                    <Num v={UIeventsUncertainty} p={2} />
-                  </td>
-                </tr>
-              </tbody>
+              <tr>
+                <th>void</th>
+                <th>void</th>
+                <th>Events</th>
+                <th>void</th>
+                <th>Uncertainty</th>
+              </tr>
+              <tr>
+                <td>S</td>
+                <td>=</td>
+                <td>
+                  <Num v={UIeventsSignal} p={2} />
+                </td>
+                <td>0</td>
+                <td>0</td>
+              </tr>
+              <tr>
+                <td>B</td>
+                <td>=</td>
+                <td>
+                  <Num v={UIeventsBackground} p={2} />
+                </td>
+                <td>0</td>
+                <td>
+                  <Num v={UIeventsUncertainty} p={2} />
+                </td>
+              </tr>
             </Table>
           </div>
           <div>
