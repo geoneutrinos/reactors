@@ -354,7 +354,7 @@ const UIsetEnerStart = (event) => {
   let UIeventsUncertainty = UIBackgroundUncertainty * UITime
 
 // Should be set to infinity
-  if (UIExpsoureNever) {
+  if (UIExposureNever) {
     UIeventsSignal = 0;
     UIeventsBackground = 0;
     UIeventsUncertainty = 0;
