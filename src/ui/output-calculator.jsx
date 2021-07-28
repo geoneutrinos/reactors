@@ -229,6 +229,8 @@ const UIsetEnerStart = (event) => {
   // for now assume a flat spectrum with maximum energy of 10 MeV
   const bkgNuisanceNIU =
     (bkgnuisance * (eMax - eMin)) / (10 - IBD_THRESHOLD * isIBD);
+  
+  const tabProps = { style: { width: "auto" }, borderless: true, size: "sm" };
 
   let UIsignal = 0;
   let UIbackground = 0;
@@ -544,7 +546,7 @@ const UIsetEnerStart = (event) => {
             </Form.Group>
           </Form>
           <div>
-            <Table>
+            <Table {...tabProps}>
 //              <thead>
 //                <tr>
 //                  <th>Signal Events</th>
@@ -559,6 +561,8 @@ const UIsetEnerStart = (event) => {
                   </td>
                   <td>=</td>
                   <td><Num v={UIeventsSignal} p={2}/></td>
+                  <td> </td>
+                  <td> </td>
                 </tr>
                 <tr>
                   <td>
