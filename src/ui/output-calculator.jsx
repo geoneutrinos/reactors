@@ -525,10 +525,16 @@ const UIsetEnerStart = (event) => {
             <Table>
               <thead>
                 <tr>
-                  <th>Signal</th>
-                  <th>Background</th>
+                  <th>Signal Events</th>
+                  <th>Background Events</th>
                 </tr>
               </thead>
+              <tbody>
+                <tr>
+                  <td> 5 </td>
+                  <td> 8 </td>
+                </tr>
+              </tbody>
             </Table>
           </div>
           <div>
