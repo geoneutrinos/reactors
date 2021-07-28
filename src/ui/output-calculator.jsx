@@ -547,14 +547,12 @@ const UIsetEnerStart = (event) => {
             <Table>
               <tr>
                 <th>0</th>
-                <th>0</th>
                 <th>Events</th>
                 <th>0</th>
                 <th>Uncertainty</th>
               </tr>
               <tr>
-                <td>S</td>
-                <td>=</td>
+                <td>S =</td>
                 <td>
                   <Num v={UIeventsSignal} p={2} />
                 </td>
@@ -562,8 +560,7 @@ const UIsetEnerStart = (event) => {
                 <td>0</td>
               </tr>
               <tr>
-                <td>B</td>
-                <td>=</td>
+                <td>B =</td>
                 <td>
                   <Num v={UIeventsBackground} p={2} />
                 </td>
