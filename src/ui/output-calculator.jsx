@@ -352,6 +352,13 @@ const UIsetEnerStart = (event) => {
   let UIeventsSignal = UIsignal * UITime
   let UIeventsBackground = UIbackground * UITime
   let UIeventsUncertainty = UIBackgroundUncertainty * UITime
+
+// Should be set to infinity
+  if (UIExpsoureNever) {
+    UIeventsSignal = 0;
+    UIeventsBackground = 0;
+    UIeventsUncertainty = 0;
+  }
   
   return (
     <Card>
