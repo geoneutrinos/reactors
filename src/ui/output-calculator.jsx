@@ -310,8 +310,9 @@ const UIsetEnerStart = (event) => {
   let UISigma = sigma;
   let UIExposureNever = false;
   let UITotalUnderTwo = false;
-  // let UITotal = (UIsignal + UIbackground) * UITime
-
+  let UIeventsSignal = UIsignal * UITime
+  let UIeventsBackground = UIbackground * UITime
+  
   if (solveFor === "exposure") {
     UITime =
       (sigma ** 2 * (UIsignal + UIbackground)) /
@@ -531,8 +532,8 @@ const UIsetEnerStart = (event) => {
               </thead>
               <tbody>
                 <tr>
-                  <td> 5 </td>
-                  <td> 8 </td>
+                  <td> UIeventsSignal.toFixed(2) </td>
+                  <td> UIeventsBackground.toFixed(2) </td>
                 </tr>
               </tbody>
             </Table>
