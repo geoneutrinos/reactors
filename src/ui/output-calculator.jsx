@@ -532,8 +532,8 @@ const UIsetEnerStart = (event) => {
               </thead>
               <tbody>
                 <tr>
-                  <td>UIeventsSignal</td>
-                  <td>UIeventsBackground</td>
+                  <td>{UIeventsSignal.toFixed(2)}</td>
+                  <td>{UIeventsBackground.toFixed(2)}</td>
                 </tr>
               </tbody>
             </Table>
