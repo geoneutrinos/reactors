@@ -545,18 +545,27 @@ const UIsetEnerStart = (event) => {
           </Form>
           <div>
             <Table>
-              <thead>
-                <tr>
-                  <th>Signal Events</th>
-                  <th>Background Events</th>
-                  <th>Background Uncertainty Events</th>
-              </tr>
-              </thead>
+//              <thead>
+//                <tr>
+//                  <th>Signal Events</th>
+//                  <th>Background Events</th>
+//                  <th>Background Uncertainty Events</th>
+//              </tr>
+//              </thead>
               <tbody>
                 <tr>
+                  <td>
+                    <i>S</i>
+                  </td>
+                  <td>=</td>
                   <td><Num v={UIeventsSignal} p={2}/></td>
-                  <td><Num v={UIeventsBackground} p={2} /></td>
-                  <td><Num v={UIeventsUncertainty} p={2} /></td>
+                </tr>
+                <tr>
+                  <td>
+                    <i>B</i>
+                  </td>
+                  <td>=</td>
+                  <td><Num v={UIeventsBackground} p={2} / <Num v={UIeventsUncertainty} p={2} /></td>
                 </tr>
               </tbody>
             </Table>
