@@ -312,6 +312,7 @@ const UIsetEnerStart = (event) => {
   let UITotalUnderTwo = false;
   let UIeventsSignal = UIsignal * UITime
   let UIeventsBackground = UIbackground * UITime
+  let UIeventsUncertainty = UIBackgroundUncertainty * UITime
   
   if (solveFor === "exposure") {
     UITime =
@@ -528,12 +529,14 @@ const UIsetEnerStart = (event) => {
                 <tr>
                   <th>Signal Events</th>
                   <th>Background Events</th>
-                </tr>
+                  <th>Background Uncertainty Events</th>
+              </tr>
               </thead>
               <tbody>
                 <tr>
                   <td>{UIeventsSignal.toFixed(2)}</td>
                   <td>{UIeventsBackground.toFixed(2)}</td>
+                  <td>{UIeventsUncertainty.toFixed(2)}</td>
                 </tr>
               </tbody>
             </Table>
