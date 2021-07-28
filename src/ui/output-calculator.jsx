@@ -548,13 +548,15 @@ const UIsetEnerStart = (event) => {
           <div>
             <Table>
 //            <Table {...tabProps}>
-//              <thead>
-//                <tr>
-//                  <th>Signal Events</th>
-//                  <th>Background Events</th>
-//                  <th>Background Uncertainty Events</th>
-//              </tr>
-//              </thead>
+              <thead>
+                <tr>
+                  <th></th>
+                  <th></th>
+                  <th>Events</th>
+                  <th></th>
+                  <th>Uncertainty</th>
+                </tr>
+              </thead>
               <tbody>
                 <tr>
                   <td>
