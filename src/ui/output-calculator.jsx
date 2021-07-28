@@ -5,6 +5,7 @@ import { Node, Provider } from "@nteract/mathjax";
 import { PhysicsContext } from "../state";
 import { XSNames } from "../physics/neutrino-cross-section";
 import { IBD_THRESHOLD } from "../physics/derived";
+import { Num } from ".";
 
 const getCoreSums = (cores, min_i, max_i, low_i) => {
   const lowSum = sum(
@@ -310,9 +311,6 @@ const UIsetEnerStart = (event) => {
   let UISigma = sigma;
   let UIExposureNever = false;
   let UITotalUnderTwo = false;
-  let UIeventsSignal = UIsignal * UITime
-  let UIeventsBackground = UIbackground * UITime
-  let UIeventsUncertainty = UIBackgroundUncertainty * UITime
   
   if (solveFor === "exposure") {
     UITime =
@@ -339,6 +337,10 @@ const UIsetEnerStart = (event) => {
     }
     UISigma = UISigma.toFixed(3);
   }
+
+  let UIeventsSignal = UIsignal * UITime
+  let UIeventsBackground = UIbackground * UITime
+  let UIeventsUncertainty = UIBackgroundUncertainty * UITime
   
   return (
     <Card>
@@ -534,9 +536,9 @@ const UIsetEnerStart = (event) => {
               </thead>
               <tbody>
                 <tr>
-                  <td>{UIeventsSignal.toFixed(2)}</td>
-                  <td>{UIeventsBackground.toFixed(2)}</td>
-                  <td>{UIeventsUncertainty.toFixed(2)}</td>
+                  <td><Num v={UIeventsSignal} p={2}/></td>
+                  <td><Num v={UIeventsBackground} p={2} /></td>
+                  <td><Num v={UIeventsUncertainty} p={2} /></td>
                 </tr>
               </tbody>
             </Table>
