@@ -220,10 +220,10 @@ const UIsetEnerStart = (event) => {
   const [customTotalSignal, customTotalSignalLow, customTotalSignalHigh] =
     getCoreSums(customCores, min_i, max_i, low_i);
 
-  const geoU238NIU = sum(spectrum.geoU238.slice(min_i, max_i)) * 0.01;
-  const geoU235NIU = sum(spectrum.geoU235.slice(min_i, max_i)) * 0.01;
-  const geoTh232NIU = sum(spectrum.geoTh232.slice(min_i, max_i)) * 0.01;
-  const geoK40betaNIU = sum(spectrum.geoK40_beta.slice(min_i, max_i)) * 0.01;
+  const geoU238NIU = sum(detectorEfficiency(effMax, rampUp, enerStart, spectrum.geoU238).slice(min_i, max_i)) * 0.01;
+  const geoU235NIU = sum(detectorEfficiency(effMax, rampUp, enerStart, spectrum.geoU235).slice(min_i, max_i)) * 0.01;
+  const geoTh232NIU = sum(detectorEfficiency(effMax, rampUp, enerStart, spectrum.geoTh232).slice(min_i, max_i)) * 0.01;
+  const geoK40betaNIU = sum(detectorEfficiency(effMax, rampUp, enerStart, spectrum.geoK40_beta).slice(min_i, max_i)) * 0.01;
   const geoTotalNIU = geoU238NIU + geoTh232NIU + geoK40betaNIU + geoU235NIU;
 
   // for now assume a flat spectrum with maximum energy of 10 MeV
