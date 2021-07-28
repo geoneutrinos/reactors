@@ -230,7 +230,7 @@ const UIsetEnerStart = (event) => {
   const bkgNuisanceNIU =
     (bkgnuisance * (eMax - eMin)) / (10 - IBD_THRESHOLD * isIBD);
   
-  const tabProps = { style: { width: "auto" }, borderless: true, size: "sm" };
+  // const tabProps = { style: { width: "auto" }, borderless: true, size: "sm" };
 
   let UIsignal = 0;
   let UIbackground = 0;
@@ -546,7 +546,8 @@ const UIsetEnerStart = (event) => {
             </Form.Group>
           </Form>
           <div>
-            <Table {...tabProps}>
+            <Table>
+//            <Table {...tabProps}>
 //              <thead>
 //                <tr>
 //                  <th>Signal Events</th>
@@ -560,7 +561,9 @@ const UIsetEnerStart = (event) => {
                     <i>S</i>
                   </td>
                   <td>=</td>
-                  <td><Num v={UIeventsSignal} p={2}/></td>
+                  <td>
+                    <Num v={UIeventsSignal} p={2} />
+                  </td>
                   <td> </td>
                   <td> </td>
                 </tr>
@@ -569,9 +572,13 @@ const UIsetEnerStart = (event) => {
                     <i>B</i>
                   </td>
                   <td>=</td>
-                  <td><Num v={UIeventsBackground} p={2} /</td>
-                  <td>+-</td>
-                  <td><Num v={UIeventsUncertainty} p={2} /></td>
+                  <td>
+                    <Num v={UIeventsBackground} p={2} />
+                  </td>
+                  <td> </td>
+                  <td>
+                    <Num v={UIeventsUncertainty} p={2} />
+                  </td>
                 </tr>
               </tbody>
             </Table>
