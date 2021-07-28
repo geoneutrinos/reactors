@@ -6,6 +6,7 @@ import { PhysicsContext } from "../state";
 import { XSNames } from "../physics/neutrino-cross-section";
 import { IBD_THRESHOLD } from "../physics/derived";
 import { Num } from ".";
+import { bins } from "../physics/neutrino-oscillation";
 
 const getCoreSums = (cores, min_i, max_i, low_i) => {
   const lowSum = sum(
@@ -16,6 +17,13 @@ const getCoreSums = (cores, min_i, max_i, low_i) => {
   );
   return [lowSum + highSum, lowSum, highSum];
 };
+
+const detectorEfficiency = (Emax, rampUp, turnOn, spectrum, perfect=false) => {
+  if (perfect){
+    return spectrum
+  }
+  return bins.map((eV, i) => Emax * (1 - Math.exp((-rampUp) * Math.max(eV - turnOn, 0))) * spectrum[i])
+}
 
 export const CalculatorPanel = ({ cores, spectrum }) => {
   const [signal, setSignal] = useState("closest");
@@ -184,7 +192,10 @@ const UIsetEnerStart = (event) => {
   const max_i = parseInt(eMax * 100);
   const low_i = parseInt(IBD_THRESHOLD * 100);
 
-  const coreList = Object.values(cores);
+  const coreList = Object.values(cores).map(core => {
+    return {...core, detectorSignal: detectorEfficiency(effMax, rampUp, enerStart, core.detectorSignal, false)}
+    }
+  );
 
   const closestActiveCore = coreList
     .filter((core) => core.detectorAnySignal)

@@ -75,7 +75,7 @@ export let oscillation: Oscillation = {
   massOrdering: MassOrdering.Normal
 }
 
-const bins = (new Float64Array(1000)).map((v, i) => 0.005 + i/100)
+export const bins = (new Float64Array(1000)).map((v, i) => 0.005 + i/100)
 
 const defaultOscillationParams: VariableOscillationParams = {
   s2t12: 0.310,
