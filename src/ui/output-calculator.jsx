@@ -18,12 +18,21 @@ const getCoreSums = (cores, min_i, max_i, low_i) => {
   return [lowSum + highSum, lowSum, highSum];
 };
 
-const detectorEfficiency = (Emax, rampUp, turnOn, spectrum, perfect=false) => {
-  if (perfect){
-    return spectrum
+const detectorEfficiency = (
+  Emax,
+  rampUp,
+  turnOn,
+  spectrum,
+  perfect = false
+) => {
+  if (perfect) {
+    return spectrum;
   }
-  return bins.map((eV, i) => Emax * (1 - Math.exp((-rampUp) * Math.max(eV - turnOn, 0))) * spectrum[i])
-}
+  return bins.map(
+    (eV, i) =>
+      Emax * (1 - Math.exp(-rampUp * Math.max(eV - turnOn, 0))) * spectrum[i]
+  );
+};
 
 export const CalculatorPanel = ({ cores, spectrum }) => {
   const [signal, setSignal] = useState("closest");
@@ -44,7 +53,9 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
   const [deltaReactorsLowE, setDeltaReactorsLowE] = useState(0.3);
   // detection efficiency function parameters
   const [effMax, setEffMax] = useState(0.8);
-  const [enerStart, setEnerStart] = useState(parseFloat(IBD_THRESHOLD.toFixed(2)));
+  const [enerStart, setEnerStart] = useState(
+    parseFloat(IBD_THRESHOLD.toFixed(2))
+  );
   const [rampUp, setRampUp] = useState(1.0);
 
   const { crossSection } = useContext(PhysicsContext);
@@ -119,7 +130,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
     }
   };
 
-const UIsetEffMax = (event) => {
+  const UIsetEffMax = (event) => {
     const value = event.target.value;
     let eff_max = parseFloat(value);
     if (isNaN(eff_max)) {
@@ -134,8 +145,8 @@ const UIsetEffMax = (event) => {
       setEffMax(eff_max);
     }
   };
-  
-const UIsetEnerStart = (event) => {
+
+  const UIsetEnerStart = (event) => {
     const value = event.target.value;
     let stateEnerstart = parseFloat(IBD_THRESHOLD.toFixed(1)) * isIBD;
     let ener_start = parseFloat(value);
@@ -148,7 +159,7 @@ const UIsetEnerStart = (event) => {
       setEnerStart(ener_start);
     }
   };
-  
+
   const UIsetRampUp = (event) => {
     const value = event.target.value;
     let ramp_up = parseFloat(value);
@@ -161,7 +172,7 @@ const UIsetEnerStart = (event) => {
       setRampUp(ramp_up);
     }
   };
-  
+
   const UIsetTime = (event) => {
     const value = event.target.value;
     let time = parseFloat(value);
@@ -192,10 +203,18 @@ const UIsetEnerStart = (event) => {
   const max_i = parseInt(eMax * 100);
   const low_i = parseInt(IBD_THRESHOLD * 100);
 
-  const coreList = Object.values(cores).map(core => {
-    return {...core, detectorSignal: detectorEfficiency(effMax, rampUp, enerStart, core.detectorSignal, false)}
-    }
-  );
+  const coreList = Object.values(cores).map((core) => {
+    return {
+      ...core,
+      detectorSignal: detectorEfficiency(
+        effMax,
+        rampUp,
+        enerStart,
+        core.detectorSignal,
+        false
+      ),
+    };
+  });
 
   const closestActiveCore = coreList
     .filter((core) => core.detectorAnySignal)
@@ -220,10 +239,34 @@ const UIsetEnerStart = (event) => {
   const [customTotalSignal, customTotalSignalLow, customTotalSignalHigh] =
     getCoreSums(customCores, min_i, max_i, low_i);
 
-  const geoU238NIU = sum(detectorEfficiency(effMax, rampUp, enerStart, spectrum.geoU238).slice(min_i, max_i)) * 0.01;
-  const geoU235NIU = sum(detectorEfficiency(effMax, rampUp, enerStart, spectrum.geoU235).slice(min_i, max_i)) * 0.01;
-  const geoTh232NIU = sum(detectorEfficiency(effMax, rampUp, enerStart, spectrum.geoTh232).slice(min_i, max_i)) * 0.01;
-  const geoK40betaNIU = sum(detectorEfficiency(effMax, rampUp, enerStart, spectrum.geoK40_beta).slice(min_i, max_i)) * 0.01;
+  const geoU238NIU =
+    sum(
+      detectorEfficiency(effMax, rampUp, enerStart, spectrum.geoU238).slice(
+        min_i,
+        max_i
+      )
+    ) * 0.01;
+  const geoU235NIU =
+    sum(
+      detectorEfficiency(effMax, rampUp, enerStart, spectrum.geoU235).slice(
+        min_i,
+        max_i
+      )
+    ) * 0.01;
+  const geoTh232NIU =
+    sum(
+      detectorEfficiency(effMax, rampUp, enerStart, spectrum.geoTh232).slice(
+        min_i,
+        max_i
+      )
+    ) * 0.01;
+  const geoK40betaNIU =
+    sum(
+      detectorEfficiency(effMax, rampUp, enerStart, spectrum.geoK40_beta).slice(
+        min_i,
+        max_i
+      )
+    ) * 0.01;
   const geoTotalNIU = geoU238NIU + geoTh232NIU + geoK40betaNIU + geoU235NIU;
 
   // for now assume a flat spectrum with maximum energy of 10 MeV
@@ -318,7 +361,7 @@ const UIsetEnerStart = (event) => {
   let UISigma = sigma;
   let UIExposureNever = false;
   let UITotalUnderTwo = false;
-  
+
   if (solveFor === "exposure") {
     UITime =
       (sigma ** 2 * (UIsignal + UIbackground)) /
@@ -345,17 +388,17 @@ const UIsetEnerStart = (event) => {
     UISigma = UISigma.toFixed(3);
   }
 
-  let UIeventsSignal = UIsignal * UITime
-  let UIeventsBackground = UIbackground * UITime
-  let UIeventsUncertainty = UIBackgroundUncertainty * UITime
+  let UIeventsSignal = UIsignal * UITime;
+  let UIeventsBackground = UIbackground * UITime;
+  let UIeventsUncertainty = UIBackgroundUncertainty * UITime;
 
-// Should be set to infinity
+  // Should be set to infinity
   if (UIExposureNever) {
     UIeventsSignal = 0;
     UIeventsBackground = 0;
     UIeventsUncertainty = 0;
   }
-  
+
   return (
     <Card>
       <Card.Header>Significance/Exposure Calculator</Card.Header>
@@ -364,8 +407,13 @@ const UIsetEnerStart = (event) => {
           <div>
             <Table>
               <tr>
-                <td><i>S</i> = <Num v={UIeventsSignal} p={2} /></td>
-                <td><i>B</i> = <Num v={UIeventsBackground} p={2} /> &plusmn; <Num v={UIeventsUncertainty} p={2} /> (syst)</td>
+                <td>
+                  <i>S</i> = <Num v={UIeventsSignal} p={2} />
+                </td>
+                <td>
+                  <i>B</i> = <Num v={UIeventsBackground} p={2} /> &plusmn;{" "}
+                  <Num v={UIeventsUncertainty} p={2} /> (syst)
+                </td>
               </tr>
             </Table>
           </div>
@@ -420,7 +468,8 @@ const UIsetEnerStart = (event) => {
 
             <Form.Group controlId="e_min">
               <Form.Label>
-                Antineutrino <i>E</i><sub>min</sub>
+                Antineutrino <i>E</i>
+                <sub>min</sub>
               </Form.Label>
               <InputGroup>
                 <Form.Control
@@ -437,7 +486,8 @@ const UIsetEnerStart = (event) => {
 
             <Form.Group controlId="e_max">
               <Form.Label>
-                Antineutrino <i>E</i><sub>max</sub>
+                Antineutrino <i>E</i>
+                <sub>max</sub>
               </Form.Label>
               <InputGroup>
                 <Form.Control
@@ -451,11 +501,9 @@ const UIsetEnerStart = (event) => {
                 </InputGroup.Append>
               </InputGroup>
             </Form.Group>
-  
+
             <Form.Group controlId="eff_max">
-              <Form.Label>
-                Maximum Detection Efficiency
-              </Form.Label>
+              <Form.Label>Maximum Detection Efficiency</Form.Label>
               <InputGroup>
                 <Form.Control
                   onChange={UIsetEffMax}
@@ -468,7 +516,8 @@ const UIsetEnerStart = (event) => {
 
             <Form.Group controlId="ener_start">
               <Form.Label>
-                Detection Efficiency Turn-on <i>E</i><sub>on</sub>
+                Detection Efficiency Turn-on <i>E</i>
+                <sub>on</sub>
               </Form.Label>
               <InputGroup>
                 <Form.Control
@@ -482,11 +531,9 @@ const UIsetEnerStart = (event) => {
                 </InputGroup.Append>
               </InputGroup>
             </Form.Group>
-  
+
             <Form.Group controlId="ramp_up">
-              <Form.Label>
-                Detection Efficiency Ramp-up Parameter
-              </Form.Label>
+              <Form.Label>Detection Efficiency Ramp-up Parameter</Form.Label>
               <InputGroup>
                 <Form.Control
                   onChange={UIsetRampUp}
@@ -495,11 +542,13 @@ const UIsetEnerStart = (event) => {
                   value={rampUp}
                 />
                 <InputGroup.Append>
-                  <InputGroup.Text>MeV<sup>-1</sup></InputGroup.Text>
+                  <InputGroup.Text>
+                    MeV<sup>-1</sup>
+                  </InputGroup.Text>
                 </InputGroup.Append>
               </InputGroup>
             </Form.Group>
-  
+
             <Form.Group controlId="time">
               <Form.Label>Exposure</Form.Label>
               <InputGroup>
@@ -518,14 +567,15 @@ const UIsetEnerStart = (event) => {
                   </InputGroup.Text>
                 </InputGroup.Append>
                 <Form.Control.Feedback type="invalid">
-                  Product of <i>N</i><sub>σ</sub> and Background Uncertainty exceeds
-                  Signal
+                  Product of <i>N</i>
+                  <sub>σ</sub> and Background Uncertainty exceeds Signal
                 </Form.Control.Feedback>
               </InputGroup>
             </Form.Group>
             <Form.Group controlId="sigma">
               <Form.Label>
-                Significance <i>N</i><sub>σ</sub>
+                Significance <i>N</i>
+                <sub>σ</sub>
               </Form.Label>
               <InputGroup>
                 <Form.Control
@@ -542,8 +592,8 @@ const UIsetEnerStart = (event) => {
             </Form.Group>
           </Form>
           <div>
-            <Node>{String.raw`N_{\sigma} = \frac{ s * \xi }{\sqrt{(s + b) * \xi + (\delta b * \xi )^2}},`}</Node> where{" "}
-            <Node inline>{String.raw`s`}</Node> is the signal rate,{" "}
+            <Node>{String.raw`N_{\sigma} = \frac{ s * \xi }{\sqrt{(s + b) * \xi + (\delta b * \xi )^2}},`}</Node>{" "}
+            where <Node inline>{String.raw`s`}</Node> is the signal rate,{" "}
             <Node inline>{String.raw`b`}</Node> is the background rate,{" "}
             <Node inline>{String.raw`\delta b`}</Node> is the systematic
             uncertainty of the background rate, and{" "}
@@ -552,12 +602,15 @@ const UIsetEnerStart = (event) => {
             The fractional systematic uncetainties of the estimated reactor
             rates are 0.06 (0.30) for antineutrino energy above (below) IBD
             threshold, while those for the estimated geoneutrino and nuisance
-            background rates are 0.25 and 0.50, respectively. The nuisance background energy
-            spectral shape is flat. Detection efficiency is approximated by
-            <Node>{String.raw`\varepsilon (E) = \varepsilon_\mathrm{max} (1 - \exp(-\rho * (E - E_\mathrm{on}))),`}</Node> where{" "}
-            <Node inline>{String.raw`\varepsilon_\mathrm{max}`}</Node> is the maximum detection efficiency,{" "}
+            background rates are 0.25 and 0.50, respectively. The nuisance
+            background energy spectral shape is flat. Detection efficiency is
+            approximated by
+            <Node>{String.raw`\varepsilon (E) = \varepsilon_\mathrm{max} (1 - \exp(-\rho * (E - E_\mathrm{on}))),`}</Node>{" "}
+            where <Node inline>{String.raw`\varepsilon_\mathrm{max}`}</Node> is
+            the maximum detection efficiency,{" "}
             <Node inline>{String.raw`\rho`}</Node> is the ramp-up parameter, and{" "}
-            <Node inline>{String.raw`E_\mathrm{on}`}</Node> is the turn-on energy.
+            <Node inline>{String.raw`E_\mathrm{on}`}</Node> is the turn-on
+            energy.
           </div>
         </Provider>
       </Card.Body>
