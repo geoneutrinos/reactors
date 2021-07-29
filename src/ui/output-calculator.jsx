@@ -365,6 +365,14 @@ const UIsetEnerStart = (event) => {
       <Card.Header>Significance/Exposure Calculator</Card.Header>
       <Card.Body>
         <Provider>
+          <div>
+            <Table>
+              <tr>
+                <td><i>S</i> = <Num v={UIeventsSignal} p={2} /></td>
+                <td><i>B</i> = <Num v={UIeventsBackground} p={2} /> &plusmn; <Num v={UIeventsUncertainty} p={2} /> (syst)</td>
+              </tr>
+            </Table>
+          </div>
           <Form noValidate>
             <Form.Group controlId="signal">
               <Form.Label>Signal (background)</Form.Label>
@@ -543,14 +551,6 @@ const UIsetEnerStart = (event) => {
               </InputGroup>
             </Form.Group>
           </Form>
-          <div>
-            <Table>
-              <tr>
-                <td><i>S</i> = <Num v={UIeventsSignal} p={2} /></td>
-                <td><i>B</i> = <Num v={UIeventsBackground} p={2} /> &plusmn; <Num v={UIeventsUncertainty} p={2} /> (syst)</td>
-              </tr>
-            </Table>
-          </div>
           <div>
             <Node>{String.raw`N_{\sigma} = \frac{ s * \xi }{\sqrt{(s + b) * \xi + (\delta b * \xi )^2}},`}</Node> where{" "}
             <Node inline>{String.raw`s`}</Node> is the signal rate,{" "}
