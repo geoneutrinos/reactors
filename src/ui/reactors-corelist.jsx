@@ -113,6 +113,8 @@ const CoreListItem = ({
           Load Factor: <Num v={lf} p={1} func={(v) => v * 100} />%<br />
           Operating Power: {(lf * core.power).toFixed(0)} MW<sub>Th</sub>
           <br />
+          Intensity: {(core.power / dist / dist)} MW<sub>Th</sub> km<sup>-2</sup>
+          <br />
           Signal: {core.detectorNIU.toFixed(3)} NIU
         </Col>
         <Col xl>
