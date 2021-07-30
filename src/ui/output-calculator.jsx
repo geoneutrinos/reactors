@@ -10,10 +10,10 @@ import { bins } from "../physics/neutrino-oscillation";
 
 const getCoreSums = (cores, min_i, max_i, low_i) => {
   const lowSum = sum(
-    cores.map((core) => sum(core.detectorSignal.slice(min_i, low_i)) * 0.01)
+    cores.map((core) => sum(core.detectorSignal.slice(min_i, Math.min(low_i, max_i))) * 0.01)
   );
   const highSum = sum(
-    cores.map((core) => sum(core.detectorSignal.slice(low_i, max_i)) * 0.01)
+    cores.map((core) => sum(core.detectorSignal.slice(Math.max(low_i, min_i), max_i)) * 0.01)
   );
   return [lowSum + highSum, lowSum, highSum];
 };
