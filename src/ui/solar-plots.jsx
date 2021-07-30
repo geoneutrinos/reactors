@@ -3,6 +3,8 @@ import React from "react";
 import { Card } from "react-bootstrap";
 import Plot from "react-plotly.js";
 
+import {PhysicsContext} from '../state'
+
 import { range } from "lodash";
 
 import { SECONDS_PER_YEAR } from "../physics/constants";
@@ -111,7 +113,14 @@ export const AnalemmaPlot = ({ detector, cores, reactorLF}) => {
   data.push(plotDef(PHWRcores, "#ff0000"));
 
   var layout = {
-    title: "Solar Analemma",
+    title: `Solar Analemma: ${
+      ["custom", "follow"].includes(detector.current)
+        ? "Custom Location"
+        : detector.current
+    } (${detector.lat.toFixed(1)}N, ${detector.lon.toFixed(
+      1
+    )}E, ${detector.elevation.toFixed(0)}m)`,
+//    title: "Solar Analemma",
     hovermode: "closest",
     autosize: true,
     xaxis: {
