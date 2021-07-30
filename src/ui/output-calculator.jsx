@@ -473,7 +473,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
           <Col>
             <Form.Group controlId="e_min">
               <Form.Label>
-                Antineutrino Energy window
+                Antineutrino Energy Window
               </Form.Label>
               <InputGroup>
                 <InputGroup.Prepend>
@@ -514,9 +514,14 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
           </Col>
         </Row>
 
+        <Row>
+          <Col>
             <Form.Group controlId="eff_max">
-              <Form.Label>Maximum Detection Efficiency</Form.Label>
+              <Form.Label>Detection Efficiency Parameters</Form.Label>
               <InputGroup>
+                <InputGroup.Prepend>
+                  <InputGroup.Text>&epsilon;<sub>max</sub></InputGroup.Text>
+                </InputGroup.Prepend>
                 <Form.Control
                   onChange={UIsetEffMax}
                   type="number"
@@ -526,14 +531,15 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
                 />
               </InputGroup>
             </Form.Group>
-
+          </Col>
+          <Col>
             <Form.Group controlId="ener_start">
-              <Form.Label>
-                Detection Efficiency Turn-on <i>E</i>
-                <sub>on</sub>
-              </Form.Label>
+              <Form.Label>...</Form.Label>
               <InputGroup>
-                <Form.Control
+                <InputGroup.Prepend>
+                  <InputGroup.Text><i>E</i><sub>on</sub></InputGroup.Text>
+                </InputGroup.Prepend>
+                  <Form.Control
                   onChange={UIsetEnerStart}
                   type="number"
                   step="0.1"
@@ -545,10 +551,14 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
                 </InputGroup.Append>
               </InputGroup>
             </Form.Group>
-
+          </Col>
+          <Col>
             <Form.Group controlId="ramp_up">
-              <Form.Label>Detection Efficiency Ramp-up Parameter</Form.Label>
+              <Form.Label>...</Form.Label>
               <InputGroup>
+                <InputGroup.Prepend>
+                  <InputGroup.Text>Ramp-up</InputGroup.Text>
+                </InputGroup.Prepend>
                 <Form.Control
                   onChange={UIsetRampUp}
                   type="number"
@@ -563,7 +573,11 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
                 </InputGroup.Append>
               </InputGroup>
             </Form.Group>
+          </Col>
+        </Row>
 
+        <Row>
+          <Col>
             <Form.Group controlId="time">
               <Form.Label>Exposure</Form.Label>
               <InputGroup>
@@ -587,6 +601,8 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
                 </Form.Control.Feedback>
               </InputGroup>
             </Form.Group>
+          </Col>
+          <Col>
             <Form.Group controlId="sigma">
               <Form.Label>
                 Significance <i>N</i>
@@ -605,7 +621,9 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
                 </Form.Control.Feedback>
               </InputGroup>
             </Form.Group>
-          </Form>
+          </Col>
+        </Row>
+            </Form>
           <div>
             <Node>{String.raw`N_{\sigma} = \frac{ s * \xi }{\sqrt{(s + b) * \xi + (\delta b * \xi )^2}},`}</Node>{" "}
             where <Node inline>{String.raw`s`}</Node> is the signal rate,{" "}
