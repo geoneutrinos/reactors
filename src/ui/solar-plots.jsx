@@ -3,8 +3,6 @@ import React from "react";
 import { Card } from "react-bootstrap";
 import Plot from "react-plotly.js";
 
-import {PhysicsContext} from '../state'
-
 import { range } from "lodash";
 
 import { SECONDS_PER_YEAR } from "../physics/constants";
