@@ -408,6 +408,9 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
             <Table>
               <tr>
                 <td>
+                  Detected events
+                </td>
+                <td>
                   <i>S</i> = <Num v={UIeventsSignal} p={2} />
                 </td>
                 <td>
@@ -480,6 +483,9 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
                   step="0.1"
                   value={eMin}
                 />
+                <InputGroup.Prepend>
+                  <InputGroup.Text><i>E</i><sub>min</sub></InputGroup.Text>
+                </InputGroup.Prepend>
                 <InputGroup.Append>
                   <InputGroup.Text>MeV</InputGroup.Text>
                 </InputGroup.Append>
