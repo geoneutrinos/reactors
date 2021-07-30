@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Card, Form, InputGroup, Table } from "react-bootstrap";
+import { Card, Form, InputGroup, Table, Row, Col } from "react-bootstrap";
 import { sum } from "lodash";
 import { Node, Provider } from "@nteract/mathjax";
 import { PhysicsContext } from "../state";
@@ -466,6 +466,8 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
               </InputGroup>
             </Form.Group>
 
+        <Row>
+          <Col>
             <Form.Group controlId="e_min">
               <Form.Label>
                 Antineutrino <i>E</i>
@@ -483,7 +485,8 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
                 </InputGroup.Append>
               </InputGroup>
             </Form.Group>
-
+          </Col>
+          <Col>
             <Form.Group controlId="e_max">
               <Form.Label>
                 Antineutrino <i>E</i>
@@ -501,6 +504,8 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
                 </InputGroup.Append>
               </InputGroup>
             </Form.Group>
+          </Col>
+        </Row>
 
             <Form.Group controlId="eff_max">
               <Form.Label>Maximum Detection Efficiency</Form.Label>
