@@ -114,7 +114,7 @@ const CoreListItem = ({
           <br />
           Operating Power: {(lf * core.power).toFixed(0)} MW<sub>Th</sub>
           <br />
-          Intensity: {(core.power / dist / dist).toFixed(4)} MW<sub>Th</sub> km<sup>-2</sup>
+          Intensity: {(core.power / dist / dist).toFixed(6)} MW<sub>Th</sub> km<sup>-2</sup>
           <br />
           Signal: {core.detectorNIU.toFixed(3)} NIU
         </Col>
