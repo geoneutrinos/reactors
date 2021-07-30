@@ -36,10 +36,10 @@ const detectorEfficiency = (
 
 export const CalculatorPanel = ({ cores, spectrum }) => {
   const [signal, setSignal] = useState("closest");
-  const [solveFor, setSolveFor] = useState("exposure");
+  const [solveFor, setSolveFor] = useState("significance");
   const [eMin, setEMin] = useState(parseFloat(IBD_THRESHOLD.toFixed(2)));
   const [eMax, setEMax] = useState(10);
-  const [time, setTime] = useState(0);
+  const [time, setTime] = useState(1);
   const [sigma, setSigma] = useState(3);
   // eslint-disable-next-line no-unused-vars
   const [deltaGeoNu, setDeltaGeoNu] = useState(0.25);
