@@ -473,7 +473,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
           <Col>
             <Form.Group controlId="e_min">
               <Form.Label>
-                Antineutrino Energy Window
+                Antineutrino Energy Max
               </Form.Label>
               <InputGroup>
                 <InputGroup.Prepend>
@@ -494,7 +494,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
           <Col>
             <Form.Group controlId="e_max">
               <Form.Label>
-                ...
+                Neutrino Energy Min
               </Form.Label>
               <InputGroup>
                 <InputGroup.Prepend>
@@ -517,7 +517,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
         <Row>
           <Col>
             <Form.Group controlId="eff_max">
-              <Form.Label>Efficiency Parameters</Form.Label>
+              <Form.Label>Efficiency Maximum</Form.Label>
               <InputGroup>
                 <InputGroup.Prepend>
                   <InputGroup.Text>&epsilon;<sub>max</sub></InputGroup.Text>
@@ -534,7 +534,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
           </Col>
           <Col>
             <Form.Group controlId="ener_start">
-              <Form.Label>...</Form.Label>
+              <Form.Label>Turn-on</Form.Label>
               <InputGroup>
                 <InputGroup.Prepend>
                   <InputGroup.Text><i>E</i><sub>on</sub></InputGroup.Text>
@@ -554,7 +554,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
           </Col>
           <Col>
             <Form.Group controlId="ramp_up">
-              <Form.Label>...</Form.Label>
+              <Form.Label>Ramp-up</Form.Label>
               <InputGroup>
                 <InputGroup.Prepend>
                   <InputGroup.Text>&rho;</InputGroup.Text>
@@ -581,7 +581,10 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
             <Form.Group controlId="time">
               <Form.Label>Exposure</Form.Label>
               <InputGroup>
-                <Form.Control
+                <InputGroup.Prepend>
+                  <InputGroup.Text>&xi;</InputGroup.Text>
+                </InputGroup.Prepend>
+              <Form.Control
                   isInvalid={UIExposureNever}
                   onChange={UIsetTime}
                   type={UIExposureNever ? "text" : "number"}
@@ -605,11 +608,13 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
           <Col>
             <Form.Group controlId="sigma">
               <Form.Label>
-                Significance <i>N</i>
-                <sub>σ</sub>
+                Significance
               </Form.Label>
               <InputGroup>
-                <Form.Control
+                <InputGroup.Prepend>
+                  <InputGroup.Text><i>N</i><sub>σ</sub></InputGroup.Text>
+                </InputGroup.Prepend>
+              <Form.Control
                   isInvalid={UITotalUnderTwo}
                   onChange={UIsetSigma}
                   type="number"
