@@ -10,10 +10,10 @@ import { bins } from "../physics/neutrino-oscillation";
 
 const getCoreSums = (cores, min_i, max_i, low_i) => {
   const lowSum = sum(
-    cores.map((core) => sum(core.detectorSignal.slice(min_i, low_i)) * 0.01)
+    cores.map((core) => sum(core.detectorSignal.slice(min_i, Math.min(low_i, max_i))) * 0.01)
   );
   const highSum = sum(
-    cores.map((core) => sum(core.detectorSignal.slice(low_i, max_i)) * 0.01)
+    cores.map((core) => sum(core.detectorSignal.slice(Math.max(low_i, min_i), max_i)) * 0.01)
   );
   return [lowSum + highSum, lowSum, highSum];
 };
@@ -211,7 +211,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
         rampUp,
         enerStart,
         core.detectorSignal,
-        false
+        !isIBD
       ),
     };
   });
@@ -241,28 +241,28 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
 
   const geoU238NIU =
     sum(
-      detectorEfficiency(effMax, rampUp, enerStart, spectrum.geoU238).slice(
+      detectorEfficiency(effMax, rampUp, enerStart, spectrum.geoU238, !isIBD).slice(
         min_i,
         max_i
       )
     ) * 0.01;
   const geoU235NIU =
     sum(
-      detectorEfficiency(effMax, rampUp, enerStart, spectrum.geoU235).slice(
+      detectorEfficiency(effMax, rampUp, enerStart, spectrum.geoU235, !isIBD).slice(
         min_i,
         max_i
       )
     ) * 0.01;
   const geoTh232NIU =
     sum(
-      detectorEfficiency(effMax, rampUp, enerStart, spectrum.geoTh232).slice(
+      detectorEfficiency(effMax, rampUp, enerStart, spectrum.geoTh232, !isIBD).slice(
         min_i,
         max_i
       )
     ) * 0.01;
   const geoK40betaNIU =
     sum(
-      detectorEfficiency(effMax, rampUp, enerStart, spectrum.geoK40_beta).slice(
+      detectorEfficiency(effMax, rampUp, enerStart, spectrum.geoK40_beta, !isIBD).slice(
         min_i,
         max_i
       )
@@ -509,7 +509,8 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
                   onChange={UIsetEffMax}
                   type="number"
                   step="0.1"
-                  value={effMax}
+                  value={isIBD? effMax: ""}
+                  disabled={!isIBD}
                 />
               </InputGroup>
             </Form.Group>
@@ -524,7 +525,8 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
                   onChange={UIsetEnerStart}
                   type="number"
                   step="0.1"
-                  value={enerStart}
+                  value={isIBD? enerStart : ""}
+                  disabled={!isIBD}
                 />
                 <InputGroup.Append>
                   <InputGroup.Text>MeV</InputGroup.Text>
@@ -539,7 +541,8 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
                   onChange={UIsetRampUp}
                   type="number"
                   step="0.1"
-                  value={rampUp}
+                  value={isIBD? rampUp : ""}
+                  disabled={!isIBD}
                 />
                 <InputGroup.Append>
                   <InputGroup.Text>
