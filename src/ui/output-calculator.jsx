@@ -477,7 +477,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
               </Form.Label>
               <InputGroup>
                 <InputGroup.Prepend>
-                  <InputGroup.Text><i>E</i><sub>min</sub>=</InputGroup.Text>
+                  <InputGroup.Text><i>E</i><sub>min</sub> =</InputGroup.Text>
                 </InputGroup.Prepend>
                 <Form.Control
                   onChange={UIsetEMin}
@@ -494,10 +494,11 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
           <Col>
             <Form.Group controlId="e_max">
               <Form.Label>
+                ...
               </Form.Label>
               <InputGroup>
                 <InputGroup.Prepend>
-                  <InputGroup.Text><i>E</i><sub>max</sub>=</InputGroup.Text>
+                  <InputGroup.Text><i>E</i><sub>max</sub> =</InputGroup.Text>
                 </InputGroup.Prepend>
                 <Form.Control
                   onChange={UIsetEMax}
