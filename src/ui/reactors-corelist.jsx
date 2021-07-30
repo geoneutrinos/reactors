@@ -110,7 +110,8 @@ const CoreListItem = ({
           </span>{" "}
           {core.power} MW<sub>Th</sub>
           <br />
-          Load Factor: <Num v={lf} p={1} func={(v) => v * 100} />%<br />
+          Load Factor: <Num v={lf} p={1} func={(v) => v * 100} />%
+          <br />
           Operating Power: {(lf * core.power).toFixed(0)} MW<sub>Th</sub>
           <br />
           Intensity: {(core.power / dist / dist).toFixed(4)} MW<sub>Th</sub> km<sup>-2</sup>
@@ -118,12 +119,17 @@ const CoreListItem = ({
           Signal: {core.detectorNIU.toFixed(3)} NIU
         </Col>
         <Col xl>
-          Lat: {core.lat.toFixed(4)} N<br />
-          Lon: {core.lon.toFixed(4)} E<br />
+          Lat: {core.lat.toFixed(4)} N
+          <br />
+          Lon: {core.lon.toFixed(4)} E
+          <br />
           Elevation: {core.elevation} m
           <br />
-          Distance: {dist} km< br/>
-          Azim: {core.direction.phi.toFixed(1)}&deg; Alt: {core.direction.elev.toFixed(1)}&deg;
+          Distance: {dist} km
+          < br/>
+          Azim: {core.direction.phi.toFixed(1)}&deg;
+          <br />
+          Alt: {core.direction.elev.toFixed(1)}&deg;
         </Col>
       </Row>
     </ListGroup.Item>
