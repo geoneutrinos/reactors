@@ -38,9 +38,9 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
   const [signal, setSignal] = useState("closest");
   const [solveFor, setSolveFor] = useState("significance");
   const [eMin, setEMin] = useState(parseFloat(IBD_THRESHOLD.toFixed(1)));
-  const [eMax, setEMax] = useState(10);
-  const [time, setTime] = useState(1);
-  const [sigma, setSigma] = useState(3);
+  const [eMax, setEMax] = useState(10.0);
+  const [time, setTime] = useState(1.0);
+  const [sigma, setSigma] = useState(3.0);
   // eslint-disable-next-line no-unused-vars
   const [deltaGeoNu, setDeltaGeoNu] = useState(0.25);
   const [bkgnuisance, setBkgnuisance] = useState(0);
@@ -105,7 +105,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
         e_min = stateEmin;
       }
       if (e_min > 10) {
-        e_min = 10;
+        e_min = 10.0;
       }
       if (eMax < e_min) {
         setEMax(e_min);
@@ -121,7 +121,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
       setEMax(value);
     } else {
       if (e_max > 10) {
-        e_max = 10;
+        e_max = 10.0;
       }
       if (e_max < eMin) {
         e_max = eMin;
