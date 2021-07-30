@@ -37,7 +37,7 @@ const detectorEfficiency = (
 export const CalculatorPanel = ({ cores, spectrum }) => {
   const [signal, setSignal] = useState("closest");
   const [solveFor, setSolveFor] = useState("significance");
-  const [eMin, setEMin] = useState(parseFloat(IBD_THRESHOLD.toFixed(2)));
+  const [eMin, setEMin] = useState(parseFloat(IBD_THRESHOLD.toFixed(1)));
   const [eMax, setEMax] = useState(10);
   const [time, setTime] = useState(1);
   const [sigma, setSigma] = useState(3);
@@ -54,7 +54,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
   // detection efficiency function parameters
   const [effMax, setEffMax] = useState(0.8);
   const [enerStart, setEnerStart] = useState(
-    parseFloat(IBD_THRESHOLD.toFixed(2))
+    parseFloat(IBD_THRESHOLD.toFixed(1))
   );
   const [rampUp, setRampUp] = useState(1.0);
 
