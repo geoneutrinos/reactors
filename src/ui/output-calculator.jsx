@@ -477,7 +477,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
               </Form.Label>
               <InputGroup>
                 <InputGroup.Prepend>
-                  <InputGroup.Text><i>E</i><sub>min</sub> =</InputGroup.Text>
+                  <InputGroup.Text><i>E</i><sub>min</sub></InputGroup.Text>
                 </InputGroup.Prepend>
                 <Form.Control
                   onChange={UIsetEMin}
@@ -498,7 +498,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
               </Form.Label>
               <InputGroup>
                 <InputGroup.Prepend>
-                  <InputGroup.Text><i>E</i><sub>max</sub> =</InputGroup.Text>
+                  <InputGroup.Text><i>E</i><sub>max</sub></InputGroup.Text>
                 </InputGroup.Prepend>
                 <Form.Control
                   onChange={UIsetEMax}
@@ -517,7 +517,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
         <Row>
           <Col>
             <Form.Group controlId="eff_max">
-              <Form.Label>Detection Efficiency Parameters</Form.Label>
+              <Form.Label>Efficiency Parameters</Form.Label>
               <InputGroup>
                 <InputGroup.Prepend>
                   <InputGroup.Text>&epsilon;<sub>max</sub></InputGroup.Text>
@@ -557,7 +557,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
               <Form.Label>...</Form.Label>
               <InputGroup>
                 <InputGroup.Prepend>
-                  <InputGroup.Text>Ramp-up</InputGroup.Text>
+                  <InputGroup.Text>&rho;</InputGroup.Text>
                 </InputGroup.Prepend>
                 <Form.Control
                   onChange={UIsetRampUp}
