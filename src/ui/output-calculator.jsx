@@ -534,7 +534,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
           </Col>
           <Col>
             <Form.Group controlId="ener_start">
-              <Form.Label>Turn-on</Form.Label>
+              <Form.Label>Efficiency Turn-on</Form.Label>
               <InputGroup>
                 <InputGroup.Prepend>
                   <InputGroup.Text><i>E</i><sub>on</sub></InputGroup.Text>
@@ -554,7 +554,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
           </Col>
           <Col>
             <Form.Group controlId="ramp_up">
-              <Form.Label>Ramp-up</Form.Label>
+              <Form.Label>Efficiency Ramp-up</Form.Label>
               <InputGroup>
                 <InputGroup.Prepend>
                   <InputGroup.Text>&rho;</InputGroup.Text>
@@ -579,7 +579,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
         <Row>
           <Col>
             <Form.Group controlId="time">
-              <Form.Label>Exposure</Form.Label>
+              <Form.Label>Detector Exposure</Form.Label>
               <InputGroup>
                 <InputGroup.Prepend>
                   <InputGroup.Text>&xi;</InputGroup.Text>
