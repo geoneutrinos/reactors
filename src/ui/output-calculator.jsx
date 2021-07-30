@@ -156,6 +156,9 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
       if (ener_start < stateEnerstart) {
         ener_start = stateEnerstart;
       }
+      if (eMax < ener_start) {
+        ener_start = eMax;
+      }
       setEnerStart(ener_start);
     }
   };
