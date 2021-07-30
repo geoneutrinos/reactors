@@ -523,7 +523,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
               <Form.Label>Efficiency Maximum</Form.Label>
               <InputGroup>
                 <InputGroup.Prepend>
-                  <InputGroup.Text>&epsilon;<sub>max</sub></InputGroup.Text>
+                  <InputGroup.Text><i>&epsilon;</i><sub>max</sub></InputGroup.Text>
                 </InputGroup.Prepend>
                 <Form.Control
                   onChange={UIsetEffMax}
@@ -560,7 +560,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
               <Form.Label>Efficiency Ramp-up</Form.Label>
               <InputGroup>
                 <InputGroup.Prepend>
-                  <InputGroup.Text>&rho;</InputGroup.Text>
+                  <InputGroup.Text><i>&rho;</i></InputGroup.Text>
                 </InputGroup.Prepend>
                 <Form.Control
                   onChange={UIsetRampUp}
@@ -585,7 +585,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
               <Form.Label>Detector Exposure</Form.Label>
               <InputGroup>
                 <InputGroup.Prepend>
-                  <InputGroup.Text>&xi;</InputGroup.Text>
+                  <InputGroup.Text><i>&xi;</i></InputGroup.Text>
                 </InputGroup.Prepend>
               <Form.Control
                   isInvalid={UIExposureNever}
@@ -602,8 +602,8 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
                   </InputGroup.Text>
                 </InputGroup.Append>
                 <Form.Control.Feedback type="invalid">
-                  Product of <i>N</i>
-                  <sub>σ</sub> and Background Uncertainty exceeds Signal
+                  Product of <i>N
+                  <sub>σ</sub></i> and Background Uncertainty exceeds Signal
                 </Form.Control.Feedback>
               </InputGroup>
             </Form.Group>
@@ -615,7 +615,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
               </Form.Label>
               <InputGroup>
                 <InputGroup.Prepend>
-                  <InputGroup.Text><i>N</i><sub>σ</sub></InputGroup.Text>
+                  <InputGroup.Text><i>N<sub>σ</sub></i></InputGroup.Text>
                 </InputGroup.Prepend>
               <Form.Control
                   isInvalid={UITotalUnderTwo}
