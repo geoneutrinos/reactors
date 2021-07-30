@@ -473,19 +473,18 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
           <Col>
             <Form.Group controlId="e_min">
               <Form.Label>
-                Antineutrino <i>E</i>
-                <sub>min</sub>
+                Antineutrino Energy window
               </Form.Label>
               <InputGroup>
+                <InputGroup.Prepend>
+                  <InputGroup.Text><i>E</i><sub>min</sub>=</InputGroup.Text>
+                </InputGroup.Prepend>
                 <Form.Control
                   onChange={UIsetEMin}
                   type="number"
                   step="0.1"
                   value={eMin}
                 />
-                <InputGroup.Prepend>
-                  <InputGroup.Text><i>E</i><sub>min</sub></InputGroup.Text>
-                </InputGroup.Prepend>
                 <InputGroup.Append>
                   <InputGroup.Text>MeV</InputGroup.Text>
                 </InputGroup.Append>
@@ -495,10 +494,11 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
           <Col>
             <Form.Group controlId="e_max">
               <Form.Label>
-                Antineutrino <i>E</i>
-                <sub>max</sub>
               </Form.Label>
               <InputGroup>
+                <InputGroup.Prepend>
+                  <InputGroup.Text><i>E</i><sub>max</sub>=</InputGroup.Text>
+                </InputGroup.Prepend>
                 <Form.Control
                   onChange={UIsetEMax}
                   type="number"
