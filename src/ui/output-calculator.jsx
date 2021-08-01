@@ -634,7 +634,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
             </Form>
             <div>
               <small>
-                1 {NIU} (Neutrino Interaction Unit) = 1 interaction/10<sup>32</sup>{" "}
+                1 NIU (Neutrino Interaction Unit) = 1 interaction/10<sup>32</sup>{" "}
                 targets/year
               </small>
               <br />
