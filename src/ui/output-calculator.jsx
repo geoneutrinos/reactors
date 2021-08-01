@@ -101,7 +101,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
     if (isNaN(e_min)) {
       setEMin(value);
     } else {
-      if (e_min < stateEmin) {
+      if (e_min <= stateEmin) {
         e_min = stateEmin;
       }
       if (e_min > 10) {
