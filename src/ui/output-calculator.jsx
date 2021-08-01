@@ -634,7 +634,8 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
             </Form>
           <div>
             <Node>{String.raw`N_{\sigma} = \frac{ s * \xi }{\sqrt{(s + b) * \xi + (\delta b * \xi )^2}},`}</Node>{" "}
-            <p>where <Node inline>{String.raw`s`}</Node> is the signal rate,{" "}
+            <p>
+            where <Node inline>{String.raw`s`}</Node> is the signal rate,{" "}
             <Node inline>{String.raw`b`}</Node> is the background rate,{" "}
             <Node inline>{String.raw`\delta b`}</Node> is the systematic
             uncertainty of the background rate, and{" "}
@@ -643,14 +644,16 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
             rates are 0.06 (0.30) for antineutrino energy above (below) IBD
             threshold, while those for the estimated geoneutrino and nuisance
             background rates are 0.25 and 0.50, respectively. The nuisance
-            background energy spectral shape is flat. <br /> 
-            Detection efficiency expressed as a function of antineutrino energy is valid for IBD only. It is approximated by
+            background energy spectral shape is flat.
+            </p>
+            <p>
+            Detection efficiency expressed as a function of antineutrino energy is valid for IBD only. Here it is approximated by
             <Node>{String.raw`\varepsilon (E) = \varepsilon_\mathrm{max} (1 - \exp(-\rho * (E - E_\mathrm{on}))),`}</Node>{" "}
             where <Node inline>{String.raw`\varepsilon_\mathrm{max}`}</Node> is
             the maximum detection efficiency,{" "}
             <Node inline>{String.raw`\rho`}</Node> is the ramp-up parameter, and{" "}
             <Node inline>{String.raw`E_\mathrm{on}`}</Node> is the turn-on
-            energy. The values of these quantities depend on the detector target liquid. <br />
+            energy. The values of these quantities depend on the detector target liquid.
             </p>
           </div>
           <div>
@@ -695,6 +698,20 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
                 </td>
                 <td>
                  <i>&rho;</i>  = 2.0 MeV<sup>-1</sup>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Perfect 100%
+                </td>
+                <td>
+                  <i>&epsilon;</i><sub>max</sub> = 1.0
+                </td>
+                <td>
+                  <i>E</i><sub>on</sub> = 1.8 MeV
+                </td>
+                <td>
+                 <i>&rho;</i>  = 1000 MeV<sup>-1</sup>
                 </td>
               </tr>
             </Table>
