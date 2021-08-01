@@ -67,11 +67,11 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
   if (isIBD && ["geo_k", "geo_u5"].includes(signal)) {
     setSignal("closest");
   }
-  if (isIBD && eMin < parseFloat(IBD_THRESHOLD.toFixed(1))) {
-    setEMin(parseFloat(IBD_THRESHOLD.toFixed(1)));
+  if (isIBD && eMin < parseFloat(IBD_THRESHOLD.toFixed(2))) {
+    setEMin(parseFloat(IBD_THRESHOLD.toFixed(2)));
   }
-  if (!isIBD) {
-    setEMin(0.0);
+  if (!isIBD && eMin = parseFloat(IBD_THRESHOLD.toFixed(2))) {
+    setEMin(parseFloat(IBD_THRESHOLD.toFixed(2)) * isIBD);
   }
   
   const UIsetSelect = (event) => {
