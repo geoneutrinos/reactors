@@ -631,18 +631,18 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
             </Form.Group>
           </Col>
         </Row>
-        <div>
-          <small>
-            1 {NIU} (Neutrino Interaction Unit) = 1 interaction/10<sup>32</sup>{" "}
-            targets/year
-          </small>
-          <br />
-          <small>
-            1 kT H<sub>2</sub>O contains 6.686x10<sup>31</sup> free proton and
-            3.343x10<sup>32</sup> electron targets
-          </small>
-        </div>
             </Form>
+            <div>
+              <small>
+                1 {NIU} (Neutrino Interaction Unit) = 1 interaction/10<sup>32</sup>{" "}
+                targets/year
+              </small>
+              <br />
+              <small>
+                1 kT H<sub>2</sub>O contains 6.686x10<sup>31</sup> free proton and
+                3.343x10<sup>32</sup> electron targets
+              </small>
+            </div>
           <div>
             <p> The significance of the background-subtracted number of signal events <i>S</i> depends 
             on the systematic uncertainty of the estimated number of background events{" "}
