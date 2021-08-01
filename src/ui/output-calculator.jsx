@@ -633,28 +633,39 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
         </Row>
             </Form>
           <div>
-            <p> The significance statistic is <br />
+            <p> The significance of the background-subtracted number of signal events <i>S</i> 
+            depends on the systematic uncertainty of the estimated number of background events{" "}
+            <Node inline>{String.raw`\delta B`}</Node>
+            and the statistical uncertainty of the total number of candidate events{" "}
+            <Node inline>{String.raw`\sqrt{S + B}.`}</Node>  
+            In terms of the rates,<br />
             <Node>{String.raw`N_{\sigma} = \frac{ s * \xi }{\sqrt{(s + b) * \xi + (\delta b * \xi )^2}},`}</Node>{" "}
-            where <Node inline>{String.raw`s`}</Node> is the signal rate,{" "}
-            <Node inline>{String.raw`b`}</Node> is the background rate,{" "}
-            <Node inline>{String.raw`\delta b`}</Node> is the systematic
-            uncertainty of the background rate, and{" "}
-            <Node inline>{String.raw`\xi`}</Node> is the detector exposure.
-            The fractional systematic uncetainties of the estimated reactor
-            rates are 0.06 (0.30) for antineutrino energy above (below) IBD
-            threshold, while those for the estimated geoneutrino and nuisance
-            background rates are 0.25 and 0.50, respectively. The nuisance
-            background energy spectrum is flat.
+            where <Node inline>{String.raw`s`}</Node> 
+            is the signal rate,{" "}
+            <Node inline>{String.raw`b`}</Node> 
+            is the background rate,{" "}
+            <Node inline>{String.raw`\delta b`}</Node> 
+            is the systematic uncertainty of the background rate, and{" "}
+            <Node inline>{String.raw`\xi`}</Node> 
+            is the detector exposure.
+            The fractional systematic uncetainty of the estimated reactor rate is 
+            0.06 (0.30) for antineutrino energy above (below) the IBD threshold, while for the 
+            estimated geoneutrino rate and nuisance background rate it is 0.25 and 0.50, respectively. 
+            The nuisance background energy spectrum is flat.
             </p>
             <p>
-            Detection efficiency expressed as a function of antineutrino energy is valid for IBD only. Here it is approximated by
+            Detection efficiency expressed as a function of antineutrino energy <i>E</i>
+            is valid for IBD only. Here it is approximated by
             <Node>{String.raw`\varepsilon (E) = \varepsilon_\mathrm{max} (1 - \exp(-\rho * (E - E_\mathrm{on}))),`}</Node>{" "}
-            where <Node inline>{String.raw`\varepsilon_\mathrm{max}`}</Node> is
-            the maximum detection efficiency,{" "}
-            <Node inline>{String.raw`\rho`}</Node> is the ramp-up parameter, and{" "}
-            <Node inline>{String.raw`E_\mathrm{on}`}</Node> is the turn-on
-            energy. For monolithic Cherenkov and scintillation light detectors the values of these quantities depend on the
-            photocathode coverage and the target liquid. Hopefully representative values follow. 
+            where <Node inline>{String.raw`\varepsilon_\mathrm{max}`}</Node> 
+            sets the maximum detection efficiency,{" "}
+            <Node inline>{String.raw`E_\mathrm{on}`}</Node>
+            is the turn-on energy, and{" "}
+            <Node inline>{String.raw`\rho`}</Node> 
+            controls the rate the efficiency ramps up. 
+            For monolithic Cherenkov and scintillation light detectors the values of these parameters depend on the
+            photocathode coverage and the target liquid. 
+            Hopefully representative values for these variables follow. 
             </p>
           </div>
           <div>
