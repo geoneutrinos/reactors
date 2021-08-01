@@ -633,8 +633,8 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
         </Row>
             </Form>
           <div>
+            <p> The significance statistic is <br />
             <Node>{String.raw`N_{\sigma} = \frac{ s * \xi }{\sqrt{(s + b) * \xi + (\delta b * \xi )^2}},`}</Node>{" "}
-            <p>
             where <Node inline>{String.raw`s`}</Node> is the signal rate,{" "}
             <Node inline>{String.raw`b`}</Node> is the background rate,{" "}
             <Node inline>{String.raw`\delta b`}</Node> is the systematic
@@ -644,7 +644,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
             rates are 0.06 (0.30) for antineutrino energy above (below) IBD
             threshold, while those for the estimated geoneutrino and nuisance
             background rates are 0.25 and 0.50, respectively. The nuisance
-            background energy spectral shape is flat.
+            background energy spectrum is flat.
             </p>
             <p>
             Detection efficiency expressed as a function of antineutrino energy is valid for IBD only. Here it is approximated by
@@ -653,7 +653,8 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
             the maximum detection efficiency,{" "}
             <Node inline>{String.raw`\rho`}</Node> is the ramp-up parameter, and{" "}
             <Node inline>{String.raw`E_\mathrm{on}`}</Node> is the turn-on
-            energy. The values of these quantities depend on the detector target liquid.
+            energy. For monolithic Cherenkov and scintillation light detectors the values of these quantities depend on the
+            photocathode coverage and the target liquid. Hopefully representative values follow. 
             </p>
           </div>
           <div>
