@@ -101,7 +101,7 @@ export const AnalemmaPlot = ({ detector, cores, reactorLF}) => {
       mode: "markers",
       opacity: 0.5,
       fill: "none",
-      marker: { size: 3, color: z, colorscale:'Electric', cmin:0.96, cmax: 1.04, colorbar: {thickness: 15, title: "Earth-Sun (1/au<sup>2</sup>)" }},
+      marker: { size: 3, color: z, colorscale:'Electric', cmin:0.96, cmax: 1.04, colorbar: {thickness: 15, title: "Intensity (1/au<sup>2</sup>)" }},
     };
   });
   data.push(plotDef(AllOtherCores, "#009000"));
