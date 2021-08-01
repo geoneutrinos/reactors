@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Card, Form, InputGroup, Table } from "react-bootstrap";
+import { Card, Form, InputGroup, Table, Row, Col } from "react-bootstrap";
 import { sum } from "lodash";
 import { Node, Provider } from "@nteract/mathjax";
 import { PhysicsContext } from "../state";
@@ -36,11 +36,11 @@ const detectorEfficiency = (
 
 export const CalculatorPanel = ({ cores, spectrum }) => {
   const [signal, setSignal] = useState("closest");
-  const [solveFor, setSolveFor] = useState("exposure");
-  const [eMin, setEMin] = useState(parseFloat(IBD_THRESHOLD.toFixed(2)));
-  const [eMax, setEMax] = useState(10);
-  const [time, setTime] = useState(0);
-  const [sigma, setSigma] = useState(3);
+  const [solveFor, setSolveFor] = useState("significance");
+  const [eMin, setEMin] = useState(parseFloat(IBD_THRESHOLD.toFixed(1)));
+  const [eMax, setEMax] = useState(10.0);
+  const [time, setTime] = useState(1.0);
+  const [sigma, setSigma] = useState(3.0);
   // eslint-disable-next-line no-unused-vars
   const [deltaGeoNu, setDeltaGeoNu] = useState(0.25);
   const [bkgnuisance, setBkgnuisance] = useState(0);
@@ -54,7 +54,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
   // detection efficiency function parameters
   const [effMax, setEffMax] = useState(0.8);
   const [enerStart, setEnerStart] = useState(
-    parseFloat(IBD_THRESHOLD.toFixed(2))
+    parseFloat(IBD_THRESHOLD.toFixed(1))
   );
   const [rampUp, setRampUp] = useState(1.0);
 
@@ -70,7 +70,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
   if (isIBD && eMin < parseFloat(IBD_THRESHOLD.toFixed(1))) {
     setEMin(parseFloat(IBD_THRESHOLD.toFixed(1)));
   }
-
+  
   const UIsetSelect = (event) => {
     var key = event.target.id;
     const value = event.target.value;
@@ -105,7 +105,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
         e_min = stateEmin;
       }
       if (e_min > 10) {
-        e_min = 10;
+        e_min = 10.0;
       }
       if (eMax < e_min) {
         setEMax(e_min);
@@ -121,7 +121,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
       setEMax(value);
     } else {
       if (e_max > 10) {
-        e_max = 10;
+        e_max = 10.0;
       }
       if (e_max < eMin) {
         e_max = eMin;
@@ -155,6 +155,9 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
     } else {
       if (ener_start < stateEnerstart) {
         ener_start = stateEnerstart;
+      }
+      if (eMax < ener_start) {
+        ener_start = eMax;
       }
       setEnerStart(ener_start);
     }
@@ -408,6 +411,9 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
             <Table>
               <tr>
                 <td>
+                  Detected events
+                </td>
+                <td>
                   <i>S</i> = <Num v={UIeventsSignal} p={2} />
                 </td>
                 <td>
@@ -466,12 +472,16 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
               </InputGroup>
             </Form.Group>
 
+        <Row>
+          <Col>
             <Form.Group controlId="e_min">
               <Form.Label>
-                Antineutrino <i>E</i>
-                <sub>min</sub>
+                Antineutrino Energy Minimum
               </Form.Label>
               <InputGroup>
+                <InputGroup.Prepend>
+                  <InputGroup.Text><i>E</i><sub>min</sub></InputGroup.Text>
+                </InputGroup.Prepend>
                 <Form.Control
                   onChange={UIsetEMin}
                   type="number"
@@ -483,13 +493,16 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
                 </InputGroup.Append>
               </InputGroup>
             </Form.Group>
-
+          </Col>
+          <Col>
             <Form.Group controlId="e_max">
               <Form.Label>
-                Antineutrino <i>E</i>
-                <sub>max</sub>
+                Antineutrino Energy Maximum
               </Form.Label>
               <InputGroup>
+                <InputGroup.Prepend>
+                  <InputGroup.Text><i>E</i><sub>max</sub></InputGroup.Text>
+                </InputGroup.Prepend>
                 <Form.Control
                   onChange={UIsetEMax}
                   type="number"
@@ -501,10 +514,17 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
                 </InputGroup.Append>
               </InputGroup>
             </Form.Group>
+          </Col>
+        </Row>
 
+        <Row>
+          <Col>
             <Form.Group controlId="eff_max">
-              <Form.Label>Maximum Detection Efficiency</Form.Label>
+              <Form.Label>Efficiency Maximum</Form.Label>
               <InputGroup>
+                <InputGroup.Prepend>
+                  <InputGroup.Text><i>&epsilon;</i><sub>max</sub></InputGroup.Text>
+                </InputGroup.Prepend>
                 <Form.Control
                   onChange={UIsetEffMax}
                   type="number"
@@ -514,14 +534,15 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
                 />
               </InputGroup>
             </Form.Group>
-
+          </Col>
+          <Col>
             <Form.Group controlId="ener_start">
-              <Form.Label>
-                Detection Efficiency Turn-on <i>E</i>
-                <sub>on</sub>
-              </Form.Label>
+              <Form.Label>Efficiency Turn-on</Form.Label>
               <InputGroup>
-                <Form.Control
+                <InputGroup.Prepend>
+                  <InputGroup.Text><i>E</i><sub>on</sub></InputGroup.Text>
+                </InputGroup.Prepend>
+                  <Form.Control
                   onChange={UIsetEnerStart}
                   type="number"
                   step="0.1"
@@ -533,10 +554,14 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
                 </InputGroup.Append>
               </InputGroup>
             </Form.Group>
-
+          </Col>
+          <Col>
             <Form.Group controlId="ramp_up">
-              <Form.Label>Detection Efficiency Ramp-up Parameter</Form.Label>
+              <Form.Label>Efficiency Ramp-up</Form.Label>
               <InputGroup>
+                <InputGroup.Prepend>
+                  <InputGroup.Text><i>&rho;</i></InputGroup.Text>
+                </InputGroup.Prepend>
                 <Form.Control
                   onChange={UIsetRampUp}
                   type="number"
@@ -551,11 +576,18 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
                 </InputGroup.Append>
               </InputGroup>
             </Form.Group>
+          </Col>
+        </Row>
 
+        <Row>
+          <Col>
             <Form.Group controlId="time">
-              <Form.Label>Exposure</Form.Label>
+              <Form.Label>Detector Exposure</Form.Label>
               <InputGroup>
-                <Form.Control
+                <InputGroup.Prepend>
+                  <InputGroup.Text><i>&xi;</i></InputGroup.Text>
+                </InputGroup.Prepend>
+              <Form.Control
                   isInvalid={UIExposureNever}
                   onChange={UIsetTime}
                   type={UIExposureNever ? "text" : "number"}
@@ -570,18 +602,22 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
                   </InputGroup.Text>
                 </InputGroup.Append>
                 <Form.Control.Feedback type="invalid">
-                  Product of <i>N</i>
-                  <sub>σ</sub> and Background Uncertainty exceeds Signal
+                  Product of <i>N
+                  <sub>σ</sub></i> and Background Uncertainty exceeds Signal
                 </Form.Control.Feedback>
               </InputGroup>
             </Form.Group>
+          </Col>
+          <Col>
             <Form.Group controlId="sigma">
               <Form.Label>
-                Significance <i>N</i>
-                <sub>σ</sub>
+                Significance
               </Form.Label>
               <InputGroup>
-                <Form.Control
+                <InputGroup.Prepend>
+                  <InputGroup.Text><i>N<sub>σ</sub></i></InputGroup.Text>
+                </InputGroup.Prepend>
+              <Form.Control
                   isInvalid={UITotalUnderTwo}
                   onChange={UIsetSigma}
                   type="number"
@@ -593,7 +629,9 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
                 </Form.Control.Feedback>
               </InputGroup>
             </Form.Group>
-          </Form>
+          </Col>
+        </Row>
+            </Form>
           <div>
             <Node>{String.raw`N_{\sigma} = \frac{ s * \xi }{\sqrt{(s + b) * \xi + (\delta b * \xi )^2}},`}</Node>{" "}
             where <Node inline>{String.raw`s`}</Node> is the signal rate,{" "}
