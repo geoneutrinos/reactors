@@ -637,12 +637,12 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
             on the systematic uncertainty of the estimated number of background events{" "}
             <Node inline>{String.raw`\delta B`}</Node> and
             the statistical uncertainty of the total number of candidate events{" "}
-            <Node inline>{String.raw`\sqrt{S + B}.`}</Node> In terms of the rates,<br />
+            <Node inline>{String.raw`\sqrt{S + B}.`}</Node> In terms of the detector exposure{" "}
+            <Node inline>{String.raw`\xi`}</Node>,<br />
             <Node>{String.raw`N_{\sigma} = \frac{ s * \xi }{\sqrt{(s + b) * \xi + (\delta b * \xi )^2}},`}</Node>{" "}
             where <Node inline>{String.raw`s`}</Node> is the signal rate,{" "}
-            <Node inline>{String.raw`b`}</Node> is the background rate,{" "}
-            <Node inline>{String.raw`\delta b`}</Node> is the systematic uncertainty of the background rate, and {" "}
-            <Node inline>{String.raw`\xi`}</Node> is the detector exposure.
+            <Node inline>{String.raw`b`}</Node> is the background rate, and{" "}
+            <Node inline>{String.raw`\delta b`}</Node> is the systematic uncertainty of the background rate.
             The fractional systematic uncetainty of the estimated reactor rate is 
             0.06 (0.30) for antineutrino energy above (below) the IBD threshold, while for the 
             estimated geoneutrino rate and nuisance background rate it is 0.25 and 0.50, respectively. 
@@ -660,7 +660,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
             the rate the efficiency ramps up. 
             For monolithic Cherenkov and scintillation light detectors the values of these parameters depend on the
             photocathode coverage and the target liquid. 
-            Hopefully representative values for these variables follow. 
+            Representative values of these variables for selected target liquids follow. 
             </p>
           </div>
           <div>
