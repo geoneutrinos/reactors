@@ -638,7 +638,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
             <Node inline>{String.raw`\delta B`}</Node> and
             the statistical uncertainty of the total number of candidate events{" "}
             <Node inline>{String.raw`\sqrt{S + B}.`}</Node> In terms of the detector exposure{" "}
-            <Node inline>{String.raw`\xi`}</Node>,<br />
+            <Node inline>{String.raw`\xi`},</Node><br /> the significance is given by 
             <Node>{String.raw`N_{\sigma} = \frac{ s * \xi }{\sqrt{(s + b) * \xi + (\delta b * \xi )^2}},`}</Node>{" "}
             where <Node inline>{String.raw`s`}</Node> is the signal rate,{" "}
             <Node inline>{String.raw`b`}</Node> is the background rate, and{" "}
