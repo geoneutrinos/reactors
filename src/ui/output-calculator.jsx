@@ -638,20 +638,65 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
             <Node inline>{String.raw`b`}</Node> is the background rate,{" "}
             <Node inline>{String.raw`\delta b`}</Node> is the systematic
             uncertainty of the background rate, and{" "}
-            <Node inline>{String.raw`\xi`}</Node> is the exposure. For rates in
-            NIU, exposure is in <Node inline>{`10^{32}`}</Node> target-years.
+            <Node inline>{String.raw`\xi`}</Node> is the detector exposure.
             The fractional systematic uncetainties of the estimated reactor
             rates are 0.06 (0.30) for antineutrino energy above (below) IBD
             threshold, while those for the estimated geoneutrino and nuisance
             background rates are 0.25 and 0.50, respectively. The nuisance
-            background energy spectral shape is flat. Detection efficiency is
-            approximated by
+            background energy spectral shape is flat. 
+            Detection efficiency expressed as a function of antineutrino energy is valid for IBD only. It is approximated by
             <Node>{String.raw`\varepsilon (E) = \varepsilon_\mathrm{max} (1 - \exp(-\rho * (E - E_\mathrm{on}))),`}</Node>{" "}
             where <Node inline>{String.raw`\varepsilon_\mathrm{max}`}</Node> is
             the maximum detection efficiency,{" "}
             <Node inline>{String.raw`\rho`}</Node> is the ramp-up parameter, and{" "}
             <Node inline>{String.raw`E_\mathrm{on}`}</Node> is the turn-on
-            energy.
+            energy. The values of these quantities depend on the detector target liquid.
+          </div>
+          <div>
+            <Table>
+              <tr>
+                <td>
+                  Gd-H<sub>2</sub>O
+                </td>
+                <td>
+                  <i>&epsilon;</i><sub>max</sub> = 0.5
+                </td>
+                <td>
+                  <i>E</i><sub>on</sub> = 3.5 MeV
+                </td>
+                <td>
+                 <i>&rho;</i>  = 1.0 MeV<sup>-1</sup>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Gd-WbLS
+                </td>
+                <td>
+                  <i>&epsilon;</i><sub>max</sub> = 0.7
+                </td>
+                <td>
+                  <i>E</i><sub>on</sub> = 2.5 MeV
+                </td>
+                <td>
+                 <i>&rho;</i>  = 1.5 MeV<sup>-1</sup>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  LS
+                </td>
+                <td>
+                  <i>&epsilon;</i><sub>max</sub> = 0.8
+                </td>
+                <td>
+                  <i>E</i><sub>on</sub> = 1.8 MeV
+                </td>
+                <td>
+                 <i>&rho;</i>  = 2.0 MeV<sup>-1</sup>
+                </td>
+              </tr>
+            </Table>
           </div>
         </Provider>
       </Card.Body>
