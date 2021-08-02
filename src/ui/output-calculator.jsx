@@ -642,8 +642,10 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
                 1 kT H<sub>2</sub>O contains 6.686x10<sup>31</sup> free proton and
                 3.343x10<sup>32</sup> electron targets
               </small>
+              <br />
             </div>
           <div>
+            <br />
             <p> The significance of the background-subtracted number of signal events <i>S</i> depends 
             on the systematic uncertainty of the estimated number of background events{" "}
             <Node inline>{String.raw`\delta B`}</Node> and
