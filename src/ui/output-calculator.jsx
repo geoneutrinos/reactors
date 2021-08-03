@@ -646,6 +646,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
             </div>
           <div>
             <br />
+            <b> Significance Calculation</b><br />
             <p> The significance of the background-subtracted number of signal events <i>S</i> depends 
             on the systematic uncertainty of the estimated number of background events{" "}
             <Node inline>{String.raw`\delta B`}</Node> and
@@ -662,6 +663,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
             The nuisance background energy spectrum is flat.
             </p>
             <p>
+            <b> Detection Efficiency Function</b><br />
             Detection efficiency expressed as a function of antineutrino energy <i>E</i> is
             valid for IBD only. Here it is approximated by
             <Node>{String.raw`\varepsilon (E) = \varepsilon_\mathrm{max} (1 - \exp(-\rho * (E - E_\mathrm{on}))),`}</Node>{" "}
@@ -671,8 +673,8 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
             the turn-on energy, and{" "}
             <Node inline>{String.raw`\rho`}</Node> controls
             the rate the efficiency ramps up. 
-            For monolithic Cherenkov and scintillation light detectors the values of these parameters depend on the
-            photocathode coverage and the target liquid. 
+            For monolithic detectors of Cherenkov and/or scintillation light the values of these parameters depend on the
+            photosensitive surface and the target liquid. 
             Representative values of these variables for selected target liquids follow. 
             </p>
           </div>
