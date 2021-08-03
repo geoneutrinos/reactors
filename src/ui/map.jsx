@@ -97,6 +97,16 @@ const CoreCircles = React.memo(function CoreCircles({ cores, customCores }) {
   });
 });
 
+const lngRange = (lng) => {
+    while (lng > 180) {
+      lng = lng - 360;
+    }
+    while (lng < -180) {
+      lng = lng + 360;
+    }
+    return lng
+}
+
 export function NuMap({
   detector,
   setDetector,
@@ -110,12 +120,7 @@ export function NuMap({
       return null;
     }
     let { lat, lng } = event.latlng;
-    while (lng > 180) {
-      lng = lng - 360;
-    }
-    while (lng < -180) {
-      lng = lng + 360;
-    }
+    lng = lngRange(lng)
     setDetector({ ...detector, lat: lat, lon: lng })
   }
   const mapStyle = {
@@ -133,7 +138,7 @@ export function NuMap({
             current: "custom",
             elevation: 0,
             lat: e.latlng.lat,
-            lon: e.latlng.lng,
+            lon: lngRange(e.latlng.lng),
           }),
       },
       {
@@ -141,7 +146,7 @@ export function NuMap({
         callback: (e) =>
         setCore({
             lat: e.latlng.lat,
-            lon: e.latlng.lng,
+            lon: lngRange(e.latlng.lng),
           }),
       },
       "-",
@@ -150,7 +155,7 @@ export function NuMap({
         callback: (e) => setDetector({ current: "follow",
             elevation: 0,
             lat: e.latlng.lat,
-            lon: e.latlng.lng,
+            lon: lngRange(e.latlng.lng),
        }),
       },
     ],
