@@ -673,8 +673,8 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
             the turn-on energy, and{" "}
             <Node inline>{String.raw`\rho`}</Node> controls
             the rate the efficiency ramps up. 
-            For monolithic Cherenkov and scintillation light detectors the values of these parameters depend on the
-            photocathode coverage and the target liquid. 
+            For monolithic detectors of Cherenkov and/or scintillation light the values of these parameters depend on the
+            photosensitive surface and the target liquid. 
             Representative values of these variables for selected target liquids follow. 
             </p>
           </div>
