@@ -645,7 +645,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
               <br />
             </div>
           <div>
-            <br />
+            <b> Significance Calculation</b><br />
             <p> The significance of the background-subtracted number of signal events <i>S</i> depends 
             on the systematic uncertainty of the estimated number of background events{" "}
             <Node inline>{String.raw`\delta B`}</Node> and
@@ -662,6 +662,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
             The nuisance background energy spectrum is flat.
             </p>
             <p>
+            <b> Detection Efficiency Function</b><br />
             Detection efficiency expressed as a function of antineutrino energy <i>E</i> is
             valid for IBD only. Here it is approximated by
             <Node>{String.raw`\varepsilon (E) = \varepsilon_\mathrm{max} (1 - \exp(-\rho * (E - E_\mathrm{on}))),`}</Node>{" "}
