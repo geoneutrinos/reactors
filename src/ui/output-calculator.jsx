@@ -645,6 +645,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
               <br />
             </div>
           <div>
+            <br />
             <b> Significance Calculation</b><br />
             <p> The significance of the background-subtracted number of signal events <i>S</i> depends 
             on the systematic uncertainty of the estimated number of background events{" "}
