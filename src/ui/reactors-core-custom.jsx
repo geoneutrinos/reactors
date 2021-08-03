@@ -36,6 +36,7 @@ export const AddCustomCoreModal = ({
     { name: "Hartlepool Complex", lat: 54.6339, lon: -1.1796, power: 3000, elevation: 54.3 },
     { name: "Heysham Complex", lat: 54.0272, lon: -2.9123, power: 6100, elevation: 59.7 },
     { name: "Torness Complex", lat: 55.9659, lon: -2.3988, power: 3246, elevation: 64.3 },
+    { name: "Beaver Valley Complex", lat: 40.6238, lon: -80.4319, power: 5800, elevation: 241.6 },
   ];
 
   const [name, setName] = useState(defaultName);
