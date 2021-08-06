@@ -249,7 +249,7 @@ export const CoreList = ({
             </Dropdown.Menu>
           </Dropdown>
           <Dropdown>
-            <Dropdown.Toggle variant="secondary" id="dropdown-custom-roes">
+            <Dropdown.Toggle variant="secondary" id="dropdown-selected">
                Signal Selection
             </Dropdown.Toggle>
 

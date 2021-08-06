@@ -66,6 +66,16 @@ export const OutputDownload = ({ cores, spectrum, detector, boron8 }) => {
   // custom cores
   const customClosestName = closestCustomCore?.name || "";
 
+
+  const slectedCores = coreList.filter(core => core.outputSignal)
+  const selectedCoresData = zip(
+    ...slectedCores.map((c) => c.detectorSignal)
+  ).map((s) => sum(s));
+  const backgroundCores = coreList.filter(core => !core.outputSignal)
+  const backgroundCoresData = zip(
+     ...backgroundCores.map((c) => c.detectorSignal)
+  ).map((s) => sum(s));
+
   const totalIAEA = zip(...iaeaCores.map((c) => c.detectorSignal)).map((s) =>
     sum(s)
   );
@@ -92,6 +102,8 @@ export const OutputDownload = ({ cores, spectrum, detector, boron8 }) => {
     total: total,
     "IAEA cores": totalIAEA,
     [`closest IAEA Core (${closestName})`]: closestSpectrum,
+    "selectedCores": selectedCoresData,
+    "backgroundCores": backgroundCoresData,
     ...customCoreData,
   };
   const downloadGeoData = {
@@ -120,6 +132,11 @@ export const OutputDownload = ({ cores, spectrum, detector, boron8 }) => {
   ) {
     delete downloadGeoData.geo40K_beta;
     delete downloadGeoData.geoU235;
+  }
+
+  if (sum(selectedCoresData) === 0){
+    delete downloadData.selectedCores;
+    delete downloadData.backgroundCores;
   }
 
   return (
