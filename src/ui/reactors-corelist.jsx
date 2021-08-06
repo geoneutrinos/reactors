@@ -52,15 +52,19 @@ const CoreListItem = ({
 
   const lf = core.loadFactor(reactorLF.start, reactorLF.end);
   const fullPower = () => {
-    const newMods = {...coreMods, [core.name]: {loadOverride: 1}};
+    const newMods = {...coreMods, [core.name]: {...coreMods[core.name], loadOverride: 1}};
     setCoreMods(newMods)
   };
   const iaeaPower = () => {
-    const newMods = {...coreMods, [core.name]: {loadOverride: undefined}};
+    const newMods = {...coreMods, [core.name]: {...coreMods[core.name], loadOverride: undefined}};
     setCoreMods(newMods)
   };
   const noPower = () => {
-    const newMods = {...coreMods, [core.name]: {loadOverride: 0}};
+    const newMods = {...coreMods, [core.name]: {...coreMods[core.name], loadOverride: 0}};
+    setCoreMods(newMods)
+  };
+  const outputSignalToggle = (e) => {
+    const newMods = {...coreMods, [core.name]: {...coreMods[core.name], outputSignal: e.target.checked}};
     setCoreMods(newMods)
   };
   let dist = core.detectorDistance.toFixed(0);
@@ -101,6 +105,10 @@ const CoreListItem = ({
           <DownloadButton buttonTitle="Download Core Spectrum" data={downloadData} formatters={downloadFormatters} filename={downloadFilename}/>
         </Col>
       </Row>
+      <Row><Col>
+        <Form.Check onChange={outputSignalToggle} checked={core.outputSignal} type="checkbox" label="Use as Signal in Output Calculator" />
+        </Col>
+        </Row>
       <Row>
         <Col xl="auto">
           Type: <CoreType core={core} />
@@ -167,16 +175,16 @@ export const CoreList = ({
   };
 
   const fullPowerAll = () => {
-    const coreMods = Object.fromEntries(Object.entries(cores).map(([name, core]) => [name, {loadOverride: 1}]));
-    setCoreMods(coreMods)
+    const newCoreMods = Object.fromEntries(Object.entries(cores).map(([name, core]) => [name, {...coreMods[core.name], loadOverride: 1}]));
+    setCoreMods(newCoreMods)
   };
   const noPowerAll = () => {
-    const coreMods = Object.fromEntries(Object.entries(cores).map(([name, core]) => [name, {loadOverride: 0}]));
-    setCoreMods(coreMods)
+    const newCoreMods = Object.fromEntries(Object.entries(cores).map(([name, core]) => [name, {...coreMods[core.name], loadOverride: 0}]));
+    setCoreMods(newCoreMods)
   };
   const iaeaPowerAll = () => {
-    const coreMods = Object.fromEntries(Object.entries(cores).map(([name, core]) => [name, {loadOverride: undefined}]));
-    setCoreMods(coreMods)
+    const newCoreMods = Object.fromEntries(Object.entries(cores).map(([name, core]) => [name, {...coreMods[core.name], loadOverride: undefined}]));
+    setCoreMods(newCoreMods)
   };
 
   const sortFunctions = {
