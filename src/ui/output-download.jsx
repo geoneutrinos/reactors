@@ -119,16 +119,16 @@ export const OutputDownload = ({ cores, spectrum, detector, boron8 }) => {
     crossSection.crossSection
   )
     ? ""
-    : `_Tmin${crossSection.elasticScatteringTMin.toFixed(1)}`;
+    : `_Tmin${crossSection.elasticScatteringTMin.toFixed(1)}MeV`;
 
   const downloadFilename = `AntiNu_spec10keV_${detector.current}_${
     XSAbrev[crossSection.crossSection]
-  }${tMinName}MeV.csv`
+  }${tMinName}.csv`
     .replace(/\s/g, "_")
     .replace(/\(|\)/g, "");
   const downloadGeoFilename = `GeoNu_spec10keV_${detector.current}_${
     XSAbrev[crossSection.crossSection]
-  }${tMinName}MeV.csv`
+  }${tMinName}.csv`
     .replace(/\s/g, "_")
     .replace(/\(|\)/g, "");
 
