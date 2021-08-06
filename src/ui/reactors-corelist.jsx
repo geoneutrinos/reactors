@@ -166,9 +166,15 @@ export const CoreList = ({
 
   const coreObjs = Object.values(cores);
 
+  const coreTypes = new Set(coreObjs.map(core => core.type))
+
   const testCore = (core, filter) => {
     if (filter === "") {
       return true;
+    }
+    // if the filter matches a core type "exactly"
+    if (coreTypes.has(filter.toUpperCase())){
+      return core.type === filter.toUpperCase()
     }
     const reg = new RegExp(filter, "i");
     return reg.test(core.name);
