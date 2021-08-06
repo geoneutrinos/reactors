@@ -131,7 +131,7 @@ export const OutputDownload = ({ cores, spectrum, detector, boron8 }) => {
     [XSNames.IBDSV2003, XSNames.IBDVB1999].includes(crossSection.crossSection)
   ) {
     delete downloadGeoData.geo40K_beta;
-    delete downloadGeoData.geoU235;
+    delete downloadGeoData.geo235U;
   }
 
   if (sum(selectedCoresData) === 0){
