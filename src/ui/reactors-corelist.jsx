@@ -167,6 +167,7 @@ export const CoreList = ({
   const coreObjs = Object.values(cores);
 
   const coreTypes = new Set(coreObjs.map(core => core.type))
+  const spectrumTypes = new Set(coreObjs.map(core => core.spectrumType))
 
   const testCore = (core, filter) => {
     if (filter === "") {
@@ -175,6 +176,9 @@ export const CoreList = ({
     // if the filter matches a core type "exactly"
     if (coreTypes.has(filter.toUpperCase())){
       return core.type === filter.toUpperCase()
+    }
+    if (spectrumTypes.has(filter.toUpperCase())){
+      return core.spectrumType === filter.toUpperCase()
     }
     const reg = new RegExp(filter, "i");
     return reg.test(core.name);
