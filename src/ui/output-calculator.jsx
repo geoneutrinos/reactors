@@ -423,6 +423,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
         <Provider>
           <div>
             <Table>
+              <tbody>
               <tr>
                 <td>
                   Detected events
@@ -435,6 +436,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
                   <Num v={UIeventsUncertainty} p={2} /> (syst)
                 </td>
               </tr>
+              </tbody>
             </Table>
           </div>
           <Form noValidate>
@@ -697,6 +699,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
           </div>
           <div>
             <Table>
+              <tbody>
               <tr>
                 <td>
                   Gd-H<sub>2</sub>O
@@ -753,6 +756,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
                  <i>&rho;</i>  = 1000 MeV<sup>-1</sup>
                 </td>
               </tr>
+              </tbody>
             </Table>
           </div>
         </Provider>
