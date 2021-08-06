@@ -195,10 +195,22 @@ export const CoreList = ({
     capacity: (a, b) => b.power - a.power,
   };
 
-  const coresForRender = visible ? coreObjs
+  const filteredCores = visible ? coreObjs
   .filter((core) => testCore(core, filter))
-  .sort(sortFunctions[sortMethod])
-  .slice(0, displayLength) : []
+  .sort(sortFunctions[sortMethod]) : []
+
+  const coresForRender = filteredCores
+    .slice(0, displayLength)
+
+  const selectAllFiltered = () => {
+    const newCoreMods = Object.fromEntries(filteredCores.map((core) => [core.name, {...coreMods[core.name], outputSignal: true}]));
+    console.log(newCoreMods)
+    setCoreMods({...coreMods, ...newCoreMods})
+  };
+  const deSelectAll = () => {
+    const newCoreMods = Object.fromEntries(Object.entries(cores).map(([name, core]) => [name, {...coreMods[core.name], outputSignal: false}]));
+    setCoreMods(newCoreMods)
+  };
 
   return (
     <Card ref={cardRef}>
@@ -233,6 +245,20 @@ export const CoreList = ({
               </Dropdown.Item>
               <Dropdown.Item onClick={noPowerAll}>
                 Turn off all cores
+              </Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+          <Dropdown>
+            <Dropdown.Toggle variant="secondary" id="dropdown-custom-roes">
+               Signal Selection
+            </Dropdown.Toggle>
+
+            <Dropdown.Menu>
+              <Dropdown.Item onClick={selectAllFiltered}>
+                Select all Filtered Cores ({filteredCores.length} Cores)
+              </Dropdown.Item>
+              <Dropdown.Item onClick={deSelectAll}>
+                Clear all Selected Cores
               </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
