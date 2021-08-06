@@ -29,6 +29,13 @@ export function NuSpectrumPlot({ cores, spectrum, detector}) {
       (value, index) => value + current.detectorSignal[index]
     );
   }, new Float64Array(1000).fill(0));
+  
+  const selectedCores = coreList.filter((core) => core.outputSignal === true);
+  const selectedCoreSignal = selectedCores.reduce((previous, current) => {
+    return previous.map(
+      (value, index) => value + current.detectorSignal[index]
+    );
+  }, new Float64Array(1000).fill(0));
 
   const data = [
   {
@@ -50,6 +57,15 @@ export function NuSpectrumPlot({ cores, spectrum, detector}) {
       mode: "lines",
       marker: { color: "grey" },
       visible: sum(closestActiveIAEACoreSignal) > 0,
+    },  
+    {
+      x: evBins,
+      y: selectedCoreSignal,
+      name: `Selected Cores<br />(${selectedCores.length} cores)`,
+      type: "scatter",
+      mode: "lines",
+      marker: { color: "black" },
+      visible: sum(selectedCoreSignal) > 0,
     },  
     {
       x: evBins,
