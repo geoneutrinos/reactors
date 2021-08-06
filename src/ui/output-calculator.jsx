@@ -235,7 +235,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
     getCoreSums(coreList, min_i, max_i, low_i);
 
   const selectedCores = coreList.filter(core => core.outputSignal)
-  const [selctedCoreSignal, selectedCoreSignalLow, selectedCoreSignalHigh] =
+  const [selectedCoreSignal, selectedCoreSignalLow, selectedCoreSignalHigh] =
     getCoreSums(selectedCores, min_i, max_i, low_i);
 
   // custom cores
@@ -285,8 +285,8 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
   let UIBackgroundUncertainty = 0;
 
   if (signal === "selected") {
-    UIsignal = selctedCoreSignal;
-    UIbackground = geoTotalNIU + bkgNuisanceNIU + totalCoreSignal - selctedCoreSignal;
+    UIsignal = selectedCoreSignal;
+    UIbackground = geoTotalNIU + bkgNuisanceNIU + totalCoreSignal - selectedCoreSignal;
     UIBackgroundUncertainty = Math.sqrt(
       (geoTotalNIU * deltaGeoNu) ** 2 +
         (bkgNuisanceNIU * deltaBkgnuisance) ** 2 +
