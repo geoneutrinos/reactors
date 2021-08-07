@@ -35,7 +35,7 @@ const detectorEfficiency = (
 };
 
 export const CalculatorPanel = ({ cores, spectrum }) => {
-  const [signal, setSignal] = useState("closest");
+  const [signal, setSignal] = useState("selected");
   const [solveFor, setSolveFor] = useState("significance");
   const [eMin, setEMin] = useState(parseFloat(IBD_THRESHOLD.toFixed(1)));
   const [eMax, setEMax] = useState(10.0);
@@ -436,6 +436,13 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
                   <Num v={UIeventsUncertainty} p={2} /> (syst)
                 </td>
               </tr>
+              <tr>
+                <td>
+                  <small>{crossSection.crossSection}</small>
+                </td>
+                <td></td>
+                <td></td>
+              </tr>
               </tbody>
             </Table>
           </div>
@@ -444,13 +451,13 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
               <Form.Label>Signal (background)</Form.Label>
               <Form.Control as="select" onChange={UIsetSelect} value={signal}>
                 <option value="selected">
-                  {selectedCores.length} Selected Cores (geoneutrinos + {coreList.length - selectedCores.length} other reactors)
+                  {selectedCores.length} Selected Cores (geoneutrinos + {coreList.length - selectedCores.length} other cores)
                 </option>
                 <option value="closest">
-                  Closest Core (geoneutrinos + other reactors)
+                  Closest Core (geoneutrinos + other cores)
                 </option>
                 <option value="custom">
-                  Custom Core (geoneutrinos + other reactors)
+                  Custom Core (geoneutrinos + IAEA cores)
                 </option>
                 <option value="all">All Cores (geoneutrinos)</option>
                 <option value="geoneutrino">Geoneutrino (reactors)</option>
@@ -467,7 +474,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
                   Geoneutrino U235 (reactors + other geoneutrino isotopes)
                 </option>
               </Form.Control>
-              <small>{crossSection.crossSection}</small>
+              <small>Select cores on Reactors tab</small>
             </Form.Group>
             <Form.Group controlId="solve_for">
               <Form.Label>Solve For</Form.Label>
