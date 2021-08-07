@@ -468,6 +468,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
                 </option>
               </Form.Control>
               <small>{crossSection.crossSection}</small>
+              <small>Select cores on Reactors tab</small>
             </Form.Group>
             <Form.Group controlId="solve_for">
               <Form.Label>Solve For</Form.Label>
