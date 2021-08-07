@@ -52,15 +52,19 @@ const CoreListItem = ({
 
   const lf = core.loadFactor(reactorLF.start, reactorLF.end);
   const fullPower = () => {
-    const newMods = {...coreMods, [core.name]: {loadOverride: 1}};
+    const newMods = {...coreMods, [core.name]: {...coreMods[core.name], loadOverride: 1}};
     setCoreMods(newMods)
   };
   const iaeaPower = () => {
-    const newMods = {...coreMods, [core.name]: {loadOverride: undefined}};
+    const newMods = {...coreMods, [core.name]: {...coreMods[core.name], loadOverride: undefined}};
     setCoreMods(newMods)
   };
   const noPower = () => {
-    const newMods = {...coreMods, [core.name]: {loadOverride: 0}};
+    const newMods = {...coreMods, [core.name]: {...coreMods[core.name], loadOverride: 0}};
+    setCoreMods(newMods)
+  };
+  const outputSignalToggle = (e) => {
+    const newMods = {...coreMods, [core.name]: {...coreMods[core.name], outputSignal: e.target.checked}};
     setCoreMods(newMods)
   };
   let dist = core.detectorDistance.toFixed(0);
@@ -101,6 +105,10 @@ const CoreListItem = ({
           <DownloadButton buttonTitle="Download Core Spectrum" data={downloadData} formatters={downloadFormatters} filename={downloadFilename}/>
         </Col>
       </Row>
+      <Row><Col>
+        <Form.Check onChange={outputSignalToggle} checked={core.outputSignal} type="checkbox" label="Use as Signal in Output Calculator" />
+        </Col>
+        </Row>
       <Row>
         <Col xl="auto">
           Type: <CoreType core={core} />
@@ -158,25 +166,35 @@ export const CoreList = ({
 
   const coreObjs = Object.values(cores);
 
+  const coreTypes = new Set(coreObjs.map(core => core.type))
+  const spectrumTypes = new Set(coreObjs.map(core => core.spectrumType))
+
   const testCore = (core, filter) => {
     if (filter === "") {
       return true;
+    }
+    // if the filter matches a core type "exactly"
+    if (coreTypes.has(filter.toUpperCase())){
+      return core.type === filter.toUpperCase()
+    }
+    if (spectrumTypes.has(filter.toUpperCase())){
+      return core.spectrumType === filter.toUpperCase()
     }
     const reg = new RegExp(filter, "i");
     return reg.test(core.name);
   };
 
   const fullPowerAll = () => {
-    const coreMods = Object.fromEntries(Object.entries(cores).map(([name, core]) => [name, {loadOverride: 1}]));
-    setCoreMods(coreMods)
+    const newCoreMods = Object.fromEntries(Object.entries(cores).map(([name, core]) => [name, {...coreMods[core.name], loadOverride: 1}]));
+    setCoreMods(newCoreMods)
   };
   const noPowerAll = () => {
-    const coreMods = Object.fromEntries(Object.entries(cores).map(([name, core]) => [name, {loadOverride: 0}]));
-    setCoreMods(coreMods)
+    const newCoreMods = Object.fromEntries(Object.entries(cores).map(([name, core]) => [name, {...coreMods[core.name], loadOverride: 0}]));
+    setCoreMods(newCoreMods)
   };
   const iaeaPowerAll = () => {
-    const coreMods = Object.fromEntries(Object.entries(cores).map(([name, core]) => [name, {loadOverride: undefined}]));
-    setCoreMods(coreMods)
+    const newCoreMods = Object.fromEntries(Object.entries(cores).map(([name, core]) => [name, {...coreMods[core.name], loadOverride: undefined}]));
+    setCoreMods(newCoreMods)
   };
 
   const sortFunctions = {
@@ -187,10 +205,22 @@ export const CoreList = ({
     capacity: (a, b) => b.power - a.power,
   };
 
-  const coresForRender = visible ? coreObjs
+  const filteredCores = visible ? coreObjs
   .filter((core) => testCore(core, filter))
-  .sort(sortFunctions[sortMethod])
-  .slice(0, displayLength) : []
+  .sort(sortFunctions[sortMethod]) : []
+
+  const coresForRender = filteredCores
+    .slice(0, displayLength)
+
+  const selectAllFiltered = () => {
+    const newCoreMods = Object.fromEntries(filteredCores.map((core) => [core.name, {...coreMods[core.name], outputSignal: true}]));
+    console.log(newCoreMods)
+    setCoreMods({...coreMods, ...newCoreMods})
+  };
+  const deSelectAll = () => {
+    const newCoreMods = Object.fromEntries(Object.entries(cores).map(([name, core]) => [name, {...coreMods[core.name], outputSignal: false}]));
+    setCoreMods(newCoreMods)
+  };
 
   return (
     <Card ref={cardRef}>
@@ -225,6 +255,20 @@ export const CoreList = ({
               </Dropdown.Item>
               <Dropdown.Item onClick={noPowerAll}>
                 Turn off all cores
+              </Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+          <Dropdown>
+            <Dropdown.Toggle variant="secondary" id="dropdown-selected">
+               Signal Selection
+            </Dropdown.Toggle>
+
+            <Dropdown.Menu>
+              <Dropdown.Item onClick={selectAllFiltered}>
+                Select all Filtered Cores ({filteredCores.length} Cores)
+              </Dropdown.Item>
+              <Dropdown.Item onClick={deSelectAll}>
+                Clear all Selected Cores
               </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>

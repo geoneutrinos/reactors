@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { zip, sum } from "lodash";
 import { XSNames, XSAbrev } from "../physics/neutrino-cross-section";
-import {SECONDS_PER_YEAR} from "../physics/constants";
+import { SECONDS_PER_YEAR } from "../physics/constants";
 import { PhysicsContext } from "../state";
 
 import { Card, Button } from "react-bootstrap";
@@ -66,12 +66,21 @@ export const OutputDownload = ({ cores, spectrum, detector, boron8 }) => {
   // custom cores
   const customClosestName = closestCustomCore?.name || "";
 
+  const slectedCores = coreList.filter((core) => core.outputSignal);
+  const selectedCoresData = zip(
+    ...slectedCores.map((c) => c.detectorSignal)
+  ).map((s) => sum(s));
+  const backgroundCores = coreList.filter((core) => !core.outputSignal);
+  const backgroundCoresData = zip(
+    ...backgroundCores.map((c) => c.detectorSignal)
+  ).map((s) => sum(s));
+
   const totalIAEA = zip(...iaeaCores.map((c) => c.detectorSignal)).map((s) =>
     sum(s)
   );
-  const totalCustom = zip(
-    ...customCores.map((c) => c.detectorSignal)
-  ).map((s) => sum(s));
+  const totalCustom = zip(...customCores.map((c) => c.detectorSignal)).map(
+    (s) => sum(s)
+  );
   const total = zip(
     spectrum.geoTh232,
     spectrum.geoU238,
@@ -92,6 +101,8 @@ export const OutputDownload = ({ cores, spectrum, detector, boron8 }) => {
     total: total,
     "IAEA cores": totalIAEA,
     [`closest IAEA Core (${closestName})`]: closestSpectrum,
+    selectedCores: selectedCoresData,
+    backgroundCores: backgroundCoresData,
     ...customCoreData,
   };
   const downloadGeoData = {
@@ -104,14 +115,20 @@ export const OutputDownload = ({ cores, spectrum, detector, boron8 }) => {
   const downloadFormatters = {
     "bin center (MeV)": (v) => v.toFixed(3),
   };
+  const tMinName = [XSNames.IBDSV2003, XSNames.IBDVB1999].includes(
+    crossSection.crossSection
+  )
+    ? ""
+    : `_Tmin${crossSection.elasticScatteringTMin.toFixed(1)}MeV`;
+
   const downloadFilename = `AntiNu_spec10keV_${detector.current}_${
     XSAbrev[crossSection.crossSection]
-  }_Tmin${crossSection.elasticScatteringTMin.toFixed(1)}MeV.csv`
+  }${tMinName}.csv`
     .replace(/\s/g, "_")
     .replace(/\(|\)/g, "");
   const downloadGeoFilename = `GeoNu_spec10keV_${detector.current}_${
     XSAbrev[crossSection.crossSection]
-  }_Tmin${crossSection.elasticScatteringTMin.toFixed(1)}MeV.csv`
+  }${tMinName}.csv`
     .replace(/\s/g, "_")
     .replace(/\(|\)/g, "");
 
@@ -119,7 +136,12 @@ export const OutputDownload = ({ cores, spectrum, detector, boron8 }) => {
     [XSNames.IBDSV2003, XSNames.IBDVB1999].includes(crossSection.crossSection)
   ) {
     delete downloadGeoData.geo40K_beta;
-    delete downloadGeoData.geoU235;
+    delete downloadGeoData.geo235U;
+  }
+
+  if (sum(selectedCoresData) === 0) {
+    delete downloadData.selectedCores;
+    delete downloadData.backgroundCores;
   }
 
   return (
@@ -146,7 +168,11 @@ export const OutputDownload = ({ cores, spectrum, detector, boron8 }) => {
           filename={`SolarNu_spec100keV_ES_8Bsolar_Tmin${crossSection.elasticScatteringTMin.toFixed(
             1
           )}MeV.csv`}
-          buttonTitle={<span>Solar <sup>8</sup>B </span>}
+          buttonTitle={
+            <span>
+              Solar <sup>8</sup>B{" "}
+            </span>
+          }
         />{" "}
         <DownloadButton
           data={downloadGeoData}

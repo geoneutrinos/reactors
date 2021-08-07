@@ -234,6 +234,10 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
   const [totalCoreSignal, totalCoreSignalLow, totalCoreSignalHigh] =
     getCoreSums(coreList, min_i, max_i, low_i);
 
+  const selectedCores = coreList.filter(core => core.outputSignal)
+  const [selectedCoreSignal, selectedCoreSignalLow, selectedCoreSignalHigh] =
+    getCoreSums(selectedCores, min_i, max_i, low_i);
+
   // custom cores
   // need separate sums for reactor antineutrino energy above and below E_thresh
   // systematic uncertainy is bigger below E_thresh than above
@@ -280,6 +284,16 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
   let UIbackground = 0;
   let UIBackgroundUncertainty = 0;
 
+  if (signal === "selected") {
+    UIsignal = selectedCoreSignal;
+    UIbackground = geoTotalNIU + bkgNuisanceNIU + totalCoreSignal - selectedCoreSignal;
+    UIBackgroundUncertainty = Math.sqrt(
+      (geoTotalNIU * deltaGeoNu) ** 2 +
+        (bkgNuisanceNIU * deltaBkgnuisance) ** 2 +
+        ((totalCoreSignalHigh - selectedCoreSignalHigh) * deltaReactorsHighE) ** 2 +
+        ((totalCoreSignalLow - selectedCoreSignalLow) * deltaReactorsLowE) ** 2
+    );
+  }
   if (signal === "all") {
     UIsignal = totalCoreSignal;
     UIbackground = geoTotalNIU + bkgNuisanceNIU;
@@ -409,6 +423,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
         <Provider>
           <div>
             <Table>
+              <tbody>
               <tr>
                 <td>
                   Detected events
@@ -421,12 +436,16 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
                   <Num v={UIeventsUncertainty} p={2} /> (syst)
                 </td>
               </tr>
+              </tbody>
             </Table>
           </div>
           <Form noValidate>
             <Form.Group controlId="signal">
               <Form.Label>Signal (background)</Form.Label>
               <Form.Control as="select" onChange={UIsetSelect} value={signal}>
+                <option value="selected">
+                  {selectedCores.length} Selected Cores (geoneutrinos + {coreList.length - selectedCores.length} other reactors)
+                </option>
                 <option value="closest">
                   Closest Core (geoneutrinos + other reactors)
                 </option>
@@ -680,6 +699,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
           </div>
           <div>
             <Table>
+              <tbody>
               <tr>
                 <td>
                   Gd-H<sub>2</sub>O
@@ -736,6 +756,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
                  <i>&rho;</i>  = 1000 MeV<sup>-1</sup>
                 </td>
               </tr>
+              </tbody>
             </Table>
           </div>
         </Provider>

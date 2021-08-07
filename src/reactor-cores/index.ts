@@ -227,6 +227,7 @@ interface ReactorCore {
   detectorNIU: number;
   direction: Direction;
   powerFractions: PowerFractions;
+  outputSignal: boolean;
 
   setSignal: (
     dist: number,
@@ -380,6 +381,7 @@ export function ReactorCore({
     setSignal: setSignal,
     direction: { phi: 0, elev: 0 },
     cos: cos,
+    outputSignal: false,
   };
 }
 
