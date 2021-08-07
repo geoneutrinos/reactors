@@ -450,7 +450,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
                   Closest Core (geoneutrinos + other cores)
                 </option>
                 <option value="custom">
-                  Custom Core (geoneutrinos + other reactors)
+                  Custom Core (geoneutrinos + IAEA reactors)
                 </option>
                 <option value="all">All Cores (geoneutrinos)</option>
                 <option value="geoneutrino">Geoneutrino (reactors)</option>
