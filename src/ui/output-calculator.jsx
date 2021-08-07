@@ -35,7 +35,7 @@ const detectorEfficiency = (
 };
 
 export const CalculatorPanel = ({ cores, spectrum }) => {
-  const [signal, setSignal] = useState("closest");
+  const [signal, setSignal] = useState("selected");
   const [solveFor, setSolveFor] = useState("significance");
   const [eMin, setEMin] = useState(parseFloat(IBD_THRESHOLD.toFixed(1)));
   const [eMax, setEMax] = useState(10.0);
@@ -444,10 +444,10 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
               <Form.Label>Signal (background)</Form.Label>
               <Form.Control as="select" onChange={UIsetSelect} value={signal}>
                 <option value="selected">
-                  {selectedCores.length} Selected Cores (geoneutrinos + {coreList.length - selectedCores.length} other reactors)
+                  {selectedCores.length} Selected Cores (geoneutrinos + {coreList.length - selectedCores.length} other cores)
                 </option>
                 <option value="closest">
-                  Closest Core (geoneutrinos + other reactors)
+                  Closest Core (geoneutrinos + other cores)
                 </option>
                 <option value="custom">
                   Custom Core (geoneutrinos + other reactors)
