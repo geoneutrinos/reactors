@@ -467,7 +467,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
                   Geoneutrino U235 (reactors + other geoneutrino isotopes)
                 </option>
               </Form.Control>
-              <small>{crossSection.crossSection}</small>
+              <small>{crossSection.crossSection}</small> <br />
               <small>Select cores on Reactors tab</small>
             </Form.Group>
             <Form.Group controlId="solve_for">
