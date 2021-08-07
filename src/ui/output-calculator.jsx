@@ -436,6 +436,13 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
                   <Num v={UIeventsUncertainty} p={2} /> (syst)
                 </td>
               </tr>
+              <tr>
+                <td>
+                  <small>{crossSection.crossSection}</small>
+                </td>
+                <td></td>
+                <td></td>
+              </tr>
               </tbody>
             </Table>
           </div>
@@ -450,7 +457,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
                   Closest Core (geoneutrinos + other cores)
                 </option>
                 <option value="custom">
-                  Custom Core (geoneutrinos + IAEA reactors)
+                  Custom Core (geoneutrinos + IAEA cores)
                 </option>
                 <option value="all">All Cores (geoneutrinos)</option>
                 <option value="geoneutrino">Geoneutrino (reactors)</option>
@@ -467,7 +474,6 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
                   Geoneutrino U235 (reactors + other geoneutrino isotopes)
                 </option>
               </Form.Control>
-              <small>{crossSection.crossSection}</small> <br />
               <small>Select cores on Reactors tab</small>
             </Form.Group>
             <Form.Group controlId="solve_for">
