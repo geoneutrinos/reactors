@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Map,
   Popup,
@@ -36,7 +36,7 @@ const DetectorCircles = React.memo(function DetectorCircles({
     return (
       <Circle
         key={detector.name}
-        radius={250}
+        radius={5000}
         color={color}
         center={{ lat: detector.lat, lon: detector.lon }}
       >
@@ -61,8 +61,10 @@ function coreCircleColor(type) {
   }
 }
 
-const CoreCircles = React.memo(function CoreCircles({ cores, customCores }) {
+const CoreCircles = React.memo(function CoreCircles({ cores, customCores, zoom }) {
+  console.log(zoom)
   const coreList = Object.values({...cores, ...customCores});
+  const radius = zoom > 8? zoom > 11? 500 : 2500 : 7500
   return coreList.map((core) => {
     const color = coreCircleColor(core.spectrumType);
     const CorePopup = (
@@ -87,7 +89,7 @@ const CoreCircles = React.memo(function CoreCircles({ cores, customCores }) {
     return (
       <Circle
         key={core.name}
-        radius={1000}
+        radius={radius}
         color={color}
         center={{ lat: core.lat, lon: core.lon }}
       >
@@ -115,6 +117,7 @@ export function NuMap({
   customCores,
   detectorList,
 }) {
+  const [zoom, setZoom] = useState(2)
   const mapMouseMove = (event) => {
     if (detector.current !== 'follow') {
       return null;
@@ -167,6 +170,7 @@ export function NuMap({
       center={[0, 0]}
       zoom={2}
       {...contextMenu}
+      onZoom={(e) => setZoom(e.target._zoom)}
     >
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -178,7 +182,7 @@ export function NuMap({
       <LayersControl position="topright">
         <LayersControl.Overlay checked name="Reactor Cores">
           <LayerGroup>
-            <CoreCircles cores={cores} customCores={customCores}/>
+            <CoreCircles cores={cores} customCores={customCores} zoom={zoom}/>
           </LayerGroup>
         </LayersControl.Overlay>
         <LayersControl.Overlay checked name="Detector Locations">
