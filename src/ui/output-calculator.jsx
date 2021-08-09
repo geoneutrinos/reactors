@@ -438,7 +438,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
               </tr>
               <tr>
                 <td>
-                  <small>Detected events equal interactions times detection efficiency- see Table below</small>
+                  <small>Interactions x efficiency : see below</small>
                 </td>
                 <td></td>
                 <td></td>
