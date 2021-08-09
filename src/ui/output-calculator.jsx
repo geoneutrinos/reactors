@@ -52,11 +52,11 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
   // eslint-disable-next-line no-unused-vars
   const [deltaReactorsLowE, setDeltaReactorsLowE] = useState(0.3);
   // detection efficiency function parameters
-  const [effMax, setEffMax] = useState(0.8);
+  const [effMax, setEffMax] = useState(1.0);
   const [enerStart, setEnerStart] = useState(
     parseFloat(IBD_THRESHOLD.toFixed(1))
   );
-  const [rampUp, setRampUp] = useState(2.0);
+  const [rampUp, setRampUp] = useState(1000);
 
   const { crossSection } = useContext(PhysicsContext);
 
@@ -438,6 +438,13 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
               </tr>
               <tr>
                 <td>
+                  <small>Detected events equal interactions times detection efficiency- see Table below</small>
+                </td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>
                   <small>{crossSection.crossSection}</small>
                 </td>
                 <td></td>
@@ -709,30 +716,16 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
               <tbody>
               <tr>
                 <td>
-                  Gd-H<sub>2</sub>O
+                  Perfect 100%
                 </td>
                 <td>
-                  <i>&epsilon;</i><sub>max</sub> = 0.5
+                  <i>&epsilon;</i><sub>max</sub> = 1.0
                 </td>
                 <td>
-                  <i>E</i><sub>on</sub> = 3.5 MeV
+                  <i>E</i><sub>on</sub> = 1.8 MeV
                 </td>
                 <td>
-                 <i>&rho;</i>  = 1.0 MeV<sup>-1</sup>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Gd-WbLS
-                </td>
-                <td>
-                  <i>&epsilon;</i><sub>max</sub> = 0.7
-                </td>
-                <td>
-                  <i>E</i><sub>on</sub> = 2.5 MeV
-                </td>
-                <td>
-                 <i>&rho;</i>  = 1.5 MeV<sup>-1</sup>
+                 <i>&rho;</i>  = 1000 MeV<sup>-1</sup>
                 </td>
               </tr>
               <tr>
@@ -751,16 +744,30 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
               </tr>
               <tr>
                 <td>
-                  Perfect 100%
+                  Gd-WbLS
                 </td>
                 <td>
-                  <i>&epsilon;</i><sub>max</sub> = 1.0
+                  <i>&epsilon;</i><sub>max</sub> = 0.7
                 </td>
                 <td>
-                  <i>E</i><sub>on</sub> = 1.8 MeV
+                  <i>E</i><sub>on</sub> = 2.5 MeV
                 </td>
                 <td>
-                 <i>&rho;</i>  = 1000 MeV<sup>-1</sup>
+                 <i>&rho;</i>  = 1.5 MeV<sup>-1</sup>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Gd-H<sub>2</sub>O
+                </td>
+                <td>
+                  <i>&epsilon;</i><sub>max</sub> = 0.5
+                </td>
+                <td>
+                  <i>E</i><sub>on</sub> = 3.5 MeV
+                </td>
+                <td>
+                 <i>&rho;</i>  = 1.0 MeV<sup>-1</sup>
                 </td>
               </tr>
               </tbody>
