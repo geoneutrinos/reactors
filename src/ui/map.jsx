@@ -87,7 +87,7 @@ const CoreCircles = React.memo(function CoreCircles({ cores, customCores }) {
     return (
       <Circle
         key={core.name}
-        radius={1000}
+        radius={2000}
         color={color}
         center={{ lat: core.lat, lon: core.lon }}
       >
