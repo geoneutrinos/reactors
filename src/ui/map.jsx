@@ -36,7 +36,7 @@ const DetectorCircles = React.memo(function DetectorCircles({
     return (
       <Circle
         key={detector.name}
-        radius={250}
+        radius={500}
         color={color}
         center={{ lat: detector.lat, lon: detector.lon }}
       >
@@ -87,7 +87,7 @@ const CoreCircles = React.memo(function CoreCircles({ cores, customCores }) {
     return (
       <Circle
         key={core.name}
-        radius={2000}
+        radius={1000}
         color={color}
         center={{ lat: core.lat, lon: core.lon }}
       >
