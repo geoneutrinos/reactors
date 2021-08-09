@@ -265,7 +265,7 @@ export const CoreList = ({
 
             <Dropdown.Menu>
               <Dropdown.Item onClick={selectAllFiltered}>
-                Select all Filtered Cores ({filteredCores.length} Cores)
+                Select all ({filteredCores.length}) Filtered Cores
               </Dropdown.Item>
               <Dropdown.Item onClick={deSelectAll}>
                 Clear all Selected Cores
@@ -282,7 +282,8 @@ export const CoreList = ({
         </Form>
       </Card.Header>
       <Card.Body>
-        <p> Caution: Setting ALL cores to 100 percent power activates cores that have been permanently shutdown. </p>
+        <p> Filter Cores by Name or Type (PWR, BWR, PHWR, GCR, LWGR, FBR, LEU_MOX) </p>
+        <p> Caution: <i>Use 100% load for all cores</i> activates cores that have been permanently shutdown </p>
       </Card.Body>
       <ListGroup variant="flush">
         <ListGroup.Item>
