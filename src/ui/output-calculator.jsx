@@ -422,6 +422,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
       <Card.Body>
         <Provider>
           <div>
+            <small>{crossSection.crossSection}</small>
             <Table>
               <tbody>
               <tr>
@@ -439,13 +440,6 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
               <tr>
                 <td>
                   <small>Interactions x efficiency : see below</small>
-                </td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>
-                  <small>{crossSection.crossSection}</small>
                 </td>
                 <td></td>
                 <td></td>
