@@ -422,7 +422,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
       <Card.Body>
         <Provider>
           <div>
-            <small>Detected events equals efficiency fn (see below) x interaction spectrum using {crossSection.crossSection}</small>
+            <small>Detected events = efficiency fn (see below) x interaction spectrum- {crossSection.crossSection}</small>
             <Table>
               <tbody>
               <tr>
