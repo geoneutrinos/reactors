@@ -422,7 +422,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
       <Card.Body>
         <Provider>
           <div>
-            <small>{crossSection.crossSection}</small>
+            <small>Detected events equals efficiency fn (see below) x interaction spectrum using {crossSection.crossSection}</small>
             <Table>
               <tbody>
               <tr>
@@ -436,13 +436,6 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
                   <i>B</i> = <Num v={UIeventsBackground} p={2} /> &plusmn;{" "}
                   <Num v={UIeventsUncertainty} p={2} /> (syst)
                 </td>
-              </tr>
-              <tr>
-                <td>
-                  <small>Interactions x efficiency : see below</small>
-                </td>
-                <td></td>
-                <td></td>
               </tr>
               </tbody>
             </Table>
