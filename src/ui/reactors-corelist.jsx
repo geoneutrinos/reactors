@@ -214,7 +214,10 @@ export const CoreList = ({
 
   const selectAllFiltered = () => {
     const newCoreMods = Object.fromEntries(filteredCores.map((core) => [core.name, {...coreMods[core.name], outputSignal: true}]));
-    console.log(newCoreMods)
+    setCoreMods({...coreMods, ...newCoreMods})
+  };
+  const deSelectAllFiltered = () => {
+    const newCoreMods = Object.fromEntries(filteredCores.map((core) => [core.name, {...coreMods[core.name], outputSignal: false}]));
     setCoreMods({...coreMods, ...newCoreMods})
   };
   const deSelectAll = () => {
@@ -266,6 +269,9 @@ export const CoreList = ({
             <Dropdown.Menu>
               <Dropdown.Item onClick={selectAllFiltered}>
                 Select all ({filteredCores.length}) Filtered Cores
+              </Dropdown.Item>
+              <Dropdown.Item onClick={deSelectAllFiltered}>
+                Unselect all ({filteredCores.length}) Filtered Cores
               </Dropdown.Item>
               <Dropdown.Item onClick={deSelectAll}>
                 Clear all Selected Cores
