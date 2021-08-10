@@ -257,7 +257,7 @@ export const CoreList = ({
                 Use IAEA LF data for all cores
               </Dropdown.Item>
               <Dropdown.Item onClick={noPowerAll}>
-                Use 0% load for all cores
+                Turn off all cores
               </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
