@@ -15,8 +15,10 @@ import "leaflet-contextmenu/dist/leaflet.contextmenu.css";
 const DetectorCircles = React.memo(function DetectorCircles({
   detectors,
   setDetector,
+  zoom,
 }) {
   const color = "#9d00ff";
+  const radius = zoom > 6? zoom > 8? zoom > 10? zoom > 12? zoom > 14? 250 : 500 : 1000 : 2000 : 5000 : 10000
   return detectors.map((detector) => {
     const DetectorPopup = (
       <Popup>
@@ -36,7 +38,7 @@ const DetectorCircles = React.memo(function DetectorCircles({
     return (
       <Circle
         key={detector.name}
-        radius={5000}
+        radius={radius}
         color={color}
         center={{ lat: detector.lat, lon: detector.lon }}
       >
@@ -190,6 +192,7 @@ export function NuMap({
             <DetectorCircles
               detectors={detectorList}
               setDetector={setDetector}
+              zoom={zoom}
             />
           </LayerGroup>
         </LayersControl.Overlay>
