@@ -55,6 +55,23 @@ export function mantleGeoSpectrum(
 
   const { U238flux, ThURatio, KURatio } = geoFluxRatios;
 
+  const geoU238 = antineutrinoSpectrum238U.map((v, i) => {
+    const Ev = EvBinFronIndex(i);
+    const UCrustFlux = crustFlux.u * MICROSECOND_PER_SECOND; // Convert from cm-2 us-1 to cm-2 s-1
+    const crossSectionArea = XSFunc(Ev); // cm2
+
+    const bin = v * (UCrustFlux + U238flux) * crossSectionArea;
+
+    const [spec, ESMUTauContirbution] = extractESEandMuTau(
+      bin,
+      Ev,
+      survivalProbability,
+      crossSection
+    );
+
+    return spec * TargetYears * survivalProbability + ESMUTauContirbution;
+  });
+  
   const geo_mantleU238 = antineutrinoSpectrum238U.map((v, i) => {
     const Ev = EvBinFronIndex(i);
     const crossSectionArea = XSFunc(Ev); // cm2
