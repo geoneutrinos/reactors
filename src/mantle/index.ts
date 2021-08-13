@@ -177,6 +177,7 @@ export function mantleGeoSpectrum(
   return {
     geo_mantleU238: geo_mantleU238,
     geo_crustU238: geo_crustU238,
+    geoU238: geoU238,
     geoU235: geoU235,
     geoTh232: geoTh232,
     geoK40_beta: geoK40_beta,
