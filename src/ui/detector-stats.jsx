@@ -240,6 +240,29 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
               </tr>
               <tr>
                 <td>
+                  <i>R</i>
+                  <sub>mantle</sub>
+                </td>
+              <td>=</td>
+                <td>
+                  <Num v={geo_mantleU238NIU} p={1} /> {NIU} (
+                {((geo_mantleU238NIU / geoTotalNIU) * 100).toFixed(1)} % of total)
+                </td>
+                <td>
+                  (
+                  <Num v={geoU238NIU} p={1} /> {U238}{", "}
+                  <span style={{ display: geoKUVald }}>
+                    <Num v={geoU235NIU} p={1} /> {U235}{", "}
+                  </span>
+                  <Num v={geoTh232NIU} p={1} /> {Th232}
+                  <span style={{ display: geoKUVald }}>
+                    , <Num v={geoK40betaNIU} p={1} /> {K40}<sub>β<sup>-</sup></sub>
+                  </span>
+                  )
+                </td>
+              </tr>
+              <tr>
+                <td>
                   <i>(Th/U)</i>
                   <sub>geo</sub>
                 </td>
