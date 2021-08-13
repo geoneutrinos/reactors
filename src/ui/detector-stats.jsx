@@ -74,8 +74,10 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
   const geo_crustU238NIU = sum(spectrum.geo_crustU238) * 0.01;
   const geo_mantleU238NIU = sum(spectrum.geo_mantleU238) * 0.01;
   const geoU238NIU = geo_crustU238NIU + geo_mantleU238NIU;
+  const geo_crustTh232NIU = sum(spectrum.geo_crustTh232) * 0.01;
+  const geo_mantleTh232NIU = sum(spectrum.geo_mantleTh232) * 0.01;
+  const geoTh232NIU = geo_crustTh232NIU + geo_mantleTh232NIU;
   const geoU235NIU = sum(spectrum.geoU235) * 0.01;
-  const geoTh232NIU = sum(spectrum.geoTh232) * 0.01;
   const geoK40betaNIU = sum(spectrum.geoK40_beta) * 0.01;
 
   const geoThU = geoThURatio(geoTh232NIU, geoU238NIU, crossSection.crossSection);
@@ -218,7 +220,7 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
               <tr>
                 <td>
                   <i>R</i>
-                  <sub>crust</sub>
+                  <sub>crust U</sub>
                 </td>
               <td>=</td>
                 <td>
@@ -241,12 +243,58 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
               <tr>
                 <td>
                   <i>R</i>
-                  <sub>mantle</sub>
+                  <sub>mantle U</sub>
                 </td>
               <td>=</td>
                 <td>
                   <Num v={geo_mantleU238NIU} p={1} /> {NIU} (
                 {((geo_mantleU238NIU / geoTotalNIU) * 100).toFixed(1)} % of total)
+                </td>
+                <td>
+                  (
+                  <Num v={geoU238NIU} p={1} /> {U238}{", "}
+                  <span style={{ display: geoKUVald }}>
+                    <Num v={geoU235NIU} p={1} /> {U235}{", "}
+                  </span>
+                  <Num v={geoTh232NIU} p={1} /> {Th232}
+                  <span style={{ display: geoKUVald }}>
+                    , <Num v={geoK40betaNIU} p={1} /> {K40}<sub>β<sup>-</sup></sub>
+                  </span>
+                  )
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <i>R</i>
+                  <sub>crust Th</sub>
+                </td>
+              <td>=</td>
+                <td>
+                  <Num v={geo_crustTh232NIU} p={1} /> {NIU} (
+                {((geo_crustTh232NIU / geoTotalNIU) * 100).toFixed(1)} % of total)
+                </td>
+                <td>
+                  (
+                  <Num v={geoU238NIU} p={1} /> {U238}{", "}
+                  <span style={{ display: geoKUVald }}>
+                    <Num v={geoU235NIU} p={1} /> {U235}{", "}
+                  </span>
+                  <Num v={geoTh232NIU} p={1} /> {Th232}
+                  <span style={{ display: geoKUVald }}>
+                    , <Num v={geoK40betaNIU} p={1} /> {K40}<sub>β<sup>-</sup></sub>
+                  </span>
+                  )
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <i>R</i>
+                  <sub>mantle Th</sub>
+                </td>
+              <td>=</td>
+                <td>
+                  <Num v={geo_mantleTh232NIU} p={1} /> {NIU} (
+                {((geo_mantleTh232NIU / geoTotalNIU) * 100).toFixed(1)} % of total)
                 </td>
                 <td>
                   (
