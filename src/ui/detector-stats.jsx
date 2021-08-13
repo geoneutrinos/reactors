@@ -222,7 +222,8 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
                 </td>
               <td>=</td>
                 <td>
-                  <Num v={geo_crustU238NIU} p={1} /> {NIU}
+                  <Num v={geo_crustU238NIU} p={1} /> {NIU} (
+                {((geo_crustU238NIU / geoTotalNIU) * 100).toFixed(1)} % of total)
                 </td>
                 <td>
                   (
