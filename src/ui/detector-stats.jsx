@@ -70,8 +70,10 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
 
   const customDisplay = customTotalSignal > 0 ? "block" : "none";
 
-  // geo thigns
-  const geoU238NIU = sum(spectrum.geoU238) * 0.01;
+  // geo things
+  const geo_crustU238NIU = sum(spectrum.geo_crustU238) * 0.01;
+  const geo_mantleU238NIU = sum(spectrum.geo_mantleU238) * 0.01;
+  const geoU238NIU = geo_crustU238NIU + geo_mantleU238NIU;
   const geoU235NIU = sum(spectrum.geoU235) * 0.01;
   const geoTh232NIU = sum(spectrum.geoTh232) * 0.01;
   const geoK40betaNIU = sum(spectrum.geoK40_beta) * 0.01;
@@ -199,6 +201,28 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
               <td>=</td>
                 <td>
                   <Num v={geoTotalNIU} p={1} /> {NIU}
+                </td>
+                <td>
+                  (
+                  <Num v={geoU238NIU} p={1} /> {U238}{", "}
+                  <span style={{ display: geoKUVald }}>
+                    <Num v={geoU235NIU} p={1} /> {U235}{", "}
+                  </span>
+                  <Num v={geoTh232NIU} p={1} /> {Th232}
+                  <span style={{ display: geoKUVald }}>
+                    , <Num v={geoK40betaNIU} p={1} /> {K40}<sub>β<sup>-</sup></sub>
+                  </span>
+                  )
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <i>R</i>
+                  <sub>crust</sub>
+                </td>
+              <td>=</td>
+                <td>
+                  <Num v={geo_crustU238NIU} p={1} /> {NIU}
                 </td>
                 <td>
                   (
