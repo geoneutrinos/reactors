@@ -1,9 +1,19 @@
 import json
+from csv import DictReader
 
 import pyexcel
 
 import logging
-logging.basicConfig(level=logging.INFO)
+from rich.logging import RichHandler
+from rich.console import Console
+
+FORMAT = "%(message)s"
+logging.basicConfig(
+    level="NOTSET", format=FORMAT, datefmt="[%X]",
+    handlers=[RichHandler(console=Console(stderr=True))]
+)
+
+log = logging.getLogger("xls_to_json")
 
 columns = [
         "country",
@@ -44,6 +54,7 @@ times = []
 loads = {}
 
 elevation = {}
+shutdown = {}
 
 with open("Ultralytics Worldwide Reactor Database - PRIS MAR2016.csv", 'r') as f:
     for line in f:
@@ -62,6 +73,10 @@ with open("Ultralytics Worldwide Reactor Database - PRIS MAR2016.csv", 'r') as f
 
         elevation[name] = altitude
 
+with open("Reactor_permanent_shutdowns_PRIS_cleaned_v2.csv", newline="") as f:
+    reader = DictReader(f)
+    for shutdown_core in reader:
+        shutdown[shutdown_core["Name"]] = shutdown_core
 
 for year in years:
     file = "DB" + year + ".xls"
@@ -77,7 +92,7 @@ for year in years:
     reactor_data[year] = year_data
 
     names = {d[1].strip().upper() for d in data}
-    logging.info(names - all_names)
+    log.info(names - all_names)
     all_names.update(names)
 
 for name in all_names:
@@ -89,7 +104,7 @@ for name in all_names:
     try:
         ele = elevation.pop(name)
     except KeyError:
-        logging.warn(f"No elevation data for {name}")
+        log.warn(f"No elevation data for {name}")
     for year in years:
         try:
             loads[name].extend([reactor_data[year][name][month] for month in [str(d) for d in range(1,13)]])
@@ -101,13 +116,23 @@ for name in all_names:
                 'mox' : reactor_data[year][name]['mox'],
                 'elevation': float(ele), # above WGS85 (not above EGM96)
                 }
-            #logging.warn((name, reactors[name]))
+            #log.warn((name, reactors[name]))
         except KeyError:
             loads[name].extend(empty)
 
+    try:
+        shutdown_core = shutdown.pop(name)
+        shutdown_date = shutdown_core["Shut down"]
+        sd_y, sd_m = shutdown_date.split("-")
+        shutdown_date_reformatted = f"{sd_y}-{sd_m:0>2}"
+        reactors[name]["shutdown"] = shutdown_date_reformatted
+    except KeyError:
+        reactors[name]["shutdown"] = "2100-01"
+
     loads[name] = list(map(lambda x: max(x, 0), loads[name]))
 
-logging.info(f"Remaining cores in elevation db: {elevation}")
+log.info(f"Remaining cores in elevation db: {elevation}")
+log.info(f"Remaining cores in Shutdown DB: {shutdown.keys()}")
 
 for year in years:
     times.extend(["{0}-{1:0>2}".format(year,m) for m in range(1,13)])

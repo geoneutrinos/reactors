@@ -228,6 +228,7 @@ interface ReactorCore {
   direction: Direction;
   powerFractions: PowerFractions;
   outputSignal: boolean;
+  shutdown: Date;
 
   setSignal: (
     dist: number,
@@ -253,6 +254,7 @@ export function ReactorCore({
   mox = false,
   custom = false,
   loads = [],
+  shutdown = "2100-01",
 }: {
   name: string;
   lat: number;
@@ -265,6 +267,7 @@ export function ReactorCore({
   custom?: boolean;
   loads: LoadFactor[];
   powerFractions: PowerFractions;
+  shutdown: string;
 }): ReactorCore {
   const [x, y, z] = project(lat, lon, elevation).map((n) => n / 1000);
 
@@ -382,6 +385,7 @@ export function ReactorCore({
     direction: { phi: 0, elev: 0 },
     cos: cos,
     outputSignal: false,
+    shutdown: new Date(shutdown + "-01T00:00:00Z")
   };
 }
 
@@ -393,6 +397,7 @@ const defaultCoreList = Object.keys(cores).map((core) => {
   const lon: number = coreParams.lon;
   const elevation: number = coreParams.elevation;
   const power: number = coreParams.power;
+  const shutdown: string = coreParams.shutdown
   const LFs = zip(times, coreLFs).map(([time, load]) => {
     const date: string = time!;
     const lf: number = load!;
@@ -426,6 +431,7 @@ const defaultCoreList = Object.keys(cores).map((core) => {
     mox: Boolean(coreParams.mox),
     power: power,
     loads: LFs,
+    shutdown: shutdown,
   });
 });
 

@@ -83,6 +83,8 @@ const CoreListItem = ({
     "bin center (MeV)": v => v.toFixed(3),
   }
 
+  const isShutdown = core.shutdown < new Date();
+
   return (
     <ListGroup.Item>
       <h6>{core.name}</h6>
@@ -132,6 +134,13 @@ const CoreListItem = ({
           Azim: {core.direction.phi.toFixed(1)}&deg; Alt: {core.direction.elev.toFixed(1)}&deg;
         </Col>
       </Row>
+      {isShutdown &&
+      <Row>
+        <Col>
+        Core Permanently Shutdown in {core.shutdown.getUTCFullYear()}
+        </Col>
+      </Row>
+}
     </ListGroup.Item>
   );
 };
