@@ -77,8 +77,6 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
   const geo_crustTh232NIU = sum(spectrum.geo_crustTh232) * 0.01;
   const geo_mantleTh232NIU = sum(spectrum.geo_mantleTh232) * 0.01;
   const geoTh232NIU = geo_crustTh232NIU + geo_mantleTh232NIU;
-  const geo_crustNIU = geo_crustU238NIU + geo_crustTh232NIU;
-  const geo_mantleNIU = geo_mantleU238NIU + geo_mantleTh232NIU;
   const geoU235NIU = sum(spectrum.geoU235) * 0.01;
   const geoK40betaNIU = sum(spectrum.geoK40_beta) * 0.01;
 
@@ -88,6 +86,8 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
   const geoKUVald = isNaN(geoKU) ? "none" : "auto";
 
   const geoTotalNIU = geoU238NIU + geoU235NIU + geoTh232NIU + geoK40betaNIU;
+  const geo_crustNIU = geo_crustU238NIU + geo_crustTh232NIU;
+  const geo_mantleNIU = geo_mantleU238NIU + geo_mantleTh232NIU;
 
   // finally
   const totalNIU = totalCoreSignal + geoTotalNIU;
