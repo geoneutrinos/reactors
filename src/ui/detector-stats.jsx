@@ -207,7 +207,7 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
                   <Num v={geoTotalNIU} p={1} /> {NIU}
                 </td>
                 <td>
-                  (
+                  <small> (
                   <Num v={geoU238NIU} p={1} /> {U238}{", "}
                   <span style={{ display: geoKUVald }}>
                     <Num v={geoU235NIU} p={1} /> {U235}{", "}
@@ -216,7 +216,7 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
                   <span style={{ display: geoKUVald }}>
                     , <Num v={geoK40betaNIU} p={1} /> {K40}<sub>β<sup>-</sup></sub>
                   </span>
-                  )
+                  ) </small>
                 </td>
               </tr>
               <tr>
@@ -226,8 +226,8 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
                 </td>
               <td>=</td>
                 <td>
-                  <Num v={geo_crustNIU} p={1} /> {NIU} (
-                {((geo_crustNIU / geoTotalNIU) * 100).toFixed(1)} % of total)
+                  <small> <Num v={geo_crustNIU} p={1} /> {NIU} (
+                {((geo_crustNIU / geoTotalNIU) * 100).toFixed(1)} % of total) </small>
                 </td>
                 <td>
                   <small> (
@@ -249,11 +249,11 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
                 </td>
               <td>=</td>
                 <td>
-                  <Num v={geo_mantleNIU} p={1} /> {NIU} (
-                {((geo_mantleNIU / geoTotalNIU) * 100).toFixed(1)} % of total)
+                  <small> <Num v={geo_mantleNIU} p={1} /> {NIU} (
+                {((geo_mantleNIU / geoTotalNIU) * 100).toFixed(1)} % of total) </small>
                 </td>
                 <td>
-                  (
+                  <small> (
                   <Num v={geo_mantleU238NIU} p={1} /> {U238}{", "}
                   <span style={{ display: geoKUVald }}>
                     <Num v={geoU235NIU} p={1} /> {U235}{", "}
@@ -262,7 +262,7 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
                   <span style={{ display: geoKUVald }}>
                     , <Num v={geoK40betaNIU} p={1} /> {K40}<sub>β<sup>-</sup></sub>
                   </span>
-                  )
+                  ) </small>
                 </td>
               </tr>
               <tr>
