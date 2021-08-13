@@ -127,6 +127,40 @@ export function mantleGeoSpectrum(
 
     return spec * TargetYears * survivalProbability + ESMUTauContirbution;
   });
+  
+    const geo_mantleU235 = antineutrinoSpectrum235U.map((v, i) => {
+    const Ev = EvBinFronIndex(i);
+    const crossSectionArea = XSFunc(Ev); // cm2
+
+    const bin = v * U235MantleFlux * crossSectionArea;
+
+    const [spec, ESMUTauContirbution] = extractESEandMuTau(
+      bin,
+      Ev,
+      survivalProbability,
+      crossSection
+    );
+
+    return spec * TargetYears * survivalProbability + ESMUTauContirbution;
+  });
+  
+  const geo_crustU235 = antineutrinoSpectrum235U.map((v, i) => {
+    const Ev = EvBinFronIndex(i);
+    const U235CrustFlux = crustFlux.u * U235FluxIsotopicScale * MICROSECOND_PER_SECOND; // Convert from cm-2 us-1 to cm-2 s-1
+    const crossSectionArea = XSFunc(Ev); // cm2
+
+    const bin = v * U235CrustFlux * crossSectionArea;
+
+    const [spec, ESMUTauContirbution] = extractESEandMuTau(
+      bin,
+      Ev,
+      survivalProbability,
+      crossSection
+    );
+    
+    return spec * TargetYears * survivalProbability + ESMUTauContirbution;
+  });
+
 
   const ThMantleFluxIsotopicScale =
     (ISOTOPIC_NEUTRINO_LUMINOSITY.TH232 / ISOTOPIC_NEUTRINO_LUMINOSITY.U238) *
@@ -210,6 +244,8 @@ export function mantleGeoSpectrum(
   return {
     geo_mantleU238: geo_mantleU238,
     geo_crustU238: geo_crustU238,
+    geo_mantleU235: geo_mantleU235,
+    geo_crustU235: geo_crustU235,
     geo_mantleTh232: geo_mantleTh232,
     geo_crustTh232: geo_crustTh232,
     geoU238: geoU238,
