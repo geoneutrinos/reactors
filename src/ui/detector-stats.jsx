@@ -235,7 +235,7 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
                   <small> (
                   <Num v={geo_crustU238NIU} p={1} /> {U238}{", "}
                   <span style={{ display: geoKUVald }}>
-                    <Num v={geoU235NIU} p={1} /> {U235}{", "}
+                    <Num v={geo_crustU235NIU} p={1} /> {U235}{", "}
                   </span>
                   <Num v={geo_crustTh232NIU} p={1} /> {Th232}
                   <span style={{ display: geoKUVald }}>
@@ -258,7 +258,7 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
                   <small> (
                   <Num v={geo_mantleU238NIU} p={1} /> {U238}{", "}
                   <span style={{ display: geoKUVald }}>
-                    <Num v={geoU235NIU} p={1} /> {U235}{", "}
+                    <Num v={geo_mantleU235NIU} p={1} /> {U235}{", "}
                   </span>
                   <Num v={geo_mantleTh232NIU} p={1} /> {Th232}
                   <span style={{ display: geoKUVald }}>
