@@ -240,6 +240,39 @@ export function mantleGeoSpectrum(
 
     return spec * TargetYears * survivalProbability + ESMUTauContirbution;
   });
+  
+    const geo_mantleK40_beta = antineutrinoSpectrum40K.map((v, i) => {
+    const Ev = EvBinFronIndex(i);
+    const crossSectionArea = XSFunc(Ev); // cm2
+
+    const bin = v * KMantleFlux * crossSectionArea;
+
+    const [spec, ESMUTauContirbution] = extractESEandMuTau(
+      bin,
+      Ev,
+      survivalProbability,
+      crossSection
+    );
+
+    return spec * TargetYears * survivalProbability + ESMUTauContirbution;
+  });
+  
+  const geo_crustK40_beta = antineutrinoSpectrum40K.map((v, i) => {
+    const Ev = EvBinFronIndex(i);
+    const KCrustFlux = crustFlux.k * MICROSECOND_PER_SECOND; // Convert from cm-2 us-1 to cm-2 s-1
+    const crossSectionArea = XSFunc(Ev); // cm2
+
+    const bin = v * KCrustFlux * crossSectionArea;
+
+    const [spec, ESMUTauContirbution] = extractESEandMuTau(
+      bin,
+      Ev,
+      survivalProbability,
+      crossSection
+    );
+    
+    return spec * TargetYears * survivalProbability + ESMUTauContirbution;
+  });
 
   return {
     geo_mantleU238: geo_mantleU238,
@@ -248,6 +281,8 @@ export function mantleGeoSpectrum(
     geo_crustU235: geo_crustU235,
     geo_mantleTh232: geo_mantleTh232,
     geo_crustTh232: geo_crustTh232,
+    geo_mantleK40_beta: geo_mantleK40_beta,
+    geo_crustK40_beta: geo_crustK40_beta,
     geoU238: geoU238,
     geoU235: geoU235,
     geoTh232: geoTh232,
