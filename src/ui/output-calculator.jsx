@@ -104,7 +104,10 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
       setEMin(value);
     } else {
       if (e_min > 10) {
-        e_min = 10.0;
+        e_min = 10;
+      }      
+      if (e_min < 0) {
+        e_min = 0;
       }
       if (eMax < e_min) {
         setEMax(e_min);
@@ -507,7 +510,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
                 <Form.Control
                   onChange={UIsetEMin}
                   type="number"
-                  step="0.1"
+                  step="0.001"
                   value={eMin}
                 />
                 <InputGroup.Append>
