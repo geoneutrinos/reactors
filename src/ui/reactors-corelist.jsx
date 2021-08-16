@@ -194,7 +194,7 @@ export const CoreList = ({
   };
 
   const fullPowerAll = () => {
-    const newCoreMods = Object.fromEntries(Object.entries(cores).map(([name, core]) => [name, {...coreMods[core.name], loadOverride: 1}]));
+    const newCoreMods = Object.fromEntries(Object.entries(cores).map(([name, core]) => [name, {...coreMods[core.name], loadOverride: core.shutdown < (new Date())? undefined: 1}]));
     setCoreMods(newCoreMods)
   };
   const noPowerAll = () => {
