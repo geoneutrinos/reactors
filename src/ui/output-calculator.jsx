@@ -67,10 +67,10 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
   if (isIBD && ["geo_k", "geo_u5"].includes(signal)) {
     setSignal("closest");
   }
-  if (isIBD && eMin < parseFloat(IBD_THRESHOLD.toFixed(3))) {
+  if (isIBD && eMin < parseFloat(IBD_THRESHOLD.toFixed(1))) {
     setEMin(parseFloat(IBD_THRESHOLD.toFixed(3)));
   }
-  if (!isIBD && eMin == parseFloat(IBD_THRESHOLD.toFixed(3))) {
+  if (!isIBD && eMin == parseFloat(IBD_THRESHOLD.toFixed(1))) {
     setEMin(0);
   }
   
@@ -99,7 +99,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
 
   const UIsetEMin = (event) => {
     const value = event.target.value;
-    let stateEmin = parseFloat(IBD_THRESHOLD.toFixed(3)) * isIBD;
+    let stateEmin = parseFloat(IBD_THRESHOLD.toFixed(1)) * isIBD;
     let e_min = parseFloat(value);
     if (isNaN(e_min)) {
       setEMin(value);
@@ -514,7 +514,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
                 <Form.Control
                   onChange={UIsetEMin}
                   type="number"
-                  step="0.001"
+                  step="0.1"
                   value={eMin}
                 />
                 <InputGroup.Append>
