@@ -622,8 +622,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
                   </InputGroup.Text>
                 </InputGroup.Append>
                 <Form.Control.Feedback type="invalid">
-                  Product of <i>N
-                  <sub>σ</sub></i> and Background Uncertainty exceeds Signal
+                  <Node inline>{String.raw`N_{\sigma} \delta B > S'}</Node>
                 </Form.Control.Feedback>
               </InputGroup>
             </Form.Group>
