@@ -622,7 +622,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
                   </InputGroup.Text>
                 </InputGroup.Append>
                 <Form.Control.Feedback type="invalid">
-                  <i>N<sub>σ</sub> &delta;B > S</i> 
+                  <i>N<sub>σ</sub> &lowast; &delta;B > S</i> 
                 </Form.Control.Feedback>
               </InputGroup>
             </Form.Group>
