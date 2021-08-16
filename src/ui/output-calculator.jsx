@@ -70,6 +70,9 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
   if (isIBD && eMin < parseFloat(IBD_THRESHOLD.toFixed(1))) {
     setEMin(parseFloat(IBD_THRESHOLD.toFixed(1)));
   }
+  if (!isIBD && eMin = parseFloat(IBD_THRESHOLD.toFixed(1))) {
+    setEMin(0.0);
+  }
   
   const UIsetSelect = (event) => {
     var key = event.target.id;
