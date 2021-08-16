@@ -433,7 +433,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
                   <i>S</i> = <Num v={UIeventsSignal} p={2} />
                 </td>
                 <td>
-                  <i>B</i> &plusmn; <i>&delta;B</i>= <Num v={UIeventsBackground} p={2} /> &plusmn;{" "}
+                  <i>B</i> &plusmn; <i>&delta;B</i> = <Num v={UIeventsBackground} p={2} /> &plusmn;{" "}
                   <Num v={UIeventsUncertainty} p={2} /> (syst)
                 </td>
               </tr>
