@@ -37,7 +37,7 @@ const detectorEfficiency = (
 export const CalculatorPanel = ({ cores, spectrum }) => {
   const [signal, setSignal] = useState("selected");
   const [solveFor, setSolveFor] = useState("significance");
-  const [eMin, setEMin] = useState(parseFloat(IBD_THRESHOLD.toFixed(1)));
+  const [eMin, setEMin] = useState(0.0);
   const [eMax, setEMax] = useState(10.0);
   const [time, setTime] = useState(1.0);
   const [sigma, setSigma] = useState(3.0);
