@@ -433,7 +433,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
                   <i>S</i> = <Num v={UIeventsSignal} p={2} />
                 </td>
                 <td>
-                  <i>B</i> = <Num v={UIeventsBackground} p={2} /> &plusmn;{" "}
+                  <i>B</i> &plusmn; <i>&delta;B</i>= <Num v={UIeventsBackground} p={2} /> &plusmn;{" "}
                   <Num v={UIeventsUncertainty} p={2} /> (syst)
                 </td>
               </tr>
@@ -622,7 +622,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
                   </InputGroup.Text>
                 </InputGroup.Append>
                 <Form.Control.Feedback type="invalid">
-                  <i>N<sub>σ</sub> &lowast; &delta;B > S</i> 
+                  <i>N<sub>σ</sub></i> &lowast; <i>&delta;B > S</i> 
                 </Form.Control.Feedback>
               </InputGroup>
             </Form.Group>
