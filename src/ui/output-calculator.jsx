@@ -490,7 +490,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
               <Form.Label>Nuisance Background Rate</Form.Label>
               <InputGroup>
                 <InputGroup.Prepend>
-                  <InputGroup.Text><i>b</i><sub>nusiance</sub></InputGroup.Text>
+                  <InputGroup.Text><i>b</i><sub>nuisance</sub></InputGroup.Text>
                 </InputGroup.Prepend>
                 <Form.Control
                   onChange={UIsetBkgNuisance}
