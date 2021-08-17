@@ -37,7 +37,7 @@ const detectorEfficiency = (
 export const CalculatorPanel = ({ cores, spectrum }) => {
   const [signal, setSignal] = useState("selected");
   const [solveFor, setSolveFor] = useState("significance");
-  const [eMin, setEMin] = useState(parseFloat(IBD_THRESHOLD.toFixed(1)));
+  const [eMin, setEMin] = useState(0.0);
   const [eMax, setEMax] = useState(10.0);
   const [time, setTime] = useState(1.0);
   const [sigma, setSigma] = useState(3.0);
@@ -68,7 +68,10 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
     setSignal("closest");
   }
   if (isIBD && eMin < parseFloat(IBD_THRESHOLD.toFixed(1))) {
-    setEMin(parseFloat(IBD_THRESHOLD.toFixed(1)));
+    setEMin(parseFloat(IBD_THRESHOLD.toFixed(3)));
+  }
+  if (!isIBD && eMin == parseFloat(IBD_THRESHOLD.toFixed(3))) {
+    setEMin(0);
   }
   
   const UIsetSelect = (event) => {
@@ -102,10 +105,13 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
       setEMin(value);
     } else {
       if (e_min < stateEmin) {
-        e_min = stateEmin;
-      }
+         e_min = stateEmin;
+       }
       if (e_min > 10) {
-        e_min = 10.0;
+        e_min = 10;
+      }      
+      if (e_min < 0) {
+        e_min = 0;
       }
       if (eMax < e_min) {
         setEMax(e_min);
@@ -433,8 +439,10 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
                   <i>S</i> = <Num v={UIeventsSignal} p={2} />
                 </td>
                 <td>
-                  <i>B</i> &plusmn; <i>&delta;B</i> = <Num v={UIeventsBackground} p={2} /> &plusmn;{" "}
-                  <Num v={UIeventsUncertainty} p={2} /> (syst)
+                  <i>B</i> = <Num v={UIeventsBackground} p={2} />
+                </td>
+                <td>
+                  <i>&delta;B</i> = <Num v={UIeventsUncertainty} p={2} /> (syst)
                 </td>
               </tr>
               </tbody>
@@ -481,6 +489,9 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
             <Form.Group controlId="bkg_nuisance">
               <Form.Label>Nuisance Background Rate</Form.Label>
               <InputGroup>
+                <InputGroup.Prepend>
+                  <InputGroup.Text><i>b</i><sub>nusiance</sub></InputGroup.Text>
+                </InputGroup.Prepend>
                 <Form.Control
                   onChange={UIsetBkgNuisance}
                   type="number"
@@ -677,8 +688,8 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
             <Node inline>{String.raw`b`}</Node> is the background rate, and{" "}
             <Node inline>{String.raw`\delta b`}</Node> is the systematic uncertainty of the background rate.
             The fractional systematic uncetainty of the estimated reactor rate is 
-            0.06 (0.30) for antineutrino energy above (below) the IBD threshold, while for the 
-            estimated geoneutrino rate and nuisance background rate it is 0.25 and 0.50, respectively. 
+            0.06 (0.3) for antineutrino energy above (below) the IBD threshold, while for the 
+            estimated geoneutrino rate and nuisance background rate it is 0.25 and 0.5, respectively. 
             The nuisance background energy spectrum is flat.
             </p>
             <p>
