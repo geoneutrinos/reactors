@@ -688,8 +688,8 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
             <Node inline>{String.raw`b`}</Node> is the background rate, and{" "}
             <Node inline>{String.raw`\delta b`}</Node> is the systematic uncertainty of the background rate.
             The fractional systematic uncetainty of the estimated reactor rate is 
-            0.06 (0.30) for antineutrino energy above (below) the IBD threshold, while for the 
-            estimated geoneutrino rate and nuisance background rate it is 0.25 and 0.50, respectively. 
+            0.06 (0.3) for antineutrino energy above (below) the IBD threshold, while for the 
+            estimated geoneutrino rate and nuisance background rate it is 0.25 and 0.5, respectively. 
             The nuisance background energy spectrum is flat.
             </p>
             <p>
