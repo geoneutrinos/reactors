@@ -296,7 +296,7 @@ export const CoreList = ({
       </Card.Header>
       <Card.Body>
         <p> Filter Cores by Name or Type (PWR, BWR, PHWR, GCR, LWGR, FBR, LEU_MOX) </p>
-        <p> Caution: <i>Use 100% load for all cores</i> activates cores that have been permanently shutdown </p>
+        <p> Caution: <i>Use 100% load for all cores</i> only activates cores that have not been permanently shutdown </p>
       </Card.Body>
       <ListGroup variant="flush">
         <ListGroup.Item>
