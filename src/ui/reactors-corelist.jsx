@@ -103,7 +103,7 @@ const CoreListItem = ({
         <Col xl="auto">
           <ButtonGroup size="sm">
             <Button onClick={fullPower} variant="secondary">
-              Set to 100% Load
+              Set to 100% LF
             </Button>
             {core.type !== "custom" &&
             <Button onClick={iaeaPower} variant="secondary">
@@ -261,7 +261,7 @@ export const CoreList = ({
 
             <Dropdown.Menu>
               <Dropdown.Item onClick={fullPowerAll}>
-                Use 100% load for all cores
+                Use 100% LF for all active cores
               </Dropdown.Item>
               <Dropdown.Item onClick={iaeaPowerAll}>
                 Use IAEA LF data for all cores
@@ -296,7 +296,6 @@ export const CoreList = ({
       </Card.Header>
       <Card.Body>
         <p> Filter Cores by Name or Type (PWR, BWR, PHWR, GCR, LWGR, FBR, LEU_MOX) </p>
-        <p> Caution: <i>Use 100% load for all cores</i> only activates cores that have not been permanently shutdown </p>
       </Card.Body>
       <ListGroup variant="flush">
         <ListGroup.Item>
