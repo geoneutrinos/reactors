@@ -1,0 +1,10 @@
+{
+"SANMEN-2": {"lat": 29.101111},
+"SUSQUEHANNA-1": {"type": "BWR"},
+"THREE MILE ISLAND-1": {"type": "PWR"},
+"SUMMER-1": {"type": "PWR"},
+"TIANWAN-1": {"elevation": 5},
+"TIANWAN-2": {"elevation": 5},
+"TIANWAN-3": {"elevation": 5},
+"TIANWAN-4": {"elevation": 5}
+}

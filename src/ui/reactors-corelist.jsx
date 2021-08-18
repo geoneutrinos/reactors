@@ -18,6 +18,12 @@ import {Num} from '.'
 
 import {PhysicsContext} from "../state"
 
+const ENUtoNEU = (v) => {
+  const v1 = -(v * (Math.PI / 180)) + Math.PI / 2
+  const v2 = v1 < 0 ? v1 + 2 * Math.PI : v1
+  return (v2 * 180) / Math.PI
+}
+
 const CoreType = ({ core }) => {
   const coreDef = {
     LEU: "low enriched uranium reactor",
@@ -83,14 +89,21 @@ const CoreListItem = ({
     "bin center (MeV)": v => v.toFixed(3),
   }
 
+  const isShutdown = core.shutdown < new Date();
+
   return (
     <ListGroup.Item>
-      <h6>{core.name}</h6>
+      <h6>{core.name}
+      {isShutdown &&
+        <span> (Permanently Shutdown in {core.shutdown.getUTCFullYear()})
+        </span>
+}
+</h6>
       <Row>
         <Col xl="auto">
           <ButtonGroup size="sm">
             <Button onClick={fullPower} variant="secondary">
-              Set to 100% Load
+              Set to 100% LF
             </Button>
             {core.type !== "custom" &&
             <Button onClick={iaeaPower} variant="secondary">
@@ -129,7 +142,7 @@ const CoreListItem = ({
           Elevation: {core.elevation} m
           <br />
           Distance: {dist} km< br/>
-          Azim: {core.direction.phi.toFixed(1)}&deg; Alt: {core.direction.elev.toFixed(1)}&deg;
+          Azim: {ENUtoNEU(core.direction.phi).toFixed(1)}&deg; Alt: {core.direction.elev.toFixed(1)}&deg;
         </Col>
       </Row>
     </ListGroup.Item>
@@ -185,7 +198,7 @@ export const CoreList = ({
   };
 
   const fullPowerAll = () => {
-    const newCoreMods = Object.fromEntries(Object.entries(cores).map(([name, core]) => [name, {...coreMods[core.name], loadOverride: 1}]));
+    const newCoreMods = Object.fromEntries(Object.entries(cores).map(([name, core]) => [name, {...coreMods[core.name], loadOverride: core.shutdown < (new Date())? undefined: 1}]));
     setCoreMods(newCoreMods)
   };
   const noPowerAll = () => {
@@ -248,7 +261,7 @@ export const CoreList = ({
 
             <Dropdown.Menu>
               <Dropdown.Item onClick={fullPowerAll}>
-                Use 100% load for all cores
+                Use 100% LF for all active cores
               </Dropdown.Item>
               <Dropdown.Item onClick={iaeaPowerAll}>
                 Use IAEA LF data for all cores
@@ -283,7 +296,6 @@ export const CoreList = ({
       </Card.Header>
       <Card.Body>
         <p> Filter Cores by Name or Type (PWR, BWR, PHWR, GCR, LWGR, FBR, LEU_MOX) </p>
-        <p> Caution: <i>Use 100% load for all cores</i> activates cores that have been permanently shutdown </p>
       </Card.Body>
       <ListGroup variant="flush">
         <ListGroup.Item>
