@@ -18,6 +18,12 @@ import {Num} from '.'
 
 import {PhysicsContext} from "../state"
 
+const ENUtoNEU = (v) => {
+  const v1 = -(v * (Math.PI / 180)) + Math.PI / 2
+  const v2 = v1 < 0 ? v1 + 2 * Math.PI : v1
+  return (v2 * 180) / Math.PI
+}
+
 const CoreType = ({ core }) => {
   const coreDef = {
     LEU: "low enriched uranium reactor",
@@ -138,7 +144,7 @@ const CoreListItem = ({
           Elevation: {core.elevation} m
           <br />
           Distance: {dist} km< br/>
-          Azim: {core.direction.phi.toFixed(1)}&deg; Alt: {core.direction.elev.toFixed(1)}&deg;
+          Azim: {ENUtoNEU(core.direction.phi).toFixed(1)}&deg; Alt: {core.direction.elev.toFixed(1)}&deg;
         </Col>
       </Row>
     </ListGroup.Item>
