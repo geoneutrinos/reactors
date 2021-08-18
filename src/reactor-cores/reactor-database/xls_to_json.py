@@ -95,6 +95,9 @@ for year in years:
     log.info(names - all_names)
     all_names.update(names)
 
+with open("corrections.json") as f:
+    corrections = json.load(f)
+
 for name in all_names:
     if name == "":
         continue
@@ -130,6 +133,9 @@ for name in all_names:
         reactors[name]["shutdown"] = "2100-01"
 
     loads[name] = list(map(lambda x: max(x, 0), loads[name]))
+
+    if name in corrections:
+        reactors[name].update(corrections[name])
 
 log.info(f"Remaining cores in elevation db: {elevation}")
 log.info(f"Remaining cores in Shutdown DB: {shutdown.keys()}")
