@@ -93,14 +93,12 @@ const CoreListItem = ({
 
   return (
     <ListGroup.Item>
-      <h6>{core.name}</h6>
+      <h6>{core.name}
       {isShutdown &&
-      <Row>
-        <Col>
-        Core Permanently Shutdown in {core.shutdown.getUTCFullYear()}
-        </Col>
-      </Row>
+        <span> (Permanently Shutdown in {core.shutdown.getUTCFullYear()})
+        </span>
 }
+</h6>
       <Row>
         <Col xl="auto">
           <ButtonGroup size="sm">
