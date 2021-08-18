@@ -88,6 +88,13 @@ const CoreListItem = ({
   return (
     <ListGroup.Item>
       <h6>{core.name}</h6>
+      {isShutdown &&
+      <Row>
+        <Col>
+        Core Permanently Shutdown in {core.shutdown.getUTCFullYear()}
+        </Col>
+      </Row>
+}
       <Row>
         <Col xl="auto">
           <ButtonGroup size="sm">
@@ -134,13 +141,6 @@ const CoreListItem = ({
           Azim: {core.direction.phi.toFixed(1)}&deg; Alt: {core.direction.elev.toFixed(1)}&deg;
         </Col>
       </Row>
-      {isShutdown &&
-      <Row>
-        <Col>
-        Core Permanently Shutdown in {core.shutdown.getUTCFullYear()}
-        </Col>
-      </Row>
-}
     </ListGroup.Item>
   );
 };
