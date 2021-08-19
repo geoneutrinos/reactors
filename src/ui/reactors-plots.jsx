@@ -201,6 +201,7 @@ export const CoreDirectionSignalPlots = ({ cores }) => {
       autorange: true
     },
     xaxis: {
+      range: [-1 , 1],
       zeroline: false,
       title: { text: `cosθ` },
     },
@@ -231,9 +232,7 @@ export const CoreDirectionSignalPlots = ({ cores }) => {
           useResizeHandler={true}
           style={{ width: "100%" }}
           data={data}
-          layout={
-            xaxis: {range: [-1 , 1]}
-          }
+          layout={layout}
         />
       </Card.Body>
     </Card>
