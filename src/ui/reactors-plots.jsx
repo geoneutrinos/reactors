@@ -231,7 +231,9 @@ export const CoreDirectionSignalPlots = ({ cores }) => {
           useResizeHandler={true}
           style={{ width: "100%" }}
           data={data}
-          layout={layout}
+          layout={
+            xaxis: {range: [-1 , 1]}
+          }
         />
       </Card.Body>
     </Card>
