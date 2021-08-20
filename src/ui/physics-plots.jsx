@@ -124,6 +124,11 @@ export const AngularDifferentialCrossSectionPlots = () => {
       },
     ],
   };
+  var config = {
+    toImageButtonOptions: {
+      filename: 'ES-dsigma/dcos(theta)'
+    }
+  };
   return (
     <Card>
       <Card.Header>ES Differential Cross Section- cosθ</Card.Header>
@@ -131,7 +136,9 @@ export const AngularDifferentialCrossSectionPlots = () => {
         <Plot
           useResizeHandler={true}
           style={{ width: "100%" }}
-          data={data} layout={layout}
+          data={data} 
+          layout={layout}
+          config={config}
         />
       </Card.Body>
     </Card>
@@ -243,6 +250,11 @@ export const CDFAngularDifferentialCrossSectionPlots = () => {
       },
     ],
   };
+  var config = {
+    toImageButtonOptions: {
+      filename: 'CDF-ES-dsigma/dcos(theta)'
+    }
+  };
   return (
     <Card>
       <Card.Header>ES Cumulative Differential Cross Section- cosθ</Card.Header>
@@ -250,7 +262,9 @@ export const CDFAngularDifferentialCrossSectionPlots = () => {
         <Plot
           useResizeHandler={true}
           style={{ width: "100%" }}
-          data={data} layout={layout}
+          data={data} 
+          layout={layout}
+          config={config}
         />
       </Card.Body>
     </Card>
@@ -363,6 +377,11 @@ export const DifferentialCrossSectionPlots = () => {
       },
     ],
   };
+  var config = {
+    toImageButtonOptions: {
+      filename: 'ES-dsigma/dTe'
+    }
+  };
   return (
     <Card>
       <Card.Header>ES Differential Cross Section- T<sub>e</sub></Card.Header>
@@ -370,7 +389,9 @@ export const DifferentialCrossSectionPlots = () => {
         <Plot
           useResizeHandler={true}
           style={{ width: "100%" }}
-          data={data} layout={layout}
+          data={data} 
+          layout={layout}
+          config={config}
         />
       </Card.Body>
     </Card>
@@ -483,6 +504,11 @@ export const CDFdifferentialCrossSectionPlots = () => {
       },
     ],
   };
+  var config = {
+    toImageButtonOptions: {
+      filename: 'CDF-ES-dsigma/dTe'
+    }
+  };
   return (
     <Card>
       <Card.Header>ES Cumulative Differential Cross Section- T<sub>e</sub></Card.Header>
@@ -490,7 +516,9 @@ export const CDFdifferentialCrossSectionPlots = () => {
         <Plot
           useResizeHandler={true}
           style={{ width: "100%" }}
-          data={data} layout={layout}
+          data={data} 
+          layout={layout}
+          config={config}
         />
       </Card.Body>
     </Card>
@@ -574,6 +602,11 @@ export const CrossSectionPlots = () => {
       },
     ],
   };
+  var config = {
+    toImageButtonOptions: {
+      filename: 'Total-Cross-Sections'
+    }
+  };
   return (
     <Card>
       <Card.Header>Total Cross Sections</Card.Header>
@@ -593,7 +626,9 @@ export const CrossSectionPlots = () => {
         <Plot
           useResizeHandler={true}
           style={{ width: "100%" }}
-          data={data} layout={layout}
+          data={data} 
+          layout={layout}
+          config={config}
         />
       </Card.Body>
     </Card>
