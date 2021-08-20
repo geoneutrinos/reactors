@@ -221,6 +221,11 @@ export const CoreDirectionSignalPlots = ({ cores }) => {
       },
     ],
   };
+  var config = {
+    toImageButtonOptions: {
+      filename: 'Core-Directions'
+    }
+  };
   return (
     <Card>
       <Card.Header>Core Directions Plot</Card.Header>
