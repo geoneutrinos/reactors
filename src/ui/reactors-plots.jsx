@@ -74,6 +74,11 @@ export const FissionIsotopeSpectraPlots = () => {
       },
     ],
   };
+  var config = {
+    toImageButtonOptions: {
+      filename: 'Fission-Isotope-Spectra'
+    }
+  };
   return (
     <Card>
       <Card.Header>Fission Isotope Emission Spectra</Card.Header>
@@ -95,6 +100,7 @@ export const FissionIsotopeSpectraPlots = () => {
           style={{ width: "100%" }}
           data={data}
           layout={layout}
+          config={config}
         />
       </Card.Body>
     </Card>
@@ -201,6 +207,7 @@ export const CoreDirectionSignalPlots = ({ cores }) => {
       autorange: true
     },
     xaxis: {
+      range: [-1.05 , 1.05],
       zeroline: false,
       title: { text: `cosθ` },
     },
@@ -220,6 +227,11 @@ export const CoreDirectionSignalPlots = ({ cores }) => {
       },
     ],
   };
+  var config = {
+    toImageButtonOptions: {
+      filename: 'Core-Directions-signal-vs-cos(theta)'
+    }
+  };
   return (
     <Card>
       <Card.Header>Core Directions Plot</Card.Header>
@@ -232,6 +244,7 @@ export const CoreDirectionSignalPlots = ({ cores }) => {
           style={{ width: "100%" }}
           data={data}
           layout={layout}
+          config={config}
         />
       </Card.Body>
     </Card>
