@@ -238,6 +238,7 @@ export const CoreDirectionSignalPlots = ({ cores }) => {
           style={{ width: "100%" }}
           data={data}
           layout={layout}
+          config={config}
         />
       </Card.Body>
     </Card>
