@@ -145,6 +145,11 @@ export const AnalemmaPlot = ({ detector, cores, reactorLF}) => {
       },
     ],
   };
+  var config = {
+    toImageButtonOptions: {
+      filename: 'Solar-Analemma'
+    }
+  };
   return (
     <Card>
       <Card.Header>Solar Analemma</Card.Header>
@@ -154,6 +159,7 @@ export const AnalemmaPlot = ({ detector, cores, reactorLF}) => {
           style={{ width: "100%" }}
           data={data}
           layout={layout}
+          config={config}
         />
       </Card.Body>
     </Card>
@@ -198,6 +204,11 @@ export const Boron8SpectraPlot = ({ boron8 }) => {
       },
     ],
   };
+  var config = {
+    toImageButtonOptions: {
+      filename: 'Solar-8B-ES-Rate-Spectrum'
+    }
+  };
   return (
     <Card>
       <Card.Header>
@@ -226,6 +237,7 @@ export const Boron8SpectraPlot = ({ boron8 }) => {
           style={{ width: "100%" }}
           data={data}
           layout={layout}
+          config={config}
         />
       </Card.Body>
     </Card>
