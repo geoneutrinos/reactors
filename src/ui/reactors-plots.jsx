@@ -223,7 +223,7 @@ export const CoreDirectionSignalPlots = ({ cores }) => {
   };
   var config = {
     toImageButtonOptions: {
-      filename: 'Core-Directions-wrt-${first.name}'
+      filename: 'Core-Directions-signal-vs-cos&theta;'
     }
   };
   return (
