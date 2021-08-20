@@ -165,7 +165,7 @@ export function NuSpectrumPlot({ cores, spectrum, detector}) {
       layout={layout}
       useResizeHandler={true}
       style={{ width: "100%" }}
-      config={{ toImageButtonOptions: { width: 900, height: 500, scale: 2, filename: 'Antineutrino-Spectrum } }}
+      config={{ toImageButtonOptions: { width: 900, height: 500, scale: 2, filename: 'Antineutrino-Spectrum' } }}
     />
   );
 }
