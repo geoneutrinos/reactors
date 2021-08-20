@@ -294,7 +294,7 @@ export function CoreDirectionPlot({ cores, detector }) {
         ]}
         useResizeHandler={true}
         style={{ width: "100%", height: "500px", minHeight: "400px" }}
-        config={{ toImageButtonOptions: { width: 900, height: 900, scale: 2 } }}
+        config={{ toImageButtonOptions: { width: 900, height: 900, scale: 2, filename: 'Antineutrino-Spectrum' } }}
         layout={layout}
       />
     </div>
