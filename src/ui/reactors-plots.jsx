@@ -201,7 +201,7 @@ export const CoreDirectionSignalPlots = ({ cores }) => {
       autorange: true
     },
     xaxis: {
-      range: [-1 , 1.05],
+      range: [-1.05 , 1.05],
       zeroline: false,
       title: { text: `cosθ` },
     },
