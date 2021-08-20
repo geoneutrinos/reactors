@@ -74,6 +74,11 @@ export const FissionIsotopeSpectraPlots = () => {
       },
     ],
   };
+  var config = {
+    toImageButtonOptions: {
+      filename: 'Fission-Isotope-Spectra'
+    }
+  };
   return (
     <Card>
       <Card.Header>Fission Isotope Emission Spectra</Card.Header>
@@ -95,6 +100,7 @@ export const FissionIsotopeSpectraPlots = () => {
           style={{ width: "100%" }}
           data={data}
           layout={layout}
+          config={config}
         />
       </Card.Body>
     </Card>
