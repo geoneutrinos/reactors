@@ -159,6 +159,11 @@ export const GeoNuSpectrumSource = ({ includeCrust, setIncludeCrust }) => {
       },
     ],
   };
+  var config = {
+    toImageButtonOptions: {
+      filename: 'GeoNu-Spectra'
+    }
+  };
   return (
     <Card>
       <Card.Header>Geoneutrino Spectra</Card.Header>
@@ -176,6 +181,7 @@ export const GeoNuSpectrumSource = ({ includeCrust, setIncludeCrust }) => {
           style={{ width: "100%" }}
           data={data}
           layout={layout}
+          config={config}
         />
       </Card.Body>
     </Card>
