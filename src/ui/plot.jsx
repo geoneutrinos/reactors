@@ -141,6 +141,7 @@ export function NuSpectrumPlot({ cores, spectrum, detector}) {
     },
     autosize: true,
     xaxis: {
+      range: [0, 10],
       title: { text: `Antineutrino Energy E (MeV)` },
     },
     yaxis: {
