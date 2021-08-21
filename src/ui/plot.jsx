@@ -5,6 +5,8 @@ import { sum } from "lodash";
 
 import {PhysicsContext} from '../state'
 
+import { Num } from '.'
+
 const evBins = new Float64Array(1000).map((v, i) => i * 0.01 + 0.005);
 
 export function NuSpectrumPlot({ cores, spectrum, detector, reactorLF}) {
