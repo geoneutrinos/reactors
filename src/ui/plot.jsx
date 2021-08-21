@@ -7,7 +7,7 @@ import {PhysicsContext} from '../state'
 
 const evBins = new Float64Array(1000).map((v, i) => i * 0.01 + 0.005);
 
-export function NuSpectrumPlot({ cores, spectrum, detector}) {
+export function NuSpectrumPlot({ cores, spectrum, detector, reactorLF}) {
   const { crossSection } = useContext(PhysicsContext)
   const coreList = Object.values(cores);
   const closestActiveIAEACore = coreList
@@ -132,7 +132,7 @@ export function NuSpectrumPlot({ cores, spectrum, detector}) {
         : detector.current
     } (${detector.lat.toFixed(1)}N, ${detector.lon.toFixed(
       1
-    )}E, ${detector.elevation.toFixed(0)}m)`,
+    )}E, ${detector.elevation.toFixed(0)}m)<br /><sub>({reactorLF.start.toISOString().slice(0, 7)} through {reactorLF.end.toISOString().slice(0, 7)} avg Load Factor</sub>`,
     showlegend: true,
     legend: {
       x: 1,
