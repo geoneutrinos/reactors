@@ -224,6 +224,7 @@ function App(props) {
                 <Visible>
                   <CoreDirectionSignalPlots
                     cores={cores}
+                    detector={detector}
                     reactorLF={reactorLF}
                   />
                 </Visible>
