@@ -107,7 +107,7 @@ export const FissionIsotopeSpectraPlots = () => {
   );
 };
 
-export const CoreDirectionSignalPlots = ({ cores }) => {
+export const CoreDirectionSignalPlots = ({ cores, reactorLF }) => {
   const sortedCores = Object.values(cores)
     .filter((a) => a.detectorNIU > 0)
     .sort((a, b) => b.detectorNIU - a.detectorNIU);
@@ -200,7 +200,7 @@ export const CoreDirectionSignalPlots = ({ cores }) => {
   ];
   var layout = {
     hovermode: "closest",
-    title: `Core Directions w.r.t. ${first.name}`,
+    title: `Core Directions w.r.t. ${first.name}<br /><sub>(${reactorLF.start.toISOString().slice(0, 7)} through ${reactorLF.end.toISOString().slice(0, 7)} avg Load Factor)</sub>`,
     yaxis: {
       title: { text: `signal (NIU)` },
       type: 'log',
