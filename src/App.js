@@ -222,7 +222,10 @@ function App(props) {
                   close={() => setManCustomModal(false)}
                 />
                 <Visible>
-                  <CoreDirectionSignalPlots cores={cores} />
+                  <CoreDirectionSignalPlots
+                    cores={cores}
+                    reactorLF={reactorLF}
+                  />
                 </Visible>
                 <CoreIAEARange
                   reactorLF={reactorLF}
