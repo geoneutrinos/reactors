@@ -191,6 +191,7 @@ function App(props) {
               detector={detector}
               cores={cores}
               spectrum={spectrum}
+              reactorLF={reactorLF}
             />
             <Tabs unmountOnExit={false} defaultActiveKey="detector">
               <Tab eventKey="detector" title="Detector">
@@ -221,7 +222,10 @@ function App(props) {
                   close={() => setManCustomModal(false)}
                 />
                 <Visible>
-                  <CoreDirectionSignalPlots cores={cores} />
+                  <CoreDirectionSignalPlots
+                    cores={cores}
+                    reactorLF={reactorLF}
+                  />
                 </Visible>
                 <CoreIAEARange
                   reactorLF={reactorLF}
