@@ -76,7 +76,7 @@ const CoreListItem = ({
   let dist = core.detectorDistance.toFixed(0);
   if (core.detectorDistance < 10) {
     dist = core.detectorDistance.toFixed(3);
-  } else if (core.detectorDistance < 100) {
+  } else if (core.detectorDistance < 200) {
     dist = core.detectorDistance.toFixed(2);
   }
 
