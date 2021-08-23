@@ -204,8 +204,7 @@ export const CoreDirectionSignalPlots = ({ cores, detector, reactorLF }) => {
       ["custom", "follow"].includes(detector.current)
         ? "Custom Location"
         : detector.current
-    }
-    to ${first.name}<br /><sub>(${reactorLF.start.toISOString().slice(0, 7)} through ${reactorLF.end.toISOString().slice(0, 7)} avg Load Factor)</sub>`,
+    } to ${first.name}<br /><sub>(${reactorLF.start.toISOString().slice(0, 7)} through ${reactorLF.end.toISOString().slice(0, 7)} avg Load Factor)</sub>`,
     yaxis: {
       title: { text: `signal (NIU)` },
       type: 'log',
