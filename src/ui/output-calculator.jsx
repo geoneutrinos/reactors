@@ -30,7 +30,8 @@ const detectorEfficiency = (
   }
   return bins.map(
     (eV, i) =>
-      Emax * (1 - Math.exp(-rampUp * Math.max(eV - turnOn, 0))) * spectrum[i]
+//      Emax * (1 - Math.exp(-rampUp * Math.max(eV - turnOn, 0))) * spectrum[i]
+      Emax / (1 + Math.exp(-rampUp * Math.max(eV - turnOn, 0))) * spectrum[i]
   );
 };
 
