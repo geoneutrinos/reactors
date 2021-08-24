@@ -7,6 +7,7 @@ import { XSNames } from "../physics/neutrino-cross-section";
 import { IBD_THRESHOLD } from "../physics/derived";
 import { Num } from ".";
 import { bins } from "../physics/neutrino-oscillation";
+import Plot from "react-plotly.js"
 
 const getCoreSums = (cores, min_i, max_i, low_i) => {
   const lowSum = sum(
@@ -17,6 +18,10 @@ const getCoreSums = (cores, min_i, max_i, low_i) => {
   );
   return [lowSum + highSum, lowSum, highSum];
 };
+
+const effFunc = (eV, Emax, rampUp, turnOn) => {
+  return Emax / (1 + Math.exp(-rampUp * (eV - turnOn)))//Math.max(eV - turnOn, 0)))
+}
 
 const detectorEfficiency = (
   Emax,
@@ -31,7 +36,8 @@ const detectorEfficiency = (
   return bins.map(
     (eV, i) =>
 //      Emax * (1 - Math.exp(-rampUp * Math.max(eV - turnOn, 0))) * spectrum[i]
-      Emax / (1 + Math.exp(-rampUp * Math.max(eV - turnOn, 0))) * spectrum[i]
+//      Emax / (1 + Math.exp(-rampUp * Math.max(eV - turnOn, 0))) * spectrum[i]
+    effFunc(eV, Emax, rampUp, turnOn) * spectrum[i]
   );
 };
 
@@ -60,6 +66,53 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
   const [rampUp, setRampUp] = useState(1000);
 
   const { crossSection } = useContext(PhysicsContext);
+
+  // plot config
+
+  const plotData = [
+    {
+      y: bins.map((eV) => effFunc(eV, effMax, rampUp, enerStart)),
+      x: bins,
+      name: "Eff Curve",
+      type: "scatter",
+      mode: "lines",
+      fill: "none",
+      marker: { color: "Black" },
+    },
+  ]
+  
+  var layout = {
+    title: "IBD Detector Efficiency",
+    yaxis: {
+      title: { text: `Detector Efficiency` },
+      range: [0, 1]
+    },
+    xaxis: {
+      title: { text: `Neutrino Energy (MeV)` },
+      range: [0, 10]
+    },
+    autosize: true,
+    legend: {
+      x: 1,
+      xanchor: "right",
+      y: 0,
+    },
+    annotations: [
+      {
+        showarrow: false,
+        text: "geoneutrinos.org",
+        x: 1.1,
+        xref: "paper",
+        y: -0.15,
+        yref: "paper",
+      },
+    ],
+  };
+  var config = {
+    toImageButtonOptions: {
+      filename: 'Total-Cross-Sections'
+    }
+  };
 
   // Unary operator + converts true to 1 and false to 0
   const isIBD = +[XSNames.IBDSV2003, XSNames.IBDVB1999].includes(
@@ -676,6 +729,13 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
               <br />
             </div>
           <div>
+            <Plot
+              useResizeHandler={true}
+              style={{ width: "100%" }}
+              data={plotData} 
+              layout={layout}
+              config={config}
+            />
             <br />
             <b> Significance Calculation</b><br />
             <p> The significance of the background-subtracted number of signal events <i>S</i> depends 
