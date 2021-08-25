@@ -757,7 +757,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
             <b> Detection Efficiency Function</b><br />
             Detection efficiency expressed as a function of antineutrino energy <i>E</i> is
             valid for IBD only. Here it is approximated by
-            <Node>{String.raw`\varepsilon (E) = \varepsilon_\mathrm{max} \frac {1} {(1 + \exp(-\rho * (E - E_\mathrm{on})))},`}</Node>{" "}
+            <Node>{String.raw`\varepsilon (E) = \frac {\varepsilon_\mathrm{max}} {(1 + \exp(-\rho * (E - E_\mathrm{on})))},`}</Node>{" "}
             where <Node inline>{String.raw`\varepsilon_\mathrm{max}`}</Node> sets
             the maximum detection efficiency,{" "}
             <Node inline>{String.raw`E_\mathrm{on}`}</Node> is
@@ -765,7 +765,9 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
             <Node inline>{String.raw`\rho`}</Node> controls
             the rate the efficiency ramps up. 
             For monolithic detectors of Cherenkov and/or scintillation light the values of these parameters depend on the
-            photosensitive surface and the target liquid. 
+            photosensitive surface and the target liquid. (Try {" "}
+            <Node inline>{String.raw`\rho = 3.5, E_\mathrm{on} = 3.8`}</Node> to 
+            approximate the curve on the slide from Marc.
 //              Representative values of these variables for selected target liquids follow. 
             </p>
           </div>
@@ -831,7 +833,8 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
               </tr>
               </tbody>
             </Table>
-          </div> */
+          </div> 
+*/
         </Provider>
       </Card.Body>
     </Card>
