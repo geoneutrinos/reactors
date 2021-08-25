@@ -85,7 +85,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
     title: "IBD Detector Efficiency",
     yaxis: {
       title: { text: `Detector Efficiency` },
-      range: [0, 1]
+      range: [0, 1.05]
     },
     xaxis: {
       title: { text: `Neutrino Energy (MeV)` },
@@ -110,7 +110,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
   };
   var config = {
     toImageButtonOptions: {
-      filename: 'Total-Cross-Sections'
+      filename: 'Detection-efficiency'
     }
   };
 
@@ -757,7 +757,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
             <b> Detection Efficiency Function</b><br />
             Detection efficiency expressed as a function of antineutrino energy <i>E</i> is
             valid for IBD only. Here it is approximated by
-            <Node>{String.raw`\varepsilon (E) = \frac {\varepsilon_\mathrm{max}} {(1 + \exp(-\rho * (E - E_\mathrm{on})))},`}</Node>{" "}
+            <Node>{String.raw`\varepsilon (E) = \frac {\varepsilon_\mathrm{max}} {1 + \exp(-\rho * (E - E_\mathrm{on}))},`}</Node>{" "}
             where <Node inline>{String.raw`\varepsilon_\mathrm{max}`}</Node> sets
             the maximum detection efficiency,{" "}
             <Node inline>{String.raw`E_\mathrm{on}`}</Node> is
