@@ -766,75 +766,10 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
             the rate the efficiency ramps up. 
             For monolithic detectors of Cherenkov and/or scintillation light the values of these parameters depend on the
             photosensitive surface and the target liquid. (Try {" "}
-            <Node inline>{String.raw`\rho = 3.5, E_\mathrm{on} = 3.8`}</Node> to 
-            approximate the curve on the slide from Marc.
-//              Representative values of these variables for selected target liquids follow. 
+            <Node inline>{String.raw`\rho = 3.5, E_\mathrm{on} = 3.8`}</Node> MeV to 
+            approximate the curve on the slide from Marc.)
             </p>
           </div>
-/*
-          <div>
-            <Table>
-              <tbody>
-              <tr>
-                <td>
-                  Perfect 100%
-                </td>
-                <td>
-                  <i>&epsilon;</i><sub>max</sub> = 1.0
-                </td>
-                <td>
-                  <i>E</i><sub>on</sub> = 1.8 MeV
-                </td>
-                <td>
-                 <i>&rho;</i>  = 1000 MeV<sup>-1</sup>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  LS
-                </td>
-                <td>
-                  <i>&epsilon;</i><sub>max</sub> = 0.8
-                </td>
-                <td>
-                  <i>E</i><sub>on</sub> = 1.8 MeV
-                </td>
-                <td>
-                 <i>&rho;</i>  = 2.0 MeV<sup>-1</sup>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Gd-WbLS
-                </td>
-                <td>
-                  <i>&epsilon;</i><sub>max</sub> = 0.7
-                </td>
-                <td>
-                  <i>E</i><sub>on</sub> = 2.5 MeV
-                </td>
-                <td>
-                 <i>&rho;</i>  = 1.5 MeV<sup>-1</sup>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Gd-H<sub>2</sub>O
-                </td>
-                <td>
-                  <i>&epsilon;</i><sub>max</sub> = 0.5
-                </td>
-                <td>
-                  <i>E</i><sub>on</sub> = 3.5 MeV
-                </td>
-                <td>
-                 <i>&rho;</i>  = 1.0 MeV<sup>-1</sup>
-                </td>
-              </tr>
-              </tbody>
-            </Table>
-          </div> 
-*/
         </Provider>
       </Card.Body>
     </Card>
