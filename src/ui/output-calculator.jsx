@@ -87,6 +87,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
     },
     xaxis: {
       title: { text: `Neutrino Energy (MeV)` },
+      range: [0, 12]
     },
     autosize: true,
     legend: {
