@@ -61,7 +61,7 @@ export function NuSpectrumPlot({ cores, spectrum, detector, reactorLF}) {
     {
       x: evBins,
       y: selectedCoreSignal,
-      name: `Selected Cores<br />(${selectedCores.length} cores)`,
+      name: `Selected Signal<br />(${selectedCores.length} cores)`,
       type: "scatter",
       mode: "lines",
       marker: { color: "black" },
