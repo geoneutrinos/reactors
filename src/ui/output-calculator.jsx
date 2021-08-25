@@ -620,7 +620,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
           </Col>
           <Col>
             <Form.Group controlId="ener_start">
-              <Form.Label>Efficiency Half-Maximum</Form.Label>
+              <Form.Label>Half-Maximum Energy</Form.Label>
               <InputGroup>
                 <InputGroup.Prepend>
                   <InputGroup.Text><i>E</i><sub>HM</sub></InputGroup.Text>
