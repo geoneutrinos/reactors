@@ -19,8 +19,8 @@ const getCoreSums = (cores, min_i, max_i, low_i) => {
   return [lowSum + highSum, lowSum, highSum];
 };
 
-const effFunc = (eV, Emax, rampUp, turnOn) => {
-  return Emax / (1 + Math.exp(-rampUp * (eV - turnOn)))
+const effFunc = (eV, Emax, rampUp, halfMax) => {
+  return Emax / (1 + Math.exp(-rampUp * (eV - halfMax)))
 }
 
 const detectorEfficiency = (
@@ -270,7 +270,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
       detectorSignal: detectorEfficiency(
         effMax,
         rampUp,
-        enerStart,
+        enerHalfmax,
         core.detectorSignal,
         !isIBD
       ),
@@ -306,28 +306,28 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
 
   const geoU238NIU =
     sum(
-      detectorEfficiency(effMax, rampUp, enerStart, spectrum.geoU238, !isIBD).slice(
+      detectorEfficiency(effMax, rampUp, enerHalfmax, spectrum.geoU238, !isIBD).slice(
         min_i,
         max_i
       )
     ) * 0.01;
   const geoU235NIU =
     sum(
-      detectorEfficiency(effMax, rampUp, enerStart, spectrum.geoU235, !isIBD).slice(
+      detectorEfficiency(effMax, rampUp, enerHalfmax, spectrum.geoU235, !isIBD).slice(
         min_i,
         max_i
       )
     ) * 0.01;
   const geoTh232NIU =
     sum(
-      detectorEfficiency(effMax, rampUp, enerStart, spectrum.geoTh232, !isIBD).slice(
+      detectorEfficiency(effMax, rampUp, enerHalfmax, spectrum.geoTh232, !isIBD).slice(
         min_i,
         max_i
       )
     ) * 0.01;
   const geoK40betaNIU =
     sum(
-      detectorEfficiency(effMax, rampUp, enerStart, spectrum.geoK40_beta, !isIBD).slice(
+      detectorEfficiency(effMax, rampUp, enerHalfmax, spectrum.geoK40_beta, !isIBD).slice(
         min_i,
         max_i
       )
