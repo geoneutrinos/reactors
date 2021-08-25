@@ -26,7 +26,7 @@ const effFunc = (eV, Emax, rampUp, turnOn) => {
 const detectorEfficiency = (
   Emax,
   rampUp,
-  turnOn,
+  halfMax,
   spectrum,
   perfect = false
 ) => {
@@ -35,7 +35,7 @@ const detectorEfficiency = (
   }
   return bins.map(
     (eV, i) =>
-    effFunc(eV, Emax, rampUp, turnOn) * spectrum[i]
+    effFunc(eV, Emax, rampUp, halfMax) * spectrum[i]
   );
 };
 
@@ -58,10 +58,10 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
   const [deltaReactorsLowE, setDeltaReactorsLowE] = useState(0.3);
   // detection efficiency function parameters
   const [effMax, setEffMax] = useState(1.0);
-  const [enerStart, setEnerStart] = useState(
+  const [enerHalfmax, setEnerHalfmax] = useState(
     parseFloat(IBD_THRESHOLD.toFixed(1))
   );
-  const [rampUp, setRampUp] = useState(1000);
+  const [rampUp, setRampUp] = useState(300);
 
   const { crossSection } = useContext(PhysicsContext);
 
@@ -69,7 +69,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
 
   const plotData = [
     {
-      y: bins.map((eV) => effFunc(eV, effMax, rampUp, enerStart)),
+      y: bins.map((eV) => effFunc(eV, effMax, rampUp, enerHalfmax)),
       x: bins,
       name: "Eff Curve",
       type: "scatter",
@@ -204,20 +204,20 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
     }
   };
 
-  const UIsetEnerStart = (event) => {
+  const UIsetEnerHalfmax = (event) => {
     const value = event.target.value;
-    let stateEnerstart = parseFloat(IBD_THRESHOLD.toFixed(1)) * isIBD;
-    let ener_start = parseFloat(value);
-    if (isNaN(ener_start)) {
-      setEnerStart(value);
+    let stateEnerhalfmax = parseFloat(IBD_THRESHOLD.toFixed(1)) * isIBD;
+    let ener_halfmax = parseFloat(value);
+    if (isNaN(ener_halfmax)) {
+      setEnerHalfmax(value);
     } else {
-      if (ener_start < stateEnerstart) {
-        ener_start = stateEnerstart;
+      if (ener_halfmax < stateEnerhalfmax) {
+        ener_halfmax = stateEnerhalfmax;
       }
-      if (eMax < ener_start) {
-        ener_start = eMax;
+      if (eMax < ener_halfmax) {
+        ener_halfmax = eMax;
       }
-      setEnerStart(ener_start);
+      setEnerHalfmax(ener_halfmax);
     }
   };
 
@@ -619,17 +619,17 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
             </Form.Group>
           </Col>
           <Col>
-            <Form.Group controlId="ener_start">
-              <Form.Label>Efficiency Turn-on</Form.Label>
+            <Form.Group controlId="ener_half">
+              <Form.Label>Efficiency Half-Maximum</Form.Label>
               <InputGroup>
                 <InputGroup.Prepend>
-                  <InputGroup.Text><i>E</i><sub>on</sub></InputGroup.Text>
+                  <InputGroup.Text><i>E</i><sub>HM</sub></InputGroup.Text>
                 </InputGroup.Prepend>
                   <Form.Control
-                  onChange={UIsetEnerStart}
+                  onChange={UIsetEnerHalfMax}
                   type="number"
                   step="0.1"
-                  value={isIBD? enerStart : ""}
+                  value={isIBD? enerHalfmax : ""}
                   disabled={!isIBD}
                 />
                 <InputGroup.Append>
@@ -755,16 +755,16 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
             <b> Detection Efficiency Function</b><br />
             Detection efficiency expressed as a function of antineutrino energy <i>E</i> is
             valid for IBD only. Here it is approximated by
-            <Node>{String.raw`\varepsilon (E) = \frac {\varepsilon_\mathrm{max}} {1 + \exp(-\rho * (E - E_\mathrm{on}))},`}</Node>{" "}
+            <Node>{String.raw`\varepsilon (E) = \frac {\varepsilon_\mathrm{max}} {1 + \exp(-\rho * (E - E_\mathrm{HM}))},`}</Node>{" "}
             where <Node inline>{String.raw`\varepsilon_\mathrm{max}`}</Node> sets
             the maximum detection efficiency,{" "}
-            <Node inline>{String.raw`E_\mathrm{on}`}</Node> is
-            the turn-on energy, and{" "}
+            <Node inline>{String.raw`E_\mathrm{HM}`}</Node> is
+            the energy of the efficiency half-maximum, and{" "}
             <Node inline>{String.raw`\rho`}</Node> controls
             the rate the efficiency ramps up. 
             For monolithic detectors of Cherenkov and/or scintillation light the values of these parameters depend on the
             photosensitive surface and the target liquid. (Try {" "}
-            <Node inline>{String.raw`\rho = 3.5, E_\mathrm{on} = 3.8`}</Node> MeV to 
+            <Node inline>{String.raw`\rho = 3.5, E_\mathrm{HM} = 3.8`}</Node> MeV to 
             approximate the curve on the slide from Marc.)
             </p>
           </div>
