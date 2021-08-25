@@ -5,7 +5,7 @@ import { Node, Provider } from "@nteract/mathjax";
 import { PhysicsContext } from "../state";
 import { XSNames } from "../physics/neutrino-cross-section";
 import { IBD_THRESHOLD } from "../physics/derived";
-import { Num } from ".";
+import { Num, Visible } from ".";
 import { bins } from "../physics/neutrino-oscillation";
 import Plot from "react-plotly.js"
 
@@ -713,7 +713,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
             </Form.Group>
           </Col>
         </Row>
-            </Form>
+          </Form>
             <div>
               <small>
                 1 NIU (Neutrino Interaction Unit) = 1 interaction/10<sup>32</sup>{" "}
@@ -726,7 +726,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
               </small>
               <br />
             </div>
-          <div>
+            <Visible>
             <Plot
               useResizeHandler={true}
               style={{ width: "100%" }}
@@ -734,6 +734,8 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
               layout={layout}
               config={config}
             />
+            </Visible>
+          <div>
             <br />
             <b> Significance Calculation</b><br />
             <p> The significance of the background-subtracted number of signal events <i>S</i> depends 
