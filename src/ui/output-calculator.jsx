@@ -20,7 +20,7 @@ const getCoreSums = (cores, min_i, max_i, low_i) => {
 };
 
 const effFunc = (eV, Emax, rampUp, turnOn) => {
-  return Emax / (1 + Math.exp(-rampUp * (eV - turnOn)))//Math.max(eV - turnOn, 0)))
+  return Emax / (1 + Math.exp(-rampUp * (eV - turnOn)))
 }
 
 const detectorEfficiency = (
@@ -35,8 +35,6 @@ const detectorEfficiency = (
   }
   return bins.map(
     (eV, i) =>
-//      Emax * (1 - Math.exp(-rampUp * Math.max(eV - turnOn, 0))) * spectrum[i]
-//      Emax / (1 + Math.exp(-rampUp * Math.max(eV - turnOn, 0))) * spectrum[i]
     effFunc(eV, Emax, rampUp, turnOn) * spectrum[i]
   );
 };
