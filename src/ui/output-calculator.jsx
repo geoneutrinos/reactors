@@ -620,10 +620,10 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
           </Col>
           <Col>
             <Form.Group controlId="ener_start">
-              <Form.Label>Efficiency Turn-on</Form.Label>
+              <Form.Label>Half-Maximum Energy</Form.Label>
               <InputGroup>
                 <InputGroup.Prepend>
-                  <InputGroup.Text><i>E</i><sub>on</sub></InputGroup.Text>
+                  <InputGroup.Text><i>E</i><sub>HM</sub></InputGroup.Text>
                 </InputGroup.Prepend>
                   <Form.Control
                   onChange={UIsetEnerStart}
@@ -755,16 +755,16 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
             <b> Detection Efficiency Function</b><br />
             Detection efficiency expressed as a function of antineutrino energy <i>E</i> is
             valid for IBD only. Here it is approximated by
-            <Node>{String.raw`\varepsilon (E) = \frac {\varepsilon_\mathrm{max}} {1 + \exp(-\rho * (E - E_\mathrm{on}))},`}</Node>{" "}
+            <Node>{String.raw`\varepsilon (E) = \frac {\varepsilon_\mathrm{max}} {1 + \exp(-\rho * (E - E_\mathrm{HM}))},`}</Node>{" "}
             where <Node inline>{String.raw`\varepsilon_\mathrm{max}`}</Node> sets
             the maximum detection efficiency,{" "}
-            <Node inline>{String.raw`E_\mathrm{on}`}</Node> is
-            the turn-on energy, and{" "}
+            <Node inline>{String.raw`E_\mathrm{HM}`}</Node> is
+            the energy at half the maximum efficiency, and{" "}
             <Node inline>{String.raw`\rho`}</Node> controls
             the rate the efficiency ramps up. 
             For monolithic detectors of Cherenkov and/or scintillation light the values of these parameters depend on the
             photosensitive surface and the target liquid. (Try {" "}
-            <Node inline>{String.raw`\rho = 3.5, E_\mathrm{on} = 3.8`}</Node> MeV to 
+            <Node inline>{String.raw`\rho = 3.5, E_\mathrm{HM} = 3.8`}</Node> MeV to 
             approximate the curve on the slide from Marc.)
             </p>
           </div>
