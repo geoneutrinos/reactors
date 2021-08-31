@@ -602,6 +602,58 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
 
         <Row>
           <Col>
+            <Form.Group controlId="time">
+              <Form.Label>Detector Exposure</Form.Label>
+              <InputGroup>
+                <InputGroup.Prepend>
+                  <InputGroup.Text><i>&xi;</i></InputGroup.Text>
+                </InputGroup.Prepend>
+              <Form.Control
+                  isInvalid={UIExposureNever}
+                  onChange={UIsetTime}
+                  type={UIExposureNever ? "text" : "number"}
+                  step="0.1"
+                  value={UIExposureNever ? "Infinite" : UITime}
+                />
+                <InputGroup.Append>
+                  <InputGroup.Text>
+                    <span>
+                      10<sup>32</sup> target-years
+                    </span>
+                  </InputGroup.Text>
+                </InputGroup.Append>
+                <Form.Control.Feedback type="invalid">
+                  <i>N<sub>σ</sub></i> &lowast; <i>&delta;B > S</i> 
+                </Form.Control.Feedback>
+              </InputGroup>
+            </Form.Group>
+          </Col>
+          <Col>
+            <Form.Group controlId="sigma">
+              <Form.Label>
+                Significance
+              </Form.Label>
+              <InputGroup>
+                <InputGroup.Prepend>
+                  <InputGroup.Text><i>N<sub>σ</sub></i></InputGroup.Text>
+                </InputGroup.Prepend>
+              <Form.Control
+                  isInvalid={UITotalUnderTwo}
+                  onChange={UIsetSigma}
+                  type="number"
+                  step="0.1"
+                  value={UISigma}
+                />
+                <Form.Control.Feedback type="invalid">
+                  Total number of events is less than 2
+                </Form.Control.Feedback>
+              </InputGroup>
+            </Form.Group>
+          </Col>
+        </Row>
+  
+        <Row>
+          <Col>
             <Form.Group controlId="eff_max">
               <Form.Label>Efficiency Maximum</Form.Label>
               <InputGroup>
@@ -661,68 +713,11 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
             </Form.Group>
           </Col>
         </Row>
-
-        <Row>
-          <Col>
-            <Form.Group controlId="time">
-              <Form.Label>Detector Exposure</Form.Label>
-              <InputGroup>
-                <InputGroup.Prepend>
-                  <InputGroup.Text><i>&xi;</i></InputGroup.Text>
-                </InputGroup.Prepend>
-              <Form.Control
-                  isInvalid={UIExposureNever}
-                  onChange={UIsetTime}
-                  type={UIExposureNever ? "text" : "number"}
-                  step="0.1"
-                  value={UIExposureNever ? "Infinite" : UITime}
-                />
-                <InputGroup.Append>
-                  <InputGroup.Text>
-                    <span>
-                      10<sup>32</sup> target-years
-                    </span>
-                  </InputGroup.Text>
-                </InputGroup.Append>
-                <Form.Control.Feedback type="invalid">
-                  <i>N<sub>σ</sub></i> &lowast; <i>&delta;B > S</i> 
-                </Form.Control.Feedback>
-              </InputGroup>
-            </Form.Group>
-          </Col>
-          <Col>
-            <Form.Group controlId="sigma">
-              <Form.Label>
-                Significance
-              </Form.Label>
-              <InputGroup>
-                <InputGroup.Prepend>
-                  <InputGroup.Text><i>N<sub>σ</sub></i></InputGroup.Text>
-                </InputGroup.Prepend>
-              <Form.Control
-                  isInvalid={UITotalUnderTwo}
-                  onChange={UIsetSigma}
-                  type="number"
-                  step="0.1"
-                  value={UISigma}
-                />
-                <Form.Control.Feedback type="invalid">
-                  Total number of events is less than 2
-                </Form.Control.Feedback>
-              </InputGroup>
-            </Form.Group>
-          </Col>
-        </Row>
+  
           </Form>
             <div>
               <small>
-                1 NIU (Neutrino Interaction Unit) = 1 interaction/10<sup>32</sup>{" "}
-                targets/year
-              </small>
-              <br />
-              <small>
-                1 kT H<sub>2</sub>O contains 6.686x10<sup>31</sup> free proton and
-                3.343x10<sup>32</sup> electron targets
+                The parameters above modify the detector efficiency function, as plotted and described below. 
               </small>
               <br />
             </div>
