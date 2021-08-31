@@ -717,7 +717,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
           </Form>
             <div>
               <small>
-                Use the parameters above to modify the detection efficiency function, which is plotted and described below. 
+                The parameters above modify the detector efficiency function, as plotted and described below. 
               </small>
               <br />
             </div>
