@@ -7,7 +7,7 @@ import {PhysicsContext} from '../state'
 
 const evBins = new Float64Array(1000).map((v, i) => i * 0.01 + 0.005);
 
-export function NuSpectrumPlot({ cores, spectrum, detector, reactorLF}) {
+export function KESpectrumPlot({ cores, spectrum, detector, reactorLF}) {
   const { crossSection } = useContext(PhysicsContext)
   const coreList = Object.values(cores);
   const closestActiveIAEACore = coreList
