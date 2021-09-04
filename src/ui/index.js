@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 
 export { NuMap } from './map';
-export { NuSpectrumPlot } from './plot';
+export { NuSpectrumPlot } from './plot-Ev-spectra';
 export { CoreDirectionPlot, CoreDirectionSignalPlots } from './direction-plots';
 export { StatsPanel } from './detector-stats';
 export { DetectorPhysicsPane } from './detector-physics';
