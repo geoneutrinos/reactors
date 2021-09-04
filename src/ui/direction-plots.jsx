@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { Card } from "react-bootstrap";
 import Plot from "react-plotly.js";
 
 import { sum } from "lodash";
