@@ -13,6 +13,7 @@ import {
   CoreDirectionPlot,
   StatsPanel,
   DetectorLocationPane,
+  KESpectrumPlot,
   //Reactors Tab
   CoreDirectionSignalPlots,
   CoreIAEARange,
