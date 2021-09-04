@@ -283,8 +283,9 @@ function App(props) {
               </Tab>
               <Tab eventKey="output" title="Output">
                 <h2> REFERENCE </h2>
-                <p> When using the output from this model in your research, please reference{" "}
-                <a href="https://arxiv.org/pdf/1510.05633.pdf">arXiv:1510.05633.v3</a>. </p>
+                <p> The model presented by this website is fully documented in this paper{" "}
+                <a href="https://arxiv.org/pdf/1510.05633.pdf">arXiv:1510.05633.v3</a>. 
+                Please reference this paper when using the results of this model in your research papers and presentations.</p>
                 <Visible>
                   <OutputDownload
                     spectrum={spectrum}
