@@ -6,8 +6,9 @@ import { Card } from "react-bootstrap";
 import { sum } from "lodash";
 
 import {PhysicsContext} from '../state'
+import { IBD_THRESHOLD } from "../physics/derived";
 
-const teBins = new Float64Array(1000).map((v, i) => i * 0.01 + 0.005 - 1.000);
+const teBins = new Float64Array(1000).map((v, i) => i * 0.01 + 0.005 - IBD_THRESHOLD);
 
 export function KESpectrumPlot({ cores, spectrum, detector, reactorLF}) {
   const { crossSection } = useContext(PhysicsContext)
