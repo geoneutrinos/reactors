@@ -7,7 +7,7 @@ import { sum } from "lodash";
 
 import {PhysicsContext} from '../state'
 
-const teBins = new Float64Array(1000).map((v, i) => i * 0.01 + 0.005);
+const teBins = new Float64Array(1000).map((v, i) => i * 0.01 + 0.005 - 1.000);
 
 export function KESpectrumPlot({ cores, spectrum, detector, reactorLF}) {
   const { crossSection } = useContext(PhysicsContext)
