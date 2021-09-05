@@ -13,7 +13,6 @@ import {
   CoreDirectionPlot,
   StatsPanel,
   DetectorLocationPane,
-  KESpectrumPlot,
   //Reactors Tab
   CoreDirectionSignalPlots,
   CoreIAEARange,
@@ -37,6 +36,7 @@ import {
   FissionIsotopeSpectraPlots,
   //Output Tab
   OutputDownload,
+  KESpectrumPlot,
   CalculatorPanel,
   //solar tab
   Boron8SpectraPlot,
@@ -293,6 +293,12 @@ function App(props) {
                     cores={cores}
                     detector={detector}
                     boron8={boron8}
+                  />
+                  <KESpectrumPlot
+                    detector={detector}
+                    cores={cores}
+                    spectrum={spectrum}
+                    reactorLF={reactorLF}
                   />
                 </Visible>
                 <CalculatorPanel cores={cores} spectrum={spectrum} />
