@@ -17,7 +17,7 @@ var shiftXaxis
 const teBins = new Float64Array(1000).map((v, i) => i * 0.01 + 0.005 - shiftXaxis);
 
 if (isIBD) {
-  shiftXaxis = IBD-THRESHOLD;
+  shiftXaxis = IBD_THRESHOLD;
 } else {
   shiftXaxis = 0.;
 };
