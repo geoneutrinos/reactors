@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
 import Plot from "react-plotly.js";
 
+import { Card } from "react-bootstrap";
+
 import { sum } from "lodash";
 
 import {PhysicsContext} from '../state'
@@ -160,14 +162,15 @@ export function KESpectrumPlot({ cores, spectrum, detector, reactorLF}) {
     ],
   };
   return (
-    <div>
+    <Card>
+      <Card.Header>Scattered Lepton Kinetic Energy</Card.Header>
       <Plot
         data={data}
         layout={layout}
         useResizeHandler={true}
-        style={{ width: "100%", height: "500px", minHeight: "400px" }}
-        config={{ toImageButtonOptions: { width: 900, height: 500, scale: 2, filename: 'Kinetic-Energy-Spectrum' } }}
-      />
-    </div>
+        style={{ width: "100%" }}
+        config={{ toImageButtonOptions: { filename: 'Kinetic-Energy-Spectrum' } }}
+        />
+    </Card>
   );
-}
+};
