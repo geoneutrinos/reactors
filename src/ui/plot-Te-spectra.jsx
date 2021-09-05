@@ -6,6 +6,7 @@ import { Card } from "react-bootstrap";
 import { sum } from "lodash";
 
 import {PhysicsContext} from '../state'
+import { XSNames } from "../physics/neutrino-cross-section";
 import { IBD_THRESHOLD } from "../physics/derived";
 
 const teBins = new Float64Array(1000).map((v, i) => i * 0.01 + 0.005 - IBD_THRESHOLD);
