@@ -14,13 +14,13 @@ const isIBD = +[XSNames.IBDSV2003, XSNames.IBDVB1999].includes(
 
 var shiftXaxis
 
-const teBins = new Float64Array(1000).map((v, i) => i * 0.01 + 0.005 - shiftXaxis);
-
 if (isIBD) {
   shiftXaxis = IBD_THRESHOLD;
 } else {
   shiftXaxis = 0.;
-};
+}
+
+const teBins = new Float64Array(1000).map((v, i) => i * 0.01 + 0.005 - shiftXaxis);
 
 export function KESpectrumPlot({ cores, spectrum, detector, reactorLF}) {
   const { crossSection } = useContext(PhysicsContext)
