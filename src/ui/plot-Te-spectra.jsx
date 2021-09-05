@@ -165,7 +165,7 @@ export function KESpectrumPlot({ cores, spectrum, detector, reactorLF}) {
         data={data}
         layout={layout}
         useResizeHandler={true}
-        style={{ width: "100%" }}
+        style={{ width: "100%", height: "500px", minHeight: "400px" }}
         config={{ toImageButtonOptions: { width: 900, height: 500, scale: 2, filename: 'Kinetic-Energy-Spectrum' } }}
       />
     </div>
