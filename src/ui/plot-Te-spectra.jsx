@@ -160,12 +160,14 @@ export function KESpectrumPlot({ cores, spectrum, detector, reactorLF}) {
     ],
   };
   return (
-    <Plot
-      data={data}
-      layout={layout}
-      useResizeHandler={true}
-      style={{ width: "100%" }}
-      config={{ toImageButtonOptions: { width: 900, height: 500, scale: 2, filename: 'Kinetic-Energy-Spectrum' } }}
-    />
+    <div>
+      <Plot
+        data={data}
+        layout={layout}
+        useResizeHandler={true}
+        style={{ width: "100%" }}
+        config={{ toImageButtonOptions: { width: 900, height: 500, scale: 2, filename: 'Kinetic-Energy-Spectrum' } }}
+      />
+    </div>
   );
 }
