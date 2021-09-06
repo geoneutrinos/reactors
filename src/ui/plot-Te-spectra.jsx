@@ -9,8 +9,6 @@ import {PhysicsContext} from '../state'
 import { XSNames } from "../physics/neutrino-cross-section";
 import { IBD_THRESHOLD } from "../physics/derived";
 
-var teBins = new Float64Array(1000).map((v, i) => i * 0.01 + 0.005 - IBD_THRESHOLD);
-
 export function KESpectrumPlot({ cores, spectrum, detector, reactorLF}) {
   const { crossSection } = useContext(PhysicsContext)
   const coreList = Object.values(cores);
@@ -44,6 +42,8 @@ export function KESpectrumPlot({ cores, spectrum, detector, reactorLF}) {
   const isIBD = +[XSNames.IBDSV2003, XSNames.IBDVB1999].includes(
     crossSection.crossSection
   );
+  
+  var teBins = new Float64Array(1000).map((v, i) => i * 0.01 + 0.005 - IBD_THRESHOLD);
   
   const data = [
     {
