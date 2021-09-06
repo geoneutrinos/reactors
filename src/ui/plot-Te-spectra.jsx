@@ -43,8 +43,10 @@ export function KESpectrumPlot({ cores, spectrum, detector, reactorLF}) {
     crossSection.crossSection
   );
   
+  if(isIBD) {
   var teBins = new Float64Array(1000).map((v, i) => i * 0.01 + 0.005 - IBD_THRESHOLD);
-  
+  }
+    
   const data = [
     {
       x: teBins,
