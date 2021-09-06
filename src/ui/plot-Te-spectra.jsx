@@ -9,9 +9,9 @@ import {PhysicsContext} from '../state'
 import { XSNames } from "../physics/neutrino-cross-section";
 import { IBD_THRESHOLD } from "../physics/derived";
 
-const teBins = new Float64Array(1000).map((v, i) => i * 0.01 + 0.005);
+const teBins = new Float64Array(1000).map((v, i) => i * 0.01 + 0.005 - IBD_THRESHOLD);
 
-const teBinsIBD = tebins.map((v, i) => i - IBD_THRESHOLD);
+const teBinsIBD = tebins;
 
 export function KESpectrumPlot({ cores, spectrum, detector, reactorLF}) {
   const { crossSection } = useContext(PhysicsContext)
@@ -49,7 +49,7 @@ export function KESpectrumPlot({ cores, spectrum, detector, reactorLF}) {
   
   const data = [
     {
-      x: teBinsIBD,
+      x: teBins,
       y: totalCoreSignal,
       name: "Reactor cores",
       type: "scatter",
@@ -60,7 +60,7 @@ export function KESpectrumPlot({ cores, spectrum, detector, reactorLF}) {
       visible: sum(totalCoreSignal) > 0,
     },
     {
-      x: teBinsIBD,
+      x: teBins,
       y: closestActiveIAEACoreSignal,
       name: `Closest IAEA core<br />(${closestActiveIAEACore?.name || ""})`,
       type: "scatter",
@@ -69,7 +69,7 @@ export function KESpectrumPlot({ cores, spectrum, detector, reactorLF}) {
       visible: sum(closestActiveIAEACoreSignal) > 0,
     },  
     {
-      x: teBinsIBD,
+      x: teBins,
       y: selectedCoreSignal,
       name: `Selected Signal<br />(${selectedCores.length} cores)`,
       type: "scatter",
@@ -78,7 +78,7 @@ export function KESpectrumPlot({ cores, spectrum, detector, reactorLF}) {
       visible: sum(selectedCoreSignal) > 0,
     },  
     {
-      x: teBinsIBD,
+      x: teBins,
       y: customCoreSignal,
       name: "Custom cores",
       type: "scatter",
@@ -88,7 +88,7 @@ export function KESpectrumPlot({ cores, spectrum, detector, reactorLF}) {
       visible: sum(customCoreSignal) > 0,
     },
     {
-      x: teBinsIBD,
+      x: teBins,
       y: spectrum.geoU238,
       name: "Geo <sup>238</sup>U",
       type: "scatter",
@@ -99,7 +99,7 @@ export function KESpectrumPlot({ cores, spectrum, detector, reactorLF}) {
       visible: sum(spectrum.geoU238) > 0,
     },
     {
-      x: teBinsIBD,
+      x: teBins,
       y: spectrum.geoU235,
       name: "Geo <sup>235</sup>U",
       type: "scatter",
@@ -110,7 +110,7 @@ export function KESpectrumPlot({ cores, spectrum, detector, reactorLF}) {
       visible: sum(spectrum.geoU235) > 0,
     },
     {
-      x: teBinsIBD,
+      x: teBins,
       y: spectrum.geoTh232,
       name: "Geo <sup>232</sup>Th",
       type: "scatter",
@@ -121,7 +121,7 @@ export function KESpectrumPlot({ cores, spectrum, detector, reactorLF}) {
       visible: sum(spectrum.geoTh232) > 0,
     },
     {
-      x: teBinsIBD,
+      x: teBins,
       y: spectrum.geoK40_beta,
       name: "Geo <sup>40</sup>K (β<sup>-</sup>)",
       type: "scatter",
