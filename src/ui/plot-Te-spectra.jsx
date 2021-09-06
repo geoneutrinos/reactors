@@ -9,8 +9,9 @@ import {PhysicsContext} from '../state'
 import { XSNames } from "../physics/neutrino-cross-section";
 import { IBD_THRESHOLD } from "../physics/derived";
 
-const teBinsIBD = new Float64Array(1000).map((v, i) => i * 0.01 + 0.005 - IBD_THRESHOLD);
-const teBinsES = new Float64Array(1000).map((v, i) => i * 0.01 + 0.005);
+const teBins = new Float64Array(1000).map((v, i) => i * 0.01 + 0.005);
+
+const teBinsIBD = tebins.map((v, i) => i - IBD_THRESHOLD);
 
 export function KESpectrumPlot({ cores, spectrum, detector, reactorLF}) {
   const { crossSection } = useContext(PhysicsContext)
@@ -47,7 +48,6 @@ export function KESpectrumPlot({ cores, spectrum, detector, reactorLF}) {
   );
   
   const data = [
-  if(isIBD) {
     {
       x: teBinsIBD,
       y: totalCoreSignal,
@@ -59,19 +59,6 @@ export function KESpectrumPlot({ cores, spectrum, detector, reactorLF}) {
       line: { width: 0.7 },
       visible: sum(totalCoreSignal) > 0,
     },
-  } else {
-    {
-      x: teBinsES,
-      y: totalCoreSignal,
-      name: "Reactor cores",
-      type: "scatter",
-      mode: "lines",
-      fill: "tozerox",
-      marker: { color: "green" },
-      line: { width: 0.7 },
-      visible: sum(totalCoreSignal) > 0,
-    },
-  }
     {
       x: teBinsIBD,
       y: closestActiveIAEACoreSignal,
