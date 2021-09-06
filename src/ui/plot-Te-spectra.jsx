@@ -11,8 +11,6 @@ import { IBD_THRESHOLD } from "../physics/derived";
 
 const teBins = new Float64Array(1000).map((v, i) => i * 0.01 + 0.005 - IBD_THRESHOLD);
 
-const teBinsIBD = tebins;
-
 export function KESpectrumPlot({ cores, spectrum, detector, reactorLF}) {
   const { crossSection } = useContext(PhysicsContext)
   const coreList = Object.values(cores);
