@@ -13,7 +13,7 @@ export { CoreIAEARange } from './reactors-core-iaea-select'
 export { OutputDownload } from './output-download'
 export { PhysicsOscillationPane } from './physics-osc-params'
 export { PhysicsConstants } from './physics-constants';
-export { IsotopeHalfLives } from './physics-constants';
+export { IsotopeHalfLives } from './physics-halflives';
 export { ParticleMasses } from './physics-masses';
 export { CrossSectionPlots, DifferentialCrossSectionPlots, AngularDifferentialCrossSectionPlots, CDFdifferentialCrossSectionPlots, CDFAngularDifferentialCrossSectionPlots } from './physics-plots';
 export { FissionIsotopeSpectraPlots, CoreDirectionSignalPlots } from './reactors-plots';
