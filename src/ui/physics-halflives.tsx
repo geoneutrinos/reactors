@@ -9,7 +9,7 @@ export const IsotopeHalfLives = () => {
     <Card>
       <Card.Header>Isotope Half Lives</Card.Header>
       <Card.Body>
-        <p>The listed half life values in years are from the Nuclear Data Sheets.</p>
+        <p>The listed half life values in 10<sup>9</sup> years are from the Nuclear Data Sheets.</p>
         <Table>
             <thead>
               <tr>
