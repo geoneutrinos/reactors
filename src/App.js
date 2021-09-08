@@ -21,6 +21,7 @@ import {
   MantleFlux,
   CrustFlux,
   GeoNuSpectrumSource,
+  IsotopeHalfLives,
   //IBD/ES Tab
   DetectorPhysicsPane,
   CrossSectionPlots,
@@ -254,6 +255,7 @@ function App(props) {
                     setIncludeCrust={setIncludeCrust}
                   />
                   <GeoNuSpectrumSource />
+                  <IsotopeHalfLives />
                 </Visible>
               </Tab>
               <Tab eventKey="solarnu" title="SolarNu">
