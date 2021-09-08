@@ -51,7 +51,9 @@ export const ISOTOPIC_NATURAL_ABUNDANCE = {
 
 export const ISOTOPIC_HALF_LIFE = {
   // Gy -> Seconds
-  K40: 1.277 * 1e9 * SECONDS_PER_YEAR,
+  //K40: 1.277 * 1e9 * SECONDS_PER_YEAR,
+  K40: 1.248 * 1e9 * SECONDS_PER_YEAR,
+  // J. Chen, Nuclear Data Sheets A=40 (140) 2017 
   TH232: 14.05 * 1e9 * SECONDS_PER_YEAR,
   U235: 0.7038 * 1e9 * SECONDS_PER_YEAR,
   U238: 4.468 * 1e9 * SECONDS_PER_YEAR,
