@@ -22,16 +22,16 @@ export const IsotopeHalfLives = () => {
             <tbody>
               <tr>
                 <td>
-                  {K40:}
+                  {ISOTOPIC_HALF_LIFE.K40}
                 </td>
                 <td>
-                  {Th232:}
+                  {ISOTOPIC_HALF_LIFE.Th232}
                 </td>
                 <td>
-                  {U235:}
+                  {ISOTOPIC_HALF_LIFE.U235}
                 </td>
                 <td>
-                  {U238:}
+                  {ISOTOPIC_HALF_LIFE.U238}
                 </td>
               </tr>
             </tbody>
