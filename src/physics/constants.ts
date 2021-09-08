@@ -55,6 +55,7 @@ export const ISOTOPIC_HALF_LIFE = {
   TH232: 14.0 * 1e9 * SECONDS_PER_YEAR, // E. Browne, Nuclear Data Shetts A=232 107 (2006)
   U235: 0.704 * 1e9 * SECONDS_PER_YEAR, // E. Browne and J.K. Tuli, Nuclear Data Sheets A=235 122 (2014)
   U238: 4.468 * 1e9 * SECONDS_PER_YEAR, // E. Browne and J.K. Tuli, Nuclear Data Sheets A=238 127 (2015)
+  // Gy
   K40e9y: 1.248, // J. Chen, Nuclear Data Sheets A=40 140 (2017) 
   TH232e9y: 14.0, // E. Browne, Nuclear Data Shetts A=232 107 (2006)
   U235e9y: 0.704, // E. Browne and J.K. Tuli, Nuclear Data Sheets A=235 122 (2014)
