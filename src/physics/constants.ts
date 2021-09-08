@@ -51,12 +51,10 @@ export const ISOTOPIC_NATURAL_ABUNDANCE = {
 
 export const ISOTOPIC_HALF_LIFE = {
   // Gy -> Seconds
-  //K40: 1.277 * 1e9 * SECONDS_PER_YEAR,
-  K40: 1.248 * 1e9 * SECONDS_PER_YEAR,
-  // J. Chen, Nuclear Data Sheets A=40 (140) 2017 
-  TH232: 14.05 * 1e9 * SECONDS_PER_YEAR,
-  U235: 0.7038 * 1e9 * SECONDS_PER_YEAR,
-  U238: 4.468 * 1e9 * SECONDS_PER_YEAR,
+  K40: 1.248 * 1e9 * SECONDS_PER_YEAR, // J. Chen, Nuclear Data Sheets A=40 140 (2017) 
+  TH232: 14.0 * 1e9 * SECONDS_PER_YEAR, // E. Browne, Nuclear Data Shetts A=232 107 (2006)
+  U235: 0.704 * 1e9 * SECONDS_PER_YEAR, // E. Browne and J.K. Tuli, Nuclear Data Sheets A=235 122 (2014)
+  U238: 4.468 * 1e9 * SECONDS_PER_YEAR, // E. Browne and J.K. Tuli, Nuclear Data Sheets A=238 127 (2015)
 };
 
 export const ISOTOPIC_NEUTRINOS_PER_DECAY = {
