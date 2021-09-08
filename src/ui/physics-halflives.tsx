@@ -9,29 +9,29 @@ export const IsotopeHalfLives = () => {
     <Card>
       <Card.Header>Isotope Half Lives</Card.Header>
       <Card.Body>
-        <p>The listed half life values in 10<sup>9</sup> y are from the Nuclear Data Sheets.</p>
+        <p>The listed half life values in years are from the Nuclear Data Sheets.</p>
         <Table>
             <thead>
               <tr>
-                <th><sup>40</sup>K)</th>
-                <th><sup>232</sup>Th)</th>
-                <th><sup>232</sup>U)</th>
-                <th><sup>238</sup>U)</th>
+                <th><sup>40</sup>K</th>
+                <th><sup>232</sup>Th</th>
+                <th><sup>232</sup>U</th>
+                <th><sup>238</sup>U</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td>
-                  {ISOTOPIC_HALF_LIFE.K40}
+                  {ISOTOPIC_HALF_LIFE.K40.toExponential(3)}
                 </td>
                 <td>
-                  {ISOTOPIC_HALF_LIFE.Th232}
+                  {ISOTOPIC_HALF_LIFE.Th232.toExponential(3)}
                 </td>
                 <td>
-                  {ISOTOPIC_HALF_LIFE.U235}
+                  {ISOTOPIC_HALF_LIFE.U235.toExponential(3)}
                 </td>
                 <td>
-                  {ISOTOPIC_HALF_LIFE.U238}
+                  {ISOTOPIC_HALF_LIFE.U238.toExponential(3)}
                 </td>
               </tr>
             </tbody>
