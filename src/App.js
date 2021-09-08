@@ -174,6 +174,7 @@ function App(props) {
   };
   return (
     <PhysicsContext.Provider value={physicsContextValue}>
+      HI this is a thing
       <Container fluid={true}>
         <Row style={{ minHeight: "100vh" }}>
           <Col style={{ minHeight: "50vh" }}>
