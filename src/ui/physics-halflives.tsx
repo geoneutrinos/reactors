@@ -15,23 +15,23 @@ export const IsotopeHalfLives = () => {
               <tr>
                 <th><sup>40</sup>K</th>
                 <th><sup>232</sup>Th</th>
-                <th><sup>232</sup>U</th>
+                <th><sup>235</sup>U</th>
                 <th><sup>238</sup>U</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td>
-                  {ISOTOPIC_HALF_LIFE.K40.toExponential(3)}
+                  {ISOTOPIC_HALF_LIFE.K40e9y}
                 </td>
                 <td>
-                  {ISOTOPIC_HALF_LIFE.Th232.toExponential(3)}
+                  {ISOTOPIC_HALF_LIFE.Th232e9y}
                 </td>
                 <td>
-                  {ISOTOPIC_HALF_LIFE.U235.toExponential(3)}
+                  {ISOTOPIC_HALF_LIFE.U235e9y}
                 </td>
                 <td>
-                  {ISOTOPIC_HALF_LIFE.U238.toExponential(3)}
+                  {ISOTOPIC_HALF_LIFE.U238e9y}
                 </td>
               </tr>
             </tbody>
