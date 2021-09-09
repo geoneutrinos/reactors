@@ -17,13 +17,12 @@ import {
 import { zip, sum } from "lodash";
 import { project } from "ecef-projector";
 import { Oscillation } from "../physics/neutrino-oscillation";
+import bins from "../physics/bins";
 
 export { cores, times, loads };
 
 const SECONDS_PER_YEAR = 365.25 * 24 * 60 * 60;
 
-// TODO Centralize this function
-const bins = (new Float64Array(1000)).map((v, i) => 0.005 + i/100)
 
 const cos_deg = (deg: number) => Math.cos(deg * (Math.PI / 180));
 
@@ -378,6 +377,7 @@ export function ReactorCore({
     powerFractions: powerFractions,
     loadFactor: loadFactor,
     detectorDistance: 0,
+    //TODO assumption about bins
     detectorSignal: new Float64Array(1000).fill(0),
     detectorAnySignal: false,
     detectorNIU: 0,

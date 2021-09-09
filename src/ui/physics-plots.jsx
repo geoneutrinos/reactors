@@ -7,8 +7,9 @@ import { XSAbrev, XSNames } from '../physics/neutrino-cross-section';
 import { PhysicsContext } from "../state"
 
 import { differentialCrossSectionElasticScattering, NeutrinoType, TEMax, differentialCrossSectionElasticScatteringAngular } from '../physics/neutrino-cross-section'
+import bins from "../physics/bins"
 
-const bins = (new Float64Array(1000)).map((v, i) => 0.005 + i/100)
+// TODO: bin assumption also why is it one larger?
 const cosTbins = (new Float64Array(1001)).map((v, i) => i/1000)
 
 const cumulativeFunc = (bins, func, eV, neutrinoType) => {

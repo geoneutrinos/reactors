@@ -5,6 +5,8 @@ import { sum } from "lodash";
 
 import {PhysicsContext} from '../state'
 
+//TODO this entire file has a lot of bin assumptions
+
 const evBins = new Float64Array(1000).map((v, i) => i * 0.01 + 0.005);
 
 export function NuSpectrumPlot({ cores, spectrum, detector, reactorLF}) {

@@ -29,6 +29,7 @@ function resample(
 ): Float32Array {
   const output = new Float32Array(size).fill(0);
   const binWidth = (stop - start) / size;
+  //TODO assumption about bins
   const sliceSize = Math.floor(binWidth * 1000);
 
   return output.map((v, i) => {
@@ -73,6 +74,7 @@ export const antineutrinoSpectrum238U = resample(
 function rateToFluxCalc(spectrum: number[], crossSection: CrossSectionFunc): number {
   const targets = 1e32;
   const rate_to_flux_n = spectrum.reduce((p, v) => p + v, 0);
+  //TODO assumption about bins
   const rate_to_flux_d = spectrum
     .map((v, i) => {
       return v * crossSection(0.0005 + i / 1000);
