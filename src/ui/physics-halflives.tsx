@@ -10,9 +10,8 @@ const {K40, Th232, U235, U238} = Elements
 export const IsotopeHalfLives = () => {
   return (
     <Card>
-      <Card.Header>Isotope Half Lives</Card.Header>
+      <Card.Header>Isotope Half Lives (10<sup>9</sup> years)</Card.Header>
       <Card.Body>
-        <p>The listed half life values in 10<sup>9</sup> years are from the Nuclear Data Sheets.</p>
         <Table>
             <thead>
               <tr>
@@ -39,6 +38,12 @@ export const IsotopeHalfLives = () => {
               </tr>
             </tbody>
           </Table>
+        <p><small>
+          <sup>40</sup>K: J. Chen, Nuclear Data Sheets A=40 140 (2017)<br />
+          <sup>232</sup>Th: E. Browne, Nuclear Data Shetts A=232 107 (2006)<br />
+          <sup>235</sup>U: E. Browne and J.K. Tuli, Nuclear Data Sheets A=235 122 (2014)<br />
+          <sup>238</sup>U: E. Browne and J.K. Tuli, Nuclear Data Sheets A=238 127 (2015)<br />
+        </small></p>
       </Card.Body>
     </Card>
   );
