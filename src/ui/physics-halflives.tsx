@@ -1,8 +1,11 @@
 import React from 'react';
 
 import {ISOTOPIC_HALF_LIFE} from '../physics/constants'
+import {Elements} from './elements'
 
 import { Card, Table } from 'react-bootstrap';
+
+const {K40, Th232, U235, U238} = Elements
 
 export const IsotopeHalfLives = () => {
   return (
@@ -13,10 +16,10 @@ export const IsotopeHalfLives = () => {
         <Table>
             <thead>
               <tr>
-                <th><sup>40</sup>K</th>
-                <th><sup>232</sup>Th</th>
-                <th><sup>235</sup>U</th>
-                <th><sup>238</sup>U</th>
+                <th>{K40}</th>
+                <th>{Th232}</th>
+                <th>{U235}</th>
+                <th>{U238}</th>
               </tr>
             </thead>
             <tbody>
