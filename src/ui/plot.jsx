@@ -5,9 +5,8 @@ import { sum } from "lodash";
 
 import {PhysicsContext} from '../state'
 
-//TODO this entire file has a lot of bin assumptions
+import bins, {binCount} from "../physics/bins"
 
-const evBins = new Float64Array(1000).map((v, i) => i * 0.01 + 0.005);
 
 export function NuSpectrumPlot({ cores, spectrum, detector, reactorLF}) {
   const { crossSection } = useContext(PhysicsContext)
@@ -20,28 +19,28 @@ export function NuSpectrumPlot({ cores, spectrum, detector, reactorLF}) {
     return previous.map(
       (value, index) => value + current.detectorSignal[index]
     );
-  }, new Float64Array(1000).fill(0));
+  }, new Float64Array(binCount).fill(0));
 
   const closestActiveIAEACoreSignal =
-    closestActiveIAEACore?.detectorSignal || new Float32Array(1000).fill(0);
+    closestActiveIAEACore?.detectorSignal || new Float32Array(binCount).fill(0);
 
   const customCores = coreList.filter((core) => core.custom === true);
   const customCoreSignal = customCores.reduce((previous, current) => {
     return previous.map(
       (value, index) => value + current.detectorSignal[index]
     );
-  }, new Float64Array(1000).fill(0));
+  }, new Float64Array(binCount).fill(0));
   
   const selectedCores = coreList.filter((core) => core.outputSignal === true);
   const selectedCoreSignal = selectedCores.reduce((previous, current) => {
     return previous.map(
       (value, index) => value + current.detectorSignal[index]
     );
-  }, new Float64Array(1000).fill(0));
+  }, new Float64Array(binCount).fill(0));
 
   const data = [
   {
-      x: evBins,
+      x: bins,
       y: totalCoreSignal,
       name: "Reactor cores",
       type: "scatter",
@@ -52,7 +51,7 @@ export function NuSpectrumPlot({ cores, spectrum, detector, reactorLF}) {
       visible: sum(totalCoreSignal) > 0,
     },
     {
-      x: evBins,
+      x: bins,
       y: closestActiveIAEACoreSignal,
       name: `Closest IAEA core<br />(${closestActiveIAEACore?.name || ""})`,
       type: "scatter",
@@ -61,7 +60,7 @@ export function NuSpectrumPlot({ cores, spectrum, detector, reactorLF}) {
       visible: sum(closestActiveIAEACoreSignal) > 0,
     },  
     {
-      x: evBins,
+      x: bins,
       y: selectedCoreSignal,
       name: `Selected Signal<br />(${selectedCores.length} cores)`,
       type: "scatter",
@@ -70,7 +69,7 @@ export function NuSpectrumPlot({ cores, spectrum, detector, reactorLF}) {
       visible: sum(selectedCoreSignal) > 0,
     },  
     {
-      x: evBins,
+      x: bins,
       y: customCoreSignal,
       name: "Custom cores",
       type: "scatter",
@@ -80,7 +79,7 @@ export function NuSpectrumPlot({ cores, spectrum, detector, reactorLF}) {
       visible: sum(customCoreSignal) > 0,
     },
     {
-      x: evBins,
+      x: bins,
       y: spectrum.geoU238,
       name: "Geo <sup>238</sup>U",
       type: "scatter",
@@ -91,7 +90,7 @@ export function NuSpectrumPlot({ cores, spectrum, detector, reactorLF}) {
       visible: sum(spectrum.geoU238) > 0,
     },
     {
-      x: evBins,
+      x: bins,
       y: spectrum.geoU235,
       name: "Geo <sup>235</sup>U",
       type: "scatter",
@@ -102,7 +101,7 @@ export function NuSpectrumPlot({ cores, spectrum, detector, reactorLF}) {
       visible: sum(spectrum.geoU235) > 0,
     },
     {
-      x: evBins,
+      x: bins,
       y: spectrum.geoTh232,
       name: "Geo <sup>232</sup>Th",
       type: "scatter",
@@ -113,7 +112,7 @@ export function NuSpectrumPlot({ cores, spectrum, detector, reactorLF}) {
       visible: sum(spectrum.geoTh232) > 0,
     },
     {
-      x: evBins,
+      x: bins,
       y: spectrum.geoK40_beta,
       name: "Geo <sup>40</sup>K (β<sup>-</sup>)",
       type: "scatter",

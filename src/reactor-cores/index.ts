@@ -17,7 +17,7 @@ import {
 import { zip, sum } from "lodash";
 import { project } from "ecef-projector";
 import { Oscillation } from "../physics/neutrino-oscillation";
-import bins from "../physics/bins";
+import bins, {binWidth, binCount} from "../physics/bins";
 
 export { cores, times, loads };
 
@@ -339,7 +339,7 @@ export function ReactorCore({
       );
     });
 
-    const detectorNIU = sum(signal) * 0.01;
+    const detectorNIU = sum(signal) * binWidth;
     const detectorAnySignal = detectorNIU > 0;
 
     return {
@@ -378,7 +378,7 @@ export function ReactorCore({
     loadFactor: loadFactor,
     detectorDistance: 0,
     //TODO assumption about bins
-    detectorSignal: new Float64Array(1000).fill(0),
+    detectorSignal: new Float64Array(binCount).fill(0),
     detectorAnySignal: false,
     detectorNIU: 0,
     setSignal: setSignal,

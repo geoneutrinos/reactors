@@ -7,6 +7,8 @@ import { SECONDS_PER_YEAR } from "../physics/constants";
 
 import { CrossSectionFunc, XSNames, CrossSection, crossSection } from "../physics/neutrino-cross-section";
 
+import {binCount} from "../physics/bins"
+
 //interface RateToFlux {
 //  IBDSV2003: number;
 //  IBDVB1999: number;
@@ -30,7 +32,7 @@ function resample(
   const output = new Float32Array(size).fill(0);
   const binWidth = (stop - start) / size;
   //TODO assumption about bins
-  const sliceSize = Math.floor(binWidth * 1000);
+  const sliceSize = Math.floor(binWidth * size);
 
   return output.map((v, i) => {
     return antineutrinoSpectrum
@@ -50,25 +52,25 @@ export const antineutrinoSpectrum40K = resample(
   antineutrinoSpectrum40KData,
   0,
   10,
-  1000
+  binCount
 );
 export const antineutrinoSpectrum232Th = resample(
   antineutrinoSpectrum232ThData,
   0,
   10,
-  1000
+  binCount
 );
 export const antineutrinoSpectrum235U = resample(
   antineutrinoSpectrum235UData,
   0,
   10,
-  1000
+  binCount
 );
 export const antineutrinoSpectrum238U = resample(
   antineutrinoSpectrum238UData,
   0,
   10,
-  1000
+  binCount
 );
 
 function rateToFluxCalc(spectrum: number[], crossSection: CrossSectionFunc): number {
