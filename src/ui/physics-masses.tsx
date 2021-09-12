@@ -2,7 +2,7 @@ import React from 'react';
 
 import {NEUTRON_REST_MASS, PROTON_REST_MASS, ELECTRON_REST_MASS} from '../physics/constants'
 
-import IBD_THRESHOLD from '../physics/derived'
+import {IBD_THRESHOLD} from '../physics/derived'
 
 import { Card, Table } from 'react-bootstrap';
 
@@ -18,7 +18,7 @@ export const ParticleMasses = () => {
                 <th><i>m</i><sub>n</sub> (MeV)</th>
                 <th><i>m</i><sub>p</sub> (MeV)</th>
                 <th><i>m</i><sub>e</sub> (MeV)</th>
-                <th><i>E</i><sub>thesh</sub> (MeV)</th>
+                <th><i>E</i><sub>thr</sub> (MeV)</th>
               </tr>
             </thead>
             <tbody>
