@@ -1,4 +1,5 @@
-import { ELECTRON_REST_MASS, NEUTRON_REST_MASS, PROTON_REST_MASS, HBAR_C, FERMI_COUPLING_CONSTANT, WEAK_MIXING_ANGLE } from './constants'
+import { ELECTRON_REST_MASS, HBAR_C, FERMI_COUPLING_CONSTANT, WEAK_MIXING_ANGLE } from './constants'
+import {IBD_THRESHOLD} from "./derived"
 import { memoize } from 'lodash';
 
 export interface CrossSectionFunc {
@@ -62,11 +63,9 @@ export const crossSectionSV2003: CrossSectionFunc = memoize((Ev) => {
 
 //  const Delta = NEUTRON_REST_MASS - PROTON_REST_MASS;
 
-  const E_thresh = (((ELECTRON_REST_MASS + NEUTRON_REST_MASS) ** 2) - PROTON_REST_MASS ** 2) / (2 * PROTON_REST_MASS) 
-  
 //  const Ee = Math.max(ELECTRON_REST_MASS, Ev - Delta)
   
-  const Ee = Math.max(ELECTRON_REST_MASS, Ev - E_thresh + ELECTRON_REST_MASS)
+  const Ee = Math.max(ELECTRON_REST_MASS, Ev - IBD_THRESHOLD + ELECTRON_REST_MASS)
   
   const Pe = Math.sqrt(Ee ** 2 - ELECTRON_REST_MASS ** 2) // electron momentum
 
@@ -84,8 +83,7 @@ export const crossSectionSV2003: CrossSectionFunc = memoize((Ev) => {
  * Corrected the expression for the electron energy Ee
 */
 export const crossSectionVB1999: CrossSectionFunc = memoize((Ev) => {
-  const E_thresh = (((ELECTRON_REST_MASS + NEUTRON_REST_MASS) ** 2) - PROTON_REST_MASS ** 2) / (2 * PROTON_REST_MASS)
-  const Ee = Math.max(ELECTRON_REST_MASS, Ev - E_thresh + ELECTRON_REST_MASS)
+  const Ee = Math.max(ELECTRON_REST_MASS, Ev - IBD_THRESHOLD + ELECTRON_REST_MASS)
   //  const Ee = Math.max(ELECTRON_REST_MASS, Ev - (NEUTRON_REST_MASS - PROTON_REST_MASS));
 
   return 9.52e-44 * Math.sqrt((Ee * Ee) - (ELECTRON_REST_MASS * ELECTRON_REST_MASS)) * Ee;
