@@ -59,9 +59,9 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
   const [deltaReactorsLowE, setDeltaReactorsLowE] = useState(0.3);
   // detection efficiency function parameters
   const [effMax, setEffMax] = useState(1.0);
-  const [enerStart, setEnerStart] = useState(
-    parseFloat(IBD_THRESHOLD.toFixed(1))
-  );
+  const [enerStart, setEnerStart] = useState(0.0);
+//    parseFloat(IBD_THRESHOLD.toFixed(1))
+//  );
   const [rampUp, setRampUp] = useState(1000);
 
   const { crossSection } = useContext(PhysicsContext);
@@ -81,13 +81,13 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
   ]
   
   var layout = {
-    title: "IBD Detector Efficiency",
+    title: "Detector Efficiency",
     yaxis: {
       title: { text: `Detector Efficiency` },
       range: [0, 1.05]
     },
     xaxis: {
-      title: { text: `Neutrino Energy (MeV)` },
+      title: { text: `Kinetic Energy (MeV)` },
       range: [0, 10]
     },
     autosize: true,
@@ -152,14 +152,14 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
 
   const UIsetEMin = (event) => {
     const value = event.target.value;
-    let stateEmin = parseFloat(IBD_THRESHOLD.toFixed(1)) * isIBD;
+//    let stateEmin = parseFloat(IBD_THRESHOLD.toFixed(1)) * isIBD;
     let e_min = parseFloat(value);
     if (isNaN(e_min)) {
       setEMin(value);
     } else {
-      if (e_min < stateEmin) {
-         e_min = stateEmin;
-       }
+//      if (e_min < stateEmin) {
+//         e_min = stateEmin;
+//       }
       if (e_min > 10) {
         e_min = 10;
       }      
@@ -207,14 +207,14 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
 
   const UIsetEnerStart = (event) => {
     const value = event.target.value;
-    let stateEnerstart = parseFloat(IBD_THRESHOLD.toFixed(1)) * isIBD;
+//    let stateEnerstart = parseFloat(IBD_THRESHOLD.toFixed(1)) * isIBD;
     let ener_start = parseFloat(value);
     if (isNaN(ener_start)) {
       setEnerStart(value);
     } else {
-      if (ener_start < stateEnerstart) {
-        ener_start = stateEnerstart;
-      }
+//      if (ener_start < stateEnerstart) {
+//        ener_start = stateEnerstart;
+//      }
       if (eMax < ener_start) {
         ener_start = eMax;
       }
@@ -676,7 +676,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
               <Form.Label>Half-Maximum Energy</Form.Label>
               <InputGroup>
                 <InputGroup.Prepend>
-                  <InputGroup.Text><i>E</i><sub>HM</sub></InputGroup.Text>
+                  <InputGroup.Text><i>T</i><sub>HM</sub></InputGroup.Text>
                 </InputGroup.Prepend>
                   <Form.Control
                   onChange={UIsetEnerStart}
@@ -751,19 +751,18 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
             </p>
             <p>
             <b> Detection Efficiency Function</b><br />
-            Detection efficiency expressed as a function of antineutrino energy <i>E</i> is
-            valid for IBD only. Here it is approximated by
-            <Node>{String.raw`\varepsilon (E) = \frac {\varepsilon_\mathrm{max}} {1 + \exp(-\rho * (E - E_\mathrm{HM}))},`}</Node>{" "}
+            Detection efficiency is expressed as a function of kinetic energy <i>T</i> of the scattered lepton.
+            Here it is approximated by
+            <Node>{String.raw`\varepsilon (T) = \frac {\varepsilon_\mathrm{max}} {1 + \exp(-\rho * (T - T_\mathrm{HM}))},`}</Node>{" "}
             where <Node inline>{String.raw`\varepsilon_\mathrm{max}`}</Node> sets
             the maximum detection efficiency,{" "}
-            <Node inline>{String.raw`E_\mathrm{HM}`}</Node> is
-            the energy at half the maximum efficiency, and{" "}
+            <Node inline>{String.raw`T_\mathrm{HM}`}</Node> is
+            the kinetic energy at half the maximum efficiency, and{" "}
             <Node inline>{String.raw`\rho`}</Node> controls
             the rate the efficiency ramps up. 
             For monolithic detectors of Cherenkov and/or scintillation light the values of these parameters depend on the
             photosensitive surface and the target liquid. (Try {" "}
-            <Node inline>{String.raw`\rho = 3.5, E_\mathrm{HM} = 3.8`}</Node> MeV to 
-            approximate the curve on the slide from Marc.)
+            <Node inline>{String.raw`\rho = 3.5, T_\mathrm{HM} = 2.0`}</Node> MeV.)
             </p>
           </div>
         </Provider>
