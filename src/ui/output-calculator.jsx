@@ -486,7 +486,6 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
         <Provider>
           <div>
             <small>Detected events = efficiency function x kinetic energy rate spectrum</small>
-//            <small>Detected events = efficiency fn (below) x interaction spectrum- {crossSection.crossSection}</small>
             <Table>
               <tbody>
               <tr>
