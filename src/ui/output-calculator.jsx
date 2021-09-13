@@ -87,7 +87,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
       range: [0, 1.05]
     },
     xaxis: {
-      title: { text: `Kinetic Energy (MeV)` },
+      title: { text: `Kinetic Energy T (MeV)` },
       range: [0, 10]
     },
     autosize: true,
@@ -485,7 +485,8 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
       <Card.Body>
         <Provider>
           <div>
-            <small>Detected events = efficiency fn (below) x interaction spectrum- {crossSection.crossSection}</small>
+            <small>Detected events = efficiency function x kinetic energy rate spectrum</small>
+//            <small>Detected events = efficiency fn (below) x interaction spectrum- {crossSection.crossSection}</small>
             <Table>
               <tbody>
               <tr>
