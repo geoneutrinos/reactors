@@ -215,6 +215,9 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
 //      if (ener_start < stateEnerstart) {
 //        ener_start = stateEnerstart;
 //      }
+      if (ener_start < 0) {
+        ener_start = 0;
+      }
       if (eMax < ener_start) {
         ener_start = eMax;
       }
@@ -337,7 +340,8 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
 
   // for now assume a flat spectrum with maximum energy of 10 MeV
   const bkgNuisanceNIU =
-    (bkgnuisance * (eMax - eMin)) / (10 - IBD_THRESHOLD * isIBD);
+    (bkgnuisance * (eMax - eMin) * 0.1);
+//    (bkgnuisance * (eMax - eMin)) / (10 - IBD_THRESHOLD * isIBD);
 
   let UIsignal = 0;
   let UIbackground = 0;
