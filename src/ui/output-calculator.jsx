@@ -28,12 +28,12 @@ const detectorEfficiency = (
   rampUp,
   turnOn,
   spectrum,
-  perfect = false
+  isIBD = false
 ) => {
-  if (perfect) {
-    return spectrum;
+  let shifted = spectrum;
+  if (isIBD) {
+    shifted = shiftByIBD(spectrum)
   }
-  const shifted = shiftByIBD(spectrum)
   return bins.map(
     (eV, i) =>
     effFunc(eV, Emax, rampUp, turnOn) * shifted[i]
@@ -120,12 +120,12 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
   if (isIBD && ["geo_k", "geo_u5"].includes(signal)) {
     setSignal("closest");
   }
-  if (isIBD && eMin < parseFloat(IBD_THRESHOLD.toFixed(1))) {
-    setEMin(parseFloat(IBD_THRESHOLD.toFixed(3)));
-  }
-  if (!isIBD && eMin === parseFloat(IBD_THRESHOLD.toFixed(3))) {
-    setEMin(0);
-  }
+  //if (isIBD && eMin < parseFloat(IBD_THRESHOLD.toFixed(1))) {
+  //  setEMin(parseFloat(IBD_THRESHOLD.toFixed(3)));
+  //}
+  //if (!isIBD && eMin === parseFloat(IBD_THRESHOLD.toFixed(3))) {
+  //  setEMin(0);
+  //}
   
   const UIsetSelect = (event) => {
     var key = event.target.id;
@@ -276,7 +276,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
         rampUp,
         enerStart,
         core.detectorSignal,
-        !isIBD
+        isIBD
       ),
     };
   });
@@ -310,28 +310,28 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
 
   const geoU238NIU =
     sum(
-      detectorEfficiency(effMax, rampUp, enerStart, spectrum.geoU238, !isIBD).slice(
+      detectorEfficiency(effMax, rampUp, enerStart, spectrum.geoU238, isIBD).slice(
         min_i,
         max_i
       )
     ) * 0.01;
   const geoU235NIU =
     sum(
-      detectorEfficiency(effMax, rampUp, enerStart, spectrum.geoU235, !isIBD).slice(
+      detectorEfficiency(effMax, rampUp, enerStart, spectrum.geoU235, isIBD).slice(
         min_i,
         max_i
       )
     ) * 0.01;
   const geoTh232NIU =
     sum(
-      detectorEfficiency(effMax, rampUp, enerStart, spectrum.geoTh232, !isIBD).slice(
+      detectorEfficiency(effMax, rampUp, enerStart, spectrum.geoTh232, isIBD).slice(
         min_i,
         max_i
       )
     ) * 0.01;
   const geoK40betaNIU =
     sum(
-      detectorEfficiency(effMax, rampUp, enerStart, spectrum.geoK40_beta, !isIBD).slice(
+      detectorEfficiency(effMax, rampUp, enerStart, spectrum.geoK40_beta, isIBD).slice(
         min_i,
         max_i
       )
