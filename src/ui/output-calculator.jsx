@@ -6,7 +6,7 @@ import { PhysicsContext } from "../state";
 import { XSNames } from "../physics/neutrino-cross-section";
 import { IBD_THRESHOLD } from "../physics/derived";
 import { Num, Visible } from ".";
-import bins from "../physics/bins";
+import bins, {shiftByIBD} from "../physics/bins";
 import Plot from "react-plotly.js"
 
 const getCoreSums = (cores, min_i, max_i, low_i) => {
@@ -33,9 +33,10 @@ const detectorEfficiency = (
   if (perfect) {
     return spectrum;
   }
+  const shifted = shiftByIBD(spectrum)
   return bins.map(
     (eV, i) =>
-    effFunc(eV, Emax, rampUp, turnOn) * spectrum[i]
+    effFunc(eV, Emax, rampUp, turnOn) * shifted[i]
   );
 };
 
