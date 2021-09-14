@@ -6,15 +6,15 @@ import { PhysicsContext } from "../state";
 import { XSNames } from "../physics/neutrino-cross-section";
 import { IBD_THRESHOLD } from "../physics/derived";
 import { Num, Visible } from ".";
-import bins, {shiftByIBD} from "../physics/bins";
+import bins, {shiftByIBD, binWidth} from "../physics/bins";
 import Plot from "react-plotly.js"
 
 const getCoreSums = (cores, min_i, max_i, low_i) => {
   const lowSum = sum(
-    cores.map((core) => sum(core.detectorSignal.slice(min_i, Math.min(low_i, max_i))) * 0.01)
+    cores.map((core) => sum(core.detectorSignal.slice(min_i, Math.min(low_i, max_i))) * binWidth)
   );
   const highSum = sum(
-    cores.map((core) => sum(core.detectorSignal.slice(Math.max(low_i, min_i), max_i)) * 0.01)
+    cores.map((core) => sum(core.detectorSignal.slice(Math.max(low_i, min_i), max_i)) * binWidth)
   );
   return [lowSum + highSum, lowSum, highSum];
 };
@@ -264,9 +264,9 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
     }
   };
 
-  const min_i = parseInt(eMin * 100);
-  const max_i = parseInt(eMax * 100);
-  const low_i = parseInt(IBD_THRESHOLD * 100);
+  const min_i = parseInt(eMin * (1/binWidth));
+  const max_i = parseInt(eMax * (1/binWidth));
+  const low_i = parseInt(IBD_THRESHOLD * (1/binWidth));
 
   const coreList = Object.values(cores).map((core) => {
     return {
@@ -314,28 +314,28 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
         min_i,
         max_i
       )
-    ) * 0.01;
+    ) * binWidth;
   const geoU235NIU =
     sum(
       detectorEfficiency(effMax, rampUp, enerStart, spectrum.geoU235, isIBD).slice(
         min_i,
         max_i
       )
-    ) * 0.01;
+    ) * binWidth;
   const geoTh232NIU =
     sum(
       detectorEfficiency(effMax, rampUp, enerStart, spectrum.geoTh232, isIBD).slice(
         min_i,
         max_i
       )
-    ) * 0.01;
+    ) * binWidth;
   const geoK40betaNIU =
     sum(
       detectorEfficiency(effMax, rampUp, enerStart, spectrum.geoK40_beta, isIBD).slice(
         min_i,
         max_i
       )
-    ) * 0.01;
+    ) * binWidth;
   const geoTotalNIU = geoU238NIU + geoTh232NIU + geoK40betaNIU + geoU235NIU;
 
   // for now assume a flat spectrum with maximum energy of 10 MeV
