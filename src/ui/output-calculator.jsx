@@ -669,8 +669,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
                   onChange={UIsetEffMax}
                   type="number"
                   step="0.1"
-                  value={isIBD? effMax: ""}
-                  disabled={!isIBD}
+                  value={effMax}
                 />
               </InputGroup>
             </Form.Group>
@@ -686,8 +685,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
                   onChange={UIsetEnerStart}
                   type="number"
                   step="0.1"
-                  value={isIBD? enerStart : ""}
-                  disabled={!isIBD}
+                  value={enerStart}
                 />
                 <InputGroup.Append>
                   <InputGroup.Text>MeV</InputGroup.Text>
@@ -706,8 +704,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
                   onChange={UIsetRampUp}
                   type="number"
                   step="0.1"
-                  value={isIBD? rampUp : ""}
-                  disabled={!isIBD}
+                  value={rampUp}
                 />
                 <InputGroup.Append>
                   <InputGroup.Text>
