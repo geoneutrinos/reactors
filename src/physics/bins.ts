@@ -14,7 +14,6 @@ const IBD_bin_remainder = IBD_THRESHOLD/binWidth - Math.floor(IBD_THRESHOLD/binW
 export const IBD_threshold_bin = IBD_bin_remainder < 0.5? Math.floor(IBD_THRESHOLD/binWidth) : Math.floor(IBD_THRESHOLD/binWidth) + 1
 
 const calcBins = (binStart:number, binEnd:number, binCount:number, binAlign:number):Float64Array => {
-//  const offset = binWidth * binAlign;
 // we use midpoint numerical integration
   const offset = binWidth * 0.5
   return new Float64Array(binCount).map((_, i) => binStart + offset + binWidth * i)
