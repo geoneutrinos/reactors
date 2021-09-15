@@ -2,6 +2,8 @@ import crustU from './crust_u.json';
 import crustTh from './crust_th.json';
 import crustK from './crust_k.json';
 
+import {ISOTOPIC_HALF_LIFE} from './physics/constants'
+
 interface CrustFlux {
     u: number;
     th: number;
@@ -22,6 +24,11 @@ interface CrustFlux {
  * @param lat  - latitude (-90 to 90) inside the cell that will be returned
  */
 export function getCrustFlux(lon: number, lat: number): CrustFlux{
+// Scale for isotope half lives in 10^9 y used in Huang et a. 2013 crust fluxes
+    const scaleHalfLife238U = 4.468 / {ISOTOPIC_HALF_LIFE.U238e9y}
+    const scaleHalfLife232Th = 14.05 / {ISOTOPIC_HALF_LIFE.TH232e9y}
+    const scaleHalfLife40K = 1.277 / {ISOTOPIC_HALF_LIFE.K40e9y}
+    
     if (lon < -180 || lon > 180){
         throw new RangeError("lon out of range")
     }
@@ -54,8 +61,8 @@ export function getCrustFlux(lon: number, lat: number): CrustFlux{
     const gridIndex = rowIndexOffset + flooredLon;
 
     return {
-        u: crustU[gridIndex],
-        th: crustTh[gridIndex],
-        k: crustK[gridIndex]
+        u: crustU[gridIndex] * scaleHalfLife238U,
+        th: crustTh[gridIndex] * scaleHalfLife232Th,
+        k: crustK[gridIndex] * scaleHalfLife40K
     }
 }
