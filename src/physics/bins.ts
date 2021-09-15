@@ -2,7 +2,7 @@ import {IBD_THRESHOLD} from "./derived"
 
 export const binStart = 0 // MeV
 export const binEnd = 10 // MeV
-export const binCount = 2000
+export const binCount = 1000
 export const binAlign = 1e-40 // number in the range (0, 1] 0 is left edge (not inclusive), 1 is right edge
 
 export const binWidth = (binEnd - binStart) / binCount;
