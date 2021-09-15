@@ -15,13 +15,14 @@ import {
 } from "../physics/constants";
 import { ISOTOPIC_NEUTRINO_LUMINOSITY } from "../physics/derived";
 import { zip } from "lodash";
+import bins from "../physics/bins";
 
 const MICROSECOND_PER_SECOND = 1e6;
 const TARGETS = 1e32;
 
 const TargetYears = TARGETS * SECONDS_PER_YEAR;
 
-const EvBinFronIndex = (i: number) => 0.005 + i / 100;
+const EvBinFronIndex = (i: number) => bins[i];
 
 const extractESEandMuTau = (
   spec: number,

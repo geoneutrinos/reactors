@@ -31,13 +31,13 @@ function resample(
 ): Float32Array {
   const output = new Float32Array(size).fill(0);
   const binWidth = (stop - start) / size;
-  //TODO assumption about bins
-  const sliceSize = Math.floor(binWidth * size);
+  const inputBinWidth = 1/1000
+  const sliceSize = Math.floor(binWidth/inputBinWidth);
 
   return output.map((v, i) => {
     return antineutrinoSpectrum
       .slice(i * sliceSize, i * sliceSize + sliceSize)
-      .reduce((p, c) => p + c * 100, 0);
+      .reduce((p, c) => p + c * binCount/10, 0);
   });
 }
 
