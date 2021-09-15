@@ -3,7 +3,7 @@ import {IBD_THRESHOLD} from "./derived"
 export const binStart = 0 // MeV
 export const binEnd = 10 // MeV
 export const binCount = 1000
-export const binAlign = 1e-40 // number in the range (0, 1] 0 is left edge (not inclusive), 1 is right edge
+export const binAlign = 0.5 // number in the range (0, 1] 0 is left edge (not inclusive), 1 is right edge
 
 export const binWidth = (binEnd - binStart) / binCount;
 
@@ -14,8 +14,7 @@ const IBD_bin_remainder = IBD_THRESHOLD/binWidth - Math.floor(IBD_THRESHOLD/binW
 export const IBD_threshold_bin = IBD_bin_remainder < 0.5? Math.floor(IBD_THRESHOLD/binWidth) : Math.floor(IBD_THRESHOLD/binWidth) + 1
 
 const calcBins = (binStart:number, binEnd:number, binCount:number, binAlign:number):Float64Array => {
-// we use midpoint numerical integration
-  const offset = binWidth * 0.5
+  const offset = binWidth * binAlign
   return new Float64Array(binCount).map((_, i) => binStart + offset + binWidth * i)
 }
 
