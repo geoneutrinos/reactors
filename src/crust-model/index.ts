@@ -2,7 +2,7 @@ import crustU from './crust_u.json';
 import crustTh from './crust_th.json';
 import crustK from './crust_k.json';
 
-import {ISOTOPIC_HALF_LIFE} from './physics/constants'
+import {ISOTOPIC_HALF_LIFE} from '../physics/constants'
 
 interface CrustFlux {
     u: number;
