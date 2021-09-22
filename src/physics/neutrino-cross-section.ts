@@ -136,13 +136,13 @@ export function differentialCrossSectionElasticScatteringAngular(Ev: number, cos
   return diffXs * diffTe;
 }
 
-function crossSectionElasticScattering(Ev: number, neutrinoType: NeutrinoType, T_min:number = 0): number {
+export function crossSectionElasticScattering(Ev: number, neutrinoType: NeutrinoType, T_min:number = 0, Tmax?:number): number {
   const cL = ES_COEFFICIENTS_LEFT[neutrinoType]
   const cR = ES_COEFFICIENTS_RIGHT[neutrinoType]
 
   // The following impliments equation 13... it's big so there will be
   // 4 terms to make the equation the following: term1(term2 + term3 - term4)
-  const T_max = TEMax(Ev) 
+  const T_max = Tmax !== undefined && Tmax < TEMax(Ev)? Tmax: TEMax(Ev)
   if (T_max < T_min){
     return 0;
   }
