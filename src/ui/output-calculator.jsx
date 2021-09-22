@@ -6,15 +6,15 @@ import { PhysicsContext } from "../state";
 import { XSNames } from "../physics/neutrino-cross-section";
 import { IBD_THRESHOLD } from "../physics/derived";
 import { Num, Visible } from ".";
-import bins, {shiftByIBD, binWidth} from "../physics/bins";
+import bins from "../physics/bins";
 import Plot from "react-plotly.js"
 
 const getCoreSums = (cores, min_i, max_i, low_i) => {
   const lowSum = sum(
-    cores.map((core) => sum(core.detectorSignal.slice(min_i, Math.min(low_i, max_i))) * binWidth)
+    cores.map((core) => sum(core.detectorSignal.slice(min_i, Math.min(low_i, max_i))) * 0.01)
   );
   const highSum = sum(
-    cores.map((core) => sum(core.detectorSignal.slice(Math.max(low_i, min_i), max_i)) * binWidth)
+    cores.map((core) => sum(core.detectorSignal.slice(Math.max(low_i, min_i), max_i)) * 0.01)
   );
   return [lowSum + highSum, lowSum, highSum];
 };
@@ -28,15 +28,14 @@ const detectorEfficiency = (
   rampUp,
   turnOn,
   spectrum,
-  isIBD = false
+  perfect = false
 ) => {
-  let shifted = spectrum;
-  if (isIBD) {
-    shifted = shiftByIBD(spectrum)
+  if (perfect) {
+    return spectrum;
   }
   return bins.map(
     (eV, i) =>
-    effFunc(eV, Emax, rampUp, turnOn) * shifted[i]
+    effFunc(eV, Emax, rampUp, turnOn) * spectrum[i]
   );
 };
 
@@ -59,9 +58,9 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
   const [deltaReactorsLowE, setDeltaReactorsLowE] = useState(0.3);
   // detection efficiency function parameters
   const [effMax, setEffMax] = useState(1.0);
-  const [enerStart, setEnerStart] = useState(0.0);
-//    parseFloat(IBD_THRESHOLD.toFixed(1))
-//  );
+  const [enerStart, setEnerStart] = useState(
+    parseFloat(IBD_THRESHOLD.toFixed(1))
+  );
   const [rampUp, setRampUp] = useState(1000);
 
   const { crossSection } = useContext(PhysicsContext);
@@ -81,13 +80,13 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
   ]
   
   var layout = {
-    title: "Detector Efficiency",
+    title: "IBD Detector Efficiency",
     yaxis: {
       title: { text: `Detector Efficiency` },
       range: [0, 1.05]
     },
     xaxis: {
-      title: { text: `Kinetic Energy T (MeV)` },
+      title: { text: `Neutrino Energy (MeV)` },
       range: [0, 10]
     },
     autosize: true,
@@ -120,12 +119,12 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
   if (isIBD && ["geo_k", "geo_u5"].includes(signal)) {
     setSignal("closest");
   }
-  //if (isIBD && eMin < parseFloat(IBD_THRESHOLD.toFixed(1))) {
-  //  setEMin(parseFloat(IBD_THRESHOLD.toFixed(3)));
-  //}
-  //if (!isIBD && eMin === parseFloat(IBD_THRESHOLD.toFixed(3))) {
-  //  setEMin(0);
-  //}
+  if (isIBD && eMin < parseFloat(IBD_THRESHOLD.toFixed(1))) {
+    setEMin(parseFloat(IBD_THRESHOLD.toFixed(3)));
+  }
+  if (!isIBD && eMin === parseFloat(IBD_THRESHOLD.toFixed(3))) {
+    setEMin(0);
+  }
   
   const UIsetSelect = (event) => {
     var key = event.target.id;
@@ -152,14 +151,14 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
 
   const UIsetEMin = (event) => {
     const value = event.target.value;
-//    let stateEmin = parseFloat(IBD_THRESHOLD.toFixed(1)) * isIBD;
+    let stateEmin = parseFloat(IBD_THRESHOLD.toFixed(1)) * isIBD;
     let e_min = parseFloat(value);
     if (isNaN(e_min)) {
       setEMin(value);
     } else {
-//      if (e_min < stateEmin) {
-//         e_min = stateEmin;
-//       }
+      if (e_min < stateEmin) {
+         e_min = stateEmin;
+       }
       if (e_min > 10) {
         e_min = 10;
       }      
@@ -207,16 +206,13 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
 
   const UIsetEnerStart = (event) => {
     const value = event.target.value;
-//    let stateEnerstart = parseFloat(IBD_THRESHOLD.toFixed(1)) * isIBD;
+    let stateEnerstart = parseFloat(IBD_THRESHOLD.toFixed(1)) * isIBD;
     let ener_start = parseFloat(value);
     if (isNaN(ener_start)) {
       setEnerStart(value);
     } else {
-//      if (ener_start < stateEnerstart) {
-//        ener_start = stateEnerstart;
-//      }
-      if (ener_start < 0) {
-        ener_start = 0;
+      if (ener_start < stateEnerstart) {
+        ener_start = stateEnerstart;
       }
       if (eMax < ener_start) {
         ener_start = eMax;
@@ -264,9 +260,9 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
     }
   };
 
-  const min_i = parseInt(eMin * (1/binWidth));
-  const max_i = parseInt(eMax * (1/binWidth));
-  const low_i = parseInt(IBD_THRESHOLD * (1/binWidth));
+  const min_i = parseInt(eMin * 100);
+  const max_i = parseInt(eMax * 100);
+  const low_i = parseInt(IBD_THRESHOLD * 100);
 
   const coreList = Object.values(cores).map((core) => {
     return {
@@ -276,7 +272,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
         rampUp,
         enerStart,
         core.detectorSignal,
-        isIBD
+        !isIBD
       ),
     };
   });
@@ -310,38 +306,37 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
 
   const geoU238NIU =
     sum(
-      detectorEfficiency(effMax, rampUp, enerStart, spectrum.geoU238, isIBD).slice(
+      detectorEfficiency(effMax, rampUp, enerStart, spectrum.geoU238, !isIBD).slice(
         min_i,
         max_i
       )
-    ) * binWidth;
+    ) * 0.01;
   const geoU235NIU =
     sum(
-      detectorEfficiency(effMax, rampUp, enerStart, spectrum.geoU235, isIBD).slice(
+      detectorEfficiency(effMax, rampUp, enerStart, spectrum.geoU235, !isIBD).slice(
         min_i,
         max_i
       )
-    ) * binWidth;
+    ) * 0.01;
   const geoTh232NIU =
     sum(
-      detectorEfficiency(effMax, rampUp, enerStart, spectrum.geoTh232, isIBD).slice(
+      detectorEfficiency(effMax, rampUp, enerStart, spectrum.geoTh232, !isIBD).slice(
         min_i,
         max_i
       )
-    ) * binWidth;
+    ) * 0.01;
   const geoK40betaNIU =
     sum(
-      detectorEfficiency(effMax, rampUp, enerStart, spectrum.geoK40_beta, isIBD).slice(
+      detectorEfficiency(effMax, rampUp, enerStart, spectrum.geoK40_beta, !isIBD).slice(
         min_i,
         max_i
       )
-    ) * binWidth;
+    ) * 0.01;
   const geoTotalNIU = geoU238NIU + geoTh232NIU + geoK40betaNIU + geoU235NIU;
 
   // for now assume a flat spectrum with maximum energy of 10 MeV
   const bkgNuisanceNIU =
-    (bkgnuisance * (eMax - eMin) * 0.1);
-//    (bkgnuisance * (eMax - eMin)) / (10 - IBD_THRESHOLD * isIBD);
+    (bkgnuisance * (eMax - eMin)) / (10 - IBD_THRESHOLD * isIBD);
 
   let UIsignal = 0;
   let UIbackground = 0;
@@ -485,7 +480,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
       <Card.Body>
         <Provider>
           <div>
-            <small>Detected events = efficiency function x kinetic energy rate spectrum</small>
+            <small>Detected events = efficiency fn (below) x interaction spectrum- {crossSection.crossSection}</small>
             <Table>
               <tbody>
               <tr>
@@ -669,7 +664,8 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
                   onChange={UIsetEffMax}
                   type="number"
                   step="0.1"
-                  value={effMax}
+                  value={isIBD? effMax: ""}
+                  disabled={!isIBD}
                 />
               </InputGroup>
             </Form.Group>
@@ -679,13 +675,14 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
               <Form.Label>Half-Maximum Energy</Form.Label>
               <InputGroup>
                 <InputGroup.Prepend>
-                  <InputGroup.Text><i>T</i><sub>HM</sub></InputGroup.Text>
+                  <InputGroup.Text><i>E</i><sub>HM</sub></InputGroup.Text>
                 </InputGroup.Prepend>
                   <Form.Control
                   onChange={UIsetEnerStart}
                   type="number"
                   step="0.1"
-                  value={enerStart}
+                  value={isIBD? enerStart : ""}
+                  disabled={!isIBD}
                 />
                 <InputGroup.Append>
                   <InputGroup.Text>MeV</InputGroup.Text>
@@ -704,7 +701,8 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
                   onChange={UIsetRampUp}
                   type="number"
                   step="0.1"
-                  value={rampUp}
+                  value={isIBD? rampUp : ""}
+                  disabled={!isIBD}
                 />
                 <InputGroup.Append>
                   <InputGroup.Text>
@@ -752,18 +750,19 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
             </p>
             <p>
             <b> Detection Efficiency Function</b><br />
-            Detection efficiency is expressed as a function of kinetic energy <i>T</i> of the scattered lepton.
-            Here it is approximated by
-            <Node>{String.raw`\varepsilon (T) = \frac {\varepsilon_\mathrm{max}} {1 + \exp(-\rho * (T - T_\mathrm{HM}))},`}</Node>{" "}
+            Detection efficiency expressed as a function of antineutrino energy <i>E</i> is
+            valid for IBD only. Here it is approximated by
+            <Node>{String.raw`\varepsilon (E) = \frac {\varepsilon_\mathrm{max}} {1 + \exp(-\rho * (E - E_\mathrm{HM}))},`}</Node>{" "}
             where <Node inline>{String.raw`\varepsilon_\mathrm{max}`}</Node> sets
             the maximum detection efficiency,{" "}
-            <Node inline>{String.raw`T_\mathrm{HM}`}</Node> is
-            the kinetic energy at half the maximum efficiency, and{" "}
+            <Node inline>{String.raw`E_\mathrm{HM}`}</Node> is
+            the energy at half the maximum efficiency, and{" "}
             <Node inline>{String.raw`\rho`}</Node> controls
             the rate the efficiency ramps up. 
             For monolithic detectors of Cherenkov and/or scintillation light the values of these parameters depend on the
             photosensitive surface and the target liquid. (Try {" "}
-            <Node inline>{String.raw`\rho = 3.5, T_\mathrm{HM} = 2.0`}</Node> MeV.)
+            <Node inline>{String.raw`\rho = 3.5, E_\mathrm{HM} = 3.8`}</Node> MeV to 
+            approximate the curve on the slide from Marc.)
             </p>
           </div>
         </Provider>
