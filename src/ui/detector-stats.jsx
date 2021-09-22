@@ -12,6 +12,7 @@ import {
 import { ISOTOPIC_NEUTRINO_LUMINOSITY } from "../physics/derived";
 import { ISOTOPIC_NATURAL_ABUNDANCE } from "../physics/constants";
 import {PhysicsContext} from "../state"
+import { binWidth } from "../physics/bins";
 
 import { Num } from '.'
 
@@ -71,17 +72,17 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
   const customDisplay = customTotalSignal > 0 ? "block" : "none";
 
   // geo things
-  const geo_crustU238NIU = sum(spectrum.geo_crustU238) * 0.01;
-  const geo_mantleU238NIU = sum(spectrum.geo_mantleU238) * 0.01;
+  const geo_crustU238NIU = sum(spectrum.geo_crustU238) * binWidth;
+  const geo_mantleU238NIU = sum(spectrum.geo_mantleU238) * binWidth;
   const geoU238NIU = geo_crustU238NIU + geo_mantleU238NIU;
-  const geo_crustTh232NIU = sum(spectrum.geo_crustTh232) * 0.01;
-  const geo_mantleTh232NIU = sum(spectrum.geo_mantleTh232) * 0.01;
+  const geo_crustTh232NIU = sum(spectrum.geo_crustTh232) * binWidth;
+  const geo_mantleTh232NIU = sum(spectrum.geo_mantleTh232) * binWidth;
   const geoTh232NIU = geo_crustTh232NIU + geo_mantleTh232NIU;
-  const geo_crustU235NIU = sum(spectrum.geo_crustU235) * 0.01;
-  const geo_mantleU235NIU = sum(spectrum.geo_mantleU235) * 0.01;
+  const geo_crustU235NIU = sum(spectrum.geo_crustU235) * binWidth;
+  const geo_mantleU235NIU = sum(spectrum.geo_mantleU235) * binWidth;
   const geoU235NIU = geo_crustU235NIU + geo_mantleU235NIU;
-  const geo_crustK40betaNIU = sum(spectrum.geo_crustK40_beta) * 0.01;
-  const geo_mantleK40betaNIU = sum(spectrum.geo_mantleK40_beta) * 0.01;
+  const geo_crustK40betaNIU = sum(spectrum.geo_crustK40_beta) * binWidth;
+  const geo_mantleK40betaNIU = sum(spectrum.geo_mantleK40_beta) * binWidth;
   const geoK40betaNIU = geo_crustK40betaNIU + geo_mantleK40betaNIU
 
   const geoThU = geoThURatio(geoTh232NIU, geoU238NIU, crossSection.crossSection);

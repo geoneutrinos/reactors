@@ -7,6 +7,8 @@ import { SECONDS_PER_YEAR } from "../physics/constants";
 
 import { CrossSectionFunc, XSNames, CrossSection, crossSection } from "../physics/neutrino-cross-section";
 
+import {binCount} from "../physics/bins"
+
 //interface RateToFlux {
 //  IBDSV2003: number;
 //  IBDVB1999: number;
@@ -29,12 +31,13 @@ function resample(
 ): Float32Array {
   const output = new Float32Array(size).fill(0);
   const binWidth = (stop - start) / size;
-  const sliceSize = Math.floor(binWidth * 1000);
+  const inputBinWidth = 1/1000
+  const sliceSize = Math.floor(binWidth/inputBinWidth);
 
   return output.map((v, i) => {
     return antineutrinoSpectrum
       .slice(i * sliceSize, i * sliceSize + sliceSize)
-      .reduce((p, c) => p + c * 100, 0);
+      .reduce((p, c) => p + c * binCount/10, 0);
   });
 }
 
@@ -49,30 +52,31 @@ export const antineutrinoSpectrum40K = resample(
   antineutrinoSpectrum40KData,
   0,
   10,
-  1000
+  binCount
 );
 export const antineutrinoSpectrum232Th = resample(
   antineutrinoSpectrum232ThData,
   0,
   10,
-  1000
+  binCount
 );
 export const antineutrinoSpectrum235U = resample(
   antineutrinoSpectrum235UData,
   0,
   10,
-  1000
+  binCount
 );
 export const antineutrinoSpectrum238U = resample(
   antineutrinoSpectrum238UData,
   0,
   10,
-  1000
+  binCount
 );
 
 function rateToFluxCalc(spectrum: number[], crossSection: CrossSectionFunc): number {
   const targets = 1e32;
   const rate_to_flux_n = spectrum.reduce((p, v) => p + v, 0);
+  //TODO assumption about bins
   const rate_to_flux_d = spectrum
     .map((v, i) => {
       return v * crossSection(0.0005 + i / 1000);

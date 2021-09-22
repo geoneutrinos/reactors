@@ -5,9 +5,9 @@ import Plot from "react-plotly.js";
 
 import { Isotopes } from "../physics/constants";
 import { neutrinoEnergyFor } from "../physics/helpers";
+import bins from "../physics/bins";
 
 export const FissionIsotopeSpectraPlots = () => {
-  const bins = new Float64Array(1000).map((v, i) => 0.005 + i / 100);
   const data = [
     {
       y: bins.map(neutrinoEnergyFor(Isotopes.U238)),

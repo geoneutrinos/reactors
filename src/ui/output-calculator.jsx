@@ -6,7 +6,7 @@ import { PhysicsContext } from "../state";
 import { XSNames } from "../physics/neutrino-cross-section";
 import { IBD_THRESHOLD } from "../physics/derived";
 import { Num, Visible } from ".";
-import { bins } from "../physics/neutrino-oscillation";
+import bins from "../physics/bins";
 import Plot from "react-plotly.js"
 
 const getCoreSums = (cores, min_i, max_i, low_i) => {

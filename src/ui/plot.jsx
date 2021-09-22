@@ -5,9 +5,11 @@ import { sum } from "lodash";
 
 import {PhysicsContext} from '../state'
 
-const evBins = new Float64Array(1000).map((v, i) => i * 0.01 + 0.005);
+import bins, {binCount, shiftByIBD} from "../physics/bins"
+import {XSNames} from "../physics/neutrino-cross-section"
 
-export function NuSpectrumPlot({ cores, spectrum, detector, reactorLF}) {
+
+export function NuSpectrumPlot({ cores, spectrum, detector, reactorLF, xaxisExtra={}, yaxisExtra={}, layoutExtra={}, func=(v) => v}) {
   const { crossSection } = useContext(PhysicsContext)
   const coreList = Object.values(cores);
   const closestActiveIAEACore = coreList
@@ -18,29 +20,29 @@ export function NuSpectrumPlot({ cores, spectrum, detector, reactorLF}) {
     return previous.map(
       (value, index) => value + current.detectorSignal[index]
     );
-  }, new Float64Array(1000).fill(0));
+  }, new Float64Array(binCount).fill(0));
 
   const closestActiveIAEACoreSignal =
-    closestActiveIAEACore?.detectorSignal || new Float32Array(1000).fill(0);
+    closestActiveIAEACore?.detectorSignal || new Float32Array(binCount).fill(0);
 
   const customCores = coreList.filter((core) => core.custom === true);
   const customCoreSignal = customCores.reduce((previous, current) => {
     return previous.map(
       (value, index) => value + current.detectorSignal[index]
     );
-  }, new Float64Array(1000).fill(0));
+  }, new Float64Array(binCount).fill(0));
   
   const selectedCores = coreList.filter((core) => core.outputSignal === true);
   const selectedCoreSignal = selectedCores.reduce((previous, current) => {
     return previous.map(
       (value, index) => value + current.detectorSignal[index]
     );
-  }, new Float64Array(1000).fill(0));
+  }, new Float64Array(binCount).fill(0));
 
   const data = [
   {
-      x: evBins,
-      y: totalCoreSignal,
+      x: bins,
+      y: func(totalCoreSignal),
       name: "Reactor cores",
       type: "scatter",
       mode: "lines",
@@ -50,8 +52,8 @@ export function NuSpectrumPlot({ cores, spectrum, detector, reactorLF}) {
       visible: sum(totalCoreSignal) > 0,
     },
     {
-      x: evBins,
-      y: closestActiveIAEACoreSignal,
+      x: bins,
+      y: func(closestActiveIAEACoreSignal),
       name: `Closest IAEA core<br />(${closestActiveIAEACore?.name || ""})`,
       type: "scatter",
       mode: "lines",
@@ -59,8 +61,8 @@ export function NuSpectrumPlot({ cores, spectrum, detector, reactorLF}) {
       visible: sum(closestActiveIAEACoreSignal) > 0,
     },  
     {
-      x: evBins,
-      y: selectedCoreSignal,
+      x: bins,
+      y: func(selectedCoreSignal),
       name: `Selected Signal<br />(${selectedCores.length} cores)`,
       type: "scatter",
       mode: "lines",
@@ -68,8 +70,8 @@ export function NuSpectrumPlot({ cores, spectrum, detector, reactorLF}) {
       visible: sum(selectedCoreSignal) > 0,
     },  
     {
-      x: evBins,
-      y: customCoreSignal,
+      x: bins,
+      y: func(customCoreSignal),
       name: "Custom cores",
       type: "scatter",
       mode: "lines",
@@ -78,8 +80,8 @@ export function NuSpectrumPlot({ cores, spectrum, detector, reactorLF}) {
       visible: sum(customCoreSignal) > 0,
     },
     {
-      x: evBins,
-      y: spectrum.geoU238,
+      x: bins,
+      y: func(spectrum.geoU238),
       name: "Geo <sup>238</sup>U",
       type: "scatter",
       mode: "lines",
@@ -89,8 +91,8 @@ export function NuSpectrumPlot({ cores, spectrum, detector, reactorLF}) {
       visible: sum(spectrum.geoU238) > 0,
     },
     {
-      x: evBins,
-      y: spectrum.geoU235,
+      x: bins,
+      y: func(spectrum.geoU235),
       name: "Geo <sup>235</sup>U",
       type: "scatter",
       mode: "lines",
@@ -100,8 +102,8 @@ export function NuSpectrumPlot({ cores, spectrum, detector, reactorLF}) {
       visible: sum(spectrum.geoU235) > 0,
     },
     {
-      x: evBins,
-      y: spectrum.geoTh232,
+      x: bins,
+      y: func(spectrum.geoTh232),
       name: "Geo <sup>232</sup>Th",
       type: "scatter",
       mode: "lines",
@@ -111,8 +113,8 @@ export function NuSpectrumPlot({ cores, spectrum, detector, reactorLF}) {
       visible: sum(spectrum.geoTh232) > 0,
     },
     {
-      x: evBins,
-      y: spectrum.geoK40_beta,
+      x: bins,
+      y: func(spectrum.geoK40_beta),
       name: "Geo <sup>40</sup>K (β<sup>-</sup>)",
       type: "scatter",
       mode: "lines",
@@ -143,10 +145,12 @@ export function NuSpectrumPlot({ cores, spectrum, detector, reactorLF}) {
     xaxis: {
       range: [0, 10],
       title: { text: `Antineutrino Energy E (MeV)` },
+      ...xaxisExtra
     },
     yaxis: {
       range: [0, ymax * 1.05],
       title: { text: `Rate dR/dE (NIU/MeV)<br /><sub>${crossSection.crossSection}</sub>` },
+      ...yaxisExtra
     },
     annotations: [
       {
@@ -158,6 +162,7 @@ export function NuSpectrumPlot({ cores, spectrum, detector, reactorLF}) {
         yref: "paper",
       },
     ],
+    ...layoutExtra
   };
   return (
     <Plot
@@ -168,6 +173,36 @@ export function NuSpectrumPlot({ cores, spectrum, detector, reactorLF}) {
       config={{ toImageButtonOptions: { width: 900, height: 500, scale: 2, filename: 'Antineutrino-Spectrum' } }}
     />
   );
+}
+
+export function KESpectrumPlot({ cores, spectrum, detector, reactorLF}) {
+  const { crossSection } = useContext(PhysicsContext)
+  const isIBD = +[XSNames.IBDSV2003, XSNames.IBDVB1999].includes(
+    crossSection.crossSection
+  );
+  const func = isIBD? shiftByIBD: (v) => v;
+  return  <NuSpectrumPlot
+  detector={detector}
+  cores={cores}
+  spectrum={spectrum}
+  reactorLF={reactorLF}
+  func={func}
+  layoutExtra={{
+    title: `Kinetic Energy Spectrum: ${
+      ["custom", "follow"].includes(detector.current)
+        ? "Custom Location"
+        : detector.current
+    } (${detector.lat.toFixed(1)}N, ${detector.lon.toFixed(
+      1
+    )}E, ${detector.elevation.toFixed(0)}m)<br /><sub>(${reactorLF.start.toISOString().slice(0, 7)} through ${reactorLF.end.toISOString().slice(0, 7)} avg Load Factor)</sub>`, 
+  }}
+  xaxisExtra={{
+      title: { text: `Kinetic Energy T (MeV)` },
+  }}
+  yaxisExtra={{
+      title: { text: `Rate dR/dT (NIU/MeV)<br /><sub>${crossSection.crossSection}</sub>` },
+  }}
+/>
 }
 
 export function CoreDirectionPlot({ cores, detector }) {

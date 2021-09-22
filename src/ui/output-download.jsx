@@ -3,6 +3,7 @@ import { zip, sum } from "lodash";
 import { XSNames, XSAbrev } from "../physics/neutrino-cross-section";
 import { SECONDS_PER_YEAR } from "../physics/constants";
 import { PhysicsContext } from "../state";
+import bins, {binCount} from "../physics/bins"
 
 import { Card, Button } from "react-bootstrap";
 
@@ -61,7 +62,7 @@ export const OutputDownload = ({ cores, spectrum, detector, boron8 }) => {
   // Close Things
   const closestName = closestActiveCore?.name || "none";
   const closestSpectrum =
-    closestActiveCore?.detectorSignal || new Float32Array(1000).fill(0);
+    closestActiveCore?.detectorSignal || new Float32Array(binCount).fill(0);
 
   // custom cores
   const customClosestName = closestCustomCore?.name || "";
@@ -97,7 +98,7 @@ export const OutputDownload = ({ cores, spectrum, detector, boron8 }) => {
         };
 
   const downloadData = {
-    "bin center (MeV)": spectrum.geoU238.map((n, i) => 0.005 + i * 0.01),
+    "bin center (MeV)": bins,
     total: total,
     "IAEA cores": totalIAEA,
     [`closest IAEA Core (${closestName})`]: closestSpectrum,
@@ -106,7 +107,7 @@ export const OutputDownload = ({ cores, spectrum, detector, boron8 }) => {
     ...customCoreData,
   };
   const downloadGeoData = {
-    "bin center (MeV)": spectrum.geoU238.map((n, i) => 0.005 + i * 0.01),
+    "bin center (MeV)": bins,
     geo238U: spectrum.geoU238,
     geo235U: spectrum.geoU235,
     geo232Th: spectrum.geoTh232,

@@ -298,7 +298,7 @@ function App(props) {
                 </Visible>
                 <CalculatorPanel cores={cores} spectrum={spectrum} />
                 <h2> ACKNOWLEDGMENT </h2>
-                <p> Development of the model and this web application was supported in part by Lawrence Livermore National 
+                <p> Development of the model and this web application is supported in part by Lawrence Livermore National 
                 Security, LLC. </p>
               </Tab>
             </Tabs>

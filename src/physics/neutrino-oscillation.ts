@@ -1,4 +1,5 @@
 import { memoize } from 'lodash';
+import bins from "./bins"
 
 export enum MassOrdering {
     Inverted = "Inverted",
@@ -74,8 +75,6 @@ export let oscillation: Oscillation = {
   // Config things
   massOrdering: MassOrdering.Normal
 }
-
-export const bins = (new Float64Array(1000)).map((v, i) => 0.005 + i/100)
 
 const defaultOscillationParams: VariableOscillationParams = {
   s2t12: 0.310,
