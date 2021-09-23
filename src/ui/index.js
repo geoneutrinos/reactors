@@ -32,7 +32,7 @@ export {
   FissionIsotopeSpectraPlots,
   CoreDirectionSignalPlots,
 } from "./reactors-plots";
-export { Boron8SpectraPlot, AnalemmaPlot } from "./solar-plots";
+export { Boron8SpectraPlot, AnalemmaPlot, Boron8KEPlot } from "./solar-plots";
 export { FissionFractionPane } from "./reactors-fission";
 
 export const Visible = ({ children }) => {

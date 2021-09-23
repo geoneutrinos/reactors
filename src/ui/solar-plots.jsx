@@ -3,11 +3,12 @@ import React from "react";
 import { Card } from "react-bootstrap";
 import Plot from "react-plotly.js";
 
-import { range } from "lodash";
+import { range, sum, zip } from "lodash";
 
 import { SECONDS_PER_YEAR } from "../physics/constants";
 import { boron8Bins } from "../solar";
 import { detectorSunPosition } from "../detectors";
+import { crossSectionElasticScattering, NeutrinoType } from "../physics/neutrino-cross-section";
 
 
 const plotDef = (cores, color) => {
@@ -154,6 +155,103 @@ export const AnalemmaPlot = ({ detector, cores, reactorLF}) => {
     <Card>
       <Card.Header>Solar Analemma</Card.Header>
       <Card.Body>
+        <Plot
+          useResizeHandler={true}
+          style={{ width: "100%" }}
+          data={data}
+          layout={layout}
+          config={config}
+        />
+      </Card.Body>
+    </Card>
+  );
+};
+
+export const Boron8KEPlot = ({ boron8 }) => {
+  const esSmear = (b8Rate) => {
+    const eVtoK = boron8Bins.map((bin) => {
+      const Tspec = boron8Bins.map((Tbin) =>
+        crossSectionElasticScattering(
+          bin,
+          NeutrinoType.electronNeutrino,
+          Tbin - 0.5,
+          Tbin + 0.5
+        )
+      );
+      const totalT = sum(Tspec);
+      return Tspec.map((v) => v / totalT);
+    });
+    const newRates = b8Rate.map((v,i) => eVtoK[i].map(v2 => v * v2))
+    return zip(...newRates).map(v => sum(v))
+  };
+
+  const y = esSmear(boron8.boron8Rate).map((x) => x * 1e1 * SECONDS_PER_YEAR * 1e32)
+
+  const data = [
+    {
+      y: y,
+      x: boron8Bins,
+      name: "Boron 8",
+      type: "scattergl",
+      mode: "lines",
+      fill: "none",
+      marker: { color: "blue" },
+    },
+  ];
+  var layout = {
+    title: "<sup>8</sup>B ES Scattered Lepton Energy Spectrum",
+    yaxis: {
+      title: { text: `dR/dT (NIU/MeV)` },
+      autorange: true,
+    },
+    xaxis: {
+      title: { text: `Kinetic Energy (MeV)` },
+    },
+    autosize: true,
+    legend: {
+      x: 1,
+      xanchor: "right",
+      y: 0,
+    },
+    annotations: [
+      {
+        showarrow: false,
+        text: "geoneutrinos.org",
+        x: 1.1,
+        xref: "paper",
+        y: -0.15,
+        yref: "paper",
+      },
+    ],
+  };
+  var config = {
+    toImageButtonOptions: {
+      filename: 'Solar-8B-ES-KT-Spectrum'
+    }
+  };
+  return (
+    <Card>
+      <Card.Header>
+        <sup>8</sup>B Solar Neutrinos
+      </Card.Header>
+      <Card.Body>
+        <p>
+          R<sub>sol</sub> = {boron8.boron8NIU.toFixed(2)} NIU
+        </p>
+        <p>
+          <sup>8</sup>B decay spectrum from:
+          <br />
+          W. T. Winter et al., "The <sup>8</sup>B neutrino spectrum," Phys. Rev.
+          C 73, 025503 (2006).
+        </p>
+
+        <p>
+          <sup>8</sup>B decay solar neutrino flux (2.345x10<sup>6</sup> cm
+          <sup>-2</sup>s<sup>-1</sup>) from:
+          <br />
+          K. Abe et al., "Solar neutrino measurements in Super-Kamiokande-IV,"
+          Phys. Rev. D 94, 052010 (2016).
+        </p>
         <Plot
           useResizeHandler={true}
           style={{ width: "100%" }}
