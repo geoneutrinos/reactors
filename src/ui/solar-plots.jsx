@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext} from "react";
 
 import { Card } from "react-bootstrap";
 import Plot from "react-plotly.js";
@@ -9,6 +9,8 @@ import { SECONDS_PER_YEAR } from "../physics/constants";
 import { boron8Bins } from "../solar";
 import { detectorSunPosition } from "../detectors";
 import { crossSectionElasticScattering, NeutrinoType } from "../physics/neutrino-cross-section";
+
+import { PhysicsContext } from "../state";
 
 
 const plotDef = (cores, color) => {
@@ -168,18 +170,21 @@ export const AnalemmaPlot = ({ detector, cores, reactorLF}) => {
 };
 
 export const Boron8KEPlot = ({ boron8 }) => {
+  const {crossSection} = useContext(PhysicsContext)
+  const esTmin = crossSection.elasticScatteringTMin
   const esSmear = (b8Rate) => {
     const eVtoK = boron8Bins.map((bin) => {
       const Tspec = boron8Bins.map((Tbin) =>
+        Tbin < esTmin? 0: 
         crossSectionElasticScattering(
           bin,
           NeutrinoType.electronNeutrino,
-          Tbin - 0.5,
-          Tbin + 0.5
+          Tbin - 0.05,
+          Tbin + 0.05
         )
       );
       const totalT = sum(Tspec);
-      return Tspec.map((v) => v / totalT);
+      return Tspec.map((v) => totalT === 0? 0: v / totalT);
     });
     const newRates = b8Rate.map((v,i) => eVtoK[i].map(v2 => v * v2))
     return zip(...newRates).map(v => sum(v))
