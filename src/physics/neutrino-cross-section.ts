@@ -8,6 +8,7 @@ export interface CrossSectionFunc {
 
 export enum NeutrinoType {
   electronNeutrino,
+  muTauNeutrino,
   electronAntineutino,
   muTauAntineutrino
 }
@@ -30,11 +31,13 @@ export const XSAbrev: {[key in XSNames]: string} = {
 
 export const ES_COEFFICIENTS_RIGHT = {
   [NeutrinoType.electronNeutrino]: WEAK_MIXING_ANGLE,
+  [NeutrinoType.muTauNeutrino]: WEAK_MIXING_ANGLE,
   [NeutrinoType.electronAntineutino]: 0.5 + WEAK_MIXING_ANGLE,
   [NeutrinoType.muTauAntineutrino]: -0.5 + WEAK_MIXING_ANGLE,
 }
 export const ES_COEFFICIENTS_LEFT = {
   [NeutrinoType.electronNeutrino]: 0.5 + WEAK_MIXING_ANGLE,
+  [NeutrinoType.muTauNeutrino]: -0.5 + WEAK_MIXING_ANGLE,
   [NeutrinoType.electronAntineutino]: WEAK_MIXING_ANGLE,
   [NeutrinoType.muTauAntineutrino]: WEAK_MIXING_ANGLE,
 }
