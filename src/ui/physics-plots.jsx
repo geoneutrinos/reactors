@@ -62,7 +62,7 @@ export const DifferentialCrossSectionPlotsNeutrinos = () => {
       line: {dash: 'dash',},
     },
     {
-      y: bins.filter(Te => Te < TEMax(10)).map((Te) => differentialCrossSectionElasticScattering(10, Te, NeutrinoType.electronNeutino)),
+      y: bins.filter(Te => Te < TEMax(10)).map((Te) => differentialCrossSectionElasticScattering(10, Te, NeutrinoType.electronNeutrino)),
       x: bins.filter(Te => Te < TEMax(10)),
       name: "ν<sub>e</sub> 10 MeV",
       type: "scatter",
@@ -71,7 +71,7 @@ export const DifferentialCrossSectionPlotsNeutrinos = () => {
       marker: { color: "orange" },
     },
     {
-      y: bins.filter(Te => Te < TEMax(7)).map((Te) => differentialCrossSectionElasticScattering(7, Te, NeutrinoType.electronNeutino)),
+      y: bins.filter(Te => Te < TEMax(7)).map((Te) => differentialCrossSectionElasticScattering(7, Te, NeutrinoType.electronNeutrino)),
       x: bins.filter(Te => Te < TEMax(7)),
       name: "ν<sub>e</sub> 7 MeV",
       type: "scatter",
@@ -80,7 +80,7 @@ export const DifferentialCrossSectionPlotsNeutrinos = () => {
       marker: { color: "red" },
     },
     {
-      y: bins.filter(Te => Te < TEMax(4)).map((Te) => differentialCrossSectionElasticScattering(4, Te, NeutrinoType.electronNeutino)),
+      y: bins.filter(Te => Te < TEMax(4)).map((Te) => differentialCrossSectionElasticScattering(4, Te, NeutrinoType.electronNeutrino)),
       x: bins.filter(Te => Te < TEMax(4)),
       name: "ν<sub>e</sub> 4 MeV",
       type: "scatter",
@@ -89,7 +89,7 @@ export const DifferentialCrossSectionPlotsNeutrinos = () => {
       marker: { color: "blue" },
     },
     {
-      y: bins.filter(Te => Te < TEMax(1)).map((Te) => differentialCrossSectionElasticScattering(1, Te, NeutrinoType.electronNeutino)),
+      y: bins.filter(Te => Te < TEMax(1)).map((Te) => differentialCrossSectionElasticScattering(1, Te, NeutrinoType.electronNeutrino)),
       x: bins.filter(Te => Te < TEMax(1)),
       name: "ν<sub>e</sub> 1 MeV",
       type: "scatter",
