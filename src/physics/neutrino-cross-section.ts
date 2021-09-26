@@ -8,6 +8,7 @@ export interface CrossSectionFunc {
 
 export enum NeutrinoType {
   electronNeutrino,
+  muTauNeutrino,
   electronAntineutino,
   muTauAntineutrino
 }
