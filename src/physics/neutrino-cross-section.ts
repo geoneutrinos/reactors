@@ -209,8 +209,8 @@ export const XSFuncs: {[key in XSNames]: CrossSectionFunc} = {
 }
 
 export const XSnuFuncs: {[key in XSnuNames]: CrossSectionFunc} = {
-  [XSNames.ESNUE]: crossSectionElectionNeutrinoES,
-  [XSNames.ESNUX]: crossSectionMuTauNeutrinoES,
+  [XSnuNames.ESNUE]: crossSectionElectionNeutrinoES,
+  [XSnuNames.ESNUX]: crossSectionMuTauNeutrinoES,
 }
 
 interface CrossSectionConfig {
