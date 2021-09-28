@@ -803,15 +803,6 @@ export const CrossSectionPlots = () => {
       marker: { color: "black" },
     },
     {
-      y: bins.map(crossSection[XSNames.ESTOTAL]),
-      x: bins,
-      name: "ESnue",
-      type: "scatter",
-      mode: "lines",
-      fill: "none",
-      marker: { color: "red" },
-    },
-    {
       y: bins.map(crossSection[XSNames.ESANTI]),
       x: bins,
       name: XSAbrev[XSNames.ESANTI],
@@ -831,7 +822,7 @@ export const CrossSectionPlots = () => {
     },
   ]
   var layout = {
-    title: "Total Cross Sections",
+    title: "Total Cross Sections- Antineutrinos",
     yaxis: {
       title: { text: `Total Cross Section (cm<sup>2</sup>)` },
       type: 'log',
@@ -864,7 +855,7 @@ export const CrossSectionPlots = () => {
   };
   return (
     <Card>
-      <Card.Header>Total Cross Sections</Card.Header>
+      <Card.Header>Total Cross Sections- Antineutrinos</Card.Header>
       <Card.Body>
         <p>
           Inverse beta decay (IBD) cross sections are from:
