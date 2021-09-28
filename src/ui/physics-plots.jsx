@@ -885,40 +885,22 @@ export const CrossSectionPlotsNeutrinos = () => {
   const {crossSection} = useContext(PhysicsContext)
   const data = [
     {
-      y: bins.map(crossSection[XSNames.IBDVB1999]),
+      y: bins.map(crossSection[XSNames.ESNUE]),
       x: bins,
-      name: XSAbrev[XSNames.IBDVB1999],
+      name: XSAbrev[XSNames.ESNUE],
       type: "scatter",
       mode: "lines",
       fill: "none",
       marker: { color: "blue" },
     },
     {
-      y: bins.map(crossSection[XSNames.IBDSV2003]),
+      y: bins.map(crossSection[XSNames.ESNUX]),
       x: bins,
-      name: XSAbrev[XSNames.IBDSV2003],
+      name: XSAbrev[XSNames.ESNUX],
       type: "scatter",
       mode: "lines",
       fill: "none",
       marker: { color: "black" },
-    },
-    {
-      y: bins.map(crossSection[XSNames.ESANTI]),
-      x: bins,
-      name: XSAbrev[XSNames.ESANTI],
-      type: "scatter",
-      mode: "lines",
-      fill: "none",
-      marker: { color: "magenta" },
-    },
-    {
-      y: bins.map(crossSection[XSNames.ESMUTAU]),
-      x: bins,
-      name: XSAbrev[XSNames.ESMUTAU],
-      type: "scatter",
-      mode: "lines",
-      fill: "none",
-      marker: { color: "chartreuse" },
     },
   ]
   var layout = {
