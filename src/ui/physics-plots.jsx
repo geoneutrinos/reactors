@@ -829,7 +829,7 @@ export const CrossSectionPlots = () => {
       autorange: true
     },
     xaxis: {
-      title: { text: `Neutrino Energy (MeV)` },
+      title: { text: `Antineutrino Energy (MeV)` },
     },
     autosize: true,
     legend: {
