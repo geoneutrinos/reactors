@@ -243,3 +243,105 @@ export const Boron8SpectraPlot = ({ boron8 }) => {
     </Card>
   );
 };
+
+export const CrossSectionPlotsNeutrinos = () => {
+  const {crossSection} = useContext(PhysicsContext)
+  const data = [
+    {
+      y: bins.map(crossSection[XSNames.IBDVB1999]),
+      x: bins,
+      name: XSAbrev[XSNames.IBDVB1999],
+      type: "scatter",
+      mode: "lines",
+      fill: "none",
+      marker: { color: "blue" },
+    },
+    {
+      y: bins.map(crossSection[XSNames.IBDSV2003]),
+      x: bins,
+      name: XSAbrev[XSNames.IBDSV2003],
+      type: "scatter",
+      mode: "lines",
+      fill: "none",
+      marker: { color: "black" },
+    },
+    {
+      y: bins.map(crossSection[XSNames.ESTOTAL]),
+      x: bins,
+      name: "ESnue",
+      type: "scatter",
+      mode: "lines",
+      fill: "none",
+      marker: { color: "red" },
+    },
+    {
+      y: bins.map(crossSection[XSNames.ESANTI]),
+      x: bins,
+      name: XSAbrev[XSNames.ESANTI],
+      type: "scatter",
+      mode: "lines",
+      fill: "none",
+      marker: { color: "magenta" },
+    },
+    {
+      y: bins.map(crossSection[XSNames.ESMUTAU]),
+      x: bins,
+      name: XSAbrev[XSNames.ESMUTAU],
+      type: "scatter",
+      mode: "lines",
+      fill: "none",
+      marker: { color: "chartreuse" },
+    },
+  ]
+  var layout = {
+    title: "Total Cross Sections- Neutrinos",
+    yaxis: {
+      title: { text: `Total Cross Section (cm<sup>2</sup>)` },
+      type: 'log',
+      autorange: true
+    },
+    xaxis: {
+      title: { text: `Neutrino Energy (MeV)` },
+    },
+    autosize: true,
+    legend: {
+      x: 1,
+      xanchor: "right",
+      y: 0,
+    },
+    annotations: [
+      {
+        showarrow: false,
+        text: "geoneutrinos.org",
+        x: 1.1,
+        xref: "paper",
+        y: -0.15,
+        yref: "paper",
+      },
+    ],
+  };
+  var config = {
+    toImageButtonOptions: {
+      filename: 'Total-Cross-Sections-Neutrinos'
+    }
+  };
+  return (
+    <Card>
+      <Card.Header>Total Cross Sections- Neutrinos</Card.Header>
+      <Card.Body>
+        <p>
+          Elastic scattering (ES) cross sections are from:
+        <br />
+          M. Fukugita and T. Yanagida, <i>Physics of Neutrinos</i> (Springer-Verlag, Berlin Heidelberg, 2003).
+        </p>
+        <Plot
+          useResizeHandler={true}
+          style={{ width: "100%" }}
+          data={data} 
+          layout={layout}
+          config={config}
+        />
+      </Card.Body>
+    </Card>
+  );
+};
