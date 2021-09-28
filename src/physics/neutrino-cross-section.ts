@@ -200,7 +200,7 @@ export const XSFuncs: {[key in XSNames]: CrossSectionFunc} = {
   [XSNames.ESANTI]: crossSectionElectronAntineutrinoES,
   [XSNames.ESMUTAU]: crossSectionMuTauAntineutrinoES,
   [XSNames.ESTOTAL]: crossSectionTotalES,
-  [XSNames.ESNUE]: crossSectionElectronNeutrinoES,
+  [XSNames.ESNUE]: crossSectionElectionNeutrinoES,
   [XSNames.ESNUX]: crossSectionMuTauNeutrinoES,
 }
 
