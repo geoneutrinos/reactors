@@ -39,6 +39,7 @@ import {
   OutputDownload,
   CalculatorPanel,
   //solar tab
+  CrossSectionPlotsNeutrinos,
   AngularDifferentialCrossSectionPlotsNeutrinos,
   DifferentialCrossSectionPlotsNeutrinos,
   Boron8SpectraPlot,
@@ -264,6 +265,7 @@ function App(props) {
                 <Visible>
                   <AnalemmaPlot detector={detector} cores={cores} reactorLF={reactorLF}/>
                   <Boron8SpectraPlot boron8={boron8} />
+                  <CrossSectionPlotsNeutrinos />
                   <DifferentialCrossSectionPlotsNeutrinos />
                   <AngularDifferentialCrossSectionPlotsNeutrinos />
                 </Visible>
