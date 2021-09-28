@@ -3,7 +3,7 @@ import React, {useContext} from 'react';
 import { Card} from "react-bootstrap";
 import Plot from "react-plotly.js";
 
-import { XSAbrev, XSNames } from '../physics/neutrino-cross-section';
+import { XSAbrev, XSNames, XSnuAbrev, XSnuNames  } from '../physics/neutrino-cross-section';
 import { PhysicsContext } from "../state"
 
 import { differentialCrossSectionElasticScattering, NeutrinoType, TEMax, differentialCrossSectionElasticScatteringAngular } from '../physics/neutrino-cross-section'
@@ -885,18 +885,18 @@ export const CrossSectionPlotsNeutrinos = () => {
   const {crossSection} = useContext(PhysicsContext)
   const data = [
     {
-      y: bins.map(crossSection[XSNames.ESNUE]),
+      y: bins.map(crossSection[XSnuNames.ESNUE]),
       x: bins,
-      name: XSAbrev[XSNames.ESNUE],
+      name: XSnuAbrev[XSnuNames.ESNUE],
       type: "scatter",
       mode: "lines",
       fill: "none",
       marker: { color: "blue" },
     },
     {
-      y: bins.map(crossSection[XSNames.ESNUX]),
+      y: bins.map(crossSection[XSnuNames.ESNUX]),
       x: bins,
-      name: XSAbrev[XSNames.ESNUX],
+      name: XSnuAbrev[XSnuNames.ESNUX],
       type: "scatter",
       mode: "lines",
       fill: "none",
