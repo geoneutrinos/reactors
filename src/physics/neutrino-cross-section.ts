@@ -180,9 +180,14 @@ const crossSectionTotalES: CrossSectionFunc = memoize((Ev) => {
   return  crossSectionElectronAntineutrinoES(Ev) + crossSectionMuTauAntineutrinoES(Ev)
 })
 
-// TEMP until is implimented
+// TEMP until is implemented
 export const crossSectionElectionNeutrinoES: CrossSectionFunc = memoize((Ev) => {
   return crossSectionElasticScattering(Ev, NeutrinoType.electronNeutrino) 
+})
+
+// TEMP until is implemented
+export const crossSectionMuTauNeutrinoES: CrossSectionFunc = memoize((Ev) => {
+  return crossSectionElasticScattering(Ev, NeutrinoType.muTauNeutrino) 
 })
 
 export const XSFuncs: {[key in XSNames]: CrossSectionFunc} = {
@@ -202,6 +207,8 @@ interface CrossSectionFunctions {
   crossSectionFunction: CrossSectionFunc
   // TODO Replace with proper type interface
   "Elastic Scattering: Neutrino": CrossSectionFunc
+  // TODO Replace with proper type interface
+  "Elastic Scattering: MuTauNeutrino": CrossSectionFunc
 }
 
 export type CrossSection = CrossSectionConfig & CrossSectionFunctions & typeof XSFuncs
