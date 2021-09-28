@@ -19,6 +19,9 @@ export enum XSNames {
   ESTOTAL = "ES: Antineutrino",
   ESANTI = "ES: Electron Antineutrino",
   ESMUTAU = "ES: Mu Tau Antineutrino",
+}
+
+export enum XSnuNames {
   ESNUE = "ES: Electron Neutrino",
   ESNUX = "ES: Mu Tau Neutrino",
 }
@@ -29,8 +32,11 @@ export const XSAbrev: {[key in XSNames]: string} = {
   [XSNames.ESTOTAL]: "ESnubars",
   [XSNames.ESANTI]: "ESnuebar",
   [XSNames.ESMUTAU]: "ESnuxbar",
-  [XSNames.ESNUE]: "ESnue",
-  [XSNames.ESNUX]: "ESnux",
+}
+
+export const XSnuAbrev: {[key in XSnuNames]: string} = {
+  [XSnuNames.ESNUE]: "ESnue",
+  [XSnuNames.ESNUX]: "ESnux",
 }
 
 export const ES_COEFFICIENTS_RIGHT = {
@@ -200,6 +206,9 @@ export const XSFuncs: {[key in XSNames]: CrossSectionFunc} = {
   [XSNames.ESANTI]: crossSectionElectronAntineutrinoES,
   [XSNames.ESMUTAU]: crossSectionMuTauAntineutrinoES,
   [XSNames.ESTOTAL]: crossSectionTotalES,
+}
+
+export const XSnuFuncs: {[key in XSnuNames]: CrossSectionFunc} = {
   [XSNames.ESNUE]: crossSectionElectionNeutrinoES,
   [XSNames.ESNUX]: crossSectionMuTauNeutrinoES,
 }
