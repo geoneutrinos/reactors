@@ -181,7 +181,7 @@ const crossSectionTotalES: CrossSectionFunc = memoize((Ev) => {
 })
 
 // TEMP until is implemented
-export const crossSectionElectionNeutrinoES: CrossSectionFunc = memoize((Ev) => {
+export const crossSectionElectronNeutrinoES: CrossSectionFunc = memoize((Ev) => {
   return crossSectionElasticScattering(Ev, NeutrinoType.electronNeutrino) 
 })
 
