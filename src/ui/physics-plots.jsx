@@ -127,7 +127,7 @@ export const DifferentialCrossSectionPlotsNeutrinos = () => {
   };
   var config = {
     toImageButtonOptions: {
-      filename: 'ES-dsigma-Neutrinos/dTe'
+      filename: 'ES-neutrinos-dsigma/dTe'
     }
   };
   return (
@@ -254,7 +254,7 @@ export const AngularDifferentialCrossSectionPlotsNeutrinos = () => {
   };
   var config = {
     toImageButtonOptions: {
-      filename: 'ES-dsigma/dcos(theta)'
+      filename: 'ES-neutrinos-dsigma/dcos(theta)'
     }
   };
   return (
@@ -381,7 +381,7 @@ export const AngularDifferentialCrossSectionPlots = () => {
   };
   var config = {
     toImageButtonOptions: {
-      filename: 'ES-dsigma/dcos(theta)'
+      filename: 'ES-antinus-dsigma/dcos(theta)'
     }
   };
   return (
@@ -507,7 +507,7 @@ export const CDFAngularDifferentialCrossSectionPlots = () => {
   };
   var config = {
     toImageButtonOptions: {
-      filename: 'CDF-ES-dsigma/dcos(theta)'
+      filename: 'CDF-ES-antinus-dsigma/dcos(theta)'
     }
   };
   return (
@@ -634,7 +634,7 @@ export const DifferentialCrossSectionPlots = () => {
   };
   var config = {
     toImageButtonOptions: {
-      filename: 'ES-dsigma/dTe'
+      filename: 'ES-antinus-dsigma/dTe'
     }
   };
   return (
@@ -761,7 +761,7 @@ export const CDFdifferentialCrossSectionPlots = () => {
   };
   var config = {
     toImageButtonOptions: {
-      filename: 'CDF-ES-dsigma/dTe'
+      filename: 'CDF-ES-antinus-dsigma/dTe'
     }
   };
   return (
@@ -850,7 +850,7 @@ export const CrossSectionPlots = () => {
   };
   var config = {
     toImageButtonOptions: {
-      filename: 'Total-Cross-Sections'
+      filename: 'Total-Cross-Sections-antinus'
     }
   };
   return (

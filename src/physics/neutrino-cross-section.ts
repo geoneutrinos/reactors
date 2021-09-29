@@ -45,7 +45,7 @@ export const ES_COEFFICIENTS_LEFT = {
 /** 
  * Calculates the neutrino cross section, sometimes called sigma
  * 
- * Impliments Equation 25 in Strumia, A., & Vissani, F. (2003). Precise quasielastic 
+ * Implements Equation 25 in Strumia, A., & Vissani, F. (2003). Precise quasielastic 
  * neutrino/nucleon cross-section. Physics Letters, Section B: Nuclear, Elementary 
  * Particle and High-Energy Physics, 564(1–2), 42–54. 
  * https://doi.org/10.1016/S0370-2693(03)00616-6
@@ -93,9 +93,9 @@ export const crossSectionVB1999: CrossSectionFunc = memoize((Ev) => {
 })
 
 /**
- * Calcualtes the electron kenetic energy as a function of neutrino energy and scattering angle
+ * Calculates the electron kenetic energy as a function of neutrino energy and scattering angle
  * 
- * Impliments equation 6
+ * Implements equation 6
  * @param Ev - Neutrino energy in MeV
  * @param cosT  - Scattering angle in terms of cos theta (1 is straight)
  */
@@ -143,7 +143,7 @@ export function crossSectionElasticScattering(Ev: number, neutrinoType: Neutrino
   const cL = ES_COEFFICIENTS_LEFT[neutrinoType]
   const cR = ES_COEFFICIENTS_RIGHT[neutrinoType]
 
-  // The following impliments equation 13... it's big so there will be
+  // The following implements equation 13... it's big so there will be
   // 4 terms to make the equation the following: term1(term2 + term3 - term4)
   const T_max = Tmax !== undefined && Tmax < TEMax(Ev)? Tmax: TEMax(Ev)
   if (T_max < T_min){
@@ -180,8 +180,8 @@ const crossSectionTotalES: CrossSectionFunc = memoize((Ev) => {
   return  crossSectionElectronAntineutrinoES(Ev) + crossSectionMuTauAntineutrinoES(Ev)
 })
 
-// TEMP until is implimented
-export const crossSectionElectionNeutrinoES: CrossSectionFunc = memoize((Ev) => {
+// TEMP until is implemented
+export const crossSectionElectronNeutrinoES: CrossSectionFunc = memoize((Ev) => {
   return crossSectionElasticScattering(Ev, NeutrinoType.electronNeutrino) 
 })
 
@@ -217,7 +217,7 @@ const defaultCrossSection: CrossSection = {
   crossSection: XSNames.IBDSV2003,
   crossSectionFunction: XSFuncs[XSNames.IBDSV2003],
   crossSectionElectronAntineutrinoFractionES: (Ev) => 0,
-  "Elastic Scattering: Neutrino": crossSectionElectionNeutrinoES,
+  "Elastic Scattering: Neutrino": crossSectionElectronNeutrinoES,
 }
 
 export const crossSectionReducer = (state: CrossSection, action: CrossSectionAction): CrossSection => {
