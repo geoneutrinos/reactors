@@ -204,7 +204,7 @@ export const Boron8KEPlot = ({ boron8 }) => {
     },
   ];
   var layout = {
-    title: "<Kinetic Energy Spectrum",
+    title: "Kinetic Energy Spectrum",
     yaxis: {
       title: { text: `dR/dT (NIU/MeV)` },
       autorange: true,
