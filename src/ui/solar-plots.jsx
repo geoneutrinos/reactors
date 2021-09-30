@@ -204,7 +204,7 @@ export const Boron8KEPlot = ({ boron8 }) => {
     },
   ];
   var layout = {
-    title: "<sup>8</sup>Kinetic Energy Spectrum",
+    title: "<Kinetic Energy Spectrum",
     yaxis: {
       title: { text: `dR/dT (NIU/MeV)` },
       autorange: true,
@@ -237,26 +237,9 @@ export const Boron8KEPlot = ({ boron8 }) => {
   return (
     <Card>
       <Card.Header>
-        <sup>8</sup>B Solar Neutrinos
+        <sup>8</sup>B Solar Neutrinos- Scattered Electron Kinetic Energy
       </Card.Header>
       <Card.Body>
-        <p>
-          R<sub>sol</sub> = {boron8.boron8NIU.toFixed(2)} NIU
-        </p>
-        <p>
-          <sup>8</sup>B decay spectrum from:
-          <br />
-          W. T. Winter et al., "The <sup>8</sup>B neutrino spectrum," Phys. Rev.
-          C 73, 025503 (2006).
-        </p>
-
-        <p>
-          <sup>8</sup>B decay solar neutrino flux (2.345x10<sup>6</sup> cm
-          <sup>-2</sup>s<sup>-1</sup>) from:
-          <br />
-          K. Abe et al., "Solar neutrino measurements in Super-Kamiokande-IV,"
-          Phys. Rev. D 94, 052010 (2016).
-        </p>
         <Plot
           useResizeHandler={true}
           style={{ width: "100%" }}
@@ -315,7 +298,7 @@ export const Boron8SpectraPlot = ({ boron8 }) => {
   return (
     <Card>
       <Card.Header>
-        <sup>8</sup>B Solar Neutrinos
+        <sup>8</sup>B Solar Neutrinos- Energy Spectrum
       </Card.Header>
       <Card.Body>
         <p>
