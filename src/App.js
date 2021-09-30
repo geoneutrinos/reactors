@@ -267,6 +267,9 @@ function App(props) {
                   <AnalemmaPlot detector={detector} cores={cores} reactorLF={reactorLF}/>
                   <Boron8SpectraPlot boron8={boron8} />
                   <Boron8KEPlot boron8={boron8} />
+                  <CrossSectionPlotsNormal />
+                  <DifferentialCrossSectionPlotsNeutrinos />
+                  <AngularDifferentialCrossSectionPlotsNeutrinos />
                 </Visible>
               </Tab>
               <Tab eventKey="ibd/es" title="IBD/ES">
