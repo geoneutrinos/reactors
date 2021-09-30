@@ -231,7 +231,7 @@ export const Boron8KEPlot = ({ boron8 }) => {
   };
   var config = {
     toImageButtonOptions: {
-      filename: 'Solar-8B-ES-KT-Spectrum'
+      filename: 'Solar-8B-ES-KE-Spectrum'
     }
   };
   return (
