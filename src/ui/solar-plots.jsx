@@ -298,7 +298,7 @@ export const Boron8SpectraPlot = ({ boron8 }) => {
   return (
     <Card>
       <Card.Header>
-        <sup>8</sup>B Solar Neutrinos- Energy Spectrum
+        <sup>8</sup>B Solar Neutrinos- Interaction Rate Spectrum
       </Card.Header>
       <Card.Body>
         <p>
@@ -318,6 +318,9 @@ export const Boron8SpectraPlot = ({ boron8 }) => {
           K. Abe et al., "Solar neutrino measurements in Super-Kamiokande-IV,"
           Phys. Rev. D 94, 052010 (2016).
         </p>
+  
+        <p>
+          Plotted data assume the flux is entirely electron neutrinos.
         <Plot
           useResizeHandler={true}
           style={{ width: "100%" }}
