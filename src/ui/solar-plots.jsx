@@ -321,6 +321,7 @@ export const Boron8SpectraPlot = ({ boron8 }) => {
   
         <p>
           Plotted data assume the flux is entirely electron neutrinos.
+        </p>
         <Plot
           useResizeHandler={true}
           style={{ width: "100%" }}
