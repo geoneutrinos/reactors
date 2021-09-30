@@ -204,7 +204,7 @@ export const Boron8KEPlot = ({ boron8 }) => {
     },
   ];
   var layout = {
-    title: "<sup>8</sup>B ES Scattered Lepton Energy Spectrum",
+    title: "<sup>8</sup>Kinetic Energy Spectrum",
     yaxis: {
       title: { text: `dR/dT (NIU/MeV)` },
       autorange: true,
