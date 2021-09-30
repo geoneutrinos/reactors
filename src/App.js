@@ -43,6 +43,7 @@ import {
   DifferentialCrossSectionPlotsNeutrinos,
   Boron8SpectraPlot,
   AnalemmaPlot,
+  CrossSectionPlotsNormal,
 
   // Custom Core UI
   AddCustomCoreModal,
@@ -264,6 +265,7 @@ function App(props) {
                 <Visible>
                   <AnalemmaPlot detector={detector} cores={cores} reactorLF={reactorLF}/>
                   <Boron8SpectraPlot boron8={boron8} />
+                  <CrossSectionPlotsNormal />
                   <DifferentialCrossSectionPlotsNeutrinos />
                   <AngularDifferentialCrossSectionPlotsNeutrinos />
                 </Visible>

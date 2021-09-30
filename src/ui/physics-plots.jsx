@@ -3,7 +3,7 @@ import React, {useContext} from 'react';
 import { Card} from "react-bootstrap";
 import Plot from "react-plotly.js";
 
-import { XSAbrev, XSNames } from '../physics/neutrino-cross-section';
+import { XSAbrev, XSNames, XSNamesNormal } from '../physics/neutrino-cross-section';
 import { PhysicsContext } from "../state"
 
 import { differentialCrossSectionElasticScattering, NeutrinoType, TEMax, differentialCrossSectionElasticScatteringAngular } from '../physics/neutrino-cross-section'
@@ -864,6 +864,81 @@ export const CrossSectionPlots = () => {
         <br />
           A. Strumia and F. Vissani, "Precise quasielastic neutrino/nucleon cross-section," Phys. Lett. B 564, 42 (2003).
         </p>
+        <p>
+          Elastic scattering (ES) cross sections are from:
+        <br />
+          M. Fukugita and T. Yanagida, <i>Physics of Neutrinos</i> (Springer-Verlag, Berlin Heidelberg, 2003).
+        </p>
+        <Plot
+          useResizeHandler={true}
+          style={{ width: "100%" }}
+          data={data} 
+          layout={layout}
+          config={config}
+        />
+      </Card.Body>
+    </Card>
+  );
+};
+
+export const CrossSectionPlotsNormal = () => {
+  const {crossSection} = useContext(PhysicsContext)
+  const data = [
+    {
+      y: bins.map(crossSection[XSNamesNormal.ESNORMAL]),
+      x: bins,
+      name: XSAbrev[XSNamesNormal.ESNORMAL],
+      type: "scatter",
+      mode: "lines",
+      fill: "none",
+      marker: { color: "blue" },
+    },
+    {
+      y: bins.map(crossSection[XSNamesNormal.ESMUTAUNORM]),
+      x: bins,
+      name: XSAbrev[XSNamesNormal.ESMUTAUNORM],
+      type: "scatter",
+      mode: "lines",
+      fill: "none",
+      marker: { color: "black" },
+    },
+  ]
+  var layout = {
+    title: "Total Cross Sections- Neutrinos",
+    yaxis: {
+      title: { text: `Total Cross Section (cm<sup>2</sup>)` },
+      type: 'log',
+      autorange: true
+    },
+    xaxis: {
+      title: { text: `Neutrino Energy (MeV)` },
+    },
+    autosize: true,
+    legend: {
+      x: 1,
+      xanchor: "right",
+      y: 0,
+    },
+    annotations: [
+      {
+        showarrow: false,
+        text: "geoneutrinos.org",
+        x: 1.1,
+        xref: "paper",
+        y: -0.15,
+        yref: "paper",
+      },
+    ],
+  };
+  var config = {
+    toImageButtonOptions: {
+      filename: 'Total-Cross-Sections-nus'
+    }
+  };
+  return (
+    <Card>
+      <Card.Header>Total Cross Sections- Neutrinos</Card.Header>
+      <Card.Body>
         <p>
           Elastic scattering (ES) cross sections are from:
         <br />
