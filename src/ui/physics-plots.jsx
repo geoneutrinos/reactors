@@ -822,7 +822,7 @@ export const CrossSectionPlots = () => {
     },
   ]
   var layout = {
-    title: "Total Cross Sections- Antineutrinos",
+    title: `Total Cross Sections- Antineutrinos<br /><sub>${"(ES T<sub>min</sub>= " + crossSection.elasticScatteringTMin.toFixed(1) + " MeV)"}</sub>`,
     yaxis: {
       title: { text: `Total Cross Section (cm<sup>2</sup>)` },
       type: 'log',
@@ -850,7 +850,7 @@ export const CrossSectionPlots = () => {
   };
   var config = {
     toImageButtonOptions: {
-      filename: 'Total-Cross-Sections-antinus'
+      filename: `Total-Cross-Sections-antinus_Tmin${crossSection.elasticScatteringTMin.toFixed(1)}`
     }
   };
   return (
@@ -904,7 +904,7 @@ export const CrossSectionPlotsNormal = () => {
     },
   ]
   var layout = {
-    title: "Total Cross Sections- Neutrinos",
+    title: `Total Cross Sections- Neutrinos<br /><sub>${"(T<sub>min</sub>= " + crossSection.elasticScatteringTMin.toFixed(1) + " MeV)"}</sub>`,
     yaxis: {
       title: { text: `Total Cross Section (cm<sup>2</sup>)` },
       type: 'log',
@@ -932,7 +932,7 @@ export const CrossSectionPlotsNormal = () => {
   };
   var config = {
     toImageButtonOptions: {
-      filename: 'Total-Cross-Sections-nus'
+      filename: `Total-Cross-Sections-nus_Tmin${crossSection.elasticScatteringTMin.toFixed(1)}`
     }
   };
   return (
