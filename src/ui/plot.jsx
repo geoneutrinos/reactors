@@ -153,7 +153,7 @@ export function NuSpectrumPlot({ cores, spectrum, detector, reactorLF, xaxisExtr
     },
     yaxis: {
       range: [0, ymax * 1.05],
-      title: { text: `Rate dR/dE (NIU/MeV)<br /><sub>${crossSection.crossSection}</sub>` },
+      title: { text: `Rate dR/dE (NIU/MeV)<br /><sub>${crossSection.crossSection} ${isIBD? "": "T<sub>min</sub>: " + crossSection.elasticScatteringTMin.toFixed(1)}</sub>` },
       ...yaxisExtra
     },
     annotations: [
@@ -171,15 +171,6 @@ export function NuSpectrumPlot({ cores, spectrum, detector, reactorLF, xaxisExtr
   const config = { toImageButtonOptions: { width: 900, height: 500, scale: 2, filename: 'Antineutrino-Spectrum' } }
 
   if (!isIBD){
-    layout.annotations.push({
-      showarrow: false,
-      text: `T<sub>min</sub>: ${crossSection.elasticScatteringTMin.toFixed(1)}`,
-      x: -0.1,
-      xref: "paper",
-      y: -0.15,
-      yref: "paper",
-    })
-
     config.toImageButtonOptions.filename = `Antineutrino-Spectrum_Tmin${crossSection.elasticScatteringTMin.toFixed(1)}`
   }
   return (
