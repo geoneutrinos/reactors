@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext} from "react";
 
 import { Card } from "react-bootstrap";
 import Plot from "react-plotly.js";
@@ -8,6 +8,7 @@ import { range } from "lodash";
 import { SECONDS_PER_YEAR } from "../physics/constants";
 import { boron8Bins } from "../solar";
 import { detectorSunPosition } from "../detectors";
+import { PhysicsContext } from "../state";
 
 const plotDef = (cores, color) => {
   return {
@@ -188,6 +189,7 @@ export const AnalemmaPlot = ({ detector, cores, reactorLF }) => {
 };
 
 export const Boron8KEPlot = ({ boron8 }) => {
+  const {crossSection} = useContext(PhysicsContext)
   const data = [
     {
       y: boron8.boron8Ke,
@@ -200,7 +202,7 @@ export const Boron8KEPlot = ({ boron8 }) => {
     },
   ];
   var layout = {
-    title: "Kinetic Energy Spectrum",
+    title: `Kinetic Energy Spectrum<br /><sub>${"(T<sub>min</sub>= " + crossSection.elasticScatteringTMin.toFixed(1) + " MeV)"}</sub>`,
     yaxis: {
       title: { text: `dR/dT (NIU/MeV)` },
       autorange: true,
@@ -227,7 +229,7 @@ export const Boron8KEPlot = ({ boron8 }) => {
   };
   var config = {
     toImageButtonOptions: {
-      filename: "Solar-8B-ES-KE-Spectrum",
+      filename: `Solar-8B-ES-KE-Spectrum_Tmin${crossSection.elasticScatteringTMin.toFixed(1)}`,
     },
   };
   return (
@@ -249,6 +251,7 @@ export const Boron8KEPlot = ({ boron8 }) => {
 };
 
 export const Boron8SpectraPlot = ({ boron8 }) => {
+  const {crossSection} = useContext(PhysicsContext)
   const data = [
     {
       y: boron8.boron8Rate.map((x) => x * 1e1 * SECONDS_PER_YEAR * 1e32),
@@ -261,7 +264,7 @@ export const Boron8SpectraPlot = ({ boron8 }) => {
     },
   ];
   var layout = {
-    title: "<sup>8</sup>B Decay ES Rate Spectrum",
+    title: `<sup>8</sup>B Decay ES Rate Spectrum<br /><sub>${"(T<sub>min</sub>= " + crossSection.elasticScatteringTMin.toFixed(1) + " MeV)"}</sub>`,
     yaxis: {
       title: { text: `dR/dE (NIU/MeV)` },
       autorange: true,
@@ -288,7 +291,7 @@ export const Boron8SpectraPlot = ({ boron8 }) => {
   };
   var config = {
     toImageButtonOptions: {
-      filename: "Solar-8B-ES-Rate-Spectrum",
+      filename: `Solar-8B-ES-Rate-Spectrum_Tmin${crossSection.elasticScatteringTMin.toFixed(1)}`,
     },
   };
   return (

@@ -11,6 +11,10 @@ import {XSNames} from "../physics/neutrino-cross-section"
 
 export function NuSpectrumPlot({ cores, spectrum, detector, reactorLF, xaxisExtra={}, yaxisExtra={}, layoutExtra={}, func=(v) => v}) {
   const { crossSection } = useContext(PhysicsContext)
+  const isIBD = +[XSNames.IBDSV2003, XSNames.IBDVB1999].includes(
+    crossSection.crossSection
+  );
+
   const coreList = Object.values(cores);
   const closestActiveIAEACore = coreList
     .filter((core) => core.detectorAnySignal && !core.custom)
@@ -149,7 +153,7 @@ export function NuSpectrumPlot({ cores, spectrum, detector, reactorLF, xaxisExtr
     },
     yaxis: {
       range: [0, ymax * 1.05],
-      title: { text: `Rate dR/dE (NIU/MeV)<br /><sub>${crossSection.crossSection}</sub>` },
+      title: { text: `Rate dR/dE (NIU/MeV)<br /><sub>${crossSection.crossSection} ${isIBD? "": "(T<sub>min</sub>= " + crossSection.elasticScatteringTMin.toFixed(1) + " MeV)"}</sub>` },
       ...yaxisExtra
     },
     annotations: [
@@ -164,13 +168,18 @@ export function NuSpectrumPlot({ cores, spectrum, detector, reactorLF, xaxisExtr
     ],
     ...layoutExtra
   };
+  const config = { toImageButtonOptions: { width: 900, height: 500, scale: 2, filename: 'Antineutrino-Spectrum' } }
+
+  if (!isIBD){
+    config.toImageButtonOptions.filename = `Antineutrino-Spectrum_Tmin${crossSection.elasticScatteringTMin.toFixed(1)}`
+  }
   return (
     <Plot
       data={data}
       layout={layout}
       useResizeHandler={true}
       style={{ width: "100%" }}
-      config={{ toImageButtonOptions: { width: 900, height: 500, scale: 2, filename: 'Antineutrino-Spectrum' } }}
+      config={config}
     />
   );
 }
