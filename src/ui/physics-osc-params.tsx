@@ -45,7 +45,7 @@ export const PhysicsOscillationPane = () => {
                 sin<sup>2</sup><i>θ</i><sub>13</sub>
               </th>
               <th>
-                {"<"}P<sub>e</sub>{">"}
+                {"<"}P<sub>ee</sub>{">"}
               </th>
             </tr>
           </thead>
