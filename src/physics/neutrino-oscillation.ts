@@ -85,12 +85,12 @@ const defaultOscillationParams: VariableOscillationParams = {
   dmsq32Inverted: -2.497e-3,
 }
 
-interface OsilationParamsAction{
+interface OscillationParamsAction{
   arg: keyof VariableOscillationParams | keyof OscillationConfig
   value: number | MassOrdering
 }
 
-export const oscillationReducer = (state:Oscillation, action:OsilationParamsAction): Oscillation => {
+export const oscillationReducer = (state:Oscillation, action:OscillationParamsAction): Oscillation => {
   const oscillation = { ...state };
   switch (action.arg) {
     case "s2t12":
