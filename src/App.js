@@ -30,6 +30,7 @@ import {
   CDFdifferentialCrossSectionPlots,
   CDFAngularDifferentialCrossSectionPlots,
   //Input Tab
+  NeutrinoOscillationPane,
   PhysicsOscillationPane,
   PhysicsConstants,
   ParticleMasses,
@@ -284,6 +285,7 @@ function App(props) {
               </Tab>
               <Tab eventKey="input" title="Input">
                 <Visible>
+                  <NeutrinoOscillationPane />
                   <PhysicsOscillationPane />
                   <ParticleMasses />
                   <PhysicsConstants />
