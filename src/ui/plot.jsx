@@ -5,6 +5,8 @@ import { sum } from "lodash";
 
 import {PhysicsContext} from '../state'
 
+import { MassOrdering } from "../physics/neutrino-oscillation";
+
 import bins, {binCount, shiftByIBD} from "../physics/bins"
 import {XSNames} from "../physics/neutrino-cross-section"
 
@@ -138,7 +140,7 @@ export function NuSpectrumPlot({ cores, spectrum, detector, reactorLF, xaxisExtr
         : detector.current
     } (${detector.lat.toFixed(1)}N, ${detector.lon.toFixed(
       1
-    )}E, ${detector.elevation.toFixed(0)}m)<br /><sub>(${reactorLF.start.toISOString().slice(0, 7)} through ${reactorLF.end.toISOString().slice(0, 7)} avg Load Factor)</sub>`,
+    )}E, ${detector.elevation.toFixed(0)}m)<br /><sub>(${reactorLF.start.toISOString().slice(0, 7)} thru ${reactorLF.end.toISOString().slice(0, 7)} avg LF ; NuFitv5.0)</sub>`,
     showlegend: true,
     legend: {
       x: 1,
