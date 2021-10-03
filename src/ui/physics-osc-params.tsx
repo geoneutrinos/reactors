@@ -21,7 +21,7 @@ export const PhysicsOscillationPane = () => {
     <Card>
       <Card.Header>Neutrino Oscillation Parameters</Card.Header>
       <Card.Body>
-        <p>Parameter values are from Esteban, I., Gonzalez-Garcia, M., Maltoni, M. <i>et al.</i> <a href="https://link.springer.com/article/10.1007%2FJHEP09%282020%29178"><i>J. High Energ. Phys.</i> <b>2020</b>, 178 (2020)</a></p>
+        <p>Parameter values are from JHEP 09 (2020) 178 <a href="https://arxiv.org/abs/2007.14792"> arXiv:2007.14792 </a></p>
         <Table {...tableProps}>
           <thead>
             <tr>
