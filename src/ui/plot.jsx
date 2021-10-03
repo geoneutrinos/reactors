@@ -140,7 +140,7 @@ export function NuSpectrumPlot({ cores, spectrum, detector, reactorLF, xaxisExtr
         : detector.current
     } (${detector.lat.toFixed(1)}N, ${detector.lon.toFixed(
       1
-    )}E, ${detector.elevation.toFixed(0)}m)<br /><sub>(${reactorLF.start.toISOString().slice(0, 7)} thru ${reactorLF.end.toISOString().slice(0, 7)} avg LF ; NuFitv5.0)</sub>`,
+    )}E, ${detector.elevation.toFixed(0)}m)<br /><sub>(${reactorLF.start.toISOString().slice(0, 7)} thru ${reactorLF.end.toISOString().slice(0, 7)} avg LF ; Osc- NuFit v5.0 ${oscillation.massOrdering})</sub>`,
     showlegend: true,
     legend: {
       x: 1,
