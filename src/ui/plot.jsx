@@ -12,6 +12,7 @@ import {XSNames} from "../physics/neutrino-cross-section"
 
 
 export function NuSpectrumPlot({ cores, spectrum, detector, reactorLF, xaxisExtra={}, yaxisExtra={}, layoutExtra={}, func=(v) => v}) {
+  const {oscillation } = useContext(PhysicsContext)
   const { crossSection } = useContext(PhysicsContext)
   const isIBD = +[XSNames.IBDSV2003, XSNames.IBDVB1999].includes(
     crossSection.crossSection
