@@ -21,7 +21,7 @@ export const PhysicsOscillationPane = () => {
     <Card>
       <Card.Header>Neutrino Oscillation Parameters</Card.Header>
       <Card.Body>
-      <p>Parameter values are from table 14.7 in <a href="https://pdg.lbl.gov/2020/reviews/rpp2020-rev-neutrino-mixing.pdf">Particle Data Group</a></p>
+        <p>Parameter values are from JHEP 09 (2020) 178 <a href="https://arxiv.org/abs/2007.14792"> arXiv:2007.14792 </a></p>
         <Table {...tableProps}>
           <thead>
             <tr>
@@ -65,7 +65,7 @@ export const PhysicsOscillationPane = () => {
               <td>{dmsq31Inverted.toFixed(7)}</td>
               <td>{dmsq32Inverted}</td>
               <td>{s2t12.toFixed(3)}</td>
-              <td>{s2t13Inverted}</td>
+              <td>{s2t13Inverted.toFixed(5)}</td>
               <td>{averageSurvivalProbabilityInverted.toFixed(4)}</td>
             </tr>
           </tbody>

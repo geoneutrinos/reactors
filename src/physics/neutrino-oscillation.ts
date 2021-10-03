@@ -77,12 +77,12 @@ export let oscillation: Oscillation = {
 }
 
 const defaultOscillationParams: VariableOscillationParams = {
-  s2t12: 0.310,
-  dmsq21: 7.39e-5,
-  s2t13Normal:  0.02241,
-  s2t13Inverted: 0.02261,
-  dmsq32Normal: 2.449e-3,
-  dmsq32Inverted: -2.509e-3,
+  s2t12: 0.304,
+  dmsq21: 7.42e-5,
+  s2t13Normal:  0.02221,
+  s2t13Inverted: 0.02240,
+  dmsq31Normal: 2.514e-3,
+  dmsq32Inverted: -2.497e-3,
 }
 
 interface OsilationParamsAction{
@@ -105,10 +105,10 @@ export const oscillationReducer = (state:Oscillation, action:OsilationParamsActi
     case "dmsq21":
       {
         let dmsq21 = action.value as number;
-        let { dmsq32Normal, dmsq32Inverted } = oscillation;
+        let { dmsq31Normal, dmsq32Inverted } = oscillation;
 
         oscillation.dmsq21 = dmsq21;
-        oscillation.dmsq31Normal = dmsq32Normal + dmsq21;
+        oscillation.dmsq32Normal = dmsq31Normal - dmsq21;
         oscillation.dmsq31Inverted = dmsq32Inverted + dmsq21;
       }
       break;
@@ -130,12 +130,12 @@ export const oscillationReducer = (state:Oscillation, action:OsilationParamsActi
       }
       break;
 
-    case "dmsq32Normal":
+    case "dmsq31Normal":
       {
-        let dmsq32Normal = action.value as number;
+        let dmsq31Normal = action.value as number;
         let { dmsq21 } = oscillation;
-        oscillation.dmsq32Normal = dmsq32Normal;
-        oscillation.dmsq31Normal = dmsq32Normal + dmsq21;
+        oscillation.dmsq31Normal = dmsq31Normal;
+        oscillation.dmsq32Normal = dmsq31Normal - dmsq21;
       }
       break;
 
