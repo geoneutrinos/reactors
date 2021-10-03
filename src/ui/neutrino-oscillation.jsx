@@ -9,7 +9,7 @@ export const NeutrinoOscillationPane = () => {
 
     const MassOrderingInput = (
     <Form.Group controlId="neutrinoMassOrder">
-      <Form.Label>Neutrino Mass Ordering</Form.Label>
+      <Form.Label>Neutrino Mass Ordering- Normal(NO) or Inverted(IO)</Form.Label>
       <Form.Control
         as="select"
         onChange={(event) => oscillationDispatch({arg:"massOrdering", value:event.target.value})}

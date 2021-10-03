@@ -2,8 +2,8 @@ import { memoize } from 'lodash';
 import bins from "./bins"
 
 export enum MassOrdering {
-    Inverted = "Inverted-IO",
-    Normal = "Normal-NO",
+    Inverted = "IO",
+    Normal = "NO",
 }
 
 
