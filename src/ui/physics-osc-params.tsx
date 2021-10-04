@@ -22,7 +22,7 @@ export const PhysicsOscillationPane = () => {
       <Card.Header>Neutrino Oscillation Parameters</Card.Header>
       <Card.Body>
         <p>Values are from NuFit v5.0 w/o SK atmnu: JHEP 09 (2020) 178 <a href="https://arxiv.org/abs/2007.14792"> arXiv:2007.14792 </a></p>
-        <Table {...tableProps}>
+        <Table {...tableProps} className="text-right">
           <thead>
             <tr>
               <th></th>
@@ -52,18 +52,18 @@ export const PhysicsOscillationPane = () => {
           <tbody>
             <tr>
               <td>NO</td>
-              <td>{dmsq21}</td>
-              <td>{dmsq31Normal.toFixed(7)}</td>
-              <td>{dmsq32Normal}</td>
+              <td>{dmsq21.toExponential(2)}</td>
+              <td>{dmsq31Normal.toExponential(4)}</td>
+              <td>{dmsq32Normal.toExponential(4)}</td>
               <td>{s2t12.toFixed(3)}</td>
               <td>{s2t13Normal}</td>
               <td>{averageSurvivalProbabilityNormal.toFixed(4)}</td>
             </tr>
             <tr>
               <td>IO</td>
-              <td>{dmsq21}</td>
-              <td>{dmsq31Inverted.toFixed(7)}</td>
-              <td>{dmsq32Inverted}</td>
+              <td>{dmsq21.toExponential(2)}</td>
+              <td>{dmsq31Inverted.toExponential(4)}</td>
+              <td>{dmsq32Inverted.toExponential(4)}</td>
               <td>{s2t12.toFixed(3)}</td>
               <td>{s2t13Inverted.toFixed(5)}</td>
               <td>{averageSurvivalProbabilityInverted.toFixed(4)}</td>
