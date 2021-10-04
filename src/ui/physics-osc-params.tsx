@@ -26,15 +26,15 @@ export const PhysicsOscillationPane = () => {
           <thead>
             <tr>
               <th></th>
-              <th align='right'>
+              <th style="text-align:right">
                δ<i>m</i><sup>2</sup>
                 <sub>21</sub> (eV<sup>2</sup>)
               </th>
-              <th align='right'>
+              <th style="text-align:right">
                 δ<i>m</i><sup>2</sup>
                 <sub>31</sub> (eV<sup>2</sup>)
               </th>
-              <th align='right'>
+              <th style="text-align:right">
                 δ<i>m</i><sup>2</sup>
                 <sub>32</sub> (eV<sup>2</sup>)
               </th>
