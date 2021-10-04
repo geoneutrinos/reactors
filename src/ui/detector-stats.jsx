@@ -181,7 +181,7 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
               <td>=</td>
                 <td>
                   {customClosestNIU.toFixed(1)} {NIU} <small> {" ("}
-                  {((customClosestNIU / totalCoreSignal) * 100).toFixed(1)} % of total cores) </small>
+                  {((customClosestNIU / totalCoreSignal) * 100).toFixed(1)} % of <i>R</i><sub>reac</sub> + <i>R</i><sub>custom</sub>) </small>
                 </td>
               </tr>
               <tr>
