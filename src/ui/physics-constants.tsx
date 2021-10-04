@@ -9,7 +9,7 @@ export const PhysicsConstants = () => {
     <Card>
       <Card.Header>Physical Constants</Card.Header>
       <Card.Body>
-        <p>The listed values are from the Particle Data Group <a href="https://pdg.lbl.gov/2020/reviews/rpp2020-rev-phys-constants.pdf">at this link</a> except for the weak mixing angle, which is taken from Erler, J. and Ramsey-Musolf, M.J. (2005) PRD 72, 073003.</p>
+        <p>Values are from the Particle Data Group <a href="https://pdg.lbl.gov/2020/reviews/rpp2020-rev-phys-constants.pdf">at this link</a> except for the weak mixing angle, which is taken from Erler, J. and Ramsey-Musolf, M.J. (2005) PRD 72, 073003.</p>
         <Table>
             <thead>
               <tr>
