@@ -15,7 +15,7 @@ import {
 } from "../physics/neutrino-oscillation";
 
 export const PhysicsOscillationPane = () => {
-  const tableProps = { size: "sm", className="text-right" };
+  const tableProps = { size: "sm", className:"text-right" };
 
   return (
     <Card>
