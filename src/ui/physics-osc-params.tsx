@@ -15,14 +15,14 @@ import {
 } from "../physics/neutrino-oscillation";
 
 export const PhysicsOscillationPane = () => {
-  const tableProps = { size: "sm", className="text-right" };
+  const tableProps = { size: "sm" };
 
   return (
     <Card>
       <Card.Header>Neutrino Oscillation Parameters</Card.Header>
       <Card.Body>
         <p>Values are from NuFit v5.0 w/o SK atmnu: JHEP 09 (2020) 178 <a href="https://arxiv.org/abs/2007.14792"> arXiv:2007.14792 </a></p>
-        <Table {...tableProps}>
+        <Table {...tableProps, className="text-right"}>
           <thead>
             <tr>
               <th></th>
