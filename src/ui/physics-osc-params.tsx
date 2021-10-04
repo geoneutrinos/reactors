@@ -53,8 +53,8 @@ export const PhysicsOscillationPane = () => {
             <tr>
               <td>NO</td>
               <td>{dmsq21.toExponential(2)}</td>
-              <td>align='right' {dmsq31Normal.toExponential(4)}</td>
-              <td>align='right' {dmsq32Normal.toExponential(4)}</td>
+              <td align='right'> {dmsq31Normal.toExponential(4)}</td>
+              <td align='right'> {dmsq32Normal.toExponential(4)}</td>
               <td>{s2t12.toFixed(3)}</td>
               <td>{s2t13Normal}</td>
               <td>{averageSurvivalProbabilityNormal.toFixed(4)}</td>
@@ -62,8 +62,8 @@ export const PhysicsOscillationPane = () => {
             <tr>
               <td>IO</td>
               <td>{dmsq21.toExponential(2)}</td>
-              <td>align='right' {dmsq31Inverted.toExponential(4)}</td>
-              <td>align='right' {dmsq32Inverted.toExponential(4)}</td>
+              <td align='right'> {dmsq31Inverted.toExponential(4)}</td>
+              <td align='right'> {dmsq32Inverted.toExponential(4)}</td>
               <td>{s2t12.toFixed(3)}</td>
               <td>{s2t13Inverted.toFixed(5)}</td>
               <td>{averageSurvivalProbabilityInverted.toFixed(4)}</td>
