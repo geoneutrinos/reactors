@@ -152,7 +152,7 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
               <td>=</td>
               <td>
                 {closestDistace > 100000 ? "N/A" : Math.round(closestDistace) === closestDistace? closestDistace.toFixed(0): closestDistace.toFixed(2)} km
-                ({closestName})
+                <small> ({closestName}) </small>
               </td>
             </tr>
           </tbody>
@@ -191,7 +191,8 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
                 </td>
               <td>=</td>
                 <td>
-                  {Math.round(customClosestDistance) === customClosestDistance? customClosestDistance.toFixed(0): customClosestDistance.toFixed(2)} km ({customClosestName})
+                  {Math.round(customClosestDistance) === customClosestDistance? customClosestDistance.toFixed(0): customClosestDistance.toFixed(2)} km 
+                  <small> ({customClosestName}) </small>
                 </td>
               </tr>
             </tbody>
