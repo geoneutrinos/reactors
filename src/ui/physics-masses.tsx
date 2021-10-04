@@ -11,7 +11,7 @@ export const ParticleMasses = () => {
     <Card>
       <Card.Header>Particle Masses / IBD Threshold</Card.Header>
       <Card.Body>
-        <p>Listed mass values are from the Particle Data Group <a href="https://pdg.lbl.gov/2020/reviews/rpp2020-rev-phys-constants.pdf">at this link</a>.</p>
+        <p>Mass values are from the Particle Data Group <a href="https://pdg.lbl.gov/2020/reviews/rpp2020-rev-phys-constants.pdf">at this link</a>.</p>
         <Table>
             <thead>
               <tr>
