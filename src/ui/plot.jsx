@@ -5,8 +5,6 @@ import { sum } from "lodash";
 
 import {PhysicsContext} from '../state'
 
-import { MassOrdering } from "../physics/neutrino-oscillation";
-
 import bins, {binCount, shiftByIBD} from "../physics/bins"
 import {XSNames} from "../physics/neutrino-cross-section"
 
