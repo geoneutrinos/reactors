@@ -15,7 +15,7 @@ import {
 } from "../physics/neutrino-oscillation";
 
 export const PhysicsOscillationPane = () => {
-  const tableProps = { size: "sm" };
+  const tableProps = { size: "sm", className="text-right" };
 
   return (
     <Card>
@@ -26,15 +26,15 @@ export const PhysicsOscillationPane = () => {
           <thead>
             <tr>
               <th></th>
-              <th className="text-right">
+              <th>
                δ<i>m</i><sup>2</sup>
                 <sub>21</sub> (eV<sup>2</sup>)
               </th>
-              <th className="text-right">
+              <th>
                 δ<i>m</i><sup>2</sup>
                 <sub>31</sub> (eV<sup>2</sup>)
               </th>
-              <th className="text-right">
+              <th>
                 δ<i>m</i><sup>2</sup>
                 <sub>32</sub> (eV<sup>2</sup>)
               </th>
@@ -52,18 +52,18 @@ export const PhysicsOscillationPane = () => {
           <tbody>
             <tr>
               <td>NO</td>
-              <td className="text-right">{dmsq21.toExponential(2)}</td>
-              <td className="text-right">{dmsq31Normal.toExponential(4)}</td>
-              <td className="text-right">{dmsq32Normal.toExponential(4)}</td>
+              <td>{dmsq21.toExponential(2)}</td>
+              <td>{dmsq31Normal.toExponential(4)}</td>
+              <td>{dmsq32Normal.toExponential(4)}</td>
               <td>{s2t12.toFixed(3)}</td>
               <td>{s2t13Normal}</td>
               <td>{averageSurvivalProbabilityNormal.toFixed(4)}</td>
             </tr>
             <tr>
               <td>IO</td>
-              <td className="text-right">{dmsq21.toExponential(2)}</td>
-              <td className="text-right">{dmsq31Inverted.toExponential(4)}</td>
-              <td className="text-right">{dmsq32Inverted.toExponential(4)}</td>
+              <td>{dmsq21.toExponential(2)}</td>
+              <td>{dmsq31Inverted.toExponential(4)}</td>
+              <td>{dmsq32Inverted.toExponential(4)}</td>
               <td>{s2t12.toFixed(3)}</td>
               <td>{s2t13Inverted.toFixed(5)}</td>
               <td>{averageSurvivalProbabilityInverted.toFixed(4)}</td>
