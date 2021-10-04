@@ -140,8 +140,8 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
               </td>
               <td>=</td>
               <td>
-                {closestNIU.toFixed(1)} {NIU} (
-                {((closestNIU / totalNIU) * 100).toFixed(1)} % of total)
+                {closestNIU.toFixed(1)} {NIU} <small> (
+                {((closestNIU / iaeaCoreSignal) * 100).toFixed(1)} % of <i>R</i><sub>reac</sub>) </small>
               </td>
             </tr>
             <tr>
@@ -152,7 +152,7 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
               <td>=</td>
               <td>
                 {closestDistace > 100000 ? "N/A" : Math.round(closestDistace) === closestDistace? closestDistace.toFixed(0): closestDistace.toFixed(2)} km
-                ({closestName})
+                <small> ({closestName}) </small>
               </td>
             </tr>
           </tbody>
@@ -180,8 +180,8 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
                 </td>
               <td>=</td>
                 <td>
-                  {customClosestNIU.toFixed(1)} {NIU}{" ("}
-                  {((customClosestNIU / totalNIU) * 100).toFixed(1)} % of total)
+                  {customClosestNIU.toFixed(1)} {NIU} <small> {" ("}
+                  {((customClosestNIU / totalCoreSignal) * 100).toFixed(1)} % of <i>R</i><sub>reac</sub> + <i>R</i><sub>custom</sub>) </small>
                 </td>
               </tr>
               <tr>
@@ -191,7 +191,8 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
                 </td>
               <td>=</td>
                 <td>
-                  {Math.round(customClosestDistance) === customClosestDistance? customClosestDistance.toFixed(0): customClosestDistance.toFixed(2)} km ({customClosestName})
+                  {Math.round(customClosestDistance) === customClosestDistance? customClosestDistance.toFixed(0): customClosestDistance.toFixed(2)} km 
+                  <small> ({customClosestName}) </small>
                 </td>
               </tr>
             </tbody>
@@ -232,7 +233,7 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
               <td>=</td>
                 <td>
                   <Num v={geo_crustNIU} p={1} /> {NIU} <small> (
-                {((geo_crustNIU / geoTotalNIU) * 100).toFixed(1)} % of geo) </small>
+                {((geo_crustNIU / geoTotalNIU) * 100).toFixed(1)} % of <i>R</i><sub>geo</sub>) </small>
                 </td>
                 <td>
                   <small> (
@@ -255,7 +256,7 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
               <td>=</td>
                 <td>
                   <Num v={geo_mantleNIU} p={1} /> {NIU} <small> (
-                {((geo_mantleNIU / geoTotalNIU) * 100).toFixed(1)} % of geo) </small>
+                {((geo_mantleNIU / geoTotalNIU) * 100).toFixed(1)} % of <i>R</i><sub>geo</sub>) </small>
                 </td>
                 <td>
                   <small> (
