@@ -9,11 +9,11 @@ export const PhysicsConstants = () => {
     <Card>
       <Card.Header>Physical Constants</Card.Header>
       <Card.Body>
-        <p>Values are from the Particle Data Group <a href="https://pdg.lbl.gov/2020/reviews/rpp2020-rev-phys-constants.pdf">at this link</a> except for the weak mixing angle, which is taken from Erler, J. and Ramsey-Musolf, M.J. (2005) PRD 72, 073003.</p>
+        <p>Values are from the Particle Data Group <a href="https://pdg.lbl.gov/2020/reviews/rpp2020-rev-phys-constants.pdf">at this link</a> except for sin<sup>2</sup> <i>θ</i><sub>W</sub>, which is taken from Erler, J. and Ramsey-Musolf, M.J. (2005) PRD 72, 073003.</p>
         <Table>
             <thead>
               <tr>
-                <th><i>G<sub>F</sub></i>/(<i>ħc</i>)<sup>3</sup> (GeV<sup>-2</sup>)</th>
+                <th><i>G<sub>F</sub></i> / (<i>ħc</i>)<sup>3</sup> (GeV<sup>-2</sup>)</th>
                 <th><i>ħc</i> (MeV cm)</th>
                 <th>sin<sup>2</sup> <i>θ</i><sub>W</sub></th>
               </tr>
