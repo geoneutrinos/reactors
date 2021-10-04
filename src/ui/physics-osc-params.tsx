@@ -52,7 +52,7 @@ export const PhysicsOscillationPane = () => {
           <tbody>
             <tr>
               <td>NO</td>
-              <td>{dmsq21}</td>
+              <td>{dmsq21.toExponential(2)}</td>
               <td>{dmsq31Normal.toFixed(7)}</td>
               <td>{dmsq32Normal}</td>
               <td>{s2t12.toFixed(3)}</td>
@@ -61,7 +61,7 @@ export const PhysicsOscillationPane = () => {
             </tr>
             <tr>
               <td>IO</td>
-              <td>{dmsq21}</td>
+              <td>{dmsq21.toExponential(2)}</td>
               <td>{dmsq31Inverted.toFixed(7)}</td>
               <td>{dmsq32Inverted}</td>
               <td>{s2t12.toFixed(3)}</td>
