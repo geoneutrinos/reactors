@@ -39,7 +39,11 @@ export const NeutrinoOscillationPane = () => {
                 P_{\mathrm{e}x}(L,E_{{\nu}_\mathrm{e}})=\cos^4\theta_{13}\sin^22\theta_{12}\sin^2(1.27\delta m^2_{21}L/E_{{\nu}_\mathrm{e}})\,\\
                 +\cos^2\theta_{12}\sin^22\theta_{13}\sin^2(1.27\delta m^2_{31}L/E_{{\nu}_\mathrm{e}})\,\\
                 +\sin^2\theta_{12}\sin^22\theta_{13}\sin^2(1.27\delta m^2_{32}L/E_{{\nu}_\mathrm{e}}),\\
-                \end{split}`}</Node>{" "}
+                \end{split}`}</Node> where {" "}
+              <Node inline>{String.raw`\delta m_{ji}^2=m_j^2-m_i^2`}</Node> is the neutrino mass-squared difference in eV<sup>2</sup> and {" "}
+              <Node inline>{String.raw`\theta_{12}`}</Node>, {" "}
+              <Node inline>{String.raw`\theta_{13}`}</Node>, are the solar, reactor mixing angles, respectively. The complementary probability,{" "}
+              <Node inline>{String.raw`P_\mathrm{ee}(L,E_{{\nu}_\mathrm{e}}) = 1 - P_{\mathrm{e}x}`}</Node>, gauges survival of electron flavor.
             </p>
           </div>
         </Provider>
