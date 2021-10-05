@@ -316,7 +316,7 @@ export const AngularDifferentialCrossSectionPlots = () => {
       line: {dash: 'dash',},
     },
     {
-      y: cosTbins.map((cosT) => differentialCrossSectionElasticScatteringAngular(10, cosT, NeutrinoType.electronAntineutino)),
+      y: cosTbins.map((cosT) => differentialCrossSectionElasticScatteringAngular(10, cosT, NeutrinoType.electronAntineutrino)),
       x: cosTbins,
       name: "ν̅<sub>e</sub> 10 MeV",
       type: "scatter",
@@ -325,7 +325,7 @@ export const AngularDifferentialCrossSectionPlots = () => {
       marker: { color: "orange" },
     },
     {
-      y: cosTbins.map((cosT) => differentialCrossSectionElasticScatteringAngular(7, cosT, NeutrinoType.electronAntineutino)),
+      y: cosTbins.map((cosT) => differentialCrossSectionElasticScatteringAngular(7, cosT, NeutrinoType.electronAntineutrino)),
       x: cosTbins,
       name: "ν̅<sub>e</sub> 7 MeV",
       type: "scatter",
@@ -334,7 +334,7 @@ export const AngularDifferentialCrossSectionPlots = () => {
       marker: { color: "red" },
     },
     {
-      y: cosTbins.map((cosT) => differentialCrossSectionElasticScatteringAngular(4, cosT, NeutrinoType.electronAntineutino)),
+      y: cosTbins.map((cosT) => differentialCrossSectionElasticScatteringAngular(4, cosT, NeutrinoType.electronAntineutrino)),
       x: cosTbins,
       name: "ν̅<sub>e</sub> 4 MeV",
       type: "scatter",
@@ -343,7 +343,7 @@ export const AngularDifferentialCrossSectionPlots = () => {
       marker: { color: "blue" },
     },
     {
-      y: cosTbins.map((cosT) => differentialCrossSectionElasticScatteringAngular(1, cosT, NeutrinoType.electronAntineutino)),
+      y: cosTbins.map((cosT) => differentialCrossSectionElasticScatteringAngular(1, cosT, NeutrinoType.electronAntineutrino)),
       x: cosTbins,
       name: "ν̅<sub>e</sub> 1 MeV",
       type: "scatter",
@@ -443,7 +443,7 @@ export const CDFAngularDifferentialCrossSectionPlots = () => {
       line: {dash: 'dash',},
     },
     {
-      y: cumulativeFunc(cosTbins, differentialCrossSectionElasticScatteringAngular, 10, NeutrinoType.electronAntineutino),
+      y: cumulativeFunc(cosTbins, differentialCrossSectionElasticScatteringAngular, 10, NeutrinoType.electronAntineutrino),
       x: cosTbins,
       name: "ν̅<sub>e</sub> 10 MeV",
       type: "scatter",
@@ -452,7 +452,7 @@ export const CDFAngularDifferentialCrossSectionPlots = () => {
       marker: { color: "orange" },
     },
     {
-      y: cumulativeFunc(cosTbins, differentialCrossSectionElasticScatteringAngular, 7, NeutrinoType.electronAntineutino),
+      y: cumulativeFunc(cosTbins, differentialCrossSectionElasticScatteringAngular, 7, NeutrinoType.electronAntineutrino),
       x: cosTbins,
       name: "ν̅<sub>e</sub> 7 MeV",
       type: "scatter",
@@ -461,7 +461,7 @@ export const CDFAngularDifferentialCrossSectionPlots = () => {
       marker: { color: "red" },
     },
     {
-      y: cumulativeFunc(cosTbins, differentialCrossSectionElasticScatteringAngular, 4, NeutrinoType.electronAntineutino),
+      y: cumulativeFunc(cosTbins, differentialCrossSectionElasticScatteringAngular, 4, NeutrinoType.electronAntineutrino),
       x: cosTbins,
       name: "ν̅<sub>e</sub> 4 MeV",
       type: "scatter",
@@ -470,7 +470,7 @@ export const CDFAngularDifferentialCrossSectionPlots = () => {
       marker: { color: "blue" },
     },
     {
-      y: cumulativeFunc(cosTbins, differentialCrossSectionElasticScatteringAngular, 1, NeutrinoType.electronAntineutino),
+      y: cumulativeFunc(cosTbins, differentialCrossSectionElasticScatteringAngular, 1, NeutrinoType.electronAntineutrino),
       x: cosTbins,
       name: "ν̅<sub>e</sub> 1 MeV",
       type: "scatter",
@@ -569,7 +569,7 @@ export const DifferentialCrossSectionPlots = () => {
       line: {dash: 'dash',},
     },
     {
-      y: bins.filter(Te => Te < TEMax(10)).map((Te) => differentialCrossSectionElasticScattering(10, Te, NeutrinoType.electronAntineutino)),
+      y: bins.filter(Te => Te < TEMax(10)).map((Te) => differentialCrossSectionElasticScattering(10, Te, NeutrinoType.electronAntineutrino)),
       x: bins.filter(Te => Te < TEMax(10)),
       name: "ν̅<sub>e</sub> 10 MeV",
       type: "scatter",
@@ -578,7 +578,7 @@ export const DifferentialCrossSectionPlots = () => {
       marker: { color: "orange" },
     },
     {
-      y: bins.filter(Te => Te < TEMax(7)).map((Te) => differentialCrossSectionElasticScattering(7, Te, NeutrinoType.electronAntineutino)),
+      y: bins.filter(Te => Te < TEMax(7)).map((Te) => differentialCrossSectionElasticScattering(7, Te, NeutrinoType.electronAntineutrino)),
       x: bins.filter(Te => Te < TEMax(7)),
       name: "ν̅<sub>e</sub> 7 MeV",
       type: "scatter",
@@ -587,7 +587,7 @@ export const DifferentialCrossSectionPlots = () => {
       marker: { color: "red" },
     },
     {
-      y: bins.filter(Te => Te < TEMax(4)).map((Te) => differentialCrossSectionElasticScattering(4, Te, NeutrinoType.electronAntineutino)),
+      y: bins.filter(Te => Te < TEMax(4)).map((Te) => differentialCrossSectionElasticScattering(4, Te, NeutrinoType.electronAntineutrino)),
       x: bins.filter(Te => Te < TEMax(4)),
       name: "ν̅<sub>e</sub> 4 MeV",
       type: "scatter",
@@ -596,7 +596,7 @@ export const DifferentialCrossSectionPlots = () => {
       marker: { color: "blue" },
     },
     {
-      y: bins.filter(Te => Te < TEMax(1)).map((Te) => differentialCrossSectionElasticScattering(1, Te, NeutrinoType.electronAntineutino)),
+      y: bins.filter(Te => Te < TEMax(1)).map((Te) => differentialCrossSectionElasticScattering(1, Te, NeutrinoType.electronAntineutrino)),
       x: bins.filter(Te => Te < TEMax(1)),
       name: "ν̅<sub>e</sub> 1 MeV",
       type: "scatter",
@@ -697,7 +697,7 @@ export const CDFdifferentialCrossSectionPlots = () => {
       line: {dash: 'dash',},
     },
     {
-      y: cumulativeFunc(bins.filter(Te => Te < TEMax(10)), differentialCrossSectionElasticScattering, 10, NeutrinoType.electronAntineutino),
+      y: cumulativeFunc(bins.filter(Te => Te < TEMax(10)), differentialCrossSectionElasticScattering, 10, NeutrinoType.electronAntineutrino),
       x: bins.filter(Te => Te < TEMax(10)),
       name: "ν̅<sub>e</sub> 10 MeV",
       type: "scatter",
@@ -706,7 +706,7 @@ export const CDFdifferentialCrossSectionPlots = () => {
       marker: { color: "orange" },
     },
     {
-      y: cumulativeFunc(bins.filter(Te => Te < TEMax(7)), differentialCrossSectionElasticScattering, 7, NeutrinoType.electronAntineutino),
+      y: cumulativeFunc(bins.filter(Te => Te < TEMax(7)), differentialCrossSectionElasticScattering, 7, NeutrinoType.electronAntineutrino),
       x: bins.filter(Te => Te < TEMax(7)),
       name: "ν̅<sub>e</sub> 7 MeV",
       type: "scatter",
@@ -715,7 +715,7 @@ export const CDFdifferentialCrossSectionPlots = () => {
       marker: { color: "red" },
     },
     {
-      y: cumulativeFunc(bins.filter(Te => Te < TEMax(4)), differentialCrossSectionElasticScattering, 4, NeutrinoType.electronAntineutino),
+      y: cumulativeFunc(bins.filter(Te => Te < TEMax(4)), differentialCrossSectionElasticScattering, 4, NeutrinoType.electronAntineutrino),
       x: bins.filter(Te => Te < TEMax(4)),
       name: "ν̅<sub>e</sub> 4 MeV",
       type: "scatter",
@@ -724,7 +724,7 @@ export const CDFdifferentialCrossSectionPlots = () => {
       marker: { color: "blue" },
     },
     {
-      y: cumulativeFunc(bins.filter(Te => Te < TEMax(1)), differentialCrossSectionElasticScattering, 1, NeutrinoType.electronAntineutino),
+      y: cumulativeFunc(bins.filter(Te => Te < TEMax(1)), differentialCrossSectionElasticScattering, 1, NeutrinoType.electronAntineutrino),
       x: bins.filter(Te => Te < TEMax(1)),
       name: "ν̅<sub>e</sub> 1 MeV",
       type: "scatter",
