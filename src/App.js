@@ -42,6 +42,8 @@ import {
   //solar tab
   AngularDifferentialCrossSectionPlotsNeutrinos,
   DifferentialCrossSectionPlotsNeutrinos,
+  CDFdifferentialCrossSectionPlotsNeutrinos,
+  CDFAngularDifferentialCrossSectionPlotsNeutrinos,
   Boron8KEPlot,
   Boron8SpectraPlot,
   AnalemmaPlot,
@@ -270,7 +272,9 @@ function App(props) {
                   <Boron8KEPlot boron8={boron8} />
                   <CrossSectionPlotsNormal />
                   <DifferentialCrossSectionPlotsNeutrinos />
+                  <CDFdifferentialCrossSectionPlotsNeutrinos />
                   <AngularDifferentialCrossSectionPlotsNeutrinos />
+                  <CDFAngularDifferentialCrossSectionPlotsNeutrinos />
                 </Visible>
               </Tab>
               <Tab eventKey="ibd/es" title="IBD/ES">
