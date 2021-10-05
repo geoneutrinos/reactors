@@ -200,7 +200,7 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
         </div>
         <div>
           <hr />
-          <h6>Geoneutrinos <small>(Crust prediction plus user-defined Mantle model. See GeoNu tab.)</small></h6>
+          <h6>Geoneutrinos <small>(Predicted Crust flux and user-defined Mantle flux. See GeoNu tab.)</small></h6>
           <Table {...tableProps}>
             <tbody>
               <tr>
