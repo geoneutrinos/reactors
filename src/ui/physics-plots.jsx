@@ -400,6 +400,132 @@ export const AngularDifferentialCrossSectionPlots = () => {
   );
 }
 
+export const CDFAngularDifferentialCrossSectionPlotsNeutrinos = () => {
+  const data = [
+    {
+      y: cumulativeFunc(cosTbins, differentialCrossSectionElasticScatteringAngular, 10,NeutrinoType.muTauNeutrino),
+      x: cosTbins,
+      name: "ν<sub>x</sub> 10 MeV",
+      type: "scatter",
+      mode: "lines",
+      fill: "none",
+      marker: { color: "orange" },
+      line: {dash: 'dash',},
+    },
+    {
+      y: cumulativeFunc(cosTbins, differentialCrossSectionElasticScatteringAngular,7,NeutrinoType.muTauNeutrino),
+      x: cosTbins,
+      name: "ν<sub>x</sub> 7 MeV",
+      type: "scatter",
+      mode: "lines",
+      fill: "none",
+      marker: { color: "red" },
+      line: {dash: 'dash',},
+    },
+    {
+      y: cumulativeFunc(cosTbins,differentialCrossSectionElasticScatteringAngular, 4, NeutrinoType.muTauNeutrino),
+      x: cosTbins,
+      name: "ν<sub>x</sub> 4 MeV",
+      type: "scatter",
+      mode: "lines",
+      fill: "none",
+      marker: { color: "blue" },
+      line: {dash: 'dash',},
+    },
+    {
+      y: cumulativeFunc(cosTbins, differentialCrossSectionElasticScatteringAngular, 1, NeutrinoType.muTauNeutrino),
+      x: cosTbins,
+      name: "ν<sub>x</sub> 1 MeV",
+      type: "scatter",
+      mode: "lines",
+      fill: "none",
+      marker: { color: "green" },
+      line: {dash: 'dash',},
+    },
+    {
+      y: cumulativeFunc(cosTbins, differentialCrossSectionElasticScatteringAngular, 10, NeutrinoType.electronNeutrino),
+      x: cosTbins,
+      name: "ν<sub>e</sub> 10 MeV",
+      type: "scatter",
+      mode: "lines",
+      fill: "none",
+      marker: { color: "orange" },
+    },
+    {
+      y: cumulativeFunc(cosTbins, differentialCrossSectionElasticScatteringAngular, 7, NeutrinoType.electronNeutrino),
+      x: cosTbins,
+      name: "ν<sub>e</sub> 7 MeV",
+      type: "scatter",
+      mode: "lines",
+      fill: "none",
+      marker: { color: "red" },
+    },
+    {
+      y: cumulativeFunc(cosTbins, differentialCrossSectionElasticScatteringAngular, 4, NeutrinoType.electronNeutrino),
+      x: cosTbins,
+      name: "ν<sub>e</sub> 4 MeV",
+      type: "scatter",
+      mode: "lines",
+      fill: "none",
+      marker: { color: "blue" },
+    },
+    {
+      y: cumulativeFunc(cosTbins, differentialCrossSectionElasticScatteringAngular, 1, NeutrinoType.electronNeutrino),
+      x: cosTbins,
+      name: "ν<sub>e</sub> 1 MeV",
+      type: "scatter",
+      mode: "lines",
+      fill: "none",
+      marker: { color: "green" },
+    },
+  ]
+  const layout = {
+    title: "ES Cumulative Differential Cross Section- cosθ",
+    yaxis: {
+      title: { text: `P(cosθ≤cosϑ)` },
+      autorange: true
+    },
+    xaxis: {
+      title: { text: `cosθ` },
+    },
+    autosize: true,
+    legend: {
+      x: 1,
+      xanchor: "left",
+      y: 1,
+    },
+    annotations: [
+      {
+        showarrow: false,
+        text: "geoneutrinos.org",
+        x: 1.1,
+        xref: "paper",
+        y: -0.15,
+        yref: "paper",
+      },
+    ],
+  };
+  var config = {
+    toImageButtonOptions: {
+      filename: 'CDF-ES-neutrinos-dsigma/dcos(theta)'
+    }
+  };
+  return (
+    <Card>
+      <Card.Header>ES Cumulative Differential Cross Section- cosθ</Card.Header>
+      <Card.Body>
+        <Plot
+          useResizeHandler={true}
+          style={{ width: "100%" }}
+          data={data} 
+          layout={layout}
+          config={config}
+        />
+      </Card.Body>
+    </Card>
+  );
+}
+
 export const CDFAngularDifferentialCrossSectionPlots = () => {
   const data = [
     {
@@ -727,6 +853,133 @@ export const CDFdifferentialCrossSectionPlots = () => {
       y: cumulativeFunc(bins.filter(Te => Te < TEMax(1)), differentialCrossSectionElasticScattering, 1, NeutrinoType.electronAntineutrino),
       x: bins.filter(Te => Te < TEMax(1)),
       name: "ν̅<sub>e</sub> 1 MeV",
+      type: "scatter",
+      mode: "lines",
+      fill: "none",
+      marker: { color: "green" },
+    },
+  ]
+  const layout = {
+    title: "ES Cumulative Differential Cross Section- T<sub>e</sub>",
+    yaxis: {
+      title: { text: `P(T<sub>e</sub>≤t)` },
+      autorange: true
+    },
+    xaxis: {
+      title: { text: `T<sub>e</sub> (MeV)` },
+    },
+    autosize: true,
+    legend: {
+      x: 1,
+      xanchor: "left",
+      y: 1,
+    },
+    annotations: [
+      {
+        showarrow: false,
+        text: "geoneutrinos.org",
+        x: 1.1,
+        xref: "paper",
+        y: -0.15,
+        yref: "paper",
+      },
+    ],
+  };
+  var config = {
+    toImageButtonOptions: {
+      filename: 'CDF-ES-antinus-dsigma/dTe'
+    }
+  };
+  return (
+    <Card>
+      <Card.Header>ES Cumulative Differential Cross Section- T<sub>e</sub></Card.Header>
+      <Card.Body>
+        <Plot
+          useResizeHandler={true}
+          style={{ width: "100%" }}
+          data={data} 
+          layout={layout}
+          config={config}
+        />
+      </Card.Body>
+    </Card>
+  );
+
+}
+
+export const CDFdifferentialCrossSectionPlotsNeutrinos = () => {
+  const data = [
+    {
+      y: cumulativeFunc(bins.filter(Te => Te < TEMax(10)),differentialCrossSectionElasticScattering, 10,NeutrinoType.muTauNeutrino),
+      x: bins.filter(Te => Te < TEMax(10)),
+      name: "ν<sub>x</sub> 10 MeV",
+      type: "scatter",
+      mode: "lines",
+      fill: "none",
+      marker: { color: "orange" },
+      line: {dash: 'dash',},
+    },
+    {
+      y: cumulativeFunc(bins.filter(Te => Te < TEMax(7)),differentialCrossSectionElasticScattering,7,NeutrinoType.muTauNeutrino),
+      x: bins.filter(Te => Te < TEMax(7)),
+      name: "ν<sub>x</sub> 7 MeV",
+      type: "scatter",
+      mode: "lines",
+      fill: "none",
+      marker: { color: "red" },
+      line: {dash: 'dash',},
+    },
+    {
+      y: cumulativeFunc(bins.filter(Te => Te < TEMax(4)), differentialCrossSectionElasticScattering,4, NeutrinoType.muTauNeutrino),
+      x: bins.filter(Te => Te < TEMax(4)),
+      name: "ν<sub>x</sub> 4 MeV",
+      type: "scatter",
+      mode: "lines",
+      fill: "none",
+      marker: { color: "blue" },
+      line: {dash: 'dash',},
+    },
+    {
+      y: cumulativeFunc(bins.filter(Te => Te < TEMax(1)), differentialCrossSectionElasticScattering,1, NeutrinoType.muTauNeutrino),
+      x: bins.filter(Te => Te < TEMax(1)),
+      name: "ν<sub>x</sub> 1 MeV",
+      type: "scatter",
+      mode: "lines",
+      fill: "none",
+      marker: { color: "green" },
+      line: {dash: 'dash',},
+    },
+    {
+      y: cumulativeFunc(bins.filter(Te => Te < TEMax(10)), differentialCrossSectionElasticScattering, 10, NeutrinoType.electronNeutrino),
+      x: bins.filter(Te => Te < TEMax(10)),
+      name: "ν<sub>e</sub> 10 MeV",
+      type: "scatter",
+      mode: "lines",
+      fill: "none",
+      marker: { color: "orange" },
+    },
+    {
+      y: cumulativeFunc(bins.filter(Te => Te < TEMax(7)), differentialCrossSectionElasticScattering, 7, NeutrinoType.electronNeutrino),
+      x: bins.filter(Te => Te < TEMax(7)),
+      name: "ν<sub>e</sub> 7 MeV",
+      type: "scatter",
+      mode: "lines",
+      fill: "none",
+      marker: { color: "red" },
+    },
+    {
+      y: cumulativeFunc(bins.filter(Te => Te < TEMax(4)), differentialCrossSectionElasticScattering, 4, NeutrinoType.electronNeutrino),
+      x: bins.filter(Te => Te < TEMax(4)),
+      name: "ν<sub>e</sub> 4 MeV",
+      type: "scatter",
+      mode: "lines",
+      fill: "none",
+      marker: { color: "blue" },
+    },
+    {
+      y: cumulativeFunc(bins.filter(Te => Te < TEMax(1)), differentialCrossSectionElasticScattering, 1, NeutrinoType.electronNeutrino),
+      x: bins.filter(Te => Te < TEMax(1)),
+      name: "ν<sub>e</sub> 1 MeV",
       type: "scatter",
       mode: "lines",
       fill: "none",

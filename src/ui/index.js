@@ -28,6 +28,8 @@ export {
   AngularDifferentialCrossSectionPlotsNeutrinos,
   CDFdifferentialCrossSectionPlots,
   CDFAngularDifferentialCrossSectionPlots,
+  CDFdifferentialCrossSectionPlotsNeutrinos,
+  CDFAngularDifferentialCrossSectionPlotsNeutrinos,
 } from "./physics-plots";
 export {
   FissionIsotopeSpectraPlots,
