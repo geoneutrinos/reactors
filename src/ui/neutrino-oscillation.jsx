@@ -27,6 +27,9 @@ export const NeutrinoOscillationPane = () => {
     <Card>
       <Card.Header>Neutrino Oscillations</Card.Header>
       <Card.Body>
+        <div>
+        <p> Neutrino oscillations... blah blah blah.</p>
+        </div>
         {MassOrderingInput}
       </Card.Body>
     </Card>
