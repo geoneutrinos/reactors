@@ -32,7 +32,9 @@ export const NeutrinoOscillationPane = () => {
         <Provider>
           {MassOrderingInput}
           <div>
-            <p> Neutrino oscillations... blah blah blah.
+            <p> The probability that an electron neutrino or an electron antineutrino, assuming CPT invariance, of energy {" "} 
+              <Node inline>{String.raw`E_{{\nu}_\mathrm{e}}`}</Node> in MeV changes flavor after traveling a distance {" "}
+              <Node inline>{String.raw`L`}</Node> in meters is
               <Node>{String.raw`P_{\mathrm{e}x}(L,E_{{\nu}_\mathrm{e}})=\cos^4\theta_{13}\sin^22\theta_{12}\sin^2(1.27\delta m^2_{21}L/E_{{\nu}_\mathrm{e}})`}</Node>{" "}
             </p>
           </div>
