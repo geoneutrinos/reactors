@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
 import { Card, Form } from "react-bootstrap";
 
+import { Node, Provider } from "@nteract/mathjax";
+
 import { MassOrdering } from "../physics/neutrino-oscillation";
 import { PhysicsContext } from "../state";
 
@@ -27,10 +29,12 @@ export const NeutrinoOscillationPane = () => {
     <Card>
       <Card.Header>Neutrino Oscillations</Card.Header>
       <Card.Body>
-        <div>
-        <p> Neutrino oscillations... blah blah blah.</p>
-        </div>
-        {MassOrderingInput}
+        <Provider>
+          {MassOrderingInput}
+          <div>
+            <p> Neutrino oscillations... blah blah blah.</p>
+          </div>
+        </Provider>
       </Card.Body>
     </Card>
   );
