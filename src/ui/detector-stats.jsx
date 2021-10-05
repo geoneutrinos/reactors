@@ -102,7 +102,7 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
   return (
     <Card>
       <Card.Body>
-        <Card.Title>Spectrum Stats <small>({crossSection.crossSection}. See IBD/ES tab.)</small></Card.Title>
+        <Card.Title>Spectrum Stats <small>({crossSection.crossSection}- IBD/ES tab.)</small></Card.Title>
 
         <Table {...tableProps}>
           <tbody>
@@ -120,7 +120,7 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
         </Table>
 
         <hr />
-        <h6>IAEA Cores <small>({reactorLF.start.toISOString().slice(0, 7)} through {reactorLF.end.toISOString().slice(0, 7)} avg Load Factor. See Reactors tab.)</small></h6>
+        <h6>IAEA Cores <small>({reactorLF.start.toISOString().slice(0, 7)} through {reactorLF.end.toISOString().slice(0, 7)} avg Load Factor- Reactors tab.)</small></h6>
         <Table {...tableProps}>
           <tbody>
             <tr>
@@ -200,7 +200,7 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
         </div>
         <div>
           <hr />
-          <h6>Geoneutrinos <small>(Predicted Crust flux and user-defined Mantle flux. See GeoNu tab.)</small></h6>
+          <h6>Geoneutrinos <small>(Predicted crust + user-defined mantle flux- GeoNu tab. Avg P<sub>ee</sub>- Input tab)</small></h6>
           <Table {...tableProps}>
             <tbody>
               <tr>
