@@ -41,7 +41,12 @@ export const ParticleMasses = () => {
               </tr>
             </tbody>
           </Table>
-          <div> <p> blah balh blah </p>
+          <div> 
+            <p> Antineutrinos with energy greater than the threshold energy
+            <Node>{String.raw`E_\mathrm{thr} = \frac{(m_\mathrm{n}+m_\mathrm{e})^2 - m_\mathrm{p}^2} {2m_\mathrm{p}},`}</Node> where {" "}
+            <Node inline>{String.raw`m_\mathrm{n}`}</Node> and {" "}
+            <Node inline>{String.raw`m_\mathrm{p}`}</Node> are the masses of the neutron and proton, respectively, initiate the IBD reaction.
+            </p>
           </div>
         </Provider>
       </Card.Body>
