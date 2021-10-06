@@ -45,9 +45,9 @@ export const ParticleMasses = () => {
             <p> Electron antineutrinos with energy greater than the threshold energy
             <Node>{String.raw`E_\mathrm{thr} = \frac{(m_\mathrm{n}+m_\mathrm{e})^2 - m_\mathrm{p}^2} {2m_\mathrm{p}},`}</Node> where {" "}
             <Node inline>{String.raw`m_\mathrm{n},`}</Node> {" "}
-            <Node inline>{String.raw`m_\mathrm{p},`}</Node> {" "} and
-            <Node inline>{String.raw`m_\mathrm{e},`}</Node> 
-            are the masses of the neutron, proton, and electron respectively, initiate the IBD reaction on free protons.
+            <Node inline>{String.raw`m_\mathrm{p},`}</Node> and {" "}
+            <Node inline>{String.raw`m_\mathrm{e},`}</Node> are the masses
+            of the neutron, proton, and electron, respectively, initiate the IBD reaction on free protons.
             </p>
           </div>
         </Provider>
