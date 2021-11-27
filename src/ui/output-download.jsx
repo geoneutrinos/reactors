@@ -99,19 +99,18 @@ export const OutputDownload = ({ cores, spectrum, detector, boron8 }) => {
 
   const downloadData = {
     "bin center (MeV)": bins,
-    total: total,
-    "IAEA cores": totalIAEA,
-    [`closest IAEA Core (${closestName})`]: closestSpectrum,
+    "IAEA cores (NIU/MeV)": totalIAEA,
+    [`closest IAEA Core- ${closestName} (NIU/MeV)`]: closestSpectrum,
     selectedCores: selectedCoresData,
     backgroundCores: backgroundCoresData,
     ...customCoreData,
   };
   const downloadGeoData = {
     "bin center (MeV)": bins,
-    geo238U: spectrum.geoU238,
-    geo235U: spectrum.geoU235,
-    geo232Th: spectrum.geoTh232,
-    geo40K_beta: spectrum.geoK40_beta,
+    "geo238U (NIU/MeV)": spectrum.geoU238,
+    "geo235U (NIU/MeV)": spectrum.geoU235,
+    "geo232Th (NIU/MeV)": spectrum.geoTh232,
+    "geo40K_beta (NIU/MeV)": spectrum.geoK40_beta,
   };
   const downloadFormatters = {
     "bin center (MeV)": (v) => v.toFixed(3),
@@ -158,14 +157,14 @@ export const OutputDownload = ({ cores, spectrum, detector, boron8 }) => {
         <DownloadButton
           data={{
             "bin center (MeV)": boron8Rate.map((_, i) => 0.1 + 0.1 * i),
-            "8B Rate (NIU)": boron8Rate.map(
+            "8B Rate (NIU/MeV)": boron8Rate.map(
               (v) => v * 1e1 * SECONDS_PER_YEAR * 1e32
             ),
-            "8B Electron KE (MeV)": boron8Ke,
+            "8B Electron KE (/MeV)": boron8Ke,
           }}
           formatters={{
-            "8B Rate (NIU)": (v) => v.toPrecision(7),
-            "8B Electron KE (MeV)": (v) => v.toPrecision(7),
+            "8B Rate (NIU/MeV)": (v) => v.toPrecision(7),
+            "8B Electron KE (/MeV)": (v) => v.toPrecision(7),
             ...downloadFormatters,
           }}
           filename={`SolarNu_spec100keV_ES_8Bsolar_Tmin${crossSection.elasticScatteringTMin.toFixed(
