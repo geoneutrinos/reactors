@@ -158,7 +158,7 @@ export const OutputDownload = ({ cores, spectrum, detector, boron8 }) => {
         <DownloadButton
           data={{
             "bin center (MeV)": boron8Rate.map((_, i) => 0.1 + 0.1 * i),
-            "8B Rate (NIU)": boron8Rate.map(
+            "8B Rate (NIU/MeV)": boron8Rate.map(
               (v) => v * 1e1 * SECONDS_PER_YEAR * 1e32
             ),
             "8B Electron KE (MeV)": boron8Ke,
