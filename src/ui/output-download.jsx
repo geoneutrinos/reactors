@@ -100,8 +100,8 @@ export const OutputDownload = ({ cores, spectrum, detector, boron8 }) => {
   const downloadData = {
     "bin center (MeV)": bins,
     total: total,
-    "IAEA cores": totalIAEA,
-    [`closest IAEA Core (${closestName})`]: closestSpectrum,
+    "IAEA cores (NIU/MeV)": totalIAEA,
+    [`closest IAEA Core (${closestName}) (NIU/MeV)`]: closestSpectrum,
     selectedCores: selectedCoresData,
     backgroundCores: backgroundCoresData,
     ...customCoreData,
