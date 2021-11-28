@@ -760,9 +760,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
             <Node inline>{String.raw`\rho`}</Node> controls
             the rate the efficiency ramps up. 
             For monolithic detectors of Cherenkov and/or scintillation light the values of these parameters depend on the
-            photosensitive surface and the target liquid. (Try {" "}
-            <Node inline>{String.raw`\rho = 3.5, E_\mathrm{HM} = 3.8`}</Node> MeV to 
-            approximate the curve on the slide from Marc.)
+            photosensitive surface and the target liquid.
             </p>
           </div>
         </Provider>
