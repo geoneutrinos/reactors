@@ -82,13 +82,6 @@ export const OutputDownload = ({ cores, spectrum, detector, boron8 }) => {
   const totalCustom = zip(...customCores.map((c) => c.detectorSignal)).map(
     (s) => sum(s)
   );
-  const total = zip(
-    spectrum.geoTh232,
-    spectrum.geoU238,
-    spectrum.geoK40,
-    totalIAEA,
-    totalCustom
-  ).map((s) => sum(s));
 
   const customCoreData =
     customClosestName === ""
