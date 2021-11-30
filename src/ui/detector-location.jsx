@@ -106,7 +106,7 @@ export const DetectorLocationPane = ({ detector, setDetector }) => {
           <Form.Label>Latitude</Form.Label>
           <InputGroup>
             <Form.Control
-              value={internalDetector.lat}
+              value={internalDetector.lat.toFixed(5)}
               onChange={(event) => checkAndSet("lat", event.target.value)}
               type="number"
               placeholder="0"
@@ -121,7 +121,7 @@ export const DetectorLocationPane = ({ detector, setDetector }) => {
           <Form.Label>Longitude</Form.Label>
           <InputGroup>
             <Form.Control
-              value={internalDetector.lon}
+              value={internalDetector.lon.toFixed(5)}
               onChange={(event) => checkAndSet("lon", event.target.value)}
               type="number"
               placeholder="0"
