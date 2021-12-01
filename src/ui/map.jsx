@@ -125,7 +125,8 @@ export function NuMap({
       return null;
     }
     let { lat, lng } = event.latlng;
-    lng = lngRange(lng)
+    lat = parseFloat(lat.toFixed(6))
+    lng = parseFloat(lngRange(lng).toFixed(6))
     setDetector({ ...detector, lat: lat, lon: lng })
   }
   const mapStyle = {
@@ -142,8 +143,8 @@ export function NuMap({
         setDetector({
             current: "custom",
             elevation: 0,
-            lat: e.latlng.lat,
-            lon: lngRange(e.latlng.lng),
+            lat: parseFloat(e.latlng.lat.toFixed(6)),
+            lon: parseFloat(lngRange(e.latlng.lng).toFixed(6)),
           }),
       },
       {
@@ -159,8 +160,8 @@ export function NuMap({
         text: "Follow Cursor",
         callback: (e) => setDetector({ current: "follow",
             elevation: 0,
-            lat: e.latlng.lat,
-            lon: lngRange(e.latlng.lng),
+            lat: parseFloat(e.latlng.lat.toFixed(6)),
+            lon: parseFloat(lngRange(e.latlng.lng).toFixed(6)),
        }),
       },
     ],
