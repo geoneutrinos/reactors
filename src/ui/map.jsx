@@ -125,6 +125,7 @@ export function NuMap({
       return null;
     }
     let { lat, lng } = event.latlng;
+    lat = parseFloat(lat.toFixed(6))
     lng = parseFloat(lngRange(lng).toFixed(6))
     setDetector({ ...detector, lat: lat, lon: lng })
   }
