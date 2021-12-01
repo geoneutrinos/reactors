@@ -142,8 +142,8 @@ export function NuMap({
         setDetector({
             current: "custom",
             elevation: 0,
-            lat: e.latlng.lat,
-            lon: lngRange(e.latlng.lng),
+            lat: parseFloat(e.latlng.lat.toFixed(6)),
+            lon: parseFloat(lngRange(e.latlng.lng).toFixed(6)),
           }),
       },
       {
