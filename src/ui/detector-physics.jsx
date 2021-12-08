@@ -34,14 +34,14 @@ export const DetectorPhysicsPane = () => {
     <Form.Group controlId="tmaxsrange">
       <Form.Label>
         Elastic Scattering T<sub>max</sub>:{" "}
-        {crossSection.elasticScatteringTMax.toFixed(1)} MeV
+        {crossSection.elasticScatteringTMin.toFixed(1)} MeV
       </Form.Label>
       <Form.Control
         type="range"
         min={0}
         max={7}
         step={0.1}
-        value={crossSection.elasticScatteringTMax}
+        value={crossSection.elasticScatteringTMin}
         onChange={(event) =>{
           crossSectionDispatch({
             arg: "elasticScatteringTMax",
@@ -76,6 +76,7 @@ export const DetectorPhysicsPane = () => {
       <Card.Body>
         {CrossSectionInput}
         {TMinRange}
+        {TMaxRange}
       </Card.Body>
     </Card>
   );
