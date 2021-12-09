@@ -41,6 +41,7 @@ export const presets: DetecorPreset[] = [
     // Pacific Ocean
     {name: "ACO", lat:22.75, lon: -158, elevation:-4800, overburden:4800, region:"Pacific Ocean"},
     {name: "MARS", lat:36.71, lon: -122.19, elevation:-890, overburden:890, region:"Pacific Ocean"},
+    {name: "NEPTUNE", lat:47.77, lon: -127.77, elevation:-2660, overburden:2660, region:"Pacific Ocean"},
     // South America
     {name: "ANDES", lat:-30.25, lon: -69.88, elevation:3800, overburden:4200, region:"South America"},
 ]
