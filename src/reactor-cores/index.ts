@@ -154,6 +154,7 @@ const calcSpectrum = (crossSection:CrossSection, powerFractions: PowerFractions)
     ...powerFractions,
     crossSectionFuncID:crossSection.crossSection,
     esTMim:crossSection.elasticScatteringTMin,
+    esTMax:crossSection.elasticScatteringTMax,
   })
   if (spectrumCacheKey in spectrumCache){
     return spectrumCache[spectrumCacheKey]
