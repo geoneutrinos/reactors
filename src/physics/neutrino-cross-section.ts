@@ -207,6 +207,7 @@ export const XSFuncs: {[key in XSNames | XSNamesNormal]: CrossSectionFunc} = {
 
 interface CrossSectionConfig {
   elasticScatteringTMin: number
+  elasticScatteringTMax: number
   crossSection: XSNames // the current in use cross section function
 }
 interface CrossSectionFunctions {
@@ -217,13 +218,14 @@ interface CrossSectionFunctions {
 export type CrossSection = CrossSectionConfig & CrossSectionFunctions & typeof XSFuncs
 
 interface CrossSectionAction {
-  arg: "elasticScatteringTMin" | "crossSection",
+  arg: "elasticScatteringTMin" | "crossSection" | "elasticScatteringTMax",
   value: number | XSNames
 }
 
 const defaultCrossSection: CrossSection = {
   ...XSFuncs,
   elasticScatteringTMin: 0,
+  elasticScatteringTMax: 10,
   crossSection: XSNames.IBDSV2003,
   crossSectionFunction: XSFuncs[XSNames.IBDSV2003],
   crossSectionElectronAntineutrinoFractionES: (Ev) => 0,
@@ -239,14 +241,17 @@ export const crossSectionReducer = (state: CrossSection, action: CrossSectionAct
       }
       break;
     case "elasticScatteringTMin":
+    case "elasticScatteringTMax":
       {
-        let TMin = action.value as number;
+        let TMin = action.arg === "elasticScatteringTMin"? action.value as number : crossSection.elasticScatteringTMin;
+        let TMax = action.arg === "elasticScatteringTMax"? action.value as number : crossSection.elasticScatteringTMax;
         crossSection.elasticScatteringTMin = TMin;
-        crossSection[XSNames.ESANTI] = memoize((Ev) => crossSectionElasticScattering(Ev, NeutrinoType.electronAntineutrino, TMin));
-        crossSection[XSNames.ESMUTAU] = memoize((Ev) => crossSectionElasticScattering(Ev, NeutrinoType.muTauAntineutrino, TMin));
+        crossSection.elasticScatteringTMax = TMax;
+        crossSection[XSNames.ESANTI] = memoize((Ev) => crossSectionElasticScattering(Ev, NeutrinoType.electronAntineutrino, TMin, TMax));
+        crossSection[XSNames.ESMUTAU] = memoize((Ev) => crossSectionElasticScattering(Ev, NeutrinoType.muTauAntineutrino, TMin, TMax));
         crossSection[XSNames.ESTOTAL] = memoize((Ev) => crossSection[XSNames.ESANTI](Ev) + crossSection[XSNames.ESMUTAU](Ev))
-        crossSection[XSNamesNormal.ESNORMAL] = memoize((Ev) => crossSectionElasticScattering(Ev, NeutrinoType.electronNeutrino, TMin));
-        crossSection[XSNamesNormal.ESMUTAUNORM] = memoize((Ev) => crossSectionElasticScattering(Ev, NeutrinoType.muTauNeutrino, TMin));
+        crossSection[XSNamesNormal.ESNORMAL] = memoize((Ev) => crossSectionElasticScattering(Ev, NeutrinoType.electronNeutrino, TMin, TMax));
+        crossSection[XSNamesNormal.ESMUTAUNORM] = memoize((Ev) => crossSectionElasticScattering(Ev, NeutrinoType.muTauNeutrino, TMin, TMax));
         crossSection.crossSectionElectronAntineutrinoFractionES = memoize((Ev) => {
           let electronES = crossSection[XSNames.ESANTI](Ev)
           let totalES = crossSection[XSNames.ESTOTAL](Ev);

@@ -34,14 +34,14 @@ export const DetectorPhysicsPane = () => {
     <Form.Group controlId="tmaxsrange">
       <Form.Label>
         Scattered Lepton T<sub>max</sub>:{" "}
-        {crossSection.elasticScatteringTMin.toFixed(1)} MeV
+        {crossSection.elasticScatteringTMax.toFixed(1)} MeV
       </Form.Label>
       <Form.Control
         type="range"
         min={0}
         max={7}
         step={0.1}
-        value={crossSection.elasticScatteringTMin}
+        value={crossSection.elasticScatteringTMax}
         onChange={(event) =>{
           crossSectionDispatch({
             arg: "elasticScatteringTMax",
