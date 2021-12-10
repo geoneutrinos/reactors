@@ -202,7 +202,7 @@ export const Boron8KEPlot = ({ boron8 }) => {
     },
   ];
   var layout = {
-    title: `<sup>8</sup>B Solar Neutrinos- Scattered Electron Kinetic Energy<br /><sub>${"(T<sub>min</sub>= " + crossSection.elasticScatteringTMin.toFixed(1) + " MeV)"}</sub>`,
+    title: `<sup>8</sup>B Solar Neutrinos- Scattered Electron Kinetic Energy<br /><sub>${"(" + crossSection.elasticScatteringTMin.toFixed(1) + "< T < " + crossSection.elasticScatteringTMax.toFixed(1) + " MeV)"}</sub>`,
     yaxis: {
       title: { text: `dR/dT (NIU/MeV)` },
       autorange: true,
@@ -264,7 +264,7 @@ export const Boron8SpectraPlot = ({ boron8 }) => {
     },
   ];
   var layout = {
-    title: `<sup>8</sup>B Solar Neutrinos- Interaction Rate Spectrum<br /><sub>${"(T<sub>min</sub>= " + crossSection.elasticScatteringTMin.toFixed(1) + " MeV)"}</sub>`,
+    title: `<sup>8</sup>B Solar Neutrinos- Interaction Rate Spectrum<br /><sub>${"(" + crossSection.elasticScatteringTMin.toFixed(1) + "< T < " + crossSection.elasticScatteringTMax.toFixed(1) + " MeV)"}</sub>`,
     yaxis: {
       title: { text: `dR/dE (NIU/MeV)` },
       autorange: true,
