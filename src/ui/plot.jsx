@@ -171,7 +171,7 @@ export function NuSpectrumPlot({ cores, spectrum, detector, reactorLF, xaxisExtr
   const config = { toImageButtonOptions: { width: 900, height: 500, scale: 2, filename: 'Antineutrino-Spectrum' } }
 
   if (!isIBD){
-    config.toImageButtonOptions.filename = `Antineutrino-Spectrum_Tmin${crossSection.elasticScatteringTMin.toFixed(1)}`
+    config.toImageButtonOptions.filename = `Antineutrino-Spectrum_Tmin${crossSection.elasticScatteringTMin.toFixed(1)}_to_Tmax${crossSection.elasticScatteringTMax.toFixed(1)}`
   }
   return (
     <Plot
