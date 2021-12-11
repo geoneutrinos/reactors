@@ -300,9 +300,9 @@ export const Boron8SpectraPlot = ({ boron8 }) => {
         <sup>8</sup>B Solar Neutrinos- Interaction Rate Spectrum 
       </Card.Header>
       <Card.Body>
-        <p>
-          R<sub>sol</sub> = {boron8.boron8NIU.toFixed(2)} NIU (T {crossSection.elasticScatteringTMin.toFixed(1)} to {crossSection.elasticScatteringTMin.toFixed(1)} MeV)
-        </p>
+        <Card.Text>
+          R<sub>sol</sub> = {boron8.boron8NIU.toFixed(2)} NIU (T {crossSection.elasticScatteringTMin.toFixed(1)} to {crossSection.elasticScatteringTMax.toFixed(1)} MeV)
+        </Card.Text>
         <p>
           <sup>8</sup>B decay spectrum from:
           <br />
