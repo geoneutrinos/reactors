@@ -229,7 +229,7 @@ export const Boron8KEPlot = ({ boron8 }) => {
   };
   var config = {
     toImageButtonOptions: {
-      filename: `Solar-8B-ES-KE-Spectrum_Tmin${crossSection.elasticScatteringTMin.toFixed(1)}`,
+      filename: `Solar-8B-ES-KE-Spectrum_Tmin${crossSection.elasticScatteringTMin.toFixed(1)}_to_Tmax${crossSection.elasticScatteringTMax.toFixed(1)}`,
     },
   };
   return (
@@ -291,17 +291,17 @@ export const Boron8SpectraPlot = ({ boron8 }) => {
   };
   var config = {
     toImageButtonOptions: {
-      filename: `Solar-8B-ES-Rate-Spectrum_Tmin${crossSection.elasticScatteringTMin.toFixed(1)}`,
+      filename: `Solar-8B-ES-Rate-Spectrum_Tmin${crossSection.elasticScatteringTMin.toFixed(1)}_to_Tmax${crossSection.elasticScatteringTMax.toFixed(1)}`,
     },
   };
   return (
     <Card>
       <Card.Header>
-        <sup>8</sup>B Solar Neutrinos- Interaction Rate Spectrum
+        <sup>8</sup>B Solar Neutrinos- Interaction Rate Spectrum 
       </Card.Header>
       <Card.Body>
         <p>
-          R<sub>sol</sub> = {boron8.boron8NIU.toFixed(2)} NIU
+          R<sub>sol</sub> = {boron8.boron8NIU.toFixed(2)} NIU {crossSection.elasticScatteringTMin.toFixed(1)} < T < {crossSection.elasticScatteringTMax.toFixed(1)}
         </p>
         <p>
           <sup>8</sup>B decay spectrum from:
