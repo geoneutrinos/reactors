@@ -39,7 +39,7 @@ export const DetectorPhysicsPane = () => {
       <Form.Control
         type="range"
         min={0}
-        max={10}
+        max={15.3}
         step={0.1}
         value={crossSection.elasticScatteringTMax}
         onChange={(event) =>{
