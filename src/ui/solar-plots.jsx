@@ -301,7 +301,7 @@ export const Boron8SpectraPlot = ({ boron8 }) => {
       </Card.Header>
       <Card.Body>
         <p>
-          R<sub>sol</sub> = {boron8.boron8NIU.toFixed(2)} NIU {crossSection.elasticScatteringTMin.toFixed(1)} < T < {crossSection.elasticScatteringTMax.toFixed(1)}
+          R<sub>sol</sub> = {boron8.boron8NIU.toFixed(2)} NIU
         </p>
         <p>
           <sup>8</sup>B decay spectrum from:
