@@ -304,7 +304,7 @@ export const Boron8SpectraPlot = ({ boron8 }) => {
           R<sub>sol</sub> = {boron8.boron8NIU.toFixed(2)} NIU (T {crossSection.elasticScatteringTMin.toFixed(1)} to {crossSection.elasticScatteringTMax.toFixed(1)} MeV)
         </Card.Text>
         <p>
-          <sup>8</sup>B decay spectrum from:
+          <sup>8</sup>B decay spectrum is taken from:
           <br />
           W. T. Winter et al., "The <sup>8</sup>B neutrino spectrum," Phys. Rev.
           C 73, 025503 (2006).
@@ -312,7 +312,7 @@ export const Boron8SpectraPlot = ({ boron8 }) => {
 
         <p>
           <sup>8</sup>B decay solar neutrino flux (2.345x10<sup>6</sup> cm
-          <sup>-2</sup>s<sup>-1</sup>) from:
+          <sup>-2</sup>s<sup>-1</sup>) is taken from:
           <br />
           K. Abe et al., "Solar neutrino measurements in Super-Kamiokande-IV,"
           Phys. Rev. D 94, 052010 (2016).
