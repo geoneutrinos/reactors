@@ -1075,7 +1075,7 @@ export const CrossSectionPlots = () => {
     },
   ]
   var layout = {
-    title: `Total Cross Sections- Antineutrinos<br /><sub>${"(ES T<sub>min</sub>= " + crossSection.elasticScatteringTMin.toFixed(1) + " MeV)"}</sub>`,
+    title: `Total Cross Sections- Antineutrinos<br /><sub>${"(ES" + crossSection.elasticScatteringTMin.toFixed(1) + " < T < " + crossSection.elasticScatteringTMax.toFixed(1) + " MeV)"}</sub>`,
     yaxis: {
       title: { text: `Total Cross Section (cm<sup>2</sup>)` },
       type: 'log',
