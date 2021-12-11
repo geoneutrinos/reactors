@@ -225,7 +225,7 @@ interface CrossSectionAction {
 const defaultCrossSection: CrossSection = {
   ...XSFuncs,
   elasticScatteringTMin: 0,
-  elasticScatteringTMax: 10,
+  elasticScatteringTMax: 15.3,
   crossSection: XSNames.IBDSV2003,
   crossSectionFunction: XSFuncs[XSNames.IBDSV2003],
   crossSectionElectronAntineutrinoFractionES: (Ev) => 0,
