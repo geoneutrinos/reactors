@@ -1103,7 +1103,7 @@ export const CrossSectionPlots = () => {
   };
   var config = {
     toImageButtonOptions: {
-      filename: `Total-Cross-Sections-antinus_Tmin${crossSection.elasticScatteringTMin.toFixed(1)}`
+      filename: `Total-Cross-Sections-antinus_Tmin${crossSection.elasticScatteringTMin.toFixed(1)}_to_Tmax${crossSection.elasticScatteringTMax.toFixed(1)}`
     }
   };
   return (
@@ -1185,7 +1185,7 @@ export const CrossSectionPlotsNormal = () => {
   };
   var config = {
     toImageButtonOptions: {
-      filename: `Total-Cross-Sections-nus_Tmin${crossSection.elasticScatteringTMin.toFixed(1)}`
+      filename: `Total-Cross-Sections-nus_Tmin${crossSection.elasticScatteringTMin.toFixed(1)}_to_Tmax${crossSection.elasticScatteringTMax.toFixed(1)}`
     }
   };
   return (
