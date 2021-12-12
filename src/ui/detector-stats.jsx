@@ -111,15 +111,14 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
       <Card.Body>
         <Card.Title>Spectrum Stats <small>({crossSection.crossSection}- IBD/ES tab.)</small></Card.Title>
 
+       <Card.Subtitle>
+           <span style={{ display: leptonTVald }}>
+                <small>Scattered lepton T from {crossSection.elasticScatteringTMin.toFixed(1)} to {crossSection.elasticScatteringTMax.toFixed(1)} MeV</small>
+           </span>
+       </Card.Subtitle>
+    
         <Table {...tableProps}>
           <tbody>
-          <tr>
-              <td>
-                  <span style={{ display: leptonTVald }}>
-                    <small>T from {crossSection.elasticScatteringTMin.toFixed(1)} to {crossSection.elasticScatteringTMax.toFixed(1)} MeV</small>
-                  </span>
-              </td>
-          </tr>
           <tr>
               <td>
                 <i>R</i>
