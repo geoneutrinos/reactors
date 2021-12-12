@@ -113,7 +113,7 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
 
        <Card.Subtitle>
            <span style={{ display: leptonTVald }}>
-                <small>Scattered lepton T from {crossSection.elasticScatteringTMin.toFixed(1)} to {crossSection.elasticScatteringTMax.toFixed(1)} MeV</small>
+                <small>Scattered charged lepton T from {crossSection.elasticScatteringTMin.toFixed(1)} to {crossSection.elasticScatteringTMax.toFixed(1)} MeV</small>
            </span>
        </Card.Subtitle>
     
