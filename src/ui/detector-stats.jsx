@@ -13,11 +13,11 @@ import { ISOTOPIC_NEUTRINO_LUMINOSITY } from "../physics/derived";
 import { ISOTOPIC_NATURAL_ABUNDANCE } from "../physics/constants";
 import {PhysicsContext} from "../state"
 import { binWidth } from "../physics/bins";
+import { XSNames } from "../physics/neutrino-cross-section";
 
 import { Num } from '.'
 
 const { U238, U235, Th232, K40 } = Elements;
-
 
 
 const geoThURatio = (R232Th, R238U, crossSection) => {
@@ -42,6 +42,11 @@ const geoKURatio = (R40K, R238U, crossSection) => {
 
 export function StatsPanel({ cores, spectrum, reactorLF}) {
   const {crossSection} = useContext(PhysicsContext)
+  
+  // Unary operator + converts true to 1 and false to 0
+  const isIBD = +[XSNames.IBDSV2003, XSNames.IBDVB1999].includes(
+    crossSection.crossSection
+  );
   const NIU = <span title="Neutrino Interaction Unit">NIU</span>;
 
   const coreList = Object.values(cores);
@@ -95,6 +100,8 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
   const geo_mantleNIU = geo_mantleU238NIU + geo_mantleU235NIU + geo_mantleTh232NIU + geo_mantleK40betaNIU;
 
   // finally
+  const leptonTVald = isIBD ? "none" : "auto";
+  
   const totalNIU = totalCoreSignal + geoTotalNIU;
 
   const tableProps = { style: { width: "auto" }, borderless: true, size: "sm" };
@@ -104,9 +111,15 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
       <Card.Body>
         <Card.Title>Spectrum Stats <small>({crossSection.crossSection}- IBD/ES tab.)</small></Card.Title>
 
+       <Card.Subtitle>
+           <span style={{ display: leptonTVald }}>
+                <small>Scattered lepton T from {crossSection.elasticScatteringTMin.toFixed(1)} to {crossSection.elasticScatteringTMax.toFixed(1)} MeV</small>
+           </span>
+       </Card.Subtitle>
+    
         <Table {...tableProps}>
           <tbody>
-            <tr>
+          <tr>
               <td>
                 <i>R</i>
                 <sub>total</sub>
