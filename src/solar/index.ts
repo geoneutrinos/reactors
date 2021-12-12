@@ -32,15 +32,16 @@ const b8RateToKE = (b8Rate: number[], crossSection: CrossSection) => {
   const esTmax = crossSection.elasticScatteringTMax;
   const eVtoK = boron8Bins.map((bin) => {
     const Tspec = boron8Bins.map((Tbin) =>
-      Tbin > esTmax
-        ? 0
-        : crossSectionElasticScattering(
+      Tbin < esTmax
+      ? Tbin > esTmin
+        ? crossSectionElasticScattering(
             bin,
             NeutrinoType.electronNeutrino,
             Tbin - 0.05,
             Tbin + 0.05
           )
-    );
+        : 0 : 0
+      );
     const totalT = sum(Tspec);
     return Tspec.map((v) => (totalT === 0 ? 0 : v / totalT));
   });
