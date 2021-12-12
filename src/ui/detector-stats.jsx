@@ -105,7 +105,7 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
   return (
     <Card>
       <Card.Body>
-        <Card.Title>Spectrum Stats <x-small>({crossSection.crossSection}- IBD/ES tab.)</x-small></Card.Title>
+        <Card.Title>Spectrum Stats <small>({crossSection.crossSection}- IBD/ES tab.)</small></Card.Title>
 
         <Table {...tableProps}>
           <tbody>
