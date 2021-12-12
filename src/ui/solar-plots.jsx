@@ -202,7 +202,7 @@ export const Boron8KEPlot = ({ boron8 }) => {
     },
   ];
   var layout = {
-    title: `<sup>8</sup>B Solar Neutrinos- Scattered Electron Kinetic Energy<br /><sub>${"(T<sub>min</sub>= " + crossSection.elasticScatteringTMin.toFixed(1) + " MeV)"}</sub>`,
+    title: `<sup>8</sup>B Solar Neutrinos- Scattered Electron Kinetic Energy<br /><sub>${"(" + crossSection.elasticScatteringTMin.toFixed(1) + " < T < " + crossSection.elasticScatteringTMax.toFixed(1) + " MeV)"}</sub>`,
     yaxis: {
       title: { text: `dR/dT (NIU/MeV)` },
       autorange: true,
@@ -229,7 +229,7 @@ export const Boron8KEPlot = ({ boron8 }) => {
   };
   var config = {
     toImageButtonOptions: {
-      filename: `Solar-8B-ES-KE-Spectrum_Tmin${crossSection.elasticScatteringTMin.toFixed(1)}`,
+      filename: `Solar-8B-ES-KE-Spectrum_Tmin${crossSection.elasticScatteringTMin.toFixed(1)}_to_Tmax${crossSection.elasticScatteringTMax.toFixed(1)}`,
     },
   };
   return (
@@ -264,7 +264,7 @@ export const Boron8SpectraPlot = ({ boron8 }) => {
     },
   ];
   var layout = {
-    title: `<sup>8</sup>B Solar Neutrinos- Interaction Rate Spectrum<br /><sub>${"(T<sub>min</sub>= " + crossSection.elasticScatteringTMin.toFixed(1) + " MeV)"}</sub>`,
+    title: `<sup>8</sup>B Solar Neutrinos- Interaction Rate Spectrum<br /><sub>${"(" + crossSection.elasticScatteringTMin.toFixed(1) + " < T < " + crossSection.elasticScatteringTMax.toFixed(1) + " MeV)"}</sub>`,
     yaxis: {
       title: { text: `dR/dE (NIU/MeV)` },
       autorange: true,
@@ -291,20 +291,20 @@ export const Boron8SpectraPlot = ({ boron8 }) => {
   };
   var config = {
     toImageButtonOptions: {
-      filename: `Solar-8B-ES-Rate-Spectrum_Tmin${crossSection.elasticScatteringTMin.toFixed(1)}`,
+      filename: `Solar-8B-ES-Rate-Spectrum_Tmin${crossSection.elasticScatteringTMin.toFixed(1)}_to_Tmax${crossSection.elasticScatteringTMax.toFixed(1)}`,
     },
   };
   return (
     <Card>
       <Card.Header>
-        <sup>8</sup>B Solar Neutrinos- Interaction Rate Spectrum
+        <sup>8</sup>B Solar Neutrinos- Interaction Rate Spectrum 
       </Card.Header>
       <Card.Body>
+        <Card.Text>
+          R<sub>sol</sub> = {boron8.boron8NIU.toFixed(2)} NIU (T from {crossSection.elasticScatteringTMin.toFixed(1)} to {crossSection.elasticScatteringTMax.toFixed(1)} MeV)
+        </Card.Text>
         <p>
-          R<sub>sol</sub> = {boron8.boron8NIU.toFixed(2)} NIU
-        </p>
-        <p>
-          <sup>8</sup>B decay spectrum from:
+          <sup>8</sup>B decay spectrum is taken from:
           <br />
           W. T. Winter et al., "The <sup>8</sup>B neutrino spectrum," Phys. Rev.
           C 73, 025503 (2006).
@@ -312,7 +312,7 @@ export const Boron8SpectraPlot = ({ boron8 }) => {
 
         <p>
           <sup>8</sup>B decay solar neutrino flux (2.345x10<sup>6</sup> cm
-          <sup>-2</sup>s<sup>-1</sup>) from:
+          <sup>-2</sup>s<sup>-1</sup>) is taken from:
           <br />
           K. Abe et al., "Solar neutrino measurements in Super-Kamiokande-IV,"
           Phys. Rev. D 94, 052010 (2016).

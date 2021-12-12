@@ -11,7 +11,7 @@ export const DetectorPhysicsPane = () => {
   const TMinRange = (
     <Form.Group controlId="tminsrange">
       <Form.Label>
-        Elastic Scattering T<sub>min</sub>:{" "}
+        Scattered Lepton T<sub>min</sub>:{" "}
         {crossSection.elasticScatteringTMin.toFixed(1)} MeV
       </Form.Label>
       <Form.Control
@@ -23,6 +23,28 @@ export const DetectorPhysicsPane = () => {
         onChange={(event) =>{
           crossSectionDispatch({
             arg: "elasticScatteringTMin",
+            value: parseFloat(event.target.value),
+          });
+        }}
+      ></Form.Control>
+    </Form.Group>
+  );
+
+  const TMaxRange = (
+    <Form.Group controlId="tmaxsrange">
+      <Form.Label>
+        Scattered Lepton T<sub>max</sub>:{" "}
+        {crossSection.elasticScatteringTMax.toFixed(1)} MeV
+      </Form.Label>
+      <Form.Control
+        type="range"
+        min={0}
+        max={15.3}
+        step={0.1}
+        value={crossSection.elasticScatteringTMax}
+        onChange={(event) =>{
+          crossSectionDispatch({
+            arg: "elasticScatteringTMax",
             value: parseFloat(event.target.value),
           });
         }}
@@ -54,6 +76,7 @@ export const DetectorPhysicsPane = () => {
       <Card.Body>
         {CrossSectionInput}
         {TMinRange}
+        {TMaxRange}
       </Card.Body>
     </Card>
   );
