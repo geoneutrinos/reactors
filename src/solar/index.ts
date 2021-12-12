@@ -32,8 +32,6 @@ const b8RateToKE = (b8Rate: number[], crossSection: CrossSection) => {
   const esTmax = crossSection.elasticScatteringTMax;
   const eVtoK = boron8Bins.map((bin) => {
     const Tspec = boron8Bins.map((Tbin) =>
-      Tbin < esTmin
-        ? 0 ,
       Tbin > esTmax
         ? 0
         : crossSectionElasticScattering(
