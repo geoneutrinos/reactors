@@ -42,9 +42,7 @@ const geoKURatio = (R40K, R238U, crossSection) => {
 
 export function StatsPanel({ cores, spectrum, reactorLF}) {
   const {crossSection} = useContext(PhysicsContext)
-  const isIBD = +[XSNames.IBDSV2003, XSNames.IBDVB1999].includes(
-    crossSection.crossSection
-  );
+  
   const NIU = <span title="Neutrino Interaction Unit">NIU</span>;
 
   const coreList = Object.values(cores);
@@ -105,7 +103,7 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
   return (
     <Card>
       <Card.Body>
-        <Card.Title>Spectrum Stats <small>({crossSection.crossSection}- IBD/ES tab.)</small></Card.Title>
+        <Card.Title>Spectrum Stats <x-small>({crossSection.crossSection}- IBD/ES tab.)</x-small></Card.Title>
 
         <Table {...tableProps}>
           <tbody>
