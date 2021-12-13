@@ -116,6 +116,8 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
   const isIBD = +[XSNames.IBDSV2003, XSNames.IBDVB1999].includes(
     crossSection.crossSection
   );
+  const leptonTVald = isIBD ? "none" : "auto";
+  
   if (isIBD && ["geo_k", "geo_u5"].includes(signal)) {
     setSignal("closest");
   }
@@ -481,6 +483,9 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
         <Provider>
           <div>
             <small>Detected events = efficiency fn (below) x interaction spectrum- {crossSection.crossSection}</small>
+            <span style={{ display: leptonTVald }}>
+                <small>Scattered charged lepton T from {crossSection.elasticScatteringTMin.toFixed(1)} to {crossSection.elasticScatteringTMax.toFixed(1)} MeV</small>
+            </span>
             <Table>
               <tbody>
               <tr>
