@@ -80,13 +80,13 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
   ]
   
   var layout = {
-    title: "IBD Detector Efficiency",
+    title: "IBD Detection Efficiency",
     yaxis: {
-      title: { text: `Detector Efficiency` },
+      title: { text: `Efficiency` },
       range: [0, 1.05]
     },
     xaxis: {
-      title: { text: `Neutrino Energy (MeV)` },
+      title: { text: `Antineutrino Energy (MeV)` },
       range: [0, 10]
     },
     autosize: true,
@@ -480,7 +480,10 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
       <Card.Body>
         <Provider>
           <div>
-            <small>Detected events = efficiency fn (below) x interaction spectrum- {crossSection.crossSection}</small>
+            <small>The numbers of detected signal <i>S</i> and background <i>B</i> events are the integrals of the respective rate spectra multiplied by the detector exposure. 
+                   The currently selected cross section is {crossSection.crossSection}. 
+                   If IBD, <i>S</i> is modified by the detection efficiency.
+                   If ES, <i>S</i> is modified by the selected range of the scattered charged lepton kinetic energy, which is currently from {crossSection.elasticScatteringTMin.toFixed(1)} to {crossSection.elasticScatteringTMax.toFixed(1)} MeV.</small>
             <Table>
               <tbody>
               <tr>
@@ -717,7 +720,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
           </Form>
             <div>
               <small>
-                The parameters above modify the detector efficiency function, as plotted and described below. 
+                The parameters above modify the IBD detection efficiency. See plot and description below. 
               </small>
               <br />
             </div>
@@ -749,8 +752,8 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
             The nuisance background energy spectrum is flat.
             </p>
             <p>
-            <b> Detection Efficiency Function</b><br />
-            Detection efficiency expressed as a function of antineutrino energy <i>E</i> is
+            <b> IBD Detection Efficiency</b><br />
+            When expressed as a function of antineutrino energy <i>E</i>, the detection efficiency is
             valid for IBD only. Here it is approximated by
             <Node>{String.raw`\varepsilon (E) = \frac {\varepsilon_\mathrm{max}} {1 + \exp(-\rho * (E - E_\mathrm{HM}))},`}</Node>{" "}
             where <Node inline>{String.raw`\varepsilon_\mathrm{max}`}</Node> sets
@@ -760,7 +763,8 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
             <Node inline>{String.raw`\rho`}</Node> controls
             the rate the efficiency ramps up. 
             For monolithic detectors of Cherenkov and/or scintillation light the values of these parameters depend on the
-            photosensitive surface and the target liquid.
+            photosensitive surface and the target liquid. 
+            A conversion of the detection efficiency from a function of antineutrino energy to a function of scattered charged lepton kinetic energy is in the works.
             </p>
           </div>
         </Provider>
