@@ -480,11 +480,11 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
     <Card>
     <Card.Body>
         <Card.Title> Detected Events </Card.Title>
-        <Card.Subtitle>
+        <Card.Text>
            <span style={{ display: leptonTVald }}>
                 <small>Scattered charged lepton T from {crossSection.elasticScatteringTMin.toFixed(1)} to {crossSection.elasticScatteringTMax.toFixed(1)} MeV</small>
            </span>
-        </Card.Subtitle>
+        </Card.Text>
       <Card.Header>Significance/Exposure Calculator</Card.Header>
         <Provider>
           <div>
