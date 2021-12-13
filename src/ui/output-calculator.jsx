@@ -483,7 +483,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
             <small>The numbers of detected signal <i>S</i> and background <i>B</i> events are the integrals of the respective rate spectra multiplied by the detector exposure. 
                    The currently selected cross section is {crossSection.crossSection}. 
                    If IBD, <i>S</i> is modified by the detetion efficiency. 
-                   If ES, <i>S</i> is modified by the selected range of the scattered charged leption kinetic energy, which is from {crossSection.elasticScatteringTMin.toFixed(1)} to {crossSection.elasticScatteringTMax.toFixed(1)} MeV.</small>
+                   If ES, <i>S</i> is modified by the selected range of the scattered charged leption kinetic energy, which is currently from {crossSection.elasticScatteringTMin.toFixed(1)} to {crossSection.elasticScatteringTMax.toFixed(1)} MeV.</small>
             <Table>
               <tbody>
               <tr>
