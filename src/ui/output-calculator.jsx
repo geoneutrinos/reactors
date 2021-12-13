@@ -481,9 +481,10 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
     <Card.Body>
         <Card.Title> Detected Events </Card.Title>
         <Card.Text>
-           <span style={{ display: leptonTVald }}>
+          <small>Detected events = interaction spectrum x efficiency fn (if IBD)- {crossSection.crossSection}</small>
+          <span style={{ display: leptonTVald }}>
                 <small>Scattered charged lepton T from {crossSection.elasticScatteringTMin.toFixed(1)} to {crossSection.elasticScatteringTMax.toFixed(1)} MeV</small>
-           </span>
+          </span>
         </Card.Text>
       <Card.Header>Significance/Exposure Calculator</Card.Header>
         <Provider>
