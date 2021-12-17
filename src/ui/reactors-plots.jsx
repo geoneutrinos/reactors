@@ -49,7 +49,7 @@ export const FissionIsotopeSpectraPlots = () => {
   var layout = {
     title: "Fission Isotope Emission Spectra",
     yaxis: {
-      title: { text: `Emission Spectra (/MeV/fission)` },
+      title: { text: `Emission (/fission/MeV)` },
       type: "log",
       range: [-4, 1],
     },
