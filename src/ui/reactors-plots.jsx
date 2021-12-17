@@ -90,7 +90,7 @@ export const FissionIsotopeSpectraPlots = () => {
           reactors," Phys. Rev. C 84, 024617 (2011).
         </p>
         <p>
-          <sup>238</sup>U spectrum is taken from from:
+          <sup>238</sup>U spectrum is taken from:
           <br />
           Mueller, Th. A. et al., "Improved predictions of reactor antineutrino
           spectra," Phys. Rev. C 83, 054615 (2011).
