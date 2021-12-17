@@ -10,15 +10,6 @@ import bins from "../physics/bins";
 export const FissionIsotopeSpectraPlots = () => {
   const data = [
     {
-      y: bins.map(neutrinoEnergyFor(Isotopes.U238)),
-      x: bins,
-      name: `<sup>238</sup>U`,
-      type: "scatter",
-      mode: "lines",
-      fill: "none",
-      marker: { color: "green" },
-    },
-    {
       y: bins.map(neutrinoEnergyFor(Isotopes.U235)),
       x: bins,
       name: `<sup>235</sup>U`,
@@ -26,6 +17,15 @@ export const FissionIsotopeSpectraPlots = () => {
       mode: "lines",
       fill: "none",
       marker: { color: "blue" },
+    },
+    {
+      y: bins.map(neutrinoEnergyFor(Isotopes.U238)),
+      x: bins,
+      name: `<sup>238</sup>U`,
+      type: "scatter",
+      mode: "lines",
+      fill: "none",
+      marker: { color: "green" },
     },
     {
       y: bins.map(neutrinoEnergyFor(Isotopes.PU239)),
@@ -84,13 +84,13 @@ export const FissionIsotopeSpectraPlots = () => {
       <Card.Header>Fission Isotope Emission Spectra</Card.Header>
       <Card.Body>
         <p>
-          <sup>235</sup>U, <sup>239</sup>Pu, <sup>241</sup>Pu spectra from:
+          <sup>235</sup>U, <sup>239</sup>Pu, <sup>241</sup>Pu spectra are taken from:
           <br />
           P. Huber, "Determination of antineutrino spectra from nuclear
           reactors," Phys. Rev. C 84, 024617 (2011).
         </p>
         <p>
-          <sup>238</sup>U spectrum from:
+          <sup>238</sup>U spectrum is taken from from:
           <br />
           Mueller, Th. A. et al., "Improved predictions of reactor antineutrino
           spectra," Phys. Rev. C 83, 054615 (2011).
