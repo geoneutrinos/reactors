@@ -124,7 +124,7 @@ export const U235IsotopeSpectraPlots = () => {
     {
       y: bins.map(neutrinoEnergyFor(Isotopes.U235)),
       x: bins,
-      name: `Huber (2011) <sup>235</sup>U`,
+      name: `Huber (2011)`,
       type: "scatter",
       mode: "lines",
       line: {
@@ -136,7 +136,7 @@ export const U235IsotopeSpectraPlots = () => {
     {
       x: [2.0, 2.25, 2.5, 2.75, 3.0, 3.25, 3.5, 3.75, 4.0, 4.25, 4.5, 4.75, 5.0, 5.25, 5.5, 5.75, 6.0, 6.25, 6.5, 6.75, 7.0, 7.25, 7.5, 7.75, 8.0],
       y: [1.25, 1.06, .868, .731, 618, .525, .431, .345, .279, .218, .170, .131, .104, .0820, .0613, .0484, .0369, .0272, .0206, .0153, .0108, .00680, .00440, .00282, .00154],
-      name: `KI (2021)`,
+      name: `Kopeikin et al. (2021)`,
       type: "scatter",
       mode: "markers",
       marker: { color: "black", symbol: "star-triangle-up"},
@@ -180,10 +180,16 @@ export const U235IsotopeSpectraPlots = () => {
       <Card.Header>Fission U235 Emission Spectrum</Card.Header>
       <Card.Body>
         <p>
-          <sup>235</sup>U, <sup>239</sup>Pu, <sup>241</sup>Pu spectra are parameterized functions:
+          <sup>235</sup>U spectrum parameterization:
           <br />
           P. Huber, "Determination of antineutrino spectra from nuclear
           reactors," Phys. Rev. C 84, 024617 (2011).
+        </p>
+        <p>
+          <sup>235</sup>U spectrum data points:
+          <br />
+          V. Kopeikin, M. Skorokhvatov, O. Titov, "Reevaluating reactor antineutrino spectra with new measurements of the ratio
+          between <sup>235</sup>U and <sup>239</sup>Pu β spectra," Phys. Rev. D 104, L071301 (2021).
         </p>
         <Plot
           useResizeHandler={true}
