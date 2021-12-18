@@ -139,7 +139,7 @@ export const U235IsotopeSpectraPlots = () => {
       name: `KI (2021)`,
       type: "scatter",
       mode: "markers",
-      marker: { color: "black", symbol: "x"},
+      marker: { color: "black", symbol: "star-triangle-up"},
     },
   ];
   var layout = {
