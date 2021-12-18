@@ -36,6 +36,7 @@ import {
   ParticleMasses,
   FissionFractionPane,
   FissionIsotopeSpectraPlots,
+  U235IsotopeSpectraPlots,
   //Output Tab
   OutputDownload,
   CalculatorPanel,
