@@ -139,8 +139,8 @@ export const U235IsotopeSpectraPlots = () => {
       error_y: {
         type: "data",
         array: [.0125, .0106, .00868, .00731, .00618, .00525, .00431, .00380, .00335, .00305, .00289, .00236, .00198, .00164, .00135, .00116, .000996, .000816, .000618, .000505, .000389, .000279, .000194, .000141, .000108],
-        thickness: 1,
-        width: 3,
+        thickness: 0.5,
+        width: 2,
         color: "black"
       },
       name: `Kopeikin et al. (2021)`,
@@ -230,8 +230,8 @@ export const U238IsotopeSpectraPlots = () => {
       error_y: {
         type: "data",
         array: [.0693, .0608, .0531, .0468, .0409, .0317, .0245, .0200, .0164, .0133, .0108, .00906, .00757, .00635, .00568, .00484, .00432, .00415, .00376, .00319, .00279, .00238, .00203, .00141, .0009],
-        thickness: 1,
-        width: 3,
+        thickness: 0.5,
+        width: 2,
         color: "black"
       },
       name: `Kopeikin et al. (2021)`,
