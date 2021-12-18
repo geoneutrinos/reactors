@@ -69,9 +69,7 @@ export const FissionIsotopeSpectraPlots = () => {
       title: { text: `Antineutrino Energy (MeV)` },
       range: [1.8, 10],
     },
-    autosize: false,
-    width: 600,
-    height: 600,
+    autosize: true,
     legend: {
       x: 1,
       xanchor: "right",
@@ -126,7 +124,7 @@ export const U235IsotopeSpectraPlots = () => {
     {
       y: bins.map(neutrinoEnergyFor(Isotopes.U235)),
       x: bins,
-      name: `<sup>235</sup>U`,
+      name: `Huber (2011) <sup>235</sup>U`,
       type: "scatter",
       mode: "lines",
       line: {
@@ -134,6 +132,14 @@ export const U235IsotopeSpectraPlots = () => {
       },
       fill: "none",
       marker: { color: "blue" },
+    },
+    {
+      x: [2.0, 2.25, 2.5, 2.75, 3.0, 3.25, 3.5, 3.75, 4.0, 4.25, 4.5, 4.75, 5.0, 5.25, 5.5, 5.75, 6.0, 6.25, 6.5, 6.75, 7.0 7.25, 7.5, 7.75, 8.0],
+      y: [1.25, 1.06, .868, .731, .525, .431, .345, .279, .218, .170, .131, .104, .0820, .0613, .0484, .0369, .0272, .0206, .0153, .0108, .00680, .00440, .00282, .00154],
+      name: `KI (2021)`,
+      type: "scatter",
+      mode: "markers",
+      marker: { color: "black", symbol: "x"},
     },
   ];
   var layout = {
@@ -147,9 +153,7 @@ export const U235IsotopeSpectraPlots = () => {
       title: { text: `Antineutrino Energy (MeV)` },
       range: [1.8, 10],
     },
-    autosize: false,
-    width: 600,
-    height: 600,
+    autosize: true,
     legend: {
       x: 1,
       xanchor: "right",
