@@ -135,6 +135,7 @@ export const U235IsotopeSpectraPlots = () => {
       fill: "none",
       marker: { color: "blue" },
     },
+  ];
   var layout = {
     title: "U235 Emission Spectrum",
     yaxis: {
