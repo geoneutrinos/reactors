@@ -15,6 +15,9 @@ export const FissionIsotopeSpectraPlots = () => {
       name: `<sup>235</sup>U`,
       type: "scatter",
       mode: "lines",
+      line: {
+        width: 1
+      },
       fill: "none",
       marker: { color: "blue" },
     },
@@ -24,6 +27,9 @@ export const FissionIsotopeSpectraPlots = () => {
       name: `<sup>238</sup>U`,
       type: "scatter",
       mode: "lines",
+      line: {
+        width: 1
+      },
       fill: "none",
       marker: { color: "green" },
     },
@@ -33,6 +39,9 @@ export const FissionIsotopeSpectraPlots = () => {
       name: `<sup>239</sup>Pu`,
       type: "scatter",
       mode: "lines",
+      line: {
+        width: 1
+      },
       fill: "none",
       marker: { color: "red" },
     },
@@ -42,6 +51,9 @@ export const FissionIsotopeSpectraPlots = () => {
       name: `<sup>241</sup>Pu`,
       type: "scatter",
       mode: "lines",
+      line: {
+        width: 1
+      },
       fill: "none",
       marker: { color: "magenta" },
     },
