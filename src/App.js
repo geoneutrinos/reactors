@@ -296,6 +296,7 @@ function App(props) {
                   <PhysicsConstants />
                   <FissionFractionPane />
                   <FissionIsotopeSpectraPlots />
+                  <U235IsotopeSpectraPlots />
                 </Visible>
               </Tab>
               <Tab eventKey="output" title="Output">
