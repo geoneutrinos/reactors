@@ -121,6 +121,77 @@ export const FissionIsotopeSpectraPlots = () => {
   );
 };
 
+export const U235IsotopeSpectraPlots = () => {
+  const data = [
+    {
+      y: bins.map(neutrinoEnergyFor(Isotopes.U235)),
+      x: bins,
+      name: `<sup>235</sup>U`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        width: 1
+      },
+      fill: "none",
+      marker: { color: "blue" },
+    },
+  var layout = {
+    title: "U235 Emission Spectrum",
+    yaxis: {
+      title: { text: `Emission (/fission/MeV)` },
+      type: "log",
+      range: [-4, Math.log10(4)],
+    },
+    xaxis: {
+      title: { text: `Antineutrino Energy (MeV)` },
+      range: [1.8, 10],
+    },
+    autosize: false,
+    width: 600,
+    height: 600,
+    legend: {
+      x: 1,
+      xanchor: "right",
+      y: 1,
+    },
+    annotations: [
+      {
+        showarrow: false,
+        text: "geoneutrinos.org",
+        x: 1.1,
+        xref: "paper",
+        y: -0.15,
+        yref: "paper",
+      },
+    ],
+  };
+  var config = {
+    toImageButtonOptions: {
+      filename: 'Fission-U235-Spectrum'
+    }
+  };
+  return (
+    <Card>
+      <Card.Header>Fission U235 Emission Spectrum</Card.Header>
+      <Card.Body>
+        <p>
+          <sup>235</sup>U, <sup>239</sup>Pu, <sup>241</sup>Pu spectra are parameterized functions:
+          <br />
+          P. Huber, "Determination of antineutrino spectra from nuclear
+          reactors," Phys. Rev. C 84, 024617 (2011).
+        </p>
+        <Plot
+          useResizeHandler={true}
+          style={{ width: "100%" }}
+          data={data}
+          layout={layout}
+          config={config}
+        />
+      </Card.Body>
+    </Card>
+  );
+};
+
 export const CoreDirectionSignalPlots = ({ cores, detector, reactorLF }) => {
   const sortedCores = Object.values(cores)
     .filter((a) => a.detectorNIU > 0)
