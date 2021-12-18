@@ -147,11 +147,11 @@ export const U235IsotopeSpectraPlots = () => {
     yaxis: {
       title: { text: `Emission (/fission/MeV)` },
       type: "log",
-      range: [-4, Math.log10(4)],
+      range: [-3, Math.log10(4)],
     },
     xaxis: {
       title: { text: `Antineutrino Energy (MeV)` },
-      range: [1.8, 10],
+      range: [1.8, 8.125],
     },
     autosize: true,
     legend: {
@@ -238,11 +238,11 @@ export const U238IsotopeSpectraPlots = () => {
     yaxis: {
       title: { text: `Emission (/fission/MeV)` },
       type: "log",
-      range: [-4, Math.log10(4)],
+      range: [-3, Math.log10(4)],
     },
     xaxis: {
       title: { text: `Antineutrino Energy (MeV)` },
-      range: [1.8, 10],
+      range: [1.8, 8.125],
     },
     autosize: true,
     legend: {
