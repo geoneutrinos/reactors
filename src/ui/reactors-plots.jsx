@@ -96,13 +96,13 @@ export const FissionIsotopeSpectraPlots = () => {
       <Card.Header>Fission Isotope Emission Spectra</Card.Header>
       <Card.Body>
         <p>
-          <sup>235</sup>U, <sup>239</sup>Pu, <sup>241</sup>Pu spectra are parameterized functions:
+          <sup>235</sup>U, <sup>239</sup>Pu, <sup>241</sup>Pu spectra parameterizations:
           <br />
           P. Huber, "Determination of antineutrino spectra from nuclear
           reactors," Phys. Rev. C 84, 024617 (2011).
         </p>
         <p>
-          <sup>238</sup>U spectrum is a parameterized function:
+          <sup>238</sup>U spectrum parameterization:
           <br />
           Mueller, Th. A. et al., "Improved predictions of reactor antineutrino
           spectra," Phys. Rev. C 83, 054615 (2011).
@@ -143,7 +143,7 @@ export const U235IsotopeSpectraPlots = () => {
     },
   ];
   var layout = {
-    title: "U235 Emission Spectrum",
+    title: `<sup>235</sup>U Emission Spectrum`,
     yaxis: {
       title: { text: `Emission (/fission/MeV)` },
       type: "log",
