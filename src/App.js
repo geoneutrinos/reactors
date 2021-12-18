@@ -36,6 +36,8 @@ import {
   ParticleMasses,
   FissionFractionPane,
   FissionIsotopeSpectraPlots,
+  U235IsotopeSpectraPlots,
+  U238IsotopeSpectraPlots,
   //Output Tab
   OutputDownload,
   CalculatorPanel,
@@ -295,6 +297,8 @@ function App(props) {
                   <PhysicsConstants />
                   <FissionFractionPane />
                   <FissionIsotopeSpectraPlots />
+                  <U235IsotopeSpectraPlots />
+                  <U238IsotopeSpectraPlots />
                 </Visible>
               </Tab>
               <Tab eventKey="output" title="Output">
