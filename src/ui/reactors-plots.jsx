@@ -158,7 +158,7 @@ export const U235IsotopeSpectraPlots = () => {
     },
     xaxis: {
       title: { text: `Antineutrino Energy (MeV)` },
-      range: [1.8, 8.125],
+      range: [1.875, 8.125],
     },
     autosize: true,
     legend: {
@@ -249,7 +249,7 @@ export const U238IsotopeSpectraPlots = () => {
     },
     xaxis: {
       title: { text: `Antineutrino Energy (MeV)` },
-      range: [1.8, 8.125],
+      range: [1.875, 8.125],
     },
     autosize: true,
     legend: {
