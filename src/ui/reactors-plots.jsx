@@ -177,7 +177,7 @@ export const U235IsotopeSpectraPlots = () => {
   };
   return (
     <Card>
-      <Card.Header>Fission U235 Emission Spectrum</Card.Header>
+      <Card.Header><sup>235</sup>U Emission Spectrum</Card.Header>
       <Card.Body>
         <p>
           <sup>235</sup>U spectrum parameterization:
@@ -187,6 +187,90 @@ export const U235IsotopeSpectraPlots = () => {
         </p>
         <p>
           <sup>235</sup>U spectrum data points:
+          <br />
+          V. Kopeikin, M. Skorokhvatov, O. Titov, "Reevaluating reactor antineutrino spectra with new measurements of the ratio
+          between <sup>235</sup>U and <sup>239</sup>Pu β spectra," Phys. Rev. D 104, L071301 (2021).
+        </p>
+        <Plot
+          useResizeHandler={true}
+          style={{ width: "100%" }}
+          data={data}
+          layout={layout}
+          config={config}
+        />
+      </Card.Body>
+    </Card>
+  );
+};
+
+export const U238IsotopeSpectraPlots = () => {
+  const data = [
+    {
+      y: bins.map(neutrinoEnergyFor(Isotopes.U238)),
+      x: bins,
+      name: `Mueller (2011)`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        width: 1
+      },
+      fill: "none",
+      marker: { color: "blue" },
+    },
+    {
+      x: [2.0, 2.25, 2.5, 2.75, 3.0, 3.25, 3.5, 3.75, 4.0, 4.25, 4.5, 4.75, 5.0, 5.25, 5.5, 5.75, 6.0, 6.25, 6.5, 6.75, 7.0, 7.25, 7.5, 7.75, 8.0],
+      y: [1.54, 1.35, 1.18, 1.04, .910, .755, .627, .513, .421, .332, .264, .206, .161, .127, .0979, .0734, .0533, .0377, .0289, .0266, .0199, .0108, .00677, .00470, .0030],
+      name: `Kopeikin et al. (2021)`,
+      type: "scatter",
+      mode: "markers",
+      marker: { color: "black", symbol: "star-triangle-up"},
+    },
+  ];
+  var layout = {
+    title: `<sup>238</sup>U Emission Spectrum`,
+    yaxis: {
+      title: { text: `Emission (/fission/MeV)` },
+      type: "log",
+      range: [-4, Math.log10(4)],
+    },
+    xaxis: {
+      title: { text: `Antineutrino Energy (MeV)` },
+      range: [1.8, 10],
+    },
+    autosize: true,
+    legend: {
+      x: 1,
+      xanchor: "right",
+      y: 1,
+    },
+    annotations: [
+      {
+        showarrow: false,
+        text: "geoneutrinos.org",
+        x: 1.1,
+        xref: "paper",
+        y: -0.15,
+        yref: "paper",
+      },
+    ],
+  };
+  var config = {
+    toImageButtonOptions: {
+      filename: 'Fission-U238-Spectrum'
+    }
+  };
+  return (
+    <Card>
+      <Card.Header><sup>238</sup>U Emission Spectrum</Card.Header>
+      <Card.Body>
+        <p>
+          <sup>238</sup>U spectrum parameterization:
+          <br />
+          Mueller, Th. A. et al., "Improved predictions of reactor antineutrino
+          spectra," Phys. Rev. C 83, 054615 (2011).
+        </p>
+        <p>
+          <sup>238</sup>U spectrum data points:
           <br />
           V. Kopeikin, M. Skorokhvatov, O. Titov, "Reevaluating reactor antineutrino spectra with new measurements of the ratio
           between <sup>235</sup>U and <sup>239</sup>Pu β spectra," Phys. Rev. D 104, L071301 (2021).
