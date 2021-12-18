@@ -69,7 +69,9 @@ export const FissionIsotopeSpectraPlots = () => {
       title: { text: `Antineutrino Energy (MeV)` },
       range: [1.8, 10],
     },
-    autosize: true,
+    autosize: false,
+    width: 500,
+    height: 750,
     legend: {
       x: 1,
       xanchor: "right",
