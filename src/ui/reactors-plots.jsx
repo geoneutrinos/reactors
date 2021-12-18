@@ -70,8 +70,8 @@ export const FissionIsotopeSpectraPlots = () => {
       range: [1.8, 10],
     },
     autosize: false,
-    width: 500,
-    height: 750,
+    width: 600,
+    height: 600,
     legend: {
       x: 1,
       xanchor: "right",
