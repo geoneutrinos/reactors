@@ -301,7 +301,7 @@ export const Boron8SpectraPlot = ({ boron8 }) => {
       </Card.Header>
       <Card.Body>
         <Card.Text>
-          R<sub>sol</sub> = {boron8.boron8NIU.toFixed(2)} NIU (T from {crossSection.elasticScatteringTMin.toFixed(1)} to {crossSection.elasticScatteringTMax.toFixed(1)} MeV)
+          R<sub>sol</sub> = {boron8.boron8NIU.toFixed(2)} NIU (T from {crossSection.elasticScatteringTMin.toFixed(1)} to {crossSection.elasticScatteringTMax.toFixed(1)} MeV) ({reactorLF.start.toISOString().slice(0, 7)} thru {reactorLF.end.toISOString().slice(0, 7)})
         </Card.Text>
         <p>
           <sup>8</sup>B decay spectrum is taken from:
