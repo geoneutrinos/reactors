@@ -141,7 +141,7 @@ export const AnalemmaPlot = ({ detector, cores, reactorLF, boron8 }) => {
         : detector.current
     } (${detector.lat.toFixed(1)}N, ${detector.lon.toFixed(
       1
-    )}E, ${detector.elevation.toFixed(0)}m)`,
+    )}E, ${detector.elevation.toFixed(0)}m) <br /><sub>(${reactorLF.start.toISOString().slice(0, 7)} through ${reactorLF.end.toISOString().slice(0, 7)})</sub>`,
     //    title: "Solar Analemma",
     hovermode: "closest",
     autosize: true,
@@ -179,7 +179,9 @@ export const AnalemmaPlot = ({ detector, cores, reactorLF, boron8 }) => {
       <Card.Header>Solar Analemma</Card.Header>
       <Card.Body>
          <Card.Text>
-          R<sub>sol</sub> = {boron8.boron8NIU.toFixed(2)} NIU ({crossSection.elasticScatteringTMin.toFixed(1)} &lt; T &lt; {crossSection.elasticScatteringTMax.toFixed(1)} MeV) <br /> <small> ({reactorLF.start.toISOString().slice(0, 7)} through {reactorLF.end.toISOString().slice(0, 7)})</small>
+          R<sub>sol</sub> = {boron8.boron8NIU.toFixed(2)} NIU ({crossSection.elasticScatteringTMin.toFixed(1)} &lt; T &lt; {crossSection.elasticScatteringTMax.toFixed(1)} MeV) 
+             <br /> <small> ({reactorLF.start.toISOString().slice(0, 7)} through {reactorLF.end.toISOString().slice(0, 7)})</small>
+             <br /> <hr>
         </Card.Text>
         <Plot
           useResizeHandler={true}
