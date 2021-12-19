@@ -37,7 +37,7 @@ const earthSunDist = (date) => {
   return R;
 };
 
-export const AnalemmaPlot = ({ detector, cores, reactorLF }) => {
+export const AnalemmaPlot = ({ detector, cores, reactorLF, boron8 }) => {
   // Some cals for filtering what times are shown
   let yearOrMore = reactorLF.end - reactorLF.start >= 28857600000;
   let startMonth = (reactorLF.start.getUTCMonth() + 1)
@@ -176,6 +176,9 @@ export const AnalemmaPlot = ({ detector, cores, reactorLF }) => {
     <Card>
       <Card.Header>Solar Analemma</Card.Header>
       <Card.Body>
+         <Card.Text>
+          R<sub>sol</sub> = {boron8.boron8NIU.toFixed(2)} NIU ({crossSection.elasticScatteringTMin.toFixed(1)} &lt; T &lt; {crossSection.elasticScatteringTMax.toFixed(1)} MeV) <br /> <small> ({reactorLF.start.toISOString().slice(0, 7)} through {reactorLF.end.toISOString().slice(0, 7)})</small>
+        </Card.Text>
         <Plot
           useResizeHandler={true}
           style={{ width: "100%" }}
@@ -300,9 +303,6 @@ export const Boron8SpectraPlot = ({ boron8 }) => {
         <sup>8</sup>B Solar Neutrinos- Interaction Rate Spectrum 
       </Card.Header>
       <Card.Body>
-        <Card.Text>
-          R<sub>sol</sub> = {boron8.boron8NIU.toFixed(2)} NIU (T from {crossSection.elasticScatteringTMin.toFixed(1)} to {crossSection.elasticScatteringTMax.toFixed(1)} MeV)
-        </Card.Text>
         <p>
           <sup>8</sup>B decay spectrum is taken from:
           <br />
