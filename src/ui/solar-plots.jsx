@@ -38,6 +38,8 @@ const earthSunDist = (date) => {
 };
 
 export const AnalemmaPlot = ({ detector, cores, reactorLF, boron8 }) => {
+  const {crossSection} = useContext(PhysicsContext)
+  
   // Some cals for filtering what times are shown
   let yearOrMore = reactorLF.end - reactorLF.start >= 28857600000;
   let startMonth = (reactorLF.start.getUTCMonth() + 1)
