@@ -139,7 +139,7 @@ export const AnalemmaPlot = ({ detector, cores, reactorLF }) => {
         : detector.current
     } (${detector.lat.toFixed(1)}N, ${detector.lon.toFixed(
       1
-    )}E, ${detector.elevation.toFixed(0)}m) <br /><sub>(${reactorLF.start.toISOString().slice(0, 7)} through ${reactorLF.end.toISOString().slice(0, 7)} avg Load Factor)</sub>`,
+    )}E, ${detector.elevation.toFixed(0)}m) <br /><sub>(${reactorLF.start.toISOString().slice(0, 7)} through ${reactorLF.end.toISOString().slice(0, 7)})</sub>`,
     //    title: "Solar Analemma",
     hovermode: "closest",
     autosize: true,
@@ -250,7 +250,7 @@ export const Boron8KEPlot = ({ boron8 }) => {
   );
 };
 
-export const Boron8SpectraPlot = ({ boron8 }) => {
+export const Boron8SpectraPlot = ({ boron8, reactorLF }) => {
   const {crossSection} = useContext(PhysicsContext)
   const data = [
     {
@@ -301,7 +301,7 @@ export const Boron8SpectraPlot = ({ boron8 }) => {
       </Card.Header>
       <Card.Body>
         <Card.Text>
-          R<sub>sol</sub> = {boron8.boron8NIU.toFixed(2)} NIU (T from {crossSection.elasticScatteringTMin.toFixed(1)} to {crossSection.elasticScatteringTMax.toFixed(1)} MeV)
+          R<sub>sol</sub> = {boron8.boron8NIU.toFixed(2)} NIU (T from {crossSection.elasticScatteringTMin.toFixed(1)} to {crossSection.elasticScatteringTMax.toFixed(1)} MeV) <br /> <small> ({reactorLF.start.toISOString().slice(0, 7)} through {reactorLF.end.toISOString().slice(0, 7)})</small>
         </Card.Text>
         <p>
           <sup>8</sup>B decay spectrum is taken from:
