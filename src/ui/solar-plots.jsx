@@ -181,7 +181,6 @@ export const AnalemmaPlot = ({ detector, cores, reactorLF, boron8 }) => {
          <Card.Text>
           R<sub>sol</sub> = {boron8.boron8NIU.toFixed(2)} NIU ({crossSection.elasticScatteringTMin.toFixed(1)} &lt; T &lt; {crossSection.elasticScatteringTMax.toFixed(1)} MeV) 
              <br /> <small> ({reactorLF.start.toISOString().slice(0, 7)} through {reactorLF.end.toISOString().slice(0, 7)})</small>
-             <br /> <hr>
         </Card.Text>
         <Plot
           useResizeHandler={true}
