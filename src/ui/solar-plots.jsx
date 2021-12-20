@@ -100,7 +100,6 @@ export const AnalemmaPlot = ({ detector, cores, reactorLF, boron8 }) => {
     );
     return zint;
   });
-  let zintMean = sum(dakine) / dakine.length;
   
   let data = times.map((days) => {
     let fakeDetector = { ...detector, lon: 0 };
