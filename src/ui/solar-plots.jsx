@@ -95,8 +95,8 @@ export const AnalemmaPlot = ({ detector, cores, reactorLF, boron8 }) => {
 
   // begin calculation of mean solar intensity
   let dakine = times.map((days) => {
-    let zint = days.map((zintDate) =>
-      zintDate === undefined ? zintDate : 1 / earthSunDist(zintDate) ** 2
+    let zint = days.map((date) =>
+      date === undefined ? date : 1 / earthSunDist(date) ** 2
     );
     return zint;
   });
