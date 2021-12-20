@@ -3,7 +3,7 @@ import React, {useContext} from "react";
 import { Card } from "react-bootstrap";
 import Plot from "react-plotly.js";
 
-import { range } from "lodash";
+import { mean, range } from "lodash";
 
 import { SECONDS_PER_YEAR } from "../physics/constants";
 import { boron8Bins } from "../solar";
@@ -77,6 +77,7 @@ export const AnalemmaPlot = ({ detector, cores, reactorLF, boron8 }) => {
     days.push(days[0]);
     return days;
   });
+    
   const coreData = Object.values(cores);
   const PHWRcores = coreData.filter((core) => core.spectrumType === "PHWR");
   const GCRcores = coreData.filter((core) => core.spectrumType === "GCR");
@@ -90,6 +91,9 @@ export const AnalemmaPlot = ({ detector, cores, reactorLF, boron8 }) => {
       core.spectrumType !== "GCR" &&
       core.spectrumType !== "PHWR" &&
       core.type !== "custom"
+  );
+  let solarInt = days.map((v) => 
+    v === undefined ? v : 1 / earthSunDist(v) **2
   );
   let data = times.map((days) => {
     let fakeDetector = { ...detector, lon: 0 };
