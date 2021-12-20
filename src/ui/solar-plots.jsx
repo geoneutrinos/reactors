@@ -95,11 +95,12 @@ export const AnalemmaPlot = ({ detector, cores, reactorLF, boron8 }) => {
 
   // begin calculation of mean solar intensity
   let dakine = times.map((days) => {
-    let z = days.map((date) =>
-      date === undefined ? date : 1 / earthSunDist(date) ** 2
+    let zint = days.map((zintDate) =>
+      zintDate === undefined ? zintDate : 1 / earthSunDist(zintDate) ** 2
     );
-    return z;
+    return zint;
   });
+  const zintMean = sum(dakine) / dakine.length;
   
   let data = times.map((days) => {
     let fakeDetector = { ...detector, lon: 0 };
@@ -189,7 +190,7 @@ export const AnalemmaPlot = ({ detector, cores, reactorLF, boron8 }) => {
       <Card.Header>Solar Neutrino Rates and Solar Analemma over Reactor Directions</Card.Header>
       <Card.Body>
         <Card.Text>
-            <i>R</i><sub>boron-8</sub> = {boron8.boron8NIU.toFixed(2)} NIU 
+            <i>R</i><sub>boron-8</sub> = {boron8.boron8NIU.toFixed(2)} NIU {zintMean.toFixed(4)}
             <br /> <hr />
           <small>Scattered electron kinetic energy range: {crossSection.elasticScatteringTMin.toFixed(1)} &lt; T &lt; {crossSection.elasticScatteringTMax.toFixed(1)} MeV. Date range: {reactorLF.start.toISOString().slice(0, 7)} through {reactorLF.end.toISOString().slice(0, 7)}</small>
             <br /> <hr />
