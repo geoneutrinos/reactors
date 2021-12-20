@@ -92,9 +92,7 @@ export const AnalemmaPlot = ({ detector, cores, reactorLF, boron8 }) => {
       core.spectrumType !== "PHWR" &&
       core.type !== "custom"
   );
-  let solarInt = days.map((v) => 
-    v === undefined ? v : 1 / earthSunDist(v) **2
-  );
+
   let data = times.map((days) => {
     let fakeDetector = { ...detector, lon: 0 };
     let ana = days.map((date) =>
