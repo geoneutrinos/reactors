@@ -189,9 +189,10 @@ export const AnalemmaPlot = ({ detector, cores, reactorLF, boron8 }) => {
       <Card.Header>Solar Neutrino Rates and Solar Analemma with Cores</Card.Header>
       <Card.Body>
          <Card.Text>
-          <i>R</i><sub>boron-8</sub> = {boron8.boron8NIU.toFixed(2)} NIU ({crossSection.elasticScatteringTMin.toFixed(1)} &lt; T &lt; {crossSection.elasticScatteringTMax.toFixed(1)} MeV) 
-             <br /> <small> ({reactorLF.start.toISOString().slice(0, 7)} through {reactorLF.end.toISOString().slice(0, 7)})</small>
-             <br /> <hr />
+          <small>Scattered electron kinetic energy range: {crossSection.elasticScatteringTMin.toFixed(1)} &lt; T &lt; {crossSection.elasticScatteringTMax.toFixed(1)} MeV. Date range: {reactorLF.start.toISOString().slice(0, 7)} through {reactorLF.end.toISOString().slice(0, 7)}</small>
+            <br /> <hr />
+            <br /> <i>R</i><sub>boron-8</sub> = {boron8.boron8NIU.toFixed(2)} NIU 
+            <br /> <hr />
         </Card.Text>
         <Plot
           useResizeHandler={true}
