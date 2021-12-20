@@ -98,6 +98,7 @@ export const AnalemmaPlot = ({ detector, cores, reactorLF, boron8 }) => {
     let zed = days.map((tdate) =>
       tdate === undefined ? tdate : 1 / earthSunDist(tdate) ** 2
     );
+    return zed;
   };
   
   let data = times.map((days) => {
