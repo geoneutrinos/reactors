@@ -186,10 +186,10 @@ export const AnalemmaPlot = ({ detector, cores, reactorLF, boron8 }) => {
   };
   return (
     <Card>
-      <Card.Header><sup>8</sup>B Solar Neutrino Rate and Solar Analemma with Reactor Cores</Card.Header>
+      <Card.Header><sup>8</sup>B Solar Neutrino Rate and Solar Analemma with Cores</Card.Header>
       <Card.Body>
          <Card.Text>
-          <i>R</i><sub><sup>8</sup>B</sub> = {boron8.boron8NIU.toFixed(2)} NIU ({crossSection.elasticScatteringTMin.toFixed(1)} &lt; T &lt; {crossSection.elasticScatteringTMax.toFixed(1)} MeV) 
+          <i>R</i><sub>boron-8</sub> = {boron8.boron8NIU.toFixed(2)} NIU ({crossSection.elasticScatteringTMin.toFixed(1)} &lt; T &lt; {crossSection.elasticScatteringTMax.toFixed(1)} MeV) 
              <br /> <small> ({reactorLF.start.toISOString().slice(0, 7)} through {reactorLF.end.toISOString().slice(0, 7)})</small>
              <br /> <hr />
         </Card.Text>
