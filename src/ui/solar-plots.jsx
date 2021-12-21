@@ -301,11 +301,11 @@ export const Boron8SpectraPlot = ({ boron8, reactorLF }) => {
       </Card.Header>
       <Card.Body>
         <Card.Text>
-          R<sub>sol</sub> = {boron8.boron8NIU.toFixed(2)} NIU 
+          <i>R</i><sub>sol</sub> = {boron8.boron8NIU.toFixed(2)} NIU 
           <br />
           <small>Scattered electron kinetic energy range: {crossSection.elasticScatteringTMin.toFixed(1)} &lt; T &lt; {crossSection.elasticScatteringTMax.toFixed(1)} MeV </small>
           <br />
-          <small>Date range: {reactorLF.start.toISOString().slice(0, 7)} through {reactorLF.end.toISOString().slice(0, 7)}. Rate variation due to orbital eccentricity not yet implemented. </small>
+          <small>Date range: {reactorLF.start.toISOString().slice(0, 7)} through {reactorLF.end.toISOString().slice(0, 7)}. Rate variation due to elliptical orbit not yet activated.</small>
         </Card.Text>
         <p>
           <sup>8</sup>B decay spectrum is taken from:
