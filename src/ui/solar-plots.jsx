@@ -103,7 +103,7 @@ export const AnalemmaPlot = ({ detector, cores, reactorLF, boron8 }) => {
       dis: zint,
     };
   });
-  let zintSum = sum(daKine.dis)
+  let zintSum = sum(daKine.dis);
   let zintMean = zintDiv(1,2);
   
   let data = times.map((days) => {
