@@ -99,7 +99,9 @@ export const AnalemmaPlot = ({ detector, cores, reactorLF, boron8 }) => {
     let zint = days.map((date) =>
       date === undefined ? date : 1 / earthSunDist(date) ** 2
     );
-    return zint;
+    return {
+      dis: zint,
+    };
   });
   let zintMean = zintDiv(1,2);
   
