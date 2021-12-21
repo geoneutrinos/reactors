@@ -269,8 +269,8 @@ function App(props) {
               </Tab>
               <Tab eventKey="solarnu" title="SolarNu">
                 <Visible>
-                  <AnalemmaPlot detector={detector} cores={cores} reactorLF={reactorLF}/>
-                  <Boron8SpectraPlot boron8={boron8} />
+                  <AnalemmaPlot detector={detector} cores={cores} reactorLF={reactorLF} />
+                  <Boron8SpectraPlot boron8={boron8} reactorLF={reactorLF} />
                   <Boron8KEPlot boron8={boron8} />
                   <CrossSectionPlotsNormal />
                   <DifferentialCrossSectionPlotsNeutrinos />
