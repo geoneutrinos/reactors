@@ -303,7 +303,7 @@ export const Boron8SpectraPlot = ({ boron8 }) => {
         <Card.Text>
           R<sub>sol</sub> = {boron8.boron8NIU.toFixed(2)} NIU 
           <br />
-          <small>Scattered electron kinetic energy range: {crossSection.elasticScatteringTMin.toFixed(1)} &lt; T &lt; {crossSection.elasticScatteringTMax.toFixed(1)} MeV
+          <small>Scattered electron kinetic energy range: {crossSection.elasticScatteringTMin.toFixed(1)} &lt; T &lt; {crossSection.elasticScatteringTMax.toFixed(1)} MeV </small>
         </Card.Text>
         <p>
           <sup>8</sup>B decay spectrum is taken from:
