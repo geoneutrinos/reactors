@@ -139,7 +139,7 @@ export const AnalemmaPlot = ({ detector, cores, reactorLF }) => {
         : detector.current
     } (${detector.lat.toFixed(1)}N, ${detector.lon.toFixed(
       1
-    )}E, ${detector.elevation.toFixed(0)}m)`,
+    )}E, ${detector.elevation.toFixed(0)}m) <br /><sub>(${reactorLF.start.toISOString().slice(0, 7)} through ${reactorLF.end.toISOString().slice(0, 7)})</sub>`,
     //    title: "Solar Analemma",
     hovermode: "closest",
     autosize: true,
