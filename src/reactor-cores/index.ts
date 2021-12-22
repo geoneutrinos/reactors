@@ -1,8 +1,4 @@
-import {
-  reactors as cores,
-  times,
-  loads,
-} from "./reactor-database/reactors.json";
+import iaeaDatabase from "./reactor-database/reactors.json";
 import { partialInteractionRate } from "../physics/reactor-antineutrinos";
 import { neutrinoEnergyFor } from "../physics/helpers";
 import {
@@ -18,6 +14,8 @@ import { zip, sum } from "lodash";
 import { project } from "ecef-projector";
 import { Oscillation } from "../physics/neutrino-oscillation";
 import bins, {binWidth, binCount} from "../physics/bins";
+
+const {reactors: cores, times, loads } = iaeaDatabase;
 
 export { cores, times, loads };
 
