@@ -12,11 +12,11 @@ interface VariableOscillationParams {
   dmsq21: number
   s2t13Normal: number
   s2t13Inverted: number
-  dmsq32Normal: number
+  dmsq31Normal: number
   dmsq32Inverted: number
 }
 interface DerivedOscillationParams {
-  dmsq31Normal: number
+  dmsq32Normal: number
   dmsq31Inverted: number
   c4t13Normal: number
   c4t13Inverted: number
