@@ -8,5 +8,7 @@
 "TIANWAN-3": {"elevation": 5},
 "TIANWAN-4": {"elevation": 5},
 "PERRY-1": {"lat": 41.80122, "lon": -81.14317},
-"DAVIS BESSE-1": {"lat": 41.59692, "lon": -83.08664}
+"DAVIS BESSE-1": {"lat": 41.59692, "lon": -83.08664},
+"HARTLEPOOL A-1": {"lat": 54.63504, "lon": -1.18014},
+"HARTLEPOOL A-2": {"lat": 54.63467, "lon": -1.18041}
 }
