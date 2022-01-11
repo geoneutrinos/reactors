@@ -6,6 +6,7 @@ import Plot from "react-plotly.js";
 import { Isotopes } from "../physics/constants";
 import { neutrinoEnergyFor } from "../physics/helpers";
 import bins from "../physics/bins";
+import { u238fit } from "../physics/reactor-antineutrinos";
 
 export const FissionIsotopeSpectraPlots = () => {
   const data = [
@@ -212,6 +213,18 @@ export const U235IsotopeSpectraPlots = () => {
 
 export const U238IsotopeSpectraPlots = () => {
   const data = [
+    {
+      y: bins.map(u238fit),
+      x: bins,
+      name: `Estienne et al (2018)`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        width: 1
+      },
+      fill: "none",
+      marker: { color: "green" },
+    },
     {
       y: bins.map(neutrinoEnergyFor(Isotopes.U238)),
       x: bins,

@@ -1,3 +1,13 @@
+import {piecewise, scaleLinear} from 'd3';
+import extra from './data/estienne2018.json';
+
+const interpolatedU238 = piecewise(extra.U238_450d)
+const scale = scaleLinear().domain([extra.energy[0], extra.energy[extra.energy.length -1]]).clamp(true)
+
+export function u238fit(eV:number): number {
+  return interpolatedU238(scale(eV))
+}
+
 /**
  * estimate of the differential neutrino energy, usually represented by the symbol lambda
  * @param Ev - Energy of the neutrino in MeV
