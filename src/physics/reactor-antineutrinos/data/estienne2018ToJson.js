@@ -2,8 +2,8 @@ const lodash = require('lodash');
 const fs = require('fs')
 const path = require('path')
 
-const extra = path.join(__dirname, "extraMaterial.txt")
-const out = path.join(__dirname, "extraMaterial.json")
+const extra = path.join(__dirname, "estienne2018.txt")
+const out = path.join(__dirname, "estienne2018.json")
 
 const {zip, unzip} = lodash;
 

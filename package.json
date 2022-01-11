@@ -38,7 +38,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "processReactorSpectrum":"node src/physics/reactor-antineutrinos/data/extraToJSON.js"
+    "processReactorSpectrum":"node src/physics/reactor-antineutrinos/data/estienne2018ToJson.js"
   },
   "eslintConfig": {
     "extends": "react-app"
