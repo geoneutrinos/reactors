@@ -23,6 +23,7 @@ export enum Isotopes {
   PU239 = "PU239",
   PU241 = "PU241",
 }
+export type IsotopeKeys = keyof typeof Isotopes
 
 export const K40_BRANCH_RATIO = {
   beta: 0.8928,

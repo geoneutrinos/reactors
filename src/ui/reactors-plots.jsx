@@ -4,14 +4,14 @@ import { Card } from "react-bootstrap";
 import Plot from "react-plotly.js";
 
 import { Isotopes } from "../physics/constants";
-import { neutrinoEnergyFor } from "../physics/reactor-antineutrinos/huber-muller";
+import { neutrinoEnergyFor as neutrinoEnergyForHM } from "../physics/reactor-antineutrinos/huber-muller";
+import { neutrinoEnergyFor as neutrinoEnergyForES } from "../physics/reactor-antineutrinos/estienne";
 import bins from "../physics/bins";
-import { u238fit } from "../physics/reactor-antineutrinos";
 
 export const FissionIsotopeSpectraPlots = () => {
   const data = [
     {
-      y: bins.map(neutrinoEnergyFor(Isotopes.U235)),
+      y: bins.map(neutrinoEnergyForHM(Isotopes.U235)),
       x: bins,
       name: `<sup>235</sup>U`,
       type: "scatter",
@@ -23,7 +23,7 @@ export const FissionIsotopeSpectraPlots = () => {
       marker: { color: "blue" },
     },
     {
-      y: bins.map(neutrinoEnergyFor(Isotopes.U238)),
+      y: bins.map(neutrinoEnergyForHM(Isotopes.U238)),
       x: bins,
       name: `<sup>238</sup>U`,
       type: "scatter",
@@ -35,7 +35,7 @@ export const FissionIsotopeSpectraPlots = () => {
       marker: { color: "green" },
     },
     {
-      y: bins.map(neutrinoEnergyFor(Isotopes.PU239)),
+      y: bins.map(neutrinoEnergyForHM(Isotopes.PU239)),
       x: bins,
       name: `<sup>239</sup>Pu`,
       type: "scatter",
@@ -47,7 +47,7 @@ export const FissionIsotopeSpectraPlots = () => {
       marker: { color: "red" },
     },
     {
-      y: bins.map(neutrinoEnergyFor(Isotopes.PU241)),
+      y: bins.map(neutrinoEnergyForHM(Isotopes.PU241)),
       x: bins,
       name: `<sup>241</sup>Pu`,
       type: "scatter",
@@ -123,7 +123,19 @@ export const FissionIsotopeSpectraPlots = () => {
 export const U235IsotopeSpectraPlots = () => {
   const data = [
     {
-      y: bins.map(neutrinoEnergyFor(Isotopes.U235)),
+      y: bins.map(neutrinoEnergyForES(Isotopes.U235)),
+      x: bins,
+      name: `Estienne et al (2018)`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        width: 1
+      },
+      fill: "none",
+      marker: { color: "blue" },
+    },
+    {
+      y: bins.map(neutrinoEnergyForHM(Isotopes.U235)),
       x: bins,
       name: `Huber (2011)`,
       type: "scatter",
@@ -214,7 +226,7 @@ export const U235IsotopeSpectraPlots = () => {
 export const U238IsotopeSpectraPlots = () => {
   const data = [
     {
-      y: bins.map(u238fit),
+      y: bins.map(neutrinoEnergyForES(Isotopes.U238)),
       x: bins,
       name: `Estienne et al (2018)`,
       type: "scatter",
@@ -226,7 +238,7 @@ export const U238IsotopeSpectraPlots = () => {
       marker: { color: "green" },
     },
     {
-      y: bins.map(neutrinoEnergyFor(Isotopes.U238)),
+      y: bins.map(neutrinoEnergyForHM(Isotopes.U238)),
       x: bins,
       name: `Mueller et al. (2011)`,
       type: "scatter",

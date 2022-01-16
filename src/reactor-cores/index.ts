@@ -9,6 +9,7 @@ import {
   FISSION_ENERGIES,
   ELEMENTARY_CHARGE,
   Isotopes,
+  IsotopeKeys,
 } from "../physics/constants";
 import { zip, sum } from "lodash";
 import { project } from "ecef-projector";
@@ -24,12 +25,7 @@ const SECONDS_PER_YEAR = 365.25 * 24 * 60 * 60;
 
 const cos_deg = (deg: number) => Math.cos(deg * (Math.PI / 180));
 
-interface ReactorFractions {
-  [Isotopes.U235]: number;
-  [Isotopes.U238]: number;
-  [Isotopes.PU239]: number;
-  [Isotopes.PU241]: number;
-}
+type ReactorFractions = Record<IsotopeKeys, number>
 
 interface FissionFractions extends ReactorFractions {}
 interface PowerFractions extends ReactorFractions {}
