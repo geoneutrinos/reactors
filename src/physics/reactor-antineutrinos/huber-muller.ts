@@ -1,4 +1,5 @@
-import { IsotopeKeys } from "../constants";
+import { ReactorAntineutrinoModel } from ".";
+import { IsotopeKeys, Isotopes  } from "../constants";
 
 // Huber 2011 -> DOI: 10.1103/PhysRevC.84.024617
 // Mueller 2011 -> 10.1103/PhysRevC.83.054615
@@ -26,3 +27,10 @@ export function neutrinoEnergyFor(isotope: IsotopeKeys){
     return neutrinoEnergy(Ev, ...fitParams);
   }
 }
+
+const model = Object.fromEntries(Object.keys(Isotopes).map(key => {
+  let isotopeKey = key as IsotopeKeys
+  return [isotopeKey, neutrinoEnergyFor(isotopeKey)]
+})) as ReactorAntineutrinoModel
+
+export default model;

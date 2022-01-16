@@ -39,6 +39,7 @@ export {
 } from "./reactors-plots";
 export { Boron8SpectraPlot, AnalemmaPlot, Boron8KEPlot } from "./solar-plots";
 export { FissionFractionPane } from "./reactors-fission";
+export { RASwitcher } from "./reactors-ra-switcher";
 
 export const Visible = ({ children }) => {
   const [visible, setVisible] = useState(false);

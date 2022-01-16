@@ -14,6 +14,7 @@ import {
   StatsPanel,
   DetectorLocationPane,
   //Reactors Tab
+  RASwitcher,
   CoreDirectionSignalPlots,
   CoreIAEARange,
   CoreList,
@@ -69,6 +70,9 @@ import { crossSectionReducer } from "./physics/neutrino-cross-section";
 import { oscillation as initalOscillation } from "./physics/neutrino-oscillation";
 import { oscillationReducer } from "./physics/neutrino-oscillation";
 
+import { reactorAntineutrinoModel as initalReactorAntineutrinoModel } from "./physics/reactor-antineutrinos";
+import { reactorAntineutrinoModelReducer } from "./physics/reactor-antineutrinos";
+
 import { defaultBoron8 } from "./solar";
 
 import { PhysicsContext } from "./state";
@@ -99,6 +103,11 @@ function App(props) {
   const [crossSection, crossSectionDispatch] = useReducer(
     crossSectionReducer,
     initialCrossSection
+  );
+
+  const [reactorAntineutrinoModel, reactorAntineutrinoModelDispatch] = useReducer(
+    reactorAntineutrinoModelReducer,
+    initalReactorAntineutrinoModel
   );
 
   const [detector, setDetector] = useState({
@@ -152,11 +161,11 @@ function App(props) {
 
         return [
           name,
-          modCore.setSignal(dist, lf, oscillation, crossSection, direction),
+          modCore.setSignal(dist, lf, oscillation, crossSection, direction, reactorAntineutrinoModel),
         ];
       })
     );
-  }, [coreMods, reactorLF, crossSection, oscillation, detector, customCores]);
+  }, [coreMods, reactorLF, crossSection, oscillation, detector, customCores, reactorAntineutrinoModel]);
 
   const crustFlux = useMemo(() => {
     return {
@@ -181,6 +190,8 @@ function App(props) {
     oscillationDispatch: oscillationDispatch,
     crossSection: crossSection,
     crossSectionDispatch: crossSectionDispatch,
+    reactorAntineutrinoModel: reactorAntineutrinoModel, 
+    reactorAntineutrinoModelDispatch: reactorAntineutrinoModelDispatch,
   };
   return (
     <PhysicsContext.Provider value={physicsContextValue}>
@@ -215,6 +226,7 @@ function App(props) {
                 </Visible>
               </Tab>
               <Tab eventKey="reactors" title="Reactors">
+                <RASwitcher />
                 <AddCustomCoreModal
                   {...addCustomModalXY}
                   show={addCustomModal}

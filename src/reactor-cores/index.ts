@@ -1,6 +1,5 @@
 import iaeaDatabase from "./reactor-database/reactors.json";
-import { partialInteractionRate } from "../physics/reactor-antineutrinos";
-import { neutrinoEnergyFor } from "../physics/reactor-antineutrinos/huber-muller";
+import { partialInteractionRate, ReactorAntineutrinoModelApp } from "../physics/reactor-antineutrinos";
 import {
   XSNames,
   CrossSection,
@@ -143,12 +142,13 @@ const POWER_FRACTIONS_ALL: {[type: string]: PowerFractions} = {
 
 const spectrumCache: {[index: string]: Float64Array} = {}
 
-const calcSpectrum = (crossSection:CrossSection, powerFractions: PowerFractions): Float64Array => {
+const calcSpectrum = (crossSection:CrossSection, powerFractions: PowerFractions, reactorAntineutrinoModel:ReactorAntineutrinoModelApp): Float64Array => {
   const spectrumCacheKey = JSON.stringify({
     ...powerFractions,
     crossSectionFuncID:crossSection.crossSection,
     esTMim:crossSection.elasticScatteringTMin,
     esTMax:crossSection.elasticScatteringTMax,
+    reactorAntineutrinoModelName:reactorAntineutrinoModel.modelName
   })
   if (spectrumCacheKey in spectrumCache){
     return spectrumCache[spectrumCacheKey]
@@ -159,7 +159,7 @@ const calcSpectrum = (crossSection:CrossSection, powerFractions: PowerFractions)
         const isotope: Isotopes = v as Isotopes;
         const powerFraction = powerFractions[isotope];
         const fisionEnery = FISSION_ENERGIES[isotope];
-        const neutrinoEnergy = neutrinoEnergyFor(isotope);
+        const neutrinoEnergy = reactorAntineutrinoModel.model[isotope];
         const rate = partialInteractionRate(
           Ev,
           fisionEnery,
@@ -229,7 +229,8 @@ interface ReactorCore {
     lf: number,
     oscillation: Oscillation,
     crossSection: CrossSection,
-    direction: Direction
+    direction: Direction,
+    reactorAntineutrinoModel: ReactorAntineutrinoModelApp
   ) => ReactorCore;
   loadFactor: (start?: Date, stop?: Date) => number;
   cos: (other: ReactorCore) => number;
@@ -300,9 +301,10 @@ export function ReactorCore({
     lf: number,
     oscillation: Oscillation,
     crossSection: CrossSection,
-    direction: Direction
+    direction: Direction,
+    reactorAntineutrinoModel: ReactorAntineutrinoModelApp
   ): ReactorCore {
-    let spectrum = calcSpectrum(crossSection, this.powerFractions)
+    let spectrum = calcSpectrum(crossSection, this.powerFractions, reactorAntineutrinoModel)
     const power = this.power;
     const distsq = dist ** 2;
 

@@ -1,4 +1,5 @@
 import {piecewise, scaleLinear} from 'd3';
+import { ReactorAntineutrinoModel } from '.';
 import {Isotopes, IsotopeKeys } from '../constants';
 import extra from './data/estienne2018.json';
 
@@ -17,3 +18,10 @@ export function neutrinoEnergyFor(isotope: IsotopeKeys){
         return interpolators[isotope](scaledEv)
     }
 }
+
+const model = Object.fromEntries(Object.keys(Isotopes).map(key => {
+    let isotopeKey = key as IsotopeKeys
+    return [isotopeKey, neutrinoEnergyFor(isotopeKey)]
+  })) as ReactorAntineutrinoModel
+  
+  export default model;
