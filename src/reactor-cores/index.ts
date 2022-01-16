@@ -1,6 +1,6 @@
 import iaeaDatabase from "./reactor-database/reactors.json";
 import { partialInteractionRate } from "../physics/reactor-antineutrinos";
-import { neutrinoEnergyFor } from "../physics/helpers";
+import { neutrinoEnergyFor } from "../physics/reactor-antineutrinos/huber-muller";
 import {
   XSNames,
   CrossSection,

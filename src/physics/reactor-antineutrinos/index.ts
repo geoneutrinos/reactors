@@ -8,15 +8,6 @@ export function u238fit(eV:number): number {
   return interpolatedU238(scale(eV))
 }
 
-/**
- * estimate of the differential neutrino energy, usually represented by the symbol lambda
- * @param Ev - Energy of the neutrino in MeV
- * @param c  - One or more unitless fitted coeficients
- */
-export function neutrinoEnergy(Ev:number, ...c: number[]): number{
-  const params = c.map((cv, i) => cv * Math.pow(Ev, i));
-  return Math.exp(params.reduce((sum, value) => sum + value, 0));
-}
 
 /**
  * Returns the partial internation rate which has not been scaled for 

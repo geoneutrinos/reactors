@@ -4,7 +4,7 @@ import { Card } from "react-bootstrap";
 import Plot from "react-plotly.js";
 
 import { Isotopes } from "../physics/constants";
-import { neutrinoEnergyFor } from "../physics/helpers";
+import { neutrinoEnergyFor } from "../physics/reactor-antineutrinos/huber-muller";
 import bins from "../physics/bins";
 import { u238fit } from "../physics/reactor-antineutrinos";
 
