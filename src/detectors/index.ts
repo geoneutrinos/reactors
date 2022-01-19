@@ -31,6 +31,7 @@ export const presets: DetecorPreset[] = [
     {name: "NEMO Test", lat:37.551, lon: 15.384, elevation:-2080, overburden:2080, region:"Mediterranean Sea"},
     // North America
     {name: "Morton", lat:41.7551, lon: -81.2860, elevation:-426, overburden:1570, region:"North America"},
+    {name: "Cargill", lat:41.4942, lon: -81.7183, elevation:-426, overburden:1700, region:"North America"},
     {name: "KURF", lat:37.38, lon: -80.66, elevation:0, overburden:1400, region:"North America"},
     {name: "Soudan", lat:47.82, lon: -92.24, elevation:-210, overburden:1950, region:"North America"},
     {name: "SURF", lat:44.36, lon: -103.76, elevation:192, overburden:4300, region:"North America"},
