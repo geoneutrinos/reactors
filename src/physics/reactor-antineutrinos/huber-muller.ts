@@ -1,5 +1,11 @@
+import {piecewise, scaleLinear} from 'd3';
 import { ReactorAntineutrinoModel } from ".";
 import { IsotopeKeys, Isotopes  } from "../constants";
+
+import esModel from "./estienne";
+
+import huber from "./data/huber2011.json";
+import muller from "./data/mueller_et_al2011.json";
 
 // Huber 2011 -> DOI: 10.1103/PhysRevC.84.024617
 // Mueller 2011 -> 10.1103/PhysRevC.83.054615
@@ -10,6 +16,16 @@ export const V_FIT_PARAMS: Record<IsotopeKeys, number[]> = {
   PU241: [2.99, -2.882, 1.278, -3.343e-1, 3.905e-2, -1.754e-3], // Huber 2011 (phys rev c) table 3
 };
 
+const interpolators = {
+  [Isotopes.U238]: piecewise(muller.U238_450d),
+  [Isotopes.U235]: piecewise(huber.U235_12h),
+  [Isotopes.PU239]: piecewise(huber.PU239_3h),
+  [Isotopes.PU241]: piecewise(huber.PU241_43h),
+}
+const minE = muller.energy[0];
+const maxE = muller.energy[muller.energy.length -1];
+
+const scale = scaleLinear().domain([minE, maxE])
 
 /**
  * estimate of the differential neutrino energy, usually represented by the symbol lambda
@@ -23,8 +39,16 @@ export const V_FIT_PARAMS: Record<IsotopeKeys, number[]> = {
 
 export function neutrinoEnergyFor(isotope: IsotopeKeys){
   return (Ev: number) => {
-    let fitParams = V_FIT_PARAMS[isotope]
-    return neutrinoEnergy(Ev, ...fitParams);
+    if (Ev < minE){
+      return esModel[isotope](Ev)
+    }
+    if (Ev < maxE){
+      const scaledEv = scale(Ev)
+      return interpolators[isotope](scaledEv)
+    }
+    if (Ev >= maxE){
+      return esModel[isotope](Ev)
+    }
   }
 }
 
