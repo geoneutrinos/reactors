@@ -1,6 +1,7 @@
 import { IsotopeKeys } from "../constants";
-import HM2011 from './huber-muller'
-import ES2018 from './estienne'
+import HM2011 from './huber-muller';
+import ES2018 from './estienne';
+import KO2021 from './kopeikin';
 
 /**
  * Returns the partial internation rate which has not been scaled for 
@@ -23,6 +24,7 @@ export type ReactorAntineutrinoModel = Record<IsotopeKeys, ReactorAntineutrinoMo
 export enum RANames {
   HM2011 = "Huber-Mueller 2011",
   ES2018 = "Estienne et al. 2019 (SM2018)",
+  KO2021 = "Kopeikin et al. 2021",
 }
 
 
@@ -35,6 +37,7 @@ export const reactorAntineutrinoModel  = {
   modelName: RANames.ES2018,
   [RANames.HM2011]: HM2011,
   [RANames.ES2018]: ES2018,
+  [RANames.KO2021]: KO2021,
   model: ES2018
 }
 
@@ -47,7 +50,5 @@ export const reactorAntineutrinoModelReducer = (state:ReactorAntineutrinoModelAp
       newModel.modelName = action.value;
       newModel.model = newModel[newModel.modelName]
   }
-  console.log(newModel)
-  console.log(newModel.model.U235(1))
   return newModel;
 }
