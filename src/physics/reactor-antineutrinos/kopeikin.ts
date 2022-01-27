@@ -2,14 +2,14 @@ import {piecewise, scaleLinear} from 'd3';
 import { ReactorAntineutrinoModel } from ".";
 import { IsotopeKeys, Isotopes  } from "../constants";
 
-import esModel from "./estienne";
+import huber from "./huber-muller";
 
 import kopeikin from "./data/kopeikin_et_al2021.json";
 
 
 const interpolators = {
-  [Isotopes.U238]: piecewise(kopeikin.U238),
-  [Isotopes.U235]: piecewise(kopeikin.U235),
+  [Isotopes.U238]: piecewise(kopeikin.U238.map(Math.log)),
+  [Isotopes.U235]: piecewise(kopeikin.U235.map(Math.log)),
 }
 const minE = kopeikin.energy[0];
 const maxE = kopeikin.energy[kopeikin.energy.length -1];
@@ -21,18 +21,18 @@ export function neutrinoEnergyFor(isotope: IsotopeKeys){
   return (Ev: number) => {
 
     if (isotope === "PU239" || isotope === "PU241"){
-      return esModel[isotope](Ev)
+      return huber[isotope](Ev)
     }
 
     if (Ev < minE){
-      return esModel[isotope](Ev)
+      return huber[isotope](Ev)
     }
-    if (Ev < maxE){
+    if (Ev <= maxE){
       const scaledEv = scale(Ev)
-      return interpolators[isotope](scaledEv)
+      return Math.exp(interpolators[isotope](scaledEv))
     }
-    if (Ev >= maxE){
-      return esModel[isotope](Ev)
+    if (Ev > maxE){
+      return huber[isotope](Ev)
     }
   }
 }

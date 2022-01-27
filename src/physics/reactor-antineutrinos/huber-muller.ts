@@ -17,10 +17,10 @@ export const V_FIT_PARAMS: Record<IsotopeKeys, number[]> = {
 };
 
 const interpolators = {
-  [Isotopes.U238]: piecewise(muller.U238_450d),
-  [Isotopes.U235]: piecewise(huber.U235_12h),
-  [Isotopes.PU239]: piecewise(huber.PU239_3h),
-  [Isotopes.PU241]: piecewise(huber.PU241_43h),
+  [Isotopes.U238]: piecewise(muller.U238_450d.map(Math.log)),
+  [Isotopes.U235]: piecewise(huber.U235_12h.map(Math.log)),
+  [Isotopes.PU239]: piecewise(huber.PU239_3h.map(Math.log)),
+  [Isotopes.PU241]: piecewise(huber.PU241_43h.map(Math.log)),
 }
 const minE = muller.energy[0];
 const maxE = muller.energy[muller.energy.length -1];
@@ -42,11 +42,11 @@ export function neutrinoEnergyFor(isotope: IsotopeKeys){
     if (Ev < minE){
       return esModel[isotope](Ev)
     }
-    if (Ev < maxE){
+    if (Ev <= maxE){
       const scaledEv = scale(Ev)
-      return interpolators[isotope](scaledEv)
+      return Math.exp(interpolators[isotope](scaledEv))
     }
-    if (Ev >= maxE){
+    if (Ev > maxE){
       return esModel[isotope](Ev)
     }
   }
