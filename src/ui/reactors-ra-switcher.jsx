@@ -52,10 +52,10 @@ export const RASwitcher = () => {
       <tbody>
         <tr>
           <td>{reactorAntineutrinoModel.modelName}</td>
-          <td><Num v={interactionYield(Isotopes.U235) * 1e43} p={2}/></td>
-          <td><Num v={interactionYield(Isotopes.U238) * 1e43} p={2}/></td>
-          <td><Num v={interactionYield(Isotopes.PU239) * 1e43} p={2}/></td>
-          <td><Num v={interactionYield(Isotopes.PU241) * 1e43} p={2}/></td>
+          <td><Num v={interactionYield(Isotopes.U235) * 1e43} p={4}/></td>
+          <td><Num v={interactionYield(Isotopes.U238) * 1e43} p={4}/></td>
+          <td><Num v={interactionYield(Isotopes.PU239) * 1e43} p={4}/></td>
+          <td><Num v={interactionYield(Isotopes.PU241) * 1e43} p={4}/></td>
         </tr>
       </tbody>
     </Table>
