@@ -11,7 +11,7 @@ import bins from "../physics/bins";
 export const FissionIsotopeSpectraPlots = () => {
   const data = [
     {
-      y: bins.map(neutrinoEnergyForHM(Isotopes.U235)),
+      y: bins.map(neutrinoEnergyForES(Isotopes.U235)),
       x: bins,
       name: `<sup>235</sup>U`,
       type: "scatter",
@@ -23,7 +23,7 @@ export const FissionIsotopeSpectraPlots = () => {
       marker: { color: "blue" },
     },
     {
-      y: bins.map(neutrinoEnergyForHM(Isotopes.U238)),
+      y: bins.map(neutrinoEnergyForES(Isotopes.U238)),
       x: bins,
       name: `<sup>238</sup>U`,
       type: "scatter",
@@ -35,7 +35,7 @@ export const FissionIsotopeSpectraPlots = () => {
       marker: { color: "green" },
     },
     {
-      y: bins.map(neutrinoEnergyForHM(Isotopes.PU239)),
+      y: bins.map(neutrinoEnergyForES(Isotopes.PU239)),
       x: bins,
       name: `<sup>239</sup>Pu`,
       type: "scatter",
@@ -47,7 +47,7 @@ export const FissionIsotopeSpectraPlots = () => {
       marker: { color: "red" },
     },
     {
-      y: bins.map(neutrinoEnergyForHM(Isotopes.PU241)),
+      y: bins.map(neutrinoEnergyForES(Isotopes.PU241)),
       x: bins,
       name: `<sup>241</sup>Pu`,
       type: "scatter",
@@ -60,7 +60,7 @@ export const FissionIsotopeSpectraPlots = () => {
     },
   ];
   var layout = {
-    title: "Fission Isotope Emission Spectra",
+    title: "Fission Isotope Emission Spectra: SM",
     yaxis: {
       title: { text: `Emission (/fission/MeV)` },
       type: "log",
@@ -68,7 +68,7 @@ export const FissionIsotopeSpectraPlots = () => {
     },
     xaxis: {
       title: { text: `Antineutrino Energy (MeV)` },
-      range: [1.8, 10],
+      range: [0.05, 10.05],
     },
     autosize: true,
     legend: {
@@ -94,19 +94,11 @@ export const FissionIsotopeSpectraPlots = () => {
   };
   return (
     <Card>
-      <Card.Header>Fission Isotope Emission Spectra</Card.Header>
+      <Card.Header>Fission Isotope Emission Spectra: SM</Card.Header>
       <Card.Body>
         <p>
-          <sup>235</sup>U, <sup>239</sup>Pu, <sup>241</sup>Pu spectra parameterizations:
-          <br />
-          P. Huber, "Determination of antineutrino spectra from nuclear
-          reactors," Phys. Rev. C 84, 024617 (2011).
-        </p>
-        <p>
-          <sup>238</sup>U spectrum parameterization:
-          <br />
-          Mueller, Th. A. et al., "Improved predictions of reactor antineutrino
-          spectra," Phys. Rev. C 83, 054615 (2011).
+          M. Estienne et al., "Updated Summation Model: An Improved Agreement with the Daya Bay Antineutrino Fluxes,"
+          Phys. Rev. Lett. 123, 022502, (2019).
         </p>
         <Plot
           useResizeHandler={true}
