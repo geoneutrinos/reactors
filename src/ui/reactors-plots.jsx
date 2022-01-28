@@ -6,6 +6,7 @@ import Plot from "react-plotly.js";
 import { Isotopes } from "../physics/constants";
 import { neutrinoEnergyFor as neutrinoEnergyForHM } from "../physics/reactor-antineutrinos/huber-muller";
 import { neutrinoEnergyFor as neutrinoEnergyForES } from "../physics/reactor-antineutrinos/estienne";
+import { neutrinoEnergyFor as neutrinoEnergyForKO } from "../physics/reactor-antineutrinos/kopeikin";
 import bins from "../physics/bins";
 
 export const FissionIsotopeSpectraPlots = () => {
