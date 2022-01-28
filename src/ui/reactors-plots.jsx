@@ -14,7 +14,7 @@ export const FissionIsotopeSpectraPlots = () => {
     {
       y: bins.map(neutrinoEnergyForES(Isotopes.U235)),
       x: bins,
-      name: `<sup>235</sup>U`,
+      name: `<sup>235</sup>U SM`,
       type: "scatter",
       mode: "lines",
       line: {
@@ -27,7 +27,7 @@ export const FissionIsotopeSpectraPlots = () => {
     {
       y: bins.map(neutrinoEnergyForKO(Isotopes.U235)),
       x: bins,
-      name: `<sup>235</sup>U`,
+      name: `<sup>235</sup>U CM`,
       type: "scatter",
       mode: "lines",
       line: {
@@ -39,7 +39,7 @@ export const FissionIsotopeSpectraPlots = () => {
     {
       y: bins.map(neutrinoEnergyForES(Isotopes.U238)),
       x: bins,
-      name: `<sup>238</sup>U`,
+      name: `<sup>238</sup>U SM`,
       type: "scatter",
       mode: "lines",
       line: {
@@ -52,7 +52,7 @@ export const FissionIsotopeSpectraPlots = () => {
     {
       y: bins.map(neutrinoEnergyForKO(Isotopes.U238)),
       x: bins,
-      name: `<sup>238</sup>U`,
+      name: `<sup>238</sup>U CM`,
       type: "scatter",
       mode: "lines",
       line: {
@@ -64,7 +64,7 @@ export const FissionIsotopeSpectraPlots = () => {
     {
       y: bins.map(neutrinoEnergyForES(Isotopes.PU239)),
       x: bins,
-      name: `<sup>239</sup>Pu`,
+      name: `<sup>239</sup>Pu SM`,
       type: "scatter",
       mode: "lines",
       line: {
@@ -77,7 +77,7 @@ export const FissionIsotopeSpectraPlots = () => {
     {
       y: bins.map(neutrinoEnergyForKO(Isotopes.PU239)),
       x: bins,
-      name: `<sup>239</sup>Pu`,
+      name: `<sup>239</sup>Pu CM`,
       type: "scatter",
       mode: "lines",
       line: {
@@ -89,7 +89,7 @@ export const FissionIsotopeSpectraPlots = () => {
     {
       y: bins.map(neutrinoEnergyForES(Isotopes.PU241)),
       x: bins,
-      name: `<sup>241</sup>Pu`,
+      name: `<sup>241</sup>Pu SM`,
       type: "scatter",
       mode: "lines",
       line: {
@@ -102,7 +102,7 @@ export const FissionIsotopeSpectraPlots = () => {
     {
       y: bins.map(neutrinoEnergyForKO(Isotopes.PU241)),
       x: bins,
-      name: `<sup>241</sup>Pu`,
+      name: `<sup>241</sup>Pu CM`,
       type: "scatter",
       mode: "lines",
       line: {
@@ -125,7 +125,6 @@ export const FissionIsotopeSpectraPlots = () => {
     },
     autosize: true,
     legend: {
-      title: { text: `Summation` },
       x: 1,
       xanchor: "right",
       y: 1,
