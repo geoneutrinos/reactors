@@ -76,7 +76,7 @@ export const FissionIsotopeSpectraPlots = () => {
     },
     autosize: true,
     legend: {
-      title: { text: `Estienne et al. (2019)` },
+      title: { text: `Summation` },
       x: 1,
       xanchor: "right",
       y: 1,
@@ -99,11 +99,25 @@ export const FissionIsotopeSpectraPlots = () => {
   };
   return (
     <Card>
-      <Card.Header>Fission Isotope Emission Spectra: SM</Card.Header>
+      <Card.Header>Fission Isotope Emission Spectra</Card.Header>
       <Card.Body>
         <p>
+          <sup>235</sup>U, <sup>238</sup>U, <sup>239</sup>Pu, <sup>241</sup>Pu summation spectra:
+          <br />
           M. Estienne et al., "Updated Summation Model: An Improved Agreement with the Daya Bay Antineutrino Fluxes,"
           Phys. Rev. Lett. 123, 022502, (2019).
+        </p>
+        <p>
+          <sup>239</sup>Pu, <sup>241</sup>Pu conversion spectra:
+          <br />
+          P. Huber, "Determination of antineutrino spectra from nuclear
+          reactors," Phys. Rev. C 84, 024617 (2011).
+        </p>
+        <p>
+          <sup>235</sup>U, <sup>238</sup>U conversion spectra:
+          <br />
+          V. Kopeikin, M. Skorokhvatov, O. Titov, "Reevaluating reactor antineutrino spectra with new measurements of the ratio
+          between <sup>235</sup>U and <sup>239</sup>Pu β spectra," Phys. Rev. D 104, L071301 (2021).
         </p>
         <Plot
           useResizeHandler={true}
