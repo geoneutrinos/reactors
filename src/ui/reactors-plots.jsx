@@ -17,7 +17,7 @@ export const FissionIsotopeSpectraPlots = () => {
       type: "scatter",
       mode: "lines",
       line: {
-        "dot",
+        dash: "dashdot",
         width: 1
       },
       fill: "none",
@@ -30,7 +30,7 @@ export const FissionIsotopeSpectraPlots = () => {
       type: "scatter",
       mode: "lines",
       line: {
-        "dot",
+        dash: "dashdot",
         width: 1
       },
       fill: "none",
@@ -43,7 +43,7 @@ export const FissionIsotopeSpectraPlots = () => {
       type: "scatter",
       mode: "lines",
       line: {
-        "dot",
+        dash: "dashdot",
         width: 1
       },
       fill: "none",
@@ -56,7 +56,7 @@ export const FissionIsotopeSpectraPlots = () => {
       type: "scatter",
       mode: "lines",
       line: {
-        "dot",
+        dash: "dashdot",
         width: 1
       },
       fill: "none",
@@ -76,7 +76,7 @@ export const FissionIsotopeSpectraPlots = () => {
     },
     autosize: true,
     legend: {
-      title: "Estienne et al. 2019",
+      title: { text: `Estienne et al. (2019)` },
       x: 1,
       xanchor: "right",
       y: 1,
