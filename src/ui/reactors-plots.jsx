@@ -17,6 +17,7 @@ export const FissionIsotopeSpectraPlots = () => {
       type: "scatter",
       mode: "lines",
       line: {
+        "dot",
         width: 1
       },
       fill: "none",
@@ -29,6 +30,7 @@ export const FissionIsotopeSpectraPlots = () => {
       type: "scatter",
       mode: "lines",
       line: {
+        "dot",
         width: 1
       },
       fill: "none",
@@ -41,6 +43,7 @@ export const FissionIsotopeSpectraPlots = () => {
       type: "scatter",
       mode: "lines",
       line: {
+        "dot",
         width: 1
       },
       fill: "none",
@@ -53,6 +56,7 @@ export const FissionIsotopeSpectraPlots = () => {
       type: "scatter",
       mode: "lines",
       line: {
+        "dot",
         width: 1
       },
       fill: "none",
@@ -64,7 +68,7 @@ export const FissionIsotopeSpectraPlots = () => {
     yaxis: {
       title: { text: `Emission (/fission/MeV)` },
       type: "log",
-      range: [-4, Math.log10(4)],
+      range: [-5, Math.log10(4)],
     },
     xaxis: {
       title: { text: `Antineutrino Energy (MeV)` },
@@ -72,6 +76,7 @@ export const FissionIsotopeSpectraPlots = () => {
     },
     autosize: true,
     legend: {
+      title: "Estienne et al. 2019",
       x: 1,
       xanchor: "right",
       y: 1,
