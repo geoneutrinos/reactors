@@ -117,7 +117,7 @@ export const FissionIsotopeSpectraPlots = () => {
     yaxis: {
       title: { text: `Emission (/fission/MeV)` },
       type: "log",
-      range: [-5, Math.log10(4)],
+      range: [-5, 1],
     },
     xaxis: {
       title: { text: `Antineutrino Energy (MeV)` },
