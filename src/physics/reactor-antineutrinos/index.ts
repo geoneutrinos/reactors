@@ -22,9 +22,9 @@ export type ReactorAntineutrinoModelFunc = (Ev: number) => number
 export type ReactorAntineutrinoModel = Record<IsotopeKeys, ReactorAntineutrinoModelFunc>
 
 export enum RANames {
-  HM2011 = "Huber-Mueller 2011",
-  ES2018 = "Estienne et al. 2019 (SM2018)",
-  KO2021 = "Kopeikin et al. 2021",
+  HM2011 = "Huber (2011) + Mueller et al. (2011)",
+  ES2018 = "Estienne et al. (2019) - SM2018",
+  KO2021 = "Huber (2011) + Kopeikin et al. (2021)",
 }
 
 
