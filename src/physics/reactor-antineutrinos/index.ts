@@ -38,7 +38,7 @@ export const reactorAntineutrinoModel  = {
   [RANames.HM2011]: HM2011,
   [RANames.ES2018]: ES2018,
   [RANames.KO2021]: KO2021,
-  model: ES2018
+  model: KO2021
 }
 
 export type ReactorAntineutrinoModelApp = typeof reactorAntineutrinoModel;
