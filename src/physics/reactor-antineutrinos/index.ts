@@ -34,7 +34,7 @@ interface ReactorAntineutrinoModelAction {
 }
 
 export const reactorAntineutrinoModel  = {
-  modelName: RANames.ES2018,
+  modelName: RANames.KO2021,
   [RANames.HM2011]: HM2011,
   [RANames.ES2018]: ES2018,
   [RANames.KO2021]: KO2021,
