@@ -14,6 +14,7 @@ import { ISOTOPIC_NATURAL_ABUNDANCE } from "../physics/constants";
 import {PhysicsContext} from "../state"
 import { binWidth } from "../physics/bins";
 import { XSNames } from "../physics/neutrino-cross-section";
+import { RANames } from "../physics/reactor-antineutrinos";
 
 import { Num } from '.'
 
@@ -109,7 +110,7 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
   return (
     <Card>
       <Card.Body>
-        <Card.Title>Spectrum Stats <small>({crossSection.crossSection}- IBD/ES tab.)</small></Card.Title>
+        <Card.Title>Spectrum Stats <small>({crossSection.crossSection})</small></Card.Title>
 
        <Card.Subtitle>
            <span style={{ display: leptonTVald }}>
@@ -133,7 +134,7 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
         </Table>
 
         <hr />
-        <h6>IAEA Cores <small>({reactorLF.start.toISOString().slice(0, 7)} through {reactorLF.end.toISOString().slice(0, 7)} avg Load Factor- Reactors tab.)</small></h6>
+        <h6>IAEA Cores <small>({reactorAntineutrinoModel.modelName} - {reactorLF.start.toISOString().slice(0, 7)} through {reactorLF.end.toISOString().slice(0, 7)} avg Load Factor)</small></h6>
         <Table {...tableProps}>
           <tbody>
             <tr>
@@ -213,7 +214,7 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
         </div>
         <div>
           <hr />
-          <h6>Geoneutrinos <small>(Predicted crust + user-defined mantle flux- GeoNu tab. Avg P<sub>ee</sub>- Input tab)</small></h6>
+          <h6>Geoneutrinos <small>(Predicted crust + user-defined mantle flux. Avg P<sub>ee</sub>)</small></h6>
           <Table {...tableProps}>
             <tbody>
               <tr>
