@@ -5,6 +5,7 @@ import { sum } from "lodash";
 import { PhysicsContext } from "../state";
 
 import { RANames } from "../physics/reactor-antineutrinos";
+import { XSNames } from "../physics/neutrino-cross-section";
 import { Isotopes } from "../physics/constants";
 import {Elements} from './elements';
 import bins from "../physics/bins";
@@ -34,7 +35,10 @@ export const RASwitcher = () => {
     </Form.Group>
   );
 
-  const interactionYield = (isotope) => sum(bins.map(bin => reactorAntineutrinoModel.model[isotope](bin) * crossSection.crossSectionFunction(bin)))/100
+  const svYield = (isotope) => sum(bins.map(bin => reactorAntineutrinoModel.model[isotope](bin) * crossSection[XSNames.IBDSV2003](bin)))/100
+  const vbYield = (isotope) => sum(bins.map(bin => reactorAntineutrinoModel.model[isotope](bin) * crossSection[XSNames.IBDVB1999](bin)))/100
+  const esaYield = (isotope) => sum(bins.map(bin => reactorAntineutrinoModel.model[isotope](bin) * crossSection[XSNames.ESANTI](bin)))/100
+  const esxYield = (isotope) => sum(bins.map(bin => reactorAntineutrinoModel.model[isotope](bin) * crossSection[XSNames.ESMUTAU](bin)))/100
   const InteractionYield = (
     <div>
       <h5>IBD/ES Yields</h5>
@@ -42,7 +46,7 @@ export const RASwitcher = () => {
        <caption>IBD/ES Yields (10<sup>-43</sup> cm<sup>2</sup> fission<sup>-1</sup>)</caption>
       <thead>
         <tr>
-          <th>{crossSection.crossSection}</th>
+          <th>Interaction</th>
           <th>{U235}</th>
           <th>{U238}</th>
           <th>{Pu239}</th>
@@ -51,11 +55,32 @@ export const RASwitcher = () => {
       </thead>
       <tbody>
         <tr>
-          <td>{reactorAntineutrinoModel.modelName}</td>
-          <td><Num v={interactionYield(Isotopes.U235) * 1e43} p={3}/></td>
-          <td><Num v={interactionYield(Isotopes.U238) * 1e43} p={3}/></td>
-          <td><Num v={interactionYield(Isotopes.PU239) * 1e43} p={3}/></td>
-          <td><Num v={interactionYield(Isotopes.PU241) * 1e43} p={3}/></td>
+          <td>{XSNames.IBDSV2003}</td>
+          <td><Num v={svYield(Isotopes.U235) * 1e43} p={3}/></td>
+          <td><Num v={svYield(Isotopes.U238) * 1e43} p={3}/></td>
+          <td><Num v={svYield(Isotopes.PU239) * 1e43} p={3}/></td>
+          <td><Num v={svYield(Isotopes.PU241) * 1e43} p={3}/></td>
+        </tr>
+        <tr>
+          <td>{XSNames.IBDVB1999}</td>
+          <td><Num v={vbYield(Isotopes.U235) * 1e43} p={3}/></td>
+          <td><Num v={vbYield(Isotopes.U238) * 1e43} p={3}/></td>
+          <td><Num v={vbYield(Isotopes.PU239) * 1e43} p={3}/></td>
+          <td><Num v={vbYield(Isotopes.PU241) * 1e43} p={3}/></td>
+        </tr>
+        <tr>
+          <td>{XSNames.ESANTI}</td>
+          <td><Num v={esaYield(Isotopes.U235) * 1e43} p={3}/></td>
+          <td><Num v={esaYield(Isotopes.U238) * 1e43} p={3}/></td>
+          <td><Num v={esaYield(Isotopes.PU239) * 1e43} p={3}/></td>
+          <td><Num v={esaYield(Isotopes.PU241) * 1e43} p={3}/></td>
+        </tr>
+        <tr>
+          <td>{XSNames.ESMUTAU}</td>
+          <td><Num v={esxYield(Isotopes.U235) * 1e43} p={3}/></td>
+          <td><Num v={esxYield(Isotopes.U238) * 1e43} p={3}/></td>
+          <td><Num v={esxYield(Isotopes.PU239) * 1e43} p={3}/></td>
+          <td><Num v={esxYield(Isotopes.PU241) * 1e43} p={3}/></td>
         </tr>
       </tbody>
     </Table>
