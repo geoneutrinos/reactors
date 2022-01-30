@@ -126,7 +126,7 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
               </td>
               <td>=</td>
               <td>
-                {totalNIU.toFixed(1)} {NIU}
+                <Num v={totalNIU} p=1 /> {NIU}
               </td>
             </tr>
           </tbody>
@@ -143,7 +143,7 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
               </td>
               <td>=</td>
               <td>
-                {iaeaCoreSignal.toFixed(1)} {NIU}
+                <Num v={iaeaCoreSignal} p=1 /> {NIU}
               </td>
             </tr>
             <tr>
@@ -153,7 +153,7 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
               </td>
               <td>=</td>
               <td>
-                {closestNIU.toFixed(1)} {NIU} <small> (
+                <Num v={closestNIU} p=1 /> {NIU} <small> (
                 {((closestNIU / iaeaCoreSignal) * 100).toFixed(1)} % of <i>R</i><sub>reac</sub>) </small>
               </td>
             </tr>
@@ -313,6 +313,10 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
         </div>
         <hr />
         <div>
+          <small>
+            Hover pointer over rate values to display more decima places
+          </small>
+          <br />
           <small>
             1 {NIU} (Neutrino Interaction Unit) = 1 interaction/10<sup>32</sup>{" "}
             targets/year
