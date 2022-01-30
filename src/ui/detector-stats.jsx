@@ -14,7 +14,6 @@ import { ISOTOPIC_NATURAL_ABUNDANCE } from "../physics/constants";
 import {PhysicsContext} from "../state"
 import { binWidth } from "../physics/bins";
 import { XSNames } from "../physics/neutrino-cross-section";
-import { RANames } from "../physics/reactor-antineutrinos";
 
 import { Num } from '.'
 
@@ -42,7 +41,7 @@ const geoKURatio = (R40K, R238U, crossSection) => {
 };
 
 export function StatsPanel({ cores, spectrum, reactorLF}) {
-  const {crossSection} = useContext(PhysicsContext)
+  const {crossSection, reactorAntineutrinoModel} = useContext(PhysicsContext)
   
   // Unary operator + converts true to 1 and false to 0
   const isIBD = +[XSNames.IBDSV2003, XSNames.IBDVB1999].includes(
