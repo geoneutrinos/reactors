@@ -18,7 +18,6 @@ export const FissionIsotopeSpectraPlots = () => {
       type: "scatter",
       mode: "lines",
       line: {
-        dash: "dashdot",
         width: 1
       },
       fill: "none",
@@ -31,6 +30,7 @@ export const FissionIsotopeSpectraPlots = () => {
       type: "scatter",
       mode: "lines",
       line: {
+        dash: "dashdot",
         width: 1
       },
       fill: "none",
@@ -43,7 +43,6 @@ export const FissionIsotopeSpectraPlots = () => {
       type: "scatter",
       mode: "lines",
       line: {
-        dash: "dashdot",
         width: 1
       },
       fill: "none",
@@ -56,6 +55,7 @@ export const FissionIsotopeSpectraPlots = () => {
       type: "scatter",
       mode: "lines",
       line: {
+        dash: "dashdot",
         width: 1
       },
       fill: "none",
@@ -68,7 +68,6 @@ export const FissionIsotopeSpectraPlots = () => {
       type: "scatter",
       mode: "lines",
       line: {
-        dash: "dashdot",
         width: 1
       },
       fill: "none",
@@ -81,6 +80,7 @@ export const FissionIsotopeSpectraPlots = () => {
       type: "scatter",
       mode: "lines",
       line: {
+        dash: "dashdot",
         width: 1
       },
       fill: "none",
@@ -93,7 +93,6 @@ export const FissionIsotopeSpectraPlots = () => {
       type: "scatter",
       mode: "lines",
       line: {
-        dash: "dashdot",
         width: 1
       },
       fill: "none",
@@ -106,6 +105,7 @@ export const FissionIsotopeSpectraPlots = () => {
       type: "scatter",
       mode: "lines",
       line: {
+        dash: "dashdot",
         width: 1
       },
       fill: "none",
