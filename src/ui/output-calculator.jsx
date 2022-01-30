@@ -483,7 +483,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
             <small>The numbers of detected signal <i>S</i> and background <i>B</i> events are the integrals of the respective rate spectra multiplied by the detector exposure. 
                    The currently selected cross section is {crossSection.crossSection}. 
                    If IBD, <i>S</i> is modified by the detection efficiency.
-                   If ES, <i>S</i> is modified by the selected range of the scattered charged lepton kinetic energy, which is currently from {crossSection.elasticScatteringTMin.toFixed(1)} to {crossSection.elasticScatteringTMax.toFixed(1)} MeV.</small>
+                   If ES, <i>S</i> is modified by the selected range of the scattered electron kinetic energy, which is currently from {crossSection.elasticScatteringTMin.toFixed(1)} to {crossSection.elasticScatteringTMax.toFixed(1)} MeV.</small>
             <Table>
               <tbody>
               <tr>
@@ -746,22 +746,21 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
             where <Node inline>{String.raw`s`}</Node> is the signal rate,{" "}
             <Node inline>{String.raw`b`}</Node> is the background rate, and{" "}
             <Node inline>{String.raw`\delta b`}</Node> is the systematic uncertainty of the background rate.
-            The fractional systematic uncetainty of the estimated reactor rate is 
-            0.06 (0.3) for antineutrino energy above (below) the IBD threshold, while for the 
-            estimated geoneutrino rate and nuisance background rate it is 0.25 and 0.5, respectively. 
-            The nuisance background energy spectrum is flat.
+            The fractional systematic uncetainties of the estimated rates of reactor antineutrinos, geoneutrinos, and nuisance background are 
+            0.06, 0.25, and 0.5, respectively.
+            The energy spectrum of the approximated nusiance background is flat.
             </p>
             <p>
             <b> IBD Detection Efficiency</b><br />
             When expressed as a function of antineutrino energy <i>E</i>, the detection efficiency is
-            valid for IBD only. Here it is approximated by
+            valid for IBD only. Here it is approximated by a sigmoid curve
             <Node>{String.raw`\varepsilon (E) = \frac {\varepsilon_\mathrm{max}} {1 + \exp(-\rho * (E - E_\mathrm{HM}))},`}</Node>{" "}
-            where <Node inline>{String.raw`\varepsilon_\mathrm{max}`}</Node> sets
+            where <Node inline>{String.raw`\varepsilon_\mathrm{max}`}</Node> is the asymptote at infinite energy or
             the maximum detection efficiency,{" "}
-            <Node inline>{String.raw`E_\mathrm{HM}`}</Node> is
+            <Node inline>{String.raw`E_\mathrm{HM}`}</Node> is the inflection point energy or
             the energy at half the maximum efficiency, and{" "}
-            <Node inline>{String.raw`\rho`}</Node> controls
-            the rate the efficiency ramps up. 
+            <Node inline>{String.raw`\rho`}</Node> is the slope or
+            the efficiency ramp-up rate. 
             For monolithic detectors of Cherenkov and/or scintillation light the values of these parameters depend on the
             photosensitive surface and the target liquid. 
             A conversion of the detection efficiency from a function of antineutrino energy to a function of scattered charged lepton kinetic energy is in the works.
