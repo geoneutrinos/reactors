@@ -43,7 +43,7 @@ export const RASwitcher = () => {
     <div>
       <h5>IBD/ES Yields</h5>
     <Table>
-       <caption>IBD/ES Yields (10<sup>-43</sup> cm<sup>2</sup> fission<sup>-1</sup>)</caption>
+       <caption>IBD/ES Yields (10<sup>-43</sup> cm<sup>2</sup> fission<sup>-1</sup>). Hover pointer over values to see more decimal places.</caption>
       <thead>
         <tr>
           <th>Interaction</th>
@@ -56,31 +56,31 @@ export const RASwitcher = () => {
       <tbody>
         <tr>
           <td>{XSNames.IBDSV2003}</td>
-          <td><Num v={svYield(Isotopes.U235) * 1e43} p={3}/></td>
-          <td><Num v={svYield(Isotopes.U238) * 1e43} p={3}/></td>
-          <td><Num v={svYield(Isotopes.PU239) * 1e43} p={3}/></td>
-          <td><Num v={svYield(Isotopes.PU241) * 1e43} p={3}/></td>
+          <td><Num v={svYield(Isotopes.U235) * 1e43} p={2}/></td>
+          <td><Num v={svYield(Isotopes.U238) * 1e43} p={2}/></td>
+          <td><Num v={svYield(Isotopes.PU239) * 1e43} p={2}/></td>
+          <td><Num v={svYield(Isotopes.PU241) * 1e43} p={2}/></td>
         </tr>
         <tr>
           <td>{XSNames.IBDVB1999}</td>
-          <td><Num v={vbYield(Isotopes.U235) * 1e43} p={3}/></td>
-          <td><Num v={vbYield(Isotopes.U238) * 1e43} p={3}/></td>
-          <td><Num v={vbYield(Isotopes.PU239) * 1e43} p={3}/></td>
-          <td><Num v={vbYield(Isotopes.PU241) * 1e43} p={3}/></td>
+          <td><Num v={vbYield(Isotopes.U235) * 1e43} p={2}/></td>
+          <td><Num v={vbYield(Isotopes.U238) * 1e43} p={2}/></td>
+          <td><Num v={vbYield(Isotopes.PU239) * 1e43} p={2}/></td>
+          <td><Num v={vbYield(Isotopes.PU241) * 1e43} p={2}/></td>
         </tr>
         <tr>
           <td>{XSNames.ESANTI}</td>
-          <td><Num v={esaYield(Isotopes.U235) * 1e43} p={3}/></td>
-          <td><Num v={esaYield(Isotopes.U238) * 1e43} p={3}/></td>
-          <td><Num v={esaYield(Isotopes.PU239) * 1e43} p={3}/></td>
-          <td><Num v={esaYield(Isotopes.PU241) * 1e43} p={3}/></td>
+          <td><Num v={esaYield(Isotopes.U235) * 1e43} p={2}/></td>
+          <td><Num v={esaYield(Isotopes.U238) * 1e43} p={2}/></td>
+          <td><Num v={esaYield(Isotopes.PU239) * 1e43} p={2}/></td>
+          <td><Num v={esaYield(Isotopes.PU241) * 1e43} p={2}/></td>
         </tr>
         <tr>
           <td>{XSNames.ESMUTAU}</td>
-          <td><Num v={esxYield(Isotopes.U235) * 1e43} p={3}/></td>
-          <td><Num v={esxYield(Isotopes.U238) * 1e43} p={3}/></td>
-          <td><Num v={esxYield(Isotopes.PU239) * 1e43} p={3}/></td>
-          <td><Num v={esxYield(Isotopes.PU241) * 1e43} p={3}/></td>
+          <td><Num v={esxYield(Isotopes.U235) * 1e43} p={2}/></td>
+          <td><Num v={esxYield(Isotopes.U238) * 1e43} p={2}/></td>
+          <td><Num v={esxYield(Isotopes.PU239) * 1e43} p={2}/></td>
+          <td><Num v={esxYield(Isotopes.PU241) * 1e43} p={2}/></td>
         </tr>
       </tbody>
     </Table>
