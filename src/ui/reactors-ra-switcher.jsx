@@ -43,11 +43,6 @@ export const RASwitcher = () => {
     <div>
       <br />
       <h6>IBD/ES Yields <small>(10<sup>-43</sup> cm<sup>2</sup> fission<sup>-1</sup>)</small> </h6>
-      <style>
-        caption {
-          color: #000000;
-        }
-      </style>
     <Table>
        <caption>Hover pointer over values to see more decimal places.</caption>
       <thead>
