@@ -41,8 +41,13 @@ export const RASwitcher = () => {
   const esxYield = (isotope) => sum(bins.map(bin => reactorAntineutrinoModel.model[isotope](bin) * crossSection[XSNames.ESMUTAU](bin)))/100
   const InteractionYield = (
     <div>
+      <style>
+        caption {
+          color: #000000;
+        }
+      </style>
       <br />
-      <h6>IBD/ES Yields (10<sup>-43</sup> cm<sup>2</sup> fission<sup>-1</sup>) </h6>
+      <h6>IBD/ES Yields <small>(10<sup>-43</sup> cm<sup>2</sup> fission<sup>-1</sup>)</small> </h6>
     <Table>
        <caption>Hover pointer over values to see more decimal places.</caption>
       <thead>
