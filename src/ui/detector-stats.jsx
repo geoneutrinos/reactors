@@ -246,7 +246,7 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
               <td>=</td>
                 <td>
                   <Num v={geo_crustNIU} p={1} /> {NIU} <small> (
-                {((geo_crustNIU / geoTotalNIU) * 100).toFixed(1)} % of <i>R</i><sub>geo</sub>) </small>
+                  <Num v={((geo_crustNIU / geoTotalNIU) * 100)} p={1} /> % of <i>R</i><sub>geo</sub>) </small>
                 </td>
                 <td>
                   <small> (
@@ -269,7 +269,7 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
               <td>=</td>
                 <td>
                   <Num v={geo_mantleNIU} p={1} /> {NIU} <small> (
-                {((geo_mantleNIU / geoTotalNIU) * 100).toFixed(1)} % of <i>R</i><sub>geo</sub>) </small>
+                  <Num v={((geo_mantleNIU / geoTotalNIU) * 100)} p={1} /> % of <i>R</i><sub>geo</sub>) </small>
                 </td>
                 <td>
                   <small> (
@@ -314,7 +314,7 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
         <hr />
         <div>
           <small>
-            Hover pointer over rate values to display more decima places
+            Hover pointer over values to display more decimal places
           </small>
           <br />
           <small>
