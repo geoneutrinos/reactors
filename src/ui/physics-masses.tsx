@@ -8,8 +8,6 @@ import { Node, Provider } from "@nteract/mathjax";
 
 import { Card, Table } from 'react-bootstrap';
 
-import { Num } from ".";
-
 export const ParticleMasses = () => {
   return (
     <Card>
@@ -38,7 +36,7 @@ export const ParticleMasses = () => {
                   {ELECTRON_REST_MASS}
                 </td>
                 <td>
-                  <Num v={IBD_THRESHOLD} p={4}/>
+                  {IBD_THRESHOLD}
                 </td>
               </tr>
             </tbody>
