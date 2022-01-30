@@ -29,13 +29,13 @@ export const ParticleMasses = () => {
             <tbody>
               <tr>
                 <td>
-                  <Num v={NEUTRON_REST_MASS} p={2}/>
+                  {NEUTRON_REST_MASS}
                 </td>
                 <td>
-                  <Num v={PROTON_REST_MASS} p={2}/>
+                  {PROTON_REST_MASS}
                 </td>
                 <td>
-                  <Num v={ELECTRON_REST_MASS} p={4}/>
+                  {ELECTRON_REST_MASS}
                 </td>
                 <td>
                   <Num v={IBD_THRESHOLD} p={4}/>
