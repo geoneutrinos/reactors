@@ -113,7 +113,7 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
 
        <Card.Subtitle>
            <span style={{ display: leptonTVald }}>
-                <small>Scattered charged lepton kinetic energy range: {crossSection.elasticScatteringTMin.toFixed(1)} &lt; T &lt; {crossSection.elasticScatteringTMax.toFixed(1)} MeV</small>
+                <small>Scattered electron kinetic energy range: {crossSection.elasticScatteringTMin.toFixed(1)} &lt; T &lt; {crossSection.elasticScatteringTMax.toFixed(1)} MeV</small>
            </span>
        </Card.Subtitle>
     
@@ -133,7 +133,7 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
         </Table>
 
         <hr />
-        <h6>IAEA Cores <small>({reactorAntineutrinoModel.modelName} - {reactorLF.start.toISOString().slice(0, 7)} through {reactorLF.end.toISOString().slice(0, 7)} avg Load Factor)</small></h6>
+        <h6>IAEA Cores <small>({reactorAntineutrinoModel.modelName}; {reactorLF.start.toISOString().slice(0, 7)} thru {reactorLF.end.toISOString().slice(0, 7)})</small></h6>
         <Table {...tableProps}>
           <tbody>
             <tr>
@@ -213,7 +213,7 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
         </div>
         <div>
           <hr />
-          <h6>Geoneutrinos <small>(Predicted crust + user-defined mantle flux. Avg P<sub>ee</sub>)</small></h6>
+          <h6>Geoneutrinos <small>(Predicted crust; user-defined mantle flux; avg <i>P</i><sub>ee</sub>)</small></h6>
           <Table {...tableProps}>
             <tbody>
               <tr>
