@@ -154,7 +154,7 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
               <td>=</td>
               <td>
                 <Num v={closestNIU} p={1} /> {NIU} <small> (
-                {((closestNIU / iaeaCoreSignal) * 100).toFixed(1)} % of <i>R</i><sub>reac</sub>) </small>
+                <Num v={((closestNIU / iaeaCoreSignal) * 100)} p={1} /> % of <i>R</i><sub>reac</sub>) </small>
               </td>
             </tr>
             <tr>
