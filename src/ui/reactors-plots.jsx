@@ -14,7 +14,7 @@ export const FissionIsotopeSpectraPlots = () => {
     {
       y: bins.map(neutrinoEnergyForES(Isotopes.U235)),
       x: bins,
-      name: `<sup>235</sup>U SM`,
+      name: `<sup>235</sup>U`,
       type: "scatter",
       mode: "lines",
       line: {
@@ -150,19 +150,19 @@ export const FissionIsotopeSpectraPlots = () => {
       <Card.Header>Fission Isotope Emission Spectra</Card.Header>
       <Card.Body>
         <p>
-          <sup>235</sup>U, <sup>238</sup>U, <sup>239</sup>Pu, <sup>241</sup>Pu summation spectra:
+          <sup>235</sup>U, <sup>238</sup>U, <sup>239</sup>Pu, <sup>241</sup>Pu summation spectra (solid):
           <br />
           M. Estienne et al., "Updated Summation Model: An Improved Agreement with the Daya Bay Antineutrino Fluxes,"
           Phys. Rev. Lett. 123, 022502, (2019).
         </p>
         <p>
-          <sup>239</sup>Pu, <sup>241</sup>Pu conversion spectra:
+          <sup>239</sup>Pu, <sup>241</sup>Pu conversion spectra (dot-dash):
           <br />
           P. Huber, "Determination of antineutrino spectra from nuclear
           reactors," Phys. Rev. C 84, 024617 (2011).
         </p>
         <p>
-          <sup>235</sup>U, <sup>238</sup>U conversion spectra:
+          <sup>235</sup>U, <sup>238</sup>U conversion spectra (dot-dash):
           <br />
           V. Kopeikin, M. Skorokhvatov, O. Titov, "Reevaluating reactor antineutrino spectra with new measurements of the ratio
           between <sup>235</sup>U and <sup>239</sup>Pu β spectra," Phys. Rev. D 104, L071301 (2021).
@@ -184,7 +184,7 @@ export const U235IsotopeSpectraPlots = () => {
     {
       y: bins.map(neutrinoEnergyForES(Isotopes.U235)),
       x: bins,
-      name: `Estienne et al (2018)`,
+      name: `Estienne et al. (2018)`,
       type: "scatter",
       mode: "lines",
       line: {
@@ -295,7 +295,7 @@ export const U238IsotopeSpectraPlots = () => {
     {
       y: bins.map(neutrinoEnergyForES(Isotopes.U238)),
       x: bins,
-      name: `Estienne et al (2018)`,
+      name: `Estienne et al. (2018)`,
       type: "scatter",
       mode: "lines",
       line: {
