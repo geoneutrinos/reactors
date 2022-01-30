@@ -126,7 +126,7 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
               </td>
               <td>=</td>
               <td>
-                <Num v={totalNIU} p=1 /> {NIU}
+                <Num v={totalNIU} p={1} /> {NIU}
               </td>
             </tr>
           </tbody>
@@ -143,7 +143,7 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
               </td>
               <td>=</td>
               <td>
-                <Num v={iaeaCoreSignal} p=1 /> {NIU}
+                <Num v={iaeaCoreSignal} p={1} /> {NIU}
               </td>
             </tr>
             <tr>
@@ -153,7 +153,7 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
               </td>
               <td>=</td>
               <td>
-                <Num v={closestNIU} p=1 /> {NIU} <small> (
+                <Num v={closestNIU} p={1} /> {NIU} <small> (
                 {((closestNIU / iaeaCoreSignal) * 100).toFixed(1)} % of <i>R</i><sub>reac</sub>) </small>
               </td>
             </tr>
@@ -183,7 +183,7 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
                 </td>
               <td>=</td>
                 <td>
-                  {customTotalSignal.toFixed(1)} {NIU}
+                  <Num v={customTotalSignal} p={1} /> {NIU}
                 </td>
               </tr>
               <tr>
@@ -193,7 +193,7 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
                 </td>
               <td>=</td>
                 <td>
-                  {customClosestNIU.toFixed(1)} {NIU} <small> {" ("}
+                  <Num v={customClosestNIU} p={1} /> {NIU} <small> {" ("}
                   {((customClosestNIU / totalCoreSignal) * 100).toFixed(1)} % of <i>R</i><sub>reac</sub> + <i>R</i><sub>custom</sub>) </small>
                 </td>
               </tr>
@@ -213,7 +213,7 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
         </div>
         <div>
           <hr />
-          <h6>Geoneutrinos <small>(Predicted crust; user-defined mantle flux; avg <i>P</i><sub>ee</sub>)</small></h6>
+          <h6>Geoneutrinos <small>(Predicted crust; User-defined mantle flux; Avg <i>P</i><sub>ee</sub>)</small></h6>
           <Table {...tableProps}>
             <tbody>
               <tr>
