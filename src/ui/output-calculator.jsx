@@ -755,12 +755,12 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
             When expressed as a function of antineutrino energy <i>E</i>, the detection efficiency is
             valid for IBD only. Here it is approximated by a sigmoid curve
             <Node>{String.raw`\varepsilon (E) = \frac {\varepsilon_\mathrm{max}} {1 + \exp(-\rho * (E - E_\mathrm{HM}))},`}</Node>{" "}
-            where <Node inline>{String.raw`\varepsilon_\mathrm{max}`}</Node> is the asymptote at infinite energy or
-            the maximum detection efficiency,{" "}
-            <Node inline>{String.raw`E_\mathrm{HM}`}</Node> is the inflection point energy or
-            the energy at half the maximum efficiency, and{" "}
-            <Node inline>{String.raw`\rho`}</Node> is the slope or
-            the efficiency ramp-up rate. 
+            where <Node inline>{String.raw`\varepsilon_\mathrm{max}`}</Node> is the asymptote at infinite energy 
+            (maximum detection efficiency),{" "}
+            <Node inline>{String.raw`E_\mathrm{HM}`}</Node> is the inflection point energy 
+            (energy at one-half of the maximum efficiency), and{" "}
+            <Node inline>{String.raw`\rho`}</Node> is the slope 
+            (efficiency ramp-up rate). 
             For monolithic detectors of Cherenkov and/or scintillation light the values of these parameters depend on the
             photosensitive surface and the target liquid. 
             A conversion of the detection efficiency from a function of antineutrino energy to a function of scattered charged lepton kinetic energy is in the works.
