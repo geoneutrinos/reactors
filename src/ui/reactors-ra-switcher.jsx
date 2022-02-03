@@ -39,6 +39,12 @@ export const RASwitcher = () => {
   const vbYield = (isotope) => sum(bins.map(bin => reactorAntineutrinoModel.model[isotope](bin) * crossSection[XSNames.IBDVB1999](bin)))/100
   const esaYield = (isotope) => sum(bins.map(bin => reactorAntineutrinoModel.model[isotope](bin) * crossSection[XSNames.ESANTI](bin)))/100
   const esxYield = (isotope) => sum(bins.map(bin => reactorAntineutrinoModel.model[isotope](bin) * crossSection[XSNames.ESMUTAU](bin)))/100
+
+  const svYieldUncertanty = (isotope) => sum(bins.map(bin => reactorAntineutrinoModel.uncertanty[isotope](bin) * crossSection[XSNames.IBDSV2003](bin)))/100
+  const vbYieldUncertanty = (isotope) => sum(bins.map(bin => reactorAntineutrinoModel.uncertanty[isotope](bin) * crossSection[XSNames.IBDVB1999](bin)))/100
+  const esaYieldUncertanty = (isotope) => sum(bins.map(bin => reactorAntineutrinoModel.uncertanty[isotope](bin) * crossSection[XSNames.ESANTI](bin)))/100
+  const esxYieldUncertanty = (isotope) => sum(bins.map(bin => reactorAntineutrinoModel.uncertanty[isotope](bin) * crossSection[XSNames.ESMUTAU](bin)))/100
+
   const InteractionYield = (
     <div>
       <br />
@@ -57,31 +63,31 @@ export const RASwitcher = () => {
       <tbody>
         <tr>
           <td>{XSNames.IBDSV2003}</td>
-          <td><Num v={svYield(Isotopes.U235) * 1e43} p={2}/></td>
-          <td><Num v={svYield(Isotopes.U238) * 1e43} p={2}/></td>
-          <td><Num v={svYield(Isotopes.PU239) * 1e43} p={2}/></td>
-          <td><Num v={svYield(Isotopes.PU241) * 1e43} p={2}/></td>
+          <td><Num v={svYield(Isotopes.U235) * 1e43} u={svYieldUncertanty(Isotopes.U235) * 1e43} p={2}/></td>
+          <td><Num v={svYield(Isotopes.U238) * 1e43} u={svYieldUncertanty(Isotopes.U238) * 1e43} p={2}/></td>
+          <td><Num v={svYield(Isotopes.PU239) * 1e43} u={svYieldUncertanty(Isotopes.PU239) * 1e43} p={2}/></td>
+          <td><Num v={svYield(Isotopes.PU241) * 1e43} u={svYieldUncertanty(Isotopes.PU241) * 1e43} p={2}/></td>
         </tr>
         <tr>
           <td>{XSNames.IBDVB1999}</td>
-          <td><Num v={vbYield(Isotopes.U235) * 1e43} p={2}/></td>
-          <td><Num v={vbYield(Isotopes.U238) * 1e43} p={2}/></td>
-          <td><Num v={vbYield(Isotopes.PU239) * 1e43} p={2}/></td>
-          <td><Num v={vbYield(Isotopes.PU241) * 1e43} p={2}/></td>
+          <td><Num v={vbYield(Isotopes.U235) * 1e43} u={vbYieldUncertanty(Isotopes.U235) * 1e43} p={2}/></td>
+          <td><Num v={vbYield(Isotopes.U238) * 1e43} u={vbYieldUncertanty(Isotopes.U238) * 1e43} p={2}/></td>
+          <td><Num v={vbYield(Isotopes.PU239) * 1e43} u={vbYieldUncertanty(Isotopes.PU239) * 1e43} p={2}/></td>
+          <td><Num v={vbYield(Isotopes.PU241) * 1e43} u={vbYieldUncertanty(Isotopes.PU241) * 1e43} p={2}/></td>
         </tr>
         <tr>
           <td>{XSNames.ESANTI}</td>
-          <td><Num v={esaYield(Isotopes.U235) * 1e43} p={2}/></td>
-          <td><Num v={esaYield(Isotopes.U238) * 1e43} p={2}/></td>
-          <td><Num v={esaYield(Isotopes.PU239) * 1e43} p={2}/></td>
-          <td><Num v={esaYield(Isotopes.PU241) * 1e43} p={2}/></td>
+          <td><Num v={esaYield(Isotopes.U235) * 1e43} u={esaYieldUncertanty(Isotopes.U235) * 1e43} p={2}/></td>
+          <td><Num v={esaYield(Isotopes.U238) * 1e43} u={esaYieldUncertanty(Isotopes.U238) * 1e43} p={2}/></td>
+          <td><Num v={esaYield(Isotopes.PU239) * 1e43} u={esaYieldUncertanty(Isotopes.PU239) * 1e43} p={2}/></td>
+          <td><Num v={esaYield(Isotopes.PU241) * 1e43} u={esaYieldUncertanty(Isotopes.PU241) * 1e43} p={2}/></td>
         </tr>
         <tr>
           <td>{XSNames.ESMUTAU}</td>
-          <td><Num v={esxYield(Isotopes.U235) * 1e43} p={2}/></td>
-          <td><Num v={esxYield(Isotopes.U238) * 1e43} p={2}/></td>
-          <td><Num v={esxYield(Isotopes.PU239) * 1e43} p={2}/></td>
-          <td><Num v={esxYield(Isotopes.PU241) * 1e43} p={2}/></td>
+          <td><Num v={esxYield(Isotopes.U235) * 1e43} u={esxYieldUncertanty(Isotopes.U235) * 1e43} p={2}/></td>
+          <td><Num v={esxYield(Isotopes.U238) * 1e43} u={esxYieldUncertanty(Isotopes.U238) * 1e43}  p={2}/></td>
+          <td><Num v={esxYield(Isotopes.PU239) * 1e43} u={esxYieldUncertanty(Isotopes.PU239) * 1e43}  p={2}/></td>
+          <td><Num v={esxYield(Isotopes.PU241) * 1e43} u={esxYieldUncertanty(Isotopes.PU241) * 1e43}  p={2}/></td>
         </tr>
       </tbody>
     </Table>

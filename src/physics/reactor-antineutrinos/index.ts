@@ -1,6 +1,6 @@
 import { IsotopeKeys } from "../constants";
+import ES2018, {model_uncertanties as ES2018_uncertanties} from './estienne';
 import HM2011 from './huber-muller';
-import ES2018 from './estienne';
 import KO2021 from './kopeikin';
 
 /**
@@ -38,7 +38,8 @@ export const reactorAntineutrinoModel  = {
   [RANames.HM2011]: HM2011,
   [RANames.ES2018]: ES2018,
   [RANames.KO2021]: KO2021,
-  model: KO2021
+  model: KO2021,
+  uncertanty: ES2018_uncertanties,
 }
 
 export type ReactorAntineutrinoModelApp = typeof reactorAntineutrinoModel;
