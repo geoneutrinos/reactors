@@ -61,7 +61,7 @@ export const Visible = ({ children }) => {
   return <div ref={ref}>{visible && children}</div>;
 };
 
-export const Num = ({ v, p, func }) => {
+export const Num = ({ v, p, u, func }) => {
   const [full, setFull] = useState(false);
   if (func === undefined) {
     func = (v) => v;
@@ -69,6 +69,7 @@ export const Num = ({ v, p, func }) => {
   return (
     <span onDoubleClick={() => setFull(!full)} title={v.toString()}>
       {full ? func(v).toString() : func(v).toFixed(p)}
+      {u ? full ? ` ± ${func(u).toString()}` : ` ± ${func(u).toFixed(p)}` : ""}
     </span>
   );
 };
