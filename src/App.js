@@ -89,7 +89,7 @@ L.Icon.Default.mergeOptions({
   shadowUrl: shadowUrl,
 });
 
-const defaultDetector = presets.find((detector) => detector.name === "Boulby");
+const defaultDetector = presets.find((detector) => detector.name === "Ojibway");
 
 function App(props) {
   const [oscillation, oscillationDispatch] = useReducer(
