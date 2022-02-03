@@ -42,7 +42,9 @@ const processHuber2011 = () => {
         "energy",
         "U235_12h",
         "PU239_3h",
+        "PU239_3h_u",
         "PU241_43h",
+        "PU241_43h_u",
     ]
 
     let data = fs.readFileSync(extra, 'utf8').split("\n")
@@ -71,6 +73,7 @@ const processMueller2011 = () => {
         "PU241_15d",
         "U238_12h",
         "U238_450d",
+        "U238_450d_u"
     ]
 
     let data = fs.readFileSync(extra, 'utf8').split("\n")
@@ -96,7 +99,9 @@ const processKopeikin2021 = () => {
     let columns = [
         "energy",
         "U235",
+        "U235_u",
         "U238",
+        "U238_u",
     ]
 
     let data = fs.readFileSync(extra, 'utf8').split("\n")
