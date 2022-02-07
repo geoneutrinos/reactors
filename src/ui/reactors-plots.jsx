@@ -184,7 +184,7 @@ export const U235IsotopeSpectraPlots = () => {
     {
       y: bins.map(neutrinoEnergyForES(Isotopes.U235)),
       x: bins,
-      name: `Estienne et al. (2018)`,
+      name: `Estienne et al. (2019)`,
       type: "scatter",
       mode: "lines",
       line: {
@@ -295,7 +295,7 @@ export const U238IsotopeSpectraPlots = () => {
     {
       y: bins.map(neutrinoEnergyForES(Isotopes.U238)),
       x: bins,
-      name: `Estienne et al. (2018)`,
+      name: `Estienne et al. (2019)`,
       type: "scatter",
       mode: "lines",
       line: {
