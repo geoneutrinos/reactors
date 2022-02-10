@@ -41,6 +41,7 @@ const processHuber2011 = () => {
     let columns = [
         "energy",
         "U235_12h",
+        "U235_12h_u",
         "PU239_3h",
         "PU239_3h_u",
         "PU241_43h",
