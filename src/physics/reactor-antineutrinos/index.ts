@@ -1,7 +1,7 @@
 import { IsotopeKeys } from "../constants";
 import ES2018, {model_uncertanties as ES2018_uncertanties} from './estienne';
-import HM2011 from './huber-muller';
-import KO2021 from './kopeikin';
+import HM2011, {model_uncertanties as HM2011_uncertanties} from './huber-muller';
+import KO2021, {model_uncertanties as KO_uncertanties} from './kopeikin';
 
 /**
  * Returns the partial internation rate which has not been scaled for 
@@ -27,6 +27,12 @@ export enum RANames {
   KO2021 = "Huber (2011) + Kopeikin et al. (2021)",
 }
 
+const uncertanties = {
+  [RANames.HM2011]: HM2011_uncertanties,
+  [RANames.ES2018]: ES2018_uncertanties,
+  [RANames.KO2021]: KO_uncertanties,
+}
+
 
 interface ReactorAntineutrinoModelAction {
   arg: "model",
@@ -39,7 +45,7 @@ export const reactorAntineutrinoModel  = {
   [RANames.ES2018]: ES2018,
   [RANames.KO2021]: KO2021,
   model: KO2021,
-  uncertanty: ES2018_uncertanties,
+  uncertanty: uncertanties[RANames.KO2021],
 }
 
 export type ReactorAntineutrinoModelApp = typeof reactorAntineutrinoModel;
@@ -50,6 +56,7 @@ export const reactorAntineutrinoModelReducer = (state:ReactorAntineutrinoModelAp
     case "model":
       newModel.modelName = action.value;
       newModel.model = newModel[newModel.modelName]
+      newModel.uncertanty = uncertanties[newModel.modelName]
   }
   return newModel;
 }

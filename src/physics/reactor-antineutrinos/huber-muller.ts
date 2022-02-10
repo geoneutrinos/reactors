@@ -2,7 +2,7 @@ import {piecewise, scaleLinear} from 'd3';
 import { ReactorAntineutrinoModel } from ".";
 import { IsotopeKeys, Isotopes  } from "../constants";
 
-import esModel from "./estienne";
+import esModel, { model_uncertanties as esUncertanties} from "./estienne";
 
 import huber from "./data/huber2011.json";
 import muller from "./data/mueller_et_al2011.json";
@@ -22,6 +22,14 @@ const interpolators = {
   [Isotopes.PU239]: piecewise(huber.PU239_3h.map(Math.log)),
   [Isotopes.PU241]: piecewise(huber.PU241_43h.map(Math.log)),
 }
+
+const uncertanties = {
+  [Isotopes.U238]: piecewise(muller.U238_450d_u),
+  [Isotopes.U235]: piecewise(huber.U235_12h_u),
+  [Isotopes.PU239]: piecewise(huber.PU239_3h_u),
+  [Isotopes.PU241]: piecewise(huber.PU241_43h_u),
+}
+
 const minE = muller.energy[0];
 const maxE = muller.energy[muller.energy.length -1];
 
@@ -42,11 +50,11 @@ export function neutrinoEnergyFor(isotope: IsotopeKeys){
     if (Ev < minE){
       return esModel[isotope](Ev)
     }
-    if (Ev <= maxE){
+    else if (Ev <= maxE){
       const scaledEv = scale(Ev)
       return Math.exp(interpolators[isotope](scaledEv))
     }
-    if (Ev > maxE){
+    else {
       return esModel[isotope](Ev)
     }
   }
@@ -56,5 +64,27 @@ const model = Object.fromEntries(Object.keys(Isotopes).map(key => {
   let isotopeKey = key as IsotopeKeys
   return [isotopeKey, neutrinoEnergyFor(isotopeKey)]
 })) as ReactorAntineutrinoModel
+
+export const model_uncertanties = Object.fromEntries(
+  Object.keys(Isotopes).map((key) => {
+    let isotopeKey = key as IsotopeKeys;
+    return [
+      isotopeKey,
+      (Ev) => {
+        if (Ev < minE) {
+          return esUncertanties[isotopeKey](Ev);
+        } else if (Ev <= maxE) {
+          const scaledEv = scale(Ev);
+          return (
+            neutrinoEnergyFor(isotopeKey)(Ev) *
+            uncertanties[isotopeKey](scaledEv)
+          );
+        } else {
+          return esUncertanties[isotopeKey](Ev);
+        }
+      },
+    ];
+  })
+) as ReactorAntineutrinoModel;
 
 export default model;
