@@ -50,7 +50,7 @@ export const RASwitcher = () => {
       <br />
       <h6>IBD/ES Yields <small>(10<sup>-43</sup> cm<sup>2</sup> fission<sup>-1</sup>)</small> </h6>
     <Table>
-       <caption>Hover pointer over values to see more decimal places.</caption>
+       <caption>Double click on, or hover pointer over, values to see more decimal places.</caption>
       <thead>
         <tr>
           <th>Interaction</th>
