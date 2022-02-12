@@ -73,6 +73,7 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
   // custom cores
   const customClosestName = closestCustomCore?.name || "";
   const customClosestNIU = closestCustomCore?.detectorNIU || 0;
+  const customClosestNIUUncertainty = closestCustomCore?.detectorNIUUncertainty || 0;
   const customClosestDistance = closestCustomCore?.detectorDistance || 1000000;
   const customTotalSignal = sum(customCores.map((core) => core.detectorNIU));
 
@@ -195,7 +196,7 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
                 </td>
               <td>=</td>
                 <td>
-                  <Num v={customClosestNIU} p={1} /> {NIU} <small> {" ("}
+                  <Num v={customClosestNIU} u={customClosestNIUUncertainty} p={1} /> {NIU} <small> {" ("}
                   {((customClosestNIU / totalCoreSignal) * 100).toFixed(1)} % of <i>R</i><sub>reac</sub> + <i>R</i><sub>custom</sub>) </small>
                 </td>
               </tr>
