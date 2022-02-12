@@ -316,7 +316,7 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
         <hr />
         <div>
           <small>
-            Hover pointer over values to display more decimal places
+            Double click on, or hover pointer over, values to display more decimal places
           </small>
           <br />
           <small>
