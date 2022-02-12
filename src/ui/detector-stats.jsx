@@ -62,11 +62,13 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
   // Close Things
   const closestName = closestActiveCore?.name || "";
   const closestNIU = closestActiveCore?.detectorNIU || 0;
+  const closestNIUUncertainty = closestActiveCore?.detectorNIUUncertainty || 0;
   const closestDistace = closestActiveCore?.detectorDistance || 1000000;
 
   const totalCoreSignal = sum(coreList.map((core) => core.detectorNIU));
 
   const iaeaCoreSignal = sum(coreList.filter(core => !core.custom).map(core => core.detectorNIU))
+  const iaeaCoreSignalUncertainty = sum(coreList.filter(core => !core.custom).map(core => core.detectorNIUUncertainty))
 
   // custom cores
   const customClosestName = closestCustomCore?.name || "";
@@ -143,7 +145,7 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
               </td>
               <td>=</td>
               <td>
-                <Num v={iaeaCoreSignal} p={1} /> {NIU}
+                <Num v={iaeaCoreSignal} u={iaeaCoreSignalUncertainty} p={1} /> {NIU}
               </td>
             </tr>
             <tr>
@@ -153,7 +155,7 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
               </td>
               <td>=</td>
               <td>
-                <Num v={closestNIU} p={1} /> {NIU} <small> (
+                <Num v={closestNIU} u={closestNIUUncertainty} p={1} /> {NIU} <small> (
                 <Num v={((closestNIU / iaeaCoreSignal) * 100)} p={1} /> % of <i>R</i><sub>reac</sub>) </small>
               </td>
             </tr>
