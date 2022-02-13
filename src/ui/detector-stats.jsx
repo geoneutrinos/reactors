@@ -76,6 +76,7 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
   const customClosestNIUUncertainty = closestCustomCore?.detectorNIUUncertainty || 0;
   const customClosestDistance = closestCustomCore?.detectorDistance || 1000000;
   const customTotalSignal = sum(customCores.map((core) => core.detectorNIU));
+  const customTotalSignalUncertainty = sum(customCores.map((core) => core.detectorNIUUncertainty));
 
   const customDisplay = customTotalSignal > 0 ? "block" : "none";
 
@@ -186,7 +187,7 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
                 </td>
               <td>=</td>
                 <td>
-                  <Num v={customTotalSignal} p={1} /> {NIU}
+                  <Num v={customTotalSignal} u={customTotalSignalUncertainty} p={1} /> {NIU}
                 </td>
               </tr>
               <tr>
