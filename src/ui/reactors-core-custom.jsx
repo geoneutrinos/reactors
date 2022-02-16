@@ -34,6 +34,7 @@ export const AddCustomCoreModal = ({
     { name: "HFIR", lat: 35.918, lon: -84.304, power: 85, elevation: 267 },
     { name: "Arak IR-40", lat: 34.373, lon: 49.241, power: 40, elevation: 1750 },
     { name: "Negev IRR-2", lat: 31.001, lon: 35.145, power: 26, elevation: 556 },
+    ( name: "Khushab-1", lat: 32.02012, lon: 72.20797, power: 50, elevation: 190 },
     { name: "Yongbyon", lat: 39.800, lon: 125.754, power: 15, elevation: 140 },
     { name: "Geo Reactor", lat: 0, lon: 0, power: 1e6, elevation: -6378137 },
   ];
