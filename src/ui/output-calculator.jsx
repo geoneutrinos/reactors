@@ -746,9 +746,9 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
             where <Node inline>{String.raw`s`}</Node> is the signal rate,{" "}
             <Node inline>{String.raw`b`}</Node> is the background rate, and{" "}
             <Node inline>{String.raw`\delta b`}</Node> is the systematic uncertainty of the background rate.
-            The fractional systematic uncetainties of the estimated rates of reactor antineutrinos, geoneutrinos, and nuisance background are 
-            0.06, 0.25, and 0.5, respectively.
-            The energy spectrum of the approximated nusiance background is flat.
+            The fractional systematic uncetainties of the estimated numbers of reactor antineutrino events and geoneutrino events 
+            depend on the selected models. 
+            The nuisance background has a fixed uncertainty of 0.5 and a flat energy spectrum.
             </p>
             <p>
             <b> IBD Detection Efficiency</b><br />
