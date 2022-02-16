@@ -103,10 +103,16 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
   const geo_crustNIU = geo_crustU238NIU + geo_crustU235NIU + geo_crustTh232NIU + geo_crustK40betaNIU;
   const geo_mantleNIU = geo_mantleU238NIU + geo_mantleU235NIU + geo_mantleTh232NIU + geo_mantleK40betaNIU;
 
+  // TODO: make this part of the model
+  const geo_crustNIUUncertainty = geo_crustNIU * 0.25;
+  const geo_mantleNIUUncertainty = geo_mantleNIU * 0.25
+  const geoTotalNIUUncertainty = Math.hypot(geo_crustNIUUncertainty, geo_mantleNIUUncertainty)
+
   // finally
   const leptonTVald = isIBD ? "none" : "auto";
   
   const totalNIU = totalCoreSignal + geoTotalNIU;
+  const totalNIUUncertainty = Math.hypot(iaeaCoreSignalUncertainty + customTotalSignalUncertainty, geoTotalNIUUncertainty)
 
   const tableProps = { style: { width: "auto" }, borderless: true, size: "sm" };
 
@@ -130,7 +136,7 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
               </td>
               <td>=</td>
               <td>
-                <Num v={totalNIU} p={1} /> {NIU}
+                <Num v={totalNIU} u={totalNIUUncertainty} p={1} /> {NIU}
               </td>
             </tr>
           </tbody>
@@ -227,7 +233,7 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
                 </td>
               <td>=</td>
                 <td>
-                  <Num v={geoTotalNIU} p={1} /> {NIU}
+                  <Num v={geoTotalNIU} u={geoTotalNIUUncertainty} p={1} /> {NIU}
                 </td>
                 <td>
                   <small> (
@@ -249,7 +255,7 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
                 </td>
               <td>=</td>
                 <td>
-                  <Num v={geo_crustNIU} p={1} /> {NIU} <small> (
+                  <Num v={geo_crustNIU} u={geo_crustNIUUncertainty} p={1} /> {NIU} <small> (
                   <Num v={((geo_crustNIU / geoTotalNIU) * 100)} p={1} /> % of <i>R</i><sub>geo</sub>) </small>
                 </td>
                 <td>
@@ -272,7 +278,7 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
                 </td>
               <td>=</td>
                 <td>
-                  <Num v={geo_mantleNIU} p={1} /> {NIU} <small> (
+                  <Num v={geo_mantleNIU} u={geo_mantleNIUUncertainty} p={1} /> {NIU} <small> (
                   <Num v={((geo_mantleNIU / geoTotalNIU) * 100)} p={1} /> % of <i>R</i><sub>geo</sub>) </small>
                 </td>
                 <td>
