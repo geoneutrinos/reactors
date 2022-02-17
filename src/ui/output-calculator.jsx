@@ -19,6 +19,16 @@ const getCoreSums = (cores, min_i, max_i, low_i) => {
   return [lowSum + highSum, lowSum, highSum];
 };
 
+const getCoreUncertainties = (cores, min_i, max_i, low_i) => {
+  const lowSum = sum(
+    cores.map((core) => sum(core.detectorUncertainty.slice(min_i, Math.min(low_i, max_i))) * 0.01)
+  );
+  const highSum = sum(
+    cores.map((core) => sum(core.detectorUncertainty.slice(Math.max(low_i, min_i), max_i)) * 0.01)
+  );
+  return [lowSum + highSum, lowSum, highSum];
+};
+
 const effFunc = (eV, Emax, rampUp, turnOn) => {
   return Emax / (1 + Math.exp(-rampUp * (eV - turnOn)))
 }
@@ -52,10 +62,10 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
   // eslint-disable-next-line no-unused-vars
   const [deltaBkgnuisance, setDeltaBkgnuisance] = useState(0.5);
   // eslint-disable-next-line no-unused-vars
-  const [deltaReactorsHighE, setDeltaReactorsHighE] = useState(0.06);
+  //const [deltaReactorsHighE, setDeltaReactorsHighE] = useState(0.06);
   // Use this systematic uncertainty on reactor signal less than E_thresh
   // eslint-disable-next-line no-unused-vars
-  const [deltaReactorsLowE, setDeltaReactorsLowE] = useState(0.3);
+  //const [deltaReactorsLowE, setDeltaReactorsLowE] = useState(0.3);
   // detection efficiency function parameters
   const [effMax, setEffMax] = useState(1.0);
   const [enerStart, setEnerStart] = useState(
@@ -291,6 +301,11 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
   // so min_i and max_i get modified
   const [totalCoreSignal, totalCoreSignalLow, totalCoreSignalHigh] =
     getCoreSums(coreList, min_i, max_i, low_i);
+
+  const [,totalCoreUncertaintyLow,totalCoreUncertaintyHigh] = 
+    getCoreUncertainties(coreList, min_i, max_i, low_i);
+  const deltaReactorsHighE = totalCoreSignalHigh > 0? totalCoreUncertaintyHigh / totalCoreSignalHigh: 0;
+  const deltaReactorsLowE = totalCoreSignalLow > 0? totalCoreUncertaintyLow / totalCoreSignalLow :0;
 
   const selectedCores = coreList.filter(core => core.outputSignal)
   const [selectedCoreSignal, selectedCoreSignalLow, selectedCoreSignalHigh] =
