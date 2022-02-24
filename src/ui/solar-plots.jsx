@@ -315,8 +315,8 @@ export const Boron8SpectraPlot = ({ boron8, reactorLF }) => {
         </p>
 
         <p>
-          <sup>8</sup>B decay solar neutrino flux (2.345x10<sup>6</sup> cm
-          <sup>-2</sup>s<sup>-1</sup>) is taken from:
+          <sup>8</sup>B decay solar neutrino flux- (2.345 ± 0.014(stat) ± 0.036(syst)) x 10<sup>6</sup> cm
+          <sup>-2</sup>s<sup>-1</sup>- is taken from:
           <br />
           K. Abe et al., "Solar neutrino measurements in Super-Kamiokande-IV,"
           Phys. Rev. D 94, 052010 (2016).
