@@ -41,7 +41,7 @@ const extractESEandMuTau = (
   return [spec, ESMUTauContirbution];
 };
 
-const getGeoRates = (spectrum: Float32Array, crustFlux: number, mantleFlux: number, survivalProbability:number, crossSection: CrossSection) => {
+const getGeoRates = (spectrum: Float32Array, crustFlux: number, mantleFlux: number, survivalProbability: number, crossSection: CrossSection) => {
   const arr:number[] = Array.from(spectrum)
   return zip(...arr.map((v, i) =>{
     const Ev = EvBinFronIndex(i);
@@ -50,7 +50,6 @@ const getGeoRates = (spectrum: Float32Array, crustFlux: number, mantleFlux: numb
 
     const crust = v * CrustFlux * crossSectionArea;
     const mantle = v * mantleFlux * crossSectionArea;
-
 
     const [crust_spec, crust_ESMUTauContirbution] = extractESEandMuTau(
       crust,
@@ -88,7 +87,6 @@ export function mantleGeoSpectrum(
   const { U238flux, ThURatio, KURatio } = geoFluxRatios;
 
 
-
   const [geoU238, geo_crustU238, geo_mantleU238]  = getGeoRates(
     antineutrinoSpectrum238U, 
     crustFlux.u, 
@@ -104,14 +102,13 @@ export function mantleGeoSpectrum(
 
   const U235MantleFlux = U238flux * U235FluxIsotopicScale;
 
-  const [geoU235,geo_crustU235, geo_mantleU235] = getGeoRates(
+  const [geoU235, geo_crustU235, geo_mantleU235] = getGeoRates(
     antineutrinoSpectrum235U ,
     crustFlux.u * U235FluxIsotopicScale,
     U235MantleFlux,
     survivalProbability,
     crossSection
   )
-
 
 
   const ThMantleFluxIsotopicScale =
@@ -134,7 +131,7 @@ export function mantleGeoSpectrum(
 
   const KMantleFlux = U238flux * KURatio * KMantleFluxIsotopicScale;
 
-  const [geoK40_beta,geo_crustK40_beta,geo_mantleK40_beta] = getGeoRates(
+  const [geoK40_beta, geo_crustK40_beta, geo_mantleK40_beta] = getGeoRates(
     antineutrinoSpectrum40K,
     crustFlux.k,
     KMantleFlux,
