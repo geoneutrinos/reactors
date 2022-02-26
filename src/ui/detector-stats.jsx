@@ -81,17 +81,17 @@ export function StatsPanel({ cores, geo, reactorLF}) {
   const customDisplay = customTotalSignal > 0 ? "block" : "none";
 
   // geo things
-  const geo_crustU238NIU = sum(geo.geo_crustU238) * binWidth;
-  const geo_mantleU238NIU = sum(geo.geo_mantleU238) * binWidth;
+  const geo_crustU238NIU = sum(geo.crustU238Spectrum) * binWidth;
+  const geo_mantleU238NIU = sum(geo.mantleU238Spectrum) * binWidth;
   const geoU238NIU = geo_crustU238NIU + geo_mantleU238NIU;
-  const geo_crustTh232NIU = sum(geo.geo_crustTh232) * binWidth;
-  const geo_mantleTh232NIU = sum(geo.geo_mantleTh232) * binWidth;
+  const geo_crustTh232NIU = sum(geo.crustTh232Spectrum) * binWidth;
+  const geo_mantleTh232NIU = sum(geo.mantleTh232Spectrum) * binWidth;
   const geoTh232NIU = geo_crustTh232NIU + geo_mantleTh232NIU;
-  const geo_crustU235NIU = sum(geo.geo_crustU235) * binWidth;
-  const geo_mantleU235NIU = sum(geo.geo_mantleU235) * binWidth;
+  const geo_crustU235NIU = sum(geo.crustU235Spectrum) * binWidth;
+  const geo_mantleU235NIU = sum(geo.mantleU235Spectrum) * binWidth;
   const geoU235NIU = geo_crustU235NIU + geo_mantleU235NIU;
-  const geo_crustK40betaNIU = sum(geo.geo_crustK40_beta) * binWidth;
-  const geo_mantleK40betaNIU = sum(geo.geo_mantleK40_beta) * binWidth;
+  const geo_crustK40betaNIU = sum(geo.crustK40BetaSpectrum) * binWidth;
+  const geo_mantleK40betaNIU = sum(geo.mantleK40BetaSpectrum) * binWidth;
   const geoK40betaNIU = geo_crustK40betaNIU + geo_mantleK40betaNIU
 
   const geoThU = geoThURatio(geoTh232NIU, geoU238NIU, crossSection.crossSection);

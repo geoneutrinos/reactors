@@ -103,7 +103,7 @@ export function mantleGeoSpectrum(
   const { U238flux, ThURatio, KURatio } = geoFluxRatios;
 
 
-  const {geoSpectrum: geoU238, crustSpectrum: geo_crustU238, mantleSpectrum: geo_mantleU238}  = getGeoRates(
+  const {geoSpectrum: U238Spectrum, crustSpectrum: crustU238Spectrum, mantleSpectrum: mantleU238Spectrum}  = getGeoRates(
     antineutrinoSpectrum238U, 
     crustFlux.u, 
     U238flux, 
@@ -118,7 +118,7 @@ export function mantleGeoSpectrum(
 
   const U235MantleFlux = U238flux * U235FluxIsotopicScale;
 
-  const {geoSpectrum: geoU235, crustSpectrum: geo_crustU235, mantleSpectrum: geo_mantleU235} = getGeoRates(
+  const {geoSpectrum: U235Spectrum, crustSpectrum: crustU235Spectrum, mantleSpectrum: mantleU235Spectrum} = getGeoRates(
     antineutrinoSpectrum235U ,
     crustFlux.u * U235FluxIsotopicScale,
     U235MantleFlux,
@@ -133,7 +133,7 @@ export function mantleGeoSpectrum(
 
   const ThMantleFlux = U238flux * ThURatio * ThMantleFluxIsotopicScale;
 
-  const {geoSpectrum: geoTh232,crustSpectrum:  geo_crustTh232,mantleSpectrum:  geo_mantleTh232} = getGeoRates(
+  const {geoSpectrum: Th232Spectrum,crustSpectrum:  crustTh232Spectrum,mantleSpectrum:  mantleTh232Spectrum} = getGeoRates(
     antineutrinoSpectrum232Th,
     crustFlux.th,
     ThMantleFlux,
@@ -147,7 +147,7 @@ export function mantleGeoSpectrum(
 
   const KMantleFlux = U238flux * KURatio * KMantleFluxIsotopicScale;
 
-  const {geoSpectrum: geoK40_beta, crustSpectrum: geo_crustK40_beta,mantleSpectrum:  geo_mantleK40_beta} = getGeoRates(
+  const {geoSpectrum: K40BetaSpectrum, crustSpectrum: crustK40BetaSpectrum,mantleSpectrum:  mantleK40BetaSpectrum} = getGeoRates(
     antineutrinoSpectrum40K,
     crustFlux.k,
     KMantleFlux,
@@ -157,17 +157,17 @@ export function mantleGeoSpectrum(
 
 
   return {
-    geo_mantleU238: geo_mantleU238,
-    geo_crustU238: geo_crustU238,
-    geo_mantleU235: geo_mantleU235,
-    geo_crustU235: geo_crustU235,
-    geo_mantleTh232: geo_mantleTh232,
-    geo_crustTh232: geo_crustTh232,
-    geo_mantleK40_beta: geo_mantleK40_beta,
-    geo_crustK40_beta: geo_crustK40_beta,
-    geoU238: geoU238,
-    geoU235: geoU235,
-    geoTh232: geoTh232,
-    geoK40_beta: geoK40_beta,
+    mantleU238Spectrum,
+    crustU238Spectrum,
+    mantleU235Spectrum,
+    crustU235Spectrum,
+    mantleTh232Spectrum,
+    crustTh232Spectrum,
+    mantleK40BetaSpectrum,
+    crustK40BetaSpectrum,
+    geoU238: U238Spectrum,
+    geoU235: U235Spectrum,
+    geoTh232: Th232Spectrum,
+    geoK40_beta: K40BetaSpectrum,
   };
 }
