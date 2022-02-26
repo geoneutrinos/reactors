@@ -49,7 +49,7 @@ const detectorEfficiency = (
   );
 };
 
-export const CalculatorPanel = ({ cores, spectrum }) => {
+export const CalculatorPanel = ({ cores, geo }) => {
   const [signal, setSignal] = useState("selected");
   const [solveFor, setSolveFor] = useState("significance");
   const [eMin, setEMin] = useState(0.0);
@@ -321,28 +321,28 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
 
   const geoU238NIU =
     sum(
-      detectorEfficiency(effMax, rampUp, enerStart, spectrum.geoU238, !isIBD).slice(
+      detectorEfficiency(effMax, rampUp, enerStart, geo.geoU238, !isIBD).slice(
         min_i,
         max_i
       )
     ) * 0.01;
   const geoU235NIU =
     sum(
-      detectorEfficiency(effMax, rampUp, enerStart, spectrum.geoU235, !isIBD).slice(
+      detectorEfficiency(effMax, rampUp, enerStart, geo.geoU235, !isIBD).slice(
         min_i,
         max_i
       )
     ) * 0.01;
   const geoTh232NIU =
     sum(
-      detectorEfficiency(effMax, rampUp, enerStart, spectrum.geoTh232, !isIBD).slice(
+      detectorEfficiency(effMax, rampUp, enerStart, geo.geoTh232, !isIBD).slice(
         min_i,
         max_i
       )
     ) * 0.01;
   const geoK40betaNIU =
     sum(
-      detectorEfficiency(effMax, rampUp, enerStart, spectrum.geoK40_beta, !isIBD).slice(
+      detectorEfficiency(effMax, rampUp, enerStart, geo.geoK40_beta, !isIBD).slice(
         min_i,
         max_i
       )

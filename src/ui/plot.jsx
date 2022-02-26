@@ -9,7 +9,7 @@ import bins, {binCount, shiftByIBD} from "../physics/bins"
 import {XSNames} from "../physics/neutrino-cross-section"
 
 
-export function NuSpectrumPlot({ cores, spectrum, detector, reactorLF, xaxisExtra={}, yaxisExtra={}, layoutExtra={}, func=(v) => v}) {
+export function NuSpectrumPlot({ cores, geo, detector, reactorLF, xaxisExtra={}, yaxisExtra={}, layoutExtra={}, func=(v) => v}) {
   const { crossSection, oscillation, reactorAntineutrinoModel} = useContext(PhysicsContext)
   const isIBD = +[XSNames.IBDSV2003, XSNames.IBDVB1999].includes(
     crossSection.crossSection
@@ -85,47 +85,47 @@ export function NuSpectrumPlot({ cores, spectrum, detector, reactorLF, xaxisExtr
     },
     {
       x: bins,
-      y: func(spectrum.geoU238),
+      y: func(geo.geoU238),
       name: "Geo <sup>238</sup>U",
       type: "scatter",
       mode: "lines",
       fill: "tozerox",
       marker: { color: "blue" },
       line: { width: 0.7 },
-      visible: sum(spectrum.geoU238) > 0,
+      visible: sum(geo.geoU238) > 0,
     },
     {
       x: bins,
-      y: func(spectrum.geoU235),
+      y: func(geo.geoU235),
       name: "Geo <sup>235</sup>U",
       type: "scatter",
       mode: "lines",
       fill: "tozerox",
       marker: { color: "purple" },
       line: { width: 0.7 },
-      visible: sum(spectrum.geoU235) > 0,
+      visible: sum(geo.geoU235) > 0,
     },
     {
       x: bins,
-      y: func(spectrum.geoTh232),
+      y: func(geo.geoTh232),
       name: "Geo <sup>232</sup>Th",
       type: "scatter",
       mode: "lines",
       fill: "tozerox",
       marker: { color: "red" },
       line: { width: 0.7 },
-      visible: sum(spectrum.geoTh232) > 0,
+      visible: sum(geo.geoTh232) > 0,
     },
     {
       x: bins,
-      y: func(spectrum.geoK40_beta),
+      y: func(geo.geoK40_beta),
       name: "Geo <sup>40</sup>K (β<sup>-</sup>)",
       type: "scatter",
       mode: "lines",
       fill: "tozerox",
       marker: { color: "yellow" },
       line: { width: 0.7 },
-      visible: sum(spectrum.geoK40_beta) > 0,
+      visible: sum(geo.geoK40_beta) > 0,
     },
   ];
 

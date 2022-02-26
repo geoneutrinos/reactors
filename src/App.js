@@ -175,7 +175,7 @@ function App(props) {
       ...(includeCrust ? getCrustFlux(detector.lon, detector.lat) : {}),
     };
   }, [includeCrust, detector]);
-  const spectrum = useMemo(
+  const geo = useMemo(
     () =>
       mantleGeoSpectrum(crossSection, oscillation, geoFluxRatios, crustFlux),
     [crossSection, oscillation, geoFluxRatios, crustFlux]
@@ -211,13 +211,13 @@ function App(props) {
             <NuSpectrumPlot
               detector={detector}
               cores={cores}
-              spectrum={spectrum}
+              geo={geo}
               reactorLF={reactorLF}
             />
             <Tabs unmountOnExit={false} defaultActiveKey="detector">
               <Tab eventKey="detector" title="Detector">
                 <Visible>
-                  <StatsPanel cores={cores} spectrum={spectrum} reactorLF={reactorLF}/>
+                  <StatsPanel cores={cores} geo={geo} reactorLF={reactorLF}/>
                   <CoreDirectionPlot cores={cores} detector={detector} />
                   <DetectorLocationPane
                     detector={detector}
@@ -320,13 +320,13 @@ function App(props) {
                 Please reference this paper when using the results of this model in your research papers and presentations.</p>
                 <Visible>
                   <OutputDownload
-                    spectrum={spectrum}
+                    geo={geo}
                     cores={cores}
                     detector={detector}
                     boron8={boron8}
                   />
                 </Visible>
-                <CalculatorPanel cores={cores} spectrum={spectrum} />
+                <CalculatorPanel cores={cores} geo={geo} />
                 <h2> ACKNOWLEDGMENT </h2>
                 <p> Development of the model and this web application is supported in part by Lawrence Livermore National 
                 Security, LLC. </p>

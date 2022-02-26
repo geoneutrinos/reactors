@@ -44,7 +44,7 @@ export const DownloadButton = ({
   );
 };
 
-export const OutputDownload = ({ cores, spectrum, detector, boron8 }) => {
+export const OutputDownload = ({ cores, geo, detector, boron8 }) => {
   const { crossSection } = useContext(PhysicsContext);
   const { boron8Rate, boron8Ke } = boron8;
 
@@ -100,10 +100,10 @@ export const OutputDownload = ({ cores, spectrum, detector, boron8 }) => {
   };
   const downloadGeoData = {
     "bin center (MeV)": bins,
-    "geo238U (NIU/MeV)": spectrum.geoU238,
-    "geo235U (NIU/MeV)": spectrum.geoU235,
-    "geo232Th (NIU/MeV)": spectrum.geoTh232,
-    "geo40K_beta (NIU/MeV)": spectrum.geoK40_beta,
+    "geo238U (NIU/MeV)": geo.geoU238,
+    "geo235U (NIU/MeV)": geo.geoU235,
+    "geo232Th (NIU/MeV)": geo.geoTh232,
+    "geo40K_beta (NIU/MeV)": geo.geoK40_beta,
   };
   const downloadFormatters = {
     "bin center (MeV)": (v) => v.toFixed(3),
