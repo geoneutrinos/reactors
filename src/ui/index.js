@@ -66,10 +66,13 @@ export const Num = ({ v, p, u, func }) => {
   if (func === undefined) {
     func = (v) => v;
   }
+  const value = func(v)
+  const uncertainty = u ? func(u) : undefined
+  const formattedString = u ? `${value.toFixed(p).toString()} ± ${uncertainty.toFixed(p).toString()}` : `${value.toFixed(p).toString()}`
+  const fullString = u ? `${value.toString()} ± ${uncertainty.toString()}` : `${value.toString()}`
   return (
-    <span onDoubleClick={() => setFull(!full)} title={v.toString()}>
-      {full ? func(v).toString() : func(v).toFixed(p)}
-      {u ? full ? ` ± ${func(u).toString()}` : ` ± ${func(u).toFixed(p)}` : ""}
+    <span onDoubleClick={() => setFull(!full)} title={fullString}>
+      {full ? fullString: formattedString}
     </span>
   );
 };
