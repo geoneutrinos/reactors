@@ -100,10 +100,10 @@ export const OutputDownload = ({ cores, geo, detector, boron8 }) => {
   };
   const downloadGeoData = {
     "bin center (MeV)": bins,
-    "geo238U (NIU/MeV)": geo.geoU238,
-    "geo235U (NIU/MeV)": geo.geoU235,
-    "geo232Th (NIU/MeV)": geo.geoTh232,
-    "geo40K_beta (NIU/MeV)": geo.geoK40_beta,
+    "geo238U (NIU/MeV)": geo.total.U238.spectrum,
+    "geo235U (NIU/MeV)": geo.total.U235.spectrum,
+    "geo232Th (NIU/MeV)": geo.total.Th232.spectrum,
+    "geo40K_beta (NIU/MeV)": geo.total.K40Beta.spectrum,
   };
   const downloadFormatters = {
     "bin center (MeV)": (v) => v.toFixed(3),

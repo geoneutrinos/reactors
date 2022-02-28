@@ -81,38 +81,16 @@ export function StatsPanel({ cores, geo, reactorLF}) {
   const customDisplay = customTotalSignal > 0 ? "block" : "none";
 
   // geo things
-  const geo_crustU238NIU = sum(geo.crustU238Spectrum) * binWidth;
-  const geo_mantleU238NIU = sum(geo.mantleU238Spectrum) * binWidth;
-  const geoU238NIU = geo_crustU238NIU + geo_mantleU238NIU;
-  const geo_crustTh232NIU = sum(geo.crustTh232Spectrum) * binWidth;
-  const geo_mantleTh232NIU = sum(geo.mantleTh232Spectrum) * binWidth;
-  const geoTh232NIU = geo_crustTh232NIU + geo_mantleTh232NIU;
-  const geo_crustU235NIU = sum(geo.crustU235Spectrum) * binWidth;
-  const geo_mantleU235NIU = sum(geo.mantleU235Spectrum) * binWidth;
-  const geoU235NIU = geo_crustU235NIU + geo_mantleU235NIU;
-  const geo_crustK40betaNIU = sum(geo.crustK40BetaSpectrum) * binWidth;
-  const geo_mantleK40betaNIU = sum(geo.mantleK40BetaSpectrum) * binWidth;
-  const geoK40betaNIU = geo_crustK40betaNIU + geo_mantleK40betaNIU
-
-  const geoThU = geoThURatio(geoTh232NIU, geoU238NIU, crossSection.crossSection);
-  const geoKU = geoKURatio(geoK40betaNIU, geoU238NIU, crossSection.crossSection);
+  const geoThU = geoThURatio(geo.total.Th232.NIU, geo.total.U238.NIU, crossSection.crossSection);
+  const geoKU = geoKURatio(geo.total.K40Beta.NIU, geo.total.U238.NIU, crossSection.crossSection);
 
   const geoKUVald = isNaN(geoKU) ? "none" : "auto";
-
-  const geoTotalNIU = geoU238NIU + geoU235NIU + geoTh232NIU + geoK40betaNIU;
-  const geo_crustNIU = geo_crustU238NIU + geo_crustU235NIU + geo_crustTh232NIU + geo_crustK40betaNIU;
-  const geo_mantleNIU = geo_mantleU238NIU + geo_mantleU235NIU + geo_mantleTh232NIU + geo_mantleK40betaNIU;
-
-  // TODO: make this part of the model
-  const geo_crustNIUUncertainty = geo_crustNIU * 0.25;
-  const geo_mantleNIUUncertainty = geo_mantleNIU * 0.25
-  const geoTotalNIUUncertainty = Math.hypot(geo_crustNIUUncertainty, geo_mantleNIUUncertainty)
 
   // finally
   const leptonTVald = isIBD ? "none" : "auto";
   
-  const totalNIU = totalCoreSignal + geoTotalNIU;
-  const totalNIUUncertainty = Math.hypot(iaeaCoreSignalUncertainty + customTotalSignalUncertainty, geoTotalNIUUncertainty)
+  const totalNIU = totalCoreSignal + geo.total.NIU;
+  const totalNIUUncertainty = Math.hypot(iaeaCoreSignalUncertainty + customTotalSignalUncertainty, geo.total.NIUUncertainty)
 
   const tableProps = { style: { width: "auto" }, borderless: true, size: "sm" };
 
@@ -233,17 +211,17 @@ export function StatsPanel({ cores, geo, reactorLF}) {
                 </td>
               <td>=</td>
                 <td>
-                  <Num v={geoTotalNIU} u={geoTotalNIUUncertainty} p={1} /> {NIU}
+                  <Num v={geo.total.NIU} u={geo.total.NIUUncertainty} p={1} /> {NIU}
                 </td>
                 <td>
                   <small> (
-                  <Num v={geoU238NIU} p={1} /> {U238}{", "}
+                  <Num v={geo.total.U238.NIU} p={1} /> {U238}{", "}
                   <span style={{ display: geoKUVald }}>
-                    <Num v={geoU235NIU} p={1} /> {U235}{", "}
+                    <Num v={geo.total.U235.NIU} p={1} /> {U235}{", "}
                   </span>
-                  <Num v={geoTh232NIU} p={1} /> {Th232}
+                  <Num v={geo.total.Th232.NIU} p={1} /> {Th232}
                   <span style={{ display: geoKUVald }}>
-                    , <Num v={geoK40betaNIU} p={1} /> {K40}<sub>β<sup>-</sup></sub>
+                    , <Num v={geo.total.K40Beta.NIU} p={1} /> {K40}<sub>β<sup>-</sup></sub>
                   </span>
                   ) </small>
                 </td>
@@ -255,18 +233,18 @@ export function StatsPanel({ cores, geo, reactorLF}) {
                 </td>
               <td>=</td>
                 <td>
-                  <Num v={geo_crustNIU} u={geo_crustNIUUncertainty} p={1} /> {NIU} <small> (
-                  <Num v={((geo_crustNIU / geoTotalNIU) * 100)} p={1} /> % of <i>R</i><sub>geo</sub>) </small>
+                  <Num v={geo.crust.NIU} u={geo.crust.NIUUncertainty} p={1} /> {NIU} <small> (
+                  <Num v={((geo.crust.NIU / geo.total.NIU) * 100)} p={1} /> % of <i>R</i><sub>geo</sub>) </small>
                 </td>
                 <td>
                   <small> (
-                  <Num v={geo_crustU238NIU} p={1} /> {U238}{", "}
+                  <Num v={geo.crust.U238.NIU} p={1} /> {U238}{", "}
                   <span style={{ display: geoKUVald }}>
-                    <Num v={geo_crustU235NIU} p={1} /> {U235}{", "}
+                    <Num v={geo.crust.U235.NIU} p={1} /> {U235}{", "}
                   </span>
-                  <Num v={geo_crustTh232NIU} p={1} /> {Th232}
+                  <Num v={geo.crust.Th232.NIU} p={1} /> {Th232}
                   <span style={{ display: geoKUVald }}>
-                    , <Num v={geo_crustK40betaNIU} p={1} /> {K40}<sub>β<sup>-</sup></sub>
+                    , <Num v={geo.crust.K40Beta.NIU} p={1} /> {K40}<sub>β<sup>-</sup></sub>
                   </span>
                   ) </small>
                 </td>
@@ -278,18 +256,18 @@ export function StatsPanel({ cores, geo, reactorLF}) {
                 </td>
               <td>=</td>
                 <td>
-                  <Num v={geo_mantleNIU} u={geo_mantleNIUUncertainty} p={1} /> {NIU} <small> (
-                  <Num v={((geo_mantleNIU / geoTotalNIU) * 100)} p={1} /> % of <i>R</i><sub>geo</sub>) </small>
+                  <Num v={geo.mantle.NIU} u={geo.mantle.NIUUncertainty} p={1} /> {NIU} <small> (
+                  <Num v={((geo.mantle.NIU / geo.total.NIU) * 100)} p={1} /> % of <i>R</i><sub>geo</sub>) </small>
                 </td>
                 <td>
                   <small> (
-                  <Num v={geo_mantleU238NIU} p={1} /> {U238}{", "}
+                  <Num v={geo.mantle.U238.NIU} p={1} /> {U238}{", "}
                   <span style={{ display: geoKUVald }}>
-                    <Num v={geo_mantleU235NIU} p={1} /> {U235}{", "}
+                    <Num v={geo.mantle.U235.NIU} p={1} /> {U235}{", "}
                   </span>
-                  <Num v={geo_mantleTh232NIU} p={1} /> {Th232}
+                  <Num v={geo.mantle.Th232.NIU} p={1} /> {Th232}
                   <span style={{ display: geoKUVald }}>
-                    , <Num v={geo_mantleK40betaNIU} p={1} /> {K40}<sub>β<sup>-</sup></sub>
+                    , <Num v={geo.mantle.K40Beta.NIU} p={1} /> {K40}<sub>β<sup>-</sup></sub>
                   </span>
                   ) </small>
                 </td>

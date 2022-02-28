@@ -57,7 +57,6 @@ export const CalculatorPanel = ({ cores, geo }) => {
   const [time, setTime] = useState(1.0);
   const [sigma, setSigma] = useState(3.0);
   // eslint-disable-next-line no-unused-vars
-  const [deltaGeoNu, setDeltaGeoNu] = useState(0.25);
   const [bkgnuisance, setBkgnuisance] = useState(0);
   // eslint-disable-next-line no-unused-vars
   const [deltaBkgnuisance, setDeltaBkgnuisance] = useState(0.5);
@@ -321,28 +320,28 @@ export const CalculatorPanel = ({ cores, geo }) => {
 
   const geoU238NIU =
     sum(
-      detectorEfficiency(effMax, rampUp, enerStart, geo.geoU238, !isIBD).slice(
+      detectorEfficiency(effMax, rampUp, enerStart, geo.total.U238.spectrum, !isIBD).slice(
         min_i,
         max_i
       )
     ) * 0.01;
   const geoU235NIU =
     sum(
-      detectorEfficiency(effMax, rampUp, enerStart, geo.geoU235, !isIBD).slice(
+      detectorEfficiency(effMax, rampUp, enerStart, geo.total.U235.spectrum, !isIBD).slice(
         min_i,
         max_i
       )
     ) * 0.01;
   const geoTh232NIU =
     sum(
-      detectorEfficiency(effMax, rampUp, enerStart, geo.geoTh232, !isIBD).slice(
+      detectorEfficiency(effMax, rampUp, enerStart, geo.total.Th232.spectrum, !isIBD).slice(
         min_i,
         max_i
       )
     ) * 0.01;
   const geoK40betaNIU =
     sum(
-      detectorEfficiency(effMax, rampUp, enerStart, geo.geoK40_beta, !isIBD).slice(
+      detectorEfficiency(effMax, rampUp, enerStart, geo.total.K40Beta.spectrum, !isIBD).slice(
         min_i,
         max_i
       )
@@ -360,90 +359,90 @@ export const CalculatorPanel = ({ cores, geo }) => {
   if (signal === "selected") {
     UIsignal = selectedCoreSignal;
     UIbackground = geoTotalNIU + bkgNuisanceNIU + totalCoreSignal - selectedCoreSignal;
-    UIBackgroundUncertainty = Math.sqrt(
-      (geoTotalNIU * deltaGeoNu) ** 2 +
-        (bkgNuisanceNIU * deltaBkgnuisance) ** 2 +
-        ((totalCoreSignalHigh - selectedCoreSignalHigh) * deltaReactorsHighE) ** 2 +
-        ((totalCoreSignalLow - selectedCoreSignalLow) * deltaReactorsLowE) ** 2
+    UIBackgroundUncertainty = Math.hypot(
+      (geo.total.NIUUncertainty),
+        (bkgNuisanceNIU * deltaBkgnuisance),
+        ((totalCoreSignalHigh - selectedCoreSignalHigh) * deltaReactorsHighE),
+        ((totalCoreSignalLow - selectedCoreSignalLow) * deltaReactorsLowE)
     );
   }
   if (signal === "all") {
     UIsignal = totalCoreSignal;
     UIbackground = geoTotalNIU + bkgNuisanceNIU;
-    UIBackgroundUncertainty = Math.sqrt(
-      (geoTotalNIU * deltaGeoNu) ** 2 + (bkgNuisanceNIU * deltaBkgnuisance) ** 2
+    UIBackgroundUncertainty = Math.hypot(
+      (geo.total.NIUUncertainty), 
+      (bkgNuisanceNIU * deltaBkgnuisance)
     );
   }
   if (signal === "closest") {
     UIsignal = closestNIU;
     UIbackground = geoTotalNIU + bkgNuisanceNIU + totalCoreSignal - closestNIU;
-    UIBackgroundUncertainty = Math.sqrt(
-      (geoTotalNIU * deltaGeoNu) ** 2 +
-        (bkgNuisanceNIU * deltaBkgnuisance) ** 2 +
-        ((totalCoreSignalHigh - closestHighNIU) * deltaReactorsHighE) ** 2 +
-        ((totalCoreSignalLow - closestLowNIU) * deltaReactorsLowE) ** 2
+    UIBackgroundUncertainty = Math.hypot(
+      (geo.total.NIUUncertainty),
+        (bkgNuisanceNIU * deltaBkgnuisance),
+        ((totalCoreSignalHigh - closestHighNIU) * deltaReactorsHighE),
+        ((totalCoreSignalLow - closestLowNIU) * deltaReactorsLowE)
     );
   }
   if (signal === "custom") {
     UIsignal = customTotalSignal;
     UIbackground =
       geoTotalNIU + bkgNuisanceNIU + totalCoreSignal - customTotalSignal;
-    UIBackgroundUncertainty = Math.sqrt(
-      (geoTotalNIU * deltaGeoNu) ** 2 +
-        (bkgNuisanceNIU * deltaBkgnuisance) ** 2 +
-        ((totalCoreSignalHigh - customTotalSignalHigh) * deltaReactorsHighE) **
-          2 +
-        ((totalCoreSignalLow - customTotalSignalLow) * deltaReactorsLowE) ** 2
+    UIBackgroundUncertainty = Math.hypot(
+      (geo.total.NIUUncertainty,
+        (bkgNuisanceNIU * deltaBkgnuisance),
+        ((totalCoreSignalHigh - customTotalSignalHigh) * deltaReactorsHighE),
+        ((totalCoreSignalLow - customTotalSignalLow) * deltaReactorsLowE),
     );
   }
   if (signal === "geoneutrino") {
     UIbackground = totalCoreSignal + bkgNuisanceNIU;
     UIsignal = geoTotalNIU;
-    UIBackgroundUncertainty = Math.sqrt(
-      (totalCoreSignalHigh * deltaReactorsHighE) ** 2 +
-        (totalCoreSignalLow * deltaReactorsLowE) ** 2 +
-        (bkgNuisanceNIU * deltaBkgnuisance) ** 2
+    UIBackgroundUncertainty = Math.hypot(
+      (totalCoreSignalHigh * deltaReactorsHighE),
+        (totalCoreSignalLow * deltaReactorsLowE),
+        (bkgNuisanceNIU * deltaBkgnuisance),
     );
   }
   if (signal === "geo_u8") {
     UIbackground = totalCoreSignal + bkgNuisanceNIU + geoTotalNIU - geoU238NIU;
     UIsignal = geoU238NIU;
-    UIBackgroundUncertainty = Math.sqrt(
-      ((geoTotalNIU - geoU238NIU) * deltaGeoNu) ** 2 +
-        (bkgNuisanceNIU * deltaBkgnuisance) ** 2 +
-        (totalCoreSignalHigh * deltaReactorsHighE) ** 2 +
-        (totalCoreSignalLow * deltaReactorsLowE) ** 2
+    UIBackgroundUncertainty = Math.hypot(
+      (geo.total.NIUUncertainty - geo.total.U238.NIUUncertainty),
+        (bkgNuisanceNIU * deltaBkgnuisance),
+        (totalCoreSignalHigh * deltaReactorsHighE),
+        (totalCoreSignalLow * deltaReactorsLowE),
     );
   }
   if (signal === "geo_th") {
     UIbackground = totalCoreSignal + bkgNuisanceNIU + geoTotalNIU - geoTh232NIU;
     UIsignal = geoTh232NIU;
-    UIBackgroundUncertainty = Math.sqrt(
-      ((geoTotalNIU - geoTh232NIU) * deltaGeoNu) ** 2 +
-        (bkgNuisanceNIU * deltaBkgnuisance) ** 2 +
-        (totalCoreSignalHigh * deltaReactorsHighE) ** 2 +
-        (totalCoreSignalLow * deltaReactorsLowE) ** 2
+    UIBackgroundUncertainty = Math.hypot(
+      (geo.total.NIUUncertainty - geo.total.Th232.NIUUncertainty),
+        (bkgNuisanceNIU * deltaBkgnuisance),
+        (totalCoreSignalHigh * deltaReactorsHighE),
+        (totalCoreSignalLow * deltaReactorsLowE),
     );
   }
   if (signal === "geo_k") {
     UIbackground =
       totalCoreSignal + bkgNuisanceNIU + geoTotalNIU - geoK40betaNIU;
     UIsignal = geoK40betaNIU;
-    UIBackgroundUncertainty = Math.sqrt(
-      ((geoTotalNIU - geoK40betaNIU) * deltaGeoNu) ** 2 +
-        (bkgNuisanceNIU * deltaBkgnuisance) ** 2 +
-        (totalCoreSignalHigh * deltaReactorsHighE) ** 2 +
-        (totalCoreSignalLow * deltaReactorsLowE) ** 2
+    UIBackgroundUncertainty = Math.hypot(
+      (geo.total.NIUUncertainty - geo.total.K40Beta.NIUUncertainty),
+        (bkgNuisanceNIU * deltaBkgnuisance),
+        (totalCoreSignalHigh * deltaReactorsHighE),
+        (totalCoreSignalLow * deltaReactorsLowE),
     );
   }
   if (signal === "geo_u5") {
     UIbackground = totalCoreSignal + bkgNuisanceNIU + geoTotalNIU - geoU235NIU;
     UIsignal = geoU235NIU;
-    UIBackgroundUncertainty = Math.sqrt(
-      ((geoTotalNIU - geoU235NIU) * deltaGeoNu) ** 2 +
-        (bkgNuisanceNIU * deltaBkgnuisance) ** 2 +
-        (totalCoreSignalHigh * deltaReactorsHighE) ** 2 +
-        (totalCoreSignalLow * deltaReactorsLowE) ** 2
+    UIBackgroundUncertainty = Math.hypot(
+      (geo.total.NIUUncertainty - geo.total.U235.NIUUncertainty),
+        (bkgNuisanceNIU * deltaBkgnuisance),
+        (totalCoreSignalHigh * deltaReactorsHighE),
+        (totalCoreSignalLow * deltaReactorsLowE),
     );
   }
 

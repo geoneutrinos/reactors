@@ -1,7 +1,4 @@
-import {
-  CrossSection,
-  XSNames,
-} from "../physics/neutrino-cross-section";
+import { CrossSection, XSNames } from "../physics/neutrino-cross-section";
 import { Oscillation } from "../physics/neutrino-oscillation";
 import {
   antineutrinoSpectrum235U,
@@ -14,7 +11,8 @@ import {
   ISOTOPIC_NATURAL_ABUNDANCE,
 } from "../physics/constants";
 import { ISOTOPIC_NEUTRINO_LUMINOSITY } from "../physics/derived";
-import bins from "../physics/bins";
+import bins, { binWidth } from "../physics/bins";
+import { sum } from "lodash";
 
 const MICROSECOND_PER_SECOND = 1e6;
 const TARGETS = 1e32;
@@ -23,17 +21,116 @@ const TargetYears = TARGETS * SECONDS_PER_YEAR;
 
 const EvBinFronIndex = (i: number) => bins[i];
 
-type CrustFlux = {
+interface CrustFlux {
   u: number;
   th: number;
   k: number;
 }
 
-type GeoNuFluxRatio = {
-  U238flux: number, // cm-2 s-1
-  ThURatio: number, // no units
-  KURatio: number, // no units
+interface GeoUncertainty {
+  U238: number;
+  U235: number;
+  Th232: number;
+  K40Beta: number;
 }
+
+interface GeoNuFluxRatio {
+  U238flux: number; // cm-2 s-1
+  ThURatio: number; // no units
+  KURatio: number; // no units
+}
+
+interface GeoSignal {
+  spectrum: Float32Array;
+  NIU: number;
+  spectrumUncertainty: Float32Array;
+  NIUUncertainty: number;
+}
+
+interface GeoCrustMantle extends GeoSignal {
+  U238: GeoSignal;
+  U235: GeoSignal;
+  Th232: GeoSignal;
+  K40Beta: GeoSignal;
+}
+
+interface GeoInterface {
+  crust: GeoCrustMantle;
+  mantle: GeoCrustMantle;
+  total: GeoCrustMantle;
+}
+
+// TODO Temp until passed in
+const geoUncertainty = 0.25;
+
+const mantleUncertainty: GeoUncertainty = {
+  U238: geoUncertainty,
+  U235: geoUncertainty,
+  Th232: geoUncertainty,
+  K40Beta: geoUncertainty,
+};
+const crustUncertainty: GeoUncertainty = {
+  U238: geoUncertainty,
+  U235: geoUncertainty,
+  Th232: geoUncertainty,
+  K40Beta: geoUncertainty,
+};
+
+const getGeoSignal = (
+  spectrum: Float32Array,
+  uncertainty: number
+): GeoSignal => {
+  const spectrumUncertainty = spectrum.map((v) => v * uncertainty);
+  return {
+    spectrum: spectrum,
+    NIU: sum(spectrum) * binWidth,
+    spectrumUncertainty: spectrumUncertainty,
+    NIUUncertainty: sum(spectrumUncertainty) * binWidth,
+  };
+};
+
+const totalCrustMantleGeoSignal = (
+  crust: GeoSignal,
+  mantle: GeoSignal
+): GeoSignal => {
+  const spectrumUncertainty = crust.spectrumUncertainty.map((v, i) =>
+    Math.hypot(v, mantle.spectrumUncertainty[i])
+  );
+  return {
+    spectrum: crust.spectrum.map((v, i) => v + mantle.spectrum[i]),
+    NIU: crust.NIU + mantle.NIU,
+    spectrumUncertainty: spectrumUncertainty,
+    NIUUncertainty: sum(spectrumUncertainty) * binWidth,
+  };
+};
+
+const addTotals = (
+  geoSignal: Omit<GeoCrustMantle, keyof GeoSignal>
+): GeoCrustMantle => {
+  const spectrum = geoSignal.U238.spectrum.map(
+    (v, i) =>
+      v +
+      geoSignal.U235.spectrum[i] +
+      geoSignal.Th232.spectrum[i] +
+      geoSignal.K40Beta.spectrum[i]
+  );
+  const NIU = sum(spectrum) * binWidth;
+  const spectrumUncertainty = geoSignal.U238.spectrumUncertainty.map(
+    (v, i) =>
+      v +
+      geoSignal.U235.spectrumUncertainty[i] +
+      geoSignal.Th232.spectrumUncertainty[i] +
+      geoSignal.K40Beta.spectrumUncertainty[i]
+  );
+  const NIUUncertainty = sum(spectrumUncertainty) * binWidth;
+  return {
+    ...geoSignal,
+    spectrum,
+    NIU,
+    spectrumUncertainty,
+    NIUUncertainty,
+  };
+};
 
 const extractESEandMuTau = (
   spec: number,
@@ -52,11 +149,16 @@ const extractESEandMuTau = (
   return [spec, ESMUTauContirbution];
 };
 
-const getGeoRates = (spectrum: Float32Array, crustFlux: number, mantleFlux: number, survivalProbability: number, crossSection: CrossSection) => {
-  const crustSpectrum = new Float32Array(spectrum.length)
-  const mantleSpectrum = new Float32Array(spectrum.length)
-  const geoSpectrum = new Float32Array(spectrum.length)
-  spectrum.forEach((v, i) =>{
+const getGeoRates = (
+  spectrum: Float32Array,
+  crustFlux: number,
+  mantleFlux: number,
+  survivalProbability: number,
+  crossSection: CrossSection
+) => {
+  const crustSpectrum = new Float32Array(spectrum.length);
+  const mantleSpectrum = new Float32Array(spectrum.length);
+  spectrum.forEach((v, i) => {
     const Ev = EvBinFronIndex(i);
     const CrustFlux = crustFlux * MICROSECOND_PER_SECOND; // Convert from cm-2 us-1 to cm-2 s-1
     const crossSectionArea = crossSection.crossSectionFunction(Ev); // cm2
@@ -78,23 +180,26 @@ const getGeoRates = (spectrum: Float32Array, crustFlux: number, mantleFlux: numb
       crossSection
     );
 
-    const crust_rate = crust_spec * TargetYears * survivalProbability + crust_ESMUTauContirbution 
-    const mantle_rate = mantle_spec * TargetYears * survivalProbability + mantle_ESMUTauContirbution 
+    const crust_rate =
+      crust_spec * TargetYears * survivalProbability +
+      crust_ESMUTauContirbution;
+    const mantle_rate =
+      mantle_spec * TargetYears * survivalProbability +
+      mantle_ESMUTauContirbution;
 
-    geoSpectrum[i] = crust_rate + mantle_rate;
     crustSpectrum[i] = crust_rate;
     mantleSpectrum[i] = mantle_rate;
-  })
-  return {geoSpectrum, crustSpectrum, mantleSpectrum}
-}
+  });
+  return { crustSpectrum, mantleSpectrum };
+};
 
-export function mantleGeoSpectrum(
+export function geoSpectrum(
   crossSection: CrossSection,
   oscillation: Oscillation,
   geoFluxRatios: GeoNuFluxRatio,
   crustFlux: CrustFlux
-) {
-  let survivalProbability = oscillation.averageSurvivalProbability
+): GeoInterface {
+  let survivalProbability = oscillation.averageSurvivalProbability;
 
   if (crossSection.crossSection === XSNames.ESMUTAU) {
     survivalProbability = 1 - survivalProbability;
@@ -102,15 +207,16 @@ export function mantleGeoSpectrum(
 
   const { U238flux, ThURatio, KURatio } = geoFluxRatios;
 
-
-  const {geoSpectrum: U238Spectrum, crustSpectrum: crustU238Spectrum, mantleSpectrum: mantleU238Spectrum}  = getGeoRates(
-    antineutrinoSpectrum238U, 
-    crustFlux.u, 
-    U238flux, 
-    survivalProbability, 
-    crossSection,
-    )
-
+  const {
+    crustSpectrum: crustU238Spectrum,
+    mantleSpectrum: mantleU238Spectrum,
+  } = getGeoRates(
+    antineutrinoSpectrum238U,
+    crustFlux.u,
+    U238flux,
+    survivalProbability,
+    crossSection
+  );
 
   const U235FluxIsotopicScale =
     (ISOTOPIC_NEUTRINO_LUMINOSITY.U235 / ISOTOPIC_NEUTRINO_LUMINOSITY.U238) *
@@ -118,14 +224,16 @@ export function mantleGeoSpectrum(
 
   const U235MantleFlux = U238flux * U235FluxIsotopicScale;
 
-  const {geoSpectrum: U235Spectrum, crustSpectrum: crustU235Spectrum, mantleSpectrum: mantleU235Spectrum} = getGeoRates(
-    antineutrinoSpectrum235U ,
+  const {
+    crustSpectrum: crustU235Spectrum,
+    mantleSpectrum: mantleU235Spectrum,
+  } = getGeoRates(
+    antineutrinoSpectrum235U,
     crustFlux.u * U235FluxIsotopicScale,
     U235MantleFlux,
     survivalProbability,
     crossSection
-  )
-
+  );
 
   const ThMantleFluxIsotopicScale =
     (ISOTOPIC_NEUTRINO_LUMINOSITY.TH232 / ISOTOPIC_NEUTRINO_LUMINOSITY.U238) *
@@ -133,13 +241,16 @@ export function mantleGeoSpectrum(
 
   const ThMantleFlux = U238flux * ThURatio * ThMantleFluxIsotopicScale;
 
-  const {geoSpectrum: Th232Spectrum,crustSpectrum:  crustTh232Spectrum,mantleSpectrum:  mantleTh232Spectrum} = getGeoRates(
+  const {
+    crustSpectrum: crustTh232Spectrum,
+    mantleSpectrum: mantleTh232Spectrum,
+  } = getGeoRates(
     antineutrinoSpectrum232Th,
     crustFlux.th,
     ThMantleFlux,
     survivalProbability,
-    crossSection,
-  )
+    crossSection
+  );
 
   const KMantleFluxIsotopicScale =
     (ISOTOPIC_NEUTRINO_LUMINOSITY.K40 / ISOTOPIC_NEUTRINO_LUMINOSITY.U238) *
@@ -147,27 +258,44 @@ export function mantleGeoSpectrum(
 
   const KMantleFlux = U238flux * KURatio * KMantleFluxIsotopicScale;
 
-  const {geoSpectrum: K40BetaSpectrum, crustSpectrum: crustK40BetaSpectrum,mantleSpectrum:  mantleK40BetaSpectrum} = getGeoRates(
+  const {
+    crustSpectrum: crustK40BetaSpectrum,
+    mantleSpectrum: mantleK40BetaSpectrum,
+  } = getGeoRates(
     antineutrinoSpectrum40K,
     crustFlux.k,
     KMantleFlux,
     survivalProbability,
-    crossSection,
-  )
+    crossSection
+  );
 
+  const mantleBase = {
+    U238: getGeoSignal(mantleU238Spectrum, mantleUncertainty.U238),
+    U235: getGeoSignal(mantleU235Spectrum, mantleUncertainty.U235),
+    Th232: getGeoSignal(mantleTh232Spectrum, mantleUncertainty.Th232),
+    K40Beta: getGeoSignal(mantleK40BetaSpectrum, mantleUncertainty.K40Beta),
+  };
+  const mantle = addTotals(mantleBase);
+
+  const crustBase = {
+    U238: getGeoSignal(crustU238Spectrum, crustUncertainty.U238),
+    U235: getGeoSignal(crustU235Spectrum, crustUncertainty.U235),
+    Th232: getGeoSignal(crustTh232Spectrum, crustUncertainty.Th232),
+    K40Beta: getGeoSignal(crustK40BetaSpectrum, crustUncertainty.K40Beta),
+  };
+  const crust = addTotals(crustBase);
+
+  const totalBase = {
+    U238: totalCrustMantleGeoSignal(crust.U238, mantle.U238),
+    U235: totalCrustMantleGeoSignal(crust.U235, mantle.U235),
+    Th232: totalCrustMantleGeoSignal(crust.Th232, mantle.Th232),
+    K40Beta: totalCrustMantleGeoSignal(crust.K40Beta, mantle.K40Beta),
+  };
+  const total = addTotals(totalBase);
 
   return {
-    mantleU238Spectrum,
-    crustU238Spectrum,
-    mantleU235Spectrum,
-    crustU235Spectrum,
-    mantleTh232Spectrum,
-    crustTh232Spectrum,
-    mantleK40BetaSpectrum,
-    crustK40BetaSpectrum,
-    geoU238: U238Spectrum,
-    geoU235: U235Spectrum,
-    geoTh232: Th232Spectrum,
-    geoK40_beta: K40BetaSpectrum,
+    mantle: mantle,
+    crust: crust,
+    total: total,
   };
 }

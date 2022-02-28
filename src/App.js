@@ -62,7 +62,7 @@ import {
 import { defaultCores } from "./reactor-cores";
 import { presets, detectorENUProjector } from "./detectors";
 import { getCrustFlux } from "./crust-model";
-import { mantleGeoSpectrum } from "./mantle";
+import { geoSpectrum } from "./mantle";
 
 import { crossSection as initialCrossSection } from "./physics/neutrino-cross-section";
 import { crossSectionReducer } from "./physics/neutrino-cross-section";
@@ -177,7 +177,7 @@ function App(props) {
   }, [includeCrust, detector]);
   const geo = useMemo(
     () =>
-      mantleGeoSpectrum(crossSection, oscillation, geoFluxRatios, crustFlux),
+      geoSpectrum(crossSection, oscillation, geoFluxRatios, crustFlux),
     [crossSection, oscillation, geoFluxRatios, crustFlux]
   );
 
