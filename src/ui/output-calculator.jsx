@@ -464,7 +464,7 @@ export const CalculatorPanel = ({ cores, geo }) => {
   let UITime = time;
   let UISigma = sigma;
   let UIExposureNever = false;
-  let UITotalUnderTwo = false;
+  let UITotalUnderThreshold = false;
 
   if (solveFor === "exposure") {
     UITime =
@@ -473,8 +473,8 @@ export const CalculatorPanel = ({ cores, geo }) => {
     if (sigma * UIBackgroundUncertainty >= UIsignal) {
       UIExposureNever = true;
     }
-    if (UITime >= 0 && (UIsignal + UIbackground) * UITime < 2) {
-      UITotalUnderTwo = true;
+    if (UITime >= 0 && (UIsignal + UIbackground) * UITime < evtthreshold) {
+      UITotalUnderThreshold = true;
     }
     UITime = UITime.toFixed(4);
   }
@@ -485,9 +485,9 @@ export const CalculatorPanel = ({ cores, geo }) => {
       Math.sqrt(
         (UIsignal + UIbackground) * time + (UIBackgroundUncertainty * time) ** 2
       );
-    if ((UIsignal + UIbackground) * time < 2) {
+    if ((UIsignal + UIbackground) * time < evtthreshold) {
       UISigma = 0;
-      UITotalUnderTwo = true;
+      UITotalUnderThreshold = true;
     }
     UISigma = UISigma.toFixed(3);
   }
@@ -688,14 +688,14 @@ export const CalculatorPanel = ({ cores, geo }) => {
                   <InputGroup.Text><i>N<sub>σ</sub></i></InputGroup.Text>
                 </InputGroup.Prepend>
               <Form.Control
-                  isInvalid={UITotalUnderTwo}
+                  isInvalid={UITotalUnderThreshold}
                   onChange={UIsetSigma}
                   type="number"
                   step="0.1"
                   value={UISigma}
                 />
                 <Form.Control.Feedback type="invalid">
-                  Total number of events is less than 2
+                  Total number of events is below threshold 
                 </Form.Control.Feedback>
               </InputGroup>
             </Form.Group>
