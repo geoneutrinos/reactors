@@ -59,6 +59,8 @@ export const CalculatorPanel = ({ cores, geo }) => {
   // eslint-disable-next-line no-unused-vars
   const [bkgnuisance, setBkgnuisance] = useState(0);
   // eslint-disable-next-line no-unused-vars
+  const [evtthreshold, setEvtthreshold] = useState(10);
+  // eslint-disable-next-line no-unused-vars
   const [deltaBkgnuisance, setDeltaBkgnuisance] = useState(0.5);
   // eslint-disable-next-line no-unused-vars
   //const [deltaReactorsHighE, setDeltaReactorsHighE] = useState(0.06);
@@ -157,7 +159,20 @@ export const CalculatorPanel = ({ cores, geo }) => {
       setBkgnuisance(bkg_nuisance);
     }
   };
-
+  
+  const UIsetEvtThreshold = (event) => {
+    const value = event.target.value;
+    let evt_threshold = parseFloat(value);
+    if (isNaN(evt_threshold)) {
+      setEvtthreshold(value);
+    } else {
+      if (evt_threshold < 2) {
+        evt_threshold = 2;
+      }
+      setEvtthreshold(evt_threshold);
+    }
+  };
+  
   const UIsetEMin = (event) => {
     const value = event.target.value;
     let stateEmin = parseFloat(IBD_THRESHOLD.toFixed(1)) * isIBD;
@@ -555,6 +570,8 @@ export const CalculatorPanel = ({ cores, geo }) => {
               </Form.Control>
             </Form.Group>
 
+        <Row>
+          <Col>
             <Form.Group controlId="bkg_nuisance">
               <Form.Label>Nuisance Background Rate</Form.Label>
               <InputGroup>
@@ -571,7 +588,23 @@ export const CalculatorPanel = ({ cores, geo }) => {
                 </InputGroup.Append>
               </InputGroup>
             </Form.Group>
-
+          </Col>
+          <Col>
+             <Form.Group controlId="evt_threshold">
+              <Form.Label>Event Threshold</Form.Label>
+              <InputGroup>
+                <InputGroup.Prepend>
+                  <InputGroup.Text><i>N</i><sub>events</sub></InputGroup.Text>
+                </InputGroup.Prepend>
+                <Form.Control
+                  onChange={UIsetEvtThreshold}
+                  type="number"
+                  value={evtthreshold}
+                />
+              </InputGroup>
+            </Form.Group>
+          </Col>
+        </Row>
         <Row>
           <Col>
             <Form.Group controlId="e_min">
