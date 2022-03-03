@@ -813,8 +813,8 @@ export const CalculatorPanel = ({ cores, geo }) => {
             <b> Significance Calculations</b><br />
             <p> The following equations for significance are expressed in terms of{" "}
             <Node inline>{String.raw`\xi`}</Node> the detector exposure,{" "}
-            <Node inline>{String.raw`s = S / \xi`}</Node> the signal rate,{" "}
-            <Node inline>{String.raw`b = B / \xi`}</Node> the background rate, and{" "}
+            <Node inline>{String.raw`s (= S / \xi)`}</Node> the signal rate,{" "}
+            <Node inline>{String.raw`b (= B / \xi)`}</Node> the background rate, and{" "}
             <Node inline>{String.raw`\delta b`}</Node> the systematic uncertainty of the background rate. 
             Reactor antineutrinos and geoneutrinos have systematic uncertainties that depend on the selected input data.
             The nuisance background has a fixed fractional uncertainty of 0.5 and a flat energy spectrum.
