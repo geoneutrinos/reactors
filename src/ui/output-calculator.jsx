@@ -723,7 +723,7 @@ export const CalculatorPanel = ({ cores, geo }) => {
                   value={UISigma}
                 />
                 <Form.Control.Feedback type="invalid">
-                  Total number of events is below threshold 
+                  Events below threshold 
                 </Form.Control.Feedback>
               </InputGroup>
             </Form.Group>
@@ -812,16 +812,16 @@ export const CalculatorPanel = ({ cores, geo }) => {
             <br />
             <b> Significance Calculations</b><br />
             <p> The following equations for significance are expressed in terms of{" "}
-            <Node inline>{String.raw`\xi,`}</Node> the detector exposure,{" "}
+            <Node inline>{String.raw`\xi`}</Node> the detector exposure,{" "}
             <Node inline>{String.raw`s = S / \xi`}</Node> the signal rate,{" "}
             <Node inline>{String.raw`b = B / \xi`}</Node> the background rate, and{" "}
             <Node inline>{String.raw`\delta b`}</Node> the systematic uncertainty of the background rate. 
-            The systematic uncetainties of the rates of reactor antineutrinos and geoneutrinos depend on the selected input data.
+            Reactor antineutrinos and geoneutrinos have systematic uncertainties that depend on the selected input data.
             The nuisance background has a fixed fractional uncertainty of 0.5 and a flat energy spectrum.
             </p>
             <br /> 
             <i> Null Hypothesis- H<sub>0</sub></i><br />
-            <Node>{String.raw`N_{\sigma} = \frac{ s * \xi }{\sqrt{(s + b) * \xi + (\delta b * \xi )^2}},`}</Node>{" "}
+            <Node>{String.raw`N_{\sigma} = \frac{ s * \xi }{\sqrt{b * \xi + (\delta b * \xi )^2}},`}</Node>{" "}
             <br />
             <i> Alternative Hypothesis- H<sub>1</sub></i><br />  
             <Node>{String.raw`N_{\sigma} = \frac{ s * \xi }{\sqrt{(s + b) * \xi + (\delta b * \xi )^2}},`}</Node>{" "}
