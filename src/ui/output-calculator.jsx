@@ -491,6 +491,32 @@ export const CalculatorPanel = ({ cores, geo }) => {
     }
     UISigma = UISigma.toFixed(3);
   }
+  
+  if (solveFor === "exposure_h0") {
+    UITime =
+      (sigma ** 2 * UIbackground) /
+      (UIsignal ** 2 - sigma ** 2 * UIBackgroundUncertainty ** 2);
+    if (sigma * UIBackgroundUncertainty >= UIsignal) {
+      UIExposureNever = true;
+    }
+    if (UITime >= 0 && UIbackground * UITime < evtthreshold) {
+      UITotalUnderThreshold = true;
+    }
+    UITime = UITime.toFixed(4);
+  }
+
+  if (solveFor === "significance_h0") {
+    UISigma =
+      (UIsignal * time) /
+      Math.sqrt(
+        (UIbackground) * time + (UIBackgroundUncertainty * time) ** 2
+      );
+    if (UIbackground * time < evtthreshold) {
+      UISigma = 0;
+      UITotalUnderThreshold = true;
+    }
+    UISigma = UISigma.toFixed(3);
+  }
 
   let UIeventsSignal = UIsignal * UITime;
   let UIeventsBackground = UIbackground * UITime;
@@ -565,8 +591,10 @@ export const CalculatorPanel = ({ cores, geo }) => {
             <Form.Group controlId="solve_for">
               <Form.Label>Solve For</Form.Label>
               <Form.Control as="select" onChange={UIsetSelect} value={solveFor}>
-                <option value="exposure">Exposure</option>
-                <option value="significance">Significance</option>
+                <option value="exposure_h0">Exposure- Null hypothesis</option>
+                <option value="significance_h0">Significance- Null hypothesis</option>
+                <option value="exposure">Exposure- Alternative hypothesis</option>
+                <option value="significance">Significance- Alternative hypthesis</option>
               </Form.Control>
             </Form.Group>
 
@@ -782,24 +810,24 @@ export const CalculatorPanel = ({ cores, geo }) => {
             </Visible>
           <div>
             <br />
-            <b> Significance Calculation</b><br />
-            <p> The significance of the background-subtracted number of signal events <i>S</i> depends 
-            on the systematic uncertainty of the estimated number of background events{" "}
-            <Node inline>{String.raw`\delta B`}</Node> and
-            the statistical uncertainty of the total number of candidate events{" "}
-            <Node inline>{String.raw`\sqrt{S + B}.`}</Node> In terms of the detector exposure{" "}
-            <Node inline>{String.raw`\xi,`}</Node> the significance is given by 
-            <Node>{String.raw`N_{\sigma} = \frac{ s * \xi }{\sqrt{(s + b) * \xi + (\delta b * \xi )^2}},`}</Node>{" "}
-            where <Node inline>{String.raw`s`}</Node> is the signal rate,{" "}
-            <Node inline>{String.raw`b`}</Node> is the background rate, and{" "}
-            <Node inline>{String.raw`\delta b`}</Node> is the systematic uncertainty of the background rate.
-            The fractional systematic uncetainties of the estimated numbers of reactor antineutrino events and geoneutrino events 
-            depend on the selected models. 
-            The nuisance background has a fixed uncertainty of 0.5 and a flat energy spectrum.
+            <b> Significance Calculations</b><br />
+            <p> The following equations for significance are expressed in terms of{" "}
+            <Node inline>{String.raw`\xi,`}</Node> the detector exposure,{" "}
+            <Node inline>{String.raw`s = S / \xi`}<\Node> the signal rate,{" "}
+            <Node inline>{String.raw`b = B / \xi`}<\Node> the background rate, and{" "}
+            <Node inline>{String.raw`\delta b`}</Node> the systematic uncertainty of the background rate. 
+            The systematic uncetainties of the rates of reactor antineutrinos and geoneutrinos depend on the selected input data.
+            The nuisance background has a fixed fractional uncertainty of 0.5 and a flat energy spectrum.
             </p>
-            <p>
+            <br /> 
+            <i> Null Hypothesis- H<sub>0</sub></i><br />
+            <Node>{String.raw`N_{\sigma} = \frac{ s * \xi }{\sqrt{(s + b) * \xi + (\delta b * \xi )^2}},`}</Node>{" "}
+            <br />
+            <i> Alternative Hypothesis- H<sub>1</sub></i><br />  
+            <Node>{String.raw`N_{\sigma} = \frac{ s * \xi }{\sqrt{(s + b) * \xi + (\delta b * \xi )^2}},`}</Node>{" "}
+            <br />
             <b> IBD Detection Efficiency</b><br />
-            When expressed as a function of antineutrino energy <i>E</i>, the detection efficiency is
+            <p> When expressed as a function of antineutrino energy <i>E</i>, the detection efficiency is
             valid for IBD only. Here it is approximated by a sigmoid curve
             <Node>{String.raw`\varepsilon (E) = \frac {\varepsilon_\mathrm{max}} {1 + \exp(-\rho * (E - E_\mathrm{HM}))},`}</Node>{" "}
             where <Node inline>{String.raw`\varepsilon_\mathrm{max}`}</Node> is the asymptote at infinite energy 
@@ -807,10 +835,8 @@ export const CalculatorPanel = ({ cores, geo }) => {
             <Node inline>{String.raw`E_\mathrm{HM}`}</Node> is the inflection point energy 
             (energy at one-half of the maximum efficiency), and{" "}
             <Node inline>{String.raw`\rho`}</Node> is the slope 
-            (efficiency ramp-up rate). 
-            For monolithic detectors of Cherenkov and/or scintillation light the values of these parameters depend on the
-            photosensitive surface and the target liquid. 
-            A conversion of the detection efficiency from a function of antineutrino energy to a function of scattered charged lepton kinetic energy is in the works.
+            (efficiency ramp-up rate).
+            Conversion of the detection efficiency from a function of antineutrino energy to a function of scattered charged lepton kinetic energy is in progress.
             </p>
           </div>
         </Provider>
