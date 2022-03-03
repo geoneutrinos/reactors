@@ -594,7 +594,7 @@ export const CalculatorPanel = ({ cores, geo }) => {
                 <option value="exposure_h0">Exposure- Null hypothesis</option>
                 <option value="significance_h0">Significance- Null hypothesis</option>
                 <option value="exposure">Exposure- Alternative hypothesis</option>
-                <option value="significance">Significance- Alternative hypthesis</option>
+                <option value="significance">Significance- Alternative hypothesis</option>
               </Form.Control>
             </Form.Group>
 
@@ -813,8 +813,8 @@ export const CalculatorPanel = ({ cores, geo }) => {
             <b> Significance Calculations</b><br />
             <p> The following equations for significance are expressed in terms of{" "}
             <Node inline>{String.raw`\xi,`}</Node> the detector exposure,{" "}
-            <Node inline>{String.raw`s = S / \xi`}<\Node> the signal rate,{" "}
-            <Node inline>{String.raw`b = B / \xi`}<\Node> the background rate, and{" "}
+            <Node inline>{String.raw`s = S / \xi`}</Node> the signal rate,{" "}
+            <Node inline>{String.raw`b = B / \xi`}</Node> the background rate, and{" "}
             <Node inline>{String.raw`\delta b`}</Node> the systematic uncertainty of the background rate. 
             The systematic uncetainties of the rates of reactor antineutrinos and geoneutrinos depend on the selected input data.
             The nuisance background has a fixed fractional uncertainty of 0.5 and a flat energy spectrum.
@@ -828,7 +828,7 @@ export const CalculatorPanel = ({ cores, geo }) => {
             <br />
             <b> IBD Detection Efficiency</b><br />
             <p> When expressed as a function of antineutrino energy <i>E</i>, the detection efficiency is
-            valid for IBD only. Here it is approximated by a sigmoid curve
+            valid for IBD only. Here it is approximated by a sigmoid curve{" "}
             <Node>{String.raw`\varepsilon (E) = \frac {\varepsilon_\mathrm{max}} {1 + \exp(-\rho * (E - E_\mathrm{HM}))},`}</Node>{" "}
             where <Node inline>{String.raw`\varepsilon_\mathrm{max}`}</Node> is the asymptote at infinite energy 
             (maximum detection efficiency),{" "}
