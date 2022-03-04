@@ -21,6 +21,7 @@ import {
   //GeuNu Tab
   MantleFlux,
   CrustFlux,
+  GeoFluxUncertainties,
   GeoNuSpectrumSource,
   IsotopeHalfLives,
   //IBD/ES Tab
@@ -275,6 +276,7 @@ function App(props) {
                     includeCrust={includeCrust}
                     setIncludeCrust={setIncludeCrust}
                   />
+                  <GeoFluxUncertainties />
                   <GeoNuSpectrumSource />
                   <IsotopeHalfLives />
                 </Visible>
