@@ -58,10 +58,8 @@ export const GeoFluxUncertainties = () => {
           </tbody>
           </Table>
         <p><small>
-          <sup>40</sup>K: cite ref here<br />
-          <sup>232</sup>Th: cite ref here<br />
-          <sup>235</sup>U: cite ref here<br />
-          <sup>238</sup>U: cite ref here<br />
+          Crust uncertainties typical of site-specific results in Huang <i>et al.</i> (2013)<br />
+          Mantle uncertainties represent range of predictions and precision of geoneutrino measurments<br />
         </small></p>
       </Card.Body>
     </Card>
