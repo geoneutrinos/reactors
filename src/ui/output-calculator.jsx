@@ -811,20 +811,20 @@ export const CalculatorPanel = ({ cores, geo }) => {
           <div>
             <br />
             <b> Significance Calculations</b><br />
-            <p> The following equations for significance are expressed in terms of{" "}
+            <p> The optional significance statistics are expressed in terms of{" "}
             <Node inline>{String.raw`\xi`}</Node> the detector exposure,{" "}
-            <Node inline>{String.raw`s (= S / \xi)`}</Node> the signal rate,{" "}
-            <Node inline>{String.raw`b (= B / \xi)`}</Node> the background rate, and{" "}
+            <Node inline>{String.raw`s\; (= S / \xi)`}</Node> the signal rate,{" "}
+            <Node inline>{String.raw`b\; (= B / \xi)`}</Node> the background rate, and{" "}
             <Node inline>{String.raw`\delta b`}</Node> the systematic uncertainty of the background rate. 
             Reactor antineutrinos and geoneutrinos have systematic uncertainties that depend on the selected input data.
             The nuisance background has a fixed fractional uncertainty of 0.5 and a flat energy spectrum.
             </p>
             <br /> 
             <i> Null Hypothesis- H<sub>0</sub></i><br />
-            <Node>{String.raw`N_{\sigma} = \frac{ s * \xi }{\sqrt{b * \xi + (\delta b * \xi )^2}},`}</Node>{" "}
+            <Node>{String.raw`N_{\sigma} = \frac{ s * \xi }{\sqrt{b * \xi + (\delta b * \xi )^2}}`}</Node>{" "}
             <br />
             <i> Alternative Hypothesis- H<sub>1</sub></i><br />  
-            <Node>{String.raw`N_{\sigma} = \frac{ s * \xi }{\sqrt{(s + b) * \xi + (\delta b * \xi )^2}},`}</Node>{" "}
+            <Node>{String.raw`N_{\sigma} = \frac{ s * \xi }{\sqrt{(s + b) * \xi + (\delta b * \xi )^2}}`}</Node>{" "}
             <br />
             <b> IBD Detection Efficiency</b><br />
             <p> When expressed as a function of antineutrino energy <i>E</i>, the detection efficiency is
@@ -836,7 +836,7 @@ export const CalculatorPanel = ({ cores, geo }) => {
             (energy at one-half of the maximum efficiency), and{" "}
             <Node inline>{String.raw`\rho`}</Node> is the slope 
             (efficiency ramp-up rate).
-            Conversion of the detection efficiency from a function of antineutrino energy to a function of scattered charged lepton kinetic energy is in progress.
+            Conversion of the detection efficiency from a function of antineutrino energy to a function of scattered charged particle kinetic energy is a planned upgrade.
             </p>
           </div>
         </Provider>
