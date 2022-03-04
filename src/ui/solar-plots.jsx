@@ -3,7 +3,7 @@ import React, {useContext} from "react";
 import { Card } from "react-bootstrap";
 import Plot from "react-plotly.js";
 
-import { range } from "lodash";
+import { range, flatten, groupBy,sum } from "lodash";
 
 import { SECONDS_PER_YEAR } from "../physics/constants";
 import { boron8Bins } from "../solar";
@@ -37,6 +37,30 @@ const earthSunDist = (date) => {
   return R;
 };
 
+const ttimes = flatten(range(0, 365, 2).map((jd) => {
+      let hours = range(0, 24).map((hour) => {
+      let d = new Date("2021-01-01T00:30:00Z");
+
+      d.setUTCDate(jd);
+      d.setUTCHours(hour);
+
+      return d;
+    });
+    //hours.push(hours[0]);
+    return hours;
+  }));
+
+const earthSunDistances = ttimes.map(date => earthSunDist(date))
+
+const averageMonthlyDistance = Object.fromEntries(
+  Object.entries(groupBy(ttimes, (date) => date.getUTCMonth())).map(
+    ([month, dates]) => {
+      const avg = sum(dates.map((date) => earthSunDist(date) / dates.length));
+      return [month, avg];
+    }
+  )
+);
+
 export const AnalemmaPlot = ({ detector, cores, reactorLF }) => {
   // Some cals for filtering what times are shown
   let yearOrMore = reactorLF.end - reactorLF.start >= 28857600000;
@@ -48,13 +72,7 @@ export const AnalemmaPlot = ({ detector, cores, reactorLF }) => {
   let end = new Date(`2021-${endMonth}-01T00:30:00Z`);
   end.setUTCDate(0);
 
-  const times = range(0, 24).map((hour) => {
-    let days = range(0, 365, 2).map((jd) => {
-      let d = new Date("2021-01-01T00:30:00Z");
-
-      d.setUTCDate(jd);
-      d.setUTCHours(hour);
-
+  const times = ttimes.map((d) => {
       if (yearOrMore) {
         return d;
       }
@@ -71,9 +89,6 @@ export const AnalemmaPlot = ({ detector, cores, reactorLF }) => {
         }
       }
       return d;
-    });
-    days.push(days[0]);
-    return days;
   });
   const coreData = Object.values(cores);
   const PHWRcores = coreData.filter((core) => core.spectrumType === "PHWR");
@@ -89,21 +104,27 @@ export const AnalemmaPlot = ({ detector, cores, reactorLF }) => {
       core.spectrumType !== "PHWR" &&
       core.type !== "custom"
   );
-  let data = times.map((days) => {
-    let fakeDetector = { ...detector, lon: 0 };
-    let ana = days.map((date) =>
-      date === undefined ? date : detectorSunPosition(fakeDetector, date)
-    );
-    let x = ana.map((v) =>
-      v === undefined ? v : ((v.azimuth + Math.PI) * 180) / Math.PI
-    );
-    let y = ana.map((v) =>
-      v === undefined ? v : (v.altitude * 180) / Math.PI
-    );
-    let z = days.map((date) =>
-      date === undefined ? date : 1 / earthSunDist(date) ** 2
-    );
-    return {
+  // TODO Fix this hacks
+  const averageSolarDistance = coreData[0].loads.filter(
+    (load) => load.date >= reactorLF.start && load.date <= reactorLF.end
+  ).map(load => load.date).reduce((accumulator, date, _idx, array,) => {
+    return accumulator + averageMonthlyDistance[date.getUTCMonth()] / array.length;
+  },0)
+  // needed just to set the lon to 0 
+  const fakeDetector = { ...detector, lon: 0 };
+  const ana = times.map((date) =>
+    date === undefined ? date : detectorSunPosition(fakeDetector, date)
+  );
+  const x = ana.map((v) =>
+    v === undefined ? v : ((v.azimuth + Math.PI) * 180) / Math.PI
+  );
+  const y = ana.map((v) =>
+    v === undefined ? v : (v.altitude * 180) / Math.PI
+  );
+  const z = times.map((date, i) =>
+    date === undefined ? date : 1 / earthSunDistances[i] ** 2
+  );
+  const data = [{
       y: y,
       x: x,
       z: z,
@@ -124,8 +145,7 @@ export const AnalemmaPlot = ({ detector, cores, reactorLF }) => {
         cmax: 1.04,
         colorbar: { thickness: 15, title: "Intensity (1/au<sup>2</sup>)" },
       },
-    };
-  });
+    }];
   data.push(plotDef(AllOtherCores, "#009000"));
   data.push(plotDef(CustomCores, "#000"));
   data.push(plotDef(GCRcores, "#D69537"));
@@ -139,7 +159,7 @@ export const AnalemmaPlot = ({ detector, cores, reactorLF }) => {
         : detector.current
     } (${detector.lat.toFixed(1)}N, ${detector.lon.toFixed(
       1
-    )}E, ${detector.elevation.toFixed(0)}m) <br /><sub>(${reactorLF.start.toISOString().slice(0, 7)} through ${reactorLF.end.toISOString().slice(0, 7)})</sub>`,
+    )}E, ${detector.elevation.toFixed(0)}m) <br /><sub>(${reactorLF.start.toISOString().slice(0, 7)} through ${reactorLF.end.toISOString().slice(0, 7)}, avg solar distance ${averageSolarDistance.toFixed(4)} AU)</sub>`,
     //    title: "Solar Analemma",
     hovermode: "closest",
     autosize: true,
