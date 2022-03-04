@@ -61,19 +61,22 @@ interface GeoInterface {
 }
 
 // TODO Temp until passed in
-const geoUncertainty = 0.25;
+const geoMantleUncertainty = 0.33;
+const geoCrustUUncertainty = 0.27;
+const geoCrustThUncertainty = 0.33;
+const geoCrustKUncertainty = 0.25;
 
 const mantleUncertainty: GeoUncertainty = {
-  U238: geoUncertainty,
-  U235: geoUncertainty,
-  Th232: geoUncertainty,
-  K40Beta: geoUncertainty,
+  U238: geoMantleUncertainty,
+  U235: geoMantleUncertainty,
+  Th232: geoMantleUncertainty,
+  K40Beta: geoMantleUncertainty,
 };
 const crustUncertainty: GeoUncertainty = {
-  U238: geoUncertainty,
-  U235: geoUncertainty,
-  Th232: geoUncertainty,
-  K40Beta: geoUncertainty,
+  U238: geoCrustUUncertainty,
+  U235: geoCrustUUncertainty,
+  Th232: geoCrustThUncertainty,
+  K40Beta: geoCrustKUncertainty,
 };
 
 const getGeoSignal = (
