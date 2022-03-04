@@ -42,10 +42,14 @@ export { Boron8SpectraPlot, AnalemmaPlot, Boron8KEPlot } from "./solar-plots";
 export { FissionFractionPane } from "./reactors-fission";
 export { RASwitcher } from "./reactors-ra-switcher";
 
-export const Visible = ({ children }) => {
+interface VisibleProps {
+  children: React.ReactNode
+}
+
+export const Visible: React.FC<VisibleProps> = ({ children }) => {
   const [visible, setVisible] = useState(false);
 
-  const ref = useRef(this);
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     let options = {
@@ -57,20 +61,27 @@ export const Visible = ({ children }) => {
     let observer = new IntersectionObserver((entries, observer) => {
       setVisible(entries[0].isIntersecting);
     }, options);
-    observer.observe(ref.current);
+    observer.observe(ref.current as Element);
   }, []);
   return <div ref={ref}>{visible && children}</div>;
 };
 
-export const Num = ({ v, p, u, func }) => {
+interface NumProps {
+  v: number
+  p: number
+  u?: number
+  func?: (arg: number) =>  number
+}
+
+export const Num: React.FC<NumProps> = ({ v, p, u, func }) => {
   const [full, setFull] = useState(false);
   if (func === undefined) {
     func = (v) => v;
   }
   const value = func(v)
   const uncertainty = u ? func(u) : undefined
-  const formattedString = u ? `${value.toFixed(p).toString()} ± ${uncertainty.toFixed(p).toString()}` : `${value.toFixed(p).toString()}`
-  const fullString = u ? `${value.toString()} ± ${uncertainty.toString()}` : `${value.toString()}`
+  const formattedString = uncertainty ? `${value.toFixed(p).toString()} ± ${uncertainty.toFixed(p).toString()}` : `${value.toFixed(p).toString()}`
+  const fullString = uncertainty ? `${value.toString()} ± ${uncertainty.toString()}` : `${value.toString()}`
   return (
     <span onDoubleClick={() => setFull(!full)} title={fullString}>
       {full ? fullString: formattedString}

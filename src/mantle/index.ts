@@ -60,23 +60,19 @@ interface GeoInterface {
   total: GeoCrustMantle;
 }
 
-// TODO Temp until passed in
-const geoMantleUncertainty = 0.33;
-const geoCrustUUncertainty = 0.27;
-const geoCrustThUncertainty = 0.33;
-const geoCrustKUncertainty = 0.25;
+// TODO Temp constants until passed in
 
-const mantleUncertainty: GeoUncertainty = {
-  U238: geoMantleUncertainty,
-  U235: geoMantleUncertainty,
-  Th232: geoMantleUncertainty,
-  K40Beta: geoMantleUncertainty,
+export const mantleUncertainty: GeoUncertainty = {
+  U238: 0.33,
+  U235: 0.33,
+  Th232: 0.33,
+  K40Beta: 0.33,
 };
-const crustUncertainty: GeoUncertainty = {
-  U238: geoCrustUUncertainty,
-  U235: geoCrustUUncertainty,
-  Th232: geoCrustThUncertainty,
-  K40Beta: geoCrustKUncertainty,
+export const crustUncertainty: GeoUncertainty = {
+  U238: 0.27,
+  U235: 0.27,
+  Th232: 0.33,
+  K40Beta: 0.25,
 };
 
 const getGeoSignal = (

@@ -1,8 +1,11 @@
 import React from 'react';
 
-import {Elements} from './elements'
-
 import { Card, Table } from 'react-bootstrap';
+
+import {Elements} from './elements'
+import {Num} from "."
+import {mantleUncertainty, crustUncertainty} from "../mantle"
+
 
 const {K40, Th232, U235, U238} = Elements
 
@@ -25,31 +28,31 @@ export const GeoFluxUncertainties = () => {
               <tr>
                 <td>Crust</td>
                 <td>
-                  0.25
+                  <Num v={crustUncertainty.K40Beta} p={2} />
                 </td>
                 <td>
-                  0.33
+                  <Num v={crustUncertainty.Th232} p={2} />
                 </td>
                 <td>
-                  0.27
+                  <Num v={crustUncertainty.U235} p={2} />
                 </td>
                 <td>
-                  0.27
+                  <Num v={crustUncertainty.U238} p={2} />
                 </td>
               </tr>
                <tr>
                 <td>Mantle</td>
                 <td>
-                  0.33
+                  <Num v={mantleUncertainty.K40Beta} p={2} />
                 </td>
                 <td>
-                  0.33
+                  <Num v={mantleUncertainty.Th232} p={2} />
                 </td>
                 <td>
-                  0.33
+                  <Num v={mantleUncertainty.U235} p={2} />
                 </td>
                 <td>
-                  0.33
+                  <Num v={mantleUncertainty.U238} p={2} />
                 </td>
               </tr>
           </tbody>
