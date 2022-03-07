@@ -63,6 +63,8 @@ export const OutputDownload = ({ cores, geo, detector, boron8 }) => {
   const closestName = closestActiveCore?.name || "none";
   const closestSpectrum =
     closestActiveCore?.detectorSignal || new Float32Array(binCount).fill(0);
+  const closestSpectrumU =
+    closestActiveCore?.detectorUncertainty || new Float32Array(binCount).fill(0);
 
   // custom cores
   const customClosestName = closestCustomCore?.name || "";
@@ -79,7 +81,13 @@ export const OutputDownload = ({ cores, geo, detector, boron8 }) => {
   const totalIAEA = zip(...iaeaCores.map((c) => c.detectorSignal)).map((s) =>
     sum(s)
   );
+  const totalIAEAU = zip(...iaeaCores.map((c) => c.detectorUncertainty)).map((s) =>
+    sum(s)
+  );
   const totalCustom = zip(...customCores.map((c) => c.detectorSignal)).map(
+    (s) => sum(s)
+  );
+  const totalCustomU = zip(...customCores.map((c) => c.detectorUncertainty)).map(
     (s) => sum(s)
   );
 
@@ -87,13 +95,16 @@ export const OutputDownload = ({ cores, geo, detector, boron8 }) => {
     customClosestName === ""
       ? {}
       : {
-          "custom cores": totalCustom,
+          "custom cores (NIU/MeV)": totalCustom,
+          "custom cores uncertainty (NIU/MeV)": totalCustomU,
         };
 
   const downloadData = {
     "bin center (MeV)": bins,
     "IAEA cores (NIU/MeV)": totalIAEA,
+    "IAEA cores uncertainty (NIU/MeV)": totalIAEAU,
     [`closest IAEA Core- ${closestName} (NIU/MeV)`]: closestSpectrum,
+    [`closest IAEA Core- ${closestName} uncertainty (NIU/MeV)`]: closestSpectrumU,
     selectedCores: selectedCoresData,
     backgroundCores: backgroundCoresData,
     ...customCoreData,
