@@ -188,8 +188,8 @@ export const OutputDownload = ({ cores, geo, detector, boron8 }) => {
         />
         <small>
           <br />
-          Downloaded reactor spectra include energy-dependent uncertainties. Herein, uncertainties of the geoneutrino 
-          and solar neutrino speactra do not depend on energy and are not included in the downloaded files.
+          Downloaded reactor antineutrino and geoneutrino spectra include energy-dependent uncertainties. Uncertainties of
+          the solar neutrino spectrum herein do not depend on energy and are not included in the downloaded file.
         </small>
       </Card.Body>
     </Card>
