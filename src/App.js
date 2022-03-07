@@ -182,8 +182,8 @@ function App(props) {
     [crossSection, oscillation, geoFluxRatios, crustFlux]
   );
 
-  const boron8 = useMemo(() => defaultBoron8.updateRate(crossSection), [
-    crossSection,
+  const boron8 = useMemo(() => defaultBoron8.updateRate(crossSection, reactorLF), [
+    crossSection, reactorLF
   ]);
 
   const physicsContextValue = {
@@ -283,7 +283,7 @@ function App(props) {
               </Tab>
               <Tab eventKey="solarnu" title="SolarNu">
                 <Visible>
-                  <AnalemmaPlot detector={detector} cores={cores} reactorLF={reactorLF} />
+                  <AnalemmaPlot boron8={boron8} detector={detector} cores={cores} reactorLF={reactorLF} />
                   <Boron8SpectraPlot boron8={boron8} reactorLF={reactorLF} />
                   <Boron8KEPlot boron8={boron8} />
                   <CrossSectionPlotsNormal />

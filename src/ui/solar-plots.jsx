@@ -1,12 +1,13 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 
 import { Card } from "react-bootstrap";
 import Plot from "react-plotly.js";
 
-import { range, flatten, groupBy,sum } from "lodash";
+import { range } from "lodash";
 
+import { Num } from ".";
 import { SECONDS_PER_YEAR } from "../physics/constants";
-import { boron8Bins } from "../solar";
+import { boron8Bins, earthSunDistances, times } from "../solar";
 import { detectorSunPosition } from "../detectors";
 import { PhysicsContext } from "../state";
 
@@ -26,42 +27,7 @@ const plotDef = (cores, color) => {
   };
 };
 
-const earthSunDist = (date) => {
-  const JD = date.valueOf() / 86400000 - 0.5 + 2440588;
-  const n = JD - 2451545;
-  const g = 357.528 + 0.9856003 * n;
-  const R =
-    1.00014 -
-    0.01671 * Math.cos((g * Math.PI) / 180) -
-    0.00014 * Math.cos((g * Math.PI) / 180) ** 2;
-  return R;
-};
-
-const ttimes = flatten(range(0, 365, 2).map((jd) => {
-      let hours = range(0, 24).map((hour) => {
-      let d = new Date("2021-01-01T00:30:00Z");
-
-      d.setUTCDate(jd);
-      d.setUTCHours(hour);
-
-      return d;
-    });
-    //hours.push(hours[0]);
-    return hours;
-  }));
-
-const earthSunDistances = ttimes.map(date => earthSunDist(date))
-
-const averageMonthlyDistance = Object.fromEntries(
-  Object.entries(groupBy(ttimes, (date) => date.getUTCMonth())).map(
-    ([month, dates]) => {
-      const avg = sum(dates.map((date) => earthSunDist(date) / dates.length));
-      return [month, avg];
-    }
-  )
-);
-
-export const AnalemmaPlot = ({ detector, cores, reactorLF }) => {
+export const AnalemmaPlot = ({ detector, cores, reactorLF, boron8 }) => {
   // Some cals for filtering what times are shown
   let yearOrMore = reactorLF.end - reactorLF.start >= 28857600000;
   let startMonth = (reactorLF.start.getUTCMonth() + 1)
@@ -72,23 +38,23 @@ export const AnalemmaPlot = ({ detector, cores, reactorLF }) => {
   let end = new Date(`2021-${endMonth}-01T00:30:00Z`);
   end.setUTCDate(0);
 
-  const times = ttimes.map((d) => {
-      if (yearOrMore) {
-        return d;
-      }
-      if (endMonth < startMonth) {
-        if (d > end && d < start) {
-          return undefined;
-        }
-      } else {
-        if (d < start) {
-          return undefined;
-        }
-        if (d > end) {
-          return undefined;
-        }
-      }
+  const reducedTimes = times.map((d) => {
+    if (yearOrMore) {
       return d;
+    }
+    if (endMonth < startMonth) {
+      if (d > end && d < start) {
+        return undefined;
+      }
+    } else {
+      if (d < start) {
+        return undefined;
+      }
+      if (d > end) {
+        return undefined;
+      }
+    }
+    return d;
   });
   const coreData = Object.values(cores);
   const PHWRcores = coreData.filter((core) => core.spectrumType === "PHWR");
@@ -105,14 +71,9 @@ export const AnalemmaPlot = ({ detector, cores, reactorLF }) => {
       core.type !== "custom"
   );
   // TODO Fix this hacks
-  const averageSolarDistance = coreData[0].loads.filter(
-    (load) => load.date >= reactorLF.start && load.date <= reactorLF.end
-  ).map(load => load.date).reduce((accumulator, date, _idx, array,) => {
-    return accumulator + averageMonthlyDistance[date.getUTCMonth()] / array.length;
-  },0)
-  // needed just to set the lon to 0 
+  // needed just to set the lon to 0
   const fakeDetector = { ...detector, lon: 0 };
-  const ana = times.map((date) =>
+  const ana = reducedTimes.map((date) =>
     date === undefined ? date : detectorSunPosition(fakeDetector, date)
   );
   const x = ana.map((v) =>
@@ -121,10 +82,11 @@ export const AnalemmaPlot = ({ detector, cores, reactorLF }) => {
   const y = ana.map((v) =>
     v === undefined ? v : (v.altitude * 180) / Math.PI
   );
-  const z = times.map((date, i) =>
+  const z = reducedTimes.map((date, i) =>
     date === undefined ? date : 1 / earthSunDistances[i] ** 2
   );
-  const data = [{
+  const data = [
+    {
       y: y,
       x: x,
       z: z,
@@ -145,7 +107,8 @@ export const AnalemmaPlot = ({ detector, cores, reactorLF }) => {
         cmax: 1.04,
         colorbar: { thickness: 15, title: "Intensity (1/au<sup>2</sup>)" },
       },
-    }];
+    },
+  ];
   data.push(plotDef(AllOtherCores, "#009000"));
   data.push(plotDef(CustomCores, "#000"));
   data.push(plotDef(GCRcores, "#D69537"));
@@ -159,7 +122,13 @@ export const AnalemmaPlot = ({ detector, cores, reactorLF }) => {
         : detector.current
     } (${detector.lat.toFixed(1)}N, ${detector.lon.toFixed(
       1
-    )}E, ${detector.elevation.toFixed(0)}m) <br /><sub>(${reactorLF.start.toISOString().slice(0, 7)} through ${reactorLF.end.toISOString().slice(0, 7)}, avg solar distance ${averageSolarDistance.toFixed(4)} AU)</sub>`,
+    )}E, ${detector.elevation.toFixed(0)}m) <br /><sub>(${reactorLF.start
+      .toISOString()
+      .slice(0, 7)} through ${reactorLF.end
+      .toISOString()
+      .slice(0, 7)}, avg solar distance ${boron8.averageSolarDistance.toFixed(
+      4
+    )} AU)</sub>`,
     //    title: "Solar Analemma",
     hovermode: "closest",
     autosize: true,
@@ -209,7 +178,7 @@ export const AnalemmaPlot = ({ detector, cores, reactorLF }) => {
 };
 
 export const Boron8KEPlot = ({ boron8 }) => {
-  const {crossSection} = useContext(PhysicsContext)
+  const { crossSection } = useContext(PhysicsContext);
   const data = [
     {
       y: boron8.boron8Ke,
@@ -222,7 +191,13 @@ export const Boron8KEPlot = ({ boron8 }) => {
     },
   ];
   var layout = {
-    title: `<sup>8</sup>B Solar Neutrinos- Scattered Electron Kinetic Energy<br /><sub>${"(" + crossSection.elasticScatteringTMin.toFixed(1) + " < T < " + crossSection.elasticScatteringTMax.toFixed(1) + " MeV)"}</sub>`,
+    title: `<sup>8</sup>B Solar Neutrinos- Scattered Electron Kinetic Energy<br /><sub>${
+      "(" +
+      crossSection.elasticScatteringTMin.toFixed(1) +
+      " < T < " +
+      crossSection.elasticScatteringTMax.toFixed(1) +
+      " MeV)"
+    }</sub>`,
     yaxis: {
       title: { text: `dR/dT (NIU/MeV)` },
       autorange: true,
@@ -249,7 +224,9 @@ export const Boron8KEPlot = ({ boron8 }) => {
   };
   var config = {
     toImageButtonOptions: {
-      filename: `Solar-8B-ES-KE-Spectrum_Tmin${crossSection.elasticScatteringTMin.toFixed(1)}_to_Tmax${crossSection.elasticScatteringTMax.toFixed(1)}`,
+      filename: `Solar-8B-ES-KE-Spectrum_Tmin${crossSection.elasticScatteringTMin.toFixed(
+        1
+      )}_to_Tmax${crossSection.elasticScatteringTMax.toFixed(1)}`,
     },
   };
   return (
@@ -271,7 +248,7 @@ export const Boron8KEPlot = ({ boron8 }) => {
 };
 
 export const Boron8SpectraPlot = ({ boron8, reactorLF }) => {
-  const {crossSection} = useContext(PhysicsContext)
+  const { crossSection } = useContext(PhysicsContext);
   const data = [
     {
       y: boron8.boron8Rate.map((x) => x * 1e1 * SECONDS_PER_YEAR * 1e32),
@@ -284,7 +261,13 @@ export const Boron8SpectraPlot = ({ boron8, reactorLF }) => {
     },
   ];
   var layout = {
-    title: `<sup>8</sup>B Solar Neutrinos- Interaction Rate Spectrum<br /><sub>${"(" + crossSection.elasticScatteringTMin.toFixed(1) + " < T < " + crossSection.elasticScatteringTMax.toFixed(1) + " MeV)"}</sub>`,
+    title: `<sup>8</sup>B Solar Neutrinos- Interaction Rate Spectrum<br /><sub>${
+      "(" +
+      crossSection.elasticScatteringTMin.toFixed(1) +
+      " < T < " +
+      crossSection.elasticScatteringTMax.toFixed(1) +
+      " MeV)"
+    }</sub>`,
     yaxis: {
       title: { text: `dR/dE (NIU/MeV)` },
       autorange: true,
@@ -311,21 +294,33 @@ export const Boron8SpectraPlot = ({ boron8, reactorLF }) => {
   };
   var config = {
     toImageButtonOptions: {
-      filename: `Solar-8B-ES-Rate-Spectrum_Tmin${crossSection.elasticScatteringTMin.toFixed(1)}_to_Tmax${crossSection.elasticScatteringTMax.toFixed(1)}`,
+      filename: `Solar-8B-ES-Rate-Spectrum_Tmin${crossSection.elasticScatteringTMin.toFixed(
+        1
+      )}_to_Tmax${crossSection.elasticScatteringTMax.toFixed(1)}`,
     },
   };
   return (
     <Card>
       <Card.Header>
-        <sup>8</sup>B Solar Neutrinos- Interaction Rate Spectrum 
+        <sup>8</sup>B Solar Neutrinos- Interaction Rate Spectrum
       </Card.Header>
       <Card.Body>
         <Card.Text>
-          <i>R</i><sub>sol</sub> = {boron8.boron8NIU.toFixed(2)} NIU 
+          <i>R</i>
+          <sub>sol</sub> ={" "}
+          <Num v={boron8.boron8NIU} u={boron8.boron8NIUU} p={2} /> NIU
           <br />
-          <small>Scattered electron kinetic energy range: {crossSection.elasticScatteringTMin.toFixed(1)} &lt; T &lt; {crossSection.elasticScatteringTMax.toFixed(1)} MeV </small>
+          <small>
+            Scattered electron kinetic energy range:{" "}
+            {crossSection.elasticScatteringTMin.toFixed(1)} &lt; T &lt;{" "}
+            {crossSection.elasticScatteringTMax.toFixed(1)} MeV{" "}
+          </small>
           <br />
-          <small>Date range: {reactorLF.start.toISOString().slice(0, 7)} through {reactorLF.end.toISOString().slice(0, 7)}. Rate variation due to elliptical orbit not yet activated.</small>
+          <small>
+            Date range: {reactorLF.start.toISOString().slice(0, 7)} through{" "}
+            {reactorLF.end.toISOString().slice(0, 7)}. Rate variation due to
+            elliptical orbit not yet activated.
+          </small>
         </Card.Text>
         <p>
           <sup>8</sup>B decay spectrum is taken from:
@@ -335,7 +330,8 @@ export const Boron8SpectraPlot = ({ boron8, reactorLF }) => {
         </p>
 
         <p>
-          <sup>8</sup>B decay solar neutrino flux- (2.345 ± 0.014(stat) ± 0.036(syst)) x 10<sup>6</sup> cm
+          <sup>8</sup>B decay solar neutrino flux- (2.345 ± 0.014(stat) ±
+          0.036(syst)) x 10<sup>6</sup> cm
           <sup>-2</sup>s<sup>-1</sup>- is taken from:
           <br />
           K. Abe et al., "Solar neutrino measurements in Super-Kamiokande-IV,"
