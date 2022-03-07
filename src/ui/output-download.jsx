@@ -112,9 +112,13 @@ export const OutputDownload = ({ cores, geo, detector, boron8 }) => {
   const downloadGeoData = {
     "bin center (MeV)": bins,
     "geo238U (NIU/MeV)": geo.total.U238.spectrum,
+    "geo238U uncertainty (NIU/MeV)": geo.total.U238.spectrumUncertainty,
     "geo235U (NIU/MeV)": geo.total.U235.spectrum,
+    "geo235U uncertainty (NIU/MeV)": geo.total.U235.spectrumUncertainty,
     "geo232Th (NIU/MeV)": geo.total.Th232.spectrum,
+    "geo232Th uncertainty (NIU/MeV)": geo.total.Th232.spectrumUncertainty,
     "geo40K_beta (NIU/MeV)": geo.total.K40Beta.spectrum,
+    "geo40K_beta uncertainty (NIU/MeV)": geo.total.K40Beta.spectrumUncertainty,
   };
   const downloadFormatters = {
     "bin center (MeV)": (v) => v.toFixed(3),
@@ -139,8 +143,10 @@ export const OutputDownload = ({ cores, geo, detector, boron8 }) => {
   if (
     [XSNames.IBDSV2003, XSNames.IBDVB1999].includes(crossSection.crossSection)
   ) {
-    delete downloadGeoData.geo40K_beta;
-    delete downloadGeoData.geo235U;
+    delete downloadGeoData["geo40K_beta (NIU/MeV)"]
+    delete downloadGeoData["geo40K_beta uncertainty (NIU/MeV)"]
+    delete downloadGeoData["geo235U (NIU/MeV)"]
+    delete downloadGeoData["geo235U uncertainty (NIU/MeV)"]
   }
 
   if (sum(selectedCoresData) === 0) {
