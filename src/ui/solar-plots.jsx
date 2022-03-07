@@ -126,7 +126,7 @@ export const AnalemmaPlot = ({ detector, cores, reactorLF, boron8 }) => {
       .toISOString()
       .slice(0, 7)} through ${reactorLF.end
       .toISOString()
-      .slice(0, 7)}, avg solar distance ${boron8.averageSolarDistance.toFixed(
+      .slice(0, 7)}, mean solar distance ${boron8.averageSolarDistance.toFixed(
       4
     )} AU)</sub>`,
     //    title: "Solar Analemma",
@@ -311,18 +311,16 @@ export const Boron8SpectraPlot = ({ boron8, reactorLF }) => {
           <Num v={boron8.boron8NIU} u={boron8.boron8NIUU} p={2} /> NIU
           <br />
           <small>
-            Scattered electron kinetic energy range:{" "}
+            Rate from scattered electron kinetic energies {" "}
             {crossSection.elasticScatteringTMin.toFixed(1)} &lt; T &lt;{" "}
             {crossSection.elasticScatteringTMax.toFixed(1)} MeV{" "}
-          </small>
-          <br />
-          <small>
-            Date range: {reactorLF.start.toISOString().slice(0, 7)} through{" "}
-            {reactorLF.end.toISOString().slice(0, 7)}.
+            and averaged over {reactorLF.start.toISOString().slice(0, 7)} through{" "}
+            {reactorLF.end.toISOString().slice(0, 7)}, giving mean solar distance 
+            {boron8.averageSolarDistance.toFixed(4)} AU.
           </small>
         </Card.Text>
         <p>
-          <sup>8</sup>B decay spectrum is taken from:
+          <sup>8</sup>B decay spectrum is from:
           <br />
           W. T. Winter et al., "The <sup>8</sup>B neutrino spectrum," Phys. Rev.
           C 73, 025503 (2006).
@@ -331,13 +329,13 @@ export const Boron8SpectraPlot = ({ boron8, reactorLF }) => {
         <p>
           <sup>8</sup>B decay solar neutrino flux- (2.345 ± 0.014(stat) ±
           0.036(syst)) x 10<sup>6</sup> cm
-          <sup>-2</sup>s<sup>-1</sup>- is taken from:
+          <sup>-2</sup>s<sup>-1</sup>- is from:
           <br />
           K. Abe et al., "Solar neutrino measurements in Super-Kamiokande-IV,"
           Phys. Rev. D 94, 052010 (2016).
         </p>
 
-        <p>Plotted data assume the flux is entirely electron neutrinos.</p>
+        <p>Results herein assume the flux is entirely electron neutrinos.</p>
         <Plot
           useResizeHandler={true}
           style={{ width: "100%" }}
