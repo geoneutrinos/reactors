@@ -318,8 +318,7 @@ export const Boron8SpectraPlot = ({ boron8, reactorLF }) => {
           <br />
           <small>
             Date range: {reactorLF.start.toISOString().slice(0, 7)} through{" "}
-            {reactorLF.end.toISOString().slice(0, 7)}. Rate variation due to
-            elliptical orbit not yet activated.
+            {reactorLF.end.toISOString().slice(0, 7)}.
           </small>
         </Card.Text>
         <p>
