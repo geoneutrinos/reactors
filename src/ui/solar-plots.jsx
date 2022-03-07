@@ -315,7 +315,7 @@ export const Boron8SpectraPlot = ({ boron8, reactorLF }) => {
             {crossSection.elasticScatteringTMin.toFixed(1)} &lt; T &lt;{" "}
             {crossSection.elasticScatteringTMax.toFixed(1)} MeV{" "}
             and averaged over {reactorLF.start.toISOString().slice(0, 7)} through{" "}
-            {reactorLF.end.toISOString().slice(0, 7)}, giving mean solar distance 
+            {reactorLF.end.toISOString().slice(0, 7)}, giving mean solar distance{" "}
             {boron8.averageSolarDistance.toFixed(4)} AU.
           </small>
         </Card.Text>
