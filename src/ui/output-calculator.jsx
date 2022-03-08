@@ -427,6 +427,13 @@ export const CalculatorPanel = ({ cores, geo }) => {
       (bkgNuisanceNIU * deltaBkgnuisance)
     );
   }
+  if (signal === "antinus") {
+    UIsignal = totalCoreSignal + geoTotalNIU;
+    UIbackground = bkgNuisanceNIU;
+    UIBackgroundUncertainty = ( 
+      bkgNuisanceNIU * deltaBkgnuisance
+    );
+  }
   if (signal === "closest") {
     UIsignal = closestNIU;
     UIbackground = geoTotalNIU + bkgNuisanceNIU + totalCoreSignal - closestNIU;
@@ -628,6 +635,7 @@ export const CalculatorPanel = ({ cores, geo }) => {
                   Custom Core (geoneutrinos + IAEA cores)
                 </option>
                 <option value="all">All Cores (geoneutrinos)</option>
+                <option value="antinus">Antineutrinos (non-antineutrino)</option>
                 <option value="geoneutrino">Geoneutrinos (reactors)</option>
                 <option value="geo_crust">
                   Crust geoneutrinos (reactors + mantle geoneutrinos)
