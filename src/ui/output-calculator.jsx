@@ -457,6 +457,24 @@ export const CalculatorPanel = ({ cores, geo }) => {
         (bkgNuisanceNIU * deltaBkgnuisance),
     );
   }
+  if (signal === "geo_crust") {
+    UIbackground = totalCoreSignal + bkgNuisanceNIU;
+    UIsignal = geoTotalNIU;
+    UIBackgroundUncertainty = Math.hypot(
+      (totalCoreSignalHigh * deltaReactorsHighE),
+        (totalCoreSignalLow * deltaReactorsLowE),
+        (bkgNuisanceNIU * deltaBkgnuisance),
+    );
+  }
+  if (signal === "geo_mantle") {
+    UIbackground = totalCoreSignal + bkgNuisanceNIU;
+    UIsignal = geoTotalNIU;
+    UIBackgroundUncertainty = Math.hypot(
+      (totalCoreSignalHigh * deltaReactorsHighE),
+        (totalCoreSignalLow * deltaReactorsLowE),
+        (bkgNuisanceNIU * deltaBkgnuisance),
+    );
+  }
   if (signal === "geo_u8") {
     UIbackground = totalCoreSignal + bkgNuisanceNIU + geoTotalNIU - geoU238NIU;
     UIsignal = geoU238NIU;
@@ -610,7 +628,13 @@ export const CalculatorPanel = ({ cores, geo }) => {
                   Custom Core (geoneutrinos + IAEA cores)
                 </option>
                 <option value="all">All Cores (geoneutrinos)</option>
-                <option value="geoneutrino">Geoneutrino (reactors)</option>
+                <option value="geoneutrino">Geoneutrinos (reactors)</option>
+                <option value="geo_crust">
+                  Crust geoneutrinos (reactors + mantle geoneutrinos)
+                </option>
+                <option value="geo_mantle">
+                  Mantle geoneutrinos (reactors + crust geoneutrinos)
+                </option>
                 <option value="geo_u8">
                   Geoneutrino U238 (reactors + other geoneutrino isotopes)
                 </option>
