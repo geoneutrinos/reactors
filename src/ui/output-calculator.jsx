@@ -423,7 +423,7 @@ export const CalculatorPanel = ({ cores, geo }) => {
     UIsignal = totalCoreSignal;
     UIbackground = geoTotalNIU + bkgNuisanceNIU;
     UIBackgroundUncertainty = Math.hypot(
-      (geo.total.NIUUncertainty), 
+      (geoTotalNIUUncertainty), 
       (bkgNuisanceNIU * deltaBkgnuisance)
     );
   }
