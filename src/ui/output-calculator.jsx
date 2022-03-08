@@ -298,6 +298,13 @@ export const CalculatorPanel = ({ cores, geo }) => {
         core.detectorSignal,
         !isIBD
       ),
+      detectorUncertainty: detectorEfficiency(
+        effMax,
+        rampUp,
+        enerStart,
+        core.detectorUncertainty,
+        !isIBD
+      ),
     };
   });
 
@@ -363,6 +370,37 @@ export const CalculatorPanel = ({ cores, geo }) => {
     ) * 0.01;
   const geoTotalNIU = geoU238NIU + geoTh232NIU + geoK40betaNIU + geoU235NIU;
 
+  const geoU238NIUUncertainty =
+    sum(
+      detectorEfficiency(effMax, rampUp, enerStart, geo.total.U238.spectrumUncertainty, !isIBD).slice(
+        min_i,
+        max_i
+      )
+    ) * 0.01;
+  const geoU235NIUUncertainty =
+    sum(
+      detectorEfficiency(effMax, rampUp, enerStart, geo.total.U235.spectrumUncertainty, !isIBD).slice(
+        min_i,
+        max_i
+      )
+    ) * 0.01;
+  const geoTh232NIUUncertainty =
+    sum(
+      detectorEfficiency(effMax, rampUp, enerStart, geo.total.Th232.spectrumUncertainty, !isIBD).slice(
+        min_i,
+        max_i
+      )
+    ) * 0.01;
+  const geoK40betaNIUUncertainty =
+    sum(
+      detectorEfficiency(effMax, rampUp, enerStart, geo.total.K40Beta.spectrumUncertainty, !isIBD).slice(
+        min_i,
+        max_i
+      )
+    ) * 0.01;
+    
+  const geoTotalNIUUncertainty = geoU238NIUUncertainty + geoTh232NIUUncertainty + geoK40betaNIUUncertainty + geoU235NIUUncertainty;
+
   // for now assume a flat spectrum with maximum energy of 10 MeV
   const bkgNuisanceNIU =
     (bkgnuisance * (eMax - eMin)) / (10 - IBD_THRESHOLD * isIBD);
@@ -375,7 +413,7 @@ export const CalculatorPanel = ({ cores, geo }) => {
     UIsignal = selectedCoreSignal;
     UIbackground = geoTotalNIU + bkgNuisanceNIU + totalCoreSignal - selectedCoreSignal;
     UIBackgroundUncertainty = Math.hypot(
-      (geo.total.NIUUncertainty),
+      (geoTotalNIUUncertainty),
         (bkgNuisanceNIU * deltaBkgnuisance),
         ((totalCoreSignalHigh - selectedCoreSignalHigh) * deltaReactorsHighE),
         ((totalCoreSignalLow - selectedCoreSignalLow) * deltaReactorsLowE)
@@ -393,7 +431,7 @@ export const CalculatorPanel = ({ cores, geo }) => {
     UIsignal = closestNIU;
     UIbackground = geoTotalNIU + bkgNuisanceNIU + totalCoreSignal - closestNIU;
     UIBackgroundUncertainty = Math.hypot(
-      (geo.total.NIUUncertainty),
+      (geoTotalNIUUncertainty),
         (bkgNuisanceNIU * deltaBkgnuisance),
         ((totalCoreSignalHigh - closestHighNIU) * deltaReactorsHighE),
         ((totalCoreSignalLow - closestLowNIU) * deltaReactorsLowE)
@@ -404,7 +442,7 @@ export const CalculatorPanel = ({ cores, geo }) => {
     UIbackground =
       geoTotalNIU + bkgNuisanceNIU + totalCoreSignal - customTotalSignal;
     UIBackgroundUncertainty = Math.hypot(
-      (geo.total.NIUUncertainty),
+      (geoTotalNIUUncertainty),
         (bkgNuisanceNIU * deltaBkgnuisance),
         ((totalCoreSignalHigh - customTotalSignalHigh) * deltaReactorsHighE),
         ((totalCoreSignalLow - customTotalSignalLow) * deltaReactorsLowE),
@@ -423,7 +461,7 @@ export const CalculatorPanel = ({ cores, geo }) => {
     UIbackground = totalCoreSignal + bkgNuisanceNIU + geoTotalNIU - geoU238NIU;
     UIsignal = geoU238NIU;
     UIBackgroundUncertainty = Math.hypot(
-      (geo.total.NIUUncertainty - geo.total.U238.NIUUncertainty),
+      (geoTotalNIUUncertainty - geoU238NIUUncertainty),
         (bkgNuisanceNIU * deltaBkgnuisance),
         (totalCoreSignalHigh * deltaReactorsHighE),
         (totalCoreSignalLow * deltaReactorsLowE),
@@ -433,7 +471,7 @@ export const CalculatorPanel = ({ cores, geo }) => {
     UIbackground = totalCoreSignal + bkgNuisanceNIU + geoTotalNIU - geoTh232NIU;
     UIsignal = geoTh232NIU;
     UIBackgroundUncertainty = Math.hypot(
-      (geo.total.NIUUncertainty - geo.total.Th232.NIUUncertainty),
+      (geoTotalNIUUncertainty - geoTh232NIUUncertainty),
         (bkgNuisanceNIU * deltaBkgnuisance),
         (totalCoreSignalHigh * deltaReactorsHighE),
         (totalCoreSignalLow * deltaReactorsLowE),
@@ -444,7 +482,7 @@ export const CalculatorPanel = ({ cores, geo }) => {
       totalCoreSignal + bkgNuisanceNIU + geoTotalNIU - geoK40betaNIU;
     UIsignal = geoK40betaNIU;
     UIBackgroundUncertainty = Math.hypot(
-      (geo.total.NIUUncertainty - geo.total.K40Beta.NIUUncertainty),
+      (geoTotalNIUUncertainty - geoK40betaNIUUncertainty),
         (bkgNuisanceNIU * deltaBkgnuisance),
         (totalCoreSignalHigh * deltaReactorsHighE),
         (totalCoreSignalLow * deltaReactorsLowE),
@@ -454,7 +492,7 @@ export const CalculatorPanel = ({ cores, geo }) => {
     UIbackground = totalCoreSignal + bkgNuisanceNIU + geoTotalNIU - geoU235NIU;
     UIsignal = geoU235NIU;
     UIBackgroundUncertainty = Math.hypot(
-      (geo.total.NIUUncertainty - geo.total.U235.NIUUncertainty),
+      (geoTotalNIUUncertainty - geoU235NIUUncertainty),
         (bkgNuisanceNIU * deltaBkgnuisance),
         (totalCoreSignalHigh * deltaReactorsHighE),
         (totalCoreSignalLow * deltaReactorsLowE),
