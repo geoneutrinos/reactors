@@ -340,66 +340,33 @@ export const CalculatorPanel = ({ cores, geo }) => {
   const [customTotalSignal, customTotalSignalLow, customTotalSignalHigh] =
     getCoreSums(customCores, min_i, max_i, low_i);
 
-  const geoU238NIU =
-    sum(
-      detectorEfficiency(effMax, rampUp, enerStart, geo.total.U238.spectrum, !isIBD).slice(
+  const geoLevels = new Set(["total", "crust", "mantle"])
+  const geoIsotopes = new Set(["U238", "U235", "Th232", "K40Beta"])
+  const geoCalc = {}
+  for (let level of geoLevels){
+    geoCalc[level] = {
+      NIU: 0,
+      NIUUncertainty: 0,
+    }
+    for (let isotope of geoIsotopes){
+      geoCalc[level][isotope] = {
+        NIU: sum(
+      detectorEfficiency(effMax, rampUp, enerStart, geo[level][isotope].spectrum, !isIBD).slice(
         min_i,
         max_i
       )
-    ) * 0.01;
-  const geoU235NIU =
-    sum(
-      detectorEfficiency(effMax, rampUp, enerStart, geo.total.U235.spectrum, !isIBD).slice(
+    ) * 0.01,
+    NIUUncertainty: sum(
+      detectorEfficiency(effMax, rampUp, enerStart, geo[level][isotope].spectrumUncertainty, !isIBD).slice(
         min_i,
         max_i
       )
-    ) * 0.01;
-  const geoTh232NIU =
-    sum(
-      detectorEfficiency(effMax, rampUp, enerStart, geo.total.Th232.spectrum, !isIBD).slice(
-        min_i,
-        max_i
-      )
-    ) * 0.01;
-  const geoK40betaNIU =
-    sum(
-      detectorEfficiency(effMax, rampUp, enerStart, geo.total.K40Beta.spectrum, !isIBD).slice(
-        min_i,
-        max_i
-      )
-    ) * 0.01;
-  const geoTotalNIU = geoU238NIU + geoTh232NIU + geoK40betaNIU + geoU235NIU;
-
-  const geoU238NIUUncertainty =
-    sum(
-      detectorEfficiency(effMax, rampUp, enerStart, geo.total.U238.spectrumUncertainty, !isIBD).slice(
-        min_i,
-        max_i
-      )
-    ) * 0.01;
-  const geoU235NIUUncertainty =
-    sum(
-      detectorEfficiency(effMax, rampUp, enerStart, geo.total.U235.spectrumUncertainty, !isIBD).slice(
-        min_i,
-        max_i
-      )
-    ) * 0.01;
-  const geoTh232NIUUncertainty =
-    sum(
-      detectorEfficiency(effMax, rampUp, enerStart, geo.total.Th232.spectrumUncertainty, !isIBD).slice(
-        min_i,
-        max_i
-      )
-    ) * 0.01;
-  const geoK40betaNIUUncertainty =
-    sum(
-      detectorEfficiency(effMax, rampUp, enerStart, geo.total.K40Beta.spectrumUncertainty, !isIBD).slice(
-        min_i,
-        max_i
-      )
-    ) * 0.01;
-    
-  const geoTotalNIUUncertainty = geoU238NIUUncertainty + geoTh232NIUUncertainty + geoK40betaNIUUncertainty + geoU235NIUUncertainty;
+    ) * 0.01,
+      }
+    geoCalc[level].NIU += geoCalc[level][isotope].NIU
+    geoCalc[level].NIUUncertainty += geoCalc[level][isotope].NIUUncertainty
+    }
+  }
 
   // for now assume a flat spectrum with maximum energy of 10 MeV
   const bkgNuisanceNIU =
@@ -411,9 +378,9 @@ export const CalculatorPanel = ({ cores, geo }) => {
 
   if (signal === "selected") {
     UIsignal = selectedCoreSignal;
-    UIbackground = geoTotalNIU + bkgNuisanceNIU + totalCoreSignal - selectedCoreSignal;
+    UIbackground = geoCalc.total.NIU + bkgNuisanceNIU + totalCoreSignal - selectedCoreSignal;
     UIBackgroundUncertainty = Math.hypot(
-      (geoTotalNIUUncertainty),
+      (geoCalc.total.NIUUncertainty),
         (bkgNuisanceNIU * deltaBkgnuisance),
         ((totalCoreSignalHigh - selectedCoreSignalHigh) * deltaReactorsHighE),
         ((totalCoreSignalLow - selectedCoreSignalLow) * deltaReactorsLowE)
@@ -421,14 +388,14 @@ export const CalculatorPanel = ({ cores, geo }) => {
   }
   if (signal === "all") {
     UIsignal = totalCoreSignal;
-    UIbackground = geoTotalNIU + bkgNuisanceNIU;
+    UIbackground = geoCalc.total.NIU + bkgNuisanceNIU;
     UIBackgroundUncertainty = Math.hypot(
-      (geoTotalNIUUncertainty), 
+      (geoCalc.total.NIUUncertainty), 
       (bkgNuisanceNIU * deltaBkgnuisance)
     );
   }
   if (signal === "antinus") {
-    UIsignal = totalCoreSignal + geoTotalNIU;
+    UIsignal = totalCoreSignal + geoCalc.total.NIU;
     UIbackground = bkgNuisanceNIU;
     UIBackgroundUncertainty = ( 
       bkgNuisanceNIU * deltaBkgnuisance
@@ -436,9 +403,9 @@ export const CalculatorPanel = ({ cores, geo }) => {
   }
   if (signal === "closest") {
     UIsignal = closestNIU;
-    UIbackground = geoTotalNIU + bkgNuisanceNIU + totalCoreSignal - closestNIU;
+    UIbackground = geoCalc.total.NIU + bkgNuisanceNIU + totalCoreSignal - closestNIU;
     UIBackgroundUncertainty = Math.hypot(
-      (geoTotalNIUUncertainty),
+      (geoCalc.total.NIUUncertainty),
         (bkgNuisanceNIU * deltaBkgnuisance),
         ((totalCoreSignalHigh - closestHighNIU) * deltaReactorsHighE),
         ((totalCoreSignalLow - closestLowNIU) * deltaReactorsLowE)
@@ -447,9 +414,9 @@ export const CalculatorPanel = ({ cores, geo }) => {
   if (signal === "custom") {
     UIsignal = customTotalSignal;
     UIbackground =
-      geoTotalNIU + bkgNuisanceNIU + totalCoreSignal - customTotalSignal;
+    geoCalc.total.NIU + bkgNuisanceNIU + totalCoreSignal - customTotalSignal;
     UIBackgroundUncertainty = Math.hypot(
-      (geoTotalNIUUncertainty),
+      (geoCalc.total.NIUUncertainty),
         (bkgNuisanceNIU * deltaBkgnuisance),
         ((totalCoreSignalHigh - customTotalSignalHigh) * deltaReactorsHighE),
         ((totalCoreSignalLow - customTotalSignalLow) * deltaReactorsLowE),
@@ -457,7 +424,7 @@ export const CalculatorPanel = ({ cores, geo }) => {
   }
   if (signal === "geoneutrino") {
     UIbackground = totalCoreSignal + bkgNuisanceNIU;
-    UIsignal = geoTotalNIU;
+    UIsignal = geoCalc.total.NIU;
     UIBackgroundUncertainty = Math.hypot(
       (totalCoreSignalHigh * deltaReactorsHighE),
         (totalCoreSignalLow * deltaReactorsLowE),
@@ -465,38 +432,40 @@ export const CalculatorPanel = ({ cores, geo }) => {
     );
   }
   if (signal === "geo_crust") {
-    UIbackground = totalCoreSignal + bkgNuisanceNIU;
-    UIsignal = geoTotalNIU;
+    UIbackground = totalCoreSignal + bkgNuisanceNIU + geoCalc.mantle.NIU;
+    UIsignal = geoCalc.crust.NIU;
     UIBackgroundUncertainty = Math.hypot(
+      (geoCalc.mantle.NIUUncertainty),
       (totalCoreSignalHigh * deltaReactorsHighE),
         (totalCoreSignalLow * deltaReactorsLowE),
         (bkgNuisanceNIU * deltaBkgnuisance),
     );
   }
   if (signal === "geo_mantle") {
-    UIbackground = totalCoreSignal + bkgNuisanceNIU;
-    UIsignal = geoTotalNIU;
+    UIbackground = totalCoreSignal + bkgNuisanceNIU + geoCalc.crust.NIU;
+    UIsignal = geoCalc.mantle.NIU;
     UIBackgroundUncertainty = Math.hypot(
+      (geoCalc.crust.NIUUncertainty),
       (totalCoreSignalHigh * deltaReactorsHighE),
         (totalCoreSignalLow * deltaReactorsLowE),
         (bkgNuisanceNIU * deltaBkgnuisance),
     );
   }
   if (signal === "geo_u8") {
-    UIbackground = totalCoreSignal + bkgNuisanceNIU + geoTotalNIU - geoU238NIU;
-    UIsignal = geoU238NIU;
+    UIbackground = totalCoreSignal + bkgNuisanceNIU + geoCalc.total.NIU - geoCalc.total.U238.NIU;
+    UIsignal = geoCalc.total.U238.NIU;
     UIBackgroundUncertainty = Math.hypot(
-      (geoTotalNIUUncertainty - geoU238NIUUncertainty),
+      (geoCalc.total.NIUUncertainty - geoCalc.total.U238.NIUUncertainty),
         (bkgNuisanceNIU * deltaBkgnuisance),
         (totalCoreSignalHigh * deltaReactorsHighE),
         (totalCoreSignalLow * deltaReactorsLowE),
     );
   }
   if (signal === "geo_th") {
-    UIbackground = totalCoreSignal + bkgNuisanceNIU + geoTotalNIU - geoTh232NIU;
-    UIsignal = geoTh232NIU;
+    UIbackground = totalCoreSignal + bkgNuisanceNIU + geoCalc.total.NIU - geoCalc.total.Th232.NIU;
+    UIsignal = geoCalc.total.Th232.NIU;
     UIBackgroundUncertainty = Math.hypot(
-      (geoTotalNIUUncertainty - geoTh232NIUUncertainty),
+      (geoCalc.total.NIUUncertainty - geoCalc.total.Th232.NIUUncertainty),
         (bkgNuisanceNIU * deltaBkgnuisance),
         (totalCoreSignalHigh * deltaReactorsHighE),
         (totalCoreSignalLow * deltaReactorsLowE),
@@ -504,20 +473,20 @@ export const CalculatorPanel = ({ cores, geo }) => {
   }
   if (signal === "geo_k") {
     UIbackground =
-      totalCoreSignal + bkgNuisanceNIU + geoTotalNIU - geoK40betaNIU;
-    UIsignal = geoK40betaNIU;
+      totalCoreSignal + bkgNuisanceNIU + geoCalc.total.NIU - geoCalc.total.K40Beta.NIU;
+    UIsignal = geoCalc.total.K40Beta.NIU;
     UIBackgroundUncertainty = Math.hypot(
-      (geoTotalNIUUncertainty - geoK40betaNIUUncertainty),
+      (geoCalc.total.NIUUncertainty - geoCalc.total.K40Beta.NIUUncertainty),
         (bkgNuisanceNIU * deltaBkgnuisance),
         (totalCoreSignalHigh * deltaReactorsHighE),
         (totalCoreSignalLow * deltaReactorsLowE),
     );
   }
   if (signal === "geo_u5") {
-    UIbackground = totalCoreSignal + bkgNuisanceNIU + geoTotalNIU - geoU235NIU;
-    UIsignal = geoU235NIU;
+    UIbackground = totalCoreSignal + bkgNuisanceNIU + geoCalc.total.NIU - geoCalc.total.U235.NIU;
+    UIsignal = geoCalc.total.U235.NIU;
     UIBackgroundUncertainty = Math.hypot(
-      (geoTotalNIUUncertainty - geoU235NIUUncertainty),
+      (geoCalc.total.NIUUncertainty - geoCalc.total.U235.NIUUncertainty),
         (bkgNuisanceNIU * deltaBkgnuisance),
         (totalCoreSignalHigh * deltaReactorsHighE),
         (totalCoreSignalLow * deltaReactorsLowE),
