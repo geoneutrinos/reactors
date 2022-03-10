@@ -38,6 +38,7 @@ export const AddCustomCoreModal = ({
     { name: "Negev IRR-2", lat: 31.001, lon: 35.145, power: 26, elevation: 556 },
     { name: "Yongbyon", lat: 39.800, lon: 125.754, power: 15, elevation: 140 },
     { name: "Geo Reactor", lat: 0, lon: 0, power: 1e6, elevation: -6378137 },
+    { name: "Perry-x", lat: 41.8012, lon: -81.1432, power: 3758, elevation: 150.8 },
   ];
 
   const [name, setName] = useState(defaultName);
