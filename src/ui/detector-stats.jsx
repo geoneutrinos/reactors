@@ -12,7 +12,6 @@ import {
 import { ISOTOPIC_NEUTRINO_LUMINOSITY } from "../physics/derived";
 import { ISOTOPIC_NATURAL_ABUNDANCE } from "../physics/constants";
 import {PhysicsContext} from "../state"
-import { binWidth } from "../physics/bins";
 import { XSNames } from "../physics/neutrino-cross-section";
 
 import { Num } from '.'
