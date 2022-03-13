@@ -14,12 +14,14 @@ import {
   StatsPanel,
   DetectorLocationPane,
   //Reactors Tab
+  RASwitcher,
   CoreDirectionSignalPlots,
   CoreIAEARange,
   CoreList,
   //GeuNu Tab
   MantleFlux,
   CrustFlux,
+  GeoFluxUncertainties,
   GeoNuSpectrumSource,
   IsotopeHalfLives,
   //IBD/ES Tab
@@ -61,13 +63,16 @@ import {
 import { defaultCores } from "./reactor-cores";
 import { presets, detectorENUProjector } from "./detectors";
 import { getCrustFlux } from "./crust-model";
-import { mantleGeoSpectrum } from "./mantle";
+import { geoSpectrum } from "./mantle";
 
 import { crossSection as initialCrossSection } from "./physics/neutrino-cross-section";
 import { crossSectionReducer } from "./physics/neutrino-cross-section";
 
 import { oscillation as initalOscillation } from "./physics/neutrino-oscillation";
 import { oscillationReducer } from "./physics/neutrino-oscillation";
+
+import { reactorAntineutrinoModel as initalReactorAntineutrinoModel } from "./physics/reactor-antineutrinos";
+import { reactorAntineutrinoModelReducer } from "./physics/reactor-antineutrinos";
 
 import { defaultBoron8 } from "./solar";
 
@@ -89,7 +94,7 @@ L.Icon.Default.mergeOptions({
   shadowUrl: shadowUrl,
 });
 
-const defaultDetector = presets.find((detector) => detector.name === "Boulby");
+const defaultDetector = presets.find((detector) => detector.name === "SURF");
 
 function App(props) {
   const [oscillation, oscillationDispatch] = useReducer(
@@ -99,6 +104,11 @@ function App(props) {
   const [crossSection, crossSectionDispatch] = useReducer(
     crossSectionReducer,
     initialCrossSection
+  );
+
+  const [reactorAntineutrinoModel, reactorAntineutrinoModelDispatch] = useReducer(
+    reactorAntineutrinoModelReducer,
+    initalReactorAntineutrinoModel
   );
 
   const [detector, setDetector] = useState({
@@ -152,11 +162,11 @@ function App(props) {
 
         return [
           name,
-          modCore.setSignal(dist, lf, oscillation, crossSection, direction),
+          modCore.setSignal(dist, lf, oscillation, crossSection, direction, reactorAntineutrinoModel),
         ];
       })
     );
-  }, [coreMods, reactorLF, crossSection, oscillation, detector, customCores]);
+  }, [coreMods, reactorLF, crossSection, oscillation, detector, customCores, reactorAntineutrinoModel]);
 
   const crustFlux = useMemo(() => {
     return {
@@ -166,14 +176,14 @@ function App(props) {
       ...(includeCrust ? getCrustFlux(detector.lon, detector.lat) : {}),
     };
   }, [includeCrust, detector]);
-  const spectrum = useMemo(
+  const geo = useMemo(
     () =>
-      mantleGeoSpectrum(crossSection, oscillation, geoFluxRatios, crustFlux),
+      geoSpectrum(crossSection, oscillation, geoFluxRatios, crustFlux),
     [crossSection, oscillation, geoFluxRatios, crustFlux]
   );
 
-  const boron8 = useMemo(() => defaultBoron8.updateRate(crossSection), [
-    crossSection,
+  const boron8 = useMemo(() => defaultBoron8.updateRate(crossSection, reactorLF), [
+    crossSection, reactorLF
   ]);
 
   const physicsContextValue = {
@@ -181,6 +191,8 @@ function App(props) {
     oscillationDispatch: oscillationDispatch,
     crossSection: crossSection,
     crossSectionDispatch: crossSectionDispatch,
+    reactorAntineutrinoModel: reactorAntineutrinoModel, 
+    reactorAntineutrinoModelDispatch: reactorAntineutrinoModelDispatch,
   };
   return (
     <PhysicsContext.Provider value={physicsContextValue}>
@@ -200,13 +212,13 @@ function App(props) {
             <NuSpectrumPlot
               detector={detector}
               cores={cores}
-              spectrum={spectrum}
+              geo={geo}
               reactorLF={reactorLF}
             />
             <Tabs unmountOnExit={false} defaultActiveKey="detector">
               <Tab eventKey="detector" title="Detector">
                 <Visible>
-                  <StatsPanel cores={cores} spectrum={spectrum} reactorLF={reactorLF}/>
+                  <StatsPanel cores={cores} geo={geo} reactorLF={reactorLF}/>
                   <CoreDirectionPlot cores={cores} detector={detector} />
                   <DetectorLocationPane
                     detector={detector}
@@ -215,6 +227,7 @@ function App(props) {
                 </Visible>
               </Tab>
               <Tab eventKey="reactors" title="Reactors">
+                <RASwitcher />
                 <AddCustomCoreModal
                   {...addCustomModalXY}
                   show={addCustomModal}
@@ -263,13 +276,14 @@ function App(props) {
                     includeCrust={includeCrust}
                     setIncludeCrust={setIncludeCrust}
                   />
+                  <GeoFluxUncertainties />
                   <GeoNuSpectrumSource />
                   <IsotopeHalfLives />
                 </Visible>
               </Tab>
               <Tab eventKey="solarnu" title="SolarNu">
                 <Visible>
-                  <AnalemmaPlot detector={detector} cores={cores} reactorLF={reactorLF} />
+                  <AnalemmaPlot boron8={boron8} detector={detector} cores={cores} reactorLF={reactorLF} />
                   <Boron8SpectraPlot boron8={boron8} reactorLF={reactorLF} />
                   <Boron8KEPlot boron8={boron8} />
                   <CrossSectionPlotsNormal />
@@ -308,13 +322,13 @@ function App(props) {
                 Please reference this paper when using the results of this model in your research papers and presentations.</p>
                 <Visible>
                   <OutputDownload
-                    spectrum={spectrum}
+                    geo={geo}
                     cores={cores}
                     detector={detector}
                     boron8={boron8}
                   />
                 </Visible>
-                <CalculatorPanel cores={cores} spectrum={spectrum} />
+                <CalculatorPanel cores={cores} geo={geo} />
                 <h2> ACKNOWLEDGMENT </h2>
                 <p> Development of the model and this web application is supported in part by Lawrence Livermore National 
                 Security, LLC. </p>

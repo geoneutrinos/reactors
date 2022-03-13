@@ -40,8 +40,8 @@ const geoKURatio = (R40K, R238U, crossSection) => {
   return R * C * l * NA;
 };
 
-export function StatsPanel({ cores, spectrum, reactorLF}) {
-  const {crossSection} = useContext(PhysicsContext)
+export function StatsPanel({ cores, geo, reactorLF}) {
+  const {crossSection, reactorAntineutrinoModel} = useContext(PhysicsContext)
   
   // Unary operator + converts true to 1 and false to 0
   const isIBD = +[XSNames.IBDSV2003, XSNames.IBDVB1999].includes(
@@ -62,58 +62,46 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
   // Close Things
   const closestName = closestActiveCore?.name || "";
   const closestNIU = closestActiveCore?.detectorNIU || 0;
+  const closestNIUUncertainty = closestActiveCore?.detectorNIUUncertainty || 0;
   const closestDistace = closestActiveCore?.detectorDistance || 1000000;
 
   const totalCoreSignal = sum(coreList.map((core) => core.detectorNIU));
 
   const iaeaCoreSignal = sum(coreList.filter(core => !core.custom).map(core => core.detectorNIU))
+  const iaeaCoreSignalUncertainty = sum(coreList.filter(core => !core.custom).map(core => core.detectorNIUUncertainty))
 
   // custom cores
   const customClosestName = closestCustomCore?.name || "";
   const customClosestNIU = closestCustomCore?.detectorNIU || 0;
+  const customClosestNIUUncertainty = closestCustomCore?.detectorNIUUncertainty || 0;
   const customClosestDistance = closestCustomCore?.detectorDistance || 1000000;
   const customTotalSignal = sum(customCores.map((core) => core.detectorNIU));
+  const customTotalSignalUncertainty = sum(customCores.map((core) => core.detectorNIUUncertainty));
 
   const customDisplay = customTotalSignal > 0 ? "block" : "none";
 
   // geo things
-  const geo_crustU238NIU = sum(spectrum.geo_crustU238) * binWidth;
-  const geo_mantleU238NIU = sum(spectrum.geo_mantleU238) * binWidth;
-  const geoU238NIU = geo_crustU238NIU + geo_mantleU238NIU;
-  const geo_crustTh232NIU = sum(spectrum.geo_crustTh232) * binWidth;
-  const geo_mantleTh232NIU = sum(spectrum.geo_mantleTh232) * binWidth;
-  const geoTh232NIU = geo_crustTh232NIU + geo_mantleTh232NIU;
-  const geo_crustU235NIU = sum(spectrum.geo_crustU235) * binWidth;
-  const geo_mantleU235NIU = sum(spectrum.geo_mantleU235) * binWidth;
-  const geoU235NIU = geo_crustU235NIU + geo_mantleU235NIU;
-  const geo_crustK40betaNIU = sum(spectrum.geo_crustK40_beta) * binWidth;
-  const geo_mantleK40betaNIU = sum(spectrum.geo_mantleK40_beta) * binWidth;
-  const geoK40betaNIU = geo_crustK40betaNIU + geo_mantleK40betaNIU
-
-  const geoThU = geoThURatio(geoTh232NIU, geoU238NIU, crossSection.crossSection);
-  const geoKU = geoKURatio(geoK40betaNIU, geoU238NIU, crossSection.crossSection);
+  const geoThU = geoThURatio(geo.total.Th232.NIU, geo.total.U238.NIU, crossSection.crossSection);
+  const geoKU = geoKURatio(geo.total.K40Beta.NIU, geo.total.U238.NIU, crossSection.crossSection);
 
   const geoKUVald = isNaN(geoKU) ? "none" : "auto";
-
-  const geoTotalNIU = geoU238NIU + geoU235NIU + geoTh232NIU + geoK40betaNIU;
-  const geo_crustNIU = geo_crustU238NIU + geo_crustU235NIU + geo_crustTh232NIU + geo_crustK40betaNIU;
-  const geo_mantleNIU = geo_mantleU238NIU + geo_mantleU235NIU + geo_mantleTh232NIU + geo_mantleK40betaNIU;
 
   // finally
   const leptonTVald = isIBD ? "none" : "auto";
   
-  const totalNIU = totalCoreSignal + geoTotalNIU;
+  const totalNIU = totalCoreSignal + geo.total.NIU;
+  const totalNIUUncertainty = Math.hypot(iaeaCoreSignalUncertainty + customTotalSignalUncertainty, geo.total.NIUUncertainty)
 
   const tableProps = { style: { width: "auto" }, borderless: true, size: "sm" };
 
   return (
     <Card>
       <Card.Body>
-        <Card.Title>Spectrum Stats <small>({crossSection.crossSection}- IBD/ES tab.)</small></Card.Title>
+        <Card.Title>Spectrum Stats <small>({crossSection.crossSection})</small></Card.Title>
 
        <Card.Subtitle>
            <span style={{ display: leptonTVald }}>
-                <small>Scattered charged lepton kinetic energy range: {crossSection.elasticScatteringTMin.toFixed(1)} &lt; T &lt; {crossSection.elasticScatteringTMax.toFixed(1)} MeV</small>
+                <small>Scattered electron kinetic energy range: {crossSection.elasticScatteringTMin.toFixed(1)} &lt; T &lt; {crossSection.elasticScatteringTMax.toFixed(1)} MeV</small>
            </span>
        </Card.Subtitle>
     
@@ -126,14 +114,14 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
               </td>
               <td>=</td>
               <td>
-                {totalNIU.toFixed(1)} {NIU}
+                <Num v={totalNIU} u={totalNIUUncertainty} p={1} /> {NIU}
               </td>
             </tr>
           </tbody>
         </Table>
 
         <hr />
-        <h6>IAEA Cores <small>({reactorLF.start.toISOString().slice(0, 7)} through {reactorLF.end.toISOString().slice(0, 7)} avg Load Factor- Reactors tab.)</small></h6>
+        <h6>IAEA Cores <small>({reactorAntineutrinoModel.modelName}; {reactorLF.start.toISOString().slice(0, 7)} thru {reactorLF.end.toISOString().slice(0, 7)})</small></h6>
         <Table {...tableProps}>
           <tbody>
             <tr>
@@ -143,7 +131,7 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
               </td>
               <td>=</td>
               <td>
-                {iaeaCoreSignal.toFixed(1)} {NIU}
+                <Num v={iaeaCoreSignal} u={iaeaCoreSignalUncertainty} p={1} /> {NIU}
               </td>
             </tr>
             <tr>
@@ -153,8 +141,8 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
               </td>
               <td>=</td>
               <td>
-                {closestNIU.toFixed(1)} {NIU} <small> (
-                {((closestNIU / iaeaCoreSignal) * 100).toFixed(1)} % of <i>R</i><sub>reac</sub>) </small>
+                <Num v={closestNIU} u={closestNIUUncertainty} p={1} /> {NIU} <small> (
+                <Num v={((closestNIU / iaeaCoreSignal) * 100)} p={1} /> % of <i>R</i><sub>reac</sub>) </small>
               </td>
             </tr>
             <tr>
@@ -183,7 +171,7 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
                 </td>
               <td>=</td>
                 <td>
-                  {customTotalSignal.toFixed(1)} {NIU}
+                  <Num v={customTotalSignal} u={customTotalSignalUncertainty} p={1} /> {NIU}
                 </td>
               </tr>
               <tr>
@@ -193,7 +181,7 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
                 </td>
               <td>=</td>
                 <td>
-                  {customClosestNIU.toFixed(1)} {NIU} <small> {" ("}
+                  <Num v={customClosestNIU} u={customClosestNIUUncertainty} p={1} /> {NIU} <small> {" ("}
                   {((customClosestNIU / totalCoreSignal) * 100).toFixed(1)} % of <i>R</i><sub>reac</sub> + <i>R</i><sub>custom</sub>) </small>
                 </td>
               </tr>
@@ -213,7 +201,7 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
         </div>
         <div>
           <hr />
-          <h6>Geoneutrinos <small>(Predicted crust + user-defined mantle flux- GeoNu tab. Avg P<sub>ee</sub>- Input tab)</small></h6>
+          <h6>Geoneutrinos <small>(Predicted crust; User-defined mantle flux; Avg <i>P</i><sub>ee</sub>)</small></h6>
           <Table {...tableProps}>
             <tbody>
               <tr>
@@ -223,17 +211,17 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
                 </td>
               <td>=</td>
                 <td>
-                  <Num v={geoTotalNIU} p={1} /> {NIU}
+                  <Num v={geo.total.NIU} u={geo.total.NIUUncertainty} p={1} /> {NIU}
                 </td>
                 <td>
                   <small> (
-                  <Num v={geoU238NIU} p={1} /> {U238}{", "}
+                  <Num v={geo.total.U238.NIU} p={1} /> {U238}{", "}
                   <span style={{ display: geoKUVald }}>
-                    <Num v={geoU235NIU} p={1} /> {U235}{", "}
+                    <Num v={geo.total.U235.NIU} p={1} /> {U235}{", "}
                   </span>
-                  <Num v={geoTh232NIU} p={1} /> {Th232}
+                  <Num v={geo.total.Th232.NIU} p={1} /> {Th232}
                   <span style={{ display: geoKUVald }}>
-                    , <Num v={geoK40betaNIU} p={1} /> {K40}<sub>β<sup>-</sup></sub>
+                    , <Num v={geo.total.K40Beta.NIU} p={1} /> {K40}<sub>β<sup>-</sup></sub>
                   </span>
                   ) </small>
                 </td>
@@ -245,18 +233,18 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
                 </td>
               <td>=</td>
                 <td>
-                  <Num v={geo_crustNIU} p={1} /> {NIU} <small> (
-                {((geo_crustNIU / geoTotalNIU) * 100).toFixed(1)} % of <i>R</i><sub>geo</sub>) </small>
+                  <Num v={geo.crust.NIU} u={geo.crust.NIUUncertainty} p={1} /> {NIU} <small> (
+                  <Num v={((geo.crust.NIU / geo.total.NIU) * 100)} p={1} /> % of <i>R</i><sub>geo</sub>) </small>
                 </td>
                 <td>
                   <small> (
-                  <Num v={geo_crustU238NIU} p={1} /> {U238}{", "}
+                  <Num v={geo.crust.U238.NIU} p={1} /> {U238}{", "}
                   <span style={{ display: geoKUVald }}>
-                    <Num v={geo_crustU235NIU} p={1} /> {U235}{", "}
+                    <Num v={geo.crust.U235.NIU} p={1} /> {U235}{", "}
                   </span>
-                  <Num v={geo_crustTh232NIU} p={1} /> {Th232}
+                  <Num v={geo.crust.Th232.NIU} p={1} /> {Th232}
                   <span style={{ display: geoKUVald }}>
-                    , <Num v={geo_crustK40betaNIU} p={1} /> {K40}<sub>β<sup>-</sup></sub>
+                    , <Num v={geo.crust.K40Beta.NIU} p={1} /> {K40}<sub>β<sup>-</sup></sub>
                   </span>
                   ) </small>
                 </td>
@@ -268,18 +256,18 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
                 </td>
               <td>=</td>
                 <td>
-                  <Num v={geo_mantleNIU} p={1} /> {NIU} <small> (
-                {((geo_mantleNIU / geoTotalNIU) * 100).toFixed(1)} % of <i>R</i><sub>geo</sub>) </small>
+                  <Num v={geo.mantle.NIU} u={geo.mantle.NIUUncertainty} p={1} /> {NIU} <small> (
+                  <Num v={((geo.mantle.NIU / geo.total.NIU) * 100)} p={1} /> % of <i>R</i><sub>geo</sub>) </small>
                 </td>
                 <td>
                   <small> (
-                  <Num v={geo_mantleU238NIU} p={1} /> {U238}{", "}
+                  <Num v={geo.mantle.U238.NIU} p={1} /> {U238}{", "}
                   <span style={{ display: geoKUVald }}>
-                    <Num v={geo_mantleU235NIU} p={1} /> {U235}{", "}
+                    <Num v={geo.mantle.U235.NIU} p={1} /> {U235}{", "}
                   </span>
-                  <Num v={geo_mantleTh232NIU} p={1} /> {Th232}
+                  <Num v={geo.mantle.Th232.NIU} p={1} /> {Th232}
                   <span style={{ display: geoKUVald }}>
-                    , <Num v={geo_mantleK40betaNIU} p={1} /> {K40}<sub>β<sup>-</sup></sub>
+                    , <Num v={geo.mantle.K40Beta.NIU} p={1} /> {K40}<sub>β<sup>-</sup></sub>
                   </span>
                   ) </small>
                 </td>
@@ -313,6 +301,10 @@ export function StatsPanel({ cores, spectrum, reactorLF}) {
         </div>
         <hr />
         <div>
+          <small>
+            Double click on, or hover pointer over, values to display more decimal places
+          </small>
+          <br />
           <small>
             1 {NIU} (Neutrino Interaction Unit) = 1 interaction/10<sup>32</sup>{" "}
             targets/year

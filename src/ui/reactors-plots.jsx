@@ -4,13 +4,15 @@ import { Card } from "react-bootstrap";
 import Plot from "react-plotly.js";
 
 import { Isotopes } from "../physics/constants";
-import { neutrinoEnergyFor } from "../physics/helpers";
+import { neutrinoEnergyFor as neutrinoEnergyForHM } from "../physics/reactor-antineutrinos/huber-muller";
+import { neutrinoEnergyFor as neutrinoEnergyForES } from "../physics/reactor-antineutrinos/estienne";
+import { neutrinoEnergyFor as neutrinoEnergyForKO } from "../physics/reactor-antineutrinos/kopeikin";
 import bins from "../physics/bins";
 
 export const FissionIsotopeSpectraPlots = () => {
   const data = [
     {
-      y: bins.map(neutrinoEnergyFor(Isotopes.U235)),
+      y: bins.map(neutrinoEnergyForES(Isotopes.U235)),
       x: bins,
       name: `<sup>235</sup>U`,
       type: "scatter",
@@ -22,7 +24,7 @@ export const FissionIsotopeSpectraPlots = () => {
       marker: { color: "blue" },
     },
     {
-      y: bins.map(neutrinoEnergyFor(Isotopes.U238)),
+      y: bins.map(neutrinoEnergyForES(Isotopes.U238)),
       x: bins,
       name: `<sup>238</sup>U`,
       type: "scatter",
@@ -34,7 +36,7 @@ export const FissionIsotopeSpectraPlots = () => {
       marker: { color: "green" },
     },
     {
-      y: bins.map(neutrinoEnergyFor(Isotopes.PU239)),
+      y: bins.map(neutrinoEnergyForES(Isotopes.PU239)),
       x: bins,
       name: `<sup>239</sup>Pu`,
       type: "scatter",
@@ -46,12 +48,64 @@ export const FissionIsotopeSpectraPlots = () => {
       marker: { color: "red" },
     },
     {
-      y: bins.map(neutrinoEnergyFor(Isotopes.PU241)),
+      y: bins.map(neutrinoEnergyForES(Isotopes.PU241)),
       x: bins,
       name: `<sup>241</sup>Pu`,
       type: "scatter",
       mode: "lines",
       line: {
+        width: 1
+      },
+      fill: "none",
+      marker: { color: "magenta" },
+    },
+    {
+      y: bins.map(neutrinoEnergyForKO(Isotopes.U235)),
+      x: bins,
+      name: `<sup>235</sup>U`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        dash: "dashdot",
+        width: 1
+      },
+      fill: "none",
+      marker: { color: "blue" },
+    },
+    {
+      y: bins.map(neutrinoEnergyForKO(Isotopes.U238)),
+      x: bins,
+      name: `<sup>238</sup>U`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        dash: "dashdot",
+        width: 1
+      },
+      fill: "none",
+      marker: { color: "green" },
+    },
+    {
+      y: bins.map(neutrinoEnergyForKO(Isotopes.PU239)),
+      x: bins,
+      name: `<sup>239</sup>Pu`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        dash: "dashdot",
+        width: 1
+      },
+      fill: "none",
+      marker: { color: "red" },
+    },
+    {
+      y: bins.map(neutrinoEnergyForKO(Isotopes.PU241)),
+      x: bins,
+      name: `<sup>241</sup>Pu`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        dash: "dashdot",
         width: 1
       },
       fill: "none",
@@ -63,11 +117,11 @@ export const FissionIsotopeSpectraPlots = () => {
     yaxis: {
       title: { text: `Emission (/fission/MeV)` },
       type: "log",
-      range: [-4, Math.log10(4)],
+      range: [-5, 1],
     },
     xaxis: {
       title: { text: `Antineutrino Energy (MeV)` },
-      range: [1.8, 10],
+      range: [0.05, 10.05],
     },
     autosize: true,
     legend: {
@@ -96,16 +150,22 @@ export const FissionIsotopeSpectraPlots = () => {
       <Card.Header>Fission Isotope Emission Spectra</Card.Header>
       <Card.Body>
         <p>
-          <sup>235</sup>U, <sup>239</sup>Pu, <sup>241</sup>Pu spectra parameterizations:
+          <sup>235</sup>U, <sup>238</sup>U, <sup>239</sup>Pu, <sup>241</sup>Pu summation spectra (solid):
+          <br />
+          M. Estienne et al., "Updated Summation Model: An Improved Agreement with the Daya Bay Antineutrino Fluxes,"
+          Phys. Rev. Lett. 123, 022502, (2019).
+        </p>
+        <p>
+          <sup>239</sup>Pu, <sup>241</sup>Pu conversion spectra (dot-dash):
           <br />
           P. Huber, "Determination of antineutrino spectra from nuclear
           reactors," Phys. Rev. C 84, 024617 (2011).
         </p>
         <p>
-          <sup>238</sup>U spectrum parameterization:
+          <sup>235</sup>U, <sup>238</sup>U conversion spectra (dot-dash):
           <br />
-          Mueller, Th. A. et al., "Improved predictions of reactor antineutrino
-          spectra," Phys. Rev. C 83, 054615 (2011).
+          V. Kopeikin, M. Skorokhvatov, O. Titov, "Reevaluating reactor antineutrino spectra with new measurements of the ratio
+          between <sup>235</sup>U and <sup>239</sup>Pu β spectra," Phys. Rev. D 104, L071301 (2021).
         </p>
         <Plot
           useResizeHandler={true}
@@ -122,7 +182,20 @@ export const FissionIsotopeSpectraPlots = () => {
 export const U235IsotopeSpectraPlots = () => {
   const data = [
     {
-      y: bins.map(neutrinoEnergyFor(Isotopes.U235)),
+      y: bins.map(neutrinoEnergyForES(Isotopes.U235)),
+      x: bins,
+      name: `Estienne et al. (2019)`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        dash: "dashdot",
+        width: 1
+      },
+      fill: "none",
+      marker: { color: "blue" },
+    },
+    {
+      y: bins.map(neutrinoEnergyForHM(Isotopes.U235)),
       x: bins,
       name: `Huber (2011)`,
       type: "scatter",
@@ -187,17 +260,24 @@ export const U235IsotopeSpectraPlots = () => {
       <Card.Header><sup>235</sup>U Emission Spectrum</Card.Header>
       <Card.Body>
         <p>
-          <sup>235</sup>U spectrum parameterization:
+          <sup>235</sup>U conversion spectrum parameterization:
           <br />
           P. Huber, "Determination of antineutrino spectra from nuclear
           reactors," Phys. Rev. C 84, 024617 (2011).
         </p>
         <p>
-          <sup>235</sup>U spectrum data points:
+          <sup>235</sup>U conversion spectrum data points:
           <br />
           V. Kopeikin, M. Skorokhvatov, O. Titov, "Reevaluating reactor antineutrino spectra with new measurements of the ratio
           between <sup>235</sup>U and <sup>239</sup>Pu β spectra," Phys. Rev. D 104, L071301 (2021).
         </p>
+        <p>
+          <sup>235</sup>U summation spectrum:
+          <br />
+          M. Estienne et al., "Updated Summation Model: An Improved Agreement with the Daya Bay Antineutrino Fluxes,"
+          Phys. Rev. Lett. 123, 022502, (2019).
+        </p>
+
         <Plot
           useResizeHandler={true}
           style={{ width: "100%" }}
@@ -213,7 +293,20 @@ export const U235IsotopeSpectraPlots = () => {
 export const U238IsotopeSpectraPlots = () => {
   const data = [
     {
-      y: bins.map(neutrinoEnergyFor(Isotopes.U238)),
+      y: bins.map(neutrinoEnergyForES(Isotopes.U238)),
+      x: bins,
+      name: `Estienne et al. (2019)`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        dash: "dashdot",
+        width: 1
+      },
+      fill: "none",
+      marker: { color: "green" },
+    },
+    {
+      y: bins.map(neutrinoEnergyForHM(Isotopes.U238)),
       x: bins,
       name: `Mueller et al. (2011)`,
       type: "scatter",
@@ -278,16 +371,22 @@ export const U238IsotopeSpectraPlots = () => {
       <Card.Header><sup>238</sup>U Emission Spectrum</Card.Header>
       <Card.Body>
         <p>
-          <sup>238</sup>U spectrum parameterization:
+          <sup>238</sup>U summation spectrum parameterization:
           <br />
           Mueller, Th. A. et al., "Improved predictions of reactor antineutrino
           spectra," Phys. Rev. C 83, 054615 (2011).
         </p>
         <p>
-          <sup>238</sup>U spectrum data points:
+          <sup>238</sup>U conversion spectrum data points:
           <br />
           V. Kopeikin, M. Skorokhvatov, O. Titov, "Reevaluating reactor antineutrino spectra with new measurements of the ratio
           between <sup>235</sup>U and <sup>239</sup>Pu β spectra," Phys. Rev. D 104, L071301 (2021).
+        </p>
+        <p>
+          <sup>238</sup>U summation spectrum:
+          <br />
+          M. Estienne et al., "Updated Summation Model: An Improved Agreement with the Daya Bay Antineutrino Fluxes,"
+          Phys. Rev. Lett. 123, 022502, (2019).
         </p>
         <Plot
           useResizeHandler={true}

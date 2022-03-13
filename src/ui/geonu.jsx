@@ -18,8 +18,8 @@ export const CrustFlux = ({ includeCrust, setIncludeCrust }) => {
           onChange={(event) => setIncludeCrust(event.target.checked)}
         />
         <small>
-          A pre-computed model of the crust flux, which was provided by W.F.
-          McDonough, is described in Y. Huang et al., "A reference Earth model
+          A pre-computed model of the crust flux, kindly provided by W.F.
+          McDonough, is described in Y. Huang <i>et al.</i>, "A reference Earth model
           for the heat producing elements and associated geoneutrino flux,"
           Geochem., Geophys., Geosyst. 14, 2003 (2013).
         </small>
@@ -43,7 +43,7 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios }) => {
             type="range"
             step={100000}
             min={0}
-            max={10000000}
+            max={5000000}
             onChange={(event) =>
               setGeoFluxRatios({
                 ...geoFluxRatios,
@@ -62,7 +62,7 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios }) => {
               type="range"
               step={0.1}
               min={0.1}
-              max={10}
+              max={8}
               onChange={(event) =>
                 setGeoFluxRatios({
                   ...geoFluxRatios,
@@ -170,7 +170,7 @@ export const GeoNuSpectrumSource = ({ includeCrust, setIncludeCrust }) => {
       <Card.Body>
         <p>
           Geoneutrino spectra for <sup>238</sup>U, <sup>235</sup>U,{" "}
-          <sup>232</sup>Th, and <sup>40</sup>K from{" "}
+          <sup>232</sup>Th, and <sup>40</sup>K are from{" "}
           <a href="https://www.awa.tohoku.ac.jp/~sanshiro/research/geoneutrino/spectrum/">
             Enomoto Sanshiro
           </a>

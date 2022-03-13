@@ -17,6 +17,7 @@ import { XSAbrev } from '../physics/neutrino-cross-section'
 import {Num} from '.'
 
 import {PhysicsContext} from "../state"
+import bins from "../physics/bins";
 
 const ENUtoNEU = (v) => {
   const v1 = -(v * (Math.PI / 180)) + Math.PI / 2
@@ -82,8 +83,9 @@ const CoreListItem = ({
 
   const downloadFilename = `Antinu_spec10keV_${core.name}_${detector.current}_${XSAbrev[crossSection.crossSection]}_Tmin${crossSection.elasticScatteringTMin.toFixed(1)}MeV.csv`.replace(/\s/g, "_").replace(/\(|\)/g, '')
   const downloadData = {
-    "bin center (MeV)": core.detectorSignal.map((n,i) => 0.005 + i * 0.01),
-    NIU: core.detectorSignal 
+    "bin center (MeV)": bins,
+    NIU: core.detectorSignal,
+    uncertainty: core.detectorUncertainty
   }
   const downloadFormatters = {
     "bin center (MeV)": v => v.toFixed(3),
@@ -134,7 +136,7 @@ const CoreListItem = ({
           Load Factor: <Num v={lf} p={1} func={(v) => v * 100} />%<br />
           Operating Power: {(lf * core.power).toFixed(0)} MW<sub>Th</sub>
           <br />
-          Signal: {core.detectorNIU.toFixed(3)} NIU
+          Signal: <Num v={core.detectorNIU} u={core.detectorNIUUncertainty} p={3}/> NIU
         </Col>
         <Col xl>
           Lat: {core.lat.toFixed(4)} N<br />

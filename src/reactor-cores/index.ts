@@ -1,6 +1,5 @@
 import iaeaDatabase from "./reactor-database/reactors.json";
-import { partialInteractionRate } from "../physics/reactor-antineutrinos";
-import { neutrinoEnergyFor } from "../physics/helpers";
+import { partialInteractionRate, ReactorAntineutrinoModelApp } from "../physics/reactor-antineutrinos";
 import {
   XSNames,
   CrossSection,
@@ -9,6 +8,7 @@ import {
   FISSION_ENERGIES,
   ELEMENTARY_CHARGE,
   Isotopes,
+  IsotopeKeys,
 } from "../physics/constants";
 import { zip, sum } from "lodash";
 import { project } from "ecef-projector";
@@ -24,12 +24,7 @@ const SECONDS_PER_YEAR = 365.25 * 24 * 60 * 60;
 
 const cos_deg = (deg: number) => Math.cos(deg * (Math.PI / 180));
 
-interface ReactorFractions {
-  [Isotopes.U235]: number;
-  [Isotopes.U238]: number;
-  [Isotopes.PU239]: number;
-  [Isotopes.PU241]: number;
-}
+type ReactorFractions = Record<IsotopeKeys, number>
 
 interface FissionFractions extends ReactorFractions {}
 interface PowerFractions extends ReactorFractions {}
@@ -145,25 +140,26 @@ const POWER_FRACTIONS_ALL: {[type: string]: PowerFractions} = {
   ...POWER_FRACTIONS
 }
 
-const spectrumCache: {[index: string]: Float64Array} = {}
+const spectrumCache: {[index: string]: [Float64Array, Float64Array]} = {}
 
-const calcSpectrum = (crossSection:CrossSection, powerFractions: PowerFractions): Float64Array => {
+const calcSpectrum = (crossSection:CrossSection, powerFractions: PowerFractions, reactorAntineutrinoModel:ReactorAntineutrinoModelApp): [Float64Array, Float64Array] => {
   const spectrumCacheKey = JSON.stringify({
     ...powerFractions,
     crossSectionFuncID:crossSection.crossSection,
     esTMim:crossSection.elasticScatteringTMin,
     esTMax:crossSection.elasticScatteringTMax,
+    reactorAntineutrinoModelName:reactorAntineutrinoModel.modelName
   })
   if (spectrumCacheKey in spectrumCache){
     return spectrumCache[spectrumCacheKey]
   }
-  return spectrumCache[spectrumCacheKey] = bins.map((Ev) => {
+  return spectrumCache[spectrumCacheKey] = [bins.map((Ev) => {
     return Object.keys(Isotopes)
       .map((v) => {
         const isotope: Isotopes = v as Isotopes;
         const powerFraction = powerFractions[isotope];
         const fisionEnery = FISSION_ENERGIES[isotope];
-        const neutrinoEnergy = neutrinoEnergyFor(isotope);
+        const neutrinoEnergy = reactorAntineutrinoModel.model[isotope];
         const rate = partialInteractionRate(
           Ev,
           fisionEnery,
@@ -176,7 +172,28 @@ const calcSpectrum = (crossSection:CrossSection, powerFractions: PowerFractions)
         );
       })
       .reduce((previousValue, currentValue) => previousValue + currentValue, 0);
-  });
+  }),
+  bins.map((Ev) => {
+    return Object.keys(Isotopes)
+      .map((v) => {
+        const isotope: Isotopes = v as Isotopes;
+        const powerFraction = powerFractions[isotope];
+        const fisionEnery = FISSION_ENERGIES[isotope];
+        const neutrinoUncertanty = reactorAntineutrinoModel.uncertanty[isotope];
+        const rate = partialInteractionRate(
+          Ev,
+          fisionEnery,
+          crossSection.crossSectionFunction,
+          neutrinoUncertanty
+        );
+
+        return (
+          1e22 * (SECONDS_PER_YEAR / ELEMENTARY_CHARGE) * powerFraction * rate
+        );
+      })
+      .reduce((previousValue, currentValue) => previousValue + currentValue, 0);
+  }),
+];
 }
 
 interface LoadFactor {
@@ -221,8 +238,10 @@ interface ReactorCore {
   lf_cache: { [key: string]: number };
   detectorDistance: number;
   detectorSignal: Float64Array;
+  detectorUncertainty: Float64Array;
   detectorAnySignal: boolean;
   detectorNIU: number;
+  detectorNIUUncertainty: number;
   direction: Direction;
   powerFractions: PowerFractions;
   outputSignal: boolean;
@@ -233,7 +252,8 @@ interface ReactorCore {
     lf: number,
     oscillation: Oscillation,
     crossSection: CrossSection,
-    direction: Direction
+    direction: Direction,
+    reactorAntineutrinoModel: ReactorAntineutrinoModelApp
   ) => ReactorCore;
   loadFactor: (start?: Date, stop?: Date) => number;
   cos: (other: ReactorCore) => number;
@@ -304,9 +324,10 @@ export function ReactorCore({
     lf: number,
     oscillation: Oscillation,
     crossSection: CrossSection,
-    direction: Direction
+    direction: Direction,
+    reactorAntineutrinoModel: ReactorAntineutrinoModelApp
   ): ReactorCore {
-    let spectrum = calcSpectrum(crossSection, this.powerFractions)
+    let [spectrum, spectrumUncertanty] = calcSpectrum(crossSection, this.powerFractions, reactorAntineutrinoModel)
     const power = this.power;
     const distsq = dist ** 2;
 
@@ -320,6 +341,7 @@ export function ReactorCore({
     }
 
     let ESMUTauContirbution = (new Float64Array(bins.length)).fill(0)
+    let ESMUTauContirbution_U = (new Float64Array(bins.length)).fill(0)
 
     if (crossSection.crossSection === XSNames.ESTOTAL) {
       let ESEratio = bins.map(crossSection.crossSectionElectronAntineutrinoFractionES);
@@ -327,8 +349,12 @@ export function ReactorCore({
       ESMUTauContirbution = spectrum.map(
         (spec, idx) => spec * (1 - ESEratio[idx]) * (1 - oscillationFunc[idx])
       );
+      ESMUTauContirbution_U = spectrumUncertanty.map(
+        (spec, idx) => spec * (1 - ESEratio[idx]) * (1 - oscillationFunc[idx])
+      );
 
       spectrum = spectrum.map((spec, idx) => spec * ESEratio[idx]);
+      spectrumUncertanty = spectrumUncertanty.map((spec, idx) => spec * ESEratio[idx]);
     }
 
     const signal = spectrum.map((spec, idx) => {
@@ -338,14 +364,24 @@ export function ReactorCore({
       );
     });
 
+    const uncertainty = spectrumUncertanty.map((spec, idx) => {
+      return (
+        ((spec * oscillationFunc[idx] + ESMUTauContirbution_U[idx]) * power * lf) /
+        distsq
+      );
+    });
+
     const detectorNIU = sum(signal) * binWidth;
+    const detectorNIUuncertainty = sum(uncertainty) * binWidth;
     const detectorAnySignal = detectorNIU > 0;
 
     return {
       ...this,
       detectorSignal: signal,
+      detectorUncertainty: uncertainty,
       detectorDistance: dist,
       detectorNIU: detectorNIU,
+      detectorNIUUncertainty: detectorNIUuncertainty,
       detectorAnySignal: detectorAnySignal,
       direction: direction,
     };
@@ -378,8 +414,10 @@ export function ReactorCore({
     detectorDistance: 0,
     //TODO assumption about bins
     detectorSignal: new Float64Array(binCount).fill(0),
+    detectorUncertainty: new Float64Array(binCount).fill(0),
     detectorAnySignal: false,
     detectorNIU: 0,
+    detectorNIUUncertainty: 0,
     setSignal: setSignal,
     direction: { phi: 0, elev: 0 },
     cos: cos,

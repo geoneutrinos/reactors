@@ -9,8 +9,8 @@ import bins, {binCount, shiftByIBD} from "../physics/bins"
 import {XSNames} from "../physics/neutrino-cross-section"
 
 
-export function NuSpectrumPlot({ cores, spectrum, detector, reactorLF, xaxisExtra={}, yaxisExtra={}, layoutExtra={}, func=(v) => v}) {
-  const { crossSection, oscillation } = useContext(PhysicsContext)
+export function NuSpectrumPlot({ cores, geo, detector, reactorLF, xaxisExtra={}, yaxisExtra={}, layoutExtra={}, func=(v) => v}) {
+  const { crossSection, oscillation, reactorAntineutrinoModel} = useContext(PhysicsContext)
   const isIBD = +[XSNames.IBDSV2003, XSNames.IBDVB1999].includes(
     crossSection.crossSection
   );
@@ -85,47 +85,47 @@ export function NuSpectrumPlot({ cores, spectrum, detector, reactorLF, xaxisExtr
     },
     {
       x: bins,
-      y: func(spectrum.geoU238),
+      y: func(geo.total.U238.spectrum),
       name: "Geo <sup>238</sup>U",
       type: "scatter",
       mode: "lines",
       fill: "tozerox",
       marker: { color: "blue" },
       line: { width: 0.7 },
-      visible: sum(spectrum.geoU238) > 0,
+      visible: geo.total.U238.NIU > 0,
     },
     {
       x: bins,
-      y: func(spectrum.geoU235),
+      y: func(geo.total.U235.spectrum),
       name: "Geo <sup>235</sup>U",
       type: "scatter",
       mode: "lines",
       fill: "tozerox",
       marker: { color: "purple" },
       line: { width: 0.7 },
-      visible: sum(spectrum.geoU235) > 0,
+      visible: geo.total.U235.NIU > 0,
     },
     {
       x: bins,
-      y: func(spectrum.geoTh232),
+      y: func(geo.total.Th232.spectrum),
       name: "Geo <sup>232</sup>Th",
       type: "scatter",
       mode: "lines",
       fill: "tozerox",
       marker: { color: "red" },
       line: { width: 0.7 },
-      visible: sum(spectrum.geoTh232) > 0,
+      visible: geo.total.Th232.NIU > 0,
     },
     {
       x: bins,
-      y: func(spectrum.geoK40_beta),
+      y: func(geo.total.K40Beta.spectrum),
       name: "Geo <sup>40</sup>K (β<sup>-</sup>)",
       type: "scatter",
       mode: "lines",
       fill: "tozerox",
       marker: { color: "yellow" },
       line: { width: 0.7 },
-      visible: sum(spectrum.geoK40_beta) > 0,
+      visible: geo.total.K40Beta.NIU > 0,
     },
   ];
 
@@ -138,7 +138,7 @@ export function NuSpectrumPlot({ cores, spectrum, detector, reactorLF, xaxisExtr
         : detector.current
     } (${detector.lat.toFixed(1)}N, ${detector.lon.toFixed(
       1
-    )}E, ${detector.elevation.toFixed(0)}m)<br /><sub>(Load Factor: avg ${reactorLF.start.toISOString().slice(0, 7)} thru ${reactorLF.end.toISOString().slice(0, 7)} ; Oscillation: NuFit v5.0 ${oscillation.massOrdering})</sub>`,
+    )}E, ${detector.elevation.toFixed(0)}m)<br /><sub>(NuFit v5.0 ${oscillation.massOrdering}; ${reactorAntineutrinoModel.modelName}; ${reactorLF.start.toISOString().slice(0, 7)} thru ${reactorLF.end.toISOString().slice(0, 7)})</sub>`,
     showlegend: true,
     legend: {
       x: 1,

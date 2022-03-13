@@ -44,7 +44,7 @@ export const DownloadButton = ({
   );
 };
 
-export const OutputDownload = ({ cores, spectrum, detector, boron8 }) => {
+export const OutputDownload = ({ cores, geo, detector, boron8 }) => {
   const { crossSection } = useContext(PhysicsContext);
   const { boron8Rate, boron8Ke } = boron8;
 
@@ -63,6 +63,8 @@ export const OutputDownload = ({ cores, spectrum, detector, boron8 }) => {
   const closestName = closestActiveCore?.name || "none";
   const closestSpectrum =
     closestActiveCore?.detectorSignal || new Float32Array(binCount).fill(0);
+  const closestSpectrumU =
+    closestActiveCore?.detectorUncertainty || new Float32Array(binCount).fill(0);
 
   // custom cores
   const customClosestName = closestCustomCore?.name || "";
@@ -79,7 +81,13 @@ export const OutputDownload = ({ cores, spectrum, detector, boron8 }) => {
   const totalIAEA = zip(...iaeaCores.map((c) => c.detectorSignal)).map((s) =>
     sum(s)
   );
+  const totalIAEAU = zip(...iaeaCores.map((c) => c.detectorUncertainty)).map((s) =>
+    sum(s)
+  );
   const totalCustom = zip(...customCores.map((c) => c.detectorSignal)).map(
+    (s) => sum(s)
+  );
+  const totalCustomU = zip(...customCores.map((c) => c.detectorUncertainty)).map(
     (s) => sum(s)
   );
 
@@ -87,23 +95,30 @@ export const OutputDownload = ({ cores, spectrum, detector, boron8 }) => {
     customClosestName === ""
       ? {}
       : {
-          "custom cores": totalCustom,
+          "custom cores (NIU/MeV)": totalCustom,
+          "custom cores uncertainty (NIU/MeV)": totalCustomU,
         };
 
   const downloadData = {
     "bin center (MeV)": bins,
     "IAEA cores (NIU/MeV)": totalIAEA,
+    "IAEA cores uncertainty (NIU/MeV)": totalIAEAU,
     [`closest IAEA Core- ${closestName} (NIU/MeV)`]: closestSpectrum,
+    [`closest IAEA Core- ${closestName} uncertainty (NIU/MeV)`]: closestSpectrumU,
     selectedCores: selectedCoresData,
     backgroundCores: backgroundCoresData,
     ...customCoreData,
   };
   const downloadGeoData = {
     "bin center (MeV)": bins,
-    "geo238U (NIU/MeV)": spectrum.geoU238,
-    "geo235U (NIU/MeV)": spectrum.geoU235,
-    "geo232Th (NIU/MeV)": spectrum.geoTh232,
-    "geo40K_beta (NIU/MeV)": spectrum.geoK40_beta,
+    "geo238U (NIU/MeV)": geo.total.U238.spectrum,
+    "geo238U uncertainty (NIU/MeV)": geo.total.U238.spectrumUncertainty,
+    "geo235U (NIU/MeV)": geo.total.U235.spectrum,
+    "geo235U uncertainty (NIU/MeV)": geo.total.U235.spectrumUncertainty,
+    "geo232Th (NIU/MeV)": geo.total.Th232.spectrum,
+    "geo232Th uncertainty (NIU/MeV)": geo.total.Th232.spectrumUncertainty,
+    "geo40K_beta (NIU/MeV)": geo.total.K40Beta.spectrum,
+    "geo40K_beta uncertainty (NIU/MeV)": geo.total.K40Beta.spectrumUncertainty,
   };
   const downloadFormatters = {
     "bin center (MeV)": (v) => v.toFixed(3),
@@ -128,8 +143,10 @@ export const OutputDownload = ({ cores, spectrum, detector, boron8 }) => {
   if (
     [XSNames.IBDSV2003, XSNames.IBDVB1999].includes(crossSection.crossSection)
   ) {
-    delete downloadGeoData.geo40K_beta;
-    delete downloadGeoData.geo235U;
+    delete downloadGeoData["geo40K_beta (NIU/MeV)"]
+    delete downloadGeoData["geo40K_beta uncertainty (NIU/MeV)"]
+    delete downloadGeoData["geo235U (NIU/MeV)"]
+    delete downloadGeoData["geo235U uncertainty (NIU/MeV)"]
   }
 
   if (sum(selectedCoresData) === 0) {
@@ -175,6 +192,11 @@ export const OutputDownload = ({ cores, spectrum, detector, boron8 }) => {
           filename={downloadGeoFilename}
           buttonTitle={"GeoNu"}
         />
+        <small>
+          <br />
+          Downloaded reactor antineutrino and geoneutrino spectra include energy-dependent uncertainties. Uncertainties of
+          the solar neutrino spectrum herein do not depend on energy and are not included in the downloaded file.
+        </small>
       </Card.Body>
     </Card>
   );

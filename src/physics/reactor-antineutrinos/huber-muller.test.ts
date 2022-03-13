@@ -1,5 +1,4 @@
-import {neutrinoEnergy} from './reactor-antineutrinos'
-import { V_FIT_PARAMS } from './constants'
+import { V_FIT_PARAMS, neutrinoEnergy } from './huber-muller'
 
 // These are the values in Table 1 of Strumia & Vissani 2003
 describe.each([

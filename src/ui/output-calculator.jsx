@@ -19,6 +19,16 @@ const getCoreSums = (cores, min_i, max_i, low_i) => {
   return [lowSum + highSum, lowSum, highSum];
 };
 
+const getCoreUncertainties = (cores, min_i, max_i, low_i) => {
+  const lowSum = sum(
+    cores.map((core) => sum(core.detectorUncertainty.slice(min_i, Math.min(low_i, max_i))) * 0.01)
+  );
+  const highSum = sum(
+    cores.map((core) => sum(core.detectorUncertainty.slice(Math.max(low_i, min_i), max_i)) * 0.01)
+  );
+  return [lowSum + highSum, lowSum, highSum];
+};
+
 const effFunc = (eV, Emax, rampUp, turnOn) => {
   return Emax / (1 + Math.exp(-rampUp * (eV - turnOn)))
 }
@@ -39,7 +49,7 @@ const detectorEfficiency = (
   );
 };
 
-export const CalculatorPanel = ({ cores, spectrum }) => {
+export const CalculatorPanel = ({ cores, geo }) => {
   const [signal, setSignal] = useState("selected");
   const [solveFor, setSolveFor] = useState("significance");
   const [eMin, setEMin] = useState(0.0);
@@ -47,15 +57,16 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
   const [time, setTime] = useState(1.0);
   const [sigma, setSigma] = useState(3.0);
   // eslint-disable-next-line no-unused-vars
-  const [deltaGeoNu, setDeltaGeoNu] = useState(0.25);
   const [bkgnuisance, setBkgnuisance] = useState(0);
+  // eslint-disable-next-line no-unused-vars
+  const [evtthreshold, setEvtthreshold] = useState(10);
   // eslint-disable-next-line no-unused-vars
   const [deltaBkgnuisance, setDeltaBkgnuisance] = useState(0.5);
   // eslint-disable-next-line no-unused-vars
-  const [deltaReactorsHighE, setDeltaReactorsHighE] = useState(0.06);
+  //const [deltaReactorsHighE, setDeltaReactorsHighE] = useState(0.06);
   // Use this systematic uncertainty on reactor signal less than E_thresh
   // eslint-disable-next-line no-unused-vars
-  const [deltaReactorsLowE, setDeltaReactorsLowE] = useState(0.3);
+  //const [deltaReactorsLowE, setDeltaReactorsLowE] = useState(0.3);
   // detection efficiency function parameters
   const [effMax, setEffMax] = useState(1.0);
   const [enerStart, setEnerStart] = useState(
@@ -148,7 +159,20 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
       setBkgnuisance(bkg_nuisance);
     }
   };
-
+  
+  const UIsetEvtThreshold = (event) => {
+    const value = event.target.value;
+    let evt_threshold = parseFloat(value);
+    if (isNaN(evt_threshold)) {
+      setEvtthreshold(value);
+    } else {
+      if (evt_threshold < 2) {
+        evt_threshold = 2;
+      }
+      setEvtthreshold(evt_threshold);
+    }
+  };
+  
   const UIsetEMin = (event) => {
     const value = event.target.value;
     let stateEmin = parseFloat(IBD_THRESHOLD.toFixed(1)) * isIBD;
@@ -274,6 +298,13 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
         core.detectorSignal,
         !isIBD
       ),
+      detectorUncertainty: detectorEfficiency(
+        effMax,
+        rampUp,
+        enerStart,
+        core.detectorUncertainty,
+        !isIBD
+      ),
     };
   });
 
@@ -292,6 +323,11 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
   const [totalCoreSignal, totalCoreSignalLow, totalCoreSignalHigh] =
     getCoreSums(coreList, min_i, max_i, low_i);
 
+  const [,totalCoreUncertaintyLow,totalCoreUncertaintyHigh] = 
+    getCoreUncertainties(coreList, min_i, max_i, low_i);
+  const deltaReactorsHighE = totalCoreSignalHigh > 0? totalCoreUncertaintyHigh / totalCoreSignalHigh: 0;
+  const deltaReactorsLowE = totalCoreSignalLow > 0? totalCoreUncertaintyLow / totalCoreSignalLow :0;
+
   const selectedCores = coreList.filter(core => core.outputSignal)
   const [selectedCoreSignal, selectedCoreSignalLow, selectedCoreSignalHigh] =
     getCoreSums(selectedCores, min_i, max_i, low_i);
@@ -304,35 +340,33 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
   const [customTotalSignal, customTotalSignalLow, customTotalSignalHigh] =
     getCoreSums(customCores, min_i, max_i, low_i);
 
-  const geoU238NIU =
-    sum(
-      detectorEfficiency(effMax, rampUp, enerStart, spectrum.geoU238, !isIBD).slice(
+  const geoLevels = new Set(["total", "crust", "mantle"])
+  const geoIsotopes = new Set(["U238", "U235", "Th232", "K40Beta"])
+  const geoCalc = {}
+  for (let level of geoLevels){
+    geoCalc[level] = {
+      NIU: 0,
+      NIUUncertainty: 0,
+    }
+    for (let isotope of geoIsotopes){
+      geoCalc[level][isotope] = {
+        NIU: sum(
+      detectorEfficiency(effMax, rampUp, enerStart, geo[level][isotope].spectrum, !isIBD).slice(
         min_i,
         max_i
       )
-    ) * 0.01;
-  const geoU235NIU =
-    sum(
-      detectorEfficiency(effMax, rampUp, enerStart, spectrum.geoU235, !isIBD).slice(
+    ) * 0.01,
+    NIUUncertainty: sum(
+      detectorEfficiency(effMax, rampUp, enerStart, geo[level][isotope].spectrumUncertainty, !isIBD).slice(
         min_i,
         max_i
       )
-    ) * 0.01;
-  const geoTh232NIU =
-    sum(
-      detectorEfficiency(effMax, rampUp, enerStart, spectrum.geoTh232, !isIBD).slice(
-        min_i,
-        max_i
-      )
-    ) * 0.01;
-  const geoK40betaNIU =
-    sum(
-      detectorEfficiency(effMax, rampUp, enerStart, spectrum.geoK40_beta, !isIBD).slice(
-        min_i,
-        max_i
-      )
-    ) * 0.01;
-  const geoTotalNIU = geoU238NIU + geoTh232NIU + geoK40betaNIU + geoU235NIU;
+    ) * 0.01,
+      }
+    geoCalc[level].NIU += geoCalc[level][isotope].NIU
+    geoCalc[level].NIUUncertainty += geoCalc[level][isotope].NIUUncertainty
+    }
+  }
 
   // for now assume a flat spectrum with maximum energy of 10 MeV
   const bkgNuisanceNIU =
@@ -344,98 +378,125 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
 
   if (signal === "selected") {
     UIsignal = selectedCoreSignal;
-    UIbackground = geoTotalNIU + bkgNuisanceNIU + totalCoreSignal - selectedCoreSignal;
-    UIBackgroundUncertainty = Math.sqrt(
-      (geoTotalNIU * deltaGeoNu) ** 2 +
-        (bkgNuisanceNIU * deltaBkgnuisance) ** 2 +
-        ((totalCoreSignalHigh - selectedCoreSignalHigh) * deltaReactorsHighE) ** 2 +
-        ((totalCoreSignalLow - selectedCoreSignalLow) * deltaReactorsLowE) ** 2
+    UIbackground = geoCalc.total.NIU + bkgNuisanceNIU + totalCoreSignal - selectedCoreSignal;
+    UIBackgroundUncertainty = Math.hypot(
+      (geoCalc.total.NIUUncertainty),
+        (bkgNuisanceNIU * deltaBkgnuisance),
+        ((totalCoreSignalHigh - selectedCoreSignalHigh) * deltaReactorsHighE),
+        ((totalCoreSignalLow - selectedCoreSignalLow) * deltaReactorsLowE)
     );
   }
   if (signal === "all") {
     UIsignal = totalCoreSignal;
-    UIbackground = geoTotalNIU + bkgNuisanceNIU;
-    UIBackgroundUncertainty = Math.sqrt(
-      (geoTotalNIU * deltaGeoNu) ** 2 + (bkgNuisanceNIU * deltaBkgnuisance) ** 2
+    UIbackground = geoCalc.total.NIU + bkgNuisanceNIU;
+    UIBackgroundUncertainty = Math.hypot(
+      (geoCalc.total.NIUUncertainty), 
+      (bkgNuisanceNIU * deltaBkgnuisance)
+    );
+  }
+  if (signal === "antinus") {
+    UIsignal = totalCoreSignal + geoCalc.total.NIU;
+    UIbackground = bkgNuisanceNIU;
+    UIBackgroundUncertainty = ( 
+      bkgNuisanceNIU * deltaBkgnuisance
     );
   }
   if (signal === "closest") {
     UIsignal = closestNIU;
-    UIbackground = geoTotalNIU + bkgNuisanceNIU + totalCoreSignal - closestNIU;
-    UIBackgroundUncertainty = Math.sqrt(
-      (geoTotalNIU * deltaGeoNu) ** 2 +
-        (bkgNuisanceNIU * deltaBkgnuisance) ** 2 +
-        ((totalCoreSignalHigh - closestHighNIU) * deltaReactorsHighE) ** 2 +
-        ((totalCoreSignalLow - closestLowNIU) * deltaReactorsLowE) ** 2
+    UIbackground = geoCalc.total.NIU + bkgNuisanceNIU + totalCoreSignal - closestNIU;
+    UIBackgroundUncertainty = Math.hypot(
+      (geoCalc.total.NIUUncertainty),
+        (bkgNuisanceNIU * deltaBkgnuisance),
+        ((totalCoreSignalHigh - closestHighNIU) * deltaReactorsHighE),
+        ((totalCoreSignalLow - closestLowNIU) * deltaReactorsLowE)
     );
   }
   if (signal === "custom") {
     UIsignal = customTotalSignal;
     UIbackground =
-      geoTotalNIU + bkgNuisanceNIU + totalCoreSignal - customTotalSignal;
-    UIBackgroundUncertainty = Math.sqrt(
-      (geoTotalNIU * deltaGeoNu) ** 2 +
-        (bkgNuisanceNIU * deltaBkgnuisance) ** 2 +
-        ((totalCoreSignalHigh - customTotalSignalHigh) * deltaReactorsHighE) **
-          2 +
-        ((totalCoreSignalLow - customTotalSignalLow) * deltaReactorsLowE) ** 2
+    geoCalc.total.NIU + bkgNuisanceNIU + totalCoreSignal - customTotalSignal;
+    UIBackgroundUncertainty = Math.hypot(
+      (geoCalc.total.NIUUncertainty),
+        (bkgNuisanceNIU * deltaBkgnuisance),
+        ((totalCoreSignalHigh - customTotalSignalHigh) * deltaReactorsHighE),
+        ((totalCoreSignalLow - customTotalSignalLow) * deltaReactorsLowE),
     );
   }
   if (signal === "geoneutrino") {
     UIbackground = totalCoreSignal + bkgNuisanceNIU;
-    UIsignal = geoTotalNIU;
-    UIBackgroundUncertainty = Math.sqrt(
-      (totalCoreSignalHigh * deltaReactorsHighE) ** 2 +
-        (totalCoreSignalLow * deltaReactorsLowE) ** 2 +
-        (bkgNuisanceNIU * deltaBkgnuisance) ** 2
+    UIsignal = geoCalc.total.NIU;
+    UIBackgroundUncertainty = Math.hypot(
+      (totalCoreSignalHigh * deltaReactorsHighE),
+        (totalCoreSignalLow * deltaReactorsLowE),
+        (bkgNuisanceNIU * deltaBkgnuisance),
+    );
+  }
+  if (signal === "geo_crust") {
+    UIbackground = totalCoreSignal + bkgNuisanceNIU + geoCalc.mantle.NIU;
+    UIsignal = geoCalc.crust.NIU;
+    UIBackgroundUncertainty = Math.hypot(
+      (geoCalc.mantle.NIUUncertainty),
+      (totalCoreSignalHigh * deltaReactorsHighE),
+        (totalCoreSignalLow * deltaReactorsLowE),
+        (bkgNuisanceNIU * deltaBkgnuisance),
+    );
+  }
+  if (signal === "geo_mantle") {
+    UIbackground = totalCoreSignal + bkgNuisanceNIU + geoCalc.crust.NIU;
+    UIsignal = geoCalc.mantle.NIU;
+    UIBackgroundUncertainty = Math.hypot(
+      (geoCalc.crust.NIUUncertainty),
+      (totalCoreSignalHigh * deltaReactorsHighE),
+        (totalCoreSignalLow * deltaReactorsLowE),
+        (bkgNuisanceNIU * deltaBkgnuisance),
     );
   }
   if (signal === "geo_u8") {
-    UIbackground = totalCoreSignal + bkgNuisanceNIU + geoTotalNIU - geoU238NIU;
-    UIsignal = geoU238NIU;
-    UIBackgroundUncertainty = Math.sqrt(
-      ((geoTotalNIU - geoU238NIU) * deltaGeoNu) ** 2 +
-        (bkgNuisanceNIU * deltaBkgnuisance) ** 2 +
-        (totalCoreSignalHigh * deltaReactorsHighE) ** 2 +
-        (totalCoreSignalLow * deltaReactorsLowE) ** 2
+    UIbackground = totalCoreSignal + bkgNuisanceNIU + geoCalc.total.NIU - geoCalc.total.U238.NIU;
+    UIsignal = geoCalc.total.U238.NIU;
+    UIBackgroundUncertainty = Math.hypot(
+      (geoCalc.total.NIUUncertainty - geoCalc.total.U238.NIUUncertainty),
+        (bkgNuisanceNIU * deltaBkgnuisance),
+        (totalCoreSignalHigh * deltaReactorsHighE),
+        (totalCoreSignalLow * deltaReactorsLowE),
     );
   }
   if (signal === "geo_th") {
-    UIbackground = totalCoreSignal + bkgNuisanceNIU + geoTotalNIU - geoTh232NIU;
-    UIsignal = geoTh232NIU;
-    UIBackgroundUncertainty = Math.sqrt(
-      ((geoTotalNIU - geoTh232NIU) * deltaGeoNu) ** 2 +
-        (bkgNuisanceNIU * deltaBkgnuisance) ** 2 +
-        (totalCoreSignalHigh * deltaReactorsHighE) ** 2 +
-        (totalCoreSignalLow * deltaReactorsLowE) ** 2
+    UIbackground = totalCoreSignal + bkgNuisanceNIU + geoCalc.total.NIU - geoCalc.total.Th232.NIU;
+    UIsignal = geoCalc.total.Th232.NIU;
+    UIBackgroundUncertainty = Math.hypot(
+      (geoCalc.total.NIUUncertainty - geoCalc.total.Th232.NIUUncertainty),
+        (bkgNuisanceNIU * deltaBkgnuisance),
+        (totalCoreSignalHigh * deltaReactorsHighE),
+        (totalCoreSignalLow * deltaReactorsLowE),
     );
   }
   if (signal === "geo_k") {
     UIbackground =
-      totalCoreSignal + bkgNuisanceNIU + geoTotalNIU - geoK40betaNIU;
-    UIsignal = geoK40betaNIU;
-    UIBackgroundUncertainty = Math.sqrt(
-      ((geoTotalNIU - geoK40betaNIU) * deltaGeoNu) ** 2 +
-        (bkgNuisanceNIU * deltaBkgnuisance) ** 2 +
-        (totalCoreSignalHigh * deltaReactorsHighE) ** 2 +
-        (totalCoreSignalLow * deltaReactorsLowE) ** 2
+      totalCoreSignal + bkgNuisanceNIU + geoCalc.total.NIU - geoCalc.total.K40Beta.NIU;
+    UIsignal = geoCalc.total.K40Beta.NIU;
+    UIBackgroundUncertainty = Math.hypot(
+      (geoCalc.total.NIUUncertainty - geoCalc.total.K40Beta.NIUUncertainty),
+        (bkgNuisanceNIU * deltaBkgnuisance),
+        (totalCoreSignalHigh * deltaReactorsHighE),
+        (totalCoreSignalLow * deltaReactorsLowE),
     );
   }
   if (signal === "geo_u5") {
-    UIbackground = totalCoreSignal + bkgNuisanceNIU + geoTotalNIU - geoU235NIU;
-    UIsignal = geoU235NIU;
-    UIBackgroundUncertainty = Math.sqrt(
-      ((geoTotalNIU - geoU235NIU) * deltaGeoNu) ** 2 +
-        (bkgNuisanceNIU * deltaBkgnuisance) ** 2 +
-        (totalCoreSignalHigh * deltaReactorsHighE) ** 2 +
-        (totalCoreSignalLow * deltaReactorsLowE) ** 2
+    UIbackground = totalCoreSignal + bkgNuisanceNIU + geoCalc.total.NIU - geoCalc.total.U235.NIU;
+    UIsignal = geoCalc.total.U235.NIU;
+    UIBackgroundUncertainty = Math.hypot(
+      (geoCalc.total.NIUUncertainty - geoCalc.total.U235.NIUUncertainty),
+        (bkgNuisanceNIU * deltaBkgnuisance),
+        (totalCoreSignalHigh * deltaReactorsHighE),
+        (totalCoreSignalLow * deltaReactorsLowE),
     );
   }
 
   let UITime = time;
   let UISigma = sigma;
   let UIExposureNever = false;
-  let UITotalUnderTwo = false;
+  let UITotalUnderThreshold = false;
 
   if (solveFor === "exposure") {
     UITime =
@@ -444,8 +505,8 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
     if (sigma * UIBackgroundUncertainty >= UIsignal) {
       UIExposureNever = true;
     }
-    if (UITime >= 0 && (UIsignal + UIbackground) * UITime < 2) {
-      UITotalUnderTwo = true;
+    if (UITime >= 0 && (UIsignal + UIbackground) * UITime < evtthreshold) {
+      UITotalUnderThreshold = true;
     }
     UITime = UITime.toFixed(4);
   }
@@ -456,9 +517,35 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
       Math.sqrt(
         (UIsignal + UIbackground) * time + (UIBackgroundUncertainty * time) ** 2
       );
-    if ((UIsignal + UIbackground) * time < 2) {
+    if ((UIsignal + UIbackground) * time < evtthreshold) {
       UISigma = 0;
-      UITotalUnderTwo = true;
+      UITotalUnderThreshold = true;
+    }
+    UISigma = UISigma.toFixed(3);
+  }
+  
+  if (solveFor === "exposure_h0") {
+    UITime =
+      (sigma ** 2 * UIbackground) /
+      (UIsignal ** 2 - sigma ** 2 * UIBackgroundUncertainty ** 2);
+    if (sigma * UIBackgroundUncertainty >= UIsignal) {
+      UIExposureNever = true;
+    }
+    if (UITime >= 0 && UIbackground * UITime < evtthreshold) {
+      UITotalUnderThreshold = true;
+    }
+    UITime = UITime.toFixed(4);
+  }
+
+  if (solveFor === "significance_h0") {
+    UISigma =
+      (UIsignal * time) /
+      Math.sqrt(
+        (UIbackground) * time + (UIBackgroundUncertainty * time) ** 2
+      );
+    if (UIbackground * time < evtthreshold) {
+      UISigma = 0;
+      UITotalUnderThreshold = true;
     }
     UISigma = UISigma.toFixed(3);
   }
@@ -483,7 +570,7 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
             <small>The numbers of detected signal <i>S</i> and background <i>B</i> events are the integrals of the respective rate spectra multiplied by the detector exposure. 
                    The currently selected cross section is {crossSection.crossSection}. 
                    If IBD, <i>S</i> is modified by the detection efficiency.
-                   If ES, <i>S</i> is modified by the selected range of the scattered charged lepton kinetic energy, which is currently from {crossSection.elasticScatteringTMin.toFixed(1)} to {crossSection.elasticScatteringTMax.toFixed(1)} MeV.</small>
+                   If ES, <i>S</i> is modified by the selected range of the scattered electron kinetic energy, which is currently from {crossSection.elasticScatteringTMin.toFixed(1)} to {crossSection.elasticScatteringTMax.toFixed(1)} MeV.</small>
             <Table>
               <tbody>
               <tr>
@@ -517,7 +604,14 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
                   Custom Core (geoneutrinos + IAEA cores)
                 </option>
                 <option value="all">All Cores (geoneutrinos)</option>
-                <option value="geoneutrino">Geoneutrino (reactors)</option>
+                <option value="antinus">Antineutrinos (non-antineutrino)</option>
+                <option value="geoneutrino">Geoneutrinos (reactors)</option>
+                <option value="geo_crust">
+                  Crust geoneutrinos (reactors + mantle geoneutrinos)
+                </option>
+                <option value="geo_mantle">
+                  Mantle geoneutrinos (reactors + crust geoneutrinos)
+                </option>
                 <option value="geo_u8">
                   Geoneutrino U238 (reactors + other geoneutrino isotopes)
                 </option>
@@ -536,11 +630,15 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
             <Form.Group controlId="solve_for">
               <Form.Label>Solve For</Form.Label>
               <Form.Control as="select" onChange={UIsetSelect} value={solveFor}>
-                <option value="exposure">Exposure</option>
-                <option value="significance">Significance</option>
+                <option value="exposure_h0">Exposure- Null hypothesis</option>
+                <option value="significance_h0">Significance- Null hypothesis</option>
+                <option value="exposure">Exposure- Alternative hypothesis</option>
+                <option value="significance">Significance- Alternative hypothesis</option>
               </Form.Control>
             </Form.Group>
 
+        <Row>
+          <Col>
             <Form.Group controlId="bkg_nuisance">
               <Form.Label>Nuisance Background Rate</Form.Label>
               <InputGroup>
@@ -557,7 +655,23 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
                 </InputGroup.Append>
               </InputGroup>
             </Form.Group>
-
+          </Col>
+          <Col>
+             <Form.Group controlId="evt_threshold">
+              <Form.Label>Event Threshold</Form.Label>
+              <InputGroup>
+                <InputGroup.Prepend>
+                  <InputGroup.Text><i>N</i><sub>events</sub></InputGroup.Text>
+                </InputGroup.Prepend>
+                <Form.Control
+                  onChange={UIsetEvtThreshold}
+                  type="number"
+                  value={evtthreshold}
+                />
+              </InputGroup>
+            </Form.Group>
+          </Col>
+        </Row>
         <Row>
           <Col>
             <Form.Group controlId="e_min">
@@ -641,14 +755,14 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
                   <InputGroup.Text><i>N<sub>σ</sub></i></InputGroup.Text>
                 </InputGroup.Prepend>
               <Form.Control
-                  isInvalid={UITotalUnderTwo}
+                  isInvalid={UITotalUnderThreshold}
                   onChange={UIsetSigma}
                   type="number"
                   step="0.1"
                   value={UISigma}
                 />
                 <Form.Control.Feedback type="invalid">
-                  Total number of events is less than 2
+                  Events below threshold 
                 </Form.Control.Feedback>
               </InputGroup>
             </Form.Group>
@@ -735,36 +849,33 @@ export const CalculatorPanel = ({ cores, spectrum }) => {
             </Visible>
           <div>
             <br />
-            <b> Significance Calculation</b><br />
-            <p> The significance of the background-subtracted number of signal events <i>S</i> depends 
-            on the systematic uncertainty of the estimated number of background events{" "}
-            <Node inline>{String.raw`\delta B`}</Node> and
-            the statistical uncertainty of the total number of candidate events{" "}
-            <Node inline>{String.raw`\sqrt{S + B}.`}</Node> In terms of the detector exposure{" "}
-            <Node inline>{String.raw`\xi,`}</Node> the significance is given by 
-            <Node>{String.raw`N_{\sigma} = \frac{ s * \xi }{\sqrt{(s + b) * \xi + (\delta b * \xi )^2}},`}</Node>{" "}
-            where <Node inline>{String.raw`s`}</Node> is the signal rate,{" "}
-            <Node inline>{String.raw`b`}</Node> is the background rate, and{" "}
-            <Node inline>{String.raw`\delta b`}</Node> is the systematic uncertainty of the background rate.
-            The fractional systematic uncetainty of the estimated reactor rate is 
-            0.06 (0.3) for antineutrino energy above (below) the IBD threshold, while for the 
-            estimated geoneutrino rate and nuisance background rate it is 0.25 and 0.5, respectively. 
-            The nuisance background energy spectrum is flat.
+            <b> Significance Calculations</b><br />
+            <p> The optional significance statistics are expressed in terms of{" "}
+            <Node inline>{String.raw`\xi`}</Node> the detector exposure,{" "}
+            <Node inline>{String.raw`s\; (= S / \xi)`}</Node> the signal rate,{" "}
+            <Node inline>{String.raw`b\; (= B / \xi)`}</Node> the background rate, and{" "}
+            <Node inline>{String.raw`\delta b`}</Node> the systematic uncertainty of the background rate. 
+            Reactor antineutrinos and geoneutrinos have systematic uncertainties that depend on the selected input data.
+            The nuisance background has a fixed fractional uncertainty of 0.5 and a flat energy spectrum.
             </p>
-            <p>
+            <br /> 
+            <i> Null Hypothesis- H<sub>0</sub></i><br />
+            <Node>{String.raw`N_{\sigma} = \frac{ s * \xi }{\sqrt{b * \xi + (\delta b * \xi )^2}}`}</Node>{" "}
+            <br />
+            <i> Alternative Hypothesis- H<sub>1</sub></i><br />  
+            <Node>{String.raw`N_{\sigma} = \frac{ s * \xi }{\sqrt{(s + b) * \xi + (\delta b * \xi )^2}}`}</Node>{" "}
+            <br />
             <b> IBD Detection Efficiency</b><br />
-            When expressed as a function of antineutrino energy <i>E</i>, the detection efficiency is
-            valid for IBD only. Here it is approximated by
+            <p> When expressed as a function of antineutrino energy <i>E</i>, the detection efficiency is
+            valid for IBD only. Here it is approximated by a sigmoid curve{" "}
             <Node>{String.raw`\varepsilon (E) = \frac {\varepsilon_\mathrm{max}} {1 + \exp(-\rho * (E - E_\mathrm{HM}))},`}</Node>{" "}
-            where <Node inline>{String.raw`\varepsilon_\mathrm{max}`}</Node> sets
-            the maximum detection efficiency,{" "}
-            <Node inline>{String.raw`E_\mathrm{HM}`}</Node> is
-            the energy at half the maximum efficiency, and{" "}
-            <Node inline>{String.raw`\rho`}</Node> controls
-            the rate the efficiency ramps up. 
-            For monolithic detectors of Cherenkov and/or scintillation light the values of these parameters depend on the
-            photosensitive surface and the target liquid. 
-            A conversion of the detection efficiency from a function of antineutrino energy to a function of scattered charged lepton kinetic energy is in the works.
+            where <Node inline>{String.raw`\varepsilon_\mathrm{max}`}</Node> is the asymptote at infinite energy 
+            (maximum detection efficiency),{" "}
+            <Node inline>{String.raw`E_\mathrm{HM}`}</Node> is the inflection point energy 
+            (energy at one-half of the maximum efficiency), and{" "}
+            <Node inline>{String.raw`\rho`}</Node> is the slope 
+            (efficiency ramp-up rate).
+            Conversion of the detection efficiency from a function of antineutrino energy to a function of scattered charged particle kinetic energy is a planned upgrade.
             </p>
           </div>
         </Provider>

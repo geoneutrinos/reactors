@@ -36,7 +36,7 @@ export const ParticleMasses = () => {
                   {ELECTRON_REST_MASS}
                 </td>
                 <td>
-                  {IBD_THRESHOLD.toFixed(6)}
+                  {IBD_THRESHOLD}
                 </td>
               </tr>
             </tbody>
