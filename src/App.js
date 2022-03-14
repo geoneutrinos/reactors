@@ -23,6 +23,7 @@ import {
   GeoNuSpectrumSource,
   IsotopeHalfLives,
   //Direction Tab
+  AnalemmaPlot,
   CoreDirectionPlot,
   CoreDirectionSignalPlots,
   //IBD/ES Tab
@@ -51,7 +52,6 @@ import {
   CDFAngularDifferentialCrossSectionPlotsNeutrinos,
   Boron8KEPlot,
   Boron8SpectraPlot,
-  AnalemmaPlot,
   CrossSectionPlotsNormal,
 
   // Custom Core UI
@@ -276,7 +276,6 @@ function App(props) {
               </Tab>
               <Tab eventKey="solarnu" title="SolarNu">
                 <Visible>
-                  <AnalemmaPlot boron8={boron8} detector={detector} cores={cores} reactorLF={reactorLF} />
                   <Boron8SpectraPlot boron8={boron8} reactorLF={reactorLF} />
                   <Boron8KEPlot boron8={boron8} />
                   <CrossSectionPlotsNormal />
@@ -288,6 +287,7 @@ function App(props) {
               </Tab>
               <Tab eventKey="directionality" title="Direction">
                 <Visible>
+                  <AnalemmaPlot boron8={boron8} detector={detector} cores={cores} reactorLF={reactorLF} />
                   <CoreDirectionPlot cores={cores} detector={detector} />
                   <CoreDirectionSignalPlots
                     cores={cores}
