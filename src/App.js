@@ -10,12 +10,10 @@ import {
   // Right Pane
   NuSpectrumPlot,
   // Detector Tab
-  CoreDirectionPlot,
   StatsPanel,
   DetectorLocationPane,
   //Reactors Tab
   RASwitcher,
-  CoreDirectionSignalPlots,
   CoreIAEARange,
   CoreList,
   //GeuNu Tab
@@ -24,6 +22,9 @@ import {
   GeoFluxUncertainties,
   GeoNuSpectrumSource,
   IsotopeHalfLives,
+  //Direction Tab
+  CoreDirectionPlot,
+  CoreDirectionSignalPlots,
   //IBD/ES Tab
   DetectorPhysicsPane,
   CrossSectionPlots,
@@ -219,7 +220,6 @@ function App(props) {
               <Tab eventKey="detector" title="Detector">
                 <Visible>
                   <StatsPanel cores={cores} geo={geo} reactorLF={reactorLF}/>
-                  <CoreDirectionPlot cores={cores} detector={detector} />
                   <DetectorLocationPane
                     detector={detector}
                     setDetector={setDetector}
@@ -244,13 +244,6 @@ function App(props) {
                   setCustomCores={setCustomCores}
                   close={() => setManCustomModal(false)}
                 />
-                <Visible>
-                  <CoreDirectionSignalPlots
-                    cores={cores}
-                    detector={detector}
-                    reactorLF={reactorLF}
-                  />
-                </Visible>
                 <CoreIAEARange
                   reactorLF={reactorLF}
                   setReactorLF={setReactorLF}
@@ -291,6 +284,16 @@ function App(props) {
                   <CDFdifferentialCrossSectionPlotsNeutrinos />
                   <AngularDifferentialCrossSectionPlotsNeutrinos />
                   <CDFAngularDifferentialCrossSectionPlotsNeutrinos />
+                </Visible>
+              </Tab>
+              <Tab eventKey="directionality" title="Direction">
+                <Visible>
+                  <CoreDirectionPlot cores={cores} detector={detector} />
+                  <CoreDirectionSignalPlots
+                    cores={cores}
+                    detector={detector}
+                    reactorLF={reactorLF}
+                  />
                 </Visible>
               </Tab>
               <Tab eventKey="ibd/es" title="IBD/ES">
