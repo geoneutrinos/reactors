@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { range } from "lodash";
-import { Form, InputGroup, Card, Row, Col } from "react-bootstrap";
+import { Form, Card, Row, Col } from "react-bootstrap";
 
 const years = range(2003, 2020);
 const months = range(1, 13);
@@ -63,10 +63,6 @@ export const CoreIAEARange = ({
         <Row>
           <Col>
             <Form.Group controlId="startYear">
-              <InputGroup>
-                <InputGroup.Prepend>
-                  <InputGroup.Text>Start Date</InputGroup.Text>
-                </InputGroup.Prepend>
                 <Form.Control
                   onChange={handleChange}
                   as="select"
@@ -74,7 +70,6 @@ export const CoreIAEARange = ({
                 >
                   {yearOptions}
                 </Form.Control>
-              </InputGroup>
             </Form.Group>
           </Col>
          <Col>
