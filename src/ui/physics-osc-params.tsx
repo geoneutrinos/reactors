@@ -70,6 +70,11 @@ export const PhysicsOscillationPane = () => {
             </tr>
           </tbody>
         </Table>
+        <p>
+          NO: Normal mass ordering (m<sub>3</sub> {">"} m<sub>2</sub> {">"} m<sub>1</sub>)
+          <br />
+          IO: Inverted mass ordering (m<sub>2</sub> {">"} m<sub>1</sub> {">"} m<sub>3</sub>)
+        </p>
       </Card.Body>
     </Card>
   );
