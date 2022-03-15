@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { range } from "lodash";
-import { Form, Card } from "react-bootstrap";
+import { Form, Card, Row, Col } from "react-bootstrap";
 
 const years = range(2003, 2020);
 const months = range(1, 13);
@@ -60,7 +60,8 @@ export const CoreIAEARange = ({
     <Card>
       <Card.Header>IAEA Load Factor Date Range</Card.Header>
       <Card.Body>
-        <Form inline>
+        <Row>
+         <Col>
           <Form.Label> Start </Form.Label>
           <Form.Control
             id="startYear"
@@ -78,6 +79,8 @@ export const CoreIAEARange = ({
           >
             {monthOptions}
           </Form.Control>
+         </Col>
+         <Col>
           <Form.Label> End </Form.Label>
           <Form.Control
             id="endYear"
@@ -95,7 +98,8 @@ export const CoreIAEARange = ({
           >
             {monthOptions}
           </Form.Control>
-        </Form>
+         </Col>
+        </Row>
         <p>
           Monthly thermal power load factor (LF) data for the year 2020 are from PRIS
           (Source: IAEA - Power Reactor Information System (PRIS)). For earlier years 2003 
