@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { range } from "lodash";
-import { Form, Card, Row, Col } from "react-bootstrap";
+import { Form, InputGroup, Card, Row, Col } from "react-bootstrap";
 
 const years = range(2003, 2020);
 const months = range(1, 13);
@@ -61,17 +61,22 @@ export const CoreIAEARange = ({
       <Card.Header>IAEA Load Factor Date Range</Card.Header>
       <Card.Body>
         <Row>
-         <Col>
-          <Form.Label> Start </Form.Label>
-          <Form.Control
-            id="startYear"
-            onChange={handleChange}
-            as="select"
-            value={startYear}
-          >
-            {yearOptions}
-          </Form.Control>
-         </Col>
+          <Col>
+            <Form.Group controlId="startYear">
+              <InputGroup>
+                <InputGroup.Prepend>
+                  <InputGroup.Text>Start Date</InputGroup.Text>
+                </InputGroup.Prepend>
+                <Form.Control
+                  onChange={handleChange}
+                  as="select"
+                  value={startYear}
+                >
+                  {yearOptions}
+                </Form.Control>
+              </InputGroup>
+            </Form.Group>
+          </Col>
          <Col>
           <Form.Control
             id="startMonth"
@@ -83,7 +88,6 @@ export const CoreIAEARange = ({
           </Form.Control>
          </Col>
          <Col>
-          <Form.Label> End </Form.Label>
           <Form.Control
             id="endYear"
             onChange={handleChange}
