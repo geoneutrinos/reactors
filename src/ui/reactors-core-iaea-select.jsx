@@ -60,7 +60,8 @@ export const CoreIAEARange = ({
     <Card>
       <Card.Header>IAEA Load Factor Date Range</Card.Header>
       <Card.Body>
-        <Col>
+        <Row>
+         <Col>
           <Form.Label> Start </Form.Label>
           <Form.Control
             id="startYear"
@@ -70,6 +71,8 @@ export const CoreIAEARange = ({
           >
             {yearOptions}
           </Form.Control>
+         </Col>
+         <Col>
           <Form.Control
             id="startMonth"
             onChange={handleChange}
@@ -78,6 +81,8 @@ export const CoreIAEARange = ({
           >
             {monthOptions}
           </Form.Control>
+         </Col>
+         <Col>
           <Form.Label> End </Form.Label>
           <Form.Control
             id="endYear"
@@ -87,6 +92,8 @@ export const CoreIAEARange = ({
           >
             {yearOptions}
           </Form.Control>
+         </Col>
+         <Col>
           <Form.Control
             id="endMonth"
             onChange={handleChange}
@@ -95,7 +102,8 @@ export const CoreIAEARange = ({
           >
             {monthOptions}
           </Form.Control>
-        </Col>
+         </Col>
+        </Row>
         <p>
           Monthly load factor (LF) data for the year 2020 are from:
           IAEA - Power Reactor Information System (PRIS). For the earlier years 2003 
