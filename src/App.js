@@ -319,10 +319,11 @@ function App(props) {
                 </Visible>
               </Tab>
               <Tab eventKey="output" title="Output">
-                <h2> REFERENCE </h2>
-                <p> The model presented by this website is fully documented in this paper{" "}
-                <a href="https://arxiv.org/pdf/1510.05633.pdf">arXiv:1510.05633.v3</a>. 
-                Please reference this paper when using the results of this model in your research papers and presentations.</p>
+                <h5> REFERENCE </h5>
+                  <p> The model presented by this website is further documented here{" "}
+                  <a href="https://arxiv.org/pdf/1510.05633.pdf">arXiv:1510.05633.v3</a>. 
+                  Cite this paper when using the results of this model in your research papers and presentations.
+                  </p>
                 <Visible>
                   <OutputDownload
                     geo={geo}
@@ -332,9 +333,10 @@ function App(props) {
                   />
                 </Visible>
                 <CalculatorPanel cores={cores} geo={geo} />
-                <h2> ACKNOWLEDGMENT </h2>
-                <p> Development of the model and this web application is supported in part by Lawrence Livermore National 
-                Security, LLC. </p>
+                <h5> ACKNOWLEDGMENT </h5>
+                  <p> Development of the model and this web application is supported in part by Lawrence Livermore National 
+                  Security, LLC. 
+                  </p>
               </Tab>
             </Tabs>
           </Col>
