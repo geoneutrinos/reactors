@@ -62,46 +62,46 @@ export const CoreIAEARange = ({
       <Card.Body>
         <Row>
           <Col>
-            <Form.Group controlId="startYear">
-                <Form.Control
-                  onChange={handleChange}
-                  as="select"
-                  value={startYear}
-                >
-                  {yearOptions}
-                </Form.Control>
-            </Form.Group>
+            <Form.Control
+              id="startYear"
+              onChange={handleChange}
+              as="select"
+              value={startYear}
+            >
+              {yearOptions}
+            </Form.Control>
           </Col>
-         <Col>
-          <Form.Control
-            id="startMonth"
-            onChange={handleChange}
-            as="select"
-            value={startMonth}
-          >
-            {monthOptions}
-          </Form.Control>
-         </Col>
-         <Col>
-          <Form.Control
-            id="endYear"
-            onChange={handleChange}
-            as="select"
-            value={endYear}
-          >
-            {yearOptions}
-          </Form.Control>
-         </Col>
-         <Col>
-          <Form.Control
-            id="endMonth"
-            onChange={handleChange}
-            as="select"
-            value={endMonth}
-          >
-            {monthOptions}
-          </Form.Control>
-         </Col>
+          <Col>
+            <Form.Control
+              id="startMonth"
+              onChange={handleChange}
+              as="select"
+              value={startMonth}
+            >
+              {monthOptions}
+            </Form.Control>
+          </Col>
+          through
+          <Col>
+            <Form.Control
+              id="endYear"
+              onChange={handleChange}
+              as="select"
+              value={endYear}
+            >
+              {yearOptions}
+            </Form.Control>
+          </Col>
+          <Col>
+            <Form.Control
+              id="endMonth"
+              onChange={handleChange}
+              as="select"
+              value={endMonth}
+            >
+              {monthOptions}
+            </Form.Control>
+          </Col>
         </Row>
         <p>
           Monthly load factor (LF) data for the year 2020 are from:
