@@ -60,8 +60,8 @@ export const CoreIAEARange = ({
     <Card>
       <Card.Header>IAEA Load Factor Date Range</Card.Header>
       <Card.Body>
-        <Row>
-         <Col>
+        <Col>
+         <Row>
           <Form.Label> Start </Form.Label>
           <Form.Control
             id="startYear"
@@ -79,8 +79,8 @@ export const CoreIAEARange = ({
           >
             {monthOptions}
           </Form.Control>
-         </Col>
-         <Col>
+         </Row>
+         <Row>
           <Form.Label> End </Form.Label>
           <Form.Control
             id="endYear"
@@ -98,16 +98,15 @@ export const CoreIAEARange = ({
           >
             {monthOptions}
           </Form.Control>
-         </Col>
-        </Row>
+         </Row>
+        </Col>
         <p>
-          Monthly thermal power load factor (LF) data for the year 2020 are from PRIS
-          (Source: IAEA - Power Reactor Information System (PRIS)). For earlier years 2003 
+          Monthly load factor (LF) data for the year 2020 are from:
+          IAEA - Power Reactor Information System (PRIS). For the earlier years 2003 
           through 2019 the data are
-          from <a href="https://www.fe.infn.it/antineutrino/">INFN Antineutrinos</a>. If
-          the "Use IAEA LF Data" option (this is the default) is selected for all or for
-          individual cores, the thermal power is the average of the monthly LFs for the
-          selected Year-Month range.
+          from: <a href="https://www.fe.infn.it/antineutrino/">INFN Antineutrinos</a>. If
+          selecting the "Use IAEA LF Data" (default) option,
+          the thermal power is averaged over the selected Year-Month range.
         </p>
       </Card.Body>
     </Card>
