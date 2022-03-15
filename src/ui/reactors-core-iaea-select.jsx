@@ -104,6 +104,8 @@ export const CoreIAEARange = ({
               </Form.Control>
             </Form>
           </Col>
+          <Col>
+          </Col>
         </Row>
         <p>
           <br />
