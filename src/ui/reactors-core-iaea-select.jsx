@@ -86,7 +86,7 @@ export const CoreIAEARange = ({
           >
             {monthOptions}
           </Form.Control>
-          to
+          {' to '}
           <Form.Control
             id="endYear"
             onChange={handleChange}
