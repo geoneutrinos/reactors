@@ -8,17 +8,17 @@ import Plot from "react-plotly.js";
 export const CrustFlux = ({ includeCrust, setIncludeCrust }) => {
   return (
     <Card>
-      <Card.Header>Crust Flux</Card.Header>
+      <Card.Header>Crust Fluxes</Card.Header>
       <Card.Body>
         <Form.Check
           checked={includeCrust}
           id="crustSignalSlider"
           type="switch"
-          label="Include Crust Signal"
+          label="Include Crust Fluxes"
           onChange={(event) => setIncludeCrust(event.target.checked)}
         />
         <small>
-          A pre-computed model of the crust flux, kindly provided by W.F.
+          A pre-computed model of the crust fluxes, kindly provided by W.F.
           McDonough, is described in Y. Huang <i>et al.</i>, "A reference Earth model
           for the heat producing elements and associated geoneutrino flux,"
           Geochem., Geophys., Geosyst. 14, 2003 (2013).
@@ -31,7 +31,7 @@ export const CrustFlux = ({ includeCrust, setIncludeCrust }) => {
 export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios }) => {
   return (
     <Card>
-      <Card.Header>Mantle Flux Inputs</Card.Header>
+      <Card.Header>Mantle Fluxes Input</Card.Header>
       <Card.Body>
         <Form.Group controlId="U238flux">
           <Form.Label>

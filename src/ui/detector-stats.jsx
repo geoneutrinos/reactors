@@ -96,7 +96,7 @@ export function StatsPanel({ cores, geo, reactorLF}) {
   return (
     <Card>
       <Card.Body>
-        <Card.Title>Spectrum Stats <small>({crossSection.crossSection})</small></Card.Title>
+        <Card.Title>Spectrum Stats- <small>{crossSection.crossSection}</small></Card.Title>
 
        <Card.Subtitle>
            <span style={{ display: leptonTVald }}>
@@ -120,7 +120,7 @@ export function StatsPanel({ cores, geo, reactorLF}) {
         </Table>
 
         <hr />
-        <h6>IAEA Cores <small>({reactorAntineutrinoModel.modelName}; {reactorLF.start.toISOString().slice(0, 7)} thru {reactorLF.end.toISOString().slice(0, 7)})</small></h6>
+        <h6>IAEA Cores- <small>{reactorAntineutrinoModel.modelName}; {reactorLF.start.toISOString().slice(0, 7)} thru {reactorLF.end.toISOString().slice(0, 7)}</small></h6>
         <Table {...tableProps}>
           <tbody>
             <tr>
@@ -200,7 +200,7 @@ export function StatsPanel({ cores, geo, reactorLF}) {
         </div>
         <div>
           <hr />
-          <h6>Geoneutrinos <small>(Predicted crust; User-defined mantle flux; Avg <i>P</i><sub>ee</sub>)</small></h6>
+          <h6>Geoneutrinos- <small>Pre-computed crust fluxes; User-defined mantle fluxes; Avg <i>P</i><sub>ee</sub></small></h6>
           <Table {...tableProps}>
             <tbody>
               <tr>

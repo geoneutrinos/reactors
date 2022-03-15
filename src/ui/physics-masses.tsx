@@ -14,14 +14,14 @@ export const ParticleMasses = () => {
       <Card.Header>Particle Masses / IBD Threshold</Card.Header>
       <Card.Body>
         <Provider>
-        <p>Mass values are from the Particle Data Group <a href="https://pdg.lbl.gov/2020/reviews/rpp2020-rev-phys-constants.pdf">at this link</a>.</p>
+        <p>Mass values (MeV) are from the Particle Data Group <a href="https://pdg.lbl.gov/2020/reviews/rpp2020-rev-phys-constants.pdf">at this link</a>.</p>
         <Table>
             <thead>
               <tr>
-                <th><i>m</i><sub>n</sub> (MeV)</th>
-                <th><i>m</i><sub>p</sub> (MeV)</th>
-                <th><i>m</i><sub>e</sub> (MeV)</th>
-                <th><i>E</i><sub>thr</sub> (MeV)</th>
+                <th><i>m</i><sub>n</sub> </th>
+                <th><i>m</i><sub>p</sub> </th>
+                <th><i>m</i><sub>e</sub> </th>
+                <th><i>E</i><sub>thr</sub> </th>
               </tr>
             </thead>
             <tbody>

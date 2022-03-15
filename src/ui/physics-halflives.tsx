@@ -10,7 +10,7 @@ const {K40, Th232, U235, U238} = Elements
 export const IsotopeHalfLives = () => {
   return (
     <Card>
-      <Card.Header>Isotope Half Lives (10<sup>9</sup> years)</Card.Header>
+      <Card.Header>Isotope Half Lives- <small>10<sup>9</sup> years</small></Card.Header>
       <Card.Body>
         <Table>
             <thead>
