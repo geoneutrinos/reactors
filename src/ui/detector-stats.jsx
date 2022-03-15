@@ -200,7 +200,7 @@ export function StatsPanel({ cores, geo, reactorLF}) {
         </div>
         <div>
           <hr />
-          <h6>Geoneutrinos- <small>Predicted crust; User-defined mantle flux; Avg <i>P</i><sub>ee</sub></small></h6>
+          <h6>Geoneutrinos- <small>Predicted crust fluxes; User-defined mantle fluxes; Avg <i>P</i><sub>ee</sub></small></h6>
           <Table {...tableProps}>
             <tbody>
               <tr>
