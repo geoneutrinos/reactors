@@ -75,6 +75,7 @@ export const PhysicsOscillationPane = () => {
           NO: Normal mass ordering (m<sub>3</sub> &gt m<sub>2</sub> &gt m<sub>1</sub>)
           <br />
           IO: Inverted mass ordering (m<sub>2</sub> &gt m<sub>1</sub> &gt m<sub>3</sub>)
+        </p>
       </Card.Body>
     </Card>
   );
