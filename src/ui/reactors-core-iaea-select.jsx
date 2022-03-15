@@ -106,6 +106,8 @@ export const CoreIAEARange = ({
           </Col>
           <Col>
           </Col>
+          <Col>
+          </Col>
         </Row>
         <p>
           <br />
