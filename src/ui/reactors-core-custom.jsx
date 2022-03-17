@@ -236,7 +236,7 @@ export const AddCustomCoreModal = ({
           </Form.Group>
           <Form.Group as={Row} controlId="customCorePower">
             <Form.Label column sm="3">
-              Core Power
+              Power
             </Form.Label>
             <Col sm="9">
               <InputGroup>
@@ -247,7 +247,7 @@ export const AddCustomCoreModal = ({
                   value={power}
                 />
                 <InputGroup.Append>
-                  <InputGroup.Text>MW</InputGroup.Text>
+                  <InputGroup.Text>MW<sub>Th</sub></InputGroup.Text>
                 </InputGroup.Append>
                 <Form.Control.Feedback type="invalid">
                   Must be a number
