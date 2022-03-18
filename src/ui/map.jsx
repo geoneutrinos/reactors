@@ -250,7 +250,7 @@ export function NuMap({
             </Circle>
             <Circle
               center={[-60,9]}
-              radius={400}
+              radius={4000}
               color={"#9d00ff"}
             >
               <Popup>
