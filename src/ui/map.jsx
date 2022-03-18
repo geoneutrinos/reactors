@@ -202,7 +202,7 @@ export function NuMap({
             <Circle
               center={[-80,-60]}
               radius={200}
-            </Circle>
+              color={"#00f"}/>
           </LayerGroup>
         </LayersControl.Overlay>
       </LayersControl>
