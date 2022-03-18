@@ -201,7 +201,7 @@ export function NuMap({
         <LayersControl.Overlay checked name="Legend">
           <LayerGroup>
             <Rectangle
-              bounds={[[-58,-8],[-62,8]]}
+              bounds={[[-58,-9],[-62,9]]}
               color={"#000"} />
             <Circle
               center={[-60,-3]}
