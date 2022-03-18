@@ -198,11 +198,13 @@ export function NuMap({
           </LayerGroup>
         </LayersControl.Overlay>
         <LayersControl.Overlay checked name="Legend">
-          <Marker position={[-80,-80]}>
-            <Popup>
-              Color code legend here
-            </Popup>
-          </Marker>
+          <LayerGroup>
+            <Circle
+              center={[-80,-60]}
+              radius={200}
+              pathOptions={{ color: 'blue'}}
+            </Circle>
+          </LayerGroup>
         </LayersControl.Overlay>
       </LayersControl>
     </Map>
