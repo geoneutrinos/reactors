@@ -205,25 +205,45 @@ export function NuMap({
               color={"#ff0000"}
             >
               <Popup>
-                PHWR
+                PHWR Core
               </Popup>
             </Circle>
             <Circle
               center={[-60,-6]}
               radius={200}
-              color={"#D69537"}/>
+              color={"#D69537"}
+            >
+              <Popup>
+                GCR Core
+              </Popup>
+            </Circle>
             <Circle
               center={[-60,3]}
               radius={200}
-              color={"#009000"}/>
+              color={"#009000"}
+            >
+              <Popup>
+                PWR/BWR Core
+              </Popup>
+            </Circle>
             <Circle
               center={[-60,0]}
               radius={200}
-              color={"#00f"}/>
+              color={"#00f"}
+            >
+              <Popup>
+                LEU-MOX Core
+              </Popup>
+            </Circle>
             <Circle
               center={[-60,6]}
               radius={200}
-              color={"#9d00ff"}/>
+              color={"#9d00ff"}
+            >
+              <Popup>
+                Detector Site
+              </Popup>
+            </Circle>
           </LayerGroup>
         </LayersControl.Overlay>
       </LayersControl>
