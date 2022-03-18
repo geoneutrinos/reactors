@@ -200,21 +200,25 @@ export function NuMap({
         <LayersControl.Overlay checked name="Legend">
           <LayerGroup>
             <Circle
-              center={[-55,0]}
+              center={[-60,-3]}
               radius={200}
               color={"#ff0000"}/>
             <Circle
-              center={[-58,0]}
+              center={[-60,-6]}
               radius={200}
               color={"#D69537"}/>
             <Circle
-              center={[-60.5,0]}
+              center={[-60,3]}
               radius={200}
               color={"#009000"}/>
             <Circle
-              center={[-63,0]}
+              center={[-60,0]}
               radius={200}
               color={"#00f"}/>
+            <Circle
+              center={[-60,6]}
+              radius={200}
+              color={"#9d00ff"}/>
           </LayerGroup>
         </LayersControl.Overlay>
       </LayersControl>
