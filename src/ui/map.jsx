@@ -182,12 +182,6 @@ export function NuMap({
 
       <Marker position={{ lat: detector.lat, lng: detector.lon }} />
 
-      <Marker position={[-60,-60]}>
-        <Popup>
-          Color code legend here
-        </Popup>
-      </Marker>
-
       <LayersControl position="topright">
         <LayersControl.Overlay checked name="Reactor Cores">
           <LayerGroup>
@@ -202,6 +196,13 @@ export function NuMap({
               zoom={zoom}
             />
           </LayerGroup>
+        </LayersControl.Overlay>
+        <LayersControl.Overlay checked name="Legend">
+          <Marker position={[-80,-80]}>
+            <Popup>
+              Color code legend here
+            </Popup>
+          </Marker>
         </LayersControl.Overlay>
       </LayersControl>
     </Map>
