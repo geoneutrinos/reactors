@@ -242,6 +242,15 @@ export function NuMap({
             <Circle
               center={[-60,6]}
               radius={200}
+              color={"#000"}
+            >
+              <Popup>
+                Custom Core
+              </Popup>
+            </Circle>
+            <Circle
+              center={[-60,9]}
+              radius={200}
               color={"#9d00ff"}
             >
               <Popup>
