@@ -182,7 +182,7 @@ export function NuMap({
 
       <Marker position={{ lat: detector.lat, lng: detector.lon }} />
 
-      <Marker position={[0,0]}>
+      <Marker position={[-60,-60]}>
         <Popup>
           Color code legend here
         </Popup>
