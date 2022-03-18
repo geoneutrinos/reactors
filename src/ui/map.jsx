@@ -5,6 +5,7 @@ import {
   TileLayer,
   LayerGroup,
   Circle,
+  Rectangle,
   LayersControl,
   Marker,
 } from "react-leaflet";
@@ -199,6 +200,9 @@ export function NuMap({
         </LayersControl.Overlay>
         <LayersControl.Overlay checked name="Legend">
           <LayerGroup>
+            <Rectangle
+              bounds={[[-59,-7],[-61,7]]}
+              color={"#000"} />
             <Circle
               center={[-60,-3]}
               radius={200}
