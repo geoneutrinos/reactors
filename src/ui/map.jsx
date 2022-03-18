@@ -205,56 +205,56 @@ export function NuMap({
               color={"#808080"} />
             <Circle
               center={[-60,-3]}
-              radius={200}
+              radius={400}
               color={"#ff0000"}
             >
               <Popup>
-                PHWR Core
+                Red: PHWR Core
               </Popup>
             </Circle>
             <Circle
               center={[-60,0]}
-              radius={200}
+              radius={400}
               color={"#D69537"}
             >
               <Popup>
-                GCR Core
+                Gold: GCR Core
               </Popup>
             </Circle>
             <Circle
               center={[-60,3]}
-              radius={200}
+              radius={400}
               color={"#009000"}
             >
               <Popup>
-                PWR/BWR Core
+                Green: PWR/BWR Core
               </Popup>
             </Circle>
             <Circle
               center={[-60,-6]}
-              radius={200}
+              radius={400}
               color={"#00f"}
             >
               <Popup>
-                LEU-MOX Core
+                Blue: LEU-MOX Core
               </Popup>
             </Circle>
             <Circle
               center={[-60,6]}
-              radius={200}
+              radius={400}
               color={"#000"}
             >
               <Popup>
-                Custom Core
+                Black: Custom Core
               </Popup>
             </Circle>
             <Circle
               center={[-60,9]}
-              radius={200}
+              radius={400}
               color={"#9d00ff"}
             >
               <Popup>
-                Detector Site
+                Purple: Detector Site
               </Popup>
             </Circle>
           </LayerGroup>
