@@ -205,7 +205,7 @@ export function NuMap({
               color={"#808080"} />
             <Circle
               center={[-60,-3]}
-              radius={400}
+              radius={10000}
               color={"#ff0000"}
             >
               <Popup>
@@ -214,7 +214,7 @@ export function NuMap({
             </Circle>
             <Circle
               center={[-60,0]}
-              radius={400}
+              radius={10000}
               color={"#D69537"}
             >
               <Popup>
@@ -223,7 +223,7 @@ export function NuMap({
             </Circle>
             <Circle
               center={[-60,3]}
-              radius={400}
+              radius={10000}
               color={"#009000"}
             >
               <Popup>
@@ -232,7 +232,7 @@ export function NuMap({
             </Circle>
             <Circle
               center={[-60,-6]}
-              radius={400}
+              radius={10000}
               color={"#00f"}
             >
               <Popup>
@@ -241,7 +241,7 @@ export function NuMap({
             </Circle>
             <Circle
               center={[-60,6]}
-              radius={400}
+              radius={10000}
               color={"#000"}
             >
               <Popup>
@@ -250,7 +250,7 @@ export function NuMap({
             </Circle>
             <Circle
               center={[-60,9]}
-              radius={4000}
+              radius={10000}
               color={"#9d00ff"}
             >
               <Popup>
