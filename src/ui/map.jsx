@@ -202,7 +202,7 @@ export function NuMap({
           <LayerGroup>
             <Rectangle
               bounds={[[-58,-9],[-62,9]]}
-              color={"#000"} />
+              color={"#808080"} />
             <Circle
               center={[-60,-3]}
               radius={200}
