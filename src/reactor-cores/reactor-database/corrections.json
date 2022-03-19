@@ -117,5 +117,10 @@
 "PICKERING-6": {"lat": 43.809155, "lon": -79.064565},
 "PICKERING-7": {"lat": 43.808899, "lon": -79.063353},
 "PICKERING-8": {"lat": 43.808737, "lon": -79.062548},
-"POINT LEPREAU": {"lat": 45.068610, "lon": -66.454353}
+"POINT LEPREAU": {"lat": 45.068610, "lon": -66.454353},
+"MONTICELLO": {"lat": 45.333673, "lon": -93.849064},
+"PRAIRIE ISLAND-1": {"lat": 44.621561, "lon": -92.632444},
+"PRAIRIE ISLAND-2": {"lat": 44.621554, "lon": -92.633356},
+"BYRON-1": {"lat": 42.073969, "lon": -89.283411},
+"BYRON-2": {"lat": 42.074750, "lon": -89.283396}
 }
