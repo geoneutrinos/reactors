@@ -1,5 +1,5 @@
 import json
-from csv import DictReader
+from csv import DictReader, DictWriter
 
 import pyexcel
 
@@ -142,6 +142,14 @@ log.info(f"Remaining cores in Shutdown DB: {shutdown.keys()}")
 
 for year in years:
     times.extend(["{0}-{1:0>2}".format(year,m) for m in range(1,13)])
+
+# dump to new canonical core list CSV
+with open("reactors.csv", "w", newline="") as f:
+    fieldnames = ["name", 'power','shutdown', 'lat', 'lon', 'elevation', 'type', 'mox',]
+    writer = DictWriter(f, fieldnames=fieldnames)
+    writer.writeheader()
+    for name, reactor in sorted(reactors.items(), key=lambda x: x[0]):
+        writer.writerow({"name":name, **reactor})
 
 print(json.dumps({
     "reactors": reactors,
