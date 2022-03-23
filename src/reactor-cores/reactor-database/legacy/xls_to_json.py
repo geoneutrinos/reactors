@@ -117,6 +117,7 @@ for name in all_names:
                 'power' : float(reactor_data[year][name]['power']),
                 'type' : reactor_data[year][name]['type'].strip(),
                 'mox' : reactor_data[year][name]['mox'],
+                'country' : reactor_data[year][name]['country'],
                 'elevation': float(ele), # above WGS85 (not above EGM96)
                 }
             #log.warn((name, reactors[name]))
@@ -145,7 +146,7 @@ for year in years:
 
 # dump to new canonical core list CSV
 with open("reactors.csv", "w", newline="") as f:
-    fieldnames = ["name", 'power','shutdown', 'lat', 'lon', 'elevation', 'type', 'mox',]
+    fieldnames = ["name", "country", 'power','shutdown', 'lat', 'lon', 'elevation', 'type', 'mox',]
     writer = DictWriter(f, fieldnames=fieldnames)
     writer.writeheader()
     for name, reactor in sorted(reactors.items(), key=lambda x: x[0]):
