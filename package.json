@@ -20,6 +20,7 @@
     "leaflet": "^1.7.1",
     "leaflet-contextmenu": "^1.4.0",
     "lodash": "^4.17.20",
+    "papaparse": "^5.3.2",
     "plotly.js": "^2.1.0",
     "react": "^17.0.1",
     "react-bootstrap": "^1.4.0",
@@ -38,7 +39,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "processReactorSpectrum":"node src/physics/reactor-antineutrinos/data/processReactorAntinuData.js"
+    "processReactorSpectrum": "node src/physics/reactor-antineutrinos/data/processReactorAntinuData.js"
   },
   "eslintConfig": {
     "extends": "react-app"
