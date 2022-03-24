@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { range } from "lodash";
 import { Form, Card } from "react-bootstrap";
 
-const years = range(2003, 2020);
+const years = range(2003, 2021);
 const months = range(1, 13);
 
 export const CoreIAEARange = ({
@@ -77,7 +77,7 @@ export const CoreIAEARange = ({
           >
             {monthOptions}
           </Form.Control>
-          _through_
+          &nbsp;through&nbsp;
           <Form.Control
             id="endYear"
             onChange={handleChange}
