@@ -50,7 +50,7 @@ const processReactorDB = () => {
         }
         // iter though the loaded... loads
         for (let lfFile of LFFiles){
-            let coreLFs = lfFileData[lfFile][name] || [0,0,0,0,0,0,0,0,0,0,0,0]
+            let coreLFs = (lfFileData[lfFile][name] || [0,0,0,0,0,0,0,0,0,0,0,0]).map(value => value < 0? 0: value)
             if (coreLFs.length !== 12){
                 throw new Error("Bad LF data length")
             }
