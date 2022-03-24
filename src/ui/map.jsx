@@ -66,7 +66,7 @@ function coreCircleColor(type) {
 const CoreCircles = React.memo(function CoreCircles({ cores, customCores, zoom }) {
   console.log(zoom)
   const coreList = Object.values({...cores, ...customCores});
-  const radius = zoom > 6? zoom > 8? zoom > 10? zoom > 12? zoom > 14? 250 : 500 : 1000 : 2000 : 5000 : 10000
+  const radius = zoom > 4? zoom > 6? zoom > 8? zoom > 10? zoom > 12? zoom > 14? 100: 250 : 500 : 1000 : 2000 : 5000 : 10000
   return coreList.map((core) => {
     const color = coreCircleColor(core.spectrumType);
     const CorePopup = (
