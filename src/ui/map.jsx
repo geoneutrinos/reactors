@@ -63,14 +63,24 @@ function coreCircleColor(type) {
   }
 }
 
-const CoreCircles = React.memo(function CoreCircles({ cores, customCores, zoom }) {
-  console.log(zoom)
-  const coreList = Object.values({...cores, ...customCores});
+const CoreCircles = React.memo(function CoreCircles({ cores, customCores, zoom, shutdownCores }) {
+  let coreList = Object.values({...cores, ...customCores});
   const radius = zoom > 6? zoom > 8? zoom > 10? zoom > 12? zoom > 14? 250 : 500 : 1000 : 2000 : 5000 : 10000
+
+  if (shutdownCores === true){
+    coreList = coreList.filter((core) => (core.shutdown < new Date()))
+  } else {
+    coreList = coreList.filter((core) => (core.shutdown > new Date()))
+  }
   return coreList.map((core) => {
-    const color = coreCircleColor(core.spectrumType);
+    let color = coreCircleColor(core.spectrumType);
+    let shutdown = core.shutdown < new Date()
+    if (shutdown){
+      color = "#777777"
+    }
     const CorePopup = (
       <Popup>
+        {shutdown && <h5>Core Permanently Shutdown {core.shutdown.toISOString().slice(0,7)}</h5>}
         <b>Core Name:</b> {core.name}
         <br />
         <span title="The Reference thermal power of the plant expressed in MW(th). The reactor thermal power is the net heat transferred from the fuel to the coolant.">
@@ -183,9 +193,14 @@ export function NuMap({
       <Marker position={{ lat: detector.lat, lng: detector.lon }} />
 
       <LayersControl position="topright">
-        <LayersControl.Overlay checked name="Reactor Cores">
+        <LayersControl.Overlay checked name="Active Reactor Cores">
           <LayerGroup>
-            <CoreCircles cores={cores} customCores={customCores} zoom={zoom}/>
+            <CoreCircles cores={cores} customCores={customCores} zoom={zoom} shutdownCores={false}/>
+          </LayerGroup>
+        </LayersControl.Overlay>
+        <LayersControl.Overlay checked name="Shutdown Reactor Cores">
+          <LayerGroup>
+            <CoreCircles cores={cores} customCores={customCores} zoom={zoom} shutdownCores={true}/>
           </LayerGroup>
         </LayersControl.Overlay>
         <LayersControl.Overlay checked name="Detector Locations">
