@@ -36,10 +36,11 @@
     "stage": "npm run predeploy; gh-pages -o docotak -d build",
     "deploy": "gh-pages -d build",
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "npm run processReactorSpectrum; npm run processReactorDB; react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "processReactorSpectrum": "node src/physics/reactor-antineutrinos/data/processReactorAntinuData.js"
+    "processReactorSpectrum": "node src/physics/reactor-antineutrinos/data/processReactorAntinuData.js",
+    "processReactorDB": "node src/reactor-cores/reactor-database/processReactors.js"
   },
   "eslintConfig": {
     "extends": "react-app"
