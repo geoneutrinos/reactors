@@ -153,7 +153,6 @@ export const defaultBoron8: Boron8 = {
     newBoron8.boron8NIU = sum(newBoron8.boron8Rate) * SECONDS_PER_YEAR * 1e32; // targets
     newBoron8.boron8NIUU = sum(newBoron8.boron8RateU) * SECONDS_PER_YEAR * 1e32; // targets
     newBoron8.boron8Ke = b8RateToKE(newBoron8.boron8Rate, crossSection);
-    console.log(Object.values(defaultCores));
     return newBoron8;
   },
 };
