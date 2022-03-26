@@ -450,7 +450,7 @@ const defaultCoreList = Object.keys(cores).map((core) => {
     GCR: "GCR",
     HEU: "HEU",
     FBR: "FBR",
-    HTGR: "HTGR",
+    HTGR: "GCR",
   };
   let spectrumType = databaseToKnown[coreParams.type];
   if (coreParams.mox === 1) {
