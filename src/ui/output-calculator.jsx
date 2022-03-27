@@ -49,7 +49,7 @@ const detectorEfficiency = (
   );
 };
 
-export const CalculatorPanel = ({ cores, geo }) => {
+export const CalculatorPanel = ({ cores, geo, active}) => {
   const [signal, setSignal] = useState("selected");
   const [solveFor, setSolveFor] = useState("significance");
   const [eMin, setEMin] = useState(0.0);
@@ -75,6 +75,10 @@ export const CalculatorPanel = ({ cores, geo }) => {
   const [rampUp, setRampUp] = useState(1000);
 
   const { crossSection } = useContext(PhysicsContext);
+
+  if (!active){
+    return <div>Not Active</div>
+  }
 
   // plot config
 

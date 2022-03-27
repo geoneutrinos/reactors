@@ -136,6 +136,7 @@ function App(props) {
   const [addCustomModal, setAddCustomModal] = useState(false);
   const [addCustomModalXY, setAddCustomModalXY] = useState({});
   const [manCustomModal, setManCustomModal] = useState(false);
+  const [activeTab, setActiveTab] = useState("detector")
 
   const addCustomModelWithLoc = ({ lon, lat }) => {
     setAddCustomModal(true);
@@ -216,7 +217,7 @@ function App(props) {
               geo={geo}
               reactorLF={reactorLF}
             />
-            <Tabs unmountOnExit={false} defaultActiveKey="detector">
+            <Tabs unmountOnExit={false} activeKey={activeTab} onSelect={(k) => setActiveTab(k)}>
               <Tab eventKey="detector" title="Detector">
                 <Visible>
                   <StatsPanel cores={cores} geo={geo} reactorLF={reactorLF}/>
@@ -227,7 +228,7 @@ function App(props) {
                 </Visible>
               </Tab>
               <Tab eventKey="reactors" title="Reactors">
-                <RASwitcher />
+                <RASwitcher active={activeTab === "reactors"}/>
                 <AddCustomCoreModal
                   {...addCustomModalXY}
                   show={addCustomModal}
@@ -332,7 +333,7 @@ function App(props) {
                     boron8={boron8}
                   />
                 </Visible>
-                <CalculatorPanel cores={cores} geo={geo} />
+                <CalculatorPanel cores={cores} geo={geo} active={activeTab === "output"}/>
                 <h5> ACKNOWLEDGMENT </h5>
                   <p> Development of the model and this web application is supported in part by Lawrence Livermore National 
                   Security, LLC. 

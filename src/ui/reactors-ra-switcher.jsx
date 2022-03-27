@@ -13,8 +13,12 @@ import { Num } from ".";
 
 const {Pu239, Pu241, U235, U238} = Elements
 
-export const RASwitcher = () => {
+export const RASwitcher = ({active}) => {
   const {reactorAntineutrinoModel, reactorAntineutrinoModelDispatch, crossSection} = useContext(PhysicsContext)
+
+  if (!active){
+    return <div>Not Active</div>
+  }
 
   const RASelector = (
     <Form.Group controlId="reactorCrossSectionSwitcher">
