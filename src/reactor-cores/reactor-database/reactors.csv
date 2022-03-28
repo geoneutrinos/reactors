@@ -1,3 +1,12 @@
+# name: the core name in PRIS
+# country: ISO ALPHA-2 country code
+# power: the thermal design power in MW
+# shutdown: YYYY-MM of permanent core shutdown (or way in the future)
+# lat: core latitude in decimal degrees north
+# lon: core longitude in decimal degrees eastk
+# elevation: elevation above WGS84 reference ellipsoiod in meters
+# type: the core type
+# mox: 1 if using mixed oxide fuel, 0 if not
 name,country,power,shutdown,lat,lon,elevation,type,mox
 AKADEMIK LOMONOSOV-1,RU,150.0,2100-01,69.709575,170.306163,189.8,PWR,0
 AKADEMIK LOMONOSOV-2,RU,150.0,2100-01,69.709575,170.306163,189.8,PWR,0
