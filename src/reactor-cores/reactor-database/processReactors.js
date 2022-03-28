@@ -11,7 +11,7 @@ const processReactorDB = () => {
     let reactor_base = path.join(__dirname, "reactors.csv")
     let out = path.join(__dirname, "reactors.json")
     let data = fs.readFileSync(reactor_base, 'utf8')
-    let reactors_raw = parse(data, {header:true, skipEmptyLines: true, dynamicTyping:true}).data
+    let reactors_raw = parse(data, {header:true, skipEmptyLines: true, dynamicTyping:true, comments:true}).data
     let times = []
     let LFFiles = new Set() // unlike python, JS Set maintains insertion order
     var dateCursor = startDate
