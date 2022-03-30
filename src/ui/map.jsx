@@ -173,6 +173,7 @@ export function NuMap({
       style={mapStyle}
       center={[0, 0]}
       zoom={2}
+      minZoom={1}
       {...contextMenu}
       onZoom={(e) => setZoom(e.target._zoom)}
     >
