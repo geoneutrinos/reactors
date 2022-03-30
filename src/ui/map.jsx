@@ -177,6 +177,7 @@ export function NuMap({
       onZoom={(e) => setZoom(e.target._zoom)}
     >
       <TileLayer
+        noWrap={true}
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
       />
@@ -201,28 +202,10 @@ export function NuMap({
         <LayersControl.Overlay checked name="Legend">
           <LayerGroup>
             <Rectangle
-              bounds={[[-58,-9],[-62,12]]}
+              bounds={[[-58,-12],[-62,12]]}
               color={"#808080"} />
             <Circle
-              center={[-60,-3]}
-              radius={40000}
-              color={"#ff0000"}
-            >
-              <Popup>
-                Red: PHWR Core
-              </Popup>
-            </Circle>
-            <Circle
-              center={[-60,0]}
-              radius={40000}
-              color={"#D69537"}
-            >
-              <Popup>
-                Gold: GCR Core
-              </Popup>
-            </Circle>
-            <Circle
-              center={[-60,3]}
+              center={[-60,-9]}
               radius={40000}
               color={"#009000"}
             >
@@ -233,6 +216,24 @@ export function NuMap({
             <Circle
               center={[-60,-6]}
               radius={40000}
+              color={"#ff0000"}
+            >
+              <Popup>
+                Red: PHWR Core
+              </Popup>
+            </Circle>
+            <Circle
+              center={[-60,-3]}
+              radius={40000}
+              color={"#D69537"}
+            >
+              <Popup>
+                Gold: GCR Core
+              </Popup>
+            </Circle>
+            <Circle
+              center={[-60,0]}
+              radius={40000}
               color={"#00f"}
             >
               <Popup>
@@ -240,9 +241,18 @@ export function NuMap({
               </Popup>
             </Circle>
             <Circle
+              center={[-60,3]}
+              radius={40000}
+              color={"#808080"}
+            >
+              <Popup>
+                Grey: Shutdown Core
+              </Popup>
+            </Circle>
+            <Circle
               center={[-60,6]}
               radius={40000}
-              color={"#000"}
+              color={"#000000"}
             >
               <Popup>
                 Black: Custom Core
