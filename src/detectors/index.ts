@@ -17,11 +17,11 @@ export const presets: DetecorPreset[] = [
     {name: "Jinping", lat:28.15, lon: 101.71, elevation:1500, overburden:6720, region:"Asia"},
     {name: "Kamioka", lat:36.41, lon: 137.30, elevation:368, overburden:2050, region:"Asia"},
     {name: "Lake Baikal", lat:51.771, lon: 104.398, elevation:-644.5, overburden:1100, region:"Asia"},
-    //Yemilab- Geoid height 30.34 m
-    {name: "Yemilab", lat:37.188639, lon: 128.659406, elevation:-35, overburden:2500, region:"Asia"},
+    //Yemilab- detector height -1100 m, surface height 900 m, geoid height 30.34 m
+    {name: "Yemilab", lat:37.188639, lon: 128.659406, elevation:-170, overburden:2500, region:"Asia"},
     //Europe
     {name: "Baksan", lat:43.24, lon: 42.70, elevation:1700, overburden:4900, region:"Europe"},
-    //Boulby- Geoid height 55.13 m
+    //Boulby- detector height -1100 m, surface height 85 m, geoid height 55.13 m
     {name: "Boulby", lat:54.555129, lon: -0.80089, elevation:-1050, overburden:2805, region:"Europe"},
     {name: "Canfranc", lat:42.77, lon: -0.57, elevation:1080, overburden:2450, region:"Europe"},
     {name: "Modane", lat:45.14, lon: 6.69, elevation:1263, overburden:4200, region:"Europe"},
@@ -32,16 +32,20 @@ export const presets: DetecorPreset[] = [
     {name: "Nestor", lat:36.63, lon: 21.58, elevation:-4000, overburden:4000, region:"Mediterranean Sea"},
     {name: "NEMO Test", lat:37.551, lon: 15.384, elevation:-2080, overburden:2080, region:"Mediterranean Sea"},
     //North America
-    //Fairport- Geoid height -33.24 m
-    {name: "Fairport", lat:41.756, lon: -81.286, elevation:-426, overburden:1570, region:"North America"},
+    //Fairport- detector height -580 m, surface height 180 m, geoid height -33.24 m
+    {name: "Fairport", lat:41.756, lon: -81.286, elevation:-433, overburden:1570, region:"North America"},
     {name: "KURF", lat:37.38, lon: -80.66, elevation:0, overburden:1400, region:"North America"},
     {name: "Soudan", lat:47.82, lon: -92.24, elevation:-210, overburden:1950, region:"North America"},
+    //SURF- detector height -1478, surface height 1682 m, geoid height -11.98 m
     {name: "SURF", lat:44.36, lon: -103.76, elevation:192, overburden:4300, region:"North America"},
     {name: "WIPP", lat:32.37, lon: -103.79, elevation:1039, overburden:1600, region:"North America"},
-    {name: "SNOLAB", lat:46.47, lon: -81.20, elevation:309, overburden:6010, region:"North America"},
+    //SNOLab- detector height -2070 m, surface height 309 m, Geoid height -33.65 m, Ellipsoid height -1795 m
+    {name: "SNOLAB", lat:46.475, lon: -81.20111, elevation:-1795, overburden:6010, region:"North America"},
     //Oceania
-    {name: "SUPL", lat:-37.07, lon: 142.81, elevation:-794, overburden:2700, region:"Oceania"},
+    //Stawell- detector height -1050 m, surface height 230 m, geoid height 5.62 m
+    {name: "SUPL", lat:-37.07, lon: 142.81, elevation:-812, overburden:2700, region:"Oceania"},
     //Pacific Ocean
+    //ACO- geoid height -1 m
     {name: "ACO", lat:22.75, lon: -158, elevation:-4800, overburden:4800, region:"Pacific Ocean"},
     {name: "MARS", lat:36.71, lon: -122.19, elevation:-890, overburden:890, region:"Pacific Ocean"},
     {name: "NEPTUNE", lat:47.77, lon: -127.77, elevation:-2660, overburden:2660, region:"Pacific Ocean"},
