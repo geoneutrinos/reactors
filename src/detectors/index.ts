@@ -30,7 +30,8 @@ export const presets: DetecorPreset[] = [
     {name: "Canfranc", lat:42.77529, lon: -0.529517, elevation:1265, overburden:2450, region:"Europe"},
     //Modane- lab floor height 1263 m, geoid height 62.14 m
     {name: "Modane", lat:45.178547, lon: 6.689201, elevation:1325, overburden:4200, region:"Europe"},
-    {name: "LNGS", lat:42.45, lon: 13.58, elevation:936.45, overburden:3100, region:"Europe"},
+    //LNGS- lab floor height 936.45 m, geoid height 51.38 m
+    {name: "LNGS", lat:42.45278, lon: 13.575, elevation:988, overburden:3100, region:"Europe"},
     //Callio Lab- detector height -1410 m, surface height 150 m, geoid height 20.6 m
     {name: "Pyhäsalmi", lat:63.659902, lon: 26.041062, elevation:-1239, overburden:4000, region:"Europe"},
     //Mediterranean Sea
