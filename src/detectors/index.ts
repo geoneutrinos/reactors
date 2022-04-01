@@ -44,7 +44,8 @@ export const presets: DetecorPreset[] = [
     {name: "Soudan", lat:47.82, lon: -92.24, elevation:-210, overburden:1950, region:"North America"},
     //SURF- detector height -1478, surface height 1682 m, geoid height -11.98 m
     {name: "SURF", lat:44.36, lon: -103.76, elevation:192, overburden:4300, region:"North America"},
-    {name: "WIPP", lat:32.37, lon: -103.79, elevation:1039, overburden:1600, region:"North America"},
+    //WIPP- detector height -689 m, surface height 1004 m, geoid height -21.48
+    {name: "WIPP", lat:32.371667, lon: -103.793611, elevation:294, overburden:1624, region:"North America"},
     //SNOLab- detector height -2070 m, surface height 309 m, Geoid height -33.65 m, Ellipsoid height -1795 m
     {name: "SNOLAB", lat:46.475, lon: -81.20111, elevation:-1795, overburden:6010, region:"North America"},
     //Oceania
