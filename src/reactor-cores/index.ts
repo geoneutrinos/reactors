@@ -75,19 +75,37 @@ export const FISSION_FRACTIONS: { [type: string]: FissionFractions } = {
     PU239: 0.42,
     PU241: 0.01,
   },
-   AGR_begin: {
+  BWR_begin: {
+    U235: 0.7073,
+    U238: 0.0494,
+    PU239: 0.2211,
+    PU241: 0.0222,
+  },
+  BWR_middle: {
+    U235: 0.6310,
+    U238: 0.0534,
+    PU239: 0.2754,
+    PU241: 0.0402,
+  },
+  BWR_end: {
+    U235: 0.5559,
+    U238: 0.0584,
+    PU239: 0.3245,
+    PU241: 0.0612,
+  },
+  AGR_begin: {
     U235: 0.7667,
     U238: 0.0407,
     PU239: 0.1777,
     PU241: 0.0149,
   },
-   AGR_middle: {
+  AGR_middle: {
     U235: 0.7248,
     U238: 0.0420,
     PU239: 0.2127,
     PU241: 0.0205,
   },
-   AGR_end: {
+  AGR_end: {
     U235: 0.6829,
     U238: 0.0432,
     PU239: 0.2476,
