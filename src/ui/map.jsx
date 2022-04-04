@@ -83,6 +83,9 @@ const CoreCircles = React.memo(function CoreCircles({ cores, customCores, zoom, 
         {shutdown && <h5>Core Permanently Shutdown {core.shutdown.toISOString().slice(0,7)}</h5>}
         <b>Core Name:</b> {core.name}
         <br />
+        <b>Type:</b> {core.type}&nbsp;
+        <b>Mox:</b> {JSON.stringify(core.mox)}
+        <br />
         <span title="The Reference thermal power of the plant expressed in MW(th). The reactor thermal power is the net heat transferred from the fuel to the coolant.">
           <b>Thermal Capacity:</b>
         </span>{" "}
@@ -91,9 +94,6 @@ const CoreCircles = React.memo(function CoreCircles({ cores, customCores, zoom, 
         <b>Position (N,E) </b> {core.lat}, {core.lon}
         <br />
         <b>Elevation</b> {core.elevation} m<br />
-        <b>Type:</b> {core.type}&nbsp;
-        <b>Mox:</b> {JSON.stringify(core.mox)}
-        <br />
         <small>Elevation is height above the WGS84 reference ellipsoid</small>
       </Popup>
     );
