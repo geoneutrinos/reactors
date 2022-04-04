@@ -24,16 +24,16 @@ export const IsotopeNuLuminosities = () => {
             <tbody>
               <tr>
                 <td>
-                  {ISOTOPIC_NEUTRINO_LUMINOSITY.K40}
+                  {ISOTOPIC_NEUTRINO_LUMINOSITY.K40us}
                 </td>
                 <td>
-                  {ISOTOPIC_NEUTRINO_LUMINOSITY.TH232}
+                  {ISOTOPIC_NEUTRINO_LUMINOSITY.TH232us}
                 </td>
                 <td>
-                  {ISOTOPIC_NEUTRINO_LUMINOSITY.U235}
+                  {ISOTOPIC_NEUTRINO_LUMINOSITY.U235us}
                 </td>
                 <td>
-                  {ISOTOPIC_NEUTRINO_LUMINOSITY.U238}
+                  {ISOTOPIC_NEUTRINO_LUMINOSITY.U238us}
                 </td>
               </tr>
             </tbody>
