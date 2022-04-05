@@ -24,16 +24,16 @@ export const IsotopeDecayHeating = () => {
             <tbody>
               <tr>
                 <td>
-                  {ISOTOPIC_DECAY_HEATING.K40.toFixed(3)}
+                  {ISOTOPIC_DECAY_HEATING.K40uj.toFixed(3)}
                 </td>
                 <td>
-                  {ISOTOPIC_DECAY_HEATING.TH232.toFixed(3)}
+                  {ISOTOPIC_DECAY_HEATING.TH232uj.toFixed(3)}
                 </td>
                 <td>
-                  {ISOTOPIC_DECAY_HEATING.U235.toFixed(3)}
+                  {ISOTOPIC_DECAY_HEATING.U235uj.toFixed(3)}
                 </td>
                 <td>
-                  {ISOTOPIC_DECAY_HEATING.U238.toFixed(3)}
+                  {ISOTOPIC_DECAY_HEATING.U238uj.toFixed(3)}
                 </td>
               </tr>
             </tbody>
