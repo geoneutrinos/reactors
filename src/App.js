@@ -22,6 +22,7 @@ import {
   GeoFluxUncertainties,
   GeoNuSpectrumSource,
   IsotopeHalfLives,
+  IsotopeNuLuminosities,
   //Direction Tab
   AnalemmaPlot,
   CoreDirectionPlot,
@@ -273,6 +274,7 @@ function App(props) {
                   <GeoFluxUncertainties />
                   <GeoNuSpectrumSource />
                   <IsotopeHalfLives />
+                  <IsotopeNuLuminosities />
                 </Visible>
               </Tab>
               <Tab eventKey="solarnu" title="SolarNu">
