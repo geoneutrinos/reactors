@@ -4,6 +4,7 @@ import {ISOTOPIC_NEUTRINO_LUMINOSITY} from '../physics/derived'
 import {Elements} from './elements'
 
 import { Card, Table } from 'react-bootstrap';
+import { Num } from '.';
 
 const {K40, Th232, U235, U238} = Elements
 
@@ -24,16 +25,16 @@ export const IsotopeNuLuminosities = () => {
             <tbody>
               <tr>
                 <td>
-                  {ISOTOPIC_NEUTRINO_LUMINOSITY.K40us.toFixed(3)}
+                  <Num v={ISOTOPIC_NEUTRINO_LUMINOSITY.K40} p={3} func={(v) => v / 1e6} />
                 </td>
                 <td>
-                  {ISOTOPIC_NEUTRINO_LUMINOSITY.TH232us.toFixed(3)}
+                  <Num v={ISOTOPIC_NEUTRINO_LUMINOSITY.TH232} p={3} func={(v) => v / 1e6} />
                 </td>
                 <td>
-                  {ISOTOPIC_NEUTRINO_LUMINOSITY.U235us.toFixed(3)}
+                  <Num v={ISOTOPIC_NEUTRINO_LUMINOSITY.U235} p={3} func={(v) => v / 1e6} />
                 </td>
                 <td>
-                  {ISOTOPIC_NEUTRINO_LUMINOSITY.U238us.toFixed(3)}
+                  <Num v={ISOTOPIC_NEUTRINO_LUMINOSITY.U238} p={3} func={(v) => v / 1e6}  />
                 </td>
               </tr>
             </tbody>
