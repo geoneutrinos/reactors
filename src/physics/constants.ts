@@ -8,6 +8,8 @@ export const HBAR_C = 197.3269804e-13; // MeV cm (exact)
 //export const WEAK_MIXING_ANGLE = 0.23153; // ± 0.0004; https://pdg.lbl.gov/2020/reviews/rpp2020-rev-phys-constants.pdf
 export const WEAK_MIXING_ANGLE = 0.23867; // ± 0.00016; Erler, J and Ramsey-Musolf, MJ (2005) Phys Rev D 72, 073003.
 export const AU = 1.660_539_006_60e-27; // kg (atomic mass aka dalton)
+export const MANTLE_MASS = 4.0023618e-24; // kg (PREM- A. M. Dziewonski and D. L. Anderson, Phys. Earth Planet. Inter. 25, 297 (1981).
+export const MANTLE_GEOPHYSICAL_RESPONSE = 1.1770628e6; // kg/cm2
 
 export const FISSION_ENERGIES = {
   //MeV
@@ -55,6 +57,14 @@ export const ISOTOPIC_NEUTRINOS_PER_DECAY = {
   TH232: 4,
   U235: 4,
   U238: 6,
+};
+
+export const ISOTOPIC_DECAY_ENERGIES = {
+  // MeV -> J
+  K40: 1.31119275 * ELEMENTARY_CHARGE * 1e6,
+  TH232: 42.6464844 * ELEMENTARY_CHARGE * 1e6,
+  U235: 46.4042969 * ELEMENTARY_CHARGE * 1e6,
+  U238: 51.6835938 * ELEMENTARY_CHARGE * 1e6,
 };
 
 export const ISOTOPIC_ATOMIC_MASS = {
