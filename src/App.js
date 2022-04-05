@@ -21,9 +21,9 @@ import {
   CrustFlux,
   GeoFluxUncertainties,
   GeoNuSpectrumSource,
+  IsotopeAvgNuEnergy,
   IsotopeHalfLives,
   IsotopeNuLuminosities,
-  IsotopeAvgNuEnergy,
   IsotopeDecayHeating,
   //Direction Tab
   AnalemmaPlot,
@@ -276,9 +276,9 @@ function App(props) {
                   />
                   <GeoFluxUncertainties />
                   <GeoNuSpectrumSource />
+                  <IsotopeAvgNuEnergy />
                   <IsotopeHalfLives />
                   <IsotopeNuLuminosities />
-                  <IsotopeAvgNuEnergy />
                   <IsotopeDecayHeating />
                 </Visible>
               </Tab>
