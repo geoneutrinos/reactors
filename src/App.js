@@ -21,6 +21,7 @@ import {
   CrustFlux,
   GeoFluxUncertainties,
   GeoNuSpectrumSource,
+  IsotopeAvgNuEnergy,
   IsotopeHalfLives,
   IsotopeNuLuminosities,
   IsotopeDecayHeating,
@@ -275,6 +276,7 @@ function App(props) {
                   />
                   <GeoFluxUncertainties />
                   <GeoNuSpectrumSource />
+                  <IsotopeAvgNuEnergy />
                   <IsotopeHalfLives />
                   <IsotopeNuLuminosities />
                   <IsotopeDecayHeating />

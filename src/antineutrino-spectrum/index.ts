@@ -74,7 +74,7 @@ export const antineutrinoSpectrum238U = resample(
 );
 
 const averageNeutrinoEnergy = (spectrum: number[]):number => {
-  const num = spectrum.reduce((p, v, i) => ((0.005 + i /1000) * v) + p)
+  const num = spectrum.reduce((p, v, i) => ((0.0005 + i /1000) * v) + p)
   const dem = spectrum.reduce((p, v) => ( v + p))
   return num/dem;
 }
