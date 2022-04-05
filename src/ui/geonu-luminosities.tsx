@@ -10,7 +10,7 @@ const {K40, Th232, U235, U238} = Elements
 export const IsotopeNuLuminosities = () => {
   return (
     <Card>
-      <Card.Header>Isotopic Neutrino Luminosities- <small>kg<sup>-1</sup> µs<sup>-1</sup></small></Card.Header>
+      <Card.Header>Isotope Neutrino Luminosities- <small>kg<sup>-1</sup> µs<sup>-1</sup></small></Card.Header>
       <Card.Body>
         <Table>
             <thead>
