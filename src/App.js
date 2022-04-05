@@ -97,7 +97,7 @@ L.Icon.Default.mergeOptions({
   shadowUrl: shadowUrl,
 });
 
-const defaultDetector = presets.find((detector) => detector.name === "SNOLAB");
+const defaultDetector = presets.find((detector) => detector.name === "SURF");
 
 function App(props) {
   const [oscillation, oscillationDispatch] = useReducer(
