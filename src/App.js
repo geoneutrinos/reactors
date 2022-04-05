@@ -23,6 +23,7 @@ import {
   GeoNuSpectrumSource,
   IsotopeHalfLives,
   IsotopeNuLuminosities,
+  IsotopeAvgNuEnergy,
   IsotopeDecayHeating,
   //Direction Tab
   AnalemmaPlot,
@@ -277,6 +278,7 @@ function App(props) {
                   <GeoNuSpectrumSource />
                   <IsotopeHalfLives />
                   <IsotopeNuLuminosities />
+                  <IsotopeAvgNuEnergy />
                   <IsotopeDecayHeating />
                 </Visible>
               </Tab>
