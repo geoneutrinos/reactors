@@ -7,7 +7,7 @@ import { Card, Table } from 'react-bootstrap';
 
 const {K40, Th232, U235, U238} = Elements
 
-export const IsotopeNuLuminosities = () => {
+export const IsotopeDecayHeating = () => {
   return (
     <Card>
       <Card.Header>Isotope Decay Heating- <small>µJ kg<sup>-1</sup> s<sup>-1</sup></small></Card.Header>
