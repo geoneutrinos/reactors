@@ -33,7 +33,7 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo}) => {
   const {heating} = geo;
   return (
     <Card>
-      <Card.Header>Mantle Fluxes Input</Card.Header>
+      <Card.Header>Mantle Fluxes and Radiogenic Heating</Card.Header>
       <Card.Body>
         <Form.Group controlId="U238flux">
           <Form.Label>
@@ -101,6 +101,7 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo}) => {
           </InputGroup>
         </Form.Group>
         Total Mantle Radiogenic Heating: <Num v={heating.U238 + heating.U235 + heating.Th232 + heating.K40Beta} p={2} func={(v) => v / 1e12}/> TW
+        <br /> <small>Assumes homogeneous element concentrations and PREM mantle mass and geophysical response</small> 
       </Card.Body>
     </Card>
   );
