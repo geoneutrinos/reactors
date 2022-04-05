@@ -7,7 +7,7 @@ export const FERMI_COUPLING_CONSTANT = 1.1663787e-5; // (6) GeV-2
 export const HBAR_C = 197.3269804e-13; // MeV cm (exact)
 //export const WEAK_MIXING_ANGLE = 0.23153; // ± 0.0004; https://pdg.lbl.gov/2020/reviews/rpp2020-rev-phys-constants.pdf
 export const WEAK_MIXING_ANGLE = 0.23867; // ± 0.00016; Erler, J and Ramsey-Musolf, MJ (2005) Phys Rev D 72, 073003.
-export const AU = 1.660_539_006_60e-27; // kg (atomic mass aka dalton)
+export const AU = 1.660_539_066_60e-27; // (50) kg (atomic mass aka dalton); PDG
 export const MANTLE_MASS = 4.0023618e24; // kg (PREM- A. M. Dziewonski and D. L. Anderson, Phys. Earth Planet. Inter. 25, 297 (1981).
 export const MANTLE_GEOPHYSICAL_RESPONSE = 1.1770628e6; // kg/cm2
 
