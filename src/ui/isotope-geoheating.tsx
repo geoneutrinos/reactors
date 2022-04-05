@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {ISOTOPIC_NEUTRINO_LUMINOSITY} from '../physics/derived'
+import {ISOTOPIC_DECAY_HEATING} from '../antineutrino-spectrum'
 import {Elements} from './elements'
 
 import { Card, Table } from 'react-bootstrap';
@@ -8,10 +8,10 @@ import { Num } from '.';
 
 const {K40, Th232, U235, U238} = Elements
 
-export const IsotopeNuLuminosities = () => {
+export const IsotopeDecayHeating = () => {
   return (
     <Card>
-      <Card.Header>Isotope Neutrino Luminosities- <small>kg<sup>-1</sup> µs<sup>-1</sup></small></Card.Header>
+      <Card.Header>Isotope Decay Heating- <small>µJ kg<sup>-1</sup> s<sup>-1</sup></small></Card.Header>
       <Card.Body>
         <Table>
             <thead>
@@ -25,16 +25,16 @@ export const IsotopeNuLuminosities = () => {
             <tbody>
               <tr>
                 <td>
-                  <Num v={ISOTOPIC_NEUTRINO_LUMINOSITY.K40} p={3} func={(v) => v / 1e6} />
+                  <Num v={ISOTOPIC_DECAY_HEATING.K40_beta} p={3} func={(v) => v * 1e6}  />
                 </td>
                 <td>
-                  <Num v={ISOTOPIC_NEUTRINO_LUMINOSITY.TH232} p={3} func={(v) => v / 1e6} />
+                  <Num v={ISOTOPIC_DECAY_HEATING.TH232} p={3} func={(v) => v * 1e6} />
                 </td>
                 <td>
-                  <Num v={ISOTOPIC_NEUTRINO_LUMINOSITY.U235} p={3} func={(v) => v / 1e6} />
+                  <Num v={ISOTOPIC_DECAY_HEATING.U235} p={3} func={(v) => v * 1e6} />
                 </td>
                 <td>
-                  <Num v={ISOTOPIC_NEUTRINO_LUMINOSITY.U238} p={3} func={(v) => v / 1e6}  />
+                  <Num v={ISOTOPIC_DECAY_HEATING.U238} p={3} func={(v) => v * 1e6} />
                 </td>
               </tr>
             </tbody>

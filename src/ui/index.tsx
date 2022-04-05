@@ -21,6 +21,7 @@ export { IsotopeHalfLives } from "./physics-halflives";
 export { ParticleMasses } from "./physics-masses";
 export { GeoFluxUncertainties } from "./geo-uncertainties";
 export { IsotopeNuLuminosities } from "./geonu-luminosities";
+export { IsotopeDecayHeating } from "./isotope-geoheating";
 export {
   CrossSectionPlots,
   CrossSectionPlotsNormal,

@@ -5,10 +5,13 @@ import {
   antineutrinoSpectrum238U,
   antineutrinoSpectrum232Th,
   antineutrinoSpectrum40K,
+  ISOTOPIC_DECAY_HEATING,
 } from "../antineutrino-spectrum";
 import {
   SECONDS_PER_YEAR,
   ISOTOPIC_NATURAL_ABUNDANCE,
+  MANTLE_GEOPHYSICAL_RESPONSE,
+  MANTLE_MASS,
 } from "../physics/constants";
 import { ISOTOPIC_NEUTRINO_LUMINOSITY } from "../physics/derived";
 import bins, { binWidth } from "../physics/bins";
@@ -34,6 +37,8 @@ interface GeoUncertainty {
   K40Beta: number;
 }
 
+type GeoHeating = GeoUncertainty;
+
 interface GeoNuFluxRatio {
   U238flux: number; // cm-2 s-1
   ThURatio: number; // no units
@@ -58,6 +63,7 @@ interface GeoInterface {
   crust: GeoCrustMantle;
   mantle: GeoCrustMantle;
   total: GeoCrustMantle;
+  heating: GeoHeating;
 }
 
 // TODO Temp constants until passed in
@@ -217,11 +223,15 @@ export function geoSpectrum(
     crossSection
   );
 
+  const mantleHeatingU238 = (U238flux / ISOTOPIC_NEUTRINO_LUMINOSITY.U238 / MANTLE_GEOPHYSICAL_RESPONSE) * ISOTOPIC_DECAY_HEATING.U238 * MANTLE_MASS
+
   const U235FluxIsotopicScale =
     (ISOTOPIC_NEUTRINO_LUMINOSITY.U235 / ISOTOPIC_NEUTRINO_LUMINOSITY.U238) *
     (ISOTOPIC_NATURAL_ABUNDANCE.U235 / ISOTOPIC_NATURAL_ABUNDANCE.U238);
 
   const U235MantleFlux = U238flux * U235FluxIsotopicScale;
+
+  const mantleHeatingU235 = (U235MantleFlux / ISOTOPIC_NEUTRINO_LUMINOSITY.U235 / MANTLE_GEOPHYSICAL_RESPONSE) * ISOTOPIC_DECAY_HEATING.U235 * MANTLE_MASS
 
   const {
     crustSpectrum: crustU235Spectrum,
@@ -240,6 +250,9 @@ export function geoSpectrum(
 
   const ThMantleFlux = U238flux * ThURatio * ThMantleFluxIsotopicScale;
 
+  const mantleHeatingTh232 = (ThMantleFlux / ISOTOPIC_NEUTRINO_LUMINOSITY.TH232 / MANTLE_GEOPHYSICAL_RESPONSE) * ISOTOPIC_DECAY_HEATING.TH232 * MANTLE_MASS
+
+
   const {
     crustSpectrum: crustTh232Spectrum,
     mantleSpectrum: mantleTh232Spectrum,
@@ -257,6 +270,8 @@ export function geoSpectrum(
 
   const KMantleFlux = U238flux * KURatio * KMantleFluxIsotopicScale;
 
+  const mantleHeatingK40 = (KMantleFlux / ISOTOPIC_NEUTRINO_LUMINOSITY.K40 / MANTLE_GEOPHYSICAL_RESPONSE) * ISOTOPIC_DECAY_HEATING.K40_beta * MANTLE_MASS
+  
   const {
     crustSpectrum: crustK40BetaSpectrum,
     mantleSpectrum: mantleK40BetaSpectrum,
@@ -296,5 +311,11 @@ export function geoSpectrum(
     mantle: mantle,
     crust: crust,
     total: total,
+    heating: {
+      U238: mantleHeatingU238,
+      U235: mantleHeatingU235,
+      Th232: mantleHeatingTh232,
+      K40Beta: mantleHeatingK40,
+    }
   };
 }

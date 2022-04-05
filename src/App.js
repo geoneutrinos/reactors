@@ -23,6 +23,7 @@ import {
   GeoNuSpectrumSource,
   IsotopeHalfLives,
   IsotopeNuLuminosities,
+  IsotopeDecayHeating,
   //Direction Tab
   AnalemmaPlot,
   CoreDirectionPlot,
@@ -96,7 +97,7 @@ L.Icon.Default.mergeOptions({
   shadowUrl: shadowUrl,
 });
 
-const defaultDetector = presets.find((detector) => detector.name === "SNOLAB");
+const defaultDetector = presets.find((detector) => detector.name === "SURF");
 
 function App(props) {
   const [oscillation, oscillationDispatch] = useReducer(
@@ -266,6 +267,7 @@ function App(props) {
                   <MantleFlux
                     geoFluxRatios={geoFluxRatios}
                     setGeoFluxRatios={setGeoFluxRatios}
+                    geo={geo}
                   />
                   <CrustFlux
                     includeCrust={includeCrust}
@@ -275,6 +277,7 @@ function App(props) {
                   <GeoNuSpectrumSource />
                   <IsotopeHalfLives />
                   <IsotopeNuLuminosities />
+                  <IsotopeDecayHeating />
                 </Visible>
               </Tab>
               <Tab eventKey="solarnu" title="SolarNu">
