@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {ISOTOPIC_DECAY_HEATING} from '../physics/derived'
+import {ISOTOPIC_DECAY_HEATING} from '../antineutrino-spectrum'
 import {Elements} from './elements'
 
 import { Card, Table } from 'react-bootstrap';

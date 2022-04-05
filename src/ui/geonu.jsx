@@ -2,6 +2,7 @@ import React from "react";
 import { rawAntineutrinoSpectrum } from "../antineutrino-spectrum";
 
 import { Card, Form, InputGroup } from "react-bootstrap";
+import { Num } from ".";
 
 import Plot from "react-plotly.js";
 
@@ -28,7 +29,8 @@ export const CrustFlux = ({ includeCrust, setIncludeCrust }) => {
   );
 };
 
-export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios }) => {
+export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo}) => {
+  const {heating} = geo;
   return (
     <Card>
       <Card.Header>Mantle Fluxes Input</Card.Header>
@@ -37,6 +39,8 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios }) => {
           <Form.Label>
             <sup>238</sup>U Mantle Flux: {geoFluxRatios.U238flux.toExponential(1)} cm
             <sup>-2</sup>s<sup>-1</sup>
+            {" "}
+            (U Heating: <Num v={heating.U238 + heating.U235} p={2} func={(v) => v / 1e12}/> TW)
           </Form.Label>
           <Form.Control
             value={geoFluxRatios.U238flux}
@@ -56,6 +60,8 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios }) => {
           <InputGroup>
             <Form.Label>
               Th/U Ratio {geoFluxRatios.ThURatio.toFixed(1)}
+            {" "}
+            (Th Heating: <Num v={heating.Th232} p={2} func={(v) => v / 1e12}/> TW)
             </Form.Label>
             <Form.Control
               value={geoFluxRatios.ThURatio}
@@ -76,6 +82,8 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios }) => {
           <InputGroup>
             <Form.Label>
               K/U Ratio {geoFluxRatios.KURatio.toExponential(1)}
+            {" "}
+            (K40 Beta Heating: <Num v={heating.K40Beta} p={2} func={(v) => v / 1e12}/> TW)
             </Form.Label>
             <Form.Control
               value={geoFluxRatios.KURatio}

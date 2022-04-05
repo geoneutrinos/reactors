@@ -267,6 +267,7 @@ function App(props) {
                   <MantleFlux
                     geoFluxRatios={geoFluxRatios}
                     setGeoFluxRatios={setGeoFluxRatios}
+                    geo={geo}
                   />
                   <CrustFlux
                     includeCrust={includeCrust}
