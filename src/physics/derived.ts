@@ -26,7 +26,7 @@ export const ISOTOPIC_DECAY_ENERGIES = {
      ((K40.relative_atomic_mass - Ca40.relative_atomic_mass) * ATOMIC_MASS_UNIT - ISOTOPIC_ALPHAS_PER_DECAY.K40 * 
       (ALPHA_REST_MASS + 2 * ELECTRON_REST_MASS)) * ELEMENTARY_CHARGE * 1e6,
    TH232:
-     ((Th232.relative_atomic_mass - Pb208.relative_atomic_mass) * ATOMIC_MASS_UNIT - ISOTOPIC_ALPHAS_PER_DECAY.Th232 * 
+     ((Th232.relative_atomic_mass - Pb208.relative_atomic_mass) * ATOMIC_MASS_UNIT - ISOTOPIC_ALPHAS_PER_DECAY.TH232 * 
       (ALPHA_REST_MASS + 2 * ELECTRON_REST_MASS)) * ELEMENTARY_CHARGE * 1e6,
    U235:
      ((U235.relative_atomic_mass - Pb207.relative_atomic_mass) * ATOMIC_MASS_UNIT - ISOTOPIC_ALPHAS_PER_DECAY.U235 * 

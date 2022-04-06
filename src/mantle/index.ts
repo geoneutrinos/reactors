@@ -270,7 +270,7 @@ export function geoSpectrum(
 
   const KMantleFlux = U238flux * KURatio * KMantleFluxIsotopicScale;
 
-  const mantleHeatingK40 = (KMantleFlux / ISOTOPIC_NEUTRINO_LUMINOSITY.K40 / MANTLE_GEOPHYSICAL_RESPONSE) * ISOTOPIC_DECAY_HEATING.K40_beta * MANTLE_MASS
+  const mantleHeatingK40 = (KMantleFlux / ISOTOPIC_NEUTRINO_LUMINOSITY.K40 / MANTLE_GEOPHYSICAL_RESPONSE) * ISOTOPIC_DECAY_HEATING.K40beta * MANTLE_MASS
   
   const {
     crustSpectrum: crustK40BetaSpectrum,

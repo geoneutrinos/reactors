@@ -25,7 +25,7 @@ export const IsotopeDecayHeating = () => {
             <tbody>
               <tr>
                 <td>
-                  <Num v={ISOTOPIC_DECAY_HEATING.K40_beta} p={3} func={(v) => v * 1e6}  />
+                  <Num v={ISOTOPIC_DECAY_HEATING.K40beta} p={3} func={(v) => v * 1e6}  />
                 </td>
                 <td>
                   <Num v={ISOTOPIC_DECAY_HEATING.TH232} p={3} func={(v) => v * 1e6} />

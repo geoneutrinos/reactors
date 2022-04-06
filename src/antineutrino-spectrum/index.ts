@@ -130,9 +130,9 @@ export const rateToFlux40K = rateToFluxReducer(defaulTrateToFlux40K, crossSectio
 
 export const ISOTOPIC_DECAY_HEATING = {
   // J kg-1 s-1
-  K40_beta:
+  K40beta:
     (Math.log(2) / ISOTOPIC_HALF_LIFE.K40) *
-    (((ISOTOPIC_DECAY_ENERGIES.K40_beta - averageNeutrinoEnergy40K * ELEMENTARY_CHARGE * 1e6) * K40_BRANCH_RATIO.beta) /
+    (((ISOTOPIC_DECAY_ENERGIES.K40 - averageNeutrinoEnergy40K * ELEMENTARY_CHARGE * 1e6) * K40_BRANCH_RATIO.beta) /
       ISOTOPIC_ATOMIC_MASS.K40),
   TH232:
     (Math.log(2) / ISOTOPIC_HALF_LIFE.TH232) *
