@@ -5,6 +5,7 @@ import {
   averageNeutrinoEnergy238U,
   averageNeutrinoEnergy235U,
   averageNeutrinoEnergy40K,
+  ISOTOPIC_DECAY_HEATING,
 } from "../antineutrino-spectrum";
 
 import {ISOTOPIC_HALF_LIFE} from '../physics/constants'
@@ -68,7 +69,7 @@ export const IsotopeAvgNuEnergy = () => {
                 </td>
               </tr>
               <tr>
-                <td> Half Life (10<sup>9</sup> y) </td>
+                <td> Half life (10<sup>9</sup> y) </td>
                  <td>
                   {ISOTOPIC_HALF_LIFE.K40e9y}
                 </td>
@@ -83,7 +84,7 @@ export const IsotopeAvgNuEnergy = () => {
                 </td>
               </tr>
               <tr>
-                <td> ν Luminosity (kg<sup>-1</sup> µs<sup>-1</sup>) </td>
+                <td> ν luminosity (kg<sup>-1</sup> µs<sup>-1</sup>) </td>
                 <td>
                   <Num v={ISOTOPIC_NEUTRINO_LUMINOSITY.K40} p={3} func={(v) => v / 1e6} />
                 </td>
@@ -95,6 +96,21 @@ export const IsotopeAvgNuEnergy = () => {
                 </td>
                 <td>
                   <Num v={ISOTOPIC_NEUTRINO_LUMINOSITY.U238} p={3} func={(v) => v / 1e6}  />
+                </td>
+              </tr>
+              <tr>
+                <td> Heating (µJ kg<sup>-1</sup> s<sup>-1</sup>) </td>
+                <td>
+                  <Num v={ISOTOPIC_DECAY_HEATING.K40beta} p={3} func={(v) => v * 1e6}  />
+                </td>
+                <td>
+                  <Num v={ISOTOPIC_DECAY_HEATING.TH232} p={3} func={(v) => v * 1e6} />
+                </td>
+                <td>
+                  <Num v={ISOTOPIC_DECAY_HEATING.U235} p={3} func={(v) => v * 1e6} />
+                </td>
+                <td>
+                  <Num v={ISOTOPIC_DECAY_HEATING.U238} p={3} func={(v) => v * 1e6} />
                 </td>
               </tr>
             </tbody>
