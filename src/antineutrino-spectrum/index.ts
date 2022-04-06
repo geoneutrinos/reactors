@@ -3,8 +3,8 @@ import antineutrinoSpectrum232ThData from "./data/AntineutrinoSpectrum_232Th.knt
 import antineutrinoSpectrum235UData from "./data/AntineutrinoSpectrum_235U.knt.json";
 import antineutrinoSpectrum238UData from "./data/AntineutrinoSpectrum_238U.knt.json";
 
-import { SECONDS_PER_YEAR, ISOTOPIC_HALF_LIFE, ISOTOPIC_DECAY_ENERGIES,ISOTOPIC_ATOMIC_MASS, K40_BRANCH_RATIO, ELEMENTARY_CHARGE  } from "../physics/constants";
-
+import { SECONDS_PER_YEAR, ISOTOPIC_HALF_LIFE, ISOTOPIC_ATOMIC_MASS, K40_BRANCH_RATIO, ELEMENTARY_CHARGE } from "../physics/constants";
+import { ISOTOPIC_DECAY_ENERGIES } from "../physics/derived";
 import { CrossSectionFunc, XSNames, CrossSection, crossSection } from "../physics/neutrino-cross-section";
 
 import {binCount} from "../physics/bins";
