@@ -9,6 +9,7 @@ import {
   PROTON_REST_MASS,
   ALPHA_REST_MASS,
   ELEMENTARY_CHARGE,
+  ATOMIC_MASS_UNIT,
 } from "./constants";
 
 import Elements from "../elements";
@@ -22,16 +23,16 @@ const {K40, Th232, U235, U238, Ca40, Pb208, Pb207, Pb206} = Elements
 export const ISOTOPIC_DECAY_ENERGIES = {
    // MeV
    K40:
-     ((K40.relative_atomic_mass - Ca40.relative_atomic_mass) - ISOTOPIC_ALPHAS_PER_DECAY.K40 * 
+     ((K40.relative_atomic_mass - Ca40.relative_atomic_mass) * ATOMIC_MASS_UNIT - ISOTOPIC_ALPHAS_PER_DECAY.K40 * 
       (ALPHA_REST_MASS + 2 * ELECTRON_REST_MASS)) * ELEMENTARY_CHARGE * 1e6,
    TH232:
-     ((Th232.relative_atomic_mass - Pb208.relative_atomic_mass) - ISOTOPIC_ALPHAS_PER_DECAY.Th232 * 
+     ((Th232.relative_atomic_mass - Pb208.relative_atomic_mass) * ATOMIC_MASS_UNIT - ISOTOPIC_ALPHAS_PER_DECAY.Th232 * 
       (ALPHA_REST_MASS + 2 * ELECTRON_REST_MASS)) * ELEMENTARY_CHARGE * 1e6,
    U235:
-     ((U235.relative_atomic_mass - Pb207.relative_atomic_mass) - ISOTOPIC_ALPHAS_PER_DECAY.U235 * 
+     ((U235.relative_atomic_mass - Pb207.relative_atomic_mass) * ATOMIC_MASS_UNIT - ISOTOPIC_ALPHAS_PER_DECAY.U235 * 
       (ALPHA_REST_MASS + 2 * ELECTRON_REST_MASS)) * ELEMENTARY_CHARGE * 1e6,
    U238:
-     ((U238.relative_atomic_mass - Pb206.relative_atomic_mass) - ISOTOPIC_ALPHAS_PER_DECAY.U238 * 
+     ((U238.relative_atomic_mass - Pb206.relative_atomic_mass) * ATOMIC_MASS_UNIT - ISOTOPIC_ALPHAS_PER_DECAY.U238 * 
       (ALPHA_REST_MASS + 2 * ELECTRON_REST_MASS)) * ELEMENTARY_CHARGE * 1e6,
  };
 
