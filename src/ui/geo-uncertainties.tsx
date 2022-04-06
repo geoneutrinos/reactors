@@ -18,7 +18,7 @@ export const GeoFluxUncertainties = () => {
             <thead>
               <tr>
                 <th></th>
-                <th><sup>40</sup>K<sub>β</sub></th>
+                <th>{K40}<sub>β</sub></th>
                 <th>{Th232}</th>
                 <th>{U235}</th>
                 <th>{U238}</th>

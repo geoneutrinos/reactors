@@ -31,7 +31,7 @@ export const IsotopeData = () => {
             <thead>
               <tr>
                 <th></th>
-                <th><sup>40</sup>K<sub>β</sub></th>
+                <th>{K40}<sub>β</sub></th>
                 <th>{Th232}</th>
                 <th>{U235}</th>
                 <th>{U238}</th>
@@ -117,10 +117,10 @@ export const IsotopeData = () => {
           </Table>
           <p><small>
           Half life references:<br />
-          <sup>40</sup>K: J. Chen, Nuclear Data Sheets A=40 140 (2017)<br />
-          <sup>232</sup>Th: E. Browne, Nuclear Data Shetts A=232 107 (2006)<br />
-          <sup>235</sup>U: E. Browne and J.K. Tuli, Nuclear Data Sheets A=235 122 (2014)<br />
-          <sup>238</sup>U: E. Browne and J.K. Tuli, Nuclear Data Sheets A=238 127 (2015)<br />
+          {K40}: J. Chen, Nuclear Data Sheets A=40 140 (2017)<br />
+          {Th232}: E. Browne, Nuclear Data Shetts A=232 107 (2006)<br />
+          {U235}: E. Browne and J.K. Tuli, Nuclear Data Sheets A=235 122 (2014)<br />
+          {U238}: E. Browne and J.K. Tuli, Nuclear Data Sheets A=238 127 (2015)<br />
         </small></p>
       </Card.Body>
     </Card>

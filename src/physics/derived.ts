@@ -8,7 +8,6 @@ import {
   NEUTRON_REST_MASS,
   PROTON_REST_MASS,
   ALPHA_REST_MASS,
-  ELEMENTARY_CHARGE,
   ATOMIC_MASS_UNIT,
 } from "./constants";
 
