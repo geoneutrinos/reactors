@@ -7,6 +7,8 @@ import {
   averageNeutrinoEnergy40K,
 } from "../antineutrino-spectrum";
 
+import {ISOTOPIC_HALF_LIFE} from '../physics/constants'
+
 import {ISOTOPIC_DECAY_ENERGIES} from '../physics/derived'
 
 import {Elements} from './elements'
@@ -62,7 +64,21 @@ export const IsotopeAvgNuEnergy = () => {
                   <Num v={averageNeutrinoEnergy238U} p={3} />
                 </td>
               </tr>
-
+              <tr>
+                <td> Half Life (10<sup>9</sup> y) </td>
+                 <td>
+                  {ISOTOPIC_HALF_LIFE.K40e9y}
+                </td>
+                <td>
+                  {ISOTOPIC_HALF_LIFE.TH232e9y.toFixed(1)}
+                </td>
+                <td>
+                  {ISOTOPIC_HALF_LIFE.U235e9y}
+                </td>
+                <td>
+                  {ISOTOPIC_HALF_LIFE.U238e9y}
+                </td>
+              </tr>
             </tbody>
           </Table>
       </Card.Body>
