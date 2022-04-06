@@ -9,7 +9,10 @@ import {
 
 import {ISOTOPIC_HALF_LIFE} from '../physics/constants'
 
-import {ISOTOPIC_DECAY_ENERGIES} from '../physics/derived'
+import {
+  ISOTOPIC_DECAY_ENERGIES,
+  ISOTOPIC_NEUTRINO_LUMINOSITY,
+} from '../physics/derived';
 
 import {Elements} from './elements'
 
@@ -77,6 +80,21 @@ export const IsotopeAvgNuEnergy = () => {
                 </td>
                 <td>
                   {ISOTOPIC_HALF_LIFE.U238e9y}
+                </td>
+              </tr>
+              <tr>
+                <td> ν Luminosity (kg<sup>-1</sup> µs<sup>-1</sup>) </td>
+                <td>
+                  <Num v={ISOTOPIC_NEUTRINO_LUMINOSITY.K40} p={3} func={(v) => v / 1e6} />
+                </td>
+                <td>
+                  <Num v={ISOTOPIC_NEUTRINO_LUMINOSITY.TH232} p={3} func={(v) => v / 1e6} />
+                </td>
+                <td>
+                  <Num v={ISOTOPIC_NEUTRINO_LUMINOSITY.U235} p={3} func={(v) => v / 1e6} />
+                </td>
+                <td>
+                  <Num v={ISOTOPIC_NEUTRINO_LUMINOSITY.U238} p={3} func={(v) => v / 1e6}  />
                 </td>
               </tr>
             </tbody>
