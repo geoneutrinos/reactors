@@ -22,7 +22,7 @@ export { ParticleMasses } from "./physics-masses";
 export { GeoFluxUncertainties } from "./geo-uncertainties";
 export { IsotopeNuLuminosities } from "./geonu-luminosities";
 export { IsotopeDecayHeating } from "./isotope-geoheating";
-export {IsotopeAvgNuEnergy } from "./geonu-averageenergy";
+export {IsotopeData } from "./geonu-averageenergy";
 export {
   CrossSectionPlots,
   CrossSectionPlotsNormal,
