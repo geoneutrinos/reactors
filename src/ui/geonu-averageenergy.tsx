@@ -22,7 +22,7 @@ import { Num } from '.';
 
 const {K40, Th232, U235, U238} = Elements
 
-export const IsotopeAvgNuEnergy = () => {
+export const IsotopeData = () => {
   return (
     <Card>
       <Card.Header>Isotope Data</Card.Header>
@@ -99,7 +99,7 @@ export const IsotopeAvgNuEnergy = () => {
                 </td>
               </tr>
               <tr>
-                <td> Heating (µJ kg<sup>-1</sup> s<sup>-1</sup>) </td>
+                <td> Heating (µW kg<sup>-1</sup>) </td>
                 <td>
                   <Num v={ISOTOPIC_DECAY_HEATING.K40beta} p={3} func={(v) => v * 1e6}  />
                 </td>
@@ -115,6 +115,13 @@ export const IsotopeAvgNuEnergy = () => {
               </tr>
             </tbody>
           </Table>
+          <p><small>
+          Half life references:<br />
+          <sup>40</sup>K: J. Chen, Nuclear Data Sheets A=40 140 (2017)<br />
+          <sup>232</sup>Th: E. Browne, Nuclear Data Shetts A=232 107 (2006)<br />
+          <sup>235</sup>U: E. Browne and J.K. Tuli, Nuclear Data Sheets A=235 122 (2014)<br />
+          <sup>238</sup>U: E. Browne and J.K. Tuli, Nuclear Data Sheets A=238 127 (2015)<br />
+        </small></p>
       </Card.Body>
     </Card>
   );
