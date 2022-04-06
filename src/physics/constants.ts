@@ -1,8 +1,9 @@
 export const SECONDS_PER_YEAR = 365.25 * 24 * 60 * 60; //seconds
 export const ELEMENTARY_CHARGE = 1.602176634e-19; //Coulombs (exact as of 20 May 2019)
-export const ELECTRON_REST_MASS = 0.51099895000; // (15) MeV
-export const NEUTRON_REST_MASS = 939.56542052; // (54) MeV
-export const PROTON_REST_MASS = 938.27208816; // (29) MeV
+export const ELECTRON_REST_MASS = 0.51099895000; // (15) MeV; PDG
+export const NEUTRON_REST_MASS = 939.56542052; // (54) MeV; PDG
+export const PROTON_REST_MASS = 938.27208816; // (29) MeV; PDG
+export const ALPHA_REST_MASS = 3727.3794066; // (11) MeV; https://physics.nist.gov/cgi-bin/cuu/Value?malc2mev
 export const FERMI_COUPLING_CONSTANT = 1.1663787e-5; // (6) GeV-2
 export const HBAR_C = 197.3269804e-13; // MeV cm (exact)
 //export const WEAK_MIXING_ANGLE = 0.23153; // ± 0.0004; https://pdg.lbl.gov/2020/reviews/rpp2020-rev-phys-constants.pdf
@@ -50,6 +51,13 @@ export const ISOTOPIC_HALF_LIFE = {
   TH232e9y: 14.0, // E. Browne, Nuclear Data Shetts A=232 107 (2006)
   U235e9y: 0.704, // E. Browne and J.K. Tuli, Nuclear Data Sheets A=235 122 (2014)
   U238e9y: 4.468, // E. Browne and J.K. Tuli, Nuclear Data Sheets A=238 127 (2015)
+};
+
+export const ISOTOPIC_ALPHAS_PER_DECAY = {
+  K40: 0,
+  TH232: 6,
+  U235: 7,
+  U238: 8,
 };
 
 export const ISOTOPIC_NEUTRINOS_PER_DECAY = {
