@@ -148,7 +148,6 @@ export const GeoNuSpectrumSource = ({ includeCrust, setIncludeCrust }) => {
     },
   ];
   var layout = {
-    title: "Geoneutrino Spectra",
     yaxis: {
       title: { text: `Intensity (/MeV/decay)` },
       type: "log",
@@ -178,14 +177,6 @@ export const GeoNuSpectrumSource = ({ includeCrust, setIncludeCrust }) => {
     <Card>
       <Card.Header>Geoneutrino Spectra</Card.Header>
       <Card.Body>
-        <p>
-          Geoneutrino spectra for <sup>238</sup>U, <sup>235</sup>U,{" "}
-          <sup>232</sup>Th, and <sup>40</sup>K<sub>β</sub> are from{" "}
-          <a href="https://www.awa.tohoku.ac.jp/~sanshiro/research/geoneutrino/spectrum/">
-            Enomoto Sanshiro
-          </a>
-          .
-        </p>
         <Plot
           useResizeHandler={true}
           style={{ width: "100%" }}
@@ -193,6 +184,14 @@ export const GeoNuSpectrumSource = ({ includeCrust, setIncludeCrust }) => {
           layout={layout}
           config={config}
         />
+        <p>
+          <small>Geoneutrino spectra for <sup>238</sup>U, <sup>235</sup>U,{" "}
+          <sup>232</sup>Th, and <sup>40</sup>K<sub>β</sub> are from{" "}
+          <a href="https://www.awa.tohoku.ac.jp/~sanshiro/research/geoneutrino/spectrum/">
+            Enomoto Sanshiro
+          </a>
+          .</small>
+        </p>
       </Card.Body>
     </Card>
   );
