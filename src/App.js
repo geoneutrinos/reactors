@@ -21,10 +21,7 @@ import {
   CrustFlux,
   GeoFluxUncertainties,
   GeoNuSpectrumSource,
-  IsotopeAvgNuEnergy,
-  IsotopeHalfLives,
-  IsotopeNuLuminosities,
-  IsotopeDecayHeating,
+  IsotopeData,
   //Direction Tab
   AnalemmaPlot,
   CoreDirectionPlot,
@@ -276,10 +273,7 @@ function App(props) {
                   />
                   <GeoFluxUncertainties />
                   <GeoNuSpectrumSource />
-                  <IsotopeAvgNuEnergy />
-                  <IsotopeHalfLives />
-                  <IsotopeNuLuminosities />
-                  <IsotopeDecayHeating />
+                  <IsotopeData />
                 </Visible>
               </Tab>
               <Tab eventKey="solarnu" title="SolarNu">

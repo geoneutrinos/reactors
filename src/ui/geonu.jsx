@@ -33,14 +33,14 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo}) => {
   const {heating} = geo;
   return (
     <Card>
-      <Card.Header>Mantle Fluxes and Radiogenic Heating</Card.Header>
+      <Card.Header>Mantle Fluxes <small>(Radiogenic Heating)</small></Card.Header>
       <Card.Body>
         <Form.Group controlId="U238flux">
           <Form.Label>
             <sup>238</sup>U Mantle Flux: {geoFluxRatios.U238flux.toExponential(1)} cm
             <sup>-2</sup>s<sup>-1</sup>
             {" "}
-            (U Heating: <Num v={heating.U238 + heating.U235} p={2} func={(v) => v / 1e12}/> TW)
+            <small>(<sup>238</sup>U plus <sup>235</sup>U: <Num v={heating.U238 + heating.U235} p={2} func={(v) => v / 1e12}/> TW)</small>
           </Form.Label>
           <Form.Control
             value={geoFluxRatios.U238flux}
@@ -61,7 +61,7 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo}) => {
             <Form.Label>
               Th/U Ratio {geoFluxRatios.ThURatio.toFixed(1)}
             {" "}
-            (Th Heating: <Num v={heating.Th232} p={2} func={(v) => v / 1e12}/> TW)
+            <small>(<sup>232</sup>Th: <Num v={heating.Th232} p={2} func={(v) => v / 1e12}/> TW)</small>
             </Form.Label>
             <Form.Control
               value={geoFluxRatios.ThURatio}
@@ -83,7 +83,7 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo}) => {
             <Form.Label>
               K/U Ratio {geoFluxRatios.KURatio.toExponential(1)}
             {" "}
-            (K40 Beta Heating: <Num v={heating.K40Beta} p={2} func={(v) => v / 1e12}/> TW)
+            <small>(<sup>40</sup>K<sub>β</sub>: <Num v={heating.K40Beta} p={2} func={(v) => v / 1e12}/> TW)</small>
             </Form.Label>
             <Form.Control
               value={geoFluxRatios.KURatio}
@@ -101,7 +101,7 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo}) => {
           </InputGroup>
         </Form.Group>
         Total Mantle Radiogenic Heating: <Num v={heating.U238 + heating.U235 + heating.Th232 + heating.K40Beta} p={2} func={(v) => v / 1e12}/> TW
-        <br /> <small>Assumes homogeneous element concentrations and PREM mantle mass and geophysical response</small> 
+        <br /> <small>Assumes homogeneous element concentrations, PREM mantle mass and geophysical response</small> 
       </Card.Body>
     </Card>
   );
@@ -140,7 +140,7 @@ export const GeoNuSpectrumSource = ({ includeCrust, setIncludeCrust }) => {
     {
       y: [...rawAntineutrinoSpectrum["40K"], 0].map((x) => x * 1000),
       x: x_values,
-      name: "<sup>40</sup>K",
+      name: "<sup>40</sup>K<sub>β</sub>",
       type: "scatter",
       mode: "lines",
       fill: "none",
@@ -148,9 +148,8 @@ export const GeoNuSpectrumSource = ({ includeCrust, setIncludeCrust }) => {
     },
   ];
   var layout = {
-    title: "Geoneutrino Spectra: \u03B2<sup>-</sup> decays ",
     yaxis: {
-      title: { text: `Intensity (1/MeV/decay)` },
+      title: { text: `Intensity (/MeV/decay)` },
       type: "log",
       autorange: true,
     },
@@ -178,14 +177,6 @@ export const GeoNuSpectrumSource = ({ includeCrust, setIncludeCrust }) => {
     <Card>
       <Card.Header>Geoneutrino Spectra</Card.Header>
       <Card.Body>
-        <p>
-          Geoneutrino spectra for <sup>238</sup>U, <sup>235</sup>U,{" "}
-          <sup>232</sup>Th, and <sup>40</sup>K are from{" "}
-          <a href="https://www.awa.tohoku.ac.jp/~sanshiro/research/geoneutrino/spectrum/">
-            Enomoto Sanshiro
-          </a>
-          .
-        </p>
         <Plot
           useResizeHandler={true}
           style={{ width: "100%" }}
@@ -193,6 +184,14 @@ export const GeoNuSpectrumSource = ({ includeCrust, setIncludeCrust }) => {
           layout={layout}
           config={config}
         />
+        <p>
+          <small>Geoneutrino spectra for <sup>238</sup>U, <sup>235</sup>U,{" "}
+          <sup>232</sup>Th, and <sup>40</sup>K<sub>β</sub> are from{" "}
+          <a href="https://www.awa.tohoku.ac.jp/~sanshiro/research/geoneutrino/spectrum/">
+            Enomoto Sanshiro
+          </a>
+          .</small>
+        </p>
       </Card.Body>
     </Card>
   );

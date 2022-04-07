@@ -119,7 +119,7 @@ export function NuSpectrumPlot({ cores, geo, detector, reactorLF, xaxisExtra={},
     {
       x: bins,
       y: func(geo.total.K40Beta.spectrum),
-      name: "Geo <sup>40</sup>K (β<sup>-</sup>)",
+      name: "Geo <sup>40</sup>K<sub>β</sub>",
       type: "scatter",
       mode: "lines",
       fill: "tozerox",
