@@ -106,7 +106,7 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo}) => {
         </Form.Group>
         Total Mantle Radiogenic Heating: <Num v={heating.U238 + heating.U235 + heating.Th232 + heating.K40Beta} p={2} func={(v) => v / 1e12}/> TW
         <br /> <small>Assumes homogeneous element concentrations, PREM mantle mass and geophysical response</small>
-        <br /> <small>Fluxes do not include neutrino oscillations</small>
+        <br /> <small>Flux values shown do not include neutrino oscillations</small>
       </Card.Body>
     </Card>
   );
