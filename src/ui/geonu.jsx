@@ -4,7 +4,11 @@ import { rawAntineutrinoSpectrum } from "../antineutrino-spectrum";
 import { Card, Form, InputGroup } from "react-bootstrap";
 import { Num } from ".";
 
+import {Elements} from './elements'
+
 import Plot from "react-plotly.js";
+
+const {K40, Th232, U235, U238} = Elements
 
 export const CrustFlux = ({ includeCrust, setIncludeCrust }) => {
   return (
@@ -185,8 +189,8 @@ export const GeoNuSpectrumSource = ({ includeCrust, setIncludeCrust }) => {
           config={config}
         />
         <p>
-          <small>Geoneutrino spectra for <sup>238</sup>U, <sup>235</sup>U,{" "}
-          <sup>232</sup>Th, and <sup>40</sup>K<sub>β</sub> are from{" "}
+          <small>Geoneutrino spectra for {U238}, {U235},{" "}
+          {Th232}, and <sup>40</sup>K<sub>β</sub> are from{" "}
           <a href="https://www.awa.tohoku.ac.jp/~sanshiro/research/geoneutrino/spectrum/">
             Enomoto Sanshiro
           </a>
