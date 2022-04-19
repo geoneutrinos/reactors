@@ -8,7 +8,10 @@ import {
   ISOTOPIC_DECAY_HEATING,
 } from "../antineutrino-spectrum";
 
-import {ISOTOPIC_HALF_LIFE} from '../physics/constants'
+import {
+  ISOTOPIC_HALF_LIFE,
+  ISOTOPIC_NATURAL_ABUNDANCE,
+} from '../physics/constants'
 
 import {
   ISOTOPIC_DECAY_ENERGIES,
@@ -81,6 +84,21 @@ export const IsotopeData = () => {
                 </td>
                 <td>
                   {ISOTOPIC_HALF_LIFE.U238e9y}
+                </td>
+              </tr>
+              <tr>
+                <td> Natural abundance (%) </td>
+                 <td>
+                  <Num v={ISOTOPIC__NATURAL_ABUNDANCE.K40} p={4} />
+                </td>
+                <td>
+                  <Num v={ISOTOPIC__NATURAL_ABUNDANCE.TH232} p={0} />
+                </td>
+                <td>
+                  <Num v={ISOTOPIC__NATURAL_ABUNDANCE.U235} p={2} />
+                </td>
+                <td>
+                  <Num v={ISOTOPIC__NATURAL_ABUNDANCE.U238} p={4} />
                 </td>
               </tr>
               <tr>
