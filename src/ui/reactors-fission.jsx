@@ -23,7 +23,7 @@ export const FissionFractionPane = () => {
             </p>
             <p> Mid-cycle fission energies- <i>Q</i>
             <br />
-            V. I. Kopeikin et al., "Reactor as a Source of Antineutrinos: Thermal Fission Energy," Phys. Atom. Nucl. 67, 1892 (2004).
+            X. B. Ma et al., "Improved calculation of the energy release in neutron-induced fission," Phys. Rev. C. 88, 014605 (2013).
             </p>          
           <Table {...tableProps}>
             <thead>
