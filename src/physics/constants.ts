@@ -15,10 +15,15 @@ export const MANTLE_GEOPHYSICAL_RESPONSE = 1.1770628e6; // kg/cm2
 
 export const FISSION_ENERGIES = {
   // MeV ref: V. I. Kopeikin et al., "Reactor as a Source of Antineutrinos: Thermal Fission Energy," Phys. Atom. Nucl. 67, 1892 (2004)
-  U235: 202.79,
-  U238: 205.93,
-  PU239: 207.32,
-  PU241: 211.04,
+  U235Ko: 202.79,
+  U238Ko: 205.93,
+  PU239Ko: 207.32,
+  PU241Ko: 211.04,
+  // MeV ref: X. B. Ma et al., "Improved calculation of the energy release in neutron-induced fission." Phys. Rev. C 88, 014605 (2013)
+  U235: 202.36,
+  U238: 205.99,
+  PU239: 211.12,
+  PU241: 214.26,
 };
 
 export enum Isotopes {
