@@ -11,7 +11,7 @@ import {
 import {
   ISOTOPIC_HALF_LIFE,
   ISOTOPIC_NATURAL_ABUNDANCE,
-} from '../physics/constants'
+} from '../physics/constants';
 
 import {
   ISOTOPIC_DECAY_ENERGIES,
