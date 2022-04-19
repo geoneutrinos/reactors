@@ -36,7 +36,7 @@ export const K40_BRANCH_RATIO = {
 
 export const ISOTOPIC_NATURAL_ABUNDANCE = {
   K40: 0.0117,
-  TH232: 100,
+  TH232: 99.98,
   U235: 0.72,
   U238: 99.2745,
 };
