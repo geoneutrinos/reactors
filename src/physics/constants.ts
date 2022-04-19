@@ -14,11 +14,16 @@ export const MANTLE_MASS = 4.0023618e24; // kg (PREM- A. M. Dziewonski and D. L.
 export const MANTLE_GEOPHYSICAL_RESPONSE = 1.1770628e6; // kg/cm2
 
 export const FISSION_ENERGIES = {
-  //MeV
-  U235: 201.92,
-  U238: 205.52,
-  PU239: 209.99,
-  PU241: 213.60,
+  // MeV ref: V. I. Kopeikin et al., "Reactor as a Source of Antineutrinos: Thermal Fission Energy," Phys. Atom. Nucl. 67, 1892 (2004)
+  U235Ko: 202.79,
+  U238Ko: 205.93,
+  PU239Ko: 207.32,
+  PU241Ko: 211.04,
+  // MeV ref: X. B. Ma et al., "Improved calculation of the energy release in neutron-induced fission." Phys. Rev. C 88, 014605 (2013)
+  U235: 202.36,
+  U238: 205.99,
+  PU239: 211.12,
+  PU241: 214.26,
 };
 
 export enum Isotopes {
@@ -35,10 +40,10 @@ export const K40_BRANCH_RATIO = {
 };
 
 export const ISOTOPIC_NATURAL_ABUNDANCE = {
-  K40: 0.0117,
-  TH232: 100,
-  U235: 0.72,
-  U238: 99.2745,
+  K40: 0.0117, // https://ciaaw.org/isotopic-abundances.htm
+  TH232: 99.98, // https://ciaaw.org/isotopic-abundances.htm
+  U235: 0.7204, // https://ciaaw.org/isotopic-abundances.htm
+  U238: 99.2742, // https://ciaaw.org/isotopic-abundances.htm
 };
 
 export const ISOTOPIC_HALF_LIFE = {
@@ -70,8 +75,8 @@ export const ISOTOPIC_NEUTRINOS_PER_DECAY = {
 
 export const ISOTOPIC_ATOMIC_MASS = {
   // u -> kg
-  K40: 39.963_998_166 * AU,
-  TH232: 232.038_0558 * AU,
-  U235: 235.043_9302 * AU,
-  U238: 238.050_7884 * AU,
+  K40: 39.963_998_165 * AU, // https://www-nds.iaea.org/amdc/ame2020/mass_1.mas20.txt
+  TH232: 232.038_053_606 * AU, // https://www-nds.iaea.org/amdc/ame2020/mass_1.mas20.txt
+  U235: 235.043_928_117 * AU, // https://www-nds.iaea.org/amdc/ame2020/mass_1.mas20.txt
+  U238: 238.050_786_936 * AU, // https://www-nds.iaea.org/amdc/ame2020/mass_1.mas20.txt
 };
