@@ -21,7 +21,7 @@ export const FissionFractionPane = () => {
             <br />
             M. Baldoncini et al., "Reference worldwide model for antineutrinos from reactors," Phys.  Rev. D91, 065002 (2015).
             </p>
-            <p> Mid-cycle fission energies- <i>Q</i>
+            <p> Fission energies- <i>Q</i>
             <br />
             X. B. Ma et al., "Improved calculation of the energy release in neutron-induced fission," Phys. Rev. C. 88, 014605 (2013).
             </p>          
