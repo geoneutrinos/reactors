@@ -7,6 +7,7 @@ import {
   Circle,
   LayersControl,
   Marker,
+  AttributionControl,
 } from "react-leaflet";
 import "leaflet-contextmenu";
 
@@ -187,6 +188,7 @@ export function NuMap({
       minZoom={2}
       {...contextMenu}
       onZoom={(e) => setZoom(e.target._zoom)}
+      attributionControl={false}
     >
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -216,6 +218,7 @@ export function NuMap({
           </LayerGroup>
         </LayersControl.Overlay>
       </LayersControl>
+      <AttributionControl position="bottomright" prefix="<a href='https://leafletjs.com/'>Leaflet</a>" />
     </Map>
   );
 }
