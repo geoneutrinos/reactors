@@ -1,12 +1,13 @@
+# core data before year 2003 are not yet included
 # name: the core name in PRIS
 # country: ISO ALPHA-2 country code
 # power: the thermal design power in MW
 # shutdown: YYYY-MM of permanent core shutdown (or way in the future)
 # lat: core latitude in decimal degrees north
-# lon: core longitude in decimal degrees eastk
-# elevation: elevation above WGS84 reference ellipsoiod in meters
-# type: the core type
-# mox: 1 if using mixed oxide fuel, 0 if not
+# lon: core longitude in decimal degrees east
+# elevation: elevation above WGS84 reference ellipsoid in meters
+# type: ie PWR BWR GCR PHWR LWGR FBR etc
+# mox: 1 if using mixed oxide fuel or 0 if not
 name,country,power,shutdown,lat,lon,elevation,type,mox
 # geoid height 7.86 m
 AKADEMIK LOMONOSOV-1,RU,150.0,2100-01,69.709575,170.306163,10.0,PWR,0
