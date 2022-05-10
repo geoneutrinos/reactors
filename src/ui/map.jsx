@@ -82,7 +82,7 @@ const CoreCircles = React.memo(function CoreCircles({ cores, customCores, zoom, 
     const CorePopup = (
       <Popup>
         {shutdown && <h5>Core Permanently Shutdown {core.shutdown.toISOString().slice(0,7)}</h5>}
-        <b>Core Name:</b> {core.name}
+        <b>Core:</b> {core.name}
         <br />
         <b>Type:</b> {core.type}&nbsp;
         <b>Mox:</b> {JSON.stringify(core.mox)}
@@ -92,9 +92,9 @@ const CoreCircles = React.memo(function CoreCircles({ cores, customCores, zoom, 
         </span>{" "}
         {core.power} MW
         <br />
-        <b>Position (N,E) </b> {core.lat}, {core.lon}
+        <b>Position (N,E): </b> {core.lat}, {core.lon}
         <br />
-        <b>Elevation</b> {core.elevation} m<br />
+        <b>Elevation:</b> {core.elevation} m<br />
         <small>Elevation is height above the WGS84 reference ellipsoid</small>
       </Popup>
     );
