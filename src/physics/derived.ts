@@ -8,6 +8,7 @@ import {
   PROTON_REST_MASS,
   ALPHA_REST_MASS,
   ATOMIC_MASS_UNIT,
+  AU,
 } from "./constants";
 
 import Elements from "../elements";
@@ -41,16 +42,16 @@ export const ISOTOPIC_NEUTRINO_LUMINOSITY = {
   K40:
     (Math.log(2) / ISOTOPIC_HALF_LIFE.K40) *
     ((ISOTOPIC_NEUTRINOS_PER_DECAY.K40 * K40_BRANCH_RATIO.beta) /
-      K40.relative_atomic_mass / ATOMIC_MASS_UNIT),
+      K40.relative_atomic_mass / AU),
   TH232:
     (Math.log(2) / ISOTOPIC_HALF_LIFE.TH232) *
-    (ISOTOPIC_NEUTRINOS_PER_DECAY.TH232 / TH232.relative_atomic_mass / ATOMIC_MASS_UNIT),
+    (ISOTOPIC_NEUTRINOS_PER_DECAY.TH232 / TH232.relative_atomic_mass / AU),
   U235:
     (Math.log(2) / ISOTOPIC_HALF_LIFE.U235) *
-    (ISOTOPIC_NEUTRINOS_PER_DECAY.U235 / U235.relative_atomic_mass / ATOMIC_MASS_UNIT),
+    (ISOTOPIC_NEUTRINOS_PER_DECAY.U235 / U235.relative_atomic_mass / AU),
   U238:
     (Math.log(2) / ISOTOPIC_HALF_LIFE.U238) *
-    (ISOTOPIC_NEUTRINOS_PER_DECAY.U238 / U238.relative_atomic_mass / ATOMIC_MASS_UNIT),
+    (ISOTOPIC_NEUTRINOS_PER_DECAY.U238 / U238.relative_atomic_mass / AU),
 };
 
 export const IBD_THRESHOLD =
