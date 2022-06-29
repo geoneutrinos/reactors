@@ -45,7 +45,7 @@ export const ISOTOPIC_NEUTRINO_LUMINOSITY = {
       K40.relative_atomic_mass / AU),
   TH232:
     (Math.log(2) / ISOTOPIC_HALF_LIFE.TH232) *
-    (ISOTOPIC_NEUTRINOS_PER_DECAY.TH232 / TH232.relative_atomic_mass / AU),
+    (ISOTOPIC_NEUTRINOS_PER_DECAY.TH232 / Th232.relative_atomic_mass / AU),
   U235:
     (Math.log(2) / ISOTOPIC_HALF_LIFE.U235) *
     (ISOTOPIC_NEUTRINOS_PER_DECAY.U235 / U235.relative_atomic_mass / AU),
