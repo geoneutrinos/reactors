@@ -14,7 +14,7 @@ import {
 import {
   MANTLE_GEOPHYSICAL_RESPONSE,
   MANTLE_MASS,
-} from "./geophysics.ts";
+} from "./geophysics";
 import { ISOTOPIC_NEUTRINO_LUMINOSITY } from "../physics/derived";
 import bins, { binWidth } from "../physics/bins";
 import { sum } from "lodash";
