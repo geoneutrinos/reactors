@@ -1,6 +1,6 @@
 import { ISOTOPIC_HALF_LIFE, ISOTOPIC_ATOMIC_MASS, K40_BRANCH_RATIO, ELEMENTARY_CHARGE } from "../physics/constants";
 import { ISOTOPIC_DECAY_ENERGIES } from "../physics/derived";
-import { averageNeutrinoEnergy } from "../antineutrino-spectrum";
+import { averageNeutrinoEnergy238U, averageNeutrinoEnergy235U, averageNeutrinoEnergy232Th, averageNeutrinoEnergy40K } from "../antineutrino-spectrum";
 
 export const MANTLE_MASS = 4.0023618e24; // kg (PREM- A. M. Dziewonski and D. L. Anderson, Phys. Earth Planet. Inter. 25, 297 (1981).
 export const MANTLE_GEOPHYSICAL_RESPONSE = 1.1770628e6; // kg/cm2
