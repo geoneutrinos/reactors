@@ -124,4 +124,4 @@ const defaulTrateToFlux40K:RateToFlux = {
 export const rateToFlux238U = rateToFluxReducer(defaulTrateToFlux238U, crossSection)
 export const rateToFlux235U = rateToFluxReducer(defaulTrateToFlux235U, crossSection)
 export const rateToFlux232Th = rateToFluxReducer(defaulTrateToFlux232Th, crossSection)
-export const rateToFlux40K = rateToFluxReducer(defaulTrateToFlux40K, crossSection)
+export const rateToFlux40K = rateToFluxReducer(defaulTrateToFlux40K, crossSection);
