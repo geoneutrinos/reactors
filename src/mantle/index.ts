@@ -5,7 +5,6 @@ import {
   antineutrinoSpectrum238U,
   antineutrinoSpectrum232Th,
   antineutrinoSpectrum40K,
-  ISOTOPIC_DECAY_HEATING,
 } from "../antineutrino-spectrum";
 import {
   SECONDS_PER_YEAR,
@@ -14,6 +13,7 @@ import {
 import {
   MANTLE_GEOPHYSICAL_RESPONSE,
   MANTLE_MASS,
+  ISOTOPIC_DECAY_HEATING,
 } from "./geophysics";
 import { ISOTOPIC_NEUTRINO_LUMINOSITY } from "../physics/derived";
 import bins, { binWidth } from "../physics/bins";
