@@ -10,9 +10,11 @@ import {
 import {
   SECONDS_PER_YEAR,
   ISOTOPIC_NATURAL_ABUNDANCE,
+} from "../physics/constants";
+import {
   MANTLE_GEOPHYSICAL_RESPONSE,
   MANTLE_MASS,
-} from "../physics/constants";
+} from "./geophysics";
 import { ISOTOPIC_NEUTRINO_LUMINOSITY } from "../physics/derived";
 import bins, { binWidth } from "../physics/bins";
 import { sum } from "lodash";

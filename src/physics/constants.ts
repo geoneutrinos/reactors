@@ -10,8 +10,6 @@ export const HBAR_C = 197.3269804e-13; // MeV cm (exact)
 export const WEAK_MIXING_ANGLE = 0.23867; // ± 0.00016; Erler, J and Ramsey-Musolf, MJ (2005) Phys Rev D 72, 073003.
 export const ATOMIC_MASS_UNIT = 931.49410242; // (28) MeV/c2; PDG
 export const AU = 1.660_539_066_60e-27; // (50) kg (atomic mass aka dalton); PDG
-export const MANTLE_MASS = 4.0023618e24; // kg (PREM- A. M. Dziewonski and D. L. Anderson, Phys. Earth Planet. Inter. 25, 297 (1981).
-export const MANTLE_GEOPHYSICAL_RESPONSE = 1.1770628e6; // kg/cm2
 
 export const FISSION_ENERGIES = {
   // MeV ref: V. I. Kopeikin et al., "Reactor as a Source of Antineutrinos: Thermal Fission Energy," Phys. Atom. Nucl. 67, 1892 (2004)
