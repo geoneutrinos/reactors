@@ -107,31 +107,31 @@ export const IsotopeData = () => {
               <tr>
                 <td> ν luminosity (kg<sup>-1</sup> µs<sup>-1</sup>) </td>
                 <td>
-                  <Num v={ISOTOPIC_NEUTRINO_LUMINOSITY.K40} p={3} func={(v) => v / 1e6} />
+                  <Num v={ISOTOPIC_NEUTRINO_LUMINOSITY.K40} p={1} func={(v) => v / 1e6} />
                 </td>
                 <td>
-                  <Num v={ISOTOPIC_NEUTRINO_LUMINOSITY.TH232} p={3} func={(v) => v / 1e6} />
+                  <Num v={ISOTOPIC_NEUTRINO_LUMINOSITY.TH232} p={1} func={(v) => v / 1e6} />
                 </td>
                 <td>
-                  <Num v={ISOTOPIC_NEUTRINO_LUMINOSITY.U235} p={3} func={(v) => v / 1e6} />
+                  <Num v={ISOTOPIC_NEUTRINO_LUMINOSITY.U235} p={1} func={(v) => v / 1e6} />
                 </td>
                 <td>
-                  <Num v={ISOTOPIC_NEUTRINO_LUMINOSITY.U238} p={3} func={(v) => v / 1e6}  />
+                  <Num v={ISOTOPIC_NEUTRINO_LUMINOSITY.U238} p={1} func={(v) => v / 1e6}  />
                 </td>
               </tr>
               <tr>
                 <td> Decay heat (µW kg<sup>-1</sup>) </td>
                 <td>
-                  <Num v={ISOTOPIC_DECAY_HEATING.K40beta} p={3} func={(v) => v * 1e6}  />
+                  <Num v={ISOTOPIC_DECAY_HEATING.K40beta} p={1} func={(v) => v * 1e6}  />
                 </td>
                 <td>
-                  <Num v={ISOTOPIC_DECAY_HEATING.TH232} p={3} func={(v) => v * 1e6} />
+                  <Num v={ISOTOPIC_DECAY_HEATING.TH232} p={1} func={(v) => v * 1e6} />
                 </td>
                 <td>
-                  <Num v={ISOTOPIC_DECAY_HEATING.U235} p={3} func={(v) => v * 1e6} />
+                  <Num v={ISOTOPIC_DECAY_HEATING.U235} p={1} func={(v) => v * 1e6} />
                 </td>
                 <td>
-                  <Num v={ISOTOPIC_DECAY_HEATING.U238} p={3} func={(v) => v * 1e6} />
+                  <Num v={ISOTOPIC_DECAY_HEATING.U238} p={1} func={(v) => v * 1e6} />
                 </td>
               </tr>
             </tbody>
