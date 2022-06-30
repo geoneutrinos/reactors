@@ -3,8 +3,8 @@ import antineutrinoSpectrum232ThData from "./data/AntineutrinoSpectrum_232Th.knt
 import antineutrinoSpectrum235UData from "./data/AntineutrinoSpectrum_235U.knt.json";
 import antineutrinoSpectrum238UData from "./data/AntineutrinoSpectrum_238U.knt.json";
 
-import { SECONDS_PER_YEAR, ISOTOPIC_HALF_LIFE, ISOTOPIC_ATOMIC_MASS, K40_BRANCH_RATIO, ELEMENTARY_CHARGE } from "../physics/constants";
-import { ISOTOPIC_DECAY_ENERGIES } from "../physics/derived";
+import { SECONDS_PER_YEAR } from "../physics/constants";
+
 import { CrossSectionFunc, XSNames, CrossSection, crossSection } from "../physics/neutrino-cross-section";
 
 import {binCount} from "../physics/bins";
@@ -124,23 +124,4 @@ const defaulTrateToFlux40K:RateToFlux = {
 export const rateToFlux238U = rateToFluxReducer(defaulTrateToFlux238U, crossSection)
 export const rateToFlux235U = rateToFluxReducer(defaulTrateToFlux235U, crossSection)
 export const rateToFlux232Th = rateToFluxReducer(defaulTrateToFlux232Th, crossSection)
-export const rateToFlux40K = rateToFluxReducer(defaulTrateToFlux40K, crossSection)
-
-// Moved here from physics/derived.ts due to circular import
-
-export const ISOTOPIC_DECAY_HEATING = {
-  // J kg-1 s-1
-  K40beta:
-    (Math.log(2) / ISOTOPIC_HALF_LIFE.K40) *
-    (((ISOTOPIC_DECAY_ENERGIES.K40 - averageNeutrinoEnergy40K) * ELEMENTARY_CHARGE * 1e6 * K40_BRANCH_RATIO.beta) /
-      ISOTOPIC_ATOMIC_MASS.K40),
-  TH232:
-    (Math.log(2) / ISOTOPIC_HALF_LIFE.TH232) *
-    ((ISOTOPIC_DECAY_ENERGIES.TH232 - averageNeutrinoEnergy232Th) * ELEMENTARY_CHARGE * 1e6 / ISOTOPIC_ATOMIC_MASS.TH232),
-  U235:
-    (Math.log(2) / ISOTOPIC_HALF_LIFE.U235) *
-    ((ISOTOPIC_DECAY_ENERGIES.U235 - averageNeutrinoEnergy235U) * ELEMENTARY_CHARGE * 1e6 / ISOTOPIC_ATOMIC_MASS.U235),
-  U238:
-    (Math.log(2) / ISOTOPIC_HALF_LIFE.U238) *
-    ((ISOTOPIC_DECAY_ENERGIES.U238 - averageNeutrinoEnergy238U) * ELEMENTARY_CHARGE * 1e6 / ISOTOPIC_ATOMIC_MASS.U238),
-};
+export const rateToFlux40K = rateToFluxReducer(defaulTrateToFlux40K, crossSection);

@@ -5,7 +5,6 @@ import {
   averageNeutrinoEnergy238U,
   averageNeutrinoEnergy235U,
   averageNeutrinoEnergy40K,
-  ISOTOPIC_DECAY_HEATING,
 } from "../antineutrino-spectrum";
 
 import {
@@ -17,6 +16,10 @@ import {
   ISOTOPIC_DECAY_ENERGIES,
   ISOTOPIC_NEUTRINO_LUMINOSITY,
 } from '../physics/derived';
+
+import {
+ISOTOPIC_DECAY_HEATING,
+} from "../mantle/geophysics";
 
 import {Elements} from './elements'
 
