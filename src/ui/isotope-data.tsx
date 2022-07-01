@@ -119,8 +119,8 @@ export const IsotopeData = () => {
               </tr>
               <tr>
                 <td> Natural abundance (%) </td>
-                 <td colSpan={2}>
-                  {ISOTOPIC_NATURAL_ABUNDANCE.K40}
+                 <td colSpan={2}> {" ----- "}
+                  {ISOTOPIC_NATURAL_ABUNDANCE.K40} {" ----- "}
                 </td>
                 <td>
                   {ISOTOPIC_NATURAL_ABUNDANCE.TH232}
