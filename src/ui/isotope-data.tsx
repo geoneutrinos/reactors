@@ -10,6 +10,7 @@ import {
 import {
   ISOTOPIC_HALF_LIFE,
   ISOTOPIC_NATURAL_ABUNDANCE,
+  ISOTOPIC_NEUTRINOS_PER_DECAY,
 } from '../physics/constants';
 
 import {
@@ -72,6 +73,21 @@ export const IsotopeData = () => {
                 </td>
                 <td>
                   <Num v={averageNeutrinoEnergy238U} p={3} />
+                </td>
+              </tr>
+              <tr>
+                <td> Number ν (/decay) </td>
+                <td>
+                  {ISOTOPIC_NEUTRINOS_PER_DECAY.K40}
+                </td>
+                <td>
+                  {ISOTOPIC_NEUTRINOS_PER_DECAY.TH232}
+                </td>
+                <td>
+                  {ISOTOPIC_NEUTRINOS_PER_DECAY.U235}
+                </td>
+                <td>
+                  {ISOTOPIC_NEUTRINOS_PER_DECAY.U238}
                 </td>
               </tr>
               <tr>
