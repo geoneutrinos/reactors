@@ -14,7 +14,7 @@ import {
 import Elements from "../elements";
 
 // Can "destructure" the elements needed:
-const {K40, Th232, U235, U238, Ca40, Pb208, Pb207, Pb206} = Elements
+const {K40, Th232, U235, U238, Ca40, Ar40, Pb208, Pb207, Pb206} = Elements
 
 // These have a relative_atomic_mass property
 // e.g. K40.relative_atomic_mass is 39.963998166
