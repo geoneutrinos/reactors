@@ -104,7 +104,7 @@ export const IsotopeData = () => {
               </tr>
               <tr>
                 <td> Half life (10<sup>9</sup> y) </td>
-                 <td colSpan={2} dataAlign= "center">
+                 <td colSpan={2} dataAlign={center}>
                   {ISOTOPIC_HALF_LIFE.K40e9y}
                 </td>
                 <td>
@@ -119,7 +119,7 @@ export const IsotopeData = () => {
               </tr>
               <tr>
                 <td> Natural abundance (%) </td>
-                 <td colSpan={2} dataAlign= "center">
+                 <td colSpan={2} dataAlign={center}>
                   {ISOTOPIC_NATURAL_ABUNDANCE.K40}
                 </td>
                 <td>
