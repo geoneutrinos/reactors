@@ -83,6 +83,7 @@ export const averageNeutrinoEnergy238U = averageNeutrinoEnergy(antineutrinoSpect
 export const averageNeutrinoEnergy235U = averageNeutrinoEnergy(antineutrinoSpectrum235UData)
 export const averageNeutrinoEnergy232Th = averageNeutrinoEnergy(antineutrinoSpectrum232ThData)
 export const averageNeutrinoEnergy40K = averageNeutrinoEnergy(antineutrinoSpectrum40KData)
+export const averageNeutrinoEnergy40KEC = 0.051
 
 function rateToFluxCalc(spectrum: number[], crossSection: CrossSectionFunc): number {
   const targets = 1e32;
