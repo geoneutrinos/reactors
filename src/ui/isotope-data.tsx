@@ -104,8 +104,8 @@ export const IsotopeData = () => {
               </tr>
               <tr>
                 <td> Half life (10<sup>9</sup> y) </td>
-                 <td colSpan={2}>
-                  {ISOTOPIC_HALF_LIFE.K40e9y}
+                 <td colSpan={2}> {" - "}
+                  {ISOTOPIC_HALF_LIFE.K40e9y} {" - "}
                 </td>
                 <td>
                   {ISOTOPIC_HALF_LIFE.TH232e9y.toFixed(1)}
