@@ -24,6 +24,9 @@ export const ISOTOPIC_DECAY_ENERGIES = {
    K40:
      (K40.relative_atomic_mass - Ca40.relative_atomic_mass) * ATOMIC_MASS_UNIT - ISOTOPIC_ALPHAS_PER_DECAY.K40 * 
       (ALPHA_REST_MASS + 2 * ELECTRON_REST_MASS),
+   K40EC:
+     (K40.relative_atomic_mass - Ar40.relative_atomic_mass) * ATOMIC_MASS_UNIT - ISOTOPIC_ALPHAS_PER_DECAY.K40 * 
+      (ALPHA_REST_MASS + 2 * ELECTRON_REST_MASS),
    TH232:
      (Th232.relative_atomic_mass - Pb208.relative_atomic_mass) * ATOMIC_MASS_UNIT - ISOTOPIC_ALPHAS_PER_DECAY.TH232 * 
       (ALPHA_REST_MASS + 2 * ELECTRON_REST_MASS),
@@ -42,6 +45,10 @@ export const ISOTOPIC_NEUTRINO_LUMINOSITY = {
   K40:
     (Math.log(2) / ISOTOPIC_HALF_LIFE.K40) *
     ((ISOTOPIC_NEUTRINOS_PER_DECAY.K40 * K40_BRANCH_RATIO.beta) /
+      ISOTOPIC_ATOMIC_MASS.K40),
+  K40EC:
+    (Math.log(2) / ISOTOPIC_HALF_LIFE.K40) *
+    ((ISOTOPIC_NEUTRINOS_PER_DECAY.K40 * K40_BRANCH_RATIO.ec) /
       ISOTOPIC_ATOMIC_MASS.K40),
   TH232:
     (Math.log(2) / ISOTOPIC_HALF_LIFE.TH232) *
