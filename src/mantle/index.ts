@@ -39,7 +39,13 @@ interface GeoUncertainty {
   K40Beta: number;
 }
 
-type GeoHeating = GeoUncertainty;
+interface GeoHeating {
+  U238: number;
+  U235: number;
+  Th232: number;
+  K40Beta: number;
+  K40Ec: number;
+}
 
 interface GeoNuFluxRatio {
   U238flux: number; // cm-2 s-1
@@ -273,6 +279,14 @@ export function geoSpectrum(
   const KMantleFlux = U238flux * KURatio * KMantleFluxIsotopicScale;
 
   const mantleHeatingK40 = (KMantleFlux / ISOTOPIC_NEUTRINO_LUMINOSITY.K40 / MANTLE_GEOPHYSICAL_RESPONSE) * ISOTOPIC_DECAY_HEATING.K40beta * MANTLE_MASS
+
+  const KecMantleFluxIsotopicScale =
+    (ISOTOPIC_NEUTRINO_LUMINOSITY.K40EC / ISOTOPIC_NEUTRINO_LUMINOSITY.U238) *
+    (ISOTOPIC_NATURAL_ABUNDANCE.K40 / ISOTOPIC_NATURAL_ABUNDANCE.U238);
+
+  const KecMantleFlux = U238flux * KURatio * KecMantleFluxIsotopicScale;
+
+  const mantleHeatingK40ec = (KecMantleFlux / ISOTOPIC_NEUTRINO_LUMINOSITY.K40EC / MANTLE_GEOPHYSICAL_RESPONSE) * ISOTOPIC_DECAY_HEATING.K40ec * MANTLE_MASS
   
   const {
     crustSpectrum: crustK40BetaSpectrum,
@@ -318,6 +332,7 @@ export function geoSpectrum(
       U235: mantleHeatingU235,
       Th232: mantleHeatingTh232,
       K40Beta: mantleHeatingK40,
+      K40Ec: mantleHeatingK40ec,
     }
   };
 }
