@@ -5,12 +5,14 @@ import {
   averageNeutrinoEnergy238U,
   averageNeutrinoEnergy235U,
   averageNeutrinoEnergy40K,
+  averageNeutrinoEnergy40KEC,
 } from "../antineutrino-spectrum";
 
 import {
   ISOTOPIC_HALF_LIFE,
   ISOTOPIC_NATURAL_ABUNDANCE,
   ISOTOPIC_NEUTRINOS_PER_DECAY,
+  K40_BRANCH_RATIO,
 } from '../physics/constants';
 
 import {
@@ -38,6 +40,7 @@ export const IsotopeData = () => {
             <thead>
               <tr>
                 <th></th>
+                <th>{K40}<sub>ec</sub></th>
                 <th>{K40}<sub>β</sub></th>
                 <th>{Th232}</th>
                 <th>{U235}</th>
@@ -47,6 +50,9 @@ export const IsotopeData = () => {
             <tbody>
               <tr>
                 <td> Decay energy (MeV) </td>
+                <td>
+                  <Num v={ISOTOPIC_DECAY_ENERGIES.K40EC} p={3} />
+                </td>
                 <td>
                   <Num v={ISOTOPIC_DECAY_ENERGIES.K40} p={3} />
                 </td>
@@ -63,6 +69,9 @@ export const IsotopeData = () => {
               <tr>
                 <td> Average ν energy (MeV) </td>
                 <td>
+                  <Num v={averageNeutrinoEnergy40KEC} p={3} />
+                </td>
+                <td>
                   <Num v={averageNeutrinoEnergy40K} p={3} />
                 </td>
                 <td>
@@ -78,7 +87,10 @@ export const IsotopeData = () => {
               <tr>
                 <td> Number ν (/decay) </td>
                 <td>
-                  {ISOTOPIC_NEUTRINOS_PER_DECAY.K40}
+                  {K40_BRANCH_RATIO.ec}
+                </td>
+                <td>
+                  {K40_BRANCH_RATIO.beta}
                 </td>
                 <td>
                   {ISOTOPIC_NEUTRINOS_PER_DECAY.TH232}
@@ -92,6 +104,9 @@ export const IsotopeData = () => {
               </tr>
               <tr>
                 <td> Half life (10<sup>9</sup> y) </td>
+                 <td>
+                  {ISOTOPIC_HALF_LIFE.K40e9y}
+                </td>
                  <td>
                   {ISOTOPIC_HALF_LIFE.K40e9y}
                 </td>
@@ -110,6 +125,9 @@ export const IsotopeData = () => {
                  <td>
                   {ISOTOPIC_NATURAL_ABUNDANCE.K40}
                 </td>
+                 <td>
+                  {ISOTOPIC_NATURAL_ABUNDANCE.K40}
+                </td>
                 <td>
                   {ISOTOPIC_NATURAL_ABUNDANCE.TH232}
                 </td>
@@ -122,6 +140,9 @@ export const IsotopeData = () => {
               </tr>
               <tr>
                 <td> ν luminosity (kg<sup>-1</sup> µs<sup>-1</sup>) </td>
+                <td>
+                  <Num v={ISOTOPIC_NEUTRINO_LUMINOSITY.K40EC} p={1} func={(v) => v / 1e6} />
+                </td>
                 <td>
                   <Num v={ISOTOPIC_NEUTRINO_LUMINOSITY.K40} p={1} func={(v) => v / 1e6} />
                 </td>
@@ -137,6 +158,9 @@ export const IsotopeData = () => {
               </tr>
               <tr>
                 <td> Decay heat (µW kg<sup>-1</sup>) </td>
+                <td>
+                  <Num v={ISOTOPIC_DECAY_HEATING.K40ec} p={1} func={(v) => v * 1e6}  />
+                </td>
                 <td>
                   <Num v={ISOTOPIC_DECAY_HEATING.K40beta} p={1} func={(v) => v * 1e6}  />
                 </td>
