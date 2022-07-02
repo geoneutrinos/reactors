@@ -173,7 +173,7 @@ export const IsotopeData = () => {
           <p><small>
           Half life references:<br />
           {K40}: J. Chen, Nuclear Data Sheets A=40 140 (2017)<br />
-          {Th232}: E. Browne, Nuclear Data Shetts A=232 107 (2006)<br />
+          {Th232}: E. Browne, Nuclear Data Sheets A=232 107 (2006)<br />
           {U235}: E. Browne and J.K. Tuli, Nuclear Data Sheets A=235 122 (2014)<br />
           {U238}: E. Browne and J.K. Tuli, Nuclear Data Sheets A=238 127 (2015)<br />
         </small></p>
