@@ -20,6 +20,7 @@ export { PhysicsConstants } from "./physics-constants";
 export { ParticleMasses } from "./physics-masses";
 export { GeoFluxUncertainties } from "./geo-uncertainties";
 export { GeoRateFluxYields } from "./geo-ratefluxyields";
+export { SupernovaNusPane } from "./supernova-nus";
 export {IsotopeData } from "./isotope-data";
 export {
   CrossSectionPlots,
