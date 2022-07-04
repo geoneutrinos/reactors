@@ -19,8 +19,10 @@ export const SupernovaNusPane = () => {
                 `}</Node> where {" "}
               <Node inline>{String.raw`D`}</Node> is the distance to the SN, <Node inline>{String.raw`\Phi_\nu`}</Node> is the number of neutrinos, {" "}
               <Node inline>{String.raw`\beta`}</Node> is a parameter (=4), <Node inline>{String.raw`\Gamma`}</Node> is the gamma function, {" "}
-              and <Node inline>{String.raw`\langle E_\nu \rangle`}</Node> is the average neutrino energy {" "}
-              <Node inline>{String.raw`(\langle E_\nu_\mathrm{e} \rangle = 12 \mathrm{MeV}, \langle E_\overline{\nu}_\mathrm{e} \rangle = 15 \mathrm{MeV},\mathrm{and} \langle E_\nu_x = 18 \mathrm{MeV})`}</Node>.
+              and <Node inline>{String.raw`\langle E_\nu \rangle`}</Node> is the average neutrino energy with {" "}
+              <Node inline>{String.raw`\langle E_{\nu_\mathrm{e}} \rangle = 12`}</Node> MeV, {" "} 
+              <Node inline>{String.raw`\langle E_{\overline{\nu}_\mathrm{e}} \rangle = 15`}</Node> MeV, and {" "}
+              <Node inline>{String.raw`\langle E_{\nu_x} = 18`}</Node> MeV.
             </p>
           </div>
         </Provider>
