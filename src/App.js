@@ -54,6 +54,8 @@ import {
   Boron8KEPlot,
   Boron8SpectraPlot,
   CrossSectionPlotsNormal,
+  //SN nus tab
+  SupernovaNusPane,
 
   // Custom Core UI
   AddCustomCoreModal,
@@ -287,6 +289,11 @@ function App(props) {
                   <CDFdifferentialCrossSectionPlotsNeutrinos />
                   <AngularDifferentialCrossSectionPlotsNeutrinos />
                   <CDFAngularDifferentialCrossSectionPlotsNeutrinos />
+                </Visible>
+              </Tab>
+              <Tab eventKey="ccsnnu" title="SNNu">
+                <Visible>
+                  <NeutrinoOscillationPane />
                 </Visible>
               </Tab>
               <Tab eventKey="directionality" title="Direction">
