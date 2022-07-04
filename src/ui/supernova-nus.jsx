@@ -23,6 +23,7 @@ export const SupernovaNusPane = () => {
             </p>
             <p>
               Initially assume {" "}
+              <Node inline>{String.raw`D = 10`}</Node> kpc, {" "}
               <Node inline>{String.raw`E_\nu^\mathrm{tot} = 5\times10^{52}`}</Node> erg, {" "}
               <Node inline>{String.raw`\beta = 4`}</Node> , {" "}
               <Node inline>{String.raw`\langle E_{\nu_\mathrm{e}} \rangle = 12`}</Node> MeV, {" "} 
