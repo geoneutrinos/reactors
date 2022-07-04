@@ -280,6 +280,11 @@ function App(props) {
                   <IsotopeData />
                 </Visible>
               </Tab>
+              <Tab eventKey="ccsnnu" title="SNNu">
+                <Visible>
+                  <SupernovaNusPane />
+                </Visible>
+              </Tab>
               <Tab eventKey="solarnu" title="SolarNu">
                 <Visible>
                   <Boron8SpectraPlot boron8={boron8} reactorLF={reactorLF} />
@@ -289,11 +294,6 @@ function App(props) {
                   <CDFdifferentialCrossSectionPlotsNeutrinos />
                   <AngularDifferentialCrossSectionPlotsNeutrinos />
                   <CDFAngularDifferentialCrossSectionPlotsNeutrinos />
-                </Visible>
-              </Tab>
-              <Tab eventKey="ccsnnu" title="SNNu">
-                <Visible>
-                  <NeutrinoOscillationPane />
                 </Visible>
               </Tab>
               <Tab eventKey="directionality" title="Direction">
