@@ -35,13 +35,14 @@ export const SupernovaNusPane = () => {
               <Node>{String.raw`\begin{split}
                 F_{\nu_\mathrm{e}}(E) = F^0_{\nu_x}(E)\,\\
                 F_{\overline{\nu}_\mathrm{e}}(E) = F^0_{\overline{\nu}_\mathrm{e}}(E)\cos^2\theta_{12} + F^0_{nu_x}(E)\sin^2\theta_{12}\,\\
-                F_{\nu_x}(E) = \frac1{4}(2+\cos^2\theta_{12})F^0_{nu_x}(E) + \frac1{4}F^0_{nu_\mathrm{e}}(E) + \frac1{4}F^0_{\overline{nu}_\mathrm{e}}(E)\sin^2\theta_{12}\,\\
+                F_{\nu_x}(E) = \frac1{4}(2+\cos^2\theta_{12})F^0_{nu_x}(E) + \frac1{4}F^0_{nu_\mathrm{e}}(E) + \frac1{4}F^0_{\overline{nu}_\mathrm{e}}(E)\sin^2\theta_{12},\\
                 \end{split}`}</Node>. For IO {" "}
                 <Node>{String.raw`\begin{split}
                 F_{\nu_\mathrm{e}}(E) = F^0_{\nu_\mathrm{e}}(E)\sin^2\theta_{12} + F^0_{\nu_x}(E)\cos^2\theta_{12}\,\\
                 F_{\overline{\nu}_\mathrm{e}}(E) = F^0_{\nu_x}(E)\cos^2\theta_{12}\,\\
-                F_{\nu_x}(E) = \frac1{4}(2+\sin^2\theta_{12})F^0_{nu_x}(E) + \frac1{4}F^0_{\overline{nu}_\mathrm{e}}(E) + \frac1{4}F^0_{\overline{nu}_\mathrm{e}}(E)\cos^2\theta_{12}\,\\
+                F_{\nu_x}(E) = \frac1{4}(2+\sin^2\theta_{12})F^0_{nu_x}(E) + \frac1{4}F^0_{\overline{nu}_\mathrm{e}}(E) + \frac1{4}F^0_{\overline{nu}_\mathrm{e}}(E)\cos^2\theta_{12},\\
                 \end{split}`}</Node>.
+              </p>
           </div>
         </Provider>
       </Card.Body>
