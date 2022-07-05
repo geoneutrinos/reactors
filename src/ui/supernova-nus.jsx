@@ -24,7 +24,7 @@ export const SupernovaNusPane = () => {
             <p>
               Initially assume {" "}
               <Node inline>{String.raw`D = 10`}</Node> kpc, {" "}
-              <Node inline>{String.raw`E_{\nu{\alpha}}^\mathrm{tot} = 5\times10^{52}`}</Node> erg, {" "}
+              <Node inline>{String.raw`E_{\nu_{\alpha}}^\mathrm{tot} = 5\times10^{52}`}</Node> erg, {" "}
               <Node inline>{String.raw`\beta = 4`}</Node> , {" "}
               <Node inline>{String.raw`\langle E_{\nu_{\mathrm{e}}} \rangle = 12`}</Node> MeV, {" "} 
               <Node inline>{String.raw`\langle E_{\overline{\nu}_{\mathrm{e}}} \rangle = 15`}</Node> MeV, and {" "}
