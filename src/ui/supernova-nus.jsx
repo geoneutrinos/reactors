@@ -43,8 +43,8 @@ export const SupernovaNusPane = () => {
               <Node>{String.raw`\begin{aligned}
                 & F_{\nu_{\mathrm{e}}}(E) = F^0_{\nu_{\mathrm{e}}}(E)\sin^2\theta_{12} + F^0_{\nu_{x}}(E)\cos^2\theta_{12} \\
                 & F_{\overline{\nu}_{\mathrm{e}}}(E) = F^0_{\nu_{x}}(E)\cos^2\theta_{12} \\
-                & F_{\nu_{x}}(E) = \frac1{4}(2+\sin^2\theta_{12})F^0_{nu_{x}}(E) + \frac1{4}F^0_{\overline{\nu}_{\mathrm{e}}}(E) + \frac1{4}F^0_{\overline{\nu_{\mathrm{e}}}(E)\cos^2\theta_{12}
-                \end{aligned}`}</Node>.
+                & F_{\nu_{x}}(E) = \frac1{4}(2+\sin^2\theta_{12})F^0_{nu_{x}}(E) + \frac1{4}F^0_{\overline{\nu}_{\mathrm{e}}}(E) + \frac1{4}F^0_{\overline{\nu}_{\mathrm{e}}}(E)\cos^2\theta_{12}
+                \end{aligned}`}</Node>
               </p>
           </div>
         </Provider>
