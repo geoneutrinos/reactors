@@ -1,4 +1,5 @@
 import { ELEMENTARY_CHARGE } from "../physics/constants";
+import { crossSectionSV2003 } from "../physics/neutrino-cross-section";
 import { memoize } from 'lodash';
 import bins, {binWidth, binCount} from "../physics/bins";
 
