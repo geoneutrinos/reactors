@@ -26,31 +26,30 @@ export const SupernovaNusPane = () => {
               <Node inline>{String.raw`D = 10`}</Node> kpc, {" "}
               <Node inline>{String.raw`E_\nu^\mathrm{tot} = 5\times10^{52}`}</Node> erg, {" "}
               <Node inline>{String.raw`\beta = 4`}</Node> , {" "}
-              <Node inline>{String.raw`\langle E_{\nu_\mathrm{e}} \rangle = 12`}</Node> MeV, {" "} 
-              <Node inline>{String.raw`\langle E_{\overline{\nu}_\mathrm{e}} \rangle = 15`}</Node> MeV, and {" "}
-              <Node inline>{String.raw`\langle E_{\nu_x} \rangle = 18`}</Node> MeV.
+              <Node inline>{String.raw`\langle E_{\nu_{\mathrm{e}}} \rangle = 12`}</Node> MeV, {" "} 
+              <Node inline>{String.raw`\langle E_{\overline{\nu}_{\mathrm{e}}} \rangle = 15`}</Node> MeV, and {" "}
+              <Node inline>{String.raw`\langle E_{\nu_{x}} \rangle = 18`}</Node> MeV.
             </p>
             <p>
               Oscillation effects depend on the neutrino mass ordering (NO or IO). For NO {" "}
               <Node>{String.raw`
-                F_{\nu_{\mathrm{e}}}(E) = F^0_{\nu_x}(E),
-              `}<\Node>
+                F_{\nu_{\mathrm{e}}}(E) = F^0_{\nu_{x}}(E)
+                `}</Node> and {" "}
               <Node>{String.raw`
-                F_{\overline{\nu}_{\mathrm{e}}}(E) = F^0_{\overline{\nu}_\mathrm{e}}(E)\cos^2\theta_{12} + F^0_{nu_x}(E)\sin^2\theta_{12},
-              `}<\Node>
+                F_{\overline{\nu}_{\mathrm{e}}}(E) = F^0_{\overline{\nu}_{\mathrm{e}}}(E)\cos^2\theta_{12} + F^0_{\nu_{x}}(E)\sin^2\theta_{12}
+                `}</Node> and {" "}
               <Node>{String.raw`
-                F_{\nu_{x}}(E) = \frac1{4}(2+\cos^2\theta_{12})F^0_{nu_x}(E) + \frac1{4}F^0_{\nu_\mathrm{e}}(E) + \frac1{4}F^0_{\overline{\nu}_\mathrm{e}}(E)\sin^2\theta_{12},
-              `}<\Node>
-              For IO {" "}
+                F_{\nu_{x}}(E) = \frac1{4}(2+\cos^2\theta_{12})F^0_{\nu_{x}}(E) + \frac1{4}F^0_{\nu_{\mathrm{e}}}(E) + \frac1{4}F^0_{\overline{\nu}_{\mathrm{e}}}(E)\sin^2\theta_{12}
+                `}</Node> and for IO {" "}
               <Node>{String.raw`
-                F_{\nu_{\mathrm{e}}}(E) = F^0_{\nu_\mathrm{e}}(E)\sin^2\theta_{12} + F^0_{\nu_x}(E)\cos^2\theta_{12},
-              `}<\Node>
+                F_{\nu_{\mathrm{e}}}(E) = F^0_{\nu_{\mathrm{e}}}(E)\sin^2\theta_{12} + F^0_{\nu_{x}}(E)\cos^2\theta_{12}
+                `}</Node> and {" "}
               <Node>{String.raw`
-                F_{\overline{\nu}_{\mathrm{e}}}(E) = F^0_{\nu_x}(E)\cos^2\theta_{12},
-              `}<\Node>
+                F_{\overline{\nu}_{\mathrm{e}}}(E) = F^0_{\nu_{x}}(E)\cos^2\theta_{12},
+                `}</Node> and {" "}
               <Node>{String.raw`
-                F_{\nu_{x}}(E) = \frac1{4}(2+\sin^2\theta_{12})F^0_{nu_x}(E) + \frac1{4}F^0_{\overline{\nu}_\mathrm{e}}(E) + \frac1{4}F^0_{\overline{\nu}_\mathrm{e}}(E)\cos^2\theta_{12}.
-              `}</Node>.
+                F_{\nu_{x}}(E) = \frac1{4}(2+\sin^2\theta_{12})F^0_{nu_{x}}(E) + \frac1{4}F^0_{\overline{\nu}_{\mathrm{e}}}(E) + \frac1{4}F^0_{\overline{\nu_{\mathrm{e}}}(E)\cos^2\theta_{12}.
+                `}</Node>.
               </p>
           </div>
         </Provider>
