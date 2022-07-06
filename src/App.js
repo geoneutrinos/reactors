@@ -118,7 +118,7 @@ function App(props) {
   });
   const [reactorLF, setReactorLF] = useState({
     start: new Date("2020-01-01T00:00:00Z"),
-    end: new Date("2020-12-01T00:00:00Z"),
+    end: new Date("2021-12-01T00:00:00Z"),
   });
 
   const [coreMods, setCoreMods] = useState({});
