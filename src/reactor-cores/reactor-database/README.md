@@ -16,4 +16,4 @@ I found this was easily done in a spreadsheet program (I used LibreOffice) and o
 * Finally, edit the web app in the following locations so it is now "aware" of new data:
   * src/reactor-cores/index.ts: find the loadFactor function and update the stop to include the new end year
   * src/ui/reactors-core-iaea-select.jsx: modify the "years" at the top to include the new end year + 1 (e.g. if you added 2020 LF data, the value in this var should be 2021)
-  * change the default selected year range by modifying the reactorLF object in src/App.js
+  * change the default selected year range (start and end years) by modifying the reactorLF object in src/App.js
