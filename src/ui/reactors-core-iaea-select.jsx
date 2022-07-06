@@ -97,7 +97,7 @@ export const CoreIAEARange = ({
         </Form>
         <p>
           <br />
-          Monthly load factor (LF) data for the year 2020 to 2021 are from:
+          Monthly load factor (LF) data for the years starting with 2020 are from:
           IAEA - Power Reactor Information System (PRIS). Data for the earlier years 2003 
           to 2019 are from: 
           <a href="https://www.fe.infn.it/antineutrino/">INFN Antineutrinos</a>. If
