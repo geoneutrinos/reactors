@@ -229,7 +229,7 @@ export function StatsPanel({ cores, geo, reactorLF}) {
                   </span>
                   <Num v={geo.total.Th232.NIU} p={1} /> {Th232}
                   <span style={{ display: geoKUVald }}>
-                    , <Num v={geo.total.K40Beta.NIU} p={1} /> {K40}<sub>β<sup>-</sup></sub>
+                    , <Num v={geo.total.K40Beta.NIU} p={1} /> {K40}<sub>β</sub>
                   </span>
                   ) </small>
                 </td>
@@ -252,7 +252,7 @@ export function StatsPanel({ cores, geo, reactorLF}) {
                   </span>
                   <Num v={geo.crust.Th232.NIU} p={1} /> {Th232}
                   <span style={{ display: geoKUVald }}>
-                    , <Num v={geo.crust.K40Beta.NIU} p={1} /> {K40}<sub>β<sup>-</sup></sub>
+                    , <Num v={geo.crust.K40Beta.NIU} p={1} /> {K40}<sub>β</sub>
                   </span>
                   ) </small>
                 </td>
