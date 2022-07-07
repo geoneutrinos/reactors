@@ -12,14 +12,15 @@ export const SupernovaNusPane = () => {
         <Provider>
           <div>
             <p>
-              In the absence of oscillations, the estimated energy spectrum (/area/energy) of core collapse supernova neutrinos of a given species {" "}
-              <Node inline>{String.raw`(\nu_\mathrm{e}, \overline{\nu}_\mathrm{e}, \nu_x)`}</Node> arriving at a detection site is
+              The flux spectrum of neutrinos of a given species {" "}
+              <Node inline>{String.raw`(\nu_\mathrm{e}, \overline{\nu}_\mathrm{e}, \nu_x)`}</Node> arriving at Earth from a core-collapse supernova is estimated by {" "} 
               <Node>{String.raw`
                 \Phi^0_{\nu_{\alpha}}(E)=\frac1{4 \pi D^2} \frac{E_{\nu_{\alpha}}^\mathrm{tot}}{\langle E_{\nu_\alpha} \rangle^2} \frac{\beta^\beta}{\Gamma(\beta)}\bigg[\frac{E}{\langle E_{\nu_\alpha} \rangle}\bigg]^{\beta-1} \mathrm{exp}\bigg[-\beta \frac{E}{\langle E_{\nu_\alpha} \rangle}\bigg]
                 `}</Node> where {" "}
-              <Node inline>{String.raw`D`}</Node> is the distance to the SN, <Node inline>{String.raw`E_{\nu_{\alpha}}^\mathrm{tot}`}</Node> is the total energy of the neutrinos, {" "}
-              <Node inline>{String.raw`\beta`}</Node> is a parameter, <Node inline>{String.raw`\Gamma`}</Node> is the gamma function, {" "}
-              and <Node inline>{String.raw`\langle E_{\nu_\alpha} \rangle`}</Node> is the average neutrino energy. 
+              <Node inline>{String.raw`D`}</Node> is the distance to the SN, <Node inline>{String.raw`E_{\nu_{\alpha}}^\mathrm{tot}`}</Node> is the total energy of the neutrino species, {" "}
+              <Node inline>{String.raw`\langle E_{\nu_\alpha} \rangle`}</Node> is the average energy of the neutrino species, {" "}
+              <Node inline>{String.raw`\beta`}</Node> is a spectrum shape parameter, and {" "}
+              <Node inline>{String.raw`\Gamma`}</Node> is the gamma function.
             </p>
             <p>
               Initially assume {" "}
@@ -31,7 +32,8 @@ export const SupernovaNusPane = () => {
               <Node inline>{String.raw`\langle E_{\nu_{x}} \rangle = 18`}</Node> MeV.
             </p>
             <p>
-              Oscillation effects depend on the neutrino mass ordering (NO or IO). For NO {" "}
+              Oscillation effects depend on the neutrino mass ordering, normal (NO) or inverted (IO). <br />
+              For NO {" "}
               <Node>{String.raw`\begin{aligned}
                 & \Phi_{\nu_{\mathrm{e}}} = \Phi^0_{\nu_{x}} \\
                 & \Phi_{\overline{\nu}_{\mathrm{e}}} = \Phi^0_{\overline{\nu}_{\mathrm{e}}}\cos^2\theta_{12} + \Phi^0_{\nu_{x}}\sin^2\theta_{12} \\
