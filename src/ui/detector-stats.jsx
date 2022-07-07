@@ -199,6 +199,11 @@ export function StatsPanel({ cores, geo, reactorLF}) {
           </Table>
         </div>
         <div>
+          <small>
+            Monthly load factors kindly provided by IAEA-Power Reactor Information System (PRIS)
+          </small>
+        </div>
+        <div>
           <hr />
           <h6>Geoneutrinos- <small>Pre-computed crust fluxes; User-defined mantle fluxes; Avg <i>P</i><sub>ee</sub></small></h6>
           <Table {...tableProps}>
