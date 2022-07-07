@@ -309,7 +309,7 @@ export function StatsPanel({ cores, geo, reactorLF}) {
         </div>
           <div>
           <small>
-            Geo-neutrino spectra for {U238}, {U235}, {TH232}, and {K40}<sub>β</sub> from Enomoto Sanshiro
+            Geo-neutrino spectra for {U238}, {U235}, {Th232}, and {K40}<sub>β</sub> from Enomoto Sanshiro
           </small>
         </div>
       <hr />
