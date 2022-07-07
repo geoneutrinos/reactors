@@ -118,7 +118,11 @@ export function StatsPanel({ cores, geo, reactorLF}) {
             </tr>
           </tbody>
         </Table>
-
+        <div>
+          <small>
+            1 {NIU} (Neutrino Interaction Unit) = 1 interaction/10<sup>32</sup>{" "} targets/year
+          </small>
+        </div>
         <hr />
         <h6>IAEA Cores- <small>{reactorAntineutrinoModel.modelName}; {reactorLF.start.toISOString().slice(0, 7)} thru {reactorLF.end.toISOString().slice(0, 7)}</small></h6>
         <Table {...tableProps}>
@@ -307,11 +311,6 @@ export function StatsPanel({ cores, geo, reactorLF}) {
         <div>
           <small>
             Double click on, or hover pointer over, values to display more decimal places
-          </small>
-          <br />
-          <small>
-            1 {NIU} (Neutrino Interaction Unit) = 1 interaction/10<sup>32</sup>{" "}
-            targets/year
           </small>
           <br />
           <small>
