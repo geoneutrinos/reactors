@@ -145,7 +145,7 @@ export function StatsPanel({ cores, geo, reactorLF}) {
               <td>=</td>
               <td>
                 <Num v={closestNIU} u={closestNIUUncertainty} p={1} /> {NIU} <small> (
-                <Num v={((closestNIU / iaeaCoreSignal) * 100)} p={1} /> % of <i>R</i><sub>reac</sub>) </small>
+                <Num v={((closestNIU / iaeaCoreSignal) * 100)} p={0} /> % of <i>R</i><sub>reac</sub>) </small>
               </td>
             </tr>
             <tr>
@@ -185,7 +185,7 @@ export function StatsPanel({ cores, geo, reactorLF}) {
               <td>=</td>
                 <td>
                   <Num v={customClosestNIU} u={customClosestNIUUncertainty} p={1} /> {NIU} <small> {" ("}
-                  {((customClosestNIU / totalCoreSignal) * 100).toFixed(1)} % of <i>R</i><sub>reac</sub> + <i>R</i><sub>custom</sub>) </small>
+                  <Num v={((customClosestNIU / totalCoreSignal) * 100)} p={0} /> % of <i>R</i><sub>reac</sub> + <i>R</i><sub>custom</sub>) </small>
                 </td>
               </tr>
               <tr>
@@ -242,7 +242,7 @@ export function StatsPanel({ cores, geo, reactorLF}) {
               <td>=</td>
                 <td>
                   <Num v={geo.crust.NIU} u={geo.crust.NIUUncertainty} p={1} /> {NIU} <small> (
-                  <Num v={((geo.crust.NIU / geo.total.NIU) * 100)} p={1} /> % of <i>R</i><sub>geo</sub>) </small>
+                  <Num v={((geo.crust.NIU / geo.total.NIU) * 100)} p={0} /> % of <i>R</i><sub>geo</sub>) </small>
                 </td>
                 <td>
                   <small> (
@@ -265,7 +265,7 @@ export function StatsPanel({ cores, geo, reactorLF}) {
               <td>=</td>
                 <td>
                   <Num v={geo.mantle.NIU} u={geo.mantle.NIUUncertainty} p={1} /> {NIU} <small> (
-                  <Num v={((geo.mantle.NIU / geo.total.NIU) * 100)} p={1} /> % of <i>R</i><sub>geo</sub>) </small>
+                  <Num v={((geo.mantle.NIU / geo.total.NIU) * 100)} p={0} /> % of <i>R</i><sub>geo</sub>) </small>
                 </td>
                 <td>
                   <small> (
