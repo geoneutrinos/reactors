@@ -124,7 +124,7 @@ export function StatsPanel({ cores, geo, reactorLF}) {
           </small>
         </div>
         <hr />
-        <h6>IAEA Cores- <small>{reactorAntineutrinoModel.modelName}; {reactorLF.start.toISOString().slice(0, 7)} thru {reactorLF.end.toISOString().slice(0, 7)}</small></h6>
+        <h6>IAEA Cores- <small>{reactorAntineutrinoModel.modelName}; Avg LF {reactorLF.start.toISOString().slice(0, 7)} thru {reactorLF.end.toISOString().slice(0, 7)}</small></h6>
         <Table {...tableProps}>
           <tbody>
             <tr>
@@ -204,7 +204,7 @@ export function StatsPanel({ cores, geo, reactorLF}) {
         </div>
         <div>
           <small>
-            Monthly load factors kindly provided by IAEA-Power Reactor Information System (PRIS)
+            Monthly load factors since 2020 from IAEA-Power Reactor Information System (PRIS)
           </small>
         </div>
         <div>
