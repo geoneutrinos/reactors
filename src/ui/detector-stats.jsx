@@ -275,7 +275,7 @@ export function StatsPanel({ cores, geo, reactorLF}) {
                   </span>
                   <Num v={geo.mantle.Th232.NIU} p={1} /> {Th232}
                   <span style={{ display: geoKUVald }}>
-                    , <Num v={geo.mantle.K40Beta.NIU} p={1} /> {K40}<sub>β<sup>-</sup></sub>
+                    , <Num v={geo.mantle.K40Beta.NIU} p={1} /> {K40}<sub>β</sub>
                   </span>
                   ) </small>
                 </td>
@@ -307,7 +307,12 @@ export function StatsPanel({ cores, geo, reactorLF}) {
             </tbody>
           </Table>
         </div>
-        <hr />
+          <div>
+          <small>
+            Geo-neutrino spectra for {U238}, {U235}, {TH232}, and {K40}<sub>β</sub> from Enomoto Sanshiro
+          </small>
+        </div>
+      <hr />
         <div>
           <small>
             Double click on, or hover pointer over, values to display more decimal places
