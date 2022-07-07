@@ -118,9 +118,13 @@ export function StatsPanel({ cores, geo, reactorLF}) {
             </tr>
           </tbody>
         </Table>
-
+        <div>
+          <small>
+            1 {NIU} (Neutrino Interaction Unit) = 1 interaction/10<sup>32</sup>{" "} targets/year
+          </small>
+        </div>
         <hr />
-        <h6>IAEA Cores- <small>{reactorAntineutrinoModel.modelName}; {reactorLF.start.toISOString().slice(0, 7)} thru {reactorLF.end.toISOString().slice(0, 7)}</small></h6>
+        <h6>IAEA Cores- <small>{reactorAntineutrinoModel.modelName}; Avg LF {reactorLF.start.toISOString().slice(0, 7)} thru {reactorLF.end.toISOString().slice(0, 7)}</small></h6>
         <Table {...tableProps}>
           <tbody>
             <tr>
@@ -141,7 +145,7 @@ export function StatsPanel({ cores, geo, reactorLF}) {
               <td>=</td>
               <td>
                 <Num v={closestNIU} u={closestNIUUncertainty} p={1} /> {NIU} <small> (
-                <Num v={((closestNIU / iaeaCoreSignal) * 100)} p={1} /> % of <i>R</i><sub>reac</sub>) </small>
+                <Num v={((closestNIU / iaeaCoreSignal) * 100)} p={0} />% of <i>R</i><sub>reac</sub>) </small>
               </td>
             </tr>
             <tr>
@@ -181,7 +185,7 @@ export function StatsPanel({ cores, geo, reactorLF}) {
               <td>=</td>
                 <td>
                   <Num v={customClosestNIU} u={customClosestNIUUncertainty} p={1} /> {NIU} <small> {" ("}
-                  {((customClosestNIU / totalCoreSignal) * 100).toFixed(1)} % of <i>R</i><sub>reac</sub> + <i>R</i><sub>custom</sub>) </small>
+                  <Num v={((customClosestNIU / totalCoreSignal) * 100)} p={0} />% of <i>R</i><sub>reac</sub> + <i>R</i><sub>custom</sub>) </small>
                 </td>
               </tr>
               <tr>
@@ -197,6 +201,11 @@ export function StatsPanel({ cores, geo, reactorLF}) {
               </tr>
             </tbody>
           </Table>
+        </div>
+        <div>
+          <small>
+            Monthly load factors since 2020 from IAEA-Power Reactor Information System (PRIS)
+          </small>
         </div>
         <div>
           <hr />
@@ -220,7 +229,7 @@ export function StatsPanel({ cores, geo, reactorLF}) {
                   </span>
                   <Num v={geo.total.Th232.NIU} p={1} /> {Th232}
                   <span style={{ display: geoKUVald }}>
-                    , <Num v={geo.total.K40Beta.NIU} p={1} /> {K40}<sub>β<sup>-</sup></sub>
+                    , <Num v={geo.total.K40Beta.NIU} p={1} /> {K40}<sub>β</sub>
                   </span>
                   ) </small>
                 </td>
@@ -233,7 +242,7 @@ export function StatsPanel({ cores, geo, reactorLF}) {
               <td>=</td>
                 <td>
                   <Num v={geo.crust.NIU} u={geo.crust.NIUUncertainty} p={1} /> {NIU} <small> (
-                  <Num v={((geo.crust.NIU / geo.total.NIU) * 100)} p={1} /> % of <i>R</i><sub>geo</sub>) </small>
+                  <Num v={((geo.crust.NIU / geo.total.NIU) * 100)} p={0} />% of <i>R</i><sub>geo</sub>) </small>
                 </td>
                 <td>
                   <small> (
@@ -243,7 +252,7 @@ export function StatsPanel({ cores, geo, reactorLF}) {
                   </span>
                   <Num v={geo.crust.Th232.NIU} p={1} /> {Th232}
                   <span style={{ display: geoKUVald }}>
-                    , <Num v={geo.crust.K40Beta.NIU} p={1} /> {K40}<sub>β<sup>-</sup></sub>
+                    , <Num v={geo.crust.K40Beta.NIU} p={1} /> {K40}<sub>β</sub>
                   </span>
                   ) </small>
                 </td>
@@ -256,7 +265,7 @@ export function StatsPanel({ cores, geo, reactorLF}) {
               <td>=</td>
                 <td>
                   <Num v={geo.mantle.NIU} u={geo.mantle.NIUUncertainty} p={1} /> {NIU} <small> (
-                  <Num v={((geo.mantle.NIU / geo.total.NIU) * 100)} p={1} /> % of <i>R</i><sub>geo</sub>) </small>
+                  <Num v={((geo.mantle.NIU / geo.total.NIU) * 100)} p={0} />% of <i>R</i><sub>geo</sub>) </small>
                 </td>
                 <td>
                   <small> (
@@ -266,7 +275,7 @@ export function StatsPanel({ cores, geo, reactorLF}) {
                   </span>
                   <Num v={geo.mantle.Th232.NIU} p={1} /> {Th232}
                   <span style={{ display: geoKUVald }}>
-                    , <Num v={geo.mantle.K40Beta.NIU} p={1} /> {K40}<sub>β<sup>-</sup></sub>
+                    , <Num v={geo.mantle.K40Beta.NIU} p={1} /> {K40}<sub>β</sub>
                   </span>
                   ) </small>
                 </td>
@@ -298,15 +307,15 @@ export function StatsPanel({ cores, geo, reactorLF}) {
             </tbody>
           </Table>
         </div>
-        <hr />
+          <div>
+          <small>
+            Geo-neutrino spectra for {U238}, {U235}, {Th232}, and {K40}<sub>β</sub> from Enomoto Sanshiro
+          </small>
+        </div>
+      <hr />
         <div>
           <small>
             Double click on, or hover pointer over, values to display more decimal places
-          </small>
-          <br />
-          <small>
-            1 {NIU} (Neutrino Interaction Unit) = 1 interaction/10<sup>32</sup>{" "}
-            targets/year
           </small>
           <br />
           <small>
