@@ -27,7 +27,7 @@ for (let i=0; i<1000; i++) {
   sumEvents = sumEvents + anuEventSpectrum[i] * deltaE;
 }
 
-function nuSpecCCSN(Ev,beta,avgE): number{
+function nuSpecCCSN(Ev, beta, avgE) {
   const enu_tot = 5e52 * 1e-13 / ELEMENTARY_CHARGE; // MeV
   const d_ccsn = 10 * 3.086e21; // cm
 
@@ -38,7 +38,7 @@ function nuSpecCCSN(Ev,beta,avgE): number{
   return prefix * enu_tot * energy_factor / d_ccsn / d_ccsn
 }
 
-function xSection(Ev): number{
+function xSection(Ev) {
   const a = -0.07056;
   const b = 0.02018;
   const c = -0.001953;
