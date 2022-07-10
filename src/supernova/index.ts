@@ -22,7 +22,7 @@ for (let i=0; i<1000; i++) {
   nuxSpectrum.push(xnux);
   let xsec = xSection(energyNu);
   xsecSV03.push(xsec);
-  let xene = anuSpectrum[i] * xsecSV03[i] * 1e32 
+  let xene = anuSpectrum[i] * xsecSV03[i] * 1e32;
   anuEventSpectrum.push(xene);
   sumEvents = sumEvents + anuEventSpectrum[i] * deltaE;
 }
