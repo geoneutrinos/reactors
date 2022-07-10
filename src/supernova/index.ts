@@ -35,7 +35,7 @@ function nuSpecCCSN(Ev, beta, avgE) {
 
   const energy_factor = ( ( Ev / avgE ) ** (beta - 1) ) * Math.exp(-beta * Ev / avgE);
 
-  return prefix * enu_tot * energy_factor / d_ccsn / d_ccsn
+  return prefix * enu_tot * energy_factor / d_ccsn / d_ccsn ;
 }
 
 function xSection(Ev) {
