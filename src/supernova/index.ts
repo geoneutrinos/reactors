@@ -14,15 +14,16 @@ const deltaE = 0.1;
 
 for (let i=0; i<1000; i++) {
   energyNu = i * deltaE + deltaE / 2; // MeV
-  x = nuSpecCCSN(energyNu,4,12);
+  let x = nuSpecCCSN(energyNu, 4, 12);
   nueSpectrum.push(x);
-  x = nuSpecCCSN(energyNu,4,15);
+  let x = nuSpecCCSN(energyNu, 4, 15);
   anuSpectrum.push(x);
-  x = nuSpecCCSN(energyNu,4,18);
+  let x = nuSpecCCSN(energyNu, 4, 18);
   nuxSpectrum.push(x);
-  x = xSection(energyNu);
+  let x = xSection(energyNu);
   xsecSV03.push(x);
-  anuEventSpectrum.push((anuSpectrum[i] * xsecSV03[i] * 1e32 );
+  let x = anuSpectrum[i] * xsecSV03[i] * 1e32 
+  anuEventSpectrum.push(x);
   sumEvents = sumEvents + anuEventSpectrum[i] * deltaE;
 }
 
