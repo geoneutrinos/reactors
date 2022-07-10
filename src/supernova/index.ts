@@ -1,11 +1,11 @@
 import { ELEMENTARY_CHARGE, ELECTRON_REST_MASS } from "../physics/constants";
 import { IBD_THRESHOLD } from "../physics/derived";
 
-var nueSpectrum = [];
-var anuSpectrum = [];
-var nuxSpectrum = [];
-var xsecSV03 = [];
-var anuEventSpectrum = [];
+const nueSpectrum = [];
+const anuSpectrum = [];
+const nuxSpectrum = [];
+const xsecSV03 = [];
+const anuEventSpectrum = [];
 
 var sumEvents = 0;
 var x;
@@ -35,7 +35,7 @@ function nuSpecCCSN(Ev, beta, avgE) {
 
   const energy_factor = ( ( Ev / avgE ) ** (beta - 1) ) * Math.exp(-beta * Ev / avgE);
 
-  return prefix * enu_tot * energy_factor / d_ccsn / d_ccsn ;
+  return prefix * enu_tot * energy_factor / d_ccsn / d_ccsn;
 }
 
 function xSection(Ev) {
@@ -44,11 +44,11 @@ function xSection(Ev) {
   const c = -0.001953;
 
   const sv = a + (b * Math.log(Ev)) + (c * Math.log(Ev) ** 3);
-  const sve = Ev ** sv
+  const sve = Ev ** sv;
   
-  const Ee = Math.max(ELECTRON_REST_MASS, Ev - IBD_THRESHOLD + ELECTRON_REST_MASS)
+  const Ee = Math.max(ELECTRON_REST_MASS, Ev - IBD_THRESHOLD + ELECTRON_REST_MASS);
   
-  const Pe = Math.sqrt(Ee ** 2 - ELECTRON_REST_MASS ** 2) // electron momentum
+  const Pe = Math.sqrt(Ee ** 2 - ELECTRON_REST_MASS ** 2);
 
   return 1e-43 * Pe * Ee * sve;
 }
