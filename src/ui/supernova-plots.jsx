@@ -29,11 +29,6 @@ export const SupernovaFluxPlots = () => {
       range: [0.05, 100.05],
     },
     autosize: true,
-    legend: {
-      x: 1,
-      xanchor: "right",
-      y: 1,
-    },
     annotations: [
       {
         showarrow: false,
