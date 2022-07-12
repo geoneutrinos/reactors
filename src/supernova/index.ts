@@ -1,5 +1,6 @@
 import { ELEMENTARY_CHARGE, ELECTRON_REST_MASS } from "../physics/constants";
 import { IBD_THRESHOLD } from "../physics/derived";
+import { s2t12, c2t12 } from "../physics/neutrino-oscillation";
 
 export const energyValues = new Float32Array(1000).map((v, i) => i / 10 + .05);
 
