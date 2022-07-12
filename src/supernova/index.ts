@@ -1,23 +1,12 @@
 import { ELEMENTARY_CHARGE, ELECTRON_REST_MASS } from "../physics/constants";
 import { IBD_THRESHOLD } from "../physics/derived";
 
-const sizeArray = 1000;
+const energy_values = new Float32Array(1000).map((v, i) => i / 10 + .05);
 
-const blankArray = new Float32Array(sizeArray);
-
-const indexArray = blankArray(sizeArray).fill().map((v, i) => i);
-
-const energies.map(energyValues);
-
-function energyValues(indexE: number) {
-  const deltaE = 0.1;
-  return indexE * deltaE + deltaE/2;
-};
-
-const xsection = energies.map(xSection);
+const xsection = energy_values.map(xSection);
 
 // todo: repeat this for nue, anu, nux with different avgE
-export const fluxSpectrum = energies.map(nuSpecCCSN);
+export const fluxSpectrum = energy_values.map(nuSpecCCSN);
 
 function nuSpecCCSN(Ev: number) {
   const enu_tot = 5e52 * 1e-13 / ELEMENTARY_CHARGE; // MeV
