@@ -12,7 +12,7 @@ export const SupernovaFluxPlots = () => {
       type: "scatter",
       mode: "lines",
       line: {
-        width: 1
+        width: 2
       },
       fill: "none",
       marker: { color: "blue" },
@@ -20,11 +20,11 @@ export const SupernovaFluxPlots = () => {
     {
       y: fluxSpectrumAnu,
       x: energyValues,
-      name: `ν<sub>e</sub>`,
+      name: `ν̅<sub>e</sub>`,
       type: "scatter",
       mode: "lines",
       line: {
-        width: 1
+        width: 2
       },
       fill: "none",
       marker: { color: "red" },
@@ -36,7 +36,7 @@ export const SupernovaFluxPlots = () => {
       type: "scatter",
       mode: "lines",
       line: {
-        width: 1
+        width: 2
       },
       fill: "none",
       marker: { color: "green" },
