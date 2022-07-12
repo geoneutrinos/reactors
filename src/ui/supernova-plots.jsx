@@ -22,8 +22,7 @@ export const SupernovaFluxPlots = () => {
     title: "Core Collapse SN Neutrino Flux Spectra",
     yaxis: {
       title: { text: `Flux (/cm<sup>2</sup>/MeV)` },
-      type: "log",
-      range: [1, 10],
+      autorange: true,
     },
     xaxis: {
       title: { text: `Neutrino Energy (MeV)` },
