@@ -16,7 +16,8 @@ function energyValues(indexE: number) {
 
 const xsection = energies.map(xSection);
 
-const fluxSpectrum = energies.map(nuSpecCCSN);
+// todo: repeat this for nue, anu, nux with different avgE
+export const fluxSpectrum = energies.map(nuSpecCCSN);
 
 function nuSpecCCSN(Ev: number) {
   const enu_tot = 5e52 * 1e-13 / ELEMENTARY_CHARGE; // MeV
