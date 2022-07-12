@@ -3,10 +3,10 @@ import { IBD_THRESHOLD } from "../physics/derived";
 
 const energy_values = new Float32Array(1000).map((v, i) => i / 10 + .05);
 
-const xsection = energy_values.map(xSection(v: number));
+const xsection = energy_values.map(xSection);
 
 // todo: repeat this for nue, anu, nux with different avgE
-export const fluxSpectrum = energy_values.map(nuSpecCCSN(v: number));
+export const fluxSpectrum = energy_values.map(nuSpecCCSN);
 
 function nuSpecCCSN(Ev: number) {
   const enu_tot = 5e52 * 1e-13 / ELEMENTARY_CHARGE; // MeV
