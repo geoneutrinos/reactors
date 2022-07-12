@@ -26,7 +26,7 @@ export const SupernovaFluxPlots = () => {
     },
     xaxis: {
       title: { text: `Neutrino Energy (MeV)` },
-      range: [0.05, 100.05],
+      range: [0.05, 60.05],
     },
     autosize: true,
     annotations: [
