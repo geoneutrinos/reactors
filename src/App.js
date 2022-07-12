@@ -56,6 +56,7 @@ import {
   CrossSectionPlotsNormal,
   //SN nus tab
   SupernovaNusPane,
+  SupernovaFluxPlots,
 
   // Custom Core UI
   AddCustomCoreModal,
@@ -283,6 +284,7 @@ function App(props) {
               <Tab eventKey="ccsnnu" title="SNNu">
                 <Visible>
                   <SupernovaNusPane />
+                  <SupernovaFluxPlots />
                 </Visible>
               </Tab>
               <Tab eventKey="solarnu" title="SolarNu">
