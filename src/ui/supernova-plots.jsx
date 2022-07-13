@@ -144,7 +144,7 @@ export const SupernovaOscillatedFluxPlots = () => {
       },
       fill: "none",
       marker: { color: "blue" },
-      line: {dash: 'dotdash',},
+      line: {dash: 'dashdot',},
    },
     {
       y: fluxIOSpectrumAnu,
@@ -157,7 +157,7 @@ export const SupernovaOscillatedFluxPlots = () => {
       },
       fill: "none",
       marker: { color: "red" },
-      line: {dash: 'dotdash',},
+      line: {dash: 'dashdot',},
     },
     {
       y: fluxIOSpectrumNux,
@@ -170,7 +170,7 @@ export const SupernovaOscillatedFluxPlots = () => {
       },
       fill: "none",
       marker: { color: "green" },
-      line: {dash: 'dotdash',},
+      line: {dash: 'dashdot',},
     },
   ];
     var layout = {
