@@ -43,7 +43,7 @@ export {
 export { Boron8SpectraPlot, AnalemmaPlot, Boron8KEPlot } from "./solar-plots";
 export {
   SupernovaFluxPlots,
-  SupernovaIBDPlots,
+  SupernovaPlotsIBD,
   SupernovaOscillatedFluxPlots,
   SupernovaOscillatedInvertedFluxPlots, 
 } from "./supernova-plots";
