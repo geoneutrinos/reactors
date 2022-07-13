@@ -133,6 +133,51 @@ export const SupernovaOscillatedFluxPlots = () => {
       fill: "none",
       marker: { color: "green" },
     },
+  ];
+    var layout = {
+    title: "Core Collapse SN Neutrino Flux Spectra w/ NO Oscillations",
+    yaxis: {
+      title: { text: `Flux (/cm<sup>2</sup>/MeV)` },
+      autorange: true,
+    },
+    xaxis: {
+      title: { text: `Neutrino Energy (MeV)` },
+      range: [0.05, 60.05],
+    },
+    autosize: true,
+    annotations: [
+      {
+        showarrow: false,
+        text: "geoneutrinos.org",
+        x: 1.1,
+        xref: "paper",
+        y: -0.15,
+        yref: "paper",
+      },
+    ],
+  };
+  var config = {
+    toImageButtonOptions: {
+      filename: 'Supernova-Oscillated-Flux-Spectra'
+    }
+  };
+  return (
+    <Card>
+      <Card.Header>Core Collapse SN Neutrino Flux Spectra w/ NO Oscillations</Card.Header>
+      <Card.Body>
+        <Plot
+          useResizeHandler={true}
+          style={{ width: "100%" }}
+          data={data}
+          layout={layout}
+          config={config}
+        />
+      </Card.Body>
+    </Card>
+  );
+};
+export const SupernovaOscillatedInvertedFluxPlots = () => {
+  const data = [
     {
       y: fluxIOSpectrumNue,
       x: energyValues,
@@ -174,7 +219,7 @@ export const SupernovaOscillatedFluxPlots = () => {
     },
   ];
     var layout = {
-    title: "Core Collapse SN Neutrino Flux Spectra w/ Oscillations",
+    title: "Core Collapse SN Neutrino Flux Spectra w/ IO Oscillations",
     yaxis: {
       title: { text: `Flux (/cm<sup>2</sup>/MeV)` },
       autorange: true,
@@ -197,12 +242,12 @@ export const SupernovaOscillatedFluxPlots = () => {
   };
   var config = {
     toImageButtonOptions: {
-      filename: 'Supernova-Oscillated-Flux-Spectra'
+      filename: 'Supernova-Oscillated-Inverted-Flux-Spectra'
     }
   };
   return (
     <Card>
-      <Card.Header>Core Collapse SN Neutrino Flux Spectra w/ Oscillations</Card.Header>
+      <Card.Header>Core Collapse SN Neutrino Flux Spectra w/ IO Oscillations</Card.Header>
       <Card.Body>
         <Plot
           useResizeHandler={true}
@@ -215,3 +260,4 @@ export const SupernovaOscillatedFluxPlots = () => {
     </Card>
   );
 };
+
