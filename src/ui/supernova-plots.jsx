@@ -1,7 +1,7 @@
 import { Card } from "react-bootstrap";
 import Plot from "react-plotly.js";
 
-import { energyValues, fluxSpectrumNue, fluxSpectrumAnu, fluxSpectrumNux } from "../supernova";
+import { energyValues, fluxSpectrumNue, fluxSpectrumAnu, fluxSpectrumNux, fluxNOSpectrumNue, fluxNOSpectrumAnu, fluxNOSpectrumNux } from "../supernova";
 
 export const SupernovaFluxPlots = () => {
   const data = [
@@ -87,7 +87,7 @@ export const SupernovaFluxPlots = () => {
 export const SupernovaOscillatedFluxPlots = () => {
   const data = [
     {
-      y: fluxSpectrumNue,
+      y: fluxNOSpectrumNue,
       x: energyValues,
       name: `ν<sub>e</sub>`,
       type: "scatter",
@@ -99,7 +99,7 @@ export const SupernovaOscillatedFluxPlots = () => {
       marker: { color: "blue" },
     },
     {
-      y: fluxSpectrumAnu,
+      y: fluxNOSpectrumAnu,
       x: energyValues,
       name: `ν̅<sub>e</sub>`,
       type: "scatter",
@@ -111,7 +111,7 @@ export const SupernovaOscillatedFluxPlots = () => {
       marker: { color: "red" },
     },
     {
-      y: fluxSpectrumNux,
+      y: fluxNOSpectrumNux,
       x: energyValues,
       name: `ν<sub>x</sub>`,
       type: "scatter",
