@@ -4,8 +4,6 @@ import { s2t12, c2t12 } from "../physics/neutrino-oscillation";
 
 export const energyValues = new Float32Array(1000).map((v, i) => i / 10 + .05);
 
-const xsection = energyValues.map(xSection);
-
 // todo: pass avgE as parameter to single function that still maps 
 export const fluxSpectrumNue = energyValues.map(nueSpecCCSN);
 export const fluxSpectrumAnu = energyValues.map(anuSpecCCSN);
@@ -37,6 +35,12 @@ const fluxIOSpectrumNuxT2 = fluxSpectrumAnu.map((v) => v);
 const fluxIOSpectrumNuxT3 = fluxSpectrumNue.map((v) => v * c2t12);
 const fluxIOSpectrumNuxT123 = fluxIOSpectrumNuxT1.map((v, i) => v + fluxIOSpectrumNuxT2[i] + fluxIOSpectrumNuxT3[i]);
 export const fluxIOSpectrumNux = fluxIOSpectrumNuxT123.map((v) => v / 4);
+
+const xsection = energyValues.map(xSection);
+
+export const eventSpectrumIBDnoOsc = fluxSpectrumAnu.map((v, i) => v * xsection[i]);
+export const eventSpectrumIBDforNO = fluxNOSpectrumAnu.map((v, i) => v * xsection[i]);
+export const eventSpectrumIBDforIO = fluxIOSpectrumAnu.map((v, i) => v * xsection[i]);
 
 function nueSpecCCSN(Ev: number) {
   const enu_tot = 5e52 * 1e-13 / ELEMENTARY_CHARGE; // MeV
