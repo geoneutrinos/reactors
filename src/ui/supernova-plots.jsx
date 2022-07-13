@@ -43,7 +43,7 @@ export const SupernovaFluxPlots = () => {
     },
   ];
     var layout = {
-    title: "Core Collapse SN Neutrino Flux Spectra w/o oscillations",
+    title: "Core Collapse SN Neutrino Flux Spectra w/o Oscillations",
     yaxis: {
       title: { text: `Flux (/cm<sup>2</sup>/MeV)` },
       autorange: true,
@@ -71,7 +71,7 @@ export const SupernovaFluxPlots = () => {
   };
   return (
     <Card>
-      <Card.Header>Core Collapse SN Neutrino Flux Spectra without oscillations</Card.Header>
+      <Card.Header>Core Collapse SN Neutrino Flux Spectra w/o Oscillations</Card.Header>
       <Card.Body>
         <Plot
           useResizeHandler={true}
@@ -124,7 +124,7 @@ export const SupernovaOscillatedFluxPlots = () => {
     },
   ];
     var layout = {
-    title: "Core Collapse SN Neutrino Flux Spectra w/ oscillations",
+    title: "Core Collapse SN Neutrino Flux Spectra w/ Oscillations",
     yaxis: {
       title: { text: `Flux (/cm<sup>2</sup>/MeV)` },
       autorange: true,
@@ -152,7 +152,7 @@ export const SupernovaOscillatedFluxPlots = () => {
   };
   return (
     <Card>
-      <Card.Header>Core Collapse SN Neutrino Flux Spectra with oscillations</Card.Header>
+      <Card.Header>Core Collapse SN Neutrino Flux Spectra w/ Oscillations</Card.Header>
       <Card.Body>
         <Plot
           useResizeHandler={true}
