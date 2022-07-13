@@ -18,7 +18,7 @@ export const SupernovaNusPane = () => {
               <tbody>
               <tr>
                 <td>
-                  Events
+                  IBD Events (/10<sup>32</sup> p)
                 </td>
                 <td>
                   <i>N</i><sup>0</sup> = <Num v={sumSpectrumIBDnoOsc} p={2} />
