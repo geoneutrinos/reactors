@@ -41,9 +41,12 @@ export {
   CoreDirectionSignalPlots,
 } from "./reactors-plots";
 export { Boron8SpectraPlot, AnalemmaPlot, Boron8KEPlot } from "./solar-plots";
-export { SupernovaFluxPlots } from "./supernova-plots";
-export { SupernovaOscillatedFluxPlots } from "./supernova-plots";
-export { SupernovaOscillatedInvertedFluxPlots } from "./supernova-plots";
+export {
+  SupernovaFluxPlots,
+  SupernovaIBDPlots,
+  SupernovaOscillatedFluxPlots,
+  SupernovaOscillatedInvertedFluxPlots, 
+} from "./supernova-plots";
 export { FissionFractionPane } from "./reactors-fission";
 export { RASwitcher } from "./reactors-ra-switcher";
 
