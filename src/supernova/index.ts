@@ -20,9 +20,8 @@ export const fluxNOSpectrumAnu = fluxNOSpectrumAnuT1.map((v, i) => v + fluxNOSpe
 const fluxNOSpectrumNuxT1 = fluxSpectrumNux.map((v) => v * (2 + c2t12));
 const fluxNOSpectrumNuxT2 = fluxSpectrumNue.map((v) => v);
 const fluxNOSpectrumNuxT3 = fluxSpectrumAnu.map((v) => v * s2t12);
-const fluxNOSpectrumNuxT12 = fluxNOSpectrumNuxT1.map((v, i) => v + fluxNOSpectrumNuxT2[i]);
-const fluxNOSpectrumNuxT123 = fluxNOSpectrumNuxT12.map((v, i) => v + fluxNOSpectrumNuxT3[i]);
-export const fluxNOSpectrumNux = fluxNOSpectrumAnuT123.map((v) => v / 4);
+const fluxNOSpectrumNuxT123 = fluxNOSpectrumNuxT1.map((v, i) => v + fluxNOSpectrumNuxT2[i] + fluxNOSpectrumNuxT3[i]);
+export const fluxNOSpectrumNux = fluxNOSpectrumNuxT123.map((v) => v / 4);
 
 function nueSpecCCSN(Ev: number) {
   const enu_tot = 5e52 * 1e-13 / ELEMENTARY_CHARGE; // MeV
