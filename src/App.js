@@ -57,6 +57,7 @@ import {
   //SN nus tab
   SupernovaNusPane,
   SupernovaFluxPlots,
+  SupernovaOscillatedFluxPlots,
 
   // Custom Core UI
   AddCustomCoreModal,
