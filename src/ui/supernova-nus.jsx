@@ -32,8 +32,9 @@ export const SupernovaNusPane = () => {
               <Node inline>{String.raw`\langle E_{\nu_{x}} \rangle = 18`}</Node> MeV.
             </p>
             <p>
-              Oscillation effects depend on the neutrino mass ordering, normal (NO) or inverted (IO). <br />
-              For NO {" "}
+              Oscillation effects depend on the neutrino mass ordering.<br />
+              For normal ordering (NO) with {" "}
+              <Node inline>{String.raw`m_3 > m_2 > m_1`}</Node> {" "}
               <Node>{String.raw`\begin{aligned}
                 & \Phi_{\nu_{\mathrm{e}}} = \Phi^0_{\nu_{x}} \\
                 & \Phi_{\overline{\nu}_{\mathrm{e}}} = \Phi^0_{\overline{\nu}_{\mathrm{e}}}\cos^2\theta_{12} + \Phi^0_{\nu_{x}}\sin^2\theta_{12} \\
@@ -41,7 +42,8 @@ export const SupernovaNusPane = () => {
                 \end{aligned}`}</Node>
               </p>
               <p>
-              For IO {" "}
+              For inverted ordering (IO) with {" "}
+              <Node inline>{String.raw`m_2 > m_1 > m_3`}</Node> {" "}
               <Node>{String.raw`\begin{aligned}
                 & \Phi_{\nu_{\mathrm{e}}} = \Phi^0_{\nu_{\mathrm{e}}}\sin^2\theta_{12} + \Phi^0_{\nu_{x}}\cos^2\theta_{12} \\
                 & \Phi_{\overline{\nu}_{\mathrm{e}}} = \Phi^0_{\nu_{x}} \\
