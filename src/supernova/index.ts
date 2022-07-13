@@ -42,6 +42,10 @@ export const eventSpectrumIBDnoOsc = fluxSpectrumAnu.map((v, i) => v * xsection[
 export const eventSpectrumIBDforNO = fluxNOSpectrumAnu.map((v, i) => v * xsection[i] * 1e32);
 export const eventSpectrumIBDforIO = fluxIOSpectrumAnu.map((v, i) => v * xsection[i] * 1e32);
 
+export const sumSpectrumIBDnoOsc = eventSpectrumIBDnoOsc.reduce(function(a, b) { return a + b; }, 0);
+export const sumSpectrumIBDforNO = eventSpectrumIBDforNO.reduce(function(a, b) { return a + b; }, 0);
+export const sumSpectrumIBDforIO = eventSpectrumIBDforIO.reduce(function(a, b) { return a + b; }, 0);
+
 function nueSpecCCSN(Ev: number) {
   const enu_tot = 5e52 * 1e-13 / ELEMENTARY_CHARGE; // MeV
   const d_ccsn = 10 * 3.086e21; // cm
