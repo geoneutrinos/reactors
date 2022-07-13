@@ -21,13 +21,13 @@ export const SupernovaNusPane = () => {
                   IBD Events (/10<sup>32</sup> p)
                 </td>
                 <td>
-                  <i>N</i><sup>0</sup> = <Num v={sumSpectrumIBDnoOsc} p={2} />
+                  N<sup>0</sup> = <Num v={sumSpectrumIBDnoOsc} p={2} />
                 </td>
                 <td>
-                  <i>N</i><sub>NO</sub> = <Num v={sumSpectrumIBDforNO} p={2} />
+                  N<sub>NO</sub> = <Num v={sumSpectrumIBDforNO} p={2} />
                 </td>
                 <td>
-                  <i>N</i><sub>IO</sub> = <Num v={sumSpectrumIBDforIO} p={2} />
+                  N<sub>IO</sub> = <Num v={sumSpectrumIBDforIO} p={2} />
                 </td>
               </tr>
               </tbody>
