@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Card, Form } from "react-bootstrap";
+import { Card, Form, Table } from "react-bootstrap";
 
 import { Node, Provider } from "@nteract/mathjax";
 
