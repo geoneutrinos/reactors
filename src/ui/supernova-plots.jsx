@@ -59,12 +59,12 @@ export const SupernovaPlotsIBD = () => {
     var layout = {
     title: "Core Collapse SN Neutrino IBD Spectra",
     yaxis: {
-      title: { text: `Events (/MeV)` },
+      title: { text: `Events (NIU/MeV)` },
       autorange: true,
     },
     xaxis: {
       title: { text: `Neutrino Energy (MeV)` },
-      range: [0.05, 60.05],
+      range: [0.05, 80.05],
     },
     autosize: true,
     annotations: [
