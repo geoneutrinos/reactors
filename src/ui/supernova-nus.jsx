@@ -3,6 +3,8 @@ import { Card, Form } from "react-bootstrap";
 
 import { Node, Provider } from "@nteract/mathjax";
 
+import { sumSpectrumIBDnoOsc, sumSpectrumIBDforNO, sumSpectrumIBDforIO } from "../supernova";
+
 export const SupernovaNusPane = () => {
 
   return (
@@ -10,6 +12,26 @@ export const SupernovaNusPane = () => {
       <Card.Header>Core Collapse SN Neutrinos</Card.Header>
       <Card.Body>
         <Provider>
+          <div>
+            <Table>
+              <tbody>
+              <tr>
+                <td>
+                  Number of events (/10<sup>32</sup> p)
+                </td>
+                <td>
+                  <i>N</i><sup>0</sup> = <Num v={sumSpectrumIBDnoOsc} p={2} />
+                </td>
+                <td>
+                  <i>N</i><sub>NO</sub> = <Num v={sumSpectrumIBDforNO} p={2} />
+                </td>
+                <td>
+                  <i>N</i><sub>IO</sub = <Num v={sumSpectrumIBDforIO} p={2} />
+                </td>
+              </tr>
+              </tbody>
+            </Table>
+          </div>
           <div>
             <p>
               The flux spectrum of neutrinos of a given species {" "}
