@@ -286,6 +286,7 @@ function App(props) {
                 <Visible>
                   <SupernovaNusPane />
                   <SupernovaFluxPlots />
+                  <SupernovaOscillatedFluxPlots />
                 </Visible>
               </Tab>
               <Tab eventKey="solarnu" title="SolarNu">
