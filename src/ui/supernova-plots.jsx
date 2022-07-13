@@ -1,7 +1,18 @@
 import { Card } from "react-bootstrap";
 import Plot from "react-plotly.js";
 
-import { energyValues, fluxSpectrumNue, fluxSpectrumAnu, fluxSpectrumNux, fluxNOSpectrumNue, fluxNOSpectrumAnu, fluxNOSpectrumNux } from "../supernova";
+import { 
+  energyValues, 
+  fluxSpectrumNue, 
+  fluxSpectrumAnu, 
+  fluxSpectrumNux, 
+  fluxNOSpectrumNue, 
+  fluxNOSpectrumAnu, 
+  fluxNOSpectrumNux, 
+  fluxIOSpectrumNue, 
+  fluxIOSpectrumAnu, 
+  fluxIOSpectrumNux, 
+} from "../supernova";
 
 export const SupernovaFluxPlots = () => {
   const data = [
@@ -89,7 +100,7 @@ export const SupernovaOscillatedFluxPlots = () => {
     {
       y: fluxNOSpectrumNue,
       x: energyValues,
-      name: `ν<sub>e</sub>`,
+      name: `ν<sub>e</sub> NO`,
       type: "scatter",
       mode: "lines",
       line: {
@@ -101,7 +112,7 @@ export const SupernovaOscillatedFluxPlots = () => {
     {
       y: fluxNOSpectrumAnu,
       x: energyValues,
-      name: `ν̅<sub>e</sub>`,
+      name: `ν̅<sub>e</sub> NO`,
       type: "scatter",
       mode: "lines",
       line: {
@@ -113,7 +124,7 @@ export const SupernovaOscillatedFluxPlots = () => {
     {
       y: fluxNOSpectrumNux,
       x: energyValues,
-      name: `ν<sub>x</sub>`,
+      name: `ν<sub>x</sub> NO`,
       type: "scatter",
       mode: "lines",
       line: {
@@ -121,6 +132,45 @@ export const SupernovaOscillatedFluxPlots = () => {
       },
       fill: "none",
       marker: { color: "green" },
+    },
+    {
+      y: fluxIOSpectrumNue,
+      x: energyValues,
+      name: `ν<sub>e</sub> IO`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        width: 2
+      },
+      fill: "none",
+      marker: { color: "blue" },
+      line: {dash: 'dotdash',},
+   },
+    {
+      y: fluxIOSpectrumAnu,
+      x: energyValues,
+      name: `ν̅<sub>e</sub> IO`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        width: 2
+      },
+      fill: "none",
+      marker: { color: "red" },
+      line: {dash: 'dotdash',},
+    },
+    {
+      y: fluxIOSpectrumNux,
+      x: energyValues,
+      name: `ν<sub>x</sub> IO`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        width: 2
+      },
+      fill: "none",
+      marker: { color: "green" },
+      line: {dash: 'dotdash',},
     },
   ];
     var layout = {
