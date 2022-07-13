@@ -11,17 +11,32 @@ export const fluxSpectrumNue = energyValues.map(nueSpecCCSN);
 export const fluxSpectrumAnu = energyValues.map(anuSpecCCSN);
 export const fluxSpectrumNux = energyValues.map(nuxSpecCCSN);
 
+// electron neutrinos
 export const fluxNOSpectrumNue = fluxSpectrumNux.map((v) => v);
 
+const fluxIOSpectrumNueT1 = fluxSpectrumNue.map((v) => v * s2t12);
+const fluxIOSpectrumNueT2 = fluxSpectrumNux.map((v) => v * c2t12);
+export const fluxIOSpectrumNue = fluxIOSpectrumNueT1.map((v, i) => v + fluxIOSpectrumNueT2[i]); 
+
+// electron anti-neutrinos
 const fluxNOSpectrumAnuT1 = fluxSpectrumAnu.map((v) => v * c2t12);
 const fluxNOSpectrumAnuT2 = fluxSpectrumNux.map((v) => v * s2t12);
 export const fluxNOSpectrumAnu = fluxNOSpectrumAnuT1.map((v, i) => v + fluxNOSpectrumAnuT2[i]); 
 
+export const fluxIOSpectrumAnu = fluxSpectrumNux.map((v) => v);
+
+// mu or tau neutrinos and antineutrinos
 const fluxNOSpectrumNuxT1 = fluxSpectrumNux.map((v) => v * (2 + c2t12));
 const fluxNOSpectrumNuxT2 = fluxSpectrumNue.map((v) => v);
 const fluxNOSpectrumNuxT3 = fluxSpectrumAnu.map((v) => v * s2t12);
 const fluxNOSpectrumNuxT123 = fluxNOSpectrumNuxT1.map((v, i) => v + fluxNOSpectrumNuxT2[i] + fluxNOSpectrumNuxT3[i]);
 export const fluxNOSpectrumNux = fluxNOSpectrumNuxT123.map((v) => v / 4);
+
+const fluxIOSpectrumNuxT1 = fluxSpectrumNux.map((v) => v * (2 + s2t12));
+const fluxIOSpectrumNuxT2 = fluxSpectrumAnu.map((v) => v);
+const fluxIOSpectrumNuxT3 = fluxSpectrumNue.map((v) => v * c2t12);
+const fluxIOSpectrumNuxT123 = fluxIOSpectrumNuxT1.map((v, i) => v + fluxIOSpectrumNuxT2[i] + fluxIOSpectrumNuxT3[i]);
+export const fluxIOSpectrumNux = fluxIOSpectrumNuxT123.map((v) => v / 4);
 
 function nueSpecCCSN(Ev: number) {
   const enu_tot = 5e52 * 1e-13 / ELEMENTARY_CHARGE; // MeV
