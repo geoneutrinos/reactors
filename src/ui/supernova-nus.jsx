@@ -35,11 +35,11 @@ export const SupernovaNusPane = () => {
           </div>
           <div>
             <p>
-              The flux spectrum of neutrinos of a given species {" "}
+              The non-oscillated flux spectrum of neutrinos of a given species {" "}
               <Node inline>{String.raw`(\nu_\mathrm{e}, \overline{\nu}_\mathrm{e}, \nu_x)`}</Node> arriving at Earth from a core-collapse supernova is estimated by {" "} 
               <Node>{String.raw`
                 \Phi^0_{\nu_{\alpha}}(E)=\frac1{4 \pi D^2} \frac{E_{\nu_{\alpha}}^\mathrm{tot}}{\langle E_{\nu_\alpha} \rangle^2} \frac{\beta^\beta}{\Gamma(\beta)}\bigg[\frac{E}{\langle E_{\nu_\alpha} \rangle}\bigg]^{\beta-1} \mathrm{exp}\bigg[-\beta \frac{E}{\langle E_{\nu_\alpha} \rangle}\bigg]
-                `}</Node> where {" "}
+                `}</Node>, where {" "}
               <Node inline>{String.raw`D`}</Node> is the distance to the SN, <Node inline>{String.raw`E_{\nu_{\alpha}}^\mathrm{tot}`}</Node> is the total energy of the neutrino species, {" "}
               <Node inline>{String.raw`\langle E_{\nu_\alpha} \rangle`}</Node> is the average energy of the neutrino species, {" "}
               <Node inline>{String.raw`\beta`}</Node> is a spectrum shape parameter, and {" "}
