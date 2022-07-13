@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { Card, Form, Table } from "react-bootstrap";
+import { Num, Visible } from ".";
 
 import { Node, Provider } from "@nteract/mathjax";
 
@@ -17,7 +18,7 @@ export const SupernovaNusPane = () => {
               <tbody>
               <tr>
                 <td>
-                  Number of events (/10<sup>32</sup> p)
+                  Events
                 </td>
                 <td>
                   <i>N</i><sup>0</sup> = <Num v={sumSpectrumIBDnoOsc} p={2} />
