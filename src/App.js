@@ -58,7 +58,8 @@ import {
   SupernovaNusPane,
   SupernovaFluxPlots,
   SupernovaOscillatedFluxPlots,
-
+  SupernovaOscillatedInvertedFluxPlots,
+  
   // Custom Core UI
   AddCustomCoreModal,
   ManageCustomCoreModal,
@@ -287,6 +288,7 @@ function App(props) {
                   <SupernovaNusPane />
                   <SupernovaFluxPlots />
                   <SupernovaOscillatedFluxPlots />
+                  <SupernovaOscillatedInvertedFluxPlots />
                 </Visible>
               </Tab>
               <Tab eventKey="solarnu" title="SolarNu">
