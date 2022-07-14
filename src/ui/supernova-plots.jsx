@@ -59,7 +59,7 @@ export const SupernovaPlotsIBD = () => {
     var layout = {
     title: "Core Collapse SN Neutrino IBD Spectra",
     yaxis: {
-      title: { text: `Events dN/dE (/10<sup>32</sup> targets/MeV)` },
+      title: { text: `Events dN/dE (/10<sup>32</sup> p/MeV)` },
       autorange: true,
     },
     xaxis: {
