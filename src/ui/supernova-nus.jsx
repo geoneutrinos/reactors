@@ -94,6 +94,17 @@ export const SupernovaNusEvents = () => {
   );
 };
 
+export const SupernovaNusScatterTmins = () => {
+
+  return (
+    <Card>
+      <Card.Header>Set Scattered Charged Particle Minimum KE</Card.Header>
+      <Card.Body>
+      </Card.Body>
+    </Card>
+  );
+};
+
 export const SupernovaNusPane = () => {
 
   return (
