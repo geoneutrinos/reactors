@@ -1,4 +1,10 @@
-import { ELEMENTARY_CHARGE, ELECTRON_REST_MASS } from "../physics/constants";
+import { 
+  ELEMENTARY_CHARGE,
+  ELECTRON_REST_MASS,
+  PROTON_REST_MASS,
+  FERMI_COUPLING_CONSTANT,
+  HBAR_C,
+} from "../physics/constants";
 import { IBD_THRESHOLD } from "../physics/derived";
 import { s2t12, c2t12 } from "../physics/neutrino-oscillation";
 
@@ -38,15 +44,23 @@ const fluxIOSpectrumNuxT3 = fluxSpectrumNue.map((v) => v * c2t12);
 const fluxIOSpectrumNuxT123 = fluxIOSpectrumNuxT1.map((v, i) => v + fluxIOSpectrumNuxT2[i] + fluxIOSpectrumNuxT3[i]);
 export const fluxIOSpectrumNux = fluxIOSpectrumNuxT123.map((v) => v / 4);
 
-const xsection = energyValues.map(xSection);
+const xsectionIBD = energyValues.map(xSectionIBD);
 
-export const eventSpectrumIBDnoOsc = fluxSpectrumAnu.map((v, i) => v * xsection[i] * 1e32);
-export const eventSpectrumIBDforNO = fluxNOSpectrumAnu.map((v, i) => v * xsection[i] * 1e32);
-export const eventSpectrumIBDforIO = fluxIOSpectrumAnu.map((v, i) => v * xsection[i] * 1e32);
+export const eventSpectrumIBDnoOsc = fluxSpectrumAnu.map((v, i) => v * xsectionIBD[i] * 1e32);
+export const eventSpectrumIBDforNO = fluxNOSpectrumAnu.map((v, i) => v * xsectionIBD[i] * 1e32);
+export const eventSpectrumIBDforIO = fluxIOSpectrumAnu.map((v, i) => v * xsectionIBD[i] * 1e32);
 
 export const sumSpectrumIBDnoOsc = sum(eventSpectrumIBDnoOsc) * 0.1;
 export const sumSpectrumIBDforNO = sum(eventSpectrumIBDforNO) * 0.1;
 export const sumSpectrumIBDforIO = sum(eventSpectrumIBDforIO) * 0.1;
+
+export const eventSpectrumESPnoOsc = fluxSpectrumAnu.map((v, i) => v * xsectionESp[i] * 1e32);
+export const eventSpectrumESPforNO = fluxNOSpectrumAnu.map((v, i) => v * xsectionESp[i] * 1e32);
+export const eventSpectrumESPforIO = fluxIOSpectrumAnu.map((v, i) => v * xsectionESp[i] * 1e32);
+
+export const sumSpectrumESPnoOsc = sum(eventSpectrumESPnoOsc) * 0.1;
+export const sumSpectrumESPforNO = sum(eventSpectrumESPforNO) * 0.1;
+export const sumSpectrumESPforIO = sum(eventSpectrumESPforIO) * 0.1;
 
 function nueSpecCCSN(Ev: number) {
   const enu_tot = 5e52 * 1e-13 / ELEMENTARY_CHARGE; // MeV
@@ -87,7 +101,7 @@ function nuxSpecCCSN(Ev: number) {
   return prefix * enu_tot * energy_factor / d_ccsn / d_ccsn;
 }
 
-function xSection(Ev: number) {
+function xSectionIBD(Ev: number) {
   const a = -0.07056;
   const b = 0.02018;
   const c = -0.001953;
@@ -100,4 +114,18 @@ function xSection(Ev: number) {
   const Pe = Math.sqrt(Ee ** 2 - ELECTRON_REST_MASS ** 2);
 
   return 1e-43 * Pe * Ee * sve;
+}
+
+function xSectionESp(Ev: number) {
+  const cplus = (( 1.27 / 2 ) ** 2) + (( .4 ) ** 2);
+  const cminu = (( 1.27 / 2 ) ** 2) - (( .4 ) ** 2);
+
+const tmax = Ev * Ev * 2 / (Ev * 2 + PROTON_REST_MASS);
+// ToDo allow nonzero tmin set with UI
+  const tmin = 0;
+
+  const tcon = PROTON_REST_MASS / (4 * Ev * Ev);
+  const ccon = (FERMI_COUPLING_CONSTANT ** 2) * (HBAR_C ** 2) * PROTON_REST_MASS / Math.PI;
+
+  return ccon * ( (cplus * (tmax - tmin)) + ( (cminu * tcon * ((tmax * tmax) - (tmin * tmin)) ) );
 }
