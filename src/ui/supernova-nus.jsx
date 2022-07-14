@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Card, Form, Table } from "react-bootstrap";
+import { Card, Form, InputGroup, Table } from "react-bootstrap";
 import { Num, Visible } from ".";
 
 import { Node, Provider } from "@nteract/mathjax";
