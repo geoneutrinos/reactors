@@ -4,13 +4,15 @@ import {
   PROTON_REST_MASS,
   FERMI_COUPLING_CONSTANT,
   HBAR_C,
+  WEAK_MIXING_ANGLE,
 } from "../physics/constants";
 import { IBD_THRESHOLD } from "../physics/derived";
 import { s2t12, c2t12 } from "../physics/neutrino-oscillation";
 
 import { sum } from "lodash";
 
-// ToDo make TminESP set by UI
+// ToDo make elastic scattering Tmins set by UI
+const TminESE = 0;
 const TminESP = 2;
 
 export const energyValues = new Float32Array(1000).map((v, i) => i / 10 + .05);
@@ -66,6 +68,12 @@ export const eventSpectrumNuxESP = fluxSpectrumNux.map((v, i) => v * xsectionESP
 export const sumSpectrumNueESP = sum(eventSpectrumNueESP) * 0.1;
 export const sumSpectrumAnuESP = sum(eventSpectrumAnuESP) * 0.1;
 export const sumSpectrumNuxESP = sum(eventSpectrumNuxESP) * 0.4;
+
+const xsectionESeNue = energyValues.map(xSectionESeNue);
+
+export const eventSpectrumNueESE = fluxSpectrumNue.map((v, i) => v * xsectionESeNue[i] * 1e32);
+
+export const sumSpectrumNueESE = sum(eventSpectrumNueESE) * 0.1;
 
 function nueSpecCCSN(Ev: number) {
   const enu_tot = 5e52 * 1e-13 / ELEMENTARY_CHARGE; // MeV
@@ -135,4 +143,30 @@ function xSectionESp(Ev: number) {
   const ccon = (FERMI_COUPLING_CONSTANT ** 2) * 1e-12 * (HBAR_C ** 2) * PROTON_REST_MASS / Math.PI;
 
   return ccon * (cplus * (TmaxESP - TminESP) + cminu * tcon * ((TmaxESP ** 2) - (TminESP ** 2)));
+}
+
+function xSectionESeNue(Ev: number) {
+  const cL = 0.5 + WEAK_MIXING_ANGLE;
+  const cR = WEAK_MIXING_ANGLE;
+
+  const TmaxESE = Ev / (1 + ELECTRON_REST_MASS / (Ev * 2));
+  if (TmaxESE < TminESE){
+    return 0;
+  }
+
+  const y_max = TmaxESE / Ev;
+  const y_min = TminESE / Ev;
+  
+  const FERMI_COUPLING_CONSTANT_MeV = FERMI_COUPLING_CONSTANT / 1e6;
+
+  const term1 = (2 * (FERMI_COUPLING_CONSTANT_MeV ** 2) * (HBAR_C ** 2)) * ELECTRON_REST_MASS * Ev / Math.PI;
+  const term2 = cL ** 2 * y_max;
+  const term3 = cR ** 2 * (1/3) * (1 - (1 - y_max) ** 3);
+  const term4 = cL * cR * (ELECTRON_REST_MASS/(2 * Ev)) * y_max ** 2;
+
+  const term5 = cL ** 2 * y_min;
+  const term6 = cR ** 2 * (1/3) * (1 - (1 - y_min) ** 3);
+  const term7 = cL * cR * (ELECTRON_REST_MASS/(2 * Ev)) * y_min ** 2;
+
+  return term1 * ((term2 + term3 - term4) - (term5 + term6 - term7));
 }
