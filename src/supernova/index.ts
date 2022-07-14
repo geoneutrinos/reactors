@@ -119,15 +119,15 @@ function xSectionIBD(Ev: number) {
 }
 
 function xSectionESp(Ev: number) {
-  const cplus = (( 1.27 / 2 ) ** 2) + (0.4 ** 2);
-  const cminu = (( 1.27 / 2 ) ** 2) - (0.4 ** 2);
+  const cplus = (( 1.27 / 2 ) ** 2) + (0.04 ** 2);
+  const cminu = (( 1.27 / 2 ) ** 2) - (0.04 ** 2);
 
   const tmax = (2 * (Ev ** 2)) / ((Ev * 2) + PROTON_REST_MASS);
 // ToDo allow nonzero tmin set with UI
   const tmin = 0;
 
   const tcon = PROTON_REST_MASS / (4 * (Ev ** 2));
-  const ccon = (FERMI_COUPLING_CONSTANT ** 2) * (HBAR_C ** 2) * PROTON_REST_MASS / Math.PI;
+  const ccon = (FERMI_COUPLING_CONSTANT ** 2) * 1e-12 * (HBAR_C ** 2) * PROTON_REST_MASS / Math.PI;
 
   return ccon * (cplus * (tmax - tmin) + cminu * tcon * ((tmax ** 2) - (tmin ** 2)));
 }
