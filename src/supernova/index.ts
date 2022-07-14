@@ -56,13 +56,13 @@ export const sumSpectrumIBDforIO = sum(eventSpectrumIBDforIO) * 0.1;
 
 const xsectionESP = energyValues.map(xSectionESp);
 
-export const eventSpectrumESPnoOsc = fluxSpectrumAnu.map((v, i) => v * xsectionESP[i] * 1e32);
-export const eventSpectrumESPforNO = fluxNOSpectrumAnu.map((v, i) => v * xsectionESP[i] * 1e32);
-export const eventSpectrumESPforIO = fluxIOSpectrumAnu.map((v, i) => v * xsectionESP[i] * 1e32);
+export const eventSpectrumNueESP = fluxSpectrumNue.map((v, i) => v * xsectionESP[i] * 1e32);
+export const eventSpectrumAnuESP = fluxSpectrumAnu.map((v, i) => v * xsectionESP[i] * 1e32);
+export const eventSpectrumNuxESP = fluxSpectrumNux.map((v, i) => v * xsectionESP[i] * 1e32);
 
-export const sumSpectrumESPnoOsc = sum(eventSpectrumESPnoOsc) * 0.1;
-export const sumSpectrumESPforNO = sum(eventSpectrumESPforNO) * 0.1;
-export const sumSpectrumESPforIO = sum(eventSpectrumESPforIO) * 0.1;
+export const sumSpectrumNueESP = sum(eventSpectrumNueESP) * 0.1;
+export const sumSpectrumAnuESP = sum(eventSpectrumAnuESP) * 0.1;
+export const sumSpectrumNuxESP = sum(eventSpectrumNuxESP) * 0.1;
 
 function nueSpecCCSN(Ev: number) {
   const enu_tot = 5e52 * 1e-13 / ELEMENTARY_CHARGE; // MeV
