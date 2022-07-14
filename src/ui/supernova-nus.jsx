@@ -19,7 +19,7 @@ sumSpectrumAnuESEforIO,
 sumSpectrumXnuESEforIO,
 } from "../supernova";
 
-export const SupernovaNusPane = () => {
+export const SupernovaNusEvents = () => {
 
   return (
     <Card>
@@ -91,6 +91,12 @@ export const SupernovaNusPane = () => {
         </Provider>
       </Card.Body>
     </Card>
+  );
+};
+
+export const SupernovaNusPane = () => {
+
+  return (
     <Card>
       <Card.Header>Core Collapse SN Neutrinos</Card.Header>
       <Card.Body>
