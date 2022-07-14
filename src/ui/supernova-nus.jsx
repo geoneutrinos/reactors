@@ -132,12 +132,12 @@ export const SupernovaNusScatterTmins = () => {
 
   return (
     <Card>
-      <Card.Header>Set Scattered Charged Particle Minimum KE</Card.Header>
+      <Card.Header>Set Minimum Kinetic Energy of Elastically Scattered Charged Particle</Card.Header>
       <Card.Body>
       
             <Form.Group controlId="tp_min">
               <Form.Label>
-                Proton Kinetic Energy Minimum
+                Proton (pES)
               </Form.Label>
               <InputGroup>
                 <InputGroup.Prepend>
@@ -157,7 +157,7 @@ export const SupernovaNusScatterTmins = () => {
 
             <Form.Group controlId="te_min">
               <Form.Label>
-                Electron Kinetic Energy Minimum
+                Electron (eES)
               </Form.Label>
               <InputGroup>
                 <InputGroup.Prepend>
