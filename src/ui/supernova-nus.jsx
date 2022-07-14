@@ -21,6 +21,44 @@ sumSpectrumXnuESEforIO,
 
 export const SupernovaNusEvents = () => {
 
+  const TMinRangeESP = (
+    <Form.Group controlId="tmin_pes">
+      <Form.Label>
+        Scattered proton T<sub>min</sub>:{" "}
+        {pESminT} MeV
+      </Form.Label>
+      <Form.Control
+        type="range"
+        min={0}
+        max={3}
+        step={0.1}
+        value={pESminT}
+      ></Form.Control>
+      <InputGroup.Append>
+        <InputGroup.Text>MeV</InputGroup.Text>
+      </InputGroup.Append>
+    </Form.Group>
+  );
+  
+  const TMinRangeESE = (
+    <Form.Group controlId="tmin_ees">
+      <Form.Label>
+        Scattered electron T<sub>min</sub>:{" "}
+        {eESminT} MeV
+      </Form.Label>
+      <Form.Control
+        type="range"
+        min={0}
+        max={20}
+        step={0.1}
+        value={eESminT}
+      ></Form.Control>
+      <InputGroup.Append>
+        <InputGroup.Text>MeV</InputGroup.Text>
+      </InputGroup.Append>
+    </Form.Group>
+  );
+
   return (
     <Card>
       <Card.Header>Core Collapse SN Neutrino Events</Card.Header>
@@ -89,6 +127,8 @@ export const SupernovaNusEvents = () => {
             </Table>
           </div>
         </Provider>
+        { TMinRangeESP }
+        { TMinRangeESE }
       </Card.Body>
     </Card>
   );
