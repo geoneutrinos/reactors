@@ -81,7 +81,7 @@ const xsectionESeNux = energyValues.map(xSectionESeNux);
 export const eventSpectrumNuxESE = fluxSpectrumNux.map((v, i) => v * xsectionESeNux[i] * 1e32);
 
 const xsectionESeAnx = energyValues.map(xSectionESeAnx);
-export const eventSpectrumAnxESE = fluxSpectrumAnx.map((v, i) => v * xsectionESeAnx[i] * 1e32);
+export const eventSpectrumAnxESE = fluxSpectrumNux.map((v, i) => v * xsectionESeAnx[i] * 1e32);
 
 export const sumSpectrumXnuESE = (sum(eventSpectrumAnxESE) + sum(eventSpectrumNuxESE)) * 0.2;
 
