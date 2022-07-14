@@ -23,7 +23,7 @@ export const SupernovaNusPane = () => {
 
   return (
     <Card>
-      <Card.Header>Core Collapse SN Neutrinos</Card.Header>
+      <Card.Header>Core Collapse SN Neutrino Events</Card.Header>
       <Card.Body>
         <Provider>
           <div>
@@ -88,6 +88,13 @@ export const SupernovaNusPane = () => {
               </tbody>
             </Table>
           </div>
+        </Provider>
+      </Card.Body>
+    </Card>
+    <Card>
+      <Card.Header>Core Collapse SN Neutrinos</Card.Header>
+      <Card.Body>
+        <Provider>
           <div>
             <p>
               The non-oscillated flux spectrum of neutrinos of a given species {" "}
