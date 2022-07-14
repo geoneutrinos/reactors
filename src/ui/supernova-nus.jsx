@@ -13,6 +13,7 @@ sumSpectrumAnuESP,
 sumSpectrumNuxESP,
 sumSpectrumNueESE,
 sumSpectrumAnuESE,
+sumSpectrumXnuESE,
 } from "../supernova";
 
 export const SupernovaNusPane = () => {
@@ -64,7 +65,7 @@ export const SupernovaNusPane = () => {
                   N(ν̅<sub>e</sub>) = <Num v={sumSpectrumAnuESE} p={1} />
                 </td>
                 <td>
-                  N(ν<sub>x</sub>) = <Num v={sumSpectrumNuxESP} p={1} />
+                  N(ν<sub>x</sub>) = <Num v={sumSpectrumXnuESE} p={1} />
                 </td>
               </tr>
               </tbody>
