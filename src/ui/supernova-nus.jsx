@@ -55,7 +55,7 @@ export const SupernovaNusPane = () => {
               </tr>
               <tr>
                 <td>
-                  eES Events (/10<sup>32</sup> p)
+                  eES Events (/10<sup>32</sup> e)
                 </td>
                 <td>
                   N(ν<sub>e</sub>) = <Num v={sumSpectrumNueESE} p={1} />
