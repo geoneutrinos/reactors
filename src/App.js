@@ -284,7 +284,7 @@ function App(props) {
                   <IsotopeData />
                 </Visible>
               </Tab>
-              <Tab eventKey="ccsnnu" title="SNNu">
+              <Tab eventKey="ccsnnu" title="SnNu">
                 <Visible>
                   <SupernovaNusPane />
                   <SupernovaPlotsIBD />
