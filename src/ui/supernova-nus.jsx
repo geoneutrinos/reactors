@@ -11,6 +11,7 @@ sumSpectrumIBDforIO,
 sumSpectrumNueESP,
 sumSpectrumAnuESP,
 sumSpectrumNuxESP,
+sumSpectrumNueESE,
 } from "../supernova";
 
 export const SupernovaNusPane = () => {
@@ -43,6 +44,19 @@ export const SupernovaNusPane = () => {
                 </td>
                 <td>
                   N(ν<sub>e</sub>) = <Num v={sumSpectrumNueESP} p={1} />
+                </td>
+                <td>
+                  N(ν̅<sub>e</sub>) = <Num v={sumSpectrumAnuESP} p={1} />
+                </td>
+                <td>
+                  N(ν<sub>x</sub>) = <Num v={sumSpectrumNuxESP} p={1} />
+                </td>
+              </tr>
+                <td>
+                  eES Events (/10<sup>32</sup> p)
+                </td>
+                <td>
+                  N(ν<sub>e</sub>) = <Num v={sumSpectrumNueESE} p={1} />
                 </td>
                 <td>
                   N(ν̅<sub>e</sub>) = <Num v={sumSpectrumAnuESP} p={1} />
