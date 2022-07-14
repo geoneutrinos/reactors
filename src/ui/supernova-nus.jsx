@@ -104,6 +104,9 @@ export const SupernovaNusScatterTmins = () => {
     if (isNaN(te_min)) {
       setTeMin(value);
     } else {
+      if (te_min < 0) {
+        te_min = 0.0;
+      }
       if (te_min > 30) {
         te_min = 30.0;
       }
@@ -117,6 +120,9 @@ export const SupernovaNusScatterTmins = () => {
     if (isNaN(tp_min)) {
       setTpMin(value);
     } else {
+      if (tp_min < 0) {
+        tp_min = 0.0;
+      }
       if (tp_min > 10) {
         tp_min = 10.0;
       }
