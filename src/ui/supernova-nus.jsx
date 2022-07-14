@@ -28,7 +28,7 @@ export const SupernovaNusPane = () => {
               <tbody>
               <tr>
                 <td>
-                  IBD Events (/10<sup>32</sup> p)
+                  IBD (/10<sup>32</sup> p)
                 </td>
                 <td>
                   N<sup>0</sup> = <Num v={sumSpectrumIBDnoOsc} p={1} />
@@ -42,7 +42,7 @@ export const SupernovaNusPane = () => {
               </tr>
               <tr>
                 <td>
-                  pES Events (/10<sup>32</sup> p)
+                  pES (/10<sup>32</sup> p)
                 </td>
                 <td>
                   N(ν<sub>e</sub>) = <Num v={sumSpectrumNueESP} p={1} />
@@ -56,7 +56,21 @@ export const SupernovaNusPane = () => {
               </tr>
               <tr>
                 <td>
-                  eES Events (/10<sup>32</sup> e)
+                  eES NO (/10<sup>32</sup> e)
+                </td>
+                <td>
+                  N(ν<sub>e</sub>) = <Num v={sumSpectrumNueESE} p={1} />
+                </td>
+                <td>
+                  N(ν̅<sub>e</sub>) = <Num v={sumSpectrumAnuESE} p={1} />
+                </td>
+                <td>
+                  N(ν<sub>x</sub>) = <Num v={sumSpectrumXnuESE} p={1} />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  eES IO (/10<sup>32</sup> e)
                 </td>
                 <td>
                   N(ν<sub>e</sub>) = <Num v={sumSpectrumNueESE} p={1} />
