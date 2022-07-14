@@ -70,20 +70,27 @@ export const sumSpectrumAnuESP = sum(eventSpectrumAnuESP) * 0.1;
 export const sumSpectrumNuxESP = sum(eventSpectrumNuxESP) * 0.4;
 
 const xsectionESeNue = energyValues.map(xSectionESeNue);
-export const eventSpectrumNueESE = fluxSpectrumNue.map((v, i) => v * xsectionESeNue[i] * 1e32);
-export const sumSpectrumNueESE = sum(eventSpectrumNueESE) * 0.1;
+export const eventSpectrumNueESEforNO = fluxNOSpectrumNue.map((v, i) => v * xsectionESeNue[i] * 1e32);
+export const sumSpectrumNueESEforNO = sum(eventSpectrumNueESEforNO) * 0.1;
+export const eventSpectrumNueESEforIO = fluxIOSpectrumNue.map((v, i) => v * xsectionESeNue[i] * 1e32);
+export const sumSpectrumNueESEforIO = sum(eventSpectrumNueESEforIO) * 0.1;
 
 const xsectionESeAnu = energyValues.map(xSectionESeAnu);
-export const eventSpectrumAnuESE = fluxSpectrumAnu.map((v, i) => v * xsectionESeAnu[i] * 1e32);
-export const sumSpectrumAnuESE = sum(eventSpectrumAnuESE) * 0.1;
+export const eventSpectrumAnuESEforNO = fluxNOSpectrumAnu.map((v, i) => v * xsectionESeAnu[i] * 1e32);
+export const sumSpectrumAnuESEforNO = sum(eventSpectrumAnuESEforNO) * 0.1;
+export const eventSpectrumAnuESEforIO = fluxIOSpectrumAnu.map((v, i) => v * xsectionESeAnu[i] * 1e32);
+export const sumSpectrumAnuESEforIO = sum(eventSpectrumAnuESEforIO) * 0.1;
 
 const xsectionESeNux = energyValues.map(xSectionESeNux);
-export const eventSpectrumNuxESE = fluxSpectrumNux.map((v, i) => v * xsectionESeNux[i] * 1e32);
+export const eventSpectrumNuxESEforNO = fluxNOSpectrumNux.map((v, i) => v * xsectionESeNux[i] * 1e32);
+export const eventSpectrumNuxESEforIO = fluxIOSpectrumNux.map((v, i) => v * xsectionESeNux[i] * 1e32);
 
 const xsectionESeAnx = energyValues.map(xSectionESeAnx);
-export const eventSpectrumAnxESE = fluxSpectrumNux.map((v, i) => v * xsectionESeAnx[i] * 1e32);
+export const eventSpectrumAnxESEforNO = fluxNOSpectrumNux.map((v, i) => v * xsectionESeAnx[i] * 1e32);
+export const eventSpectrumAnxESEforIO = fluxIOSpectrumNux.map((v, i) => v * xsectionESeAnx[i] * 1e32);
 
-export const sumSpectrumXnuESE = (sum(eventSpectrumAnxESE) + sum(eventSpectrumNuxESE)) * 0.2;
+export const sumSpectrumXnuESEforNO = (sum(eventSpectrumAnxESEforNO) + sum(eventSpectrumNuxESEforNO)) * 0.2;
+export const sumSpectrumXnuESEforIO = (sum(eventSpectrumAnxESEforIO) + sum(eventSpectrumNuxESEforIO)) * 0.2;
 
 function nueSpecCCSN(Ev: number) {
   const enu_tot = 5e52 * 1e-13 / ELEMENTARY_CHARGE; // MeV
