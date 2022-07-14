@@ -4,7 +4,14 @@ import { Num, Visible } from ".";
 
 import { Node, Provider } from "@nteract/mathjax";
 
-import { sumSpectrumIBDnoOsc, sumSpectrumIBDforNO, sumSpectrumIBDforIO } from "../supernova";
+import { 
+sumSpectrumIBDnoOsc,
+sumSpectrumIBDforNO,
+sumSpectrumIBDforIO,
+sumSpectrumNueESP,
+sumSpectrumAnuESP,
+sumSpectrumNuxESP,
+} from "../supernova";
 
 export const SupernovaNusPane = () => {
 
@@ -28,6 +35,20 @@ export const SupernovaNusPane = () => {
                 </td>
                 <td>
                   N<sub>IO</sub> = <Num v={sumSpectrumIBDforIO} p={2} />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  pES Events (/10<sup>32</sup> p)
+                </td>
+                <td>
+                  N(ν<sub>e</sub>) = <Num v={sumSpectrumNueESP} p={2} />
+                </td>
+                <td>
+                  N(ν̅<sub>e</sub>) = <Num v={sumSpectrumAnuESP} p={2} />
+                </td>
+                <td>
+                  N(ν<sub>x</sub>) = <Num v={sumSpectrumNuxESP} p={2} />
                 </td>
               </tr>
               </tbody>
