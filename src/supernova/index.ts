@@ -12,7 +12,7 @@ import { s2t12, c2t12 } from "../physics/neutrino-oscillation";
 import { sum } from "lodash";
 
 // ToDo make elastic scattering Tmins set by UI
-const TminESE = 0;
+const TminESE = 10;
 const TminESP = 2;
 
 export const energyValues = new Float32Array(1000).map((v, i) => i / 10 + .05);
