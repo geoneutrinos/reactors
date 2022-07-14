@@ -11,9 +11,12 @@ sumSpectrumIBDforIO,
 sumSpectrumNueESP,
 sumSpectrumAnuESP,
 sumSpectrumNuxESP,
-sumSpectrumNueESE,
-sumSpectrumAnuESE,
-sumSpectrumXnuESE,
+sumSpectrumNueESEforNO,
+sumSpectrumAnuESEforNO,
+sumSpectrumXnuESEforNO,
+sumSpectrumNueESEforIO,
+sumSpectrumAnuESEforIO,
+sumSpectrumXnuESEforIO,
 } from "../supernova";
 
 export const SupernovaNusPane = () => {
@@ -59,13 +62,13 @@ export const SupernovaNusPane = () => {
                   eES NO (/10<sup>32</sup> e)
                 </td>
                 <td>
-                  N(ν<sub>e</sub>) = <Num v={sumSpectrumNueESE} p={1} />
+                  N(ν<sub>e</sub>) = <Num v={sumSpectrumNueESEforNO} p={1} />
                 </td>
                 <td>
-                  N(ν̅<sub>e</sub>) = <Num v={sumSpectrumAnuESE} p={1} />
+                  N(ν̅<sub>e</sub>) = <Num v={sumSpectrumAnuESEforNO} p={1} />
                 </td>
                 <td>
-                  N(ν<sub>x</sub>) = <Num v={sumSpectrumXnuESE} p={1} />
+                  N(ν<sub>x</sub>) = <Num v={sumSpectrumXnuESEforNO} p={1} />
                 </td>
               </tr>
               <tr>
@@ -73,13 +76,13 @@ export const SupernovaNusPane = () => {
                   eES IO (/10<sup>32</sup> e)
                 </td>
                 <td>
-                  N(ν<sub>e</sub>) = <Num v={sumSpectrumNueESE} p={1} />
+                  N(ν<sub>e</sub>) = <Num v={sumSpectrumNueESEforIO} p={1} />
                 </td>
                 <td>
-                  N(ν̅<sub>e</sub>) = <Num v={sumSpectrumAnuESE} p={1} />
+                  N(ν̅<sub>e</sub>) = <Num v={sumSpectrumAnuESEforIO} p={1} />
                 </td>
                 <td>
-                  N(ν<sub>x</sub>) = <Num v={sumSpectrumXnuESE} p={1} />
+                  N(ν<sub>x</sub>) = <Num v={sumSpectrumXnuESEforIO} p={1} />
                 </td>
               </tr>
               </tbody>
