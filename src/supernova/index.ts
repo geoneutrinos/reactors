@@ -54,9 +54,11 @@ export const sumSpectrumIBDnoOsc = sum(eventSpectrumIBDnoOsc) * 0.1;
 export const sumSpectrumIBDforNO = sum(eventSpectrumIBDforNO) * 0.1;
 export const sumSpectrumIBDforIO = sum(eventSpectrumIBDforIO) * 0.1;
 
-export const eventSpectrumESPnoOsc = fluxSpectrumAnu.map((v, i) => v * xsectionESp[i] * 1e32);
-export const eventSpectrumESPforNO = fluxNOSpectrumAnu.map((v, i) => v * xsectionESp[i] * 1e32);
-export const eventSpectrumESPforIO = fluxIOSpectrumAnu.map((v, i) => v * xsectionESp[i] * 1e32);
+const xsectionESP = energyValues.map(xSectionESp);
+
+export const eventSpectrumESPnoOsc = fluxSpectrumAnu.map((v, i) => v * xsectionESP[i] * 1e32);
+export const eventSpectrumESPforNO = fluxNOSpectrumAnu.map((v, i) => v * xsectionESP[i] * 1e32);
+export const eventSpectrumESPforIO = fluxIOSpectrumAnu.map((v, i) => v * xsectionESP[i] * 1e32);
 
 export const sumSpectrumESPnoOsc = sum(eventSpectrumESPnoOsc) * 0.1;
 export const sumSpectrumESPforNO = sum(eventSpectrumESPforNO) * 0.1;
