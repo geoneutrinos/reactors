@@ -62,7 +62,7 @@ export const eventSpectrumNuxESP = fluxSpectrumNux.map((v, i) => v * xsectionESP
 
 export const sumSpectrumNueESP = sum(eventSpectrumNueESP) * 0.1;
 export const sumSpectrumAnuESP = sum(eventSpectrumAnuESP) * 0.1;
-export const sumSpectrumNuxESP = sum(eventSpectrumNuxESP) * 0.1;
+export const sumSpectrumNuxESP = sum(eventSpectrumNuxESP) * 0.4;
 
 function nueSpecCCSN(Ev: number) {
   const enu_tot = 5e52 * 1e-13 / ELEMENTARY_CHARGE; // MeV
