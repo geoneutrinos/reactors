@@ -10,6 +10,9 @@ import { s2t12, c2t12 } from "../physics/neutrino-oscillation";
 
 import { sum } from "lodash";
 
+// ToDo make tminESP set by UI
+const tminESP = 2;
+
 export const energyValues = new Float32Array(1000).map((v, i) => i / 10 + .05);
 
 // todo: pass avgE as parameter to single function that still maps 
@@ -123,11 +126,9 @@ function xSectionESp(Ev: number) {
   const cminu = (( 1.27 / 2 ) ** 2) - (0.04 ** 2);
 
   const tmax = (2 * (Ev ** 2)) / ((Ev * 2) + PROTON_REST_MASS);
-// ToDo allow nonzero tmin set with UI
-  const tmin = 0;
 
   const tcon = PROTON_REST_MASS / (4 * (Ev ** 2));
   const ccon = (FERMI_COUPLING_CONSTANT ** 2) * 1e-12 * (HBAR_C ** 2) * PROTON_REST_MASS / Math.PI;
 
-  return ccon * (cplus * (tmax - tmin) + cminu * tcon * ((tmax ** 2) - (tmin ** 2)));
+  return ccon * (cplus * (tmax - tminESP) + cminu * tcon * ((tmax ** 2) - (tminESP ** 2)));
 }
