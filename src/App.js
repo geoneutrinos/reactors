@@ -55,6 +55,7 @@ import {
   Boron8SpectraPlot,
   CrossSectionPlotsNormal,
   //SN nus tab
+  SupernovaNusEvents,
   SupernovaNusPane,
   SupernovaPlotsIBD,
   SupernovaFluxPlots,
@@ -286,6 +287,7 @@ function App(props) {
               </Tab>
               <Tab eventKey="ccsnnu" title="SnNu">
                 <Visible>
+                  <SupernovaNusEvents />
                   <SupernovaNusPane />
                   <SupernovaPlotsIBD />
                   <SupernovaFluxPlots />
