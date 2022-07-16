@@ -22,6 +22,9 @@ export const fluxSpectrumNue = energyValues.map(nueSpecCCSN);
 export const fluxSpectrumAnu = energyValues.map(anuSpecCCSN);
 export const fluxSpectrumNux = energyValues.map(nuxSpecCCSN);
 // attempt todo here
+export const fluxSpectrumNeutrino = energyValues.map(
+  function(x) { return neutrinoSpectrumCCSN(x, 12); }
+);
 
 // electron neutrinos
 export const fluxNOSpectrumNue = fluxSpectrumNux.map((v) => v);
