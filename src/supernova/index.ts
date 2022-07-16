@@ -78,23 +78,28 @@ export const sumSpectrumNuxESP = sum(eventSpectrumNuxESP) * 0.4;
 export const xsectionESeNue = energyValues.map(
   function(x) { return xSectionESe(x, NeutrinoType.electronNeutrino); }
 );
-
 export const eventSpectrumNueESEforNO = fluxNOSpectrumNue.map((v, i) => v * xsectionESeNue[i] * 1e32);
 export const sumSpectrumNueESEforNO = sum(eventSpectrumNueESEforNO) * 0.1;
 export const eventSpectrumNueESEforIO = fluxIOSpectrumNue.map((v, i) => v * xsectionESeNue[i] * 1e32);
 export const sumSpectrumNueESEforIO = sum(eventSpectrumNueESEforIO) * 0.1;
 
-const xsectionESeAnu = energyValues.map(xSectionESeAnu);
+export const xsectionESeAnu = energyValues.map(
+  function(x) { return xSectionESe(x, NeutrinoType.electronAntineutrino); }
+);
 export const eventSpectrumAnuESEforNO = fluxNOSpectrumAnu.map((v, i) => v * xsectionESeAnu[i] * 1e32);
 export const sumSpectrumAnuESEforNO = sum(eventSpectrumAnuESEforNO) * 0.1;
 export const eventSpectrumAnuESEforIO = fluxIOSpectrumAnu.map((v, i) => v * xsectionESeAnu[i] * 1e32);
 export const sumSpectrumAnuESEforIO = sum(eventSpectrumAnuESEforIO) * 0.1;
 
-const xsectionESeNux = energyValues.map(xSectionESeNux);
+export const xsectionESeNux = energyValues.map(
+  function(x) { return xSectionESe(x, NeutrinoType.muTauNeutrino); }
+);
 export const eventSpectrumNuxESEforNO = fluxNOSpectrumNux.map((v, i) => v * xsectionESeNux[i] * 1e32);
 export const eventSpectrumNuxESEforIO = fluxIOSpectrumNux.map((v, i) => v * xsectionESeNux[i] * 1e32);
 
-const xsectionESeAnx = energyValues.map(xSectionESeAnx);
+export const xsectionESeAnx = energyValues.map(
+  function(x) { return xSectionESe(x, NeutrinoType.muTauAntineutrino); }
+);
 export const eventSpectrumAnxESEforNO = fluxNOSpectrumNux.map((v, i) => v * xsectionESeAnx[i] * 1e32);
 export const eventSpectrumAnxESEforIO = fluxIOSpectrumNux.map((v, i) => v * xsectionESeAnx[i] * 1e32);
 
@@ -142,110 +147,6 @@ function xSectionESp(Ev: number) {
   const ccon = (FERMI_COUPLING_CONSTANT ** 2) * 1e-12 * (HBAR_C ** 2) * PROTON_REST_MASS / Math.PI;
 
   return ccon * (cplus * (TmaxESP - TminESP) + cminu * tcon * ((TmaxESP ** 2) - (TminESP ** 2)));
-}
-
-function xSectionESeNue(Ev: number) {
-  const cL = 0.5 + WEAK_MIXING_ANGLE;
-  const cR = WEAK_MIXING_ANGLE;
-
-  const TmaxESE = Ev / (1 + ELECTRON_REST_MASS / (Ev * 2));
-  if (TmaxESE < TminESE){
-    return 0;
-  }
-
-  const y_max = TmaxESE / Ev;
-  const y_min = TminESE / Ev;
-  
-  const FERMI_COUPLING_CONSTANT_MeV = FERMI_COUPLING_CONSTANT / 1e6;
-
-  const term1 = (2 * (FERMI_COUPLING_CONSTANT_MeV ** 2) * (HBAR_C ** 2)) * ELECTRON_REST_MASS * Ev / Math.PI;
-  const term2 = cL ** 2 * y_max;
-  const term3 = cR ** 2 * (1/3) * (1 - (1 - y_max) ** 3);
-  const term4 = cL * cR * (ELECTRON_REST_MASS/(2 * Ev)) * y_max ** 2;
-
-  const term5 = cL ** 2 * y_min;
-  const term6 = cR ** 2 * (1/3) * (1 - (1 - y_min) ** 3);
-  const term7 = cL * cR * (ELECTRON_REST_MASS/(2 * Ev)) * y_min ** 2;
-
-  return term1 * ((term2 + term3 - term4) - (term5 + term6 - term7));
-}
-
-function xSectionESeAnu(Ev: number) {
-  const cR = 0.5 + WEAK_MIXING_ANGLE;
-  const cL = WEAK_MIXING_ANGLE;
-
-  const TmaxESE = Ev / (1 + ELECTRON_REST_MASS / (Ev * 2));
-  if (TmaxESE < TminESE){
-    return 0;
-  }
-
-  const y_max = TmaxESE / Ev;
-  const y_min = TminESE / Ev;
-  
-  const FERMI_COUPLING_CONSTANT_MeV = FERMI_COUPLING_CONSTANT / 1e6;
-
-  const term1 = (2 * (FERMI_COUPLING_CONSTANT_MeV ** 2) * (HBAR_C ** 2)) * ELECTRON_REST_MASS * Ev / Math.PI;
-  const term2 = cL ** 2 * y_max;
-  const term3 = cR ** 2 * (1/3) * (1 - (1 - y_max) ** 3);
-  const term4 = cL * cR * (ELECTRON_REST_MASS/(2 * Ev)) * y_max ** 2;
-
-  const term5 = cL ** 2 * y_min;
-  const term6 = cR ** 2 * (1/3) * (1 - (1 - y_min) ** 3);
-  const term7 = cL * cR * (ELECTRON_REST_MASS/(2 * Ev)) * y_min ** 2;
-
-  return term1 * ((term2 + term3 - term4) - (term5 + term6 - term7));
-}
-
-function xSectionESeNux(Ev: number) {
-  const cL = -0.5 + WEAK_MIXING_ANGLE;
-  const cR = WEAK_MIXING_ANGLE;
-
-  const TmaxESE = Ev / (1 + ELECTRON_REST_MASS / (Ev * 2));
-  if (TmaxESE < TminESE){
-    return 0;
-  }
-
-  const y_max = TmaxESE / Ev;
-  const y_min = TminESE / Ev;
-  
-  const FERMI_COUPLING_CONSTANT_MeV = FERMI_COUPLING_CONSTANT / 1e6;
-
-  const term1 = (2 * (FERMI_COUPLING_CONSTANT_MeV ** 2) * (HBAR_C ** 2)) * ELECTRON_REST_MASS * Ev / Math.PI;
-  const term2 = cL ** 2 * y_max;
-  const term3 = cR ** 2 * (1/3) * (1 - (1 - y_max) ** 3);
-  const term4 = cL * cR * (ELECTRON_REST_MASS/(2 * Ev)) * y_max ** 2;
-
-  const term5 = cL ** 2 * y_min;
-  const term6 = cR ** 2 * (1/3) * (1 - (1 - y_min) ** 3);
-  const term7 = cL * cR * (ELECTRON_REST_MASS/(2 * Ev)) * y_min ** 2;
-
-  return term1 * ((term2 + term3 - term4) - (term5 + term6 - term7));
-}
-
-function xSectionESeAnx(Ev: number) {
-  const cR = -0.5 + WEAK_MIXING_ANGLE;
-  const cL = WEAK_MIXING_ANGLE;
-
-  const TmaxESE = Ev / (1 + ELECTRON_REST_MASS / (Ev * 2));
-  if (TmaxESE < TminESE){
-    return 0;
-  }
-
-  const y_max = TmaxESE / Ev;
-  const y_min = TminESE / Ev;
-  
-  const FERMI_COUPLING_CONSTANT_MeV = FERMI_COUPLING_CONSTANT / 1e6;
-
-  const term1 = (2 * (FERMI_COUPLING_CONSTANT_MeV ** 2) * (HBAR_C ** 2)) * ELECTRON_REST_MASS * Ev / Math.PI;
-  const term2 = cL ** 2 * y_max;
-  const term3 = cR ** 2 * (1/3) * (1 - (1 - y_max) ** 3);
-  const term4 = cL * cR * (ELECTRON_REST_MASS/(2 * Ev)) * y_max ** 2;
-
-  const term5 = cL ** 2 * y_min;
-  const term6 = cR ** 2 * (1/3) * (1 - (1 - y_min) ** 3);
-  const term7 = cL * cR * (ELECTRON_REST_MASS/(2 * Ev)) * y_min ** 2;
-
-  return term1 * ((term2 + term3 - term4) - (term5 + term6 - term7));
 }
 
 function xSectionESe(Ev: number, neutrinoType:NeutrinoType) {
