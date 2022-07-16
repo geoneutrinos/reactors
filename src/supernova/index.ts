@@ -21,8 +21,7 @@ export const energyValues = new Float32Array(1000).map((v, i) => i / 10 + .05);
 export const fluxSpectrumNue = energyValues.map(nueSpecCCSN);
 export const fluxSpectrumAnu = energyValues.map(anuSpecCCSN);
 export const fluxSpectrumNux = energyValues.map(nuxSpecCCSN);
-// attempt todo
-export const fluxSpectrumNeutrino = energyValues.map(v => neutrinoSpectrumCCNS(v, 12));
+// attempt todo here
 
 // electron neutrinos
 export const fluxNOSpectrumNue = fluxSpectrumNux.map((v) => v);
