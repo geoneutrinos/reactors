@@ -16,8 +16,8 @@ const neutrinoTargets = 1e32;
 const deltaEnergy = 0.1; // MeV
 
 // ToDo import elastic scattering Tmins set by UI
-const TminESE = 10;
-const TminESP = 2;
+const TminESE = 0;
+const TminESP = 0;
 
 // make the array of neutrino energies 0 - 100 MeV
 export const energyValues = new Float32Array(1000).map((v, i) => i * deltaEnergy + deltaEnergy/2);
@@ -63,12 +63,12 @@ export const fluxIOSpectrumNux = fluxIOSpectrumNuxT123.map((v) => v / 4);
 // IBD cross section using SV 2003
 const xsectionIBD = energyValues.map(xSectionIBD);
 
-// IBD event spectra (/MeV) for 1e32 targets
+// IBD event spectra (/MeV)
 export const eventSpectrumIBDnoOsc = fluxSpectrumAnu.map((v, i) => v * xsectionIBD[i] * neutrinoTargets);
 export const eventSpectrumIBDforNO = fluxNOSpectrumAnu.map((v, i) => v * xsectionIBD[i] * neutrinoTargets);
 export const eventSpectrumIBDforIO = fluxIOSpectrumAnu.map((v, i) => v * xsectionIBD[i] * neutrinoTargets);
 
-// IBD event totals for 1e32 targets with dE = 0.1
+// IBD event totals
 export const sumSpectrumIBDnoOsc = sum(eventSpectrumIBDnoOsc) * deltaEnergy;
 export const sumSpectrumIBDforNO = sum(eventSpectrumIBDforNO) * deltaEnergy;
 export const sumSpectrumIBDforIO = sum(eventSpectrumIBDforIO) * deltaEnergy;
@@ -76,12 +76,12 @@ export const sumSpectrumIBDforIO = sum(eventSpectrumIBDforIO) * deltaEnergy;
 // make neutrino-proton elastic scattering (pES) cross section
 const xsectionESP = energyValues.map(xSectionESp);
 
-// pES event sprecta for 1e32 targets 
+// pES event sprecta (/MeV)
 export const eventSpectrumNueESP = fluxSpectrumNue.map((v, i) => v * xsectionESP[i] * neutrinoTargets);
 export const eventSpectrumAnuESP = fluxSpectrumAnu.map((v, i) => v * xsectionESP[i] * neutrinoTargets);
 export const eventSpectrumNuxESP = fluxSpectrumNux.map((v, i) => v * xsectionESP[i] * neutrinoTargets);
 
-// pES event totals for 1e32 targets with Nux x4 for mu and tau neutrinos and antineutrinos
+// pES event totals with Nux x4 for mu and tau neutrinos and antineutrinos
 export const sumSpectrumNueESP = sum(eventSpectrumNueESP) * deltaEnergy;
 export const sumSpectrumAnuESP = sum(eventSpectrumAnuESP) * deltaEnergy;
 export const sumSpectrumNuxESP = sum(eventSpectrumNuxESP) * deltaEnergy * 4;
