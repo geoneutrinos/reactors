@@ -12,12 +12,17 @@ import { s2t12, c2t12 } from "../physics/neutrino-oscillation";
 
 import { sum } from "lodash";
 
-// ToDo make elastic scattering Tmins set by UI
+const neutrinoTargets = 1e32;
+const deltaEnergy = 0.1; // MeV
+
+// ToDo import elastic scattering Tmins set by UI
 const TminESE = 10;
 const TminESP = 2;
 
-export const energyValues = new Float32Array(1000).map((v, i) => i / 10 + .05);
+// make the array of neutrino energies 0 - 100 MeV
+export const energyValues = new Float32Array(1000).map((v, i) => i * deltaEnergy + deltaEnergy/2);
 
+// make the non-oscillated neutrino speciaes flux spectra with different average energy in MeV
 export const fluxSpectrumNue = energyValues.map(
   function(x) { return neutrinoSpectrumCCSN(x, 12); }
 );
@@ -55,53 +60,60 @@ const fluxIOSpectrumNuxT3 = fluxSpectrumNue.map((v) => v * c2t12);
 const fluxIOSpectrumNuxT123 = fluxIOSpectrumNuxT1.map((v, i) => v + fluxIOSpectrumNuxT2[i] + fluxIOSpectrumNuxT3[i]);
 export const fluxIOSpectrumNux = fluxIOSpectrumNuxT123.map((v) => v / 4);
 
+// IBD cross section using SV 2003
 const xsectionIBD = energyValues.map(xSectionIBD);
 
-export const eventSpectrumIBDnoOsc = fluxSpectrumAnu.map((v, i) => v * xsectionIBD[i] * 1e32);
-export const eventSpectrumIBDforNO = fluxNOSpectrumAnu.map((v, i) => v * xsectionIBD[i] * 1e32);
-export const eventSpectrumIBDforIO = fluxIOSpectrumAnu.map((v, i) => v * xsectionIBD[i] * 1e32);
+// IBD event spectra (/MeV) for 1e32 targets
+export const eventSpectrumIBDnoOsc = fluxSpectrumAnu.map((v, i) => v * xsectionIBD[i] * neutrinoTargets);
+export const eventSpectrumIBDforNO = fluxNOSpectrumAnu.map((v, i) => v * xsectionIBD[i] * neutrinoTargets);
+export const eventSpectrumIBDforIO = fluxIOSpectrumAnu.map((v, i) => v * xsectionIBD[i] * neutrinoTargets);
 
-export const sumSpectrumIBDnoOsc = sum(eventSpectrumIBDnoOsc) * 0.1;
-export const sumSpectrumIBDforNO = sum(eventSpectrumIBDforNO) * 0.1;
-export const sumSpectrumIBDforIO = sum(eventSpectrumIBDforIO) * 0.1;
+// IBD event totals for 1e32 targets with dE = 0.1
+export const sumSpectrumIBDnoOsc = sum(eventSpectrumIBDnoOsc) * deltaEnergy;
+export const sumSpectrumIBDforNO = sum(eventSpectrumIBDforNO) * deltaEnergy;
+export const sumSpectrumIBDforIO = sum(eventSpectrumIBDforIO) * deltaEnergy;
 
+// make neutrino-proton elastic scattering (pES) cross section
 const xsectionESP = energyValues.map(xSectionESp);
 
-export const eventSpectrumNueESP = fluxSpectrumNue.map((v, i) => v * xsectionESP[i] * 1e32);
-export const eventSpectrumAnuESP = fluxSpectrumAnu.map((v, i) => v * xsectionESP[i] * 1e32);
-export const eventSpectrumNuxESP = fluxSpectrumNux.map((v, i) => v * xsectionESP[i] * 1e32);
+// pES event sprecta for 1e32 targets 
+export const eventSpectrumNueESP = fluxSpectrumNue.map((v, i) => v * xsectionESP[i] * neutrinoTargets);
+export const eventSpectrumAnuESP = fluxSpectrumAnu.map((v, i) => v * xsectionESP[i] * neutrinoTargets);
+export const eventSpectrumNuxESP = fluxSpectrumNux.map((v, i) => v * xsectionESP[i] * neutrinoTargets);
 
-export const sumSpectrumNueESP = sum(eventSpectrumNueESP) * 0.1;
-export const sumSpectrumAnuESP = sum(eventSpectrumAnuESP) * 0.1;
-export const sumSpectrumNuxESP = sum(eventSpectrumNuxESP) * 0.4;
+// pES event totals for 1e32 targets with Nux x4 for mu and tau neutrinos and antineutrinos
+export const sumSpectrumNueESP = sum(eventSpectrumNueESP) * deltaEnergy;
+export const sumSpectrumAnuESP = sum(eventSpectrumAnuESP) * deltaEnergy;
+export const sumSpectrumNuxESP = sum(eventSpectrumNuxESP) * deltaEnergy * 4;
 
+// make neutrino-electron elastic scattering (eES) cross section 
 export const xsectionESeNue = energyValues.map(
   function(x) { return xSectionESe(x, NeutrinoType.electronNeutrino); }
 );
-export const eventSpectrumNueESEforNO = fluxNOSpectrumNue.map((v, i) => v * xsectionESeNue[i] * 1e32);
-export const sumSpectrumNueESEforNO = sum(eventSpectrumNueESEforNO) * 0.1;
-export const eventSpectrumNueESEforIO = fluxIOSpectrumNue.map((v, i) => v * xsectionESeNue[i] * 1e32);
-export const sumSpectrumNueESEforIO = sum(eventSpectrumNueESEforIO) * 0.1;
+export const eventSpectrumNueESEforNO = fluxNOSpectrumNue.map((v, i) => v * xsectionESeNue[i] * neutrinoTargets);
+export const sumSpectrumNueESEforNO = sum(eventSpectrumNueESEforNO) * deltaEnergy;
+export const eventSpectrumNueESEforIO = fluxIOSpectrumNue.map((v, i) => v * xsectionESeNue[i] * neutrinoTargets);
+export const sumSpectrumNueESEforIO = sum(eventSpectrumNueESEforIO) * deltaEnergy;
 
 export const xsectionESeAnu = energyValues.map(
   function(x) { return xSectionESe(x, NeutrinoType.electronAntineutrino); }
 );
-export const eventSpectrumAnuESEforNO = fluxNOSpectrumAnu.map((v, i) => v * xsectionESeAnu[i] * 1e32);
-export const sumSpectrumAnuESEforNO = sum(eventSpectrumAnuESEforNO) * 0.1;
-export const eventSpectrumAnuESEforIO = fluxIOSpectrumAnu.map((v, i) => v * xsectionESeAnu[i] * 1e32);
-export const sumSpectrumAnuESEforIO = sum(eventSpectrumAnuESEforIO) * 0.1;
+export const eventSpectrumAnuESEforNO = fluxNOSpectrumAnu.map((v, i) => v * xsectionESeAnu[i] * neutrinoTargets);
+export const sumSpectrumAnuESEforNO = sum(eventSpectrumAnuESEforNO) * deltaEnergy;
+export const eventSpectrumAnuESEforIO = fluxIOSpectrumAnu.map((v, i) => v * xsectionESeAnu[i] * neutrinoTargets);
+export const sumSpectrumAnuESEforIO = sum(eventSpectrumAnuESEforIO) * deltaEnergy;
 
 export const xsectionESeNux = energyValues.map(
   function(x) { return xSectionESe(x, NeutrinoType.muTauNeutrino); }
 );
-export const eventSpectrumNuxESEforNO = fluxNOSpectrumNux.map((v, i) => v * xsectionESeNux[i] * 1e32);
-export const eventSpectrumNuxESEforIO = fluxIOSpectrumNux.map((v, i) => v * xsectionESeNux[i] * 1e32);
+export const eventSpectrumNuxESEforNO = fluxNOSpectrumNux.map((v, i) => v * xsectionESeNux[i] * neutrinoTargets);
+export const eventSpectrumNuxESEforIO = fluxIOSpectrumNux.map((v, i) => v * xsectionESeNux[i] * neutrinoTargets);
 
 export const xsectionESeAnx = energyValues.map(
   function(x) { return xSectionESe(x, NeutrinoType.muTauAntineutrino); }
 );
-export const eventSpectrumAnxESEforNO = fluxNOSpectrumNux.map((v, i) => v * xsectionESeAnx[i] * 1e32);
-export const eventSpectrumAnxESEforIO = fluxIOSpectrumNux.map((v, i) => v * xsectionESeAnx[i] * 1e32);
+export const eventSpectrumAnxESEforNO = fluxNOSpectrumNux.map((v, i) => v * xsectionESeAnx[i] * neutrinoTargets);
+export const eventSpectrumAnxESEforIO = fluxIOSpectrumNux.map((v, i) => v * xsectionESeAnx[i] * neutrinoTargets);
 
 export const sumSpectrumXnuESEforNO = (sum(eventSpectrumAnxESEforNO) + sum(eventSpectrumNuxESEforNO)) * 0.2;
 export const sumSpectrumXnuESEforIO = (sum(eventSpectrumAnxESEforIO) + sum(eventSpectrumNuxESEforIO)) * 0.2;
