@@ -75,7 +75,10 @@ export const sumSpectrumNueESP = sum(eventSpectrumNueESP) * 0.1;
 export const sumSpectrumAnuESP = sum(eventSpectrumAnuESP) * 0.1;
 export const sumSpectrumNuxESP = sum(eventSpectrumNuxESP) * 0.4;
 
-const xsectionESeNue = energyValues.map(xSectionESeNue);
+export const xsectionESeNue = energyValues.map(
+  function(x) { return xSectionESe(x, NeutrinoType.electronNeutrino); }
+);
+
 export const eventSpectrumNueESEforNO = fluxNOSpectrumNue.map((v, i) => v * xsectionESeNue[i] * 1e32);
 export const sumSpectrumNueESEforNO = sum(eventSpectrumNueESEforNO) * 0.1;
 export const eventSpectrumNueESEforIO = fluxIOSpectrumNue.map((v, i) => v * xsectionESeNue[i] * 1e32);
@@ -222,6 +225,33 @@ function xSectionESeNux(Ev: number) {
 function xSectionESeAnx(Ev: number) {
   const cR = -0.5 + WEAK_MIXING_ANGLE;
   const cL = WEAK_MIXING_ANGLE;
+
+  const TmaxESE = Ev / (1 + ELECTRON_REST_MASS / (Ev * 2));
+  if (TmaxESE < TminESE){
+    return 0;
+  }
+
+  const y_max = TmaxESE / Ev;
+  const y_min = TminESE / Ev;
+  
+  const FERMI_COUPLING_CONSTANT_MeV = FERMI_COUPLING_CONSTANT / 1e6;
+
+  const term1 = (2 * (FERMI_COUPLING_CONSTANT_MeV ** 2) * (HBAR_C ** 2)) * ELECTRON_REST_MASS * Ev / Math.PI;
+  const term2 = cL ** 2 * y_max;
+  const term3 = cR ** 2 * (1/3) * (1 - (1 - y_max) ** 3);
+  const term4 = cL * cR * (ELECTRON_REST_MASS/(2 * Ev)) * y_max ** 2;
+
+  const term5 = cL ** 2 * y_min;
+  const term6 = cR ** 2 * (1/3) * (1 - (1 - y_min) ** 3);
+  const term7 = cL * cR * (ELECTRON_REST_MASS/(2 * Ev)) * y_min ** 2;
+
+  return term1 * ((term2 + term3 - term4) - (term5 + term6 - term7));
+}
+
+function xSectionESe(Ev: number, neutrinoType:NeutrinoType) {
+
+  const cL = ES_COEFFICIENTS_LEFT[neutrinoType]
+  const cR = ES_COEFFICIENTS_RIGHT[neutrinoType]
 
   const TmaxESE = Ev / (1 + ELECTRON_REST_MASS / (Ev * 2));
   if (TmaxESE < TminESE){
