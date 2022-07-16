@@ -17,13 +17,14 @@ const TminESP = 2;
 
 export const energyValues = new Float32Array(1000).map((v, i) => i / 10 + .05);
 
-// todo: pass avgE as parameter to single function that still maps 
-export const fluxSpectrumNue = energyValues.map(nueSpecCCSN);
-export const fluxSpectrumAnu = energyValues.map(anuSpecCCSN);
-export const fluxSpectrumNux = energyValues.map(nuxSpecCCSN);
-// attempt todo here
-export const fluxSpectrumNeutrino = energyValues.map(
+export const fluxSpectrumNue = energyValues.map(
   function(x) { return neutrinoSpectrumCCSN(x, 12); }
+);
+export const fluxSpectrumAnu = energyValues.map(
+  function(x) { return neutrinoSpectrumCCSN(x, 15); }
+);
+export const fluxSpectrumNux = energyValues.map(
+  function(x) { return neutrinoSpectrumCCSN(x, 18); }
 );
 
 // electron neutrinos
@@ -104,45 +105,6 @@ function neutrinoSpectrumCCSN(Ev: number, Ev_avg: number) {
   const prefix = (beta ** beta) / ( 4 * Math.PI * 6 * Ev_avg * Ev_avg );
 
   const energy_factor = ( ( Ev / Ev_avg ) ** (beta - 1) ) * Math.exp(-beta * Ev / Ev_avg);
-
-  return prefix * enu_tot * energy_factor / d_ccsn / d_ccsn;
-}
-
-function nueSpecCCSN(Ev: number) {
-  const enu_tot = 5e52 * 1e-13 / ELEMENTARY_CHARGE; // MeV
-  const d_ccsn = 10 * 3.086e21; // cm
-  const beta = 4;
-  const avgE = 12;
-
-  const prefix = (beta ** beta) / ( 4 * Math.PI * 6 * avgE * avgE );
-
-  const energy_factor = ( ( Ev / avgE ) ** (beta - 1) ) * Math.exp(-beta * Ev / avgE);
-
-  return prefix * enu_tot * energy_factor / d_ccsn / d_ccsn;
-}
-
-function anuSpecCCSN(Ev: number) {
-  const enu_tot = 5e52 * 1e-13 / ELEMENTARY_CHARGE; // MeV
-  const d_ccsn = 10 * 3.086e21; // cm
-  const beta = 4;
-  const avgE = 15;
-
-  const prefix = (beta ** beta) / ( 4 * Math.PI * 6 * avgE * avgE );
-
-  const energy_factor = ( ( Ev / avgE ) ** (beta - 1) ) * Math.exp(-beta * Ev / avgE);
-
-  return prefix * enu_tot * energy_factor / d_ccsn / d_ccsn;
-}
-
-function nuxSpecCCSN(Ev: number) {
-  const enu_tot = 5e52 * 1e-13 / ELEMENTARY_CHARGE; // MeV
-  const d_ccsn = 10 * 3.086e21; // cm
-  const beta = 4;
-  const avgE = 18;
-
-  const prefix = (beta ** beta) / ( 4 * Math.PI * 6 * avgE * avgE );
-
-  const energy_factor = ( ( Ev / avgE ) ** (beta - 1) ) * Math.exp(-beta * Ev / avgE);
 
   return prefix * enu_tot * energy_factor / d_ccsn / d_ccsn;
 }
