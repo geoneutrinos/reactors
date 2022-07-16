@@ -13,14 +13,16 @@ import { s2t12, c2t12 } from "../physics/neutrino-oscillation";
 import { sum } from "lodash";
 
 const neutrinoTargets = 1e32;
-const deltaEnergy = 0.1; // MeV
+const energyBins = 1000;
+const maximumEnergy = 100;
+const deltaEnergy = maximumEnergy / energyBins; // MeV
 
 // ToDo import elastic scattering Tmins set by UI
 const TminESE = 0;
 const TminESP = 0;
 
 // make the array of neutrino energies 0 - 100 MeV
-export const energyValues = new Float32Array(1000).map((v, i) => i * deltaEnergy + deltaEnergy/2);
+export const energyValues = new Float32Array(energyBins).map((v, i) => i * deltaEnergy + deltaEnergy/2);
 
 // make the non-oscillated neutrino speciaes flux spectra with different average energy in MeV
 export const fluxSpectrumNue = energyValues.map(
