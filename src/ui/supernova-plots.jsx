@@ -3,7 +3,6 @@ import Plot from "react-plotly.js";
 
 import { 
   energyValues,
-  fluxSpectrumNeutrino,
   fluxSpectrumNue, 
   fluxSpectrumAnu, 
   fluxSpectrumNux, 
@@ -101,18 +100,6 @@ export const SupernovaPlotsIBD = () => {
 };
 export const SupernovaFluxPlots = () => {
   const data = [
-    {
-      y: fluxSpectrumNeutrino,
-      x: energyValues,
-      name: `ν<sub>e</sub>`,
-      type: "scatter",
-      mode: "lines",
-      line: {
-        width: 2
-      },
-      fill: "none",
-      marker: { color: "purple" },
-    },
     {
       y: fluxSpectrumNue,
       x: energyValues,
