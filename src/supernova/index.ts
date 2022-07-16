@@ -21,6 +21,8 @@ export const energyValues = new Float32Array(1000).map((v, i) => i / 10 + .05);
 export const fluxSpectrumNue = energyValues.map(nueSpecCCSN);
 export const fluxSpectrumAnu = energyValues.map(anuSpecCCSN);
 export const fluxSpectrumNux = energyValues.map(nuxSpecCCSN);
+// attempt todo
+export const fluxSpectrumNeutrino = energyValues.map(v => neutrinoSpectrumCCNS(v, 12));
 
 // electron neutrinos
 export const fluxNOSpectrumNue = fluxSpectrumNux.map((v) => v);
@@ -91,6 +93,18 @@ export const eventSpectrumAnxESEforIO = fluxIOSpectrumNux.map((v, i) => v * xsec
 
 export const sumSpectrumXnuESEforNO = (sum(eventSpectrumAnxESEforNO) + sum(eventSpectrumNuxESEforNO)) * 0.2;
 export const sumSpectrumXnuESEforIO = (sum(eventSpectrumAnxESEforIO) + sum(eventSpectrumNuxESEforIO)) * 0.2;
+
+function neutrinoSpectrumCCSN(Ev: number, Ev_avg: number) {
+  const enu_tot = 5e52 * 1e-13 / ELEMENTARY_CHARGE; // MeV
+  const d_ccsn = 10 * 3.086e21; // cm
+  const beta = 4;
+
+  const prefix = (beta ** beta) / ( 4 * Math.PI * 6 * Ev_avg * Ev_avg );
+
+  const energy_factor = ( ( Ev / Ev_avg ) ** (beta - 1) ) * Math.exp(-beta * Ev / Ev_avg);
+
+  return prefix * enu_tot * energy_factor / d_ccsn / d_ccsn;
+}
 
 function nueSpecCCSN(Ev: number) {
   const enu_tot = 5e52 * 1e-13 / ELEMENTARY_CHARGE; // MeV
