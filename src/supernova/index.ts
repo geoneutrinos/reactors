@@ -6,6 +6,7 @@ import {
   HBAR_C,
   WEAK_MIXING_ANGLE,
 } from "../physics/constants";
+import { NeutrinoType } from "../physics/neutrino-cross-section";
 import { IBD_THRESHOLD } from "../physics/derived";
 import { s2t12, c2t12 } from "../physics/neutrino-oscillation";
 
