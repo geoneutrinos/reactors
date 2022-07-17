@@ -18,8 +18,8 @@ const maximumEnergy = 100;
 const deltaEnergy = maximumEnergy / energyBins; // MeV
 
 // ToDo import elastic scattering Tmins set by UI
-const TminESE = 0;
-const TminESP = 0;
+const tESeMin = 0;
+const tESpMin = 0;
 
 // make the array of neutrino energies 0 - 100 MeV
 export const energyValues = new Float32Array(energyBins).map((v, i) => i * deltaEnergy + deltaEnergy/2);
@@ -152,16 +152,16 @@ function xSectionESp(Ev: number) {
   const cplus = (( 1.27 / 2 ) ** 2) + (0.04 ** 2);
   const cminu = (( 1.27 / 2 ) ** 2) - (0.04 ** 2);
 
-  const TmaxESP = (2 * (Ev ** 2)) / ((Ev * 2) + PROTON_REST_MASS);
+  const tESpMax = (2 * (Ev ** 2)) / ((Ev * 2) + PROTON_REST_MASS);
   
-  if (TmaxESP < TminESP) {
+  if (tESpMax < tESpMin) {
     return 0;
   }
 
   const tcon = PROTON_REST_MASS / (4 * (Ev ** 2));
   const ccon = (FERMI_COUPLING_CONSTANT ** 2) * 1e-12 * (HBAR_C ** 2) * PROTON_REST_MASS / Math.PI;
 
-  return ccon * (cplus * (TmaxESP - TminESP) + cminu * tcon * ((TmaxESP ** 2) - (TminESP ** 2)));
+  return ccon * (cplus * (tESpMax - tESpMin) + cminu * tcon * ((tESPpMax ** 2) - (tESpMin ** 2)));
 }
 
 function xSectionESe(Ev: number, neutrinoType:NeutrinoType) {
@@ -169,13 +169,13 @@ function xSectionESe(Ev: number, neutrinoType:NeutrinoType) {
   const cL = ES_COEFFICIENTS_LEFT[neutrinoType]
   const cR = ES_COEFFICIENTS_RIGHT[neutrinoType]
 
-  const TmaxESE = Ev / (1 + ELECTRON_REST_MASS / (Ev * 2));
-  if (TmaxESE < TminESE){
+  const tESeMax = Ev / (1 + ELECTRON_REST_MASS / (Ev * 2));
+  if (tESeMax < tESeMin){
     return 0;
   }
 
-  const y_max = TmaxESE / Ev;
-  const y_min = TminESE / Ev;
+  const y_max = tESeMax / Ev;
+  const y_min = tESeMin / Ev;
   
   const FERMI_COUPLING_CONSTANT_MeV = FERMI_COUPLING_CONSTANT / 1e6;
 
