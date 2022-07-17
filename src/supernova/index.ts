@@ -18,8 +18,8 @@ const maximumEnergy = 100;
 const deltaEnergy = maximumEnergy / energyBins; // MeV
 
 // ToDo import elastic scattering Tmins set by UI
-const tESeMin;
-const tESpMin;
+const tESeMin = 0;
+const tESpMin = 0;
 
 // make the array of neutrino energies 0 - 100 MeV
 export const energyValues = new Float32Array(energyBins).map((v, i) => i * deltaEnergy + deltaEnergy/2);
