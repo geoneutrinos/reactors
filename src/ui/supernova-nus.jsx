@@ -122,49 +122,29 @@ export const SupernovaNusESeTmin = ({ tESeMin, setTeMin }) => {
   );
 };
 
-export const SupernovaNusESpTmin = () => {
-
-  const [tESpMin, setTpMin] = useState(0.0);
+export const SupernovaNusESpTmin = ({ tESpMin, setTpMin }) => {
   
-  const UIsetTpMin = (event) => {
-    const value = event.target.value;
-    let tp_min = parseFloat(value);
-    if (isNaN(tp_min)) {
-      setTpMin(value);
-    } else {
-      if (tp_min < 0) {
-        tp_min = 0.0;
-      }
-      if (tp_min > 10) {
-        tp_min = 10.0;
-      }
-      setTpMin(tp_min);
-    }
-  };
-
   return (
     <Card>
       <Card.Header>Set Minimum Kinetic Energy of Elastically Scattered Proton</Card.Header>
       <Card.Body>
-            <Form.Group controlId="tp_min">
-              <Form.Label>
-                Proton (pES) Minimum Kinetic Energy {tESpMin} MeV
-              </Form.Label>
-              <InputGroup>
-                <InputGroup.Prepend>
-                  <InputGroup.Text><i>T</i><sub>min</sub></InputGroup.Text>
-                </InputGroup.Prepend>
-                <Form.Control
-                  onChange={UIsetTpMin}
-                  type="number"
-                  step="0.1"
-                  value={tESpMin}
-                />
-                <InputGroup.Append>
-                  <InputGroup.Text>MeV</InputGroup.Text>
-                </InputGroup.Append>
-              </InputGroup>
-            </Form.Group>
+        <Form.Group controlId="tp_min">
+          <Form.Label>
+            {tESpMin} MeV
+          </Form.Label>
+          <InputGroup>
+            <Form.Control
+              value={tESpMin}
+              type="range"
+              step={0.5}
+              min={0}
+              max={30}
+              onChange={(event) => 
+                setTpMin(event.target.value)
+              }
+            />
+          </InputGroup>
+        </Form.Group>
       </Card.Body>
     </Card>
   );
