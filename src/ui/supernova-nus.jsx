@@ -98,7 +98,7 @@ export const SupernovaNusESeTmin = ({ tESeMin, setTeMin }) => {
   
   return (
     <Card>
-      <Card.Header>Set Minimum Kinetic Energy of Elastically Scattered Electron</Card.Header>
+      <Card.Header>eES: Electron Minimum Kinetic Energy</Card.Header>
       <Card.Body>
         <Form.Group controlId="te_min">
           <Form.Label>
@@ -110,7 +110,7 @@ export const SupernovaNusESeTmin = ({ tESeMin, setTeMin }) => {
               type="range"
               step={0.5}
               min={0}
-              max={30}
+              max={10}
               onChange={(event) => 
                 setTeMin(event.target.value)
               }
@@ -126,7 +126,7 @@ export const SupernovaNusESpTmin = ({ tESpMin, setTpMin }) => {
   
   return (
     <Card>
-      <Card.Header>Set Minimum Kinetic Energy of Elastically Scattered Proton</Card.Header>
+      <Card.Header>pES: Proton Minimum Kinetic Energy</Card.Header>
       <Card.Body>
         <Form.Group controlId="tp_min">
           <Form.Label>
@@ -136,9 +136,9 @@ export const SupernovaNusESpTmin = ({ tESpMin, setTpMin }) => {
             <Form.Control
               value={tESpMin}
               type="range"
-              step={0.5}
+              step={0.1}
               min={0}
-              max={30}
+              max={2}
               onChange={(event) => 
                 setTpMin(event.target.value)
               }
