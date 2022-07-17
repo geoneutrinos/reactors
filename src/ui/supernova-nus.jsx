@@ -138,7 +138,7 @@ export const SupernovaNusScatterTmins = () => {
       
             <Form.Group controlId="tp_min">
               <Form.Label>
-                Proton (pES)
+                Proton (pES) Minimum Kinetic Energy {tESpMin} MeV
               </Form.Label>
               <InputGroup>
                 <InputGroup.Prepend>
@@ -158,7 +158,7 @@ export const SupernovaNusScatterTmins = () => {
 
             <Form.Group controlId="te_min">
               <Form.Label>
-                Electron (eES)
+                Electron (eES) Minimum Kinetic Energy {tESeMin} MeV
               </Form.Label>
               <InputGroup>
                 <InputGroup.Prepend>
