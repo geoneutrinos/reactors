@@ -22,8 +22,8 @@ export { GeoFluxUncertainties } from "./geo-uncertainties";
 export { IsotopeData } from "./isotope-data";
 export { 
   SupernovaNusEvents,
-  SupernovaNusESeTmins,
-  SupernovaNusESpTmins,
+  SupernovaNusESeTmin,
+  SupernovaNusESpTmin,
   SupernovaNusPane, 
 } from "./supernova-nus";
 export {
