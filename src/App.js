@@ -56,7 +56,8 @@ import {
   CrossSectionPlotsNormal,
   //SN nus tab
   SupernovaNusEvents,
-  SupernovaNusScatterTmins,
+  SupernovaNusESeTmin,
+  SupernovaNusESpTmin,
   SupernovaNusPane,
   SupernovaPlotsIBD,
   SupernovaFluxPlots,
@@ -289,7 +290,8 @@ function App(props) {
               <Tab eventKey="ccsnnu" title="SnNu">
                 <Visible>
                   <SupernovaNusEvents />
-                  <SupernovaNusScatterTmins />
+                  <SupernovaNusESeTmin />
+                  <SupernovaNusESpTmin />
                   <SupernovaNusPane />
                   <SupernovaPlotsIBD />
                   <SupernovaFluxPlots />
