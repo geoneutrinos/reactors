@@ -102,7 +102,7 @@ export const SupernovaNusESeTmin = ({ tESeMin, setTeMin }) => {
       <Card.Body>
         <Form.Group controlId="te_min">
           <Form.Label>
-                Electron (eES) Minimum Kinetic Energy {tESeMin.toFixed(1)} MeV
+                Electron (eES) Minimum Kinetic Energy {tESeMin} MeV
           </Form.Label>
           <InputGroup>
             <Form.Control
@@ -111,10 +111,10 @@ export const SupernovaNusESeTmin = ({ tESeMin, setTeMin }) => {
               step={0.5}
               min={0}
               max={30}
-              onChange={(event) =>{
-                setTeMin(parseFloat(event.target.value)
+              onChange={(event) =>
+                setTeMin(event.target.value)
                 );
-              }}
+              }
             />
           </InputGroup>
         </Form.Group>
