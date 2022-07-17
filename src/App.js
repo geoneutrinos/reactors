@@ -143,8 +143,8 @@ function App(props) {
   });
   
   // supernovanu state
-  const [tESemin, setTeMin] = useState(0.0);
-  const [tESpmin, setTpMin] = useState(0.0);
+  const [tESeMin, setTeMin] = useState(0.0);
+  const [tESpMin, setTpMin] = useState(0.0);
 
   // UI State
   const [addCustomModal, setAddCustomModal] = useState(false);
