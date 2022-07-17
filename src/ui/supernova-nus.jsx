@@ -111,10 +111,7 @@ export const SupernovaNusESeTmin = ({ tESeMin, setTeMin }) => {
               step={0.5}
               min={0}
               max={30}
-              onChange={(event) =>
-                setTeMin(event.target.value)
-                );
-              }
+              onChange={(event) => setTeMin(event.target.value)}
             />
           </InputGroup>
         </Form.Group>
