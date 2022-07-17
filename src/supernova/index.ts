@@ -161,7 +161,7 @@ function xSectionESp(Ev: number) {
   const tcon = PROTON_REST_MASS / (4 * (Ev ** 2));
   const ccon = (FERMI_COUPLING_CONSTANT ** 2) * 1e-12 * (HBAR_C ** 2) * PROTON_REST_MASS / Math.PI;
 
-  return ccon * (cplus * (tESpMax - tESpMin) + cminu * tcon * ((tESPpMax ** 2) - (tESpMin ** 2)));
+  return ccon * (cplus * (tESpMax - tESpMin) + cminu * tcon * ((tESpMax ** 2) - (tESpMin ** 2)));
 }
 
 function xSectionESe(Ev: number, neutrinoType:NeutrinoType) {
