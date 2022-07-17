@@ -141,6 +141,10 @@ function App(props) {
     ThURatio: 3.9, // no units
     KURatio: 1e4, // no units
   });
+  
+  // supernovanu state
+  const [tESemin, setTeMin] = useState(0.0);
+  const [tESpmin, setTpMin] = useState(0.0);
 
   // UI State
   const [addCustomModal, setAddCustomModal] = useState(false);
