@@ -94,7 +94,7 @@ export const SupernovaNusEvents = () => {
   );
 };
 
-export const SupernovaNusScatterTmins = () => {
+export const SupernovaNusScatterTmins = ({ tESeMin, setTeMin, tESpMin, setTpMin }) => {
 
   const [tESeMin, setTeMin] = useState(0.0);
   const [tESpMin, setTpMin] = useState(0.0);
