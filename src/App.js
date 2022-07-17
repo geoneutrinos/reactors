@@ -294,8 +294,14 @@ function App(props) {
               <Tab eventKey="ccsnnu" title="SnNu">
                 <Visible>
                   <SupernovaNusEvents />
-                  <SupernovaNusESeTmin />
-                  <SupernovaNusESpTmin />
+                  <SupernovaNusESeTmin
+                    tESeMin={tESeMin}
+                    setTeMin={setTeMin}
+                  />
+                  <SupernovaNusESpTmin
+                    tESpMin={tESpMin}
+                    setTpMin={setTpMin}
+                  />
                   <SupernovaNusPane />
                   <SupernovaPlotsIBD />
                   <SupernovaFluxPlots />
