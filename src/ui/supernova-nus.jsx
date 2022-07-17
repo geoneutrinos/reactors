@@ -102,7 +102,7 @@ export const SupernovaNusESeTmin = ({ tESeMin, setTeMin }) => {
       <Card.Body>
         <Form.Group controlId="te_min">
           <Form.Label>
-                Electron (eES) Minimum Kinetic Energy {tESeMin} MeV
+                Electron (eES) Minimum Kinetic Energy {tESeMin.toFixed(1)} MeV
           </Form.Label>
           <InputGroup>
             <Form.Control
