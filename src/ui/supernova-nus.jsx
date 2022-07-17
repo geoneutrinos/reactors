@@ -94,51 +94,27 @@ export const SupernovaNusEvents = () => {
   );
 };
 
-export const SupernovaNusESeTmin = () => {
-
-  const [tESeMin, setTeMin] = useState(0.0);
-  
-  const UIsetTeMin = (event) => {
-    const value = event.target.value;
-    let te_min = parseFloat(value);
-    if (isNaN(te_min)) {
-      setTeMin(value);
-    } else {
-      if (te_min < 0) {
-        te_min = 0.0;
-      }
-      if (te_min > 30) {
-        te_min = 30.0;
-      }
-      setTeMin(te_min);
-    }
-  };
+export const SupernovaNusESeTmin = ({ tESeMin, setTeMin }) => {
   
   return (
     <Card>
       <Card.Header>Set Minimum Kinetic Energy of Elastically Scattered Electron</Card.Header>
       <Card.Body>
-      
-            <Form.Group controlId="te_min">
-              <Form.Label>
+        <Form.Group controlId="te_min">
+          <Form.Label>
                 Electron (eES) Minimum Kinetic Energy {tESeMin} MeV
-              </Form.Label>
-              <InputGroup>
-                <InputGroup.Prepend>
-                  <InputGroup.Text><i>T</i><sub>min</sub></InputGroup.Text>
-                </InputGroup.Prepend>
-                <Form.Control
-                  onChange={UIsetTeMin}
-                  type="number"
-                  step="0.1"
-                  value={tESeMin}
-                />
-                <InputGroup.Append>
-                  <InputGroup.Text>MeV</InputGroup.Text>
-                </InputGroup.Append>
-              </InputGroup>
-            </Form.Group>
-
+          </Form.Label>
+          <InputGroup>
+            <Form.Control
+              value={tESeMin}
+              type="range"
+              step={0.5}
+              min={0}
+              max={30}
+              onChange={(event) => setTeMin(event.target.value)}
+            />
+          </InputGroup>
+        </Form.Group>
       </Card.Body>
     </Card>
   );
