@@ -112,9 +112,8 @@ export const SupernovaNusESeTmin = ({ tESeMin, setTeMin }) => {
               min={0}
               max={30}
               onChange={(event) => 
-                setTeMin({
-                  tESeMin: parseFloat(event.target.value)
-                )}
+                setTeMin(parseFloat(event.target.value)
+                )
               }
             />
           </InputGroup>
