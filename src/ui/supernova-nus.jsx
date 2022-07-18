@@ -94,7 +94,7 @@ export const SupernovaNusEvents = () => {
   );
 };
 
-export const SupernovaNusESeTmin = ({ tESeMin, setTeMin }) => {
+export const SupernovaNusESeTmin = ({ tESeMin, setTESeMin }) => {
   
   return (
     <Card>
@@ -112,7 +112,7 @@ export const SupernovaNusESeTmin = ({ tESeMin, setTeMin }) => {
               min={0}
               max={10}
               onChange={(event) => 
-                setTeMin(event.target.value)
+                setTESeMin(event.target.value)
               }
             />
           </InputGroup>
@@ -122,7 +122,7 @@ export const SupernovaNusESeTmin = ({ tESeMin, setTeMin }) => {
   );
 };
 
-export const SupernovaNusESpTmin = ({ tESpMin, setTpMin }) => {
+export const SupernovaNusESpTmin = ({ tESpMin, setTESpMin }) => {
   
   return (
     <Card>
@@ -140,7 +140,7 @@ export const SupernovaNusESpTmin = ({ tESpMin, setTpMin }) => {
               min={0}
               max={2}
               onChange={(event) => 
-                setTpMin(event.target.value)
+                setTESpMin(event.target.value)
               }
             />
           </InputGroup>
