@@ -143,8 +143,8 @@ function App(props) {
   });
   
   // supernovanu state
-  const [tESeMin, setTeMin] = useState(0.0);
-  const [tESpMin, setTpMin] = useState(0.0);
+  const [tESeMin, setTESeMin] = useState(0.0);
+  const [tESpMin, setTESpMin] = useState(0.0);
 
   // UI State
   const [addCustomModal, setAddCustomModal] = useState(false);
@@ -296,11 +296,11 @@ function App(props) {
                   <SupernovaNusEvents />
                   <SupernovaNusESeTmin
                     tESeMin={tESeMin}
-                    setTeMin={setTeMin}
+                    setTESeMin={setTESeMin}
                   />
                   <SupernovaNusESpTmin
                     tESpMin={tESpMin}
-                    setTpMin={setTpMin}
+                    setTESpMin={setTESpMin}
                   />
                   <SupernovaNusPane />
                   <SupernovaPlotsIBD />
