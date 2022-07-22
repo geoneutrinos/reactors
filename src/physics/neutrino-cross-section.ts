@@ -49,6 +49,19 @@ export const ES_COEFFICIENTS_LEFT = {
   [NeutrinoType.muTauAntineutrino]: WEAK_MIXING_ANGLE,
 }
 
+export const PS_COEFFICIENTS_AXIAL = {
+  [NeutrinoType.electronNeutrino]: 1.27 / 2,
+  [NeutrinoType.muTauNeutrino]: 1.27 / 2,
+  [NeutrinoType.electronAntineutrino]: -1.27 / 2,
+  [NeutrinoType.muTauAntineutrino]: -1.27 / 2,
+}
+export const PS_COEFFICIENTS_VECTOR = {
+  [NeutrinoType.electronNeutrino]: 0.5 - 2 * WEAK_MIXING_ANGLE,
+  [NeutrinoType.muTauNeutrino]: 0.5 - 2 * WEAK_MIXING_ANGLE,
+  [NeutrinoType.electronAntineutrino]: 0.5 - 2 * WEAK_MIXING_ANGLE,
+  [NeutrinoType.muTauAntineutrino]: 0.5 - 2 * WEAK_MIXING_ANGLE,
+}
+
 /** 
  * Calculates the neutrino cross section, sometimes called sigma
  * 
