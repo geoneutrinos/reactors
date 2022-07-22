@@ -10,7 +10,12 @@ type DetecorPreset = {
     region: string,
 }
 export const presets: DetecorPreset[] = [
+    //Africa
+    //East Rand Proprietary Mines 3585 m below surface
     //Asia
+    //Jaduguda uranium mine 640 m below surface 22.65208 N, 86.34687 E
+    //Kolar Gold Fields- mine closed, overburder from Achar et al., Phys. Lett. 18 (1965) 196
+    {name: "Kolar Gold Fields", lat:12.93926, lon: 78.25565, elevation:848, overburden:7500, region:"Asia"},
     {name: "Guemseong", lat:35.05, lon: 126.70, elevation:0, overburden:950, region:"Asia"},
     //INO- detector height -1200 m, surface height 2207 m, geoid height -93.33
     {name: "INO", lat:9.955514, lon: 77.283654, elevation:914, overburden:3000, region:"Asia"},
@@ -23,6 +28,12 @@ export const presets: DetecorPreset[] = [
     //Yemilab- detector height -1100 m, surface height 900 m, geoid height 30.34 m
     {name: "Yemilab", lat:37.188639, lon: 128.659406, elevation:-170, overburden:2500, region:"Asia"},
     //Europe
+    //Bas Bruit nuclear bunker 500 m below surface in southern France with horizontal access
+    {name: "Bas Bruit", lat:43.93517, lon: 5.48518, elevation:0, overburden:500, region: "Europe"},
+    //SUNLAB in copper mine with anhydrite and rock salt layers in Poland- AIP Conference Proceedings 1304, 326 (2010)
+    {name: "SUNLAB", lat:51.55583, lon: 16.04167, elevation:0, overburden:1400, region: "Europe"},
+    //Slanic in Romania- salt mine with low background facility
+    {name: "Slanic Prahova", lat:45.23618, lon: 25.94173, elevation:0, overburden:205, region:"Europe"},
     {name: "Baksan", lat:43.24, lon: 42.70, elevation:1700, overburden:4900, region:"Europe"},
     //Boulby- detector height -1100 m, surface height 85 m, geoid height 55.13 m
     {name: "Boulby", lat:54.555129, lon: -0.80089, elevation:-960, overburden:2805, region:"Europe"},
@@ -39,6 +50,10 @@ export const presets: DetecorPreset[] = [
     {name: "Nestor", lat:36.63, lon: 21.58, elevation:-4000, overburden:4000, region:"Mediterranean Sea"},
     {name: "NEMO Test", lat:37.551, lon: 15.384, elevation:-2080, overburden:2080, region:"Mediterranean Sea"},
     //North America
+    //Mt San Jacinto water tunnel in southern California- http://www.sns.ias.edu/~jnb/Laboratory/SanJacinto/visit.pdf
+    {name: "San Jacinto", lat:33.81471, lon:-116.67944, elevation:0, overburden:5000, region:"North America"},
+    //Henderson molybdenum mine in central Colorado- https://www.phy.bnl.gov/~diwan/talks/talks/virginia%20colloquium/colloquium/UNO_Henderson.pdf
+    {name: "Henderson", lat:39.77107, lon: -105.84596, elevation:0, overburden:4000, region:"North America"},
     //Fairport- detector height -580 m, surface height 180 m, geoid height -33.24 m
     {name: "Fairport", lat:41.756, lon: -81.286, elevation:-433, overburden:1570, region:"North America"},
     {name: "KURF", lat:37.38, lon: -80.66, elevation:0, overburden:1400, region:"North America"},
