@@ -12,7 +12,7 @@ import {
   ES_COEFFICIENTS_RIGHT,
   ES_COEFFICIENTS_LEFT,
   PS_COEFFICIENTS_AXIAL,
-  PS_COEFFICIENTS_VECTOR
+  PS_COEFFICIENTS_VECTOR,
 } from "../physics/neutrino-cross-section";
 
 import { IBD_THRESHOLD } from "../physics/derived";
