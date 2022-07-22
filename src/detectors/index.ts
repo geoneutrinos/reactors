@@ -49,6 +49,8 @@ export const presets: DetecorPreset[] = [
     {name: "Nestor", lat:36.63, lon: 21.58, elevation:-4000, overburden:4000, region:"Mediterranean Sea"},
     {name: "NEMO Test", lat:37.551, lon: 15.384, elevation:-2080, overburden:2080, region:"Mediterranean Sea"},
     //North America
+    //Mt San Jacinto water tunnel in southern California- http://www.sns.ias.edu/~jnb/Laboratory/SanJacinto/visit.pdf
+    {name: "San Jacinto", lat:33.81471, lon:-116.67944, elevation:0, overburden:0, region:"North America"},
     //Henderson molybdenum mine in central Colorado- https://www.phy.bnl.gov/~diwan/talks/talks/virginia%20colloquium/colloquium/UNO_Henderson.pdf
     {name: "Henderson", lat:39.77107, lon: -105.84596, elevation:0, overburden:0, region:"North America"},
     //Fairport- detector height -580 m, surface height 180 m, geoid height -33.24 m
