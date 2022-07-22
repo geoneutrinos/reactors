@@ -139,9 +139,9 @@ export const sumSpectrumNuxESEforIO = sum(eventSpectrumNuxESEforIO) * deltaEnerg
 export const xsectionESeAnx = energyValues.map(
   function(x) { return xSectionESe(x, NeutrinoType.muTauAntineutrino); }
 );
-export const eventSpectrumAnxESEforNO = fluxNOSpectrumAnx.map((v, i) => v * xsectionESeAnx[i] * neutrinoTargets);
+export const eventSpectrumAnxESEforNO = fluxNOSpectrumNux.map((v, i) => v * xsectionESeAnx[i] * neutrinoTargets);
 export const sumSpectrumAnxESEforNO = sum(eventSpectrumAnxESEforNO) * deltaEnergy * 2;
-export const eventSpectrumAnxESEforIO = fluxIOSpectrumAnx.map((v, i) => v * xsectionESeAnx[i] * neutrinoTargets);
+export const eventSpectrumAnxESEforIO = fluxIOSpectrumNux.map((v, i) => v * xsectionESeAnx[i] * neutrinoTargets);
 export const sumSpectrumAnxESEforIO = sum(eventSpectrumAnxESEforIO) * deltaEnergy * 2;
 
 function neutrinoSpectrumCCSN(Ev: number, Ev_avg: number) {
