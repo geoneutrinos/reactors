@@ -6,7 +6,15 @@ import {
   HBAR_C,
   WEAK_MIXING_ANGLE,
 } from "../physics/constants";
-import { NeutrinoType, ES_COEFFICIENTS_RIGHT, ES_COEFFICIENTS_LEFT } from "../physics/neutrino-cross-section";
+
+import { 
+  NeutrinoType,
+  ES_COEFFICIENTS_RIGHT,
+  ES_COEFFICIENTS_LEFT,
+  PS_COEFFICIENTS_AXIAL,
+  PS_COEFFICIENTS_VECTOR
+} from "../physics/neutrino-cross-section";
+
 import { IBD_THRESHOLD } from "../physics/derived";
 import { s2t12, c2t12 } from "../physics/neutrino-oscillation";
 
@@ -77,17 +85,30 @@ export const sumSpectrumIBDforNO = sum(eventSpectrumIBDforNO) * deltaEnergy;
 export const sumSpectrumIBDforIO = sum(eventSpectrumIBDforIO) * deltaEnergy;
 
 // make neutrino-proton elastic scattering (pES) cross section
-const xsectionESP = energyValues.map(xSectionESp);
+const xsectionESpNue = energyValues.map(
+  function(x) { return xSectionESp(x, NeutrinoType.electronNeutrino); }
+);
+const xsectionESpAnu = energyValues.map(
+  function(x) { return xSectionESp(x, NeutrinoType.electronAntineutrino); }
+);
+const xsectionESpNux = energyValues.map(
+  function(x) { return xSectionESp(x, NeutrinoType.muTauNeutrino); }
+);
+const xsectionESpAnx = energyValues.map(
+  function(x) { return xSectionESp(x, NeutrinoType.muTauAntineutrino); }
+);
 
 // pES event sprecta (/MeV)
 export const eventSpectrumNueESP = fluxSpectrumNue.map((v, i) => v * xsectionESP[i] * neutrinoTargets);
 export const eventSpectrumAnuESP = fluxSpectrumAnu.map((v, i) => v * xsectionESP[i] * neutrinoTargets);
 export const eventSpectrumNuxESP = fluxSpectrumNux.map((v, i) => v * xsectionESP[i] * neutrinoTargets);
+export const eventSpectrumAnxESP = fluxSpectrumAnx.map((v, i) => v * xsectionESP[i] * neutrinoTargets);
 
 // pES event totals with Nux x4 for mu and tau neutrinos and antineutrinos
 export const sumSpectrumNueESP = sum(eventSpectrumNueESP) * deltaEnergy;
 export const sumSpectrumAnuESP = sum(eventSpectrumAnuESP) * deltaEnergy;
-export const sumSpectrumNuxESP = sum(eventSpectrumNuxESP) * deltaEnergy * 4;
+export const sumSpectrumNuxESP = sum(eventSpectrumNuxESP) * deltaEnergy * 2;
+export const sumSpectrumAnxESP = sum(eventSpectrumAnxESP) * deltaEnergy * 2;
 
 // make neutrino-electron elastic scattering (eES) cross section 
 export const xsectionESeNue = energyValues.map(
@@ -149,9 +170,11 @@ function xSectionIBD(Ev: number) {
   return 1e-43 * Pe * Ee * sve;
 }
 
-function xSectionESp(Ev: number) {
-  const cvec = (1 - (4 * WEAK_MIXING_ANGLE)) / 2;
-  const caxi = 1.27 / 2;
+function xSectionESp(Ev: number, neutrinoType:NeutrinoType) {
+
+  const cvec = PS_COEFFICIENTS_VECTOR[neutrinoType]
+  const caxi = PS_COEFFICIENTS_AXIAL[neutrinoType]
+
   const cplus = (cvec ** 2) + (caxi ** 2);
   const cminu = (caxi ** 2) - (cvec ** 2);
 
