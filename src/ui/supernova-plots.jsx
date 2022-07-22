@@ -400,7 +400,7 @@ export const NeutrinoElectronElasticScatteringCrossSection = () => {
     },
   ];
     var layout = {
-    title: "Core Collapse SN Neutrino Flux Spectra w/ IO Oscillations",
+    title: "Neutrino Electron Elastic Scattering Cross Section",
     yaxis: {
       title: { text: `Flux (/cm<sup>2</sup>/MeV)` },
       autorange: true,
