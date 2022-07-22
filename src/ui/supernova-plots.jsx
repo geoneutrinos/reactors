@@ -12,6 +12,10 @@ import {
   fluxIOSpectrumNue, 
   fluxIOSpectrumAnu, 
   fluxIOSpectrumNux,
+  xsectionESeNue,
+  xsectionESeAnu,
+  xsectionESeNux,
+  xsectionESeAnx,
   eventSpectrumIBDnoOsc,
   eventSpectrumIBDforNO,
   eventSpectrumIBDforIO,
@@ -344,4 +348,96 @@ export const SupernovaOscillatedInvertedFluxPlots = () => {
     </Card>
   );
 };
-
+export const NeutrinoElectronElasticScatteringCrossSection = () => {
+  const data = [
+    {
+      y: xsectionESeNue,
+      x: energyValues,
+      name: `ν<sub>e</sub>`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        width: 2
+      },
+      fill: "none",
+      marker: { color: "blue" },
+    },
+    {
+      y: xsectionESeAnu,
+      x: energyValues,
+      name: `ν̅<sub>e</sub>`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        width: 2
+      },
+      fill: "none",
+      marker: { color: "red" },
+    },
+    {
+      y: xsectionESeNux,
+      x: energyValues,
+      name: `ν<sub>x</sub>`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        width: 2
+      },
+      fill: "none",
+      marker: { color: "green" },
+    },
+    {
+      y: xsectionESeAnx,
+      x: energyValues,
+      name: `ν̅<sub>x</sub>`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        width: 2
+      },
+      fill: "none",
+      marker: { color: "purple" },
+    },
+  ];
+    var layout = {
+    title: "Core Collapse SN Neutrino Flux Spectra w/ IO Oscillations",
+    yaxis: {
+      title: { text: `Flux (/cm<sup>2</sup>/MeV)` },
+      autorange: true,
+    },
+    xaxis: {
+      title: { text: `Neutrino Energy (MeV)` },
+      range: [0.05, 60.05],
+    },
+    autosize: true,
+    annotations: [
+      {
+        showarrow: false,
+        text: "geoneutrinos.org",
+        x: 1.1,
+        xref: "paper",
+        y: -0.15,
+        yref: "paper",
+      },
+    ],
+  };
+  var config = {
+    toImageButtonOptions: {
+      filename: 'Elastic-Scattering-Cross-Section'
+    }
+  };
+  return (
+    <Card>
+      <Card.Header>Neutrino Electron Elastic Scattering Cross Section</Card.Header>
+      <Card.Body>
+        <Plot
+          useResizeHandler={true}
+          style={{ width: "100%" }}
+          data={data}
+          layout={layout}
+          config={config}
+        />
+      </Card.Body>
+    </Card>
+  );
+};
