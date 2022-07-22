@@ -26,7 +26,7 @@ export const SupernovaNusEvents = () => {
 
   return (
     <Card>
-      <Card.Header>Core Collapse SN Neutrino Events (/10<sup>32</sup> p)</Card.Header>
+      <Card.Header>Core Collapse SN Neutrino Events (/10<sup>32</sup> targets)</Card.Header>
       <Card.Body>
         <Provider>
           <div>
