@@ -49,7 +49,8 @@ export {
   SupernovaFluxPlots,
   SupernovaPlotsIBD,
   SupernovaOscillatedFluxPlots,
-  SupernovaOscillatedInvertedFluxPlots, 
+  SupernovaOscillatedInvertedFluxPlots,
+  NeutrinoElectronElasticScatteringCrossSection,
 } from "./supernova-plots";
 export { FissionFractionPane } from "./reactors-fission";
 export { RASwitcher } from "./reactors-ra-switcher";
