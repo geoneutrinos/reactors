@@ -15,6 +15,7 @@ export const presets: DetecorPreset[] = [
     //Asia
     //Jaduguda uranium mine 640 m below surface 22.65208 N, 86.34687 E
     //Kolar Gold Fields- mine closed. Need elevation and overburden values 12.93926 N , 78.25565 E
+    {name: "Kolar Gold Fields", lat:12.93926, lon: 78.25565, elevation:0, overburden:0, region:"Asia"},
     {name: "Guemseong", lat:35.05, lon: 126.70, elevation:0, overburden:950, region:"Asia"},
     //INO- detector height -1200 m, surface height 2207 m, geoid height -93.33
     {name: "INO", lat:9.955514, lon: 77.283654, elevation:914, overburden:3000, region:"Asia"},
