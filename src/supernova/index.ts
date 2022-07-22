@@ -149,8 +149,10 @@ function xSectionIBD(Ev: number) {
 }
 
 function xSectionESp(Ev: number) {
-  const cplus = (( 1.27 / 2 ) ** 2) + ((1 - (4 * WEAK_MIXING_ANGLE)) / 2) **2);
-  const cminu = (( 1.27 / 2 ) ** 2) - ((1 - (4 * WEAK_MIXING_ANGLE)) / 2) **2);
+  const cvec = (1 - (4 * WEAK_MIXING_ANGLE)) / 2;
+  const caxi = 1.27 / 2;
+  const cplus = (cvec ** 2) + (caxi ** 2);
+  const cminu = (caxi ** 2) - (cvec ** 2);
 
   const tESpMax = (2 * (Ev ** 2)) / ((Ev * 2) + PROTON_REST_MASS);
   
