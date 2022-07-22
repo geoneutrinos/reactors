@@ -16,6 +16,7 @@ const neutrinoTargets = 1e32;
 const energyBins = 1000;
 const maximumEnergy = 100;
 const deltaEnergy = maximumEnergy / energyBins; // MeV
+const preFactor = 2 * ( FERMI_COUPLING_CONSTANT * HBAR_C / 1e6 ) ** 2 / Math.PI
 
 // ToDo import elastic scattering Tmins set by UI
 const tESeMin = 0;
@@ -161,7 +162,7 @@ function xSectionESp(Ev: number) {
   }
 
   const tcon = PROTON_REST_MASS / (4 * (Ev ** 2));
-  const ccon = (FERMI_COUPLING_CONSTANT ** 2) * 1e-12 * (HBAR_C ** 2) * PROTON_REST_MASS / Math.PI;
+  const ccon = preFactor * PROTON_REST_MASS / 2;
 
   return ccon * (cplus * (tESpMax - tESpMin) + cminu * tcon * ((tESpMax ** 2) - (tESpMin ** 2)));
 }
@@ -179,9 +180,7 @@ function xSectionESe(Ev: number, neutrinoType:NeutrinoType) {
   const y_max = tESeMax / Ev;
   const y_min = tESeMin / Ev;
   
-  const FERMI_COUPLING_CONSTANT_MeV = FERMI_COUPLING_CONSTANT / 1e6;
-
-  const term1 = (2 * (FERMI_COUPLING_CONSTANT_MeV ** 2) * (HBAR_C ** 2)) * ELECTRON_REST_MASS * Ev / Math.PI;
+  const term1 = preFactor * ELECTRON_REST_MASS * Ev;
   const term2 = cL ** 2 * y_max;
   const term3 = cR ** 2 * (1/3) * (1 - (1 - y_max) ** 3);
   const term4 = cL * cR * (ELECTRON_REST_MASS/(2 * Ev)) * y_max ** 2;
