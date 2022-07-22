@@ -50,15 +50,15 @@ export const ES_COEFFICIENTS_LEFT = {
 }
 export const ES_COEFFICIENTS_VECTOR = {
   [NeutrinoType.electronNeutrino]: 0.5 + 2 * WEAK_MIXING_ANGLE,
-  [NeutrinoType.muTauNeutrino]: 0.5 + 2 * WEAK_MIXING_ANGLE,
-  [NeutrinoType.electronAntineutrino]: -0.5 + 2 * WEAK_MIXING_ANGLE,
+  [NeutrinoType.muTauNeutrino]: -0.5 + 2 * WEAK_MIXING_ANGLE,
+  [NeutrinoType.electronAntineutrino]: 0.5 + 2 * WEAK_MIXING_ANGLE,
   [NeutrinoType.muTauAntineutrino]: -0.5 + 2 * WEAK_MIXING_ANGLE,
 }
 export const ES_COEFFICIENTS_AXIAL = {
-  [NeutrinoType.electronNeutrino]: 1 / 2,
-  [NeutrinoType.muTauNeutrino]: -1 / 2,
-  [NeutrinoType.electronAntineutrino]: -1 / 2,
-  [NeutrinoType.muTauAntineutrino]: 1 / 2,
+  [NeutrinoType.electronNeutrino]: 0.5,
+  [NeutrinoType.muTauNeutrino]: -0.5,
+  [NeutrinoType.electronAntineutrino]: -0.5,
+  [NeutrinoType.muTauAntineutrino]: 0.5,
 }
 export const PS_COEFFICIENTS_AXIAL = {
   [NeutrinoType.electronNeutrino]: 1.27 / 2,
