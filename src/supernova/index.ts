@@ -127,13 +127,14 @@ export const sumSpectrumAnuESEforNO = sum(eventSpectrumAnuESEforNO) * deltaEnerg
 export const eventSpectrumAnuESEforIO = fluxIOSpectrumAnu.map((v, i) => v * xsectionESeAnu[i] * neutrinoTargets);
 export const sumSpectrumAnuESEforIO = sum(eventSpectrumAnuESEforIO) * deltaEnergy;
 
+// x2 for mu and tau
 export const xsectionESeNux = energyValues.map(
   function(x) { return xSectionESe(x, NeutrinoType.muTauNeutrino); }
 );
 export const eventSpectrumNuxESEforNO = fluxNOSpectrumNux.map((v, i) => v * xsectionESeNux[i] * neutrinoTargets);
-export const sumSpectrumNuxESEforNO = sum(eventSpectrumNuxESEforNO) * deltaEnergy;
+export const sumSpectrumNuxESEforNO = sum(eventSpectrumNuxESEforNO) * deltaEnergy * 2;
 export const eventSpectrumNuxESEforIO = fluxIOSpectrumNux.map((v, i) => v * xsectionESeNux[i] * neutrinoTargets);
-export const sumSpectrumNuxESEforIO = sum(eventSpectrumNuxESEforIO) * deltaEnergy;
+export const sumSpectrumNuxESEforIO = sum(eventSpectrumNuxESEforIO) * deltaEnergy * 2;
 
 // x2 for mu and tau
 export const xsectionESeAnx = energyValues.map(
