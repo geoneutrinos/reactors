@@ -402,7 +402,8 @@ export const NeutrinoElectronElasticScatteringCrossSection = () => {
     var layout = {
     title: "Neutrino Electron Elastic Scattering Cross Section",
     yaxis: {
-      title: { text: `Flux (/cm<sup>2</sup>/MeV)` },
+      title: { text: `Cross Section (cm<sup>2</sup>)` },
+      type: 'log',
       autorange: true,
     },
     xaxis: {
