@@ -11,6 +11,7 @@ sumSpectrumIBDforIO,
 sumSpectrumNueESP,
 sumSpectrumAnuESP,
 sumSpectrumNuxESP,
+sumSpectrumAnxESP,
 sumSpectrumNueESEforNO,
 sumSpectrumAnuESEforNO,
 sumSpectrumXnuESEforNO,
@@ -42,6 +43,8 @@ export const SupernovaNusEvents = () => {
                 <td>
                   N<sub>IO</sub> = <Num v={sumSpectrumIBDforIO} p={1} />
                 </td>
+                <td>
+                </td>
               </tr>
               <tr>
                 <td>
@@ -56,7 +59,10 @@ export const SupernovaNusEvents = () => {
                 <td>
                   N(ν<sub>x</sub>) = <Num v={sumSpectrumNuxESP} p={1} />
                 </td>
-              </tr>
+                <td>
+                   N(ν̅<sub>x</sub>) = <Num v={sumSpectrumAnxESP} p={1} />
+                </td>
+             </tr>
               <tr>
                 <td>
                   eES NO
@@ -69,6 +75,8 @@ export const SupernovaNusEvents = () => {
                 </td>
                 <td>
                   N(ν<sub>x</sub>) = <Num v={sumSpectrumXnuESEforNO} p={1} />
+                </td>
+                <td>
                 </td>
               </tr>
               <tr>
@@ -83,6 +91,8 @@ export const SupernovaNusEvents = () => {
                 </td>
                 <td>
                   N(ν<sub>x</sub>) = <Num v={sumSpectrumXnuESEforIO} p={1} />
+                </td>
+                <td>
                 </td>
               </tr>
               </tbody>
