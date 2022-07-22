@@ -23,7 +23,7 @@ export const SupernovaNusEvents = () => {
 
   return (
     <Card>
-      <Card.Header>Core Collapse SN Neutrino Events</Card.Header>
+      <Card.Header>Core Collapse SN Neutrino Events (/10<sup>32</sup> p)</Card.Header>
       <Card.Body>
         <Provider>
           <div>
@@ -31,7 +31,7 @@ export const SupernovaNusEvents = () => {
               <tbody>
               <tr>
                 <td>
-                  IBD (/10<sup>32</sup> p)
+                  IBD
                 </td>
                 <td>
                   N<sup>0</sup> = <Num v={sumSpectrumIBDnoOsc} p={1} />
@@ -45,7 +45,7 @@ export const SupernovaNusEvents = () => {
               </tr>
               <tr>
                 <td>
-                  pES (/10<sup>32</sup> p)
+                  pES
                 </td>
                 <td>
                   N(ν<sub>e</sub>) = <Num v={sumSpectrumNueESP} p={1} />
@@ -59,7 +59,7 @@ export const SupernovaNusEvents = () => {
               </tr>
               <tr>
                 <td>
-                  eES NO (/10<sup>32</sup> e)
+                  eES NO
                 </td>
                 <td>
                   N(ν<sub>e</sub>) = <Num v={sumSpectrumNueESEforNO} p={1} />
@@ -73,7 +73,7 @@ export const SupernovaNusEvents = () => {
               </tr>
               <tr>
                 <td>
-                  eES IO (/10<sup>32</sup> e)
+                  eES IO
                 </td>
                 <td>
                   N(ν<sub>e</sub>) = <Num v={sumSpectrumNueESEforIO} p={1} />
