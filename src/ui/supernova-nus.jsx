@@ -70,16 +70,16 @@ export const SupernovaNusEvents = () => {
                   eES NO
                 </td>
                 <td>
-                  N(ν<sub>e</sub>) = <Num v={sumSpectrumNueESEforNO} p={1} />
+                  N(ν<sub>e</sub>) = <Num v={sumSpectrumNueESEforNO} p={2} />
                 </td>
                 <td>
-                  N(ν̅<sub>e</sub>) = <Num v={sumSpectrumAnuESEforNO} p={1} />
+                  N(ν̅<sub>e</sub>) = <Num v={sumSpectrumAnuESEforNO} p={2} />
                 </td>
                 <td>
-                  N(ν<sub>x</sub>) = <Num v={sumSpectrumNuxESEforNO} p={1} />
+                  N(ν<sub>x</sub>) = <Num v={sumSpectrumNuxESEforNO} p={2} />
                 </td>
                 <td>
-                  N(ν̅<sub>x</sub>) = <Num v={sumSpectrumAnxESEforNO} p={1} />
+                  N(ν̅<sub>x</sub>) = <Num v={sumSpectrumAnxESEforNO} p={2} />
                 </td>
               </tr>
               <tr>
@@ -87,16 +87,16 @@ export const SupernovaNusEvents = () => {
                   eES IO
                 </td>
                 <td>
-                  N(ν<sub>e</sub>) = <Num v={sumSpectrumNueESEforIO} p={1} />
+                  N(ν<sub>e</sub>) = <Num v={sumSpectrumNueESEforIO} p={2} />
                 </td>
                 <td>
-                  N(ν̅<sub>e</sub>) = <Num v={sumSpectrumAnuESEforIO} p={1} />
+                  N(ν̅<sub>e</sub>) = <Num v={sumSpectrumAnuESEforIO} p={2} />
                 </td>
                 <td>
-                  N(ν<sub>x</sub>) = <Num v={sumSpectrumNuxESEforIO} p={1} />
+                  N(ν<sub>x</sub>) = <Num v={sumSpectrumNuxESEforIO} p={2} />
                 </td>
                 <td>
-                  N(ν̅<sub>x</sub>) = <Num v={sumSpectrumAnxESEforIO} p={1} />
+                  N(ν̅<sub>x</sub>) = <Num v={sumSpectrumAnxESEforIO} p={2} />
                 </td>
               </tr>
               </tbody>
