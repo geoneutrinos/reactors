@@ -174,11 +174,11 @@ function xSectionIBD(Ev: number) {
 
 function xSectionESp(Ev: number, neutrinoType:NeutrinoType) {
 
-  const cvec = PS_COEFFICIENTS_VECTOR[neutrinoType]
-  const caxi = PS_COEFFICIENTS_AXIAL[neutrinoType]
+  const cVec = PS_COEFFICIENTS_VECTOR[neutrinoType]
+  const cAxi = PS_COEFFICIENTS_AXIAL[neutrinoType]
 
-  const cLp = ( cVec + cAxi ) / 2;
-  const cRp = ( cVec - cAxi ) / 2;
+  const cL = ( cVec + cAxi ) / 2;
+  const cR = ( cVec - cAxi ) / 2;
 
   const tESpMax = Ev / (1 + PROTON_REST_MASS / (2 * Ev));
   
@@ -190,13 +190,13 @@ function xSectionESp(Ev: number, neutrinoType:NeutrinoType) {
   const y_min = tESpMin / Ev;
 
   const term1 = preFactor * PROTON_REST_MASS * Ev;
-  const term2 = cLp ** 2 * y_max;
-  const term3 = cRp ** 2 * (1/3) * (1 - (1 - y_max) ** 3);
-  const term4 = cLp * cRp * (PROTON_REST_MASS/(2 * Ev)) * y_max ** 2;
+  const term2 = cL ** 2 * y_max;
+  const term3 = cR ** 2 * (1/3) * (1 - (1 - y_max) ** 3);
+  const term4 = cL * cR * (PROTON_REST_MASS/(2 * Ev)) * y_max ** 2;
 
-  const term5 = cLp ** 2 * y_min;
-  const term6 = cRp ** 2 * (1/3) * (1 - (1 - y_min) ** 3);
-  const term7 = cLp * cRp * (PROTON_REST_MASS/(2 * Ev)) * y_min ** 2;
+  const term5 = cL ** 2 * y_min;
+  const term6 = cR ** 2 * (1/3) * (1 - (1 - y_min) ** 3);
+  const term7 = cL * cR * (PROTON_REST_MASS/(2 * Ev)) * y_min ** 2;
 
   return term1 * ((term2 + term3 - term4) - (term5 + term6 - term7));
 }
