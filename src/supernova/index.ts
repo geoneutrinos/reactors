@@ -9,10 +9,10 @@ import {
 
 import { 
   NeutrinoType,
-  ES_COEFFICIENTS_RIGHT,
-  ES_COEFFICIENTS_LEFT,
   PS_COEFFICIENTS_AXIAL,
   PS_COEFFICIENTS_VECTOR,
+  ES_COEFFICIENTS_AXIAL,
+  ES_COEFFICIENTS_VECTOR,
 } from "../physics/neutrino-cross-section";
 
 import { IBD_THRESHOLD } from "../physics/derived";
@@ -194,8 +194,11 @@ function xSectionESp(Ev: number, neutrinoType:NeutrinoType) {
 
 function xSectionESe(Ev: number, neutrinoType:NeutrinoType) {
 
-  const cL = ES_COEFFICIENTS_LEFT[neutrinoType]
-  const cR = ES_COEFFICIENTS_RIGHT[neutrinoType]
+  const cVec = ES_COEFFICIENTS_VECTOR[neutrinoType]
+  const cAxi = ES_COEFFICIENTS_AXIAL[neutrinoType]
+
+  const cL = ( cVec + cAxi ) / 2;
+  const cR = ( cVec - cAxi ) / 2;
 
   const tESeMax = Ev / (1 + ELECTRON_REST_MASS / (Ev * 2));
   if (tESeMax < tESeMin){
