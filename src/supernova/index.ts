@@ -177,19 +177,28 @@ function xSectionESp(Ev: number, neutrinoType:NeutrinoType) {
   const cvec = PS_COEFFICIENTS_VECTOR[neutrinoType]
   const caxi = PS_COEFFICIENTS_AXIAL[neutrinoType]
 
-  const cplus = (cvec ** 2) + (caxi ** 2);
-  const cminu = (caxi ** 2) - (cvec ** 2);
+  const cL = ( cVec + cAxi ) / 2;
+  const cR = ( cVec - cAxi ) / 2;
 
-  const tESpMax = (2 * (Ev ** 2)) / ((Ev * 2) + PROTON_REST_MASS);
+  const tESpMax = 2 * Ev ** 2 / (2 * Ev + PROTON_REST_MASS);
   
   if (tESpMax < tESpMin) {
     return 0;
   }
 
-  const tcon = PROTON_REST_MASS / (4 * (Ev ** 2));
-  const ccon = preFactor * PROTON_REST_MASS / 2;
+  const y_max = tESpMax / Ev;
+  const y_min = tESpMin / Ev;
 
-  return ccon * (cplus * (tESpMax - tESpMin) + cminu * tcon * ((tESpMax ** 2) - (tESpMin ** 2)));
+  const term1 = preFactor * PROTON_REST_MASS * Ev;
+  const term2 = cL ** 2 * y_max;
+  const term3 = cR ** 2 * (1/3) * (1 - (1 - y_max) ** 3);
+  const term4 = cL * cR * (PROTON_REST_MASS/(2 * Ev)) * y_max ** 2;
+
+  const term5 = cL ** 2 * y_min;
+  const term6 = cR ** 2 * (1/3) * (1 - (1 - y_min) ** 3);
+  const term7 = cL * cR * (PROTON_REST_MASS/(2 * Ev)) * y_min ** 2;
+
+  return term1 * ((term2 + term3 - term4) - (term5 + term6 - term7));
 }
 
 function xSectionESe(Ev: number, neutrinoType:NeutrinoType) {
@@ -200,7 +209,7 @@ function xSectionESe(Ev: number, neutrinoType:NeutrinoType) {
   const cL = ( cVec + cAxi ) / 2;
   const cR = ( cVec - cAxi ) / 2;
 
-  const tESeMax = Ev / (1 + ELECTRON_REST_MASS / (Ev * 2));
+  const tESeMax = 2 * Ev ** 2 / (2 * Ev + ELECTRON_REST_MASS);
   if (tESeMax < tESeMin){
     return 0;
   }
