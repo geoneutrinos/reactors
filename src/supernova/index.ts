@@ -99,10 +99,10 @@ const xsectionESpAnx = energyValues.map(
 );
 
 // pES event sprecta (/MeV)
-export const eventSpectrumNueESP = fluxSpectrumNue.map((v, i) => v * xsectionESP[i] * neutrinoTargets);
-export const eventSpectrumAnuESP = fluxSpectrumAnu.map((v, i) => v * xsectionESP[i] * neutrinoTargets);
-export const eventSpectrumNuxESP = fluxSpectrumNux.map((v, i) => v * xsectionESP[i] * neutrinoTargets);
-export const eventSpectrumAnxESP = fluxSpectrumAnx.map((v, i) => v * xsectionESP[i] * neutrinoTargets);
+export const eventSpectrumNueESP = fluxSpectrumNue.map((v, i) => v * xsectionESpNue[i] * neutrinoTargets);
+export const eventSpectrumAnuESP = fluxSpectrumAnu.map((v, i) => v * xsectionESpAnu[i] * neutrinoTargets);
+export const eventSpectrumNuxESP = fluxSpectrumNux.map((v, i) => v * xsectionESpNux[i] * neutrinoTargets);
+export const eventSpectrumAnxESP = fluxSpectrumNux.map((v, i) => v * xsectionESpAnx[i] * neutrinoTargets);
 
 // pES event totals with Nux x4 for mu and tau neutrinos and antineutrinos
 export const sumSpectrumNueESP = sum(eventSpectrumNueESP) * deltaEnergy;
