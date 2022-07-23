@@ -31,7 +31,7 @@ const tESeMin = 0;
 const tESpMin = 0;
 
 // make the array of neutrino energies 0 - 100 MeV
-export const energyValues = new Float32Array(energyBins).map((v, i) => i * deltaEnergy + deltaEnergy/2);
+export const energyValues = new Float64Array(energyBins).map((v, i) => i * deltaEnergy + deltaEnergy/2);
 
 // make the non-oscillated neutrino speciaes flux spectra with different average energy in MeV
 export const fluxSpectrumNue = energyValues.map(
