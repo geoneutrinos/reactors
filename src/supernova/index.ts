@@ -21,7 +21,7 @@ import { s2t12, c2t12 } from "../physics/neutrino-oscillation";
 import { sum } from "lodash";
 
 const neutrinoTargets = 1e32;
-const energyBins = 1000;
+const energyBins = 10000;
 const maximumEnergy = 100;
 const deltaEnergy = maximumEnergy / energyBins; // MeV
 const preFactor = 2 * ( FERMI_COUPLING_CONSTANT * HBAR_C / 1e6 ) ** 2 / Math.PI
