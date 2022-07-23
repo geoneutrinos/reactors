@@ -404,7 +404,7 @@ export const NeutrinoElectronElasticScatteringCrossSection = () => {
     yaxis: {
       title: { text: `Cross Section (cm<sup>2</sup>)` },
       type: 'log',
-      autorange: true,
+      range: [1e-46, 1e-42],
     },
     xaxis: {
       title: { text: `Neutrino Energy (MeV)` },
