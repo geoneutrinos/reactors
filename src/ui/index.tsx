@@ -21,6 +21,7 @@ export { ParticleMasses } from "./physics-masses";
 export { GeoFluxUncertainties } from "./geo-uncertainties";
 export { IsotopeData } from "./isotope-data";
 export { 
+  SupernovaNusCEvNS,
   SupernovaNusEvents,
   SupernovaNusESeTmin,
   SupernovaNusESpTmin,
