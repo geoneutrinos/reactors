@@ -255,7 +255,7 @@ function xSectionCEvNS(Ev: number) {
   const cVector = 0.5 - 2 * WEAK_MIXING_ANGLE;
   const cAxial = -0.5;
 
-  const factor = (preFactor / 4) * massTarget * (cVector * zTarget + cAxial * nTarget) ** 2;
+  const factor = (preFactor / 4) * massTarget * Ev * (cVector * zTarget + cAxial * nTarget) ** 2;
 
   const tCEvNSMax = Ev / (1 + massTarget / (2 * Ev));
   if (tCEvNSMax < tCEvNSMin){
