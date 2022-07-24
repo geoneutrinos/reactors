@@ -25,11 +25,46 @@ sumSpectrumAnuCEvNS,
 sumSpectrumNuxCEvNS,
 } from "../supernova";
 
+export const SupernovaNusCEvNS = () => {
+
+  return (
+    <Card>
+      <Card.Header>Core Collapse SN Neutrino CEvNS Events (/1000 kg)</Card.Header>
+      <Card.Body>
+        <Provider>
+          <div>
+            <Table>
+              <tbody>
+              <tr>
+                <td>
+                  <sup>131</sup>Xe
+                </td>
+                <td>
+                  N(ν<sub>e</sub>) = <Num v={sumSpectrumNueCEvNS} p={2} />
+                </td>
+                <td>
+                  N(ν̅<sub>e</sub>) = <Num v={sumSpectrumAnuCEvNS} p={2} />
+                </td>
+                <td>
+                  N(ν<sub>x</sub>) = <Num v={sumSpectrumNuxCEvNS} p={2} />
+                </td>
+                <td>
+                </td>
+              </tr>
+              </tbody>
+            </Table>
+          </div>
+        </Provider>
+      </Card.Body>
+    </Card>
+  );
+};
+
 export const SupernovaNusEvents = () => {
 
   return (
     <Card>
-      <Card.Header>Core Collapse SN Neutrino Events (/10<sup>32</sup> targets)</Card.Header>
+      <Card.Header>Core Collapse SN Neutrino IBD/ES Events (/10<sup>32</sup> targets)</Card.Header>
       <Card.Body>
         <Provider>
           <div>
@@ -100,22 +135,6 @@ export const SupernovaNusEvents = () => {
                 </td>
                 <td>
                   N(ν̅<sub>x</sub>) = <Num v={sumSpectrumAnxESEforIO} p={2} />
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  CEvNS (/100 kg <sup>131</sup>Xe)
-                </td>
-                <td>
-                  N(ν<sub>e</sub>) = <Num v={sumSpectrumNueCEvNS} p={2} />
-                </td>
-                <td>
-                  N(ν̅<sub>e</sub>) = <Num v={sumSpectrumAnuCEvNS} p={2} />
-                </td>
-                <td>
-                  N(ν<sub>x</sub>) = <Num v={sumSpectrumNuxCEvNS} p={2} />
-                </td>
-                <td>
                 </td>
               </tr>
               </tbody>
