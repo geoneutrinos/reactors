@@ -20,7 +20,14 @@ import { s2t12, c2t12 } from "../physics/neutrino-oscillation";
 
 import { sum } from "lodash";
 
-const neutrinoTargets = 1e32;
+const neutrinoTargets = 1e32; // for IBD, eES, pES
+
+// ToDo make UI to select CEvNS target
+// temporary 131Xe CEvNS
+const molarMass131Xe = 131.293; // g/mole
+const avogadroNumber = 6.02214076e23;
+const xenonTargets = avogadroNumber * 1e5 / molarMass131Xe; // 100000 g or 100 kg
+
 const energyBins = 10000;
 const maximumEnergy = 100;
 const deltaEnergy = maximumEnergy / energyBins; // MeV
@@ -29,6 +36,7 @@ const preFactor = 2 * ( FERMI_COUPLING_CONSTANT * HBAR_C / 1e6 ) ** 2 / Math.PI
 // ToDo import elastic scattering Tmins set by UI
 const tESeMin = 0;
 const tESpMin = 0;
+const tCEvNSMin = 0;
 
 // make the array of neutrino energies 0 - 100 MeV
 export const energyValues = new Float64Array(energyBins).map((v, i) => i * deltaEnergy + deltaEnergy/2);
@@ -145,6 +153,16 @@ export const sumSpectrumAnxESEforNO = sum(eventSpectrumAnxESEforNO) * deltaEnerg
 export const eventSpectrumAnxESEforIO = fluxIOSpectrumNux.map((v, i) => v * xsectionESeAnx[i] * neutrinoTargets);
 export const sumSpectrumAnxESEforIO = sum(eventSpectrumAnxESEforIO) * deltaEnergy * 2;
 
+const xsectionCEvNS = energyValues.map(
+  function(x) { return xSectionCEvNS(x); }
+);
+const eventSpectrumNueCEvNS = fluxSpectrumNue.map((v, i) => v * xsectionCEvNS[i] * xenonTargets);
+export const sumSpectrumNueCEvNS = sum(eventSpectrumNueCEvNS) * deltaEnergy;
+const eventSpectrumAnuCEvNS = fluxSpectrumAnu.map((v, i) => v * xsectionCEvNS[i] * xenonTargets);
+export const sumSpectrumAnuCEvNS = sum(eventSpectrumAnuCEvNS) * deltaEnergy;
+const eventSpectrumNuxCEvNS = fluxSpectrumNux.map((v, i) => v * xsectionCEvNS[i] * xenonTargets);
+export const sumSpectrumNuxCEvNS = sum(eventSpectrumNuxCEvNS) * deltaEnergy;
+
 function neutrinoSpectrumCCSN(Ev: number, Ev_avg: number) {
   const enu_tot = 5e52 * 1e-13 / ELEMENTARY_CHARGE; // MeV
   const d_ccsn = 10 * 3.086e21; // cm
@@ -228,3 +246,33 @@ function xSectionESe(Ev: number, neutrinoType:NeutrinoType) {
 
   return term1 * ((term2 + term3 - term4) - (term5 + term6 - term7));
 }
+
+function xSectionCEvNS(Ev: number) {
+
+// start with Xenon 131
+  const zNucleus = 54;
+  const nNucleus = 77;
+  const massNucleus = 121910.7; //MeV
+
+  const cVector = 0.5 - 2 * WEAK_MIXING_ANGLE;
+  const cAxial = -0.5;
+
+  const preFactor = (prefix / 4) *  (cVector * zNucleus + cAxial * nNucleus) ** 2;
+
+  const tCEvNSMax = Ev / (1 + massNucleus / (2 * Ev));
+  if (tCEvNSMax < tCEvNSMin){
+    return 0;
+  }
+
+  const y_max = tCEvNSMax / Ev;
+  const y_min = tCEvNSMin / Ev;
+  
+  const term1 = (1/3) * (1 - (1 - y_max) ** 3);
+  const term2 = (massNucleus/(2 * Ev)) * y_max ** 2;
+
+  const term3 = (1/3) * (1 - (1 - y_min) ** 3);
+  const term4 = (massNucleus/(2 * Ev)) * y_min ** 2;
+
+  return preFactor * ((y_max + term1 - term2) - (y_min + term3 - term4));
+}
+
