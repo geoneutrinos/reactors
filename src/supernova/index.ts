@@ -159,7 +159,7 @@ export const sumSpectrumNueCEvNS = sum(eventSpectrumNueCEvNS) * deltaEnergy;
 const eventSpectrumAnuCEvNS = fluxSpectrumAnu.map((v, i) => v * xsectionCEvNS[i] * xenonTargets);
 export const sumSpectrumAnuCEvNS = sum(eventSpectrumAnuCEvNS) * deltaEnergy;
 const eventSpectrumNuxCEvNS = fluxSpectrumNux.map((v, i) => v * xsectionCEvNS[i] * xenonTargets);
-export const sumSpectrumNuxCEvNS = sum(eventSpectrumNuxCEvNS) * deltaEnergy;
+export const sumSpectrumNuxCEvNS = sum(eventSpectrumNuxCEvNS) * deltaEnergy * 4;
 
 function neutrinoSpectrumCCSN(Ev: number, Ev_avg: number) {
   const enu_tot = 5e52 * 1e-13 / ELEMENTARY_CHARGE; // MeV
