@@ -26,7 +26,7 @@ const neutrinoTargets = 1e32; // for IBD, eES, pES
 // temporary 131Xe CEvNS
 const molarMass131Xe = 131.293; // g/mole
 const avogadroNumber = 6.02214076e23;
-const xenonTargets = avogadroNumber * 1e5 / molarMass131Xe; // 100000 g or 100 kg
+const xenonTargets = avogadroNumber * 1e6 / molarMass131Xe; // 1e6 g or 1000 kg
 
 const energyBins = 10000;
 const maximumEnergy = 100;
