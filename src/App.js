@@ -55,6 +55,7 @@ import {
   Boron8SpectraPlot,
   CrossSectionPlotsNormal,
   //SN nus tab
+  SupernovaNusCEvNS,
   SupernovaNusEvents,
   SupernovaNusESeTmin,
   SupernovaNusESpTmin,
@@ -293,6 +294,7 @@ function App(props) {
               </Tab>
               <Tab eventKey="ccsnnu" title="SnNu">
                 <Visible>
+                  <SupernovaNusCEvNS />
                   <SupernovaNusEvents />
                   <SupernovaNusESeTmin
                     tESeMin={tESeMin}
