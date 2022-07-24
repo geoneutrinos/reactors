@@ -153,9 +153,7 @@ export const sumSpectrumAnxESEforNO = sum(eventSpectrumAnxESEforNO) * deltaEnerg
 export const eventSpectrumAnxESEforIO = fluxIOSpectrumNux.map((v, i) => v * xsectionESeAnx[i] * neutrinoTargets);
 export const sumSpectrumAnxESEforIO = sum(eventSpectrumAnxESEforIO) * deltaEnergy * 2;
 
-const xsectionCEvNS = energyValues.map(
-  function(x) { return xSectionCEvNS(x); }
-);
+const xsectionCEvNS = energyValues.map(xSectionCEvNS);
 const eventSpectrumNueCEvNS = fluxSpectrumNue.map((v, i) => v * xsectionCEvNS[i] * xenonTargets);
 export const sumSpectrumNueCEvNS = sum(eventSpectrumNueCEvNS) * deltaEnergy;
 const eventSpectrumAnuCEvNS = fluxSpectrumAnu.map((v, i) => v * xsectionCEvNS[i] * xenonTargets);
@@ -250,16 +248,16 @@ function xSectionESe(Ev: number, neutrinoType:NeutrinoType) {
 function xSectionCEvNS(Ev: number) {
 
 // start with Xenon 131
-  const zNucleus = 54;
-  const nNucleus = 77;
-  const massNucleus = 121910.7; //MeV
+  const zTarget = 54;
+  const nTarget = 77;
+  const massTarget = 121910.7; //MeV
 
   const cVector = 0.5 - 2 * WEAK_MIXING_ANGLE;
   const cAxial = -0.5;
 
-  const preFactor = (prefix / 4) *  (cVector * zNucleus + cAxial * nNucleus) ** 2;
+  const preFactor = (prefix / 4) * (cVector * zTarget + cAxial * nTarget) ** 2;
 
-  const tCEvNSMax = Ev / (1 + massNucleus / (2 * Ev));
+  const tCEvNSMax = Ev / (1 + massTarget / (2 * Ev));
   if (tCEvNSMax < tCEvNSMin){
     return 0;
   }
@@ -268,10 +266,10 @@ function xSectionCEvNS(Ev: number) {
   const y_min = tCEvNSMin / Ev;
   
   const term1 = (1/3) * (1 - (1 - y_max) ** 3);
-  const term2 = (massNucleus/(2 * Ev)) * y_max ** 2;
+  const term2 = (massTarget/(2 * Ev)) * y_max ** 2;
 
   const term3 = (1/3) * (1 - (1 - y_min) ** 3);
-  const term4 = (massNucleus/(2 * Ev)) * y_min ** 2;
+  const term4 = (massTarget/(2 * Ev)) * y_min ** 2;
 
   return preFactor * ((y_max + term1 - term2) - (y_min + term3 - term4));
 }
