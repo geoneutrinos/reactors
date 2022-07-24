@@ -31,7 +31,7 @@ const xenonTargets = avogadroNumber * 1e5 / molarMass131Xe; // 100000 g or 100 k
 const energyBins = 10000;
 const maximumEnergy = 100;
 const deltaEnergy = maximumEnergy / energyBins; // MeV
-const preFactor = 2 * ( FERMI_COUPLING_CONSTANT * HBAR_C / 1e6 ) ** 2 / Math.PI
+const preFactor = 2 * ( FERMI_COUPLING_CONSTANT * HBAR_C / 1e6 ) ** 2 / Math.PI;
 
 // ToDo import elastic scattering Tmins set by UI
 const tESeMin = 0;
@@ -255,7 +255,7 @@ function xSectionCEvNS(Ev: number) {
   const cVector = 0.5 - 2 * WEAK_MIXING_ANGLE;
   const cAxial = -0.5;
 
-  const preFactor = (prefix / 4) * (cVector * zTarget + cAxial * nTarget) ** 2;
+  const factor = (preFactor / 4) * massTarget * (cVector * zTarget + cAxial * nTarget) ** 2;
 
   const tCEvNSMax = Ev / (1 + massTarget / (2 * Ev));
   if (tCEvNSMax < tCEvNSMin){
@@ -271,6 +271,6 @@ function xSectionCEvNS(Ev: number) {
   const term3 = (1/3) * (1 - (1 - y_min) ** 3);
   const term4 = (massTarget/(2 * Ev)) * y_min ** 2;
 
-  return preFactor * ((y_max + term1 - term2) - (y_min + term3 - term4));
+  return factor * ((y_max + term1 - term2) - (y_min + term3 - term4));
 }
 
