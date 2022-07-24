@@ -20,6 +20,9 @@ sumSpectrumNueESEforIO,
 sumSpectrumAnuESEforIO,
 sumSpectrumNuxESEforIO,
 sumSpectrumAnxESEforIO,
+sumSpectrumNueCEvNS,
+sumSpectrumAnuCEvNS,
+sumSpectrumNuxCEvNS,
 } from "../supernova";
 
 export const SupernovaNusEvents = () => {
@@ -97,6 +100,22 @@ export const SupernovaNusEvents = () => {
                 </td>
                 <td>
                   N(ν̅<sub>x</sub>) = <Num v={sumSpectrumAnxESEforIO} p={2} />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  CEvNS (/100 kg <sup>131</sup>Xe)
+                </td>
+                <td>
+                  N(ν<sub>e</sub>) = <Num v={sumSpectrumNueCEvNS} p={2} />
+                </td>
+                <td>
+                  N(ν̅<sub>e</sub>) = <Num v={sumSpectrumAnuCEvNS} p={2} />
+                </td>
+                <td>
+                  N(ν<sub>x</sub>) = <Num v={sumSpectrumNuxCEvNS} p={2} />
+                </td>
+                <td>
                 </td>
               </tr>
               </tbody>
