@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Card, Form, InputGroup, Table } from "react-bootstrap";
 import { Num, Visible } from ".";
 
