@@ -34,12 +34,13 @@ export const SupernovaNusCEvNS = () => {
   const [nucleus, setNucleus] = useState("Xe131");
 
   const UIsetNucleus = (event) => {
-    var key = event.target.id;
     const value = event.target.value;
-    const selects = {
-      nucleus: setNucleus,
-    };
-    selects[key](value);
+    let nucleus = value;
+    if (isNaN(nucleus)) {
+      setNucleus(value);
+    } else {
+      setNucleus(nucleus);
+    }
   };
 
   let UIprotons = 0;
