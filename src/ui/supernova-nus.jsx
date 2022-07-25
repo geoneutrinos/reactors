@@ -2,7 +2,7 @@ import React from "react";
 import { Card, Form, InputGroup, Table } from "react-bootstrap";
 import { Num, Visible } from ".";
 
-import Elements from "../elements";
+import Elements from "./elements";
 
 // Can "destructure" the elements needed:
 const {Ar40, Xe131} = Elements
@@ -30,8 +30,10 @@ sumSpectrumAnuCEvNS,
 sumSpectrumNuxCEvNS,
 } from "../supernova";
 
-export const SupernovaNusCEvNS = ({ nucleus, setNucleus }) => {
+export const SupernovaNusCEvNS = () => {
 
+  const [nucleus, setNucleus] = useState("Xe131");
+  
   const UIsetNucleus = (event) => {
     var key = event.target.id;
     const value = event.target.value;
@@ -46,12 +48,12 @@ export const SupernovaNusCEvNS = ({ nucleus, setNucleus }) => {
   
   if (nucleus === "Ar40") {
     UIprotons = Ar40.atomic_number;
-    UIneutrons = (Ar40.mass_number - UIprotons);
+    UIneutrons = Ar40.mass_number - UIprotons;
   }
 
   if (nucleus === "Xe131") {
     UIprotons = Xe131.atomic_number;
-    UIneutrons = (Xe131.mass_number - UIprotons);
+    UIneutrons = Xe131.mass_number - UIprotons;
   }
 
   return (
