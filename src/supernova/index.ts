@@ -1,3 +1,5 @@
+import { Elements } from "./elements";
+
 import { 
   ELEMENTARY_CHARGE,
   ELECTRON_REST_MASS,
@@ -19,6 +21,8 @@ import { IBD_THRESHOLD } from "../physics/derived";
 import { s2t12, c2t12 } from "../physics/neutrino-oscillation";
 
 import { sum } from "lodash";
+
+const { Ar40, Ge74, I127, Xe131, Cs133 } = Elements;
 
 const neutrinoTargets = 1e32; // for IBD, eES, pES
 
@@ -245,17 +249,19 @@ function xSectionESe(Ev: number, neutrinoType:NeutrinoType) {
   return term1 * ((term2 + term3 - term4) - (term5 + term6 - term7));
 }
 
-function xSectionCEvNS(Ev: number) {
+function xSectionCEvNS(Ev: number, nuclearTarget) {
 
 // start with Xenon 131
   const zTarget = 54;
   const nTarget = 77;
   const massTarget = 121910.7; //MeV
 
-  const cVector = 0.5 - 2 * WEAK_MIXING_ANGLE;
-  const cAxial = -0.5;
+// assuming electro-weak parameters =1 and ignoring radiative corrections
+  const cVp = 0.5 - 2 * WEAK_MIXING_ANGLE;
+  const cVn = -0.5;
 
-  const factor = (preFactor / 4) * massTarget * Ev * (cVector * zTarget + cAxial * nTarget) ** 2;
+// assuming no axial-vector contributions- equal numbers of up and down protons and neutrons 
+  const factor = (preFactor / 4) * massTarget * Ev * (cVp * zTarget + cVn * nTarget) ** 2;
 
   const tCEvNSMax = Ev / (1 + massTarget / (2 * Ev));
   if (tCEvNSMax < tCEvNSMin){
