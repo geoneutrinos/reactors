@@ -27,6 +27,8 @@ sumSpectrumAnuCEvNS,
 sumSpectrumNuxCEvNS,
 } from "../supernova";
 
+const { Xe131, Ar40 } = Elements;
+
 export const SupernovaNusCEvNS = () => {
 
   return (
