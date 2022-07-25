@@ -249,7 +249,7 @@ function xSectionESe(Ev: number, neutrinoType:NeutrinoType) {
   return term1 * ((term2 + term3 - term4) - (term5 + term6 - term7));
 }
 
-function xSectionCEvNS(Ev: number, nuclearTarget) {
+function xSectionCEvNS(Ev: number) {
 
 // start with Xenon 131
   const zTarget = 54;
