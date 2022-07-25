@@ -32,30 +32,6 @@ sumSpectrumNuxCEvNS,
 
 export const SupernovaNusCEvNS = () => {
 
-  const [nucleus, setNucleus] = useState("Xe131");
-  
-  const UIsetNucleus = (event) => {
-    var key = event.target.id;
-    const value = event.target.value;
-    const selects = {
-      nucleus: setNucleus,
-    };
-    selects[key](value);
-  };
-  
-  let UIprotons = 0;
-  let UIneutrons = 0;
-  
-  if (nucleus === "Ar40") {
-    UIprotons = Ar40.atomic_number;
-    UIneutrons = Ar40.mass_number - UIprotons;
-  }
-
-  if (nucleus === "Xe131") {
-    UIprotons = Xe131.atomic_number;
-    UIneutrons = Xe131.mass_number - UIprotons;
-  }
-
   return (
     <Card>
       <Card.Header>Core Collapse SN Neutrino CEvNS Events (/1000 kg)</Card.Header>
@@ -83,19 +59,6 @@ export const SupernovaNusCEvNS = () => {
               </tbody>
             </Table>
           </div>
-          <Form noValidate>
-            <Form.Group controlId="nucleus">
-              <Form.Label> Nucleus </Form.Label>
-              <Form.Control as="select" onChange={UIsetNucleus} value={nucleus}>
-                <option value="Ar40">
-                  Argon-40
-                </option>
-                <option value="Xe131">
-                  Xenon-131
-                </option>
-              </Form.Control>
-            </Form.Group>
-          </Form>
         </Provider>
       </Card.Body>
     </Card>
