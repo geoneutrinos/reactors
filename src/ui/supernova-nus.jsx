@@ -4,6 +4,8 @@ import { Num, Visible } from ".";
 
 import { Node, Provider } from "@nteract/mathjax";
 
+import { Elements } from "./elements";
+
 import { 
 sumSpectrumIBDnoOsc,
 sumSpectrumIBDforNO,
