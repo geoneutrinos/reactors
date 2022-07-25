@@ -27,7 +27,7 @@ sumSpectrumAnuCEvNS,
 sumSpectrumNuxCEvNS,
 } from "../supernova";
 
-const { Xe131, Ar40 } = Elements;
+const { Ar40, Ge74, I127, Xe131, Cs133 } = Elements;
 
 export const SupernovaNusCEvNS = () => {
 
@@ -50,9 +50,21 @@ export const SupernovaNusCEvNS = () => {
     UIprotons = Ar40.atomic_number;
     UIneutrons = (Ar40.mass_number - UIprotons);
   }
+  if (nucleus === "Ge74") {
+    UIprotons = Ge74.atomic_number;
+    UIneutrons = (Ge74.mass_number - UIprotons);
+  }
+  if (nucleus === "I127") {
+    UIprotons = I127.atomic_number;
+    UIneutrons = (I127.mass_number - UIprotons);
+  }
   if (nucleus === "Xe131") {
     UIprotons = Xe131.atomic_number;
     UIneutrons = (Xe131.mass_number - UIprotons);
+  }
+  if (nucleus === "Cs133") {
+    UIprotons = Cs133.atomic_number;
+    UIneutrons = (Cs133.mass_number - UIprotons);
   }
 
   return (
@@ -89,8 +101,17 @@ export const SupernovaNusCEvNS = () => {
                 <option value="Ar40">
                   Argon-40
                 </option>
+                <option value="Ge74">
+                  Germanium-74
+                </option>
+                <option value="I127">
+                  Iodine-127
+                </option>
                 <option value="Xe131">
                   Xenon-131
+                </option>
+                <option value="Cs133">
+                  Cesium-133
                 </option>
               </Form.Control>
             </Form.Group>
