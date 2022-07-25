@@ -5,6 +5,7 @@ import {
   FERMI_COUPLING_CONSTANT,
   HBAR_C,
   WEAK_MIXING_ANGLE,
+  ATOMIC_MASS_UNIT,
 } from "../physics/constants";
 
 import { 
@@ -24,7 +25,7 @@ const neutrinoTargets = 1e32; // for IBD, eES, pES
 
 // ToDo make UI to select CEvNS target
 // temporary 131Xe CEvNS
-const molarMass131Xe = 131.293; // g/mole
+const molarMass131Xe = 130.90508406; // g/mole
 const avogadroNumber = 6.02214076e23;
 const xenonTargets = avogadroNumber * 1e6 / molarMass131Xe; // 1e6 g or 1000 kg
 
@@ -250,7 +251,7 @@ function xSectionCEvNS(Ev: number) {
 // start with Xenon 131
   const zTarget = 54;
   const nTarget = 77;
-  const massTarget = 121910.7; //MeV
+  const massTarget = molarMass131Xe * ATOMIC_MASS_UNIT; //MeV
 
 // assuming electro-weak parameters =1 and ignoring radiative corrections
   const cVp = 0.5 - 2 * WEAK_MIXING_ANGLE;
