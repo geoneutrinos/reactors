@@ -82,6 +82,19 @@ export const SupernovaNusCEvNS = () => {
               </tbody>
             </Table>
           </div>
+          <Form noValidate>
+            <Form.Group controlId="nucleus">
+              <Form.Label> Nucleus </Form.Label>
+              <Form.Control as="select" onChange={UIsetNucleus} value={nucleus}>
+                <option value="Ar40">
+                  Argon-40
+                </option>
+                <option value="Xe131">
+                  Xenon-131
+                </option>
+              </Form.Control>
+            </Form.Group>
+          </Form>
         </Provider>
       </Card.Body>
     </Card>
