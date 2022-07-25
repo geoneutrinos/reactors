@@ -2,7 +2,7 @@ import React from "react";
 import { Card, Form, InputGroup, Table } from "react-bootstrap";
 import { Num, Visible } from ".";
 
-import Elements from "./elements";
+import Elements from "../elements";
 
 // Can "destructure" the elements needed:
 const {Ar40, Xe131} = Elements
