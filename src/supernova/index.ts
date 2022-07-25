@@ -1,5 +1,3 @@
-import { Elements } from "../elements";
-
 import { 
   ELEMENTARY_CHARGE,
   ELECTRON_REST_MASS,
@@ -21,8 +19,6 @@ import { IBD_THRESHOLD } from "../physics/derived";
 import { s2t12, c2t12 } from "../physics/neutrino-oscillation";
 
 import { sum } from "lodash";
-
-const { Ar40, Ge74, I127, Xe131, Cs133 } = Elements;
 
 const neutrinoTargets = 1e32; // for IBD, eES, pES
 
