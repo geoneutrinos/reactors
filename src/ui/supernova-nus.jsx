@@ -31,6 +31,18 @@ const { Xe131, Ar40 } = Elements;
 
 export const SupernovaNusCEvNS = () => {
 
+  let UIprotons = 0;
+  let UIneutrons = 0;
+
+  if (nucleus === "Ar40") {
+    UIprotons = Ar40.atomic_number;
+    UIneutrons = (Ar40.mass_number - UIprotons);
+  }
+  if (nucleus === "Xe131") {
+    UIprotons = Xe131.atomic_number;
+    UIneutrons = (Xe131.mass_number - UIprotons);
+  }
+
   return (
     <Card>
       <Card.Header>Core Collapse SN Neutrino CEvNS Events (/1000 kg)</Card.Header>
