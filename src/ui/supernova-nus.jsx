@@ -16,6 +16,7 @@ WEAK_MIXING_ANGLE,
 
 import {
 fluxSpectrumNue,
+energyValues,
 sumSpectrumIBDnoOsc,
 sumSpectrumIBDforNO,
 sumSpectrumIBDforIO,
