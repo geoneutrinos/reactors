@@ -27,11 +27,11 @@ sumSpectrumAnuCEvNS,
 sumSpectrumNuxCEvNS,
 } from "../supernova";
 
-const { Ar40, Ge74, I127, Xe131, Cs133 } = Elements;
+const { Ar40, Ge74, I127, Xe132, Cs133 } = Elements;
 
 export const SupernovaNusCEvNS = () => {
 
-  const [nucleus, setNucleus] = useState("Xe131");
+  const [nucleus, setNucleus] = useState("Xe132");
 
   const UIsetNucleus = (event) => {
     const value = event.target.value;
@@ -45,26 +45,32 @@ export const SupernovaNusCEvNS = () => {
 
   let UIprotons = 0;
   let UIneutrons = 0;
+  let UInucleusMass = 0;
 
   if (nucleus === "Ar40") {
     UIprotons = Ar40.atomic_number;
     UIneutrons = (Ar40.mass_number - UIprotons);
+    UInucleusMass = Ar40.relative_atomic_mass;
   }
   if (nucleus === "Ge74") {
     UIprotons = Ge74.atomic_number;
     UIneutrons = (Ge74.mass_number - UIprotons);
+    UInucleusMass = Ge74.relative_atomic_mass;
   }
   if (nucleus === "I127") {
     UIprotons = I127.atomic_number;
     UIneutrons = (I127.mass_number - UIprotons);
+    UInucleusMass = I127.relative_atomic_mass;
   }
-  if (nucleus === "Xe131") {
-    UIprotons = Xe131.atomic_number;
-    UIneutrons = (Xe131.mass_number - UIprotons);
+  if (nucleus === "Xe132") {
+    UIprotons = Xe132.atomic_number;
+    UIneutrons = (Xe132.mass_number - UIprotons);
+    UInucleusMass = Xe132.relative_atomic_mass;
   }
   if (nucleus === "Cs133") {
     UIprotons = Cs133.atomic_number;
     UIneutrons = (Cs133.mass_number - UIprotons);
+    UInucleusMass = Cs133.relative_atomic_mass;
   }
 
   return (
@@ -107,7 +113,7 @@ export const SupernovaNusCEvNS = () => {
                 <option value="I127">
                   Iodine-127
                 </option>
-                <option value="Xe131">
+                <option value="Xe132">
                   Xenon-131
                 </option>
                 <option value="Cs133">
