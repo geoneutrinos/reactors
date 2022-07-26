@@ -47,36 +47,36 @@ const tMinCEvNS = 0;
 const numberTargets = AVOGADRO_NUMBER * 1e6 / molarMass132Xe; // 1e6 g or 1000 kg
 const preConstant = 2 * ( FERMI_COUPLING_CONSTANT * HBAR_C / 1e6 ) ** 2 / Math.PI;
 
-const eventSpectrumNueXeCEvNS = fluxSpectrumNue.map((v, i) => v * crossSectionCEvNS[i] * numberTargets);
+const eventSpectrumNueXeCEvNS = fluxSpectrumNue.map((v, i) => v * xsecFunc[i] * numberTargets);
 const sumSpectrumNueXeCEvNS = sum(eventSpectrumNueXeCEvNS) * .01;
 
-function crossSectionCEvNS(Ev) {
+const xsecFunc = (eNu) => {
 
 // start with Xenon 132
-  const zTarget = 54;
-  const nTarget = 78;
+  const targetProtons = 54;
+  const targetNeutrons = 78;
   const targetMass = molarMass132Xe * ATOMIC_MASS_UNIT; //MeV
 
 // assuming electro-weak parameters =1 and ignoring radiative corrections
   const cVp = 0.5 - 2 * WEAK_MIXING_ANGLE;
   const cVn = -0.5;
 
-// assuming no axial-vector contributions- equal numbers of up and down protons and neutrons 
-  const factor = (preConstant / 4) * targetMass * Ev * (cVp * zTarget + cVn * nTarget) ** 2;
+// assuming no axial-vector contributions- equal numbers of up and down protons and neutrons
+  const factor = (preConstant / 4) * targetMass * eNu * (cVp * targetProtons + cVn * targetNeutrons) ** 2;
 
-  const tMaxCEvNS = Ev / (1 + targetMass / (2 * Ev));
+  const tMaxCEvNS = eNu / (1 + targetMass / (2 * eNu));
   if (tMaxCEvNS < tMinCEvNS){
     return 0;
   }
 
-  const y_max = tCEvNSMax / Ev;
-  const y_min = tCEvNSMin / Ev;
+  const y_max = tCEvNSMax / eNu;
+  const y_min = tCEvNSMin / eNu;
   
   const term1 = (1/3) * (1 - (1 - y_max) ** 3);
-  const term2 = (targetMass/(2 * Ev)) * y_max ** 2;
+  const term2 = (targetMass/(2 * eNu)) * y_max ** 2;
 
   const term3 = (1/3) * (1 - (1 - y_min) ** 3);
-  const term4 = (targetMass/(2 * Ev)) * y_min ** 2;
+  const term4 = (targetMass/(2 * eNu)) * y_min ** 2;
 
   return factor * ((y_max + term1 - term2) - (y_min + term3 - term4));
 }
