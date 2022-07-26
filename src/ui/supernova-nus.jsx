@@ -62,6 +62,8 @@ const spectrumNueCEvNS = (UInucleusMass) => {
   );
 }
 
+const sumSpectrumCEvNS = sum(spectrumNueCEvNS) * .01;
+
 export const SupernovaNusCEvNS = () => {
 
   const [nucleus, setNucleus] = useState("Xe132");
@@ -128,6 +130,7 @@ export const SupernovaNusCEvNS = () => {
                   N(ν<sub>x</sub>) = <Num v={sumSpectrumNuxCEvNS} p={2} />
                 </td>
                 <td>
+                N(ν<sub>e</sub>) = <Num v={sumSpectrumCEvNS} p={2} />
                 </td>
               </tr>
               </tbody>
