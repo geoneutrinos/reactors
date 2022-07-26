@@ -72,6 +72,10 @@ export const PS_COEFFICIENTS_VECTOR = {
   [NeutrinoType.electronAntineutrino]: 0.5 - 2 * WEAK_MIXING_ANGLE,
   [NeutrinoType.muTauAntineutrino]: 0.5 - 2 * WEAK_MIXING_ANGLE,
 }
+export const CEvNS_COEFFICIENTS_VECTOR = {
+  PROTON = 0.5 - 2 * WEAK_MIXING_ANGLE,
+  NEUTRON = -0.5,
+} 
 
 /** 
  * Calculates the neutrino cross section, sometimes called sigma
