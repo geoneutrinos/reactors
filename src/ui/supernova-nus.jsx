@@ -44,8 +44,8 @@ sumSpectrumNuxCEvNS,
 
 const { Ar40, Ge74, I127, Xe132, Cs133 } = Elements;
 
-const xsecFunc = (eNu, UIneutrons) => {
-  return UIneutrons * eNu ** 2
+const xsecFunc = (eNu, UIneutrons, UIprotons) => {
+  return ( FERMI_COUPLING_CONSTANT * HBAR_C / 1e6 ) ** 2 / Math.PI / 4 * eNu * ( CEvNS_PROTON_VECTOR * UIprotons + CEvNS_NEUTRON_VECTOR * UIneutrons ) ** 2
 };
 
 const crossSectionCEvNS = energyValues.map(xsecFunc);
