@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Card, Form, InputGroup, Table } from "react-bootstrap";
+import { sum } from "lodash";
 import { Num, Visible } from ".";
 
 import { Node, Provider } from "@nteract/mathjax";
@@ -7,6 +8,16 @@ import { Node, Provider } from "@nteract/mathjax";
 import { Elements } from "./elements";
 
 import { 
+FERMI_COUPLING_CONSTANT,
+HBAR_C,
+ATOMIC_MASS_UNIT,
+WEAK_MIXING_ANGLE,
+} from "../physics/constants";
+
+import {
+fluxSpectrumNue,
+fluxSpectrumAnu,
+fluxSpectrumNux,
 sumSpectrumIBDnoOsc,
 sumSpectrumIBDforNO,
 sumSpectrumIBDforIO,
@@ -28,6 +39,47 @@ sumSpectrumNuxCEvNS,
 } from "../supernova";
 
 const { Ar40, Ge74, I127, Xe132, Cs133 } = Elements;
+
+const AVOGADRO_NUMBER = 6.02214076e23;
+const molarMass132Xe = 131.9041550856; // g/mole
+
+const tMinCEvNS = 0;
+const numberTargets = AVOGADRO_NUMBER * 1e6 / molarMass132Xe; // 1e6 g or 1000 kg
+const preConstant = 2 * ( FERMI_COUPLING_CONSTANT * HBAR_C / 1e6 ) ** 2 / Math.PI;
+
+const eventSpectrumNueXeCEvNS = fluxSpectrumNue.map((v, i) => v * crossSectionCEvNS[i] * numberTargets);
+const sumSpectrumNueXeCEvNS = sum(eventSpectrumNueXeCEvNS) * .01;
+
+function crossSectionCEvNS(Ev) {
+
+// start with Xenon 132
+  const zTarget = 54;
+  const nTarget = 78;
+  const targetMass = molarMass132Xe * ATOMIC_MASS_UNIT; //MeV
+
+// assuming electro-weak parameters =1 and ignoring radiative corrections
+  const cVp = 0.5 - 2 * WEAK_MIXING_ANGLE;
+  const cVn = -0.5;
+
+// assuming no axial-vector contributions- equal numbers of up and down protons and neutrons 
+  const factor = (preConstant / 4) * targetMass * Ev * (cVp * zTarget + cVn * nTarget) ** 2;
+
+  const tMaxCEvNS = Ev / (1 + targetMass / (2 * Ev));
+  if (tMaxCEvNS < tMinCEvNS){
+    return 0;
+  }
+
+  const y_max = tCEvNSMax / Ev;
+  const y_min = tCEvNSMin / Ev;
+  
+  const term1 = (1/3) * (1 - (1 - y_max) ** 3);
+  const term2 = (targetMass/(2 * Ev)) * y_max ** 2;
+
+  const term3 = (1/3) * (1 - (1 - y_min) ** 3);
+  const term4 = (targetMass/(2 * Ev)) * y_min ** 2;
+
+  return factor * ((y_max + term1 - term2) - (y_min + term3 - term4));
+}
 
 export const SupernovaNusCEvNS = () => {
 
@@ -95,6 +147,7 @@ export const SupernovaNusCEvNS = () => {
                   N(ν<sub>x</sub>) = <Num v={sumSpectrumNuxCEvNS} p={2} />
                 </td>
                 <td>
+                 N(ν<sub>e</sub>) = <Num v={sumSpectrumNueXeCEvNS} p={2} /> 
                 </td>
               </tr>
               </tbody>
