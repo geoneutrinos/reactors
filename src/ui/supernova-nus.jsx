@@ -15,6 +15,11 @@ WEAK_MIXING_ANGLE,
 } from "../physics/constants";
 
 import {
+CEvNS_PROTON_VECTOR,
+CEvNS_NEUTRON_VECTOR,
+} from "../physics/neutrino-cross-section";
+
+import {
 fluxSpectrumNue,
 energyValues,
 sumSpectrumIBDnoOsc,
