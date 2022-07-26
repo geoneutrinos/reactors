@@ -55,6 +55,8 @@ const xsecFunc = (eNu, UIneutrons, UIprotons, UInucleusMass) => {
 
 const crossSectionCEvNS = energyValues.map(xsecFunc);
 
+const spectrumNueCEvNS = fluxSpectrumNue.map((v, i) => v * crossSectionCEvNS[i] * 6.02214076e29 / UInucleusMass);
+
 export const SupernovaNusCEvNS = () => {
 
   const [nucleus, setNucleus] = useState("Xe132");
