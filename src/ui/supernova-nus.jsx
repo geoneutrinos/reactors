@@ -39,8 +39,8 @@ sumSpectrumNuxCEvNS,
 
 const { Ar40, Ge74, I127, Xe132, Cs133 } = Elements;
 
-const xsecFunc = (eNu) => {
-  return eNu ** 2
+const xsecFunc = (eNu, UIneutrons) => {
+  return UIneutrons * eNu ** 2
 };
 
 const crossSectionCEvNS = energyValues.map(xsecFunc);
