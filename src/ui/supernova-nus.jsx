@@ -114,7 +114,7 @@ export const SupernovaNusCEvNS = () => {
                   Iodine-127
                 </option>
                 <option value="Xe132">
-                  Xenon-131
+                  Xenon-132
                 </option>
                 <option value="Cs133">
                   Cesium-133
