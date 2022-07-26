@@ -39,6 +39,12 @@ sumSpectrumNuxCEvNS,
 
 const { Ar40, Ge74, I127, Xe132, Cs133 } = Elements;
 
+const xsecFunc = (eNu) => {
+  return eNu ** 2
+};
+
+const crossSectionCEvNS = energyValues.map(xsecFunc);
+
 export const SupernovaNusCEvNS = () => {
 
   const [nucleus, setNucleus] = useState("Xe132");
