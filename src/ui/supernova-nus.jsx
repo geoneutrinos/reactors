@@ -15,6 +15,7 @@ WEAK_MIXING_ANGLE,
 } from "../physics/constants";
 
 import {
+fluxSpectrumNue,
 sumSpectrumIBDnoOsc,
 sumSpectrumIBDforNO,
 sumSpectrumIBDforIO,
