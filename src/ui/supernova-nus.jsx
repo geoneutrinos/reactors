@@ -48,9 +48,9 @@ const { Ar40, Ge74, I127, Xe132, Cs133 } = Elements;
 const xsecFunc = (eNu, UIneutrons, UIprotons, UInucleusMass) => {
   return ( FERMI_COUPLING_CONSTANT * HBAR_C / 1e6 ) ** 2 / Math.PI / 4 * eNu 
   * ( CEvNS_PROTON_VECTOR * UIprotons + CEvNS_NEUTRON_VECTOR * UIneutrons ) ** 2
-  * (1 / (1 + (UInucleusMass * ATOMIC_MASS_UNIT) / (2 * eNu)) 
+  * ( (1 / (1 + (UInucleusMass * ATOMIC_MASS_UNIT) / (2 * eNu))) 
   + (1/3) * (1 - (1 - (1 / (1 + UInucleusMass * ATOMIC_MASS_UNIT / (2 * eNu)))) ** 3)
-  - (UInucleusMass * ATOMIC_MASS_UNIT /(2 * eNu)) * (1 / (1 + UInucleusMass * ATOMIC_MASS_UNIT / (2 * eNu))) ** 2)
+  - ((UInucleusMass * ATOMIC_MASS_UNIT) /(2 * eNu)) * (1 / (1 + (UInucleusMass * ATOMIC_MASS_UNIT) / (2 * eNu))) ** 2)
 };
 
 const crossSectionCEvNS = energyValues.map(xsecFunc);
@@ -130,7 +130,7 @@ export const SupernovaNusCEvNS = () => {
                   N(ν<sub>x</sub>) = <Num v={sumSpectrumNuxCEvNS} p={2} />
                 </td>
                 <td>
-                N(ν<sub>e</sub>) = <Num v={sumSpectrumCEvNS} p={2} />
+                {UInucleusMass}
                 </td>
               </tr>
               </tbody>
