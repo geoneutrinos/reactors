@@ -14,6 +14,8 @@ import {
   PS_COEFFICIENTS_VECTOR,
   ES_COEFFICIENTS_AXIAL,
   ES_COEFFICIENTS_VECTOR,
+  CEvNS_PROTON_VECTOR,
+  CEvNS_NEUTRON_VECTOR,
 } from "../physics/neutrino-cross-section";
 
 import { IBD_THRESHOLD } from "../physics/derived";
@@ -254,11 +256,8 @@ function xSectionCEvNS(Ev: number) {
   const massTarget = molarMass131Xe * ATOMIC_MASS_UNIT; //MeV
 
 // assuming electro-weak parameters =1 and ignoring radiative corrections
-  const cVp = 0.5 - 2 * WEAK_MIXING_ANGLE;
-  const cVn = -0.5;
-
 // assuming no axial-vector contributions- equal numbers of up and down protons and neutrons 
-  const factor = (preFactor / 4) * massTarget * Ev * (cVp * zTarget + cVn * nTarget) ** 2;
+  const factor = (preFactor / 4) * massTarget * Ev * (CEvNS_PROTON_VECTOR * zTarget + CEvNS_NEUTRON_VECTOR * nTarget) ** 2;
 
   const tCEvNSMax = Ev / (1 + massTarget / (2 * Ev));
   if (tCEvNSMax < tCEvNSMin){
