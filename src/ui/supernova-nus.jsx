@@ -130,7 +130,7 @@ export const SupernovaNusCEvNS = () => {
                   N(ν<sub>x</sub>) = <Num v={sumSpectrumNuxCEvNS} p={2} />
                 </td>
                 <td>
-                {UInucleusMass}
+                 <Num v={UIprotons} p={1} />
                 </td>
               </tr>
               </tbody>
