@@ -44,27 +44,27 @@ sumSpectrumNuxCEvNS,
 
 const { Ar40, Ge74, I127, Xe132, Cs133 } = Elements;
 
-// assumes tMin = 0
-const xsecFunc = (eNu, UIneutrons, UIprotons, UInucleusMass) => {
-  return ( FERMI_COUPLING_CONSTANT * HBAR_C / 1e6 ) ** 2 / Math.PI / 4 * eNu 
-  * ( CEvNS_PROTON_VECTOR * UIprotons + CEvNS_NEUTRON_VECTOR * UIneutrons ) ** 2
-  * ( (1 / (1 + (UInucleusMass * ATOMIC_MASS_UNIT) / (2 * eNu))) 
-  + (1/3) * (1 - (1 - (1 / (1 + UInucleusMass * ATOMIC_MASS_UNIT / (2 * eNu)))) ** 3)
-  - ((UInucleusMass * ATOMIC_MASS_UNIT) /(2 * eNu)) * (1 / (1 + (UInucleusMass * ATOMIC_MASS_UNIT) / (2 * eNu))) ** 2)
-};
-
-const crossSectionCEvNS = energyValues.map(xsecFunc);
-
-const spectrumNueCEvNS = (UInucleusMass) => {
-  return fluxSpectrumNue.map(
-    (v, i) => 
-    v * crossSectionCEvNS[i] * 6.02214076e29 / UInucleusMass
-  );
-}
-
-const sumSpectrumCEvNS = sum(spectrumNueCEvNS) * .01;
-
 export const SupernovaNusCEvNS = () => {
+
+// assumes tMin = 0
+  const xsecFunc = (eNu, UIneutrons, UIprotons, UInucleusMass) => {
+    return ( FERMI_COUPLING_CONSTANT * HBAR_C / 1e6 ) ** 2 / Math.PI / 4 * eNu 
+    * ( CEvNS_PROTON_VECTOR * UIprotons + CEvNS_NEUTRON_VECTOR * UIneutrons ) ** 2
+    * ( (1 / (1 + (UInucleusMass * ATOMIC_MASS_UNIT) / (2 * eNu))) 
+    + (1/3) * (1 - (1 - (1 / (1 + UInucleusMass * ATOMIC_MASS_UNIT / (2 * eNu)))) ** 3)
+    - ((UInucleusMass * ATOMIC_MASS_UNIT) /(2 * eNu)) * (1 / (1 + (UInucleusMass * ATOMIC_MASS_UNIT) / (2 * eNu))) ** 2)
+  };
+
+  const crossSectionCEvNS = energyValues.map(xsecFunc);
+
+  const spectrumNueCEvNS = (UInucleusMass) => {
+    return fluxSpectrumNue.map(
+      (v, i) => 
+      v * crossSectionCEvNS[i] * 6.02214076e29 / UInucleusMass
+    );
+  }
+
+  const sumSpectrumCEvNS = sum(spectrumNueCEvNS) * .01;
 
   const [nucleus, setNucleus] = useState("Xe132");
 
@@ -130,7 +130,7 @@ export const SupernovaNusCEvNS = () => {
                   N(ν<sub>x</sub>) = <Num v={sumSpectrumNuxCEvNS} p={2} />
                 </td>
                 <td>
-                 <Num v={UIprotons} p={1} />
+                 N(ν<sub>e</sub>) = <Num v={sumSpectrumCEvNS} p={1} />
                 </td>
               </tr>
               </tbody>
