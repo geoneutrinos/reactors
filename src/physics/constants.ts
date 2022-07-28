@@ -10,6 +10,7 @@ export const HBAR_C = 197.3269804e-13; // MeV cm (exact)
 export const WEAK_MIXING_ANGLE = 0.23867; // ± 0.00016; Erler, J and Ramsey-Musolf, MJ (2005) Phys Rev D 72, 073003.
 export const ATOMIC_MASS_UNIT = 931.49410242; // (28) MeV/c2; PDG
 export const AU = 1.660_539_066_60e-27; // (50) kg (atomic mass aka dalton); PDG
+export const AVOGADRO_CONSTANT = 6.02214076e23; // mol-1 (exact); PDG
 
 export const FISSION_ENERGIES = {
   // MeV ref: V. I. Kopeikin et al., "Reactor as a Source of Antineutrinos: Thermal Fission Energy," Phys. Atom. Nucl. 67, 1892 (2004)
