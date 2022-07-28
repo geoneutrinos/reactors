@@ -6,6 +6,7 @@ import {
   HBAR_C,
   WEAK_MIXING_ANGLE,
   ATOMIC_MASS_UNIT,
+  AVOGADRO_CONSTANT,
 } from "../physics/constants";
 
 import { 
@@ -28,8 +29,7 @@ const neutrinoTargets = 1e32; // for IBD, eES, pES
 // ToDo make UI to select CEvNS target
 // temporary 131Xe CEvNS
 const molarMass131Xe = 130.90508406; // g/mole
-const avogadroNumber = 6.02214076e23;
-const xenonTargets = avogadroNumber * 1e6 / molarMass131Xe; // 1e6 g or 1000 kg
+const xenonTargets = AVOGADRO_CONSTANT * 1e6 / molarMass131Xe; // 1e6 g or 1000 kg
 
 const energyBins = 10000;
 const maximumEnergy = 100;
