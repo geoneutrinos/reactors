@@ -27,9 +27,9 @@ import { sum } from "lodash";
 const neutrinoTargets = 1e32; // for IBD, eES, pES
 
 // ToDo make UI to select CEvNS target
-// temporary 131Xe CEvNS
-const molarMass131Xe = 130.90508406; // g/mole
-const xenonTargets = AVOGADRO_CONSTANT * 1e6 / molarMass131Xe; // 1e6 g or 1000 kg
+// temporary 132Xe CEvNS
+const molarMass132Xe = 131.9041550856; // g/mole
+const xenonTargets = AVOGADRO_CONSTANT * 1e6 / molarMass132Xe; // 1e6 g or 1000 kg
 
 const energyBins = 10000;
 const maximumEnergy = 100;
@@ -250,10 +250,10 @@ function xSectionESe(Ev: number, neutrinoType:NeutrinoType) {
 
 function xSectionCEvNS(Ev: number) {
 
-// start with Xenon 131
+// start with Xenon 132
   const zTarget = 54;
-  const nTarget = 77;
-  const massTarget = molarMass131Xe * ATOMIC_MASS_UNIT; //MeV
+  const nTarget = 78;
+  const massTarget = molarMass132Xe * ATOMIC_MASS_UNIT; //MeV
 
 // assuming electro-weak parameters =1 and ignoring radiative corrections
 // assuming no axial-vector contributions- equal numbers of up and down protons and neutrons 
