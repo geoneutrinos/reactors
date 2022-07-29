@@ -275,7 +275,7 @@ export const SupernovaNusESnTmin = ({ tESnMin, setTESnMin }) => {
   
   return (
     <Card>
-      <Card.Header>pES: Nucleus Minimum Kinetic Energy</Card.Header>
+      <Card.Header>CEvNS: Nucleus Minimum Kinetic Energy</Card.Header>
       <Card.Body>
         <Form.Group controlId="tn_min">
           <Form.Label>
