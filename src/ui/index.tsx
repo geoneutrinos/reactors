@@ -25,6 +25,7 @@ export {
   SupernovaNusEvents,
   SupernovaNusESeTmin,
   SupernovaNusESpTmin,
+  SupernovaNusESnTmin,
   SupernovaNusPane, 
 } from "./supernova-nus";
 export {
