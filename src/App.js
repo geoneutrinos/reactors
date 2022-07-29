@@ -59,6 +59,7 @@ import {
   SupernovaNusEvents,
   SupernovaNusESeTmin,
   SupernovaNusESpTmin,
+  SupernovaNusESnTmin,
   SupernovaNusPane,
   SupernovaPlotsIBD,
   SupernovaFluxPlots,
@@ -146,6 +147,7 @@ function App(props) {
   // supernovanu state
   const [tESeMin, setTESeMin] = useState(0.0);
   const [tESpMin, setTESpMin] = useState(0.0);
+  const [tESnMin, setTESnMin] = useState(0.0);
 
   // UI State
   const [addCustomModal, setAddCustomModal] = useState(false);
@@ -303,6 +305,10 @@ function App(props) {
                   <SupernovaNusESpTmin
                     tESpMin={tESpMin}
                     setTESpMin={setTESpMin}
+                  />
+                  <SupernovaNusESnTmin
+                     tESnMin={tESnMin}
+                    setTESnMin={setTESnMin}
                   />
                   <SupernovaNusPane />
                   <SupernovaPlotsIBD />
