@@ -271,6 +271,34 @@ export const SupernovaNusESpTmin = ({ tESpMin, setTESpMin }) => {
   );
 };
 
+export const SupernovaNusESnTmin = ({ tESnMin, setTESnMin }) => {
+  
+  return (
+    <Card>
+      <Card.Header>pES: Nucleus Minimum Kinetic Energy</Card.Header>
+      <Card.Body>
+        <Form.Group controlId="tn_min">
+          <Form.Label>
+            T<sub>min</sub> = {tESnMin} keV
+          </Form.Label>
+          <InputGroup>
+            <Form.Control
+              value={tESnMin}
+              type="range"
+              step={0.1}
+              min={0}
+              max={2}
+              onChange={(event) => 
+                setTESnMin(event.target.value)
+              }
+            />
+          </InputGroup>
+        </Form.Group>
+      </Card.Body>
+    </Card>
+  );
+};
+
 export const SupernovaNusPane = () => {
 
   return (
