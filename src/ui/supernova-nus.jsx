@@ -32,7 +32,7 @@ const { Ar40, Ge74, I127, Xe132, Cs133 } = Elements;
 
 export const SupernovaNusCEvNS = () => {
 
-  const [nucleus, setNucleus] = useState("Xe132");
+  const [nucleus, setNucleus] = useState("xenon132");
 
   const UIsetNucleus = (event) => {
     const value = event.target.value;
