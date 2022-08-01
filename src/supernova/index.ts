@@ -24,6 +24,10 @@ import { s2t12, c2t12 } from "../physics/neutrino-oscillation";
 
 import { sum } from "lodash";
 
+import Elements from "../elements";
+
+const {Ar40, Ge74, I127, Xe132, Cs133} = Elements
+
 const neutrinoTargets = 1e32; // for IBD, eES, pES
 
 // ToDo make UI to select CEvNS target
