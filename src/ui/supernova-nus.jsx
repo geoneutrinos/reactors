@@ -63,9 +63,9 @@ export const SupernovaNusCEvNS = () => {
     UIneutrons = (I127.mass_number - UIprotons);
     UInucleusMass = I127.relative_atomic_mass;
   }
-  if (nucleus === "xenon132") {
-    UIprotons = Xe132.atomic_number;
-    UIneutrons = (Xe132.mass_number - UIprotons);
+  if (nucleus === "Xe132") {
+    UIprotons = 54;
+    UIneutrons = 132 - 54;
     UInucleusMass = Xe132.relative_atomic_mass;
   }
   if (nucleus === "cesium133") {
