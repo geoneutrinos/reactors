@@ -5,8 +5,6 @@ import { Num, Visible } from ".";
 
 import { Node, Provider } from "@nteract/mathjax";
 
-import { Elements } from "./elements";
-
 import {
 sumSpectrumIBDnoOsc,
 sumSpectrumIBDforNO,
@@ -28,8 +26,6 @@ sumSpectrumAnuCEvNS,
 sumSpectrumNuxCEvNS,
 } from "../supernova";
 
-const { Ar40, Ge74, I127, Xe132, Cs133 } = Elements;
-
 export const SupernovaNusCEvNS = () => {
 
   const [nucleus, setNucleus] = useState("Xe132");
@@ -44,36 +40,6 @@ export const SupernovaNusCEvNS = () => {
     }
   };
 
-  let UIprotons = 0;
-  let UIneutrons = 0;
-  let UInucleusMass = 0;
-
-  if (nucleus === "argon40") {
-    UIprotons = Ar40.atomic_number;
-    UIneutrons = (Ar40.mass_number - UIprotons);
-    UInucleusMass = Ar40.relative_atomic_mass;
-  }
-  if (nucleus === "germanium74") {
-    UIprotons = Ge74.atomic_number;
-    UIneutrons = (Ge74.mass_number - UIprotons);
-    UInucleusMass = Ge74.relative_atomic_mass;
-  }
-  if (nucleus === "iodine127") {
-    UIprotons = I127.atomic_number;
-    UIneutrons = (I127.mass_number - UIprotons);
-    UInucleusMass = I127.relative_atomic_mass;
-  }
-  if (nucleus === "Xe132") {
-    UIprotons = 54;
-    UIneutrons = 132 - 54;
-    UInucleusMass = Xe132.relative_atomic_mass;
-  }
-  if (nucleus === "cesium133") {
-    UIprotons = Cs133.atomic_number;
-    UIneutrons = (Cs133.mass_number - UIprotons);
-    UInucleusMass = Cs133.relative_atomic_mass;
-  }
-
   return (
     <Card>
       <Card.Header>Core Collapse SN Neutrino CEvNS Events (/1000 kg)</Card.Header>
@@ -84,7 +50,7 @@ export const SupernovaNusCEvNS = () => {
               <tbody>
               <tr>
                 <td>
-                  {nucleus} with {UIprotons} protons
+                  {nucleus}
                 </td>
                 <td>
                   N(ν<sub>e</sub>) = <Num v={sumSpectrumNueCEvNS} p={2} />
