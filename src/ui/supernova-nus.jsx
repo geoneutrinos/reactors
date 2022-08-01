@@ -32,7 +32,7 @@ const { Ar40, Ge74, I127, Xe132, Cs133 } = Elements;
 
 export const SupernovaNusCEvNS = () => {
 
-  const [nucleus, setNucleus] = useState("xenon132");
+  const [nucleus, setNucleus] = useState("Xe132");
 
   const UIsetNucleus = (event) => {
     const value = event.target.value;
@@ -105,19 +105,19 @@ export const SupernovaNusCEvNS = () => {
             <Form.Group controlId="set_nucleus">
               <Form.Label> Nucleus </Form.Label>
               <Form.Control as="select" onChange={UIsetNucleus} value={nucleus}>
-                <option value="argon40">
+                <option value="Ar40">
                   Argon-40
                 </option>
-                <option value="germanium74">
+                <option value="Ge74">
                   Germanium-74
                 </option>
-                <option value="iodine127">
+                <option value="I127">
                   Iodine-127
                 </option>
-                <option value="xenon132">
+                <option value="Xe132">
                   Xenon-132
                 </option>
-                <option value="cesium133">
+                <option value="Cs133">
                   Cesium-133
                 </option>
               </Form.Control>
