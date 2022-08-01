@@ -48,27 +48,27 @@ export const SupernovaNusCEvNS = () => {
   let UIneutrons = 0;
   let UInucleusMass = 0;
 
-  if (nucleus === "argon40") {
+  if (nucleus === "Ar40") {
     UIprotons = Ar40.atomic_number;
     UIneutrons = (Ar40.mass_number - UIprotons);
     UInucleusMass = Ar40.relative_atomic_mass;
   }
-  if (nucleus === "gemanium74") {
+  if (nucleus === "Ge74") {
     UIprotons = Ge74.atomic_number;
     UIneutrons = (Ge74.mass_number - UIprotons);
     UInucleusMass = Ge74.relative_atomic_mass;
   }
-  if (nucleus === "iodine127") {
+  if (nucleus === "I127") {
     UIprotons = I127.atomic_number;
     UIneutrons = (I127.mass_number - UIprotons);
     UInucleusMass = I127.relative_atomic_mass;
   }
-  if (nucleus === "xenon132") {
+  if (nucleus === "Xe132") {
     UIprotons = Xe132.atomic_number;
     UIneutrons = (Xe132.mass_number - UIprotons);
     UInucleusMass = Xe132.relative_atomic_mass;
   }
-  if (nucleus === "cesium133") {
+  if (nucleus === "Cs133") {
     UIprotons = Cs133.atomic_number;
     UIneutrons = (Cs133.mass_number - UIprotons);
     UInucleusMass = Cs133.relative_atomic_mass;
@@ -105,19 +105,19 @@ export const SupernovaNusCEvNS = () => {
             <Form.Group controlId="set_nucleus">
               <Form.Label> Nucleus </Form.Label>
               <Form.Control as="select" onChange={UIsetNucleus} value={nucleus}>
-                <option value="argon40">
+                <option value="Ar40">
                   Argon-40
                 </option>
-                <option value="germanium74">
+                <option value="Ge74">
                   Germanium-74
                 </option>
-                <option value="iodine127">
+                <option value="I127">
                   Iodine-127
                 </option>
-                <option value="xenon132">
+                <option value="Xe132">
                   Xenon-132
                 </option>
-                <option value="cesium133">
+                <option value="Cs133">
                   Cesium-133
                 </option>
               </Form.Control>
