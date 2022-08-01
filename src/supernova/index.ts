@@ -32,10 +32,10 @@ const neutrinoTargets = 1e32; // for IBD, eES, pES
 
 // ToDo make UI to select CEvNS target
 // temporary 132Xe CEvNS
-const molarMass132Xe = 131.9041550856; // g/mole
+const molarMass132Xe = Xe132.relative_atomic_mass; // g/mole
 const xenonTargets = AVOGADRO_CONSTANT * 1e6 / molarMass132Xe; // 1e6 g or 1000 kg
-const zTarget = 54;
-const nTarget = 78;
+const zTarget = Xe132.atomic_number;
+const nTarget = Xe132.mass_number - zTarget;
 const massTarget = molarMass132Xe * ATOMIC_MASS_UNIT; //MeV
 
 const energyBins = 10000;
