@@ -148,6 +148,7 @@ function App(props) {
   const [tESeMin, setTESeMin] = useState(0.0);
   const [tESpMin, setTESpMin] = useState(0.0);
   const [tESnMin, setTESnMin] = useState(0.0);
+  const [nucleus, setNucleus] = useState("Xe132");
 
   // UI State
   const [addCustomModal, setAddCustomModal] = useState(false);
@@ -296,7 +297,10 @@ function App(props) {
               </Tab>
               <Tab eventKey="ccsnnu" title="SnNu">
                 <Visible>
-                  <SupernovaNusCEvNS />
+                  <SupernovaNusCEvNS 
+                    nucleus = {nucleus}
+                    setNucleus = {setNucleus}
+                  />
                   <SupernovaNusEvents />
                   <SupernovaNusESeTmin
                     tESeMin={tESeMin}
