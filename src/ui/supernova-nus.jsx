@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Card, Form, InputGroup, Table } from "react-bootstrap";
 
 import { Num, Visible } from ".";
@@ -26,9 +26,7 @@ sumSpectrumAnuCEvNS,
 sumSpectrumNuxCEvNS,
 } from "../supernova";
 
-export const SupernovaNusCEvNS = () => {
-
-  const [nucleus, setNucleus] = useState("Xe132");
+export const SupernovaNusCEvNS = ({ nucleus, setNucleus }) => {
 
   const UIsetNucleus = (event) => {
     const value = event.target.value;
