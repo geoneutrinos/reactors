@@ -52,14 +52,19 @@ const tCEvNSMin = 0;
 export const energyValues = new Float64Array(energyBins).map((v, i) => i * deltaEnergy + deltaEnergy/2);
 
 // make the non-oscillated neutrino speciaes flux spectra with different average energy in MeV
+// ToDo import average neutrino energies set by UI
+const avgNrgNue = 12;
+const avgNrgAnu = 15;
+const avgNrgNux = 18;
+
 export const fluxSpectrumNue = energyValues.map(
-  function(x) { return neutrinoSpectrumCCSN(x, 12); }
+  function(x) { return neutrinoSpectrumCCSN(x, avgNrgNue); }
 );
 export const fluxSpectrumAnu = energyValues.map(
-  function(x) { return neutrinoSpectrumCCSN(x, 15); }
+  function(x) { return neutrinoSpectrumCCSN(x, avgNrgAnu); }
 );
 export const fluxSpectrumNux = energyValues.map(
-  function(x) { return neutrinoSpectrumCCSN(x, 18); }
+  function(x) { return neutrinoSpectrumCCSN(x, avgNrgNux); }
 );
 
 // electron neutrinos
