@@ -25,6 +25,7 @@ export const presets: DetecorPreset[] = [
     //Kamioka- detector height -1000 m, surface height 1368 m, geoid height 43.54 m 
     {name: "Kamioka", lat:36.425659, lon: 137.310508, elevation:412, overburden:2050, region:"Asia"},
     {name: "Lake Baikal", lat:51.771, lon: 104.398, elevation:-644.5, overburden:1100, region:"Asia"},
+    {name: "TRIDENT", lat:17.4, lon: 114.0, elevation:-3500, overburden:3500, region:"Asia"),
     //Yemilab- detector height -1100 m, surface height 900 m, geoid height 30.34 m
     {name: "Yemilab", lat:37.188639, lon: 128.659406, elevation:-170, overburden:2500, region:"Asia"},
     //Europe
