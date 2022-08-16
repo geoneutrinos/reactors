@@ -19,6 +19,7 @@ export { PhysicsOscillationPane } from "./physics-osc-params";
 export { PhysicsConstants } from "./physics-constants";
 export { ParticleMasses } from "./physics-masses";
 export { GeoFluxUncertainties } from "./geo-uncertainties";
+export { GeoRateFluxYields } from ".geo-ratefluxyields";
 export {IsotopeData } from "./isotope-data";
 export {
   CrossSectionPlots,
