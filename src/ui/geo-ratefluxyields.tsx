@@ -16,6 +16,7 @@ import { XSNames } from "../physics/neutrino-cross-section";
 const {K40, Th232, U235, U238} = Elements
 
 export const GeoRateFluxYields = () => {
+  console.log(rateToFlux232Th)
   return (
     <Card>
       <Card.Header>Geoneutrino Isotopic Rate to Flux</Card.Header>
@@ -37,13 +38,13 @@ export const GeoRateFluxYields = () => {
                   N.A.
                 </td>
                 <td>
-                  <Num v={rateToFlux232Th[crossSection[XSNames.IBDSV2003]]} p={1} />
+                  <Num v={rateToFlux232Th[XSNames.IBDSV2003] as number} p={1} />
                 </td>
                 <td>
                   N.A.
                 </td>
                 <td>
-                  <Num v={rateToFlux238U[crossSection[XSNames.IBDSV2003]]} p={1} />                  
+                  <Num v={rateToFlux238U[XSNames.IBDSV2003] as number} p={1} />                  
                 </td>
               </tr>
                <tr>
