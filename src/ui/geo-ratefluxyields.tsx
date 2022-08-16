@@ -37,7 +37,7 @@ export const GeoRateFluxYields = () => {
                   
                 </td>
                 <td>
-                  
+                  <Num v={rateToFlux232Th[XSNames.IBDSV2003]} p={1} />
                 </td>
                 <td>
                   
