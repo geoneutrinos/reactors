@@ -34,16 +34,16 @@ export const GeoRateFluxYields = () => {
               <tr>
                 <td>Inverse Beta Decay (IBD)</td>
                 <td>
-                  
+                  N.A.
                 </td>
                 <td>
-                  <Num v={rateToFlux232Th[XSNames.IBDSV2003]} p={1} />
+                  <Num v={rateToFlux232Th[crossSection[XSNames.IBDSV2003]]} p={1} />
                 </td>
                 <td>
-                  
+                  N.A.
                 </td>
                 <td>
-                  
+                  <Num v={rateToFlux238U[crossSection[XSNames.IBDSV2003]]} p={1} />                  
                 </td>
               </tr>
                <tr>
