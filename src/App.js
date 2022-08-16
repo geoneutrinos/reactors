@@ -20,6 +20,7 @@ import {
   MantleFlux,
   CrustFlux,
   GeoFluxUncertainties,
+  GeoRateFluxYields,
   GeoNuSpectrumSource,
   IsotopeData,
   //Direction Tab
@@ -272,6 +273,7 @@ function App(props) {
                     setIncludeCrust={setIncludeCrust}
                   />
                   <GeoFluxUncertainties />
+                  <GeoRateFluxYields />
                   <GeoNuSpectrumSource />
                   <IsotopeData />
                 </Visible>
