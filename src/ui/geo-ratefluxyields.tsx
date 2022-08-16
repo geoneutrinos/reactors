@@ -19,7 +19,7 @@ export const GeoRateFluxYields = () => {
   console.log(rateToFlux232Th)
   return (
     <Card>
-      <Card.Header>Geoneutrino Isotopic Rate to Flux</Card.Header>
+      <Card.Header>Geoneutrino Isotopic Rate to Flux (10<sup>32</sup> y cm<sup>-2</sup> s<sup>-1</sup>) </Card.Header>
       <Card.Body>
         <Table>
             <thead>
@@ -50,16 +50,16 @@ export const GeoRateFluxYields = () => {
                <tr>
                 <td>Electron Elastic Scattering (eES)</td>
                 <td>
-                  
+                  <Num v={rateToFlux40K[XSNames.ESANTI] as number} p={1} />                  
                 </td>
                 <td>
-                  
+                  <Num v={rateToFlux232Th[XSNames.ESANTI] as number} p={1} />                
                 </td>
                 <td>
-                  
+                  <Num v={rateToFlux235U[XSNames.ESANTI] as number} p={1} />                  
                 </td>
                 <td>
-                  
+                  <Num v={rateToFlux238U[XSNames.ESANTI] as number} p={1} />                                  
                 </td>
               </tr>
           </tbody>
