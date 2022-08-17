@@ -19,7 +19,7 @@ const {K40, Th232, U235, U238} = Elements
 export const GeoRateFluxYields = () => {
   return (
     <Card>
-      <Card.Header>Geoneutrino Isotopic Rate to Flux (NIU<sup>-1</sup>cm<sup>-2</sup>s<sup>-1</sup>) </Card.Header>
+      <Card.Header>Geoneutrino Isotopic Rate to Flux (NIU<sup>-1</sup> cm<sup>-2</sup>s<sup>-1</sup>) </Card.Header>
       <Card.Body>
         <Table>
             <thead>
@@ -35,13 +35,13 @@ export const GeoRateFluxYields = () => {
               <tr>
                 <td>IBD: Strumia and Vissani (2003)</td>
                 <td>
-                  N.A.
+                  ---
                 </td>
                 <td>
                   <Num v={rateToFlux232Th[XSNames.IBDSV2003] as number} p={0} />
                 </td>
                 <td>
-                  N.A.
+                  ---
                 </td>
                 <td>
                   <Num v={rateToFlux238U[XSNames.IBDSV2003] as number} p={0} />                  
@@ -50,13 +50,13 @@ export const GeoRateFluxYields = () => {
               <tr>
                 <td>IBD: Vogel and Beacom (1999)</td>
                 <td>
-                  N.A.
+                  ---
                 </td>
                 <td>
                   <Num v={rateToFlux232Th[XSNames.IBDVB1999] as number} p={0} />
                 </td>
                 <td>
-                  N.A.
+                  ---
                 </td>
                 <td>
                   <Num v={rateToFlux238U[XSNames.IBDVB1999] as number} p={0} />                  
