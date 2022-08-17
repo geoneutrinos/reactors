@@ -38,28 +38,28 @@ export const GeoRateFluxYields = () => {
                   N.A.
                 </td>
                 <td>
-                  <Num v={rateToFlux232Th[XSNames.IBDSV2003] as number} p={1} />
+                  <Num v={rateToFlux232Th[XSNames.IBDSV2003] as number} p={0} />
                 </td>
                 <td>
                   N.A.
                 </td>
                 <td>
-                  <Num v={rateToFlux238U[XSNames.IBDSV2003] as number} p={1} />                  
+                  <Num v={rateToFlux238U[XSNames.IBDSV2003] as number} p={0} />                  
                 </td>
               </tr>
                <tr>
                 <td>Electron Elastic Scattering (eES)</td>
                 <td>
-                  <Num v={rateToFlux40K[XSNames.ESANTI] as number} p={1} />                  
+                  <Num v={rateToFlux40K[XSNames.ESANTI] as number} p={0} />                  
                 </td>
                 <td>
-                  <Num v={rateToFlux232Th[XSNames.ESANTI] as number} p={1} />                
+                  <Num v={rateToFlux232Th[XSNames.ESANTI] as number} p={0} />                
                 </td>
                 <td>
-                  <Num v={rateToFlux235U[XSNames.ESANTI] as number} p={1} />                  
+                  <Num v={rateToFlux235U[XSNames.ESANTI] as number} p={0} />                  
                 </td>
                 <td>
-                  <Num v={rateToFlux238U[XSNames.ESANTI] as number} p={1} />                                  
+                  <Num v={rateToFlux238U[XSNames.ESANTI] as number} p={0} />                                  
                 </td>
               </tr>
           </tbody>
