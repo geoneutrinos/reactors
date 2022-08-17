@@ -33,7 +33,7 @@ export const GeoRateFluxYields = () => {
             </thead>
             <tbody>
               <tr>
-                <td>Inverse Beta Decay (IBD)</td>
+                <td>IBD: Strumia and Vissani (2003)</td>
                 <td>
                   N.A.
                 </td>
@@ -47,8 +47,23 @@ export const GeoRateFluxYields = () => {
                   <Num v={rateToFlux238U[XSNames.IBDSV2003] as number} p={0} />                  
                 </td>
               </tr>
-               <tr>
-                <td>Electron Elastic Scattering (eES)</td>
+              <tr>
+                <td>IBD: Vogel and Beacom (1999)</td>
+                <td>
+                  N.A.
+                </td>
+                <td>
+                  <Num v={rateToFlux232Th[XSNames.IBDVB1999] as number} p={0} />
+                </td>
+                <td>
+                  N.A.
+                </td>
+                <td>
+                  <Num v={rateToFlux238U[XSNames.IBDVB1999] as number} p={0} />                  
+                </td>
+              </tr>
+              <tr>
+                <td>eES: electron antineutrino</td>
                 <td>
                   <Num v={rateToFlux40K[XSNames.ESANTI] as number} p={0} />                  
                 </td>
@@ -60,6 +75,21 @@ export const GeoRateFluxYields = () => {
                 </td>
                 <td>
                   <Num v={rateToFlux238U[XSNames.ESANTI] as number} p={0} />                                  
+                </td>
+              </tr>
+              <tr>
+                <td>eES: mu/tau antineutrino</td>
+                <td>
+                  <Num v={rateToFlux40K[XSNames.ESMUTAU] as number} p={0} />                  
+                </td>
+                <td>
+                  <Num v={rateToFlux232Th[XSNames.ESMUTAU] as number} p={0} />                
+                </td>
+                <td>
+                  <Num v={rateToFlux235U[XSNames.ESMUTAU] as number} p={0} />                  
+                </td>
+                <td>
+                  <Num v={rateToFlux238U[XSNames.ESMUTAU] as number} p={0} />                                  
                 </td>
               </tr>
           </tbody>
