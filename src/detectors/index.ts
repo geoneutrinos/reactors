@@ -29,13 +29,11 @@ export const presets: DetecorPreset[] = [
     //Yemilab- detector height -1100 m, surface height 900 m, geoid height 30.34 m
     {name: "Yemilab", lat:37.188639, lon: 128.659406, elevation:-170, overburden:2500, region:"Asia"},
     //Europe
+    {name: "Baksan", lat:43.24, lon: 42.70, elevation:1700, overburden:4900, region:"Europe"},
     //Bas Bruit nuclear bunker 500 m below surface in southern France with horizontal access
     {name: "Bas Bruit", lat:43.93517, lon: 5.48518, elevation:0, overburden:500, region: "Europe"},
-    //SUNLAB in copper mine with anhydrite and rock salt layers in Poland- AIP Conference Proceedings 1304, 326 (2010)
-    {name: "SUNLAB", lat:51.55583, lon: 16.04167, elevation:0, overburden:1400, region: "Europe"},
-    //Slanic in Romania- salt mine with low background facility
-    {name: "Slanic Prahova", lat:45.23618, lon: 25.94173, elevation:0, overburden:205, region:"Europe"},
-    {name: "Baksan", lat:43.24, lon: 42.70, elevation:1700, overburden:4900, region:"Europe"},
+    //Bergwerk Saar- closed coal mine in southern Germany
+    {name: "Bergwerk Saar", lat:49.319, lon: 6.779, elevation: 198, overburden: 2000, region:"Europe"},
     //Boulby- detector height -1100 m, surface height 85 m, geoid height 55.13 m
     {name: "Boulby", lat:54.555129, lon: -0.80089, elevation:-960, overburden:2805, region:"Europe"},
     //Canfranc- lab floor height 1206 m, geoid height 58.54 m
@@ -46,6 +44,12 @@ export const presets: DetecorPreset[] = [
     {name: "LNGS", lat:42.45278, lon: 13.575, elevation:988, overburden:3100, region:"Europe"},
     //Callio Lab- detector height -1410 m, surface height 150 m, geoid height 20.6 m
     {name: "Pyhäsalmi", lat:63.659902, lon: 26.041062, elevation:-1239, overburden:4000, region:"Europe"},
+    //Shaft 16- uranium mine in Czech Republic
+    {name: "Shaft 16", lat:49.678, lon: 14.06, elevation: 0, overburden: 0, region:"Europe"},
+    //Slanic in Romania- salt mine with low background facility
+    {name: "Slanic Prahova", lat:45.23618, lon: 25.94173, elevation:0, overburden:205, region:"Europe"},
+    //SUNLAB in copper mine with anhydrite and rock salt layers in Poland- AIP Conference Proceedings 1304, 326 (2010)
+    {name: "SUNLAB", lat:51.55583, lon: 16.04167, elevation:0, overburden:1400, region: "Europe"},
     //Mediterranean Sea
     {name: "Antares", lat:42.80, lon: 6.17, elevation:-2500, overburden:2500, region:"Mediterranean Sea"},
     {name: "Nestor", lat:36.63, lon: 21.58, elevation:-4000, overburden:4000, region:"Mediterranean Sea"},
