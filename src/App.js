@@ -91,6 +91,9 @@ import { defaultBoron8 } from "./solar";
 
 import { PhysicsContext } from "./state";
 
+import Elements from "./elements";
+
+
 import "leaflet/dist/leaflet.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -143,12 +146,12 @@ function App(props) {
     ThURatio: 3.9, // no units
     KURatio: 1e4, // no units
   });
-  
+
   // supernovanu state
   const [tESeMin, setTESeMin] = useState(0.0);
   const [tESpMin, setTESpMin] = useState(0.0);
   const [tESnMin, setTESnMin] = useState(0.0);
-  const [nucleus, setNucleus] = useState("Xe132");
+  const [nucleus, setNucleus] = useState(Elements.Xe132.key);
 
   // UI State
   const [addCustomModal, setAddCustomModal] = useState(false);
@@ -211,7 +214,7 @@ function App(props) {
     oscillationDispatch: oscillationDispatch,
     crossSection: crossSection,
     crossSectionDispatch: crossSectionDispatch,
-    reactorAntineutrinoModel: reactorAntineutrinoModel, 
+    reactorAntineutrinoModel: reactorAntineutrinoModel,
     reactorAntineutrinoModelDispatch: reactorAntineutrinoModelDispatch,
   };
   return (
@@ -238,7 +241,7 @@ function App(props) {
             <Tabs unmountOnExit={false} activeKey={activeTab} onSelect={(k) => setActiveTab(k)}>
               <Tab eventKey="detector" title="Detector">
                 <Visible>
-                  <StatsPanel cores={cores} geo={geo} reactorLF={reactorLF}/>
+                  <StatsPanel cores={cores} geo={geo} reactorLF={reactorLF} />
                   <DetectorLocationPane
                     detector={detector}
                     setDetector={setDetector}
@@ -246,7 +249,7 @@ function App(props) {
                 </Visible>
               </Tab>
               <Tab eventKey="reactors" title="Reactors">
-                <RASwitcher active={activeTab === "reactors"}/>
+                <RASwitcher active={activeTab === "reactors"} />
                 <AddCustomCoreModal
                   {...addCustomModalXY}
                   show={addCustomModal}
@@ -297,9 +300,9 @@ function App(props) {
               </Tab>
               <Tab eventKey="ccsnnu" title="SnNu">
                 <Visible>
-                  <SupernovaNusCEvNS 
-                    nucleus = {nucleus}
-                    setNucleus = {setNucleus}
+                  <SupernovaNusCEvNS
+                    nucleus={nucleus}
+                    setNucleus={setNucleus}
                   />
                   <SupernovaNusEvents />
                   <SupernovaNusESeTmin
@@ -311,7 +314,7 @@ function App(props) {
                     setTESpMin={setTESpMin}
                   />
                   <SupernovaNusESnTmin
-                     tESnMin={tESnMin}
+                    tESnMin={tESnMin}
                     setTESnMin={setTESnMin}
                   />
                   <SupernovaNusPane />
@@ -368,10 +371,10 @@ function App(props) {
               </Tab>
               <Tab eventKey="output" title="Output">
                 <h5> REFERENCE </h5>
-                  <p> The model presented by this website is further documented here{" "}
-                  <a href="https://arxiv.org/pdf/1510.05633.pdf">arXiv:1510.05633.v3</a>. 
+                <p> The model presented by this website is further documented here{" "}
+                  <a href="https://arxiv.org/pdf/1510.05633.pdf">arXiv:1510.05633.v3</a>.
                   Cite this paper when using the results of this model in your research papers and presentations.
-                  </p>
+                </p>
                 <Visible>
                   <OutputDownload
                     geo={geo}
@@ -380,11 +383,11 @@ function App(props) {
                     boron8={boron8}
                   />
                 </Visible>
-                <CalculatorPanel cores={cores} geo={geo} active={activeTab === "output"}/>
+                <CalculatorPanel cores={cores} geo={geo} active={activeTab === "output"} />
                 <h5> ACKNOWLEDGMENT </h5>
-                  <p> Development of the model and this web application is supported in part by Lawrence Livermore National 
-                  Security, LLC. 
-                  </p>
+                <p> Development of the model and this web application is supported in part by Lawrence Livermore National
+                  Security, LLC.
+                </p>
               </Tab>
             </Tabs>
           </Col>

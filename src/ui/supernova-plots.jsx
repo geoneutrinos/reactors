@@ -1,16 +1,16 @@
 import { Card } from "react-bootstrap";
 import Plot from "react-plotly.js";
 
-import { 
+import {
   energyValues,
-  fluxSpectrumNue, 
-  fluxSpectrumAnu, 
-  fluxSpectrumNux, 
-  fluxNOSpectrumNue, 
-  fluxNOSpectrumAnu, 
-  fluxNOSpectrumNux, 
-  fluxIOSpectrumNue, 
-  fluxIOSpectrumAnu, 
+  fluxSpectrumNue,
+  fluxSpectrumAnu,
+  fluxSpectrumNux,
+  fluxNOSpectrumNue,
+  fluxNOSpectrumAnu,
+  fluxNOSpectrumNux,
+  fluxIOSpectrumNue,
+  fluxIOSpectrumAnu,
   fluxIOSpectrumNux,
   xsectionESeNue,
   xsectionESeAnu,
@@ -30,7 +30,7 @@ export const SupernovaPlotsIBD = () => {
       type: "scatter",
       mode: "lines",
       line: {
-        width: 2
+        width: 2,
       },
       fill: "none",
       marker: { color: "blue" },
@@ -42,7 +42,7 @@ export const SupernovaPlotsIBD = () => {
       type: "scatter",
       mode: "lines",
       line: {
-        width: 2
+        width: 2,
       },
       fill: "none",
       marker: { color: "red" },
@@ -54,13 +54,13 @@ export const SupernovaPlotsIBD = () => {
       type: "scatter",
       mode: "lines",
       line: {
-        width: 2
+        width: 2,
       },
       fill: "none",
       marker: { color: "green" },
     },
   ];
-    var layout = {
+  var layout = {
     title: "Core Collapse SN Neutrino IBD Spectra",
     yaxis: {
       title: { text: `Events dN/dE (/10<sup>32</sup> p/MeV)` },
@@ -84,8 +84,8 @@ export const SupernovaPlotsIBD = () => {
   };
   var config = {
     toImageButtonOptions: {
-      filename: 'Supernova-IBD-Spectra'
-    }
+      filename: "Supernova-IBD-Spectra",
+    },
   };
   return (
     <Card>
@@ -111,7 +111,7 @@ export const SupernovaFluxPlots = () => {
       type: "scatter",
       mode: "lines",
       line: {
-        width: 2
+        width: 2,
       },
       fill: "none",
       marker: { color: "blue" },
@@ -123,7 +123,7 @@ export const SupernovaFluxPlots = () => {
       type: "scatter",
       mode: "lines",
       line: {
-        width: 2
+        width: 2,
       },
       fill: "none",
       marker: { color: "red" },
@@ -135,13 +135,13 @@ export const SupernovaFluxPlots = () => {
       type: "scatter",
       mode: "lines",
       line: {
-        width: 2
+        width: 2,
       },
       fill: "none",
       marker: { color: "green" },
     },
   ];
-    var layout = {
+  var layout = {
     title: "Core Collapse SN Neutrino Flux Spectra w/o Oscillations",
     yaxis: {
       title: { text: `Flux (/cm<sup>2</sup>/MeV)` },
@@ -165,12 +165,14 @@ export const SupernovaFluxPlots = () => {
   };
   var config = {
     toImageButtonOptions: {
-      filename: 'Supernova-Flux-Spectra'
-    }
+      filename: "Supernova-Flux-Spectra",
+    },
   };
   return (
     <Card>
-      <Card.Header>Core Collapse SN Neutrino Flux Spectra w/o Oscillations</Card.Header>
+      <Card.Header>
+        Core Collapse SN Neutrino Flux Spectra w/o Oscillations
+      </Card.Header>
       <Card.Body>
         <Plot
           useResizeHandler={true}
@@ -192,7 +194,7 @@ export const SupernovaOscillatedFluxPlots = () => {
       type: "scatter",
       mode: "lines",
       line: {
-        width: 2
+        width: 2,
       },
       fill: "none",
       marker: { color: "blue" },
@@ -204,7 +206,7 @@ export const SupernovaOscillatedFluxPlots = () => {
       type: "scatter",
       mode: "lines",
       line: {
-        width: 2
+        width: 2,
       },
       fill: "none",
       marker: { color: "red" },
@@ -216,13 +218,13 @@ export const SupernovaOscillatedFluxPlots = () => {
       type: "scatter",
       mode: "lines",
       line: {
-        width: 2
+        width: 2,
       },
       fill: "none",
       marker: { color: "green" },
     },
   ];
-    var layout = {
+  var layout = {
     title: "Core Collapse SN Neutrino Flux Spectra w/ NO Oscillations",
     yaxis: {
       title: { text: `Flux (/cm<sup>2</sup>/MeV)` },
@@ -246,12 +248,14 @@ export const SupernovaOscillatedFluxPlots = () => {
   };
   var config = {
     toImageButtonOptions: {
-      filename: 'Supernova-Oscillated-Flux-Spectra'
-    }
+      filename: "Supernova-Oscillated-Flux-Spectra",
+    },
   };
   return (
     <Card>
-      <Card.Header>Core Collapse SN Neutrino Flux Spectra w/ NO Oscillations</Card.Header>
+      <Card.Header>
+        Core Collapse SN Neutrino Flux Spectra w/ NO Oscillations
+      </Card.Header>
       <Card.Body>
         <Plot
           useResizeHandler={true}
@@ -272,25 +276,19 @@ export const SupernovaOscillatedInvertedFluxPlots = () => {
       name: `ν<sub>e</sub> IO`,
       type: "scatter",
       mode: "lines",
-      line: {
-        width: 2
-      },
       fill: "none",
       marker: { color: "blue" },
-      line: {dash: 'dashdot',},
-   },
+      line: { dash: "dashdot" },
+    },
     {
       y: fluxIOSpectrumAnu,
       x: energyValues,
       name: `ν̅<sub>e</sub> IO`,
       type: "scatter",
       mode: "lines",
-      line: {
-        width: 2
-      },
       fill: "none",
       marker: { color: "red" },
-      line: {dash: 'dashdot',},
+      line: { dash: "dashdot" },
     },
     {
       y: fluxIOSpectrumNux,
@@ -298,15 +296,12 @@ export const SupernovaOscillatedInvertedFluxPlots = () => {
       name: `ν<sub>x</sub> IO`,
       type: "scatter",
       mode: "lines",
-      line: {
-        width: 2
-      },
       fill: "none",
       marker: { color: "green" },
-      line: {dash: 'dashdot',},
+      line: { dash: "dashdot" },
     },
   ];
-    var layout = {
+  var layout = {
     title: "Core Collapse SN Neutrino Flux Spectra w/ IO Oscillations",
     yaxis: {
       title: { text: `Flux (/cm<sup>2</sup>/MeV)` },
@@ -330,12 +325,14 @@ export const SupernovaOscillatedInvertedFluxPlots = () => {
   };
   var config = {
     toImageButtonOptions: {
-      filename: 'Supernova-Oscillated-Inverted-Flux-Spectra'
-    }
+      filename: "Supernova-Oscillated-Inverted-Flux-Spectra",
+    },
   };
   return (
     <Card>
-      <Card.Header>Core Collapse SN Neutrino Flux Spectra w/ IO Oscillations</Card.Header>
+      <Card.Header>
+        Core Collapse SN Neutrino Flux Spectra w/ IO Oscillations
+      </Card.Header>
       <Card.Body>
         <Plot
           useResizeHandler={true}
@@ -357,7 +354,7 @@ export const NeutrinoElectronElasticScatteringCrossSection = () => {
       type: "scatter",
       mode: "lines",
       line: {
-        width: 2
+        width: 2,
       },
       fill: "none",
       marker: { color: "blue" },
@@ -369,7 +366,7 @@ export const NeutrinoElectronElasticScatteringCrossSection = () => {
       type: "scatter",
       mode: "lines",
       line: {
-        width: 2
+        width: 2,
       },
       fill: "none",
       marker: { color: "red" },
@@ -381,7 +378,7 @@ export const NeutrinoElectronElasticScatteringCrossSection = () => {
       type: "scatter",
       mode: "lines",
       line: {
-        width: 2
+        width: 2,
       },
       fill: "none",
       marker: { color: "green" },
@@ -393,17 +390,17 @@ export const NeutrinoElectronElasticScatteringCrossSection = () => {
       type: "scatter",
       mode: "lines",
       line: {
-        width: 2
+        width: 2,
       },
       fill: "none",
       marker: { color: "purple" },
     },
   ];
-    var layout = {
+  var layout = {
     title: "Neutrino Electron Elastic Scattering Cross Section",
     yaxis: {
       title: { text: `Cross Section (cm<sup>2</sup>)` },
-      type: 'log',
+      type: "log",
       autorange: true,
     },
     xaxis: {
@@ -424,12 +421,14 @@ export const NeutrinoElectronElasticScatteringCrossSection = () => {
   };
   var config = {
     toImageButtonOptions: {
-      filename: 'Elastic-Scattering-Cross-Section'
-    }
+      filename: "Elastic-Scattering-Cross-Section",
+    },
   };
   return (
     <Card>
-      <Card.Header>Neutrino Electron Elastic Scattering Cross Section</Card.Header>
+      <Card.Header>
+        Neutrino Electron Elastic Scattering Cross Section
+      </Card.Header>
       <Card.Body>
         <Plot
           useResizeHandler={true}
