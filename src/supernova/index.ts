@@ -46,8 +46,6 @@ export const getTargetParamsCEvNS = (element: Element): CEvNSTarget => {
 const energyBins = 10000;
 const maximumEnergy = 100;
 const deltaEnergy = maximumEnergy / energyBins; // MeV
-const preFactor =
-  (2 * ((FERMI_COUPLING_CONSTANT * HBAR_C) / 1e6) ** 2) / Math.PI;
 
 // ToDo import elastic scattering Tmins set by UI
 const tESeMin = 0;
@@ -319,14 +317,10 @@ function xSectionCEvNS(
 ) {
   // assuming electro-weak parameters =1 and ignoring radiative corrections
   // assuming no axial-vector contributions- equal numbers of up and down protons and neutrons
-  const factor =
-    (preFactor / 4) *
-    targetMass *
-    Ev *
-    (CEvNS_PROTON_VECTOR * protonTargets +
-      CEvNS_NEUTRON_VECTOR * neutronTargets) **
-      2;
-
+  const cLeft = (CEvNS_PROTON_VECTOR * protonTargets +
+      CEvNS_NEUTRON_VECTOR * neutronTargets)
+  const cRight = cLeft
+  
   const tCEvNSMax = Ev / (1 + targetMass / (2 * Ev));
   if (tCEvNSMax < tCEvNSMin) {
     return 0;
@@ -335,11 +329,14 @@ function xSectionCEvNS(
   const y_max = tCEvNSMax / Ev;
   const y_min = tCEvNSMin / Ev;
 
-  const term1 = (1 / 3) * (1 - (1 - y_max) ** 3);
-  const term2 = (targetMass / (2 * Ev)) * y_max ** 2;
+  const term1 = (((FERMI_COUPLING_CONSTANT / 1e6) * HBAR_C) ** 2 * targetMass * Ev) / (2 * Math.PI);
+  const term2 = cLeft ** 2 * y_max;
+  const term3 = cRight ** 2 * (1/3) * (1 - (1 - y_max) ** 3);
+  const term4 = cLeft * cRight * (targetMass/(2 * Ev)) * y_max ** 2;
 
-  const term3 = (1 / 3) * (1 - (1 - y_min) ** 3);
-  const term4 = (targetMass / (2 * Ev)) * y_min ** 2;
+  const term5 = cLeft ** 2 * y_min;
+  const term6 = cRight ** 2 * (1/3) * (1 - (1 - y_min) ** 3);
+  const term7 = cLeft * cRight * (targetMass/(2 * Ev)) * y_min ** 2;
 
-  return factor * (y_max + term1 - term2 - (y_min + term3 - term4));
+  return term1 * ((term2 + term3 - term4) - (term5 + term6 - term7));
 }
