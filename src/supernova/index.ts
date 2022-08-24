@@ -131,16 +131,40 @@ export const sumSpectrumIBDforIO = sum(eventSpectrumIBDforIO) * deltaEnergy;
 
 // make neutrino-proton elastic scattering (pES) cross section
 const xsectionESpNue = energyValues.map(function (x) {
-  return crossSectionElasticScattering(x, NeutrinoType.electronNeutrino, undefined, undefined, NeutrinoTarget.proton);
+  return crossSectionElasticScattering(
+    x,
+    NeutrinoType.electronNeutrino,
+    undefined,
+    undefined,
+    NeutrinoTarget.proton
+  );
 });
 const xsectionESpAnu = energyValues.map(function (x) {
-  return crossSectionElasticScattering(x, NeutrinoType.electronAntineutrino, undefined, undefined, NeutrinoTarget.proton);
+  return crossSectionElasticScattering(
+    x,
+    NeutrinoType.electronAntineutrino,
+    undefined,
+    undefined,
+    NeutrinoTarget.proton
+  );
 });
 const xsectionESpNux = energyValues.map(function (x) {
-  return crossSectionElasticScattering(x, NeutrinoType.muTauNeutrino, undefined, undefined, NeutrinoTarget.proton);
+  return crossSectionElasticScattering(
+    x,
+    NeutrinoType.muTauNeutrino,
+    undefined,
+    undefined,
+    NeutrinoTarget.proton
+  );
 });
 const xsectionESpAnx = energyValues.map(function (x) {
-  return crossSectionElasticScattering(x, NeutrinoType.muTauAntineutrino, undefined, undefined, NeutrinoTarget.proton);
+  return crossSectionElasticScattering(
+    x,
+    NeutrinoType.muTauAntineutrino,
+    undefined,
+    undefined,
+    NeutrinoTarget.proton
+  );
 });
 
 // pES event sprecta (/MeV)
@@ -165,7 +189,13 @@ export const sumSpectrumAnxESP = sum(eventSpectrumAnxESP) * deltaEnergy * 2;
 
 // make neutrino-electron elastic scattering (eES) cross section
 export const xsectionESeNue = energyValues.map(function (x) {
-  return crossSectionElasticScattering(x, NeutrinoType.electronNeutrino, undefined, undefined, NeutrinoTarget.electron);
+  return crossSectionElasticScattering(
+    x,
+    NeutrinoType.electronNeutrino,
+    undefined,
+    undefined,
+    NeutrinoTarget.electron
+  );
 });
 export const eventSpectrumNueESEforNO = fluxNOSpectrumNue.map(
   (v, i) => v * xsectionESeNue[i] * neutrinoTargets
@@ -179,7 +209,13 @@ export const sumSpectrumNueESEforIO =
   sum(eventSpectrumNueESEforIO) * deltaEnergy;
 
 export const xsectionESeAnu = energyValues.map(function (x) {
-  return crossSectionElasticScattering(x, NeutrinoType.electronAntineutrino, undefined, undefined, NeutrinoTarget.electron);
+  return crossSectionElasticScattering(
+    x,
+    NeutrinoType.electronAntineutrino,
+    undefined,
+    undefined,
+    NeutrinoTarget.electron
+  );
 });
 export const eventSpectrumAnuESEforNO = fluxNOSpectrumAnu.map(
   (v, i) => v * xsectionESeAnu[i] * neutrinoTargets
@@ -194,7 +230,13 @@ export const sumSpectrumAnuESEforIO =
 
 // x2 for mu and tau
 export const xsectionESeNux = energyValues.map(function (x) {
-  return crossSectionElasticScattering(x, NeutrinoType.muTauNeutrino, undefined, undefined, NeutrinoTarget.electron);
+  return crossSectionElasticScattering(
+    x,
+    NeutrinoType.muTauNeutrino,
+    undefined,
+    undefined,
+    NeutrinoTarget.electron
+  );
 });
 export const eventSpectrumNuxESEforNO = fluxNOSpectrumNux.map(
   (v, i) => v * xsectionESeNux[i] * neutrinoTargets
@@ -209,7 +251,13 @@ export const sumSpectrumNuxESEforIO =
 
 // x2 for mu and tau
 export const xsectionESeAnx = energyValues.map(function (x) {
-  return crossSectionElasticScattering(x, NeutrinoType.muTauAntineutrino, undefined, undefined, NeutrinoTarget.electron);
+  return crossSectionElasticScattering(
+    x,
+    NeutrinoType.muTauAntineutrino,
+    undefined,
+    undefined,
+    NeutrinoTarget.electron
+  );
 });
 export const eventSpectrumAnxESEforNO = fluxNOSpectrumNux.map(
   (v, i) => v * xsectionESeAnx[i] * neutrinoTargets
