@@ -1,7 +1,6 @@
 import {
   ELEMENTARY_CHARGE,
   ELECTRON_REST_MASS,
-  PROTON_REST_MASS,
   FERMI_COUPLING_CONSTANT,
   HBAR_C,
   ATOMIC_MASS_UNIT,
@@ -10,18 +9,17 @@ import {
 
 import {
   NeutrinoType,
-  PS_COEFFICIENTS_AXIAL,
-  PS_COEFFICIENTS_VECTOR,
-  ES_COEFFICIENTS_AXIAL,
-  ES_COEFFICIENTS_VECTOR,
   CEvNS_PROTON_VECTOR,
   CEvNS_NEUTRON_VECTOR,
+  crossSectionElasticScattering,
+  NeutrinoTarget,
+  crossSectionSV2003,
 } from "../physics/neutrino-cross-section";
 
 import { IBD_THRESHOLD } from "../physics/derived";
 import { s2t12, c2t12 } from "../physics/neutrino-oscillation";
 
-import { sum } from "lodash";
+import { sum, zip } from "lodash";
 
 import { Element } from "../elements";
 
@@ -113,7 +111,7 @@ const fluxIOSpectrumNuxT123 = fluxIOSpectrumNuxT1.map(
 export const fluxIOSpectrumNux = fluxIOSpectrumNuxT123.map((v) => v / 4);
 
 // IBD cross section using SV 2003
-const xsectionIBD = energyValues.map(xSectionIBD);
+const xsectionIBD = energyValues.map(crossSectionSV2003);
 
 // IBD event spectra (/MeV)
 export const eventSpectrumIBDnoOsc = fluxSpectrumAnu.map(
@@ -133,16 +131,16 @@ export const sumSpectrumIBDforIO = sum(eventSpectrumIBDforIO) * deltaEnergy;
 
 // make neutrino-proton elastic scattering (pES) cross section
 const xsectionESpNue = energyValues.map(function (x) {
-  return xSectionESp(x, NeutrinoType.electronNeutrino);
+  return crossSectionElasticScattering(x, NeutrinoType.electronNeutrino, undefined, undefined, NeutrinoTarget.proton);
 });
 const xsectionESpAnu = energyValues.map(function (x) {
-  return xSectionESp(x, NeutrinoType.electronAntineutrino);
+  return crossSectionElasticScattering(x, NeutrinoType.electronAntineutrino, undefined, undefined, NeutrinoTarget.proton);
 });
 const xsectionESpNux = energyValues.map(function (x) {
-  return xSectionESp(x, NeutrinoType.muTauNeutrino);
+  return crossSectionElasticScattering(x, NeutrinoType.muTauNeutrino, undefined, undefined, NeutrinoTarget.proton);
 });
 const xsectionESpAnx = energyValues.map(function (x) {
-  return xSectionESp(x, NeutrinoType.muTauAntineutrino);
+  return crossSectionElasticScattering(x, NeutrinoType.muTauAntineutrino, undefined, undefined, NeutrinoTarget.proton);
 });
 
 // pES event sprecta (/MeV)
@@ -167,7 +165,7 @@ export const sumSpectrumAnxESP = sum(eventSpectrumAnxESP) * deltaEnergy * 2;
 
 // make neutrino-electron elastic scattering (eES) cross section
 export const xsectionESeNue = energyValues.map(function (x) {
-  return xSectionESe(x, NeutrinoType.electronNeutrino);
+  return crossSectionElasticScattering(x, NeutrinoType.electronNeutrino, undefined, undefined, NeutrinoTarget.electron);
 });
 export const eventSpectrumNueESEforNO = fluxNOSpectrumNue.map(
   (v, i) => v * xsectionESeNue[i] * neutrinoTargets
@@ -181,7 +179,7 @@ export const sumSpectrumNueESEforIO =
   sum(eventSpectrumNueESEforIO) * deltaEnergy;
 
 export const xsectionESeAnu = energyValues.map(function (x) {
-  return xSectionESe(x, NeutrinoType.electronAntineutrino);
+  return crossSectionElasticScattering(x, NeutrinoType.electronAntineutrino, undefined, undefined, NeutrinoTarget.electron);
 });
 export const eventSpectrumAnuESEforNO = fluxNOSpectrumAnu.map(
   (v, i) => v * xsectionESeAnu[i] * neutrinoTargets
@@ -196,7 +194,7 @@ export const sumSpectrumAnuESEforIO =
 
 // x2 for mu and tau
 export const xsectionESeNux = energyValues.map(function (x) {
-  return xSectionESe(x, NeutrinoType.muTauNeutrino);
+  return crossSectionElasticScattering(x, NeutrinoType.muTauNeutrino, undefined, undefined, NeutrinoTarget.electron);
 });
 export const eventSpectrumNuxESEforNO = fluxNOSpectrumNux.map(
   (v, i) => v * xsectionESeNux[i] * neutrinoTargets
@@ -211,7 +209,7 @@ export const sumSpectrumNuxESEforIO =
 
 // x2 for mu and tau
 export const xsectionESeAnx = energyValues.map(function (x) {
-  return xSectionESe(x, NeutrinoType.muTauAntineutrino);
+  return crossSectionElasticScattering(x, NeutrinoType.muTauAntineutrino, undefined, undefined, NeutrinoTarget.electron);
 });
 export const eventSpectrumAnxESEforNO = fluxNOSpectrumNux.map(
   (v, i) => v * xsectionESeAnx[i] * neutrinoTargets
@@ -261,79 +259,6 @@ function neutrinoSpectrumCCSN(Ev: number, Ev_avg: number) {
     (Ev / Ev_avg) ** (beta - 1) * Math.exp((-beta * Ev) / Ev_avg);
 
   return (prefix * enu_tot * energy_factor) / d_ccsn / d_ccsn;
-}
-
-function xSectionIBD(Ev: number) {
-  const a = -0.07056;
-  const b = 0.02018;
-  const c = -0.001953;
-
-  const sv = a + b * Math.log(Ev) + c * Math.log(Ev) ** 3;
-  const sve = Ev ** sv;
-
-  const Ee = Math.max(
-    ELECTRON_REST_MASS,
-    Ev - IBD_THRESHOLD + ELECTRON_REST_MASS
-  );
-
-  const Pe = Math.sqrt(Ee ** 2 - ELECTRON_REST_MASS ** 2);
-
-  return 1e-43 * Pe * Ee * sve;
-}
-
-function xSectionESp(Ev: number, neutrinoType: NeutrinoType) {
-  const cVec = PS_COEFFICIENTS_VECTOR[neutrinoType];
-  const cAxi = PS_COEFFICIENTS_AXIAL[neutrinoType];
-
-  const cL = (cVec + cAxi) / 2;
-  const cR = (cVec - cAxi) / 2;
-
-  const tESpMax = Ev / (1 + PROTON_REST_MASS / (2 * Ev));
-
-  if (tESpMax < tESpMin) {
-    return 0;
-  }
-
-  const y_max = tESpMax / Ev;
-  const y_min = tESpMin / Ev;
-
-  const term1 = preFactor * PROTON_REST_MASS * Ev;
-  const term2 = cL ** 2 * y_max;
-  const term3 = cR ** 2 * (1 / 3) * (1 - (1 - y_max) ** 3);
-  const term4 = cL * cR * (PROTON_REST_MASS / (2 * Ev)) * y_max ** 2;
-
-  const term5 = cL ** 2 * y_min;
-  const term6 = cR ** 2 * (1 / 3) * (1 - (1 - y_min) ** 3);
-  const term7 = cL * cR * (PROTON_REST_MASS / (2 * Ev)) * y_min ** 2;
-
-  return term1 * (term2 + term3 - term4 - (term5 + term6 - term7));
-}
-
-function xSectionESe(Ev: number, neutrinoType: NeutrinoType) {
-  const cVec = ES_COEFFICIENTS_VECTOR[neutrinoType];
-  const cAxi = ES_COEFFICIENTS_AXIAL[neutrinoType];
-
-  const cL = (cVec + cAxi) / 2;
-  const cR = (cVec - cAxi) / 2;
-
-  const tESeMax = Ev / (1 + ELECTRON_REST_MASS / (2 * Ev));
-  if (tESeMax < tESeMin) {
-    return 0;
-  }
-
-  const y_max = tESeMax / Ev;
-  const y_min = tESeMin / Ev;
-
-  const term1 = preFactor * ELECTRON_REST_MASS * Ev;
-  const term2 = cL ** 2 * y_max;
-  const term3 = cR ** 2 * (1 / 3) * (1 - (1 - y_max) ** 3);
-  const term4 = cL * cR * (ELECTRON_REST_MASS / (2 * Ev)) * y_max ** 2;
-
-  const term5 = cL ** 2 * y_min;
-  const term6 = cR ** 2 * (1 / 3) * (1 - (1 - y_min) ** 3);
-  const term7 = cL * cR * (ELECTRON_REST_MASS / (2 * Ev)) * y_min ** 2;
-
-  return term1 * (term2 + term3 - term4 - (term5 + term6 - term7));
 }
 
 function xSectionCEvNS(
