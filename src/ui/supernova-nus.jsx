@@ -77,7 +77,11 @@ export const SupernovaNusCEvNS = ({ nucleus, setNucleus }) => {
               <Form.Label> Nucleus </Form.Label>
               <Form.Control as="select" onChange={UIsetNucleus} value={nucleus}>
                 <option value={Elements.Ar40.key}>Argon-40</option>
+                <option value={Elements.Ge70.key}>Germanium-70</option>
+                <option value={Elements.Ge72.key}>Germanium-72</option>
+                <option value={Elements.Ge73.key}>Germanium-73</option>
                 <option value={Elements.Ge74.key}>Germanium-74</option>
+                <option value={Elements.Ge76.key}>Germanium-76</option>
                 <option value={Elements.I127.key}>Iodine-127</option>
                 <option value={Elements.Xe128.key}>Xenon-128</option>
                 <option value={Elements.Xe129.key}>Xenon-129</option>
