@@ -44,7 +44,7 @@ export const XSAbrev: {[key in XSNames | XSNamesNormal]: string} = {
   [XSNamesNormal.ESMUTAUNORM]: "ESnux",
 }
 
-export const ES_TAGET_MASSES = {
+export const ES_TARGET_MASSES = {
   [NeutrinoTarget.electron]: ELECTRON_REST_MASS,
   [NeutrinoTarget.proton]: PROTON_REST_MASS,
   [NeutrinoTarget.neutron]: NEUTRON_REST_MASS,
@@ -186,7 +186,7 @@ export function crossSectionElasticScattering(Ev: number, neutrinoType: Neutrino
     cL = PS_COEFFICIENTS_VECTOR[neutrinoType] + PS_COEFFICIENTS_AXIAL[neutrinoType]
     cR = PS_COEFFICIENTS_VECTOR[neutrinoType] - PS_COEFFICIENTS_AXIAL[neutrinoType]
   }
-  const tMass = targetMass > 0 ? targetMass : ES_TAGET_MASSES[target]
+  const tMass = targetMass > 0 ? targetMass : ES_TARGET_MASSES[target]
 
   // The following implements equation 13... it's big so there will be
   // 4 terms to make the equation the following: term1(term2 + term3 - term4)
