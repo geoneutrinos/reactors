@@ -79,8 +79,13 @@ export const SupernovaNusCEvNS = ({ nucleus, setNucleus }) => {
                 <option value={Elements.Ar40.key}>Argon-40</option>
                 <option value={Elements.Ge74.key}>Germanium-74</option>
                 <option value={Elements.I127.key}>Iodine-127</option>
-                <option value={Elements.Xe131.key}>Xenon-131</option>
+                <option value={Elements.Xe128.key}>Xenon-128</option>
+                <option value={Elements.Xe129.key}>Xenon-129</option>
+                <option value={Elements.Xe130.key}>Xenon-130</option>
+                <option value={Elements.Xe131.key}>Xenon-131</option>                
                 <option value={Elements.Xe132.key}>Xenon-132</option>
+                <option value={Elements.Xe134.key}>Xenon-134</option>
+                <option value={Elements.Xe136.key}>Xenon-136</option>
                 <option value={Elements.Cs133.key}>Cesium-133</option>
               </Form.Control>
             </Form.Group>
