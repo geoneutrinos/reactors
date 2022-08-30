@@ -12,6 +12,8 @@ import {
   fluxIOSpectrumNue,
   fluxIOSpectrumAnu,
   fluxIOSpectrumNux,
+  xsectionESpNue,
+  xsectionESpAnu,
   xsectionESeNue,
   xsectionESeAnu,
   xsectionESeNux,
@@ -347,6 +349,30 @@ export const SupernovaOscillatedInvertedFluxPlots = () => {
 };
 export const NeutrinoElectronElasticScatteringCrossSection = () => {
   const data = [
+    {
+      y: xsectionESpNue,
+      x: energyValues,
+      name: `ν<sub>e</sub>`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        width: 2,
+      },
+      fill: "none",
+      marker: { color: "teal" },
+    },
+    {
+      y: xsectionESpAnu,
+      x: energyValues,
+      name: `ν̅<sub>e</sub>`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        width: 2,
+      },
+      fill: "none",
+      marker: { color: "orange" },
+    },
     {
       y: xsectionESeNue,
       x: energyValues,
