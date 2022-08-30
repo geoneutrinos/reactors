@@ -352,7 +352,7 @@ export const NeutrinoElectronElasticScatteringCrossSection = () => {
     {
       y: xsectionESpNue,
       x: energyValues,
-      name: `ν<sub>e</sub>`,
+      name: `ν<sub>e</sub>p`,
       type: "scatter",
       mode: "lines",
       line: {
@@ -364,7 +364,7 @@ export const NeutrinoElectronElasticScatteringCrossSection = () => {
     {
       y: xsectionESpAnu,
       x: energyValues,
-      name: `ν̅<sub>e</sub>`,
+      name: `ν̅<sub>e</sub>p`,
       type: "scatter",
       mode: "lines",
       line: {
@@ -376,7 +376,7 @@ export const NeutrinoElectronElasticScatteringCrossSection = () => {
     {
       y: xsectionESeNue,
       x: energyValues,
-      name: `ν<sub>e</sub>`,
+      name: `ν<sub>e</sub>e`,
       type: "scatter",
       mode: "lines",
       line: {
@@ -388,7 +388,7 @@ export const NeutrinoElectronElasticScatteringCrossSection = () => {
     {
       y: xsectionESeAnu,
       x: energyValues,
-      name: `ν̅<sub>e</sub>`,
+      name: `ν̅<sub>e</sub>e`,
       type: "scatter",
       mode: "lines",
       line: {
@@ -400,7 +400,7 @@ export const NeutrinoElectronElasticScatteringCrossSection = () => {
     {
       y: xsectionESeNux,
       x: energyValues,
-      name: `ν<sub>x</sub>`,
+      name: `ν<sub>x</sub>e`,
       type: "scatter",
       mode: "lines",
       line: {
@@ -412,7 +412,7 @@ export const NeutrinoElectronElasticScatteringCrossSection = () => {
     {
       y: xsectionESeAnx,
       x: energyValues,
-      name: `ν̅<sub>x</sub>`,
+      name: `ν̅<sub>x</sub>e`,
       type: "scatter",
       mode: "lines",
       line: {
@@ -453,7 +453,7 @@ export const NeutrinoElectronElasticScatteringCrossSection = () => {
   return (
     <Card>
       <Card.Header>
-        Neutrino Electron Elastic Scattering Cross Section
+        Neutrino Elastic Scattering Cross Section
       </Card.Header>
       <Card.Body>
         <Plot
