@@ -128,7 +128,7 @@ export const sumSpectrumIBDforNO = sum(eventSpectrumIBDforNO) * deltaEnergy;
 export const sumSpectrumIBDforIO = sum(eventSpectrumIBDforIO) * deltaEnergy;
 
 // make neutrino-proton elastic scattering (pES) cross section
-const xsectionESpNue = energyValues.map(function (x) {
+export const xsectionESpNue = energyValues.map(function (x) {
   return crossSectionElasticScattering(
     x,
     NeutrinoType.electronNeutrino,
@@ -137,7 +137,7 @@ const xsectionESpNue = energyValues.map(function (x) {
     NeutrinoTarget.proton
   );
 });
-const xsectionESpAnu = energyValues.map(function (x) {
+export const xsectionESpAnu = energyValues.map(function (x) {
   return crossSectionElasticScattering(
     x,
     NeutrinoType.electronAntineutrino,
