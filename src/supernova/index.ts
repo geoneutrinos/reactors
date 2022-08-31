@@ -36,7 +36,7 @@ interface CEvNSTarget {
 export const getTargetParamsCEvNS = (element: Element): CEvNSTarget => {
   return {
     molarMass: element.relative_atomic_mass,
-    nuclearTargets: (AVOGADRO_CONSTANT * 1e6) / element.relative_atomic_mass,
+    nuclearTargets: (AVOGADRO_CONSTANT * 1e6 * element.isotopic_composition) / element.relative_atomic_mass,
     protonTargets: element.atomic_number,
     neutronTargets: element.mass_number - element.atomic_number,
     targetMass: element.relative_atomic_mass * ATOMIC_MASS_UNIT,
