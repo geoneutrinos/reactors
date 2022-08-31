@@ -116,63 +116,45 @@ export const sumSpectrumIBDnoOsc = sum(eventSpectrumIBDnoOsc) * deltaEnergy;
 export const sumSpectrumIBDforNO = sum(eventSpectrumIBDforNO) * deltaEnergy;
 export const sumSpectrumIBDforIO = sum(eventSpectrumIBDforIO) * deltaEnergy;
 
-// make neutrino-proton elastic scattering (pES) cross section
-export const xsectionESpNue = energyValues.map(function (x) {
-  return crossSectionElasticScattering(
-    x,
-    NeutrinoType.electronNeutrino,
-    undefined,
-    undefined,
-    NeutrinoTarget.proton
-  );
-});
-export const xsectionESpAnu = energyValues.map(function (x) {
-  return crossSectionElasticScattering(
-    x,
-    NeutrinoType.electronAntineutrino,
-    undefined,
-    undefined,
-    NeutrinoTarget.proton
-  );
-});
-const xsectionESpNux = energyValues.map(function (x) {
-  return crossSectionElasticScattering(
-    x,
-    NeutrinoType.muTauNeutrino,
-    undefined,
-    undefined,
-    NeutrinoTarget.proton
-  );
-});
-const xsectionESpAnx = energyValues.map(function (x) {
-  return crossSectionElasticScattering(
-    x,
-    NeutrinoType.muTauAntineutrino,
-    undefined,
-    undefined,
-    NeutrinoTarget.proton
-  );
-});
+interface SNRecord {
+  crossSection: Float64Array
+  eventSpectrum: Float64Array
+  events: number
+}
 
-// pES event sprecta (/MeV)
-export const eventSpectrumNueESP = fluxSpectrumNue.map(
-  (v, i) => v * xsectionESpNue[i] * neutrinoTargets
-);
-export const eventSpectrumAnuESP = fluxSpectrumAnu.map(
-  (v, i) => v * xsectionESpAnu[i] * neutrinoTargets
-);
-export const eventSpectrumNuxESP = fluxSpectrumNux.map(
-  (v, i) => v * xsectionESpNux[i] * neutrinoTargets
-);
-export const eventSpectrumAnxESP = fluxSpectrumNux.map(
-  (v, i) => v * xsectionESpAnx[i] * neutrinoTargets
-);
+const calcSNRecord = (neutrinoType: NeutrinoType, neutrinoTarget:NeutrinoTarget, tMin: number, fluxSpectrums:SNFluxSpectrumInterface):SNRecord =>{
 
-// pES event totals with Nux x4 for mu and tau neutrinos and antineutrinos
-export const sumSpectrumNueESP = sum(eventSpectrumNueESP) * deltaEnergy;
-export const sumSpectrumAnuESP = sum(eventSpectrumAnuESP) * deltaEnergy;
-export const sumSpectrumNuxESP = sum(eventSpectrumNuxESP) * deltaEnergy * 2;
-export const sumSpectrumAnxESP = sum(eventSpectrumAnxESP) * deltaEnergy * 2;
+  const crossSection = energyValues.map((Ev) => crossSectionElasticScattering(
+    Ev,
+    neutrinoType,
+    tMin,
+    undefined,
+    neutrinoTarget
+  ))
+  const eventSpectrum = fluxSpectrums[neutrinoType].map((v, i) => v * crossSection[i] * neutrinoTargets)
+  let events = sum(eventSpectrum) * deltaEnergy;
+
+  // It's both Mu and Tau
+  if ((neutrinoType === NeutrinoType.muTauAntineutrino) || (neutrinoType === NeutrinoType.muTauNeutrino)){
+    events = events * 2
+  }
+
+  return {
+    crossSection,
+    eventSpectrum,
+    events
+  }
+} 
+
+const ESpNue = calcSNRecord(NeutrinoType.electronNeutrino, NeutrinoTarget.proton, 0, fluxSpectrums)
+const ESpAnu = calcSNRecord(NeutrinoType.electronAntineutrino, NeutrinoTarget.proton, 0, fluxSpectrums)
+const ESpNux = calcSNRecord(NeutrinoType.muTauNeutrino, NeutrinoTarget.proton, 0, fluxSpectrums)
+const ESpAnx = calcSNRecord(NeutrinoType.muTauAntineutrino, NeutrinoTarget.proton, 0, fluxSpectrums)
+
+export const {crossSection: xsectionESpNue, events: sumSpectrumNueESP} = ESpNue
+export const {crossSection: xsectionESpAnu, events: sumSpectrumAnuESP} = ESpAnu
+export const {crossSection: xsectionESpNux, events: sumSpectrumNuxESP} = ESpNux
+export const {crossSection: xsectionESpAnx, events: sumSpectrumAnxESP} = ESpAnx
 
 // make neutrino-electron elastic scattering (eES) cross section
 export const xsectionESeNue = energyValues.map(function (x) {
