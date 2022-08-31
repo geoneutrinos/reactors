@@ -240,9 +240,9 @@ export const SupernovaNusESnTmin = ({ tESnMin, setTESnMin }) => {
             <Form.Control
               value={tESnMin}
               type="range"
-              step={10}
+              step={.01}
               min={0}
-              max={200}
+              max={1}
               onChange={(event) => setTESnMin(event.target.value)}
             />
           </InputGroup>
