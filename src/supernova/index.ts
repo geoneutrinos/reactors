@@ -109,7 +109,7 @@ const fluxIOSpectrumNuxT123 = fluxIOSpectrumNuxT1.map(
 export const fluxIOSpectrumNux = fluxIOSpectrumNuxT123.map((v) => v / 4);
 
 // IBD cross section using SV 2003
-const xsectionIBD = energyValues.map(crossSectionSV2003);
+export const xsectionIBD = energyValues.map(crossSectionSV2003);
 
 // IBD event spectra (/MeV)
 export const eventSpectrumIBDnoOsc = fluxSpectrumAnu.map(
