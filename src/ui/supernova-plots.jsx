@@ -372,7 +372,7 @@ export const NeutrinoElectronElasticScatteringCrossSection = () => {
         width: 2,
       },
       fill: "none",
-      marker: { color: "teal" },
+      marker: { color: "aqua" },
     },
     {
       y: xsectionESpAnu,
@@ -426,11 +426,9 @@ export const NeutrinoElectronElasticScatteringCrossSection = () => {
       name: `ν̅<sub>x</sub>e`,
       type: "scatter",
       mode: "lines",
-      line: {
-        width: 2,
-      },
       fill: "none",
       marker: { color: "purple" },
+      line: { dash: "dot" },
     },
   ];
   var layout = {
