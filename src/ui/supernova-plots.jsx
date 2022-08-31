@@ -12,6 +12,7 @@ import {
   fluxIOSpectrumNue,
   fluxIOSpectrumAnu,
   fluxIOSpectrumNux,
+  xsectionIBD,
   xsectionESpNue,
   xsectionESpAnu,
   xsectionESeNue,
@@ -350,9 +351,21 @@ export const SupernovaOscillatedInvertedFluxPlots = () => {
 export const NeutrinoElectronElasticScatteringCrossSection = () => {
   const data = [
     {
+      y: xsectionIBD,
+      x: energyValues,
+      name: `ν̅<sub>e</sub>p`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        width: 2,
+      },
+      fill: "none",
+      marker: { color: "darkgoldenrod" },
+    },
+    {
       y: xsectionESpNue,
       x: energyValues,
-      name: `ν<sub>e</sub>p`,
+      name: `νp`,
       type: "scatter",
       mode: "lines",
       line: {
@@ -364,7 +377,7 @@ export const NeutrinoElectronElasticScatteringCrossSection = () => {
     {
       y: xsectionESpAnu,
       x: energyValues,
-      name: `ν̅<sub>e</sub>p`,
+      name: `ν̅p`,
       type: "scatter",
       mode: "lines",
       line: {
@@ -423,7 +436,7 @@ export const NeutrinoElectronElasticScatteringCrossSection = () => {
     },
   ];
   var layout = {
-    title: "Neutrino Elastic Scattering Cross Section",
+    title: "Core-Collapse Supernova Neutrino Cross Sections",
     yaxis: {
       title: { text: `Cross Section (cm<sup>2</sup>)` },
       type: "log",
@@ -447,13 +460,13 @@ export const NeutrinoElectronElasticScatteringCrossSection = () => {
   };
   var config = {
     toImageButtonOptions: {
-      filename: "Elastic-Scattering-Cross-Section",
+      filename: "CCSN-Cross-Sections",
     },
   };
   return (
     <Card>
       <Card.Header>
-        Neutrino Elastic Scattering Cross Section
+        Core-Collapse Supernova Neutrino Cross Sections
       </Card.Header>
       <Card.Body>
         <Plot
