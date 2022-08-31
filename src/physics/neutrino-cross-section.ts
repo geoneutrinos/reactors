@@ -1,7 +1,6 @@
 import { ELECTRON_REST_MASS, HBAR_C, FERMI_COUPLING_CONSTANT, WEAK_MIXING_ANGLE, PROTON_REST_MASS, NEUTRON_REST_MASS } from './constants'
 import {IBD_THRESHOLD} from "./derived"
 import { memoize } from 'lodash';
-import { NumberLiteralType } from 'typescript';
 
 export interface CrossSectionFunc {
   (Ev: number): number

@@ -1,6 +1,5 @@
 import {
   ELEMENTARY_CHARGE,
-  ELECTRON_REST_MASS,
   FERMI_COUPLING_CONSTANT,
   HBAR_C,
   ATOMIC_MASS_UNIT,
@@ -16,10 +15,9 @@ import {
   crossSectionSV2003,
 } from "../physics/neutrino-cross-section";
 
-import { IBD_THRESHOLD } from "../physics/derived";
 import { s2t12, c2t12 } from "../physics/neutrino-oscillation";
 
-import { sum, zip } from "lodash";
+import { sum } from "lodash";
 
 import { Element } from "../elements";
 
@@ -47,11 +45,6 @@ const energyBins = 10000;
 const maximumEnergy = 100;
 const deltaEnergy = maximumEnergy / energyBins; // MeV
 
-// ToDo import elastic scattering Tmins set by UI
-const tESeMin = 0;
-const tESpMin = 0;
-const tCEvNSMin = 0;
-
 // make the array of neutrino energies 0 - 100 MeV
 export const energyValues = new Float64Array(energyBins).map(
   (v, i) => i * deltaEnergy + deltaEnergy / 2
@@ -63,50 +56,46 @@ const avgNrgNue = 12;
 const avgNrgAnu = 15;
 const avgNrgNux = 18;
 
-export const fluxSpectrumNue = energyValues.map(function (x) {
-  return neutrinoSpectrumCCSN(x, avgNrgNue);
-});
-export const fluxSpectrumAnu = energyValues.map(function (x) {
-  return neutrinoSpectrumCCSN(x, avgNrgAnu);
-});
-export const fluxSpectrumNux = energyValues.map(function (x) {
-  return neutrinoSpectrumCCSN(x, avgNrgNux);
-});
+type SNFluxSpectrumInterface = Record<NeutrinoType, Float64Array>
+
+const SNFluxSpectrum = (averageNeutrinoEnergyNue: number, averageNeutrinoEnergyAnu: number, averageNeutrinoEnergyNux: number) : SNFluxSpectrumInterface => {
+  const muTauSpec = energyValues.map((x) => neutrinoSpectrumCCSN(x, averageNeutrinoEnergyNux)) 
+  return {
+    [NeutrinoType.electronNeutrino]: energyValues.map((x) => neutrinoSpectrumCCSN(x, averageNeutrinoEnergyNue)),
+    [NeutrinoType.electronAntineutrino]: energyValues.map((x) => neutrinoSpectrumCCSN(x, averageNeutrinoEnergyAnu)),
+    [NeutrinoType.muTauNeutrino]: muTauSpec, 
+    [NeutrinoType.muTauAntineutrino]: muTauSpec,
+  }
+}
+
+const fluxSpectrums = SNFluxSpectrum(avgNrgNue, avgNrgAnu, avgNrgNux)
+
+export const {[NeutrinoType.electronNeutrino] : fluxSpectrumNue} = fluxSpectrums
+export const {[NeutrinoType.electronAntineutrino] : fluxSpectrumAnu} = fluxSpectrums
+export const {[NeutrinoType.muTauNeutrino] : fluxSpectrumNux} = fluxSpectrums
 
 // electron neutrinos
-export const fluxNOSpectrumNue = fluxSpectrumNux.map((v) => v);
+export const fluxNOSpectrumNue = fluxSpectrumNux;
 
-const fluxIOSpectrumNueT1 = fluxSpectrumNue.map((v) => v * s2t12);
-const fluxIOSpectrumNueT2 = fluxSpectrumNux.map((v) => v * c2t12);
-export const fluxIOSpectrumNue = fluxIOSpectrumNueT1.map(
-  (v, i) => v + fluxIOSpectrumNueT2[i]
+export const fluxIOSpectrumNue = fluxSpectrumNue.map(
+  (v, i) => v * s2t12 + fluxSpectrumNux[i] * c2t12
 );
 
 // electron anti-neutrinos
-const fluxNOSpectrumAnuT1 = fluxSpectrumAnu.map((v) => v * c2t12);
-const fluxNOSpectrumAnuT2 = fluxSpectrumNux.map((v) => v * s2t12);
-export const fluxNOSpectrumAnu = fluxNOSpectrumAnuT1.map(
-  (v, i) => v + fluxNOSpectrumAnuT2[i]
+export const fluxNOSpectrumAnu = fluxSpectrumAnu.map(
+  (v, i) => v * c2t12 + fluxSpectrumNux[i] * s2t12
 );
 
-export const fluxIOSpectrumAnu = fluxSpectrumNux.map((v) => v);
+export const fluxIOSpectrumAnu = fluxSpectrumNux;
 
 // mu or tau neutrinos and antineutrinos
-const fluxNOSpectrumNuxT1 = fluxSpectrumNux.map((v) => v * (2 + c2t12));
-const fluxNOSpectrumNuxT2 = fluxSpectrumNue.map((v) => v);
-const fluxNOSpectrumNuxT3 = fluxSpectrumAnu.map((v) => v * s2t12);
-const fluxNOSpectrumNuxT123 = fluxNOSpectrumNuxT1.map(
-  (v, i) => v + fluxNOSpectrumNuxT2[i] + fluxNOSpectrumNuxT3[i]
+export const fluxNOSpectrumNux = fluxSpectrumNux.map(
+  (v, i) => (v * (2 + c2t12) + fluxSpectrumNue[i] + fluxSpectrumAnu[i] * s2t12)/4
 );
-export const fluxNOSpectrumNux = fluxNOSpectrumNuxT123.map((v) => v / 4);
 
-const fluxIOSpectrumNuxT1 = fluxSpectrumNux.map((v) => v * (2 + s2t12));
-const fluxIOSpectrumNuxT2 = fluxSpectrumAnu.map((v) => v);
-const fluxIOSpectrumNuxT3 = fluxSpectrumNue.map((v) => v * c2t12);
-const fluxIOSpectrumNuxT123 = fluxIOSpectrumNuxT1.map(
-  (v, i) => v + fluxIOSpectrumNuxT2[i] + fluxIOSpectrumNuxT3[i]
+export const fluxIOSpectrumNux = fluxSpectrumNux.map(
+  (v, i) => (v * (2 + s2t12) + fluxSpectrumAnu[i] + fluxSpectrumNue[i]* c2t12)/4
 );
-export const fluxIOSpectrumNux = fluxIOSpectrumNuxT123.map((v) => v / 4);
 
 // IBD cross section using SV 2003
 export const xsectionIBD = energyValues.map(crossSectionSV2003);
@@ -267,6 +256,9 @@ export const eventSpectrumAnxESEforIO = fluxIOSpectrumNux.map(
 );
 export const sumSpectrumAnxESEforIO =
   sum(eventSpectrumAnxESEforIO) * deltaEnergy * 2;
+
+
+//-----
 
 interface CEvNSEventsInterface {
   [NeutrinoType.electronNeutrino]: number;

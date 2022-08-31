@@ -305,6 +305,10 @@ function App(props) {
                     setNucleus={setNucleus}
                     tESnMin={tESnMin}
                   />
+                  <SupernovaNusESnTmin
+                    tESnMin={tESnMin}
+                    setTESnMin={setTESnMin}
+                  />
                   <SupernovaNusEvents />
                   <SupernovaNusESeTmin
                     tESeMin={tESeMin}
@@ -313,10 +317,6 @@ function App(props) {
                   <SupernovaNusESpTmin
                     tESpMin={tESpMin}
                     setTESpMin={setTESpMin}
-                  />
-                  <SupernovaNusESnTmin
-                    tESnMin={tESnMin}
-                    setTESnMin={setTESnMin}
                   />
                   <SupernovaNusPane />
                   <SupernovaPlotsIBD />
