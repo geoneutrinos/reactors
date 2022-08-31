@@ -303,6 +303,7 @@ function App(props) {
                   <SupernovaNusCEvNS
                     nucleus={nucleus}
                     setNucleus={setNucleus}
+                    tESnMin={tESnMin}
                   />
                   <SupernovaNusEvents />
                   <SupernovaNusESeTmin

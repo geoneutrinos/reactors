@@ -274,8 +274,8 @@ interface CEvNSEventsInterface {
   [NeutrinoType.muTauNeutrino]: number; // both... Anti/Anti-anti
 }
 
-export const CEvNSEvents = (element: Element): CEvNSEventsInterface => {
-  let targetParams = getTargetParamsCEvNS(element);
+export const CEvNSEvents = (element: Element, TMin:number): CEvNSEventsInterface => {
+  let targetParams = {tMin: TMin, ...getTargetParamsCEvNS(element)};
   let xsectionCEvNS = energyValues.map((ev) => xSectionCEvNS(ev, targetParams));
   let eventSpectrumNueCEvNS = fluxSpectrumNue.map(
     (v, i) => v * xsectionCEvNS[i] * targetParams.nuclearTargets
@@ -310,10 +310,11 @@ function neutrinoSpectrumCCSN(Ev: number, Ev_avg: number) {
 function xSectionCEvNS(
   Ev: number,
   {
+    tMin,
     targetMass,
     protonTargets,
     neutronTargets,
-  }: { targetMass: number; protonTargets: number; neutronTargets: number }
+  }: { tMin:number, targetMass: number; protonTargets: number; neutronTargets: number }
 ) {
   // assuming electro-weak parameters =1 and ignoring radiative corrections
   // assuming no axial-vector contributions- equal numbers of up and down protons and neutrons
@@ -322,12 +323,12 @@ function xSectionCEvNS(
   const cRight = cLeft
   
   const tCEvNSMax = Ev / (1 + targetMass / (2 * Ev));
-  if (tCEvNSMax < tCEvNSMin) {
+  if (tCEvNSMax < tMin) {
     return 0;
   }
 
   const y_max = tCEvNSMax / Ev;
-  const y_min = tCEvNSMin / Ev;
+  const y_min = tMin / Ev;
 
   const term1 = (((FERMI_COUPLING_CONSTANT / 1e6) * HBAR_C) ** 2 * targetMass * Ev) / (2 * Math.PI);
   const term2 = cLeft ** 2 * y_max;

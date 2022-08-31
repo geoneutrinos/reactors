@@ -29,7 +29,7 @@ import { Elements as ElementsUI } from "./elements";
 import Elements from "../elements";
 import { NeutrinoType } from "../physics/neutrino-cross-section";
 
-export const SupernovaNusCEvNS = ({ nucleus, setNucleus }) => {
+export const SupernovaNusCEvNS = ({ nucleus, setNucleus, tESnMin }) => {
   const UIsetNucleus = (event) => {
     const value = event.target.value;
     let nucleus = value;
@@ -40,8 +40,7 @@ export const SupernovaNusCEvNS = ({ nucleus, setNucleus }) => {
     }
   };
 
-  const events = CEvNSEvents(Elements[nucleus]);
-  console.log(events);
+  const events = CEvNSEvents(Elements[nucleus], tESnMin/1000); // KeV to MeV?
 
   return (
     <Card>
