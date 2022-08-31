@@ -380,11 +380,9 @@ export const NeutrinoElectronElasticScatteringCrossSection = () => {
       name: `ν̅p`,
       type: "scatter",
       mode: "lines",
-      line: {
-        width: 2,
-      },
       fill: "none",
-      marker: { color: "orange" },
+      marker: { color: "black" },
+      line: { dash: "dashdot" },
     },
     {
       y: xsectionESeNue,
