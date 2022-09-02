@@ -268,6 +268,18 @@ export const CEvNSEvents = (element: Element, TMin:number): CEvNSEventsInterface
   };
 };
 
+export const CEvNSxSectionAr40 = energyValues.map(function (x) {
+  return xSectionCEvNS(
+    x,
+    {
+      0,
+      39.962,
+      18,
+      22,
+    }
+  );
+});
+
 function neutrinoSpectrumCCSN(Ev: number, Ev_avg: number) {
   const enu_tot = (5e52 * 1e-13) / ELEMENTARY_CHARGE; // MeV
   const d_ccsn = 10 * 3.086e21; // cm
