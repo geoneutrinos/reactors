@@ -55,17 +55,7 @@ import {
   Boron8SpectraPlot,
   CrossSectionPlotsNormal,
   //SN nus tab
-  SupernovaNusCEvNS,
-  SupernovaNusEvents,
-  SupernovaNusESeTmin,
-  SupernovaNusESpTmin,
-  SupernovaNusESnTmin,
-  SupernovaNusPane,
-  SupernovaPlotsIBD,
-  SupernovaFluxPlots,
-  SupernovaOscillatedFluxPlots,
-  SupernovaOscillatedInvertedFluxPlots,
-  NeutrinoElectronElasticScatteringCrossSection,
+  SupernovaNus,
   // Custom Core UI
   AddCustomCoreModal,
   ManageCustomCoreModal,
@@ -90,8 +80,6 @@ import { reactorAntineutrinoModelReducer } from "./physics/reactor-antineutrinos
 import { defaultBoron8 } from "./solar";
 
 import { PhysicsContext } from "./state";
-
-import Elements from "./elements";
 
 
 import "leaflet/dist/leaflet.css";
@@ -147,11 +135,6 @@ function App(props) {
     KURatio: 1e4, // no units
   });
 
-  // supernovanu state
-  const [tESeMin, setTESeMin] = useState(0.0);
-  const [tESpMin, setTESpMin] = useState(0.0);
-  const [tESnMin, setTESnMin] = useState(0.0);
-  const [nucleus, setNucleus] = useState(Elements.Xe132.key);
 
   // UI State
   const [addCustomModal, setAddCustomModal] = useState(false);
@@ -299,32 +282,7 @@ function App(props) {
                 </Visible>
               </Tab>
               <Tab eventKey="ccsnnu" title="SnNu">
-                <Visible>
-                  <SupernovaNusCEvNS
-                    nucleus={nucleus}
-                    setNucleus={setNucleus}
-                    tESnMin={tESnMin}
-                  />
-                  <SupernovaNusESnTmin
-                    tESnMin={tESnMin}
-                    setTESnMin={setTESnMin}
-                  />
-                  <SupernovaNusEvents />
-                  <SupernovaNusESeTmin
-                    tESeMin={tESeMin}
-                    setTESeMin={setTESeMin}
-                  />
-                  <SupernovaNusESpTmin
-                    tESpMin={tESpMin}
-                    setTESpMin={setTESpMin}
-                  />
-                  <SupernovaNusPane />
-                  <SupernovaPlotsIBD />
-                  <SupernovaFluxPlots />
-                  <SupernovaOscillatedFluxPlots />
-                  <SupernovaOscillatedInvertedFluxPlots />
-                  <NeutrinoElectronElasticScatteringCrossSection />
-                </Visible>
+                  <SupernovaNus />
               </Tab>
               <Tab eventKey="solarnu" title="SolarNu">
                 <Visible>

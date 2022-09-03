@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { Card, Form, InputGroup, Table } from "react-bootstrap";
 
 import { Num } from ".";
@@ -22,14 +22,23 @@ import {
   sumSpectrumNuxESEforIO,
   sumSpectrumAnxESEforIO,
   CEvNSEvents,
+  SNFluxSpectrum,
 } from "../supernova";
+
+import {
+  SupernovaPlotsIBD,
+  SupernovaFluxPlots,
+  SupernovaOscillatedFluxPlots,
+  SupernovaOscillatedInvertedFluxPlots,
+  NeutrinoElectronElasticScatteringCrossSection,
+} from "./supernova-plots"
 
 import { Elements as ElementsUI } from "./elements";
 
 import Elements from "../elements";
 import { NeutrinoType } from "../physics/neutrino-cross-section";
 
-export const SupernovaNusCEvNS = ({ nucleus, setNucleus, tESnMin }) => {
+const SupernovaNusCEvNS = ({ nucleus, setNucleus, tESnMin }) => {
 
   const events = CEvNSEvents(Elements[nucleus], tESnMin/1000); // KeV to MeV?
 
@@ -90,7 +99,7 @@ export const SupernovaNusCEvNS = ({ nucleus, setNucleus, tESnMin }) => {
   );
 };
 
-export const SupernovaNusEvents = () => {
+const SupernovaNusEvents = () => {
   return (
     <Card>
       <Card.Header>
@@ -168,7 +177,7 @@ export const SupernovaNusEvents = () => {
   );
 };
 
-export const SupernovaNusESeTmin = ({ tESeMin, setTESeMin }) => {
+const SupernovaNusESeTmin = ({ tESeMin, setTESeMin }) => {
   return (
     <Card>
       <Card.Header>eES: Electron Minimum Kinetic Energy</Card.Header>
@@ -193,7 +202,7 @@ export const SupernovaNusESeTmin = ({ tESeMin, setTESeMin }) => {
   );
 };
 
-export const SupernovaNusESpTmin = ({ tESpMin, setTESpMin }) => {
+const SupernovaNusESpTmin = ({ tESpMin, setTESpMin }) => {
   return (
     <Card>
       <Card.Header>pES: Proton Minimum Kinetic Energy</Card.Header>
@@ -218,7 +227,7 @@ export const SupernovaNusESpTmin = ({ tESpMin, setTESpMin }) => {
   );
 };
 
-export const SupernovaNusESnTmin = ({ tESnMin, setTESnMin }) => {
+const SupernovaNusESnTmin = ({ tESnMin, setTESnMin }) => {
   return (
     <Card>
       <Card.Header>CEvNS: Nucleus Minimum Kinetic Energy</Card.Header>
@@ -243,7 +252,7 @@ export const SupernovaNusESnTmin = ({ tESnMin, setTESnMin }) => {
   );
 };
 
-export const SupernovaNusPane = () => {
+const SupernovaNusPane = () => {
   return (
     <Card>
       <Card.Header>Core Collapse SN Neutrinos</Card.Header>
@@ -312,3 +321,47 @@ export const SupernovaNusPane = () => {
     </Card>
   );
 };
+
+export const SupernovaNus = React.memo(() => {
+  const [tESeMin, setTESeMin] = useState(0.0);
+  const [tESpMin, setTESpMin] = useState(0.0);
+  const [tESnMin, setTESnMin] = useState(0.0);
+  const [nucleus, setNucleus] = useState(Elements.Xe132.key);
+
+  // TODO move to state
+  const avgNrgNue = 12;
+  const avgNrgAnu = 15;
+  const avgNrgNux = 18;
+
+  const fluxSpectrums = SNFluxSpectrum(avgNrgNue, avgNrgAnu, avgNrgNux) 
+  console.log(fluxSpectrums)
+
+  return (
+    <div>
+      <SupernovaNusCEvNS
+        nucleus={nucleus}
+        setNucleus={setNucleus}
+        tESnMin={tESnMin}
+      />
+      <SupernovaNusESnTmin
+        tESnMin={tESnMin}
+        setTESnMin={setTESnMin}
+      />
+      <SupernovaNusEvents />
+      <SupernovaNusESeTmin
+        tESeMin={tESeMin}
+        setTESeMin={setTESeMin}
+      />
+      <SupernovaNusESpTmin
+        tESpMin={tESpMin}
+        setTESpMin={setTESpMin}
+      />
+      <SupernovaNusPane />
+      <SupernovaPlotsIBD />
+      <SupernovaFluxPlots />
+      <SupernovaOscillatedFluxPlots />
+      <SupernovaOscillatedInvertedFluxPlots />
+      <NeutrinoElectronElasticScatteringCrossSection />
+    </div>
+  )
+})

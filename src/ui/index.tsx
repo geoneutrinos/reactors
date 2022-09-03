@@ -21,14 +21,7 @@ export { ParticleMasses } from "./physics-masses";
 export { GeoFluxUncertainties } from "./geo-uncertainties";
 export { IsotopeData } from "./isotope-data";
 export { GeoRateFluxYields } from "./geo-ratefluxyields"
-export { 
-  SupernovaNusCEvNS,
-  SupernovaNusEvents,
-  SupernovaNusESeTmin,
-  SupernovaNusESpTmin,
-  SupernovaNusESnTmin,
-  SupernovaNusPane, 
-} from "./supernova-nus";
+export { SupernovaNus } from "./supernova-nus";
 export {
   CrossSectionPlots,
   CrossSectionPlotsNormal,
@@ -48,13 +41,6 @@ export {
   CoreDirectionSignalPlots,
 } from "./reactors-plots";
 export { Boron8SpectraPlot, AnalemmaPlot, Boron8KEPlot } from "./solar-plots";
-export {
-  SupernovaFluxPlots,
-  SupernovaPlotsIBD,
-  SupernovaOscillatedFluxPlots,
-  SupernovaOscillatedInvertedFluxPlots,
-  NeutrinoElectronElasticScatteringCrossSection,
-} from "./supernova-plots";
 export { FissionFractionPane } from "./reactors-fission";
 export { RASwitcher } from "./reactors-ra-switcher";
 
