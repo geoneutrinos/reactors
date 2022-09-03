@@ -23,6 +23,7 @@ import {
   sumSpectrumAnxESEforIO,
   CEvNSEvents,
   SNFluxSpectrum,
+  oscillatedFluxSpectrum,
 } from "../supernova";
 
 import {
@@ -334,7 +335,7 @@ export const SupernovaNus = React.memo(() => {
   const avgNrgNux = 18;
 
   const fluxSpectrums = SNFluxSpectrum(avgNrgNue, avgNrgAnu, avgNrgNux) 
-  console.log(fluxSpectrums)
+  const oscillatedFluxSpectrums = oscillatedFluxSpectrum({fluxSpectrums})
 
   return (
     <div>
@@ -358,9 +359,9 @@ export const SupernovaNus = React.memo(() => {
       />
       <SupernovaNusPane />
       <SupernovaPlotsIBD />
-      <SupernovaFluxPlots />
-      <SupernovaOscillatedFluxPlots />
-      <SupernovaOscillatedInvertedFluxPlots />
+      <SupernovaFluxPlots fluxSpectrums={fluxSpectrums}/>
+      <SupernovaOscillatedFluxPlots oscillatedFluxSpectrums={oscillatedFluxSpectrums}/>
+      <SupernovaOscillatedInvertedFluxPlots oscillatedFluxSpectrums={oscillatedFluxSpectrums}/>
       <NeutrinoElectronElasticScatteringCrossSection />
     </div>
   )

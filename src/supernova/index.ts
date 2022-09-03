@@ -78,12 +78,12 @@ export const SNFluxSpectrum = (averageNeutrinoEnergyNue: number, averageNeutrino
 }
 
 // TODO make this called when needed
-export const fluxSpectrums = SNFluxSpectrum(avgNrgNue, avgNrgAnu, avgNrgNux)
+const fluxSpectrums = SNFluxSpectrum(avgNrgNue, avgNrgAnu, avgNrgNux)
 
 type OscillatedFluxSpectrumRecord = Record<MassOrdering, Float64Array>
 type OscilatedFluxSpectrums = Record<NeutrinoType, OscillatedFluxSpectrumRecord>
 
-const oscillatedFluxSpectrum = ({fluxSpectrums}:{fluxSpectrums: SNFluxSpectrumInterface}): OscilatedFluxSpectrums=> {
+export const oscillatedFluxSpectrum = ({fluxSpectrums}:{fluxSpectrums: SNFluxSpectrumInterface}): OscilatedFluxSpectrums=> {
   const electronNeutrinoNeutrinoFluxSpectrum = fluxSpectrums[NeutrinoType.electronNeutrino]
   const electronAntineutrinoNeutrinoFluxSpectrum = fluxSpectrums[NeutrinoType.electronAntineutrino]
   const muTauNeutrinoFluxSpectrum = fluxSpectrums[NeutrinoType.muTauNeutrino]
@@ -107,7 +107,8 @@ const oscillatedFluxSpectrum = ({fluxSpectrums}:{fluxSpectrums: SNFluxSpectrumIn
   }
 }
 
-export const oscillatedFluxSpectrums = oscillatedFluxSpectrum({fluxSpectrums})
+// TODO Remove const
+const oscillatedFluxSpectrums = oscillatedFluxSpectrum({fluxSpectrums})
 
 
 // IBD cross section using SV 2003

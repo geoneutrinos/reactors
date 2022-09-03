@@ -6,8 +6,6 @@ import { MassOrdering } from "../physics/neutrino-oscillation";
 
 import {
   energyValues,
-  fluxSpectrums,
-  oscillatedFluxSpectrums,
   xsectionESpNue,
   xsectionESpAnu,
   xsectionESeNue,
@@ -100,7 +98,7 @@ export const SupernovaPlotsIBD = () => {
     </Card>
   );
 };
-export const SupernovaFluxPlots = () => {
+export const SupernovaFluxPlots = ({fluxSpectrums}) => {
   const data = [
     {
       y: fluxSpectrums[NeutrinoType.electronNeutrino],
@@ -183,7 +181,7 @@ export const SupernovaFluxPlots = () => {
     </Card>
   );
 };
-export const SupernovaOscillatedFluxPlots = () => {
+export const SupernovaOscillatedFluxPlots = ({oscillatedFluxSpectrums}) => {
   const data = [
     {
       y: oscillatedFluxSpectrums[NeutrinoType.electronNeutrino][MassOrdering.Normal],
@@ -266,7 +264,7 @@ export const SupernovaOscillatedFluxPlots = () => {
     </Card>
   );
 };
-export const SupernovaOscillatedInvertedFluxPlots = () => {
+export const SupernovaOscillatedInvertedFluxPlots = ({oscillatedFluxSpectrums}) => {
   const data = [
     {
       y: oscillatedFluxSpectrums[NeutrinoType.electronNeutrino][MassOrdering.Inverted],
