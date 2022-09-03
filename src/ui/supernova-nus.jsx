@@ -30,15 +30,6 @@ import Elements from "../elements";
 import { NeutrinoType } from "../physics/neutrino-cross-section";
 
 export const SupernovaNusCEvNS = ({ nucleus, setNucleus, tESnMin }) => {
-  const UIsetNucleus = (event) => {
-    const value = event.target.value;
-    let nucleus = value;
-    if (isNaN(nucleus)) {
-      setNucleus(value);
-    } else {
-      setNucleus(nucleus);
-    }
-  };
 
   const events = CEvNSEvents(Elements[nucleus], tESnMin/1000); // KeV to MeV?
 
@@ -74,7 +65,7 @@ export const SupernovaNusCEvNS = ({ nucleus, setNucleus, tESnMin }) => {
           <Form noValidate>
             <Form.Group controlId="set_nucleus">
               <Form.Label> Nucleus </Form.Label>
-              <Form.Control as="select" onChange={UIsetNucleus} value={nucleus}>
+              <Form.Control as="select" onChange={(event) => setNucleus(event.target.value)} value={nucleus}>
                 <option value={Elements.Ar40.key}>Argon-40</option>
                 <option value={Elements.Ge70.key}>Germanium-70</option>
                 <option value={Elements.Ge72.key}>Germanium-72</option>
