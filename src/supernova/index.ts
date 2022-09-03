@@ -15,7 +15,9 @@ import {
   crossSectionSV2003,
 } from "../physics/neutrino-cross-section";
 
-import { s2t12, c2t12 } from "../physics/neutrino-oscillation";
+// TODO: the osc params are runtime modifiable, need to eventually get them
+// from the Physics Context
+import { s2t12, c2t12, MassOrdering } from "../physics/neutrino-oscillation";
 
 import { sum } from "lodash";
 
@@ -70,32 +72,55 @@ const SNFluxSpectrum = (averageNeutrinoEnergyNue: number, averageNeutrinoEnergyA
 
 const fluxSpectrums = SNFluxSpectrum(avgNrgNue, avgNrgAnu, avgNrgNux)
 
+// TODO: Remove these exports
 export const {[NeutrinoType.electronNeutrino] : fluxSpectrumNue} = fluxSpectrums
 export const {[NeutrinoType.electronAntineutrino] : fluxSpectrumAnu} = fluxSpectrums
 export const {[NeutrinoType.muTauNeutrino] : fluxSpectrumNux} = fluxSpectrums
 
-// electron neutrinos
-export const fluxNOSpectrumNue = fluxSpectrumNux;
+type OscillatedFluxSpectrumRecord = Record<MassOrdering, Float64Array>
+type OscilatedFluxSpectrums = Record<NeutrinoType, OscillatedFluxSpectrumRecord>
 
-export const fluxIOSpectrumNue = fluxSpectrumNue.map(
-  (v, i) => v * s2t12 + fluxSpectrumNux[i] * c2t12
-);
+const oscillatedFluxSpectrum = ({fluxSpectrums}:{fluxSpectrums: SNFluxSpectrumInterface}): OscilatedFluxSpectrums=> {
+  const electronNeutrinoNeutrinoFluxSpectrum = fluxSpectrums[NeutrinoType.electronNeutrino]
+  const electronAntineutrinoNeutrinoFluxSpectrum = fluxSpectrums[NeutrinoType.electronAntineutrino]
+  const muTauNeutrinoFluxSpectrum = fluxSpectrums[NeutrinoType.muTauNeutrino]
+
+  const muTauNeutrinoOscilatedFluxSpectrum = {
+    [MassOrdering.Normal]: muTauNeutrinoFluxSpectrum.map((v,i) => (v * (2 + c2t12) + electronNeutrinoNeutrinoFluxSpectrum[i] + electronAntineutrinoNeutrinoFluxSpectrum[i] * s2t12)/4),
+    [MassOrdering.Inverted]: muTauNeutrinoFluxSpectrum.map((v,i) => (v * (2 + s2t12) + electronAntineutrinoNeutrinoFluxSpectrum[i] + electronNeutrinoNeutrinoFluxSpectrum[i]* c2t12)/4)
+  }
+
+  return {
+    [NeutrinoType.electronNeutrino]: {
+      [MassOrdering.Normal]: muTauNeutrinoFluxSpectrum,
+      [MassOrdering.Inverted]: electronNeutrinoNeutrinoFluxSpectrum.map((v,i) => v * s2t12 + muTauNeutrinoFluxSpectrum[i] * c2t12)
+    },
+    [NeutrinoType.electronAntineutrino]: {
+      [MassOrdering.Normal]: electronAntineutrinoNeutrinoFluxSpectrum.map((v,i) => v * c2t12 + muTauNeutrinoFluxSpectrum[i] * s2t12),
+      [MassOrdering.Inverted]: muTauNeutrinoFluxSpectrum
+    },
+    [NeutrinoType.muTauNeutrino]: muTauNeutrinoOscilatedFluxSpectrum,
+    [NeutrinoType.muTauAntineutrino]: muTauNeutrinoOscilatedFluxSpectrum,
+  }
+}
+
+const oscillatedFluxSpectrums = oscillatedFluxSpectrum({fluxSpectrums})
+
+// TODO remove these exports
+
+// electron neutrinos
+export const fluxNOSpectrumNue = oscillatedFluxSpectrums[NeutrinoType.electronNeutrino][MassOrdering.Normal];
+export const fluxIOSpectrumNue = oscillatedFluxSpectrums[NeutrinoType.electronNeutrino][MassOrdering.Inverted]
 
 // electron anti-neutrinos
-export const fluxNOSpectrumAnu = fluxSpectrumAnu.map(
-  (v, i) => v * c2t12 + fluxSpectrumNux[i] * s2t12
-);
-
-export const fluxIOSpectrumAnu = fluxSpectrumNux;
+export const fluxNOSpectrumAnu = oscillatedFluxSpectrums[NeutrinoType.electronAntineutrino][MassOrdering.Normal]
+export const fluxIOSpectrumAnu = oscillatedFluxSpectrums[NeutrinoType.electronAntineutrino][MassOrdering.Inverted]
 
 // mu or tau neutrinos and antineutrinos
-export const fluxNOSpectrumNux = fluxSpectrumNux.map(
-  (v, i) => (v * (2 + c2t12) + fluxSpectrumNue[i] + fluxSpectrumAnu[i] * s2t12)/4
-);
+export const fluxNOSpectrumNux = oscillatedFluxSpectrums[NeutrinoType.muTauNeutrino][MassOrdering.Normal]
+export const fluxIOSpectrumNux = oscillatedFluxSpectrums[NeutrinoType.muTauNeutrino][MassOrdering.Inverted]
 
-export const fluxIOSpectrumNux = fluxSpectrumNux.map(
-  (v, i) => (v * (2 + s2t12) + fluxSpectrumAnu[i] + fluxSpectrumNue[i]* c2t12)/4
-);
+
 
 // IBD cross section using SV 2003
 export const xsectionIBD = energyValues.map(crossSectionSV2003);
@@ -293,6 +318,8 @@ function neutrinoSpectrumCCSN(Ev: number, Ev_avg: number) {
   return (prefix * enu_tot * energy_factor) / d_ccsn / d_ccsn;
 }
 
+
+//TODO Integrate with the main ES function
 function xSectionCEvNS(
   Ev: number,
   {
