@@ -272,10 +272,10 @@ export const CEvNSxSectionAr40 = energyValues.map(function (x) {
   return xSectionCEvNS(
     x,
     {
-      0,
-      39.962,
-      18,
-      22,
+      tMin: 0,
+      targetMass: 39.962,
+      protonTargets: 18,
+      neutronTargets: 22,
     }
   );
 });
