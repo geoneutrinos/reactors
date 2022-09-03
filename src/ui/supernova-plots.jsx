@@ -1,18 +1,13 @@
 import { Card } from "react-bootstrap";
 import Plot from "react-plotly.js";
 
+import {crossSectionSV2003, NeutrinoType} from "../physics/neutrino-cross-section"
+import { MassOrdering } from "../physics/neutrino-oscillation";
+
 import {
   energyValues,
-  fluxSpectrumNue,
-  fluxSpectrumAnu,
-  fluxSpectrumNux,
-  fluxNOSpectrumNue,
-  fluxNOSpectrumAnu,
-  fluxNOSpectrumNux,
-  fluxIOSpectrumNue,
-  fluxIOSpectrumAnu,
-  fluxIOSpectrumNux,
-  xsectionIBD,
+  fluxSpectrums,
+  oscillatedFluxSpectrums,
   xsectionESpNue,
   xsectionESpAnu,
   xsectionESeNue,
@@ -108,7 +103,7 @@ export const SupernovaPlotsIBD = () => {
 export const SupernovaFluxPlots = () => {
   const data = [
     {
-      y: fluxSpectrumNue,
+      y: fluxSpectrums[NeutrinoType.electronNeutrino],
       x: energyValues,
       name: `ν<sub>e</sub>`,
       type: "scatter",
@@ -120,7 +115,7 @@ export const SupernovaFluxPlots = () => {
       marker: { color: "blue" },
     },
     {
-      y: fluxSpectrumAnu,
+      y: fluxSpectrums[NeutrinoType.electronAntineutrino],
       x: energyValues,
       name: `ν̅<sub>e</sub>`,
       type: "scatter",
@@ -132,7 +127,7 @@ export const SupernovaFluxPlots = () => {
       marker: { color: "red" },
     },
     {
-      y: fluxSpectrumNux,
+      y: fluxSpectrums[NeutrinoType.muTauNeutrino],
       x: energyValues,
       name: `ν<sub>x</sub>`,
       type: "scatter",
@@ -191,7 +186,7 @@ export const SupernovaFluxPlots = () => {
 export const SupernovaOscillatedFluxPlots = () => {
   const data = [
     {
-      y: fluxNOSpectrumNue,
+      y: oscillatedFluxSpectrums[NeutrinoType.electronNeutrino][MassOrdering.Normal],
       x: energyValues,
       name: `ν<sub>e</sub> NO`,
       type: "scatter",
@@ -203,7 +198,7 @@ export const SupernovaOscillatedFluxPlots = () => {
       marker: { color: "blue" },
     },
     {
-      y: fluxNOSpectrumAnu,
+      y: oscillatedFluxSpectrums[NeutrinoType.electronAntineutrino][MassOrdering.Normal],
       x: energyValues,
       name: `ν̅<sub>e</sub> NO`,
       type: "scatter",
@@ -215,7 +210,7 @@ export const SupernovaOscillatedFluxPlots = () => {
       marker: { color: "red" },
     },
     {
-      y: fluxNOSpectrumNux,
+      y: oscillatedFluxSpectrums[NeutrinoType.muTauNeutrino][MassOrdering.Normal],
       x: energyValues,
       name: `ν<sub>x</sub> NO`,
       type: "scatter",
@@ -274,7 +269,7 @@ export const SupernovaOscillatedFluxPlots = () => {
 export const SupernovaOscillatedInvertedFluxPlots = () => {
   const data = [
     {
-      y: fluxIOSpectrumNue,
+      y: oscillatedFluxSpectrums[NeutrinoType.electronNeutrino][MassOrdering.Inverted],
       x: energyValues,
       name: `ν<sub>e</sub> IO`,
       type: "scatter",
@@ -284,7 +279,7 @@ export const SupernovaOscillatedInvertedFluxPlots = () => {
       line: { dash: "dashdot" },
     },
     {
-      y: fluxIOSpectrumAnu,
+      y: oscillatedFluxSpectrums[NeutrinoType.electronAntineutrino][MassOrdering.Inverted],
       x: energyValues,
       name: `ν̅<sub>e</sub> IO`,
       type: "scatter",
@@ -294,7 +289,7 @@ export const SupernovaOscillatedInvertedFluxPlots = () => {
       line: { dash: "dashdot" },
     },
     {
-      y: fluxIOSpectrumNux,
+      y: oscillatedFluxSpectrums[NeutrinoType.muTauNeutrino][MassOrdering.Inverted],
       x: energyValues,
       name: `ν<sub>x</sub> IO`,
       type: "scatter",
@@ -349,6 +344,8 @@ export const SupernovaOscillatedInvertedFluxPlots = () => {
   );
 };
 export const NeutrinoElectronElasticScatteringCrossSection = () => {
+  const xsectionIBD = energyValues.map(crossSectionSV2003)
+
   const data = [
     {
       y: xsectionIBD,

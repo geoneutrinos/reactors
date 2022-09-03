@@ -23,7 +23,7 @@ import { sum } from "lodash";
 
 import { Element } from "../elements";
 
-const neutrinoTargets = 1e32; // for IBD, eES, pES
+export const neutrinoTargets = 1e32; // for IBD, eES, pES
 
 interface CEvNSTarget {
   molarMass: number;
@@ -70,7 +70,7 @@ const SNFluxSpectrum = (averageNeutrinoEnergyNue: number, averageNeutrinoEnergyA
   }
 }
 
-const fluxSpectrums = SNFluxSpectrum(avgNrgNue, avgNrgAnu, avgNrgNux)
+export const fluxSpectrums = SNFluxSpectrum(avgNrgNue, avgNrgAnu, avgNrgNux)
 
 // TODO: Remove these exports
 export const {[NeutrinoType.electronNeutrino] : fluxSpectrumNue} = fluxSpectrums
@@ -104,22 +104,7 @@ const oscillatedFluxSpectrum = ({fluxSpectrums}:{fluxSpectrums: SNFluxSpectrumIn
   }
 }
 
-const oscillatedFluxSpectrums = oscillatedFluxSpectrum({fluxSpectrums})
-
-// TODO remove these exports
-
-// electron neutrinos
-export const fluxNOSpectrumNue = oscillatedFluxSpectrums[NeutrinoType.electronNeutrino][MassOrdering.Normal];
-export const fluxIOSpectrumNue = oscillatedFluxSpectrums[NeutrinoType.electronNeutrino][MassOrdering.Inverted]
-
-// electron anti-neutrinos
-export const fluxNOSpectrumAnu = oscillatedFluxSpectrums[NeutrinoType.electronAntineutrino][MassOrdering.Normal]
-export const fluxIOSpectrumAnu = oscillatedFluxSpectrums[NeutrinoType.electronAntineutrino][MassOrdering.Inverted]
-
-// mu or tau neutrinos and antineutrinos
-export const fluxNOSpectrumNux = oscillatedFluxSpectrums[NeutrinoType.muTauNeutrino][MassOrdering.Normal]
-export const fluxIOSpectrumNux = oscillatedFluxSpectrums[NeutrinoType.muTauNeutrino][MassOrdering.Inverted]
-
+export const oscillatedFluxSpectrums = oscillatedFluxSpectrum({fluxSpectrums})
 
 
 // IBD cross section using SV 2003
@@ -129,10 +114,10 @@ export const xsectionIBD = energyValues.map(crossSectionSV2003);
 export const eventSpectrumIBDnoOsc = fluxSpectrumAnu.map(
   (v, i) => v * xsectionIBD[i] * neutrinoTargets
 );
-export const eventSpectrumIBDforNO = fluxNOSpectrumAnu.map(
+export const eventSpectrumIBDforNO = oscillatedFluxSpectrums[NeutrinoType.electronAntineutrino][MassOrdering.Normal].map(
   (v, i) => v * xsectionIBD[i] * neutrinoTargets
 );
-export const eventSpectrumIBDforIO = fluxIOSpectrumAnu.map(
+export const eventSpectrumIBDforIO = oscillatedFluxSpectrums[NeutrinoType.electronAntineutrino][MassOrdering.Inverted].map(
   (v, i) => v * xsectionIBD[i] * neutrinoTargets
 );
 
@@ -191,12 +176,12 @@ export const xsectionESeNue = energyValues.map(function (x) {
     NeutrinoTarget.electron
   );
 });
-export const eventSpectrumNueESEforNO = fluxNOSpectrumNue.map(
+export const eventSpectrumNueESEforNO = oscillatedFluxSpectrums[NeutrinoType.electronNeutrino][MassOrdering.Normal].map(
   (v, i) => v * xsectionESeNue[i] * neutrinoTargets
 );
 export const sumSpectrumNueESEforNO =
   sum(eventSpectrumNueESEforNO) * deltaEnergy;
-export const eventSpectrumNueESEforIO = fluxIOSpectrumNue.map(
+export const eventSpectrumNueESEforIO = oscillatedFluxSpectrums[NeutrinoType.electronNeutrino][MassOrdering.Inverted].map(
   (v, i) => v * xsectionESeNue[i] * neutrinoTargets
 );
 export const sumSpectrumNueESEforIO =
@@ -211,12 +196,12 @@ export const xsectionESeAnu = energyValues.map(function (x) {
     NeutrinoTarget.electron
   );
 });
-export const eventSpectrumAnuESEforNO = fluxNOSpectrumAnu.map(
+export const eventSpectrumAnuESEforNO = oscillatedFluxSpectrums[NeutrinoType.electronAntineutrino][MassOrdering.Normal].map(
   (v, i) => v * xsectionESeAnu[i] * neutrinoTargets
 );
 export const sumSpectrumAnuESEforNO =
   sum(eventSpectrumAnuESEforNO) * deltaEnergy;
-export const eventSpectrumAnuESEforIO = fluxIOSpectrumAnu.map(
+export const eventSpectrumAnuESEforIO = oscillatedFluxSpectrums[NeutrinoType.electronAntineutrino][MassOrdering.Inverted].map(
   (v, i) => v * xsectionESeAnu[i] * neutrinoTargets
 );
 export const sumSpectrumAnuESEforIO =
@@ -232,12 +217,12 @@ export const xsectionESeNux = energyValues.map(function (x) {
     NeutrinoTarget.electron
   );
 });
-export const eventSpectrumNuxESEforNO = fluxNOSpectrumNux.map(
+export const eventSpectrumNuxESEforNO = oscillatedFluxSpectrums[NeutrinoType.muTauNeutrino][MassOrdering.Normal].map(
   (v, i) => v * xsectionESeNux[i] * neutrinoTargets
 );
 export const sumSpectrumNuxESEforNO =
   sum(eventSpectrumNuxESEforNO) * deltaEnergy * 2;
-export const eventSpectrumNuxESEforIO = fluxIOSpectrumNux.map(
+export const eventSpectrumNuxESEforIO = oscillatedFluxSpectrums[NeutrinoType.muTauNeutrino][MassOrdering.Inverted].map(
   (v, i) => v * xsectionESeNux[i] * neutrinoTargets
 );
 export const sumSpectrumNuxESEforIO =
@@ -253,12 +238,12 @@ export const xsectionESeAnx = energyValues.map(function (x) {
     NeutrinoTarget.electron
   );
 });
-export const eventSpectrumAnxESEforNO = fluxNOSpectrumNux.map(
+export const eventSpectrumAnxESEforNO = oscillatedFluxSpectrums[NeutrinoType.muTauNeutrino][MassOrdering.Normal].map(
   (v, i) => v * xsectionESeAnx[i] * neutrinoTargets
 );
 export const sumSpectrumAnxESEforNO =
   sum(eventSpectrumAnxESEforNO) * deltaEnergy * 2;
-export const eventSpectrumAnxESEforIO = fluxIOSpectrumNux.map(
+export const eventSpectrumAnxESEforIO = oscillatedFluxSpectrums[NeutrinoType.muTauNeutrino][MassOrdering.Inverted].map(
   (v, i) => v * xsectionESeAnx[i] * neutrinoTargets
 );
 export const sumSpectrumAnxESEforIO =
