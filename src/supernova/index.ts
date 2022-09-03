@@ -60,6 +60,13 @@ const avgNrgNux = 18;
 
 type SNFluxSpectrumInterface = Record<NeutrinoType, Float64Array>
 
+/**
+ * Calcualtes the unoscilated neutrino flux spectrum from a supernova for all the neutrino types we use
+ * @param averageNeutrinoEnergyNue 
+ * @param averageNeutrinoEnergyAnu 
+ * @param averageNeutrinoEnergyNux 
+ * @returns 
+ */
 const SNFluxSpectrum = (averageNeutrinoEnergyNue: number, averageNeutrinoEnergyAnu: number, averageNeutrinoEnergyNux: number) : SNFluxSpectrumInterface => {
   const muTauSpec = energyValues.map((x) => neutrinoSpectrumCCSN(x, averageNeutrinoEnergyNux)) 
   return {
@@ -70,12 +77,8 @@ const SNFluxSpectrum = (averageNeutrinoEnergyNue: number, averageNeutrinoEnergyA
   }
 }
 
+// TODO make this called when needed
 export const fluxSpectrums = SNFluxSpectrum(avgNrgNue, avgNrgAnu, avgNrgNux)
-
-// TODO: Remove these exports
-export const {[NeutrinoType.electronNeutrino] : fluxSpectrumNue} = fluxSpectrums
-export const {[NeutrinoType.electronAntineutrino] : fluxSpectrumAnu} = fluxSpectrums
-export const {[NeutrinoType.muTauNeutrino] : fluxSpectrumNux} = fluxSpectrums
 
 type OscillatedFluxSpectrumRecord = Record<MassOrdering, Float64Array>
 type OscilatedFluxSpectrums = Record<NeutrinoType, OscillatedFluxSpectrumRecord>
@@ -111,7 +114,7 @@ export const oscillatedFluxSpectrums = oscillatedFluxSpectrum({fluxSpectrums})
 export const xsectionIBD = energyValues.map(crossSectionSV2003);
 
 // IBD event spectra (/MeV)
-export const eventSpectrumIBDnoOsc = fluxSpectrumAnu.map(
+export const eventSpectrumIBDnoOsc = fluxSpectrums[NeutrinoType.electronAntineutrino].map(
   (v, i) => v * xsectionIBD[i] * neutrinoTargets
 );
 export const eventSpectrumIBDforNO = oscillatedFluxSpectrums[NeutrinoType.electronAntineutrino][MassOrdering.Normal].map(
@@ -261,13 +264,13 @@ interface CEvNSEventsInterface {
 export const CEvNSEvents = (element: Element, TMin:number): CEvNSEventsInterface => {
   let targetParams = {tMin: TMin, ...getTargetParamsCEvNS(element)};
   let xsectionCEvNS = energyValues.map((ev) => xSectionCEvNS(ev, targetParams));
-  let eventSpectrumNueCEvNS = fluxSpectrumNue.map(
+  let eventSpectrumNueCEvNS = fluxSpectrums[NeutrinoType.electronNeutrino].map(
     (v, i) => v * xsectionCEvNS[i] * targetParams.nuclearTargets
   );
-  let eventSpectrumAnuCEvNS = fluxSpectrumAnu.map(
+  let eventSpectrumAnuCEvNS = fluxSpectrums[NeutrinoType.electronAntineutrino].map(
     (v, i) => v * xsectionCEvNS[i] * targetParams.nuclearTargets
   );
-  let eventSpectrumNuxCEvNS = fluxSpectrumNux.map(
+  let eventSpectrumNuxCEvNS = fluxSpectrums[NeutrinoType.muTauNeutrino].map(
     (v, i) => v * xsectionCEvNS[i] * targetParams.nuclearTargets
   );
   return {
