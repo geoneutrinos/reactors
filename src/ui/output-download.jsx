@@ -167,14 +167,14 @@ export const OutputDownload = ({ cores, geo, detector, boron8 }) => {
         <DownloadButton
           data={{
             "bin center (MeV)": boron8Rate.map((_, i) => 0.1 + 0.1 * i),
-            "8B Rate (NIU/MeV)": boron8Rate.map(
+            "8B dR/dE (NIU/MeV)": boron8Rate.map(
               (v) => v * 1e1 * SECONDS_PER_YEAR * 1e32
             ),
-            "8B Electron KE (/MeV)": boron8Ke,
+            "8B dR/dT (NIU/MeV)": boron8Ke,
           }}
           formatters={{
-            "8B Rate (NIU/MeV)": (v) => v.toPrecision(7),
-            "8B Electron KE (/MeV)": (v) => v.toPrecision(7),
+            "8B dR/dE (NIU/MeV)": (v) => v.toPrecision(7),
+            "8B dR/dT (NIU/MeV)": (v) => v.toPrecision(7),
             ...downloadFormatters,
           }}
           filename={`SolarNu_spec100keV_ES_8Bsolar_Tmin${crossSection.elasticScatteringTMin.toFixed(

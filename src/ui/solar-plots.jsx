@@ -191,7 +191,7 @@ export const Boron8KEPlot = ({ boron8 }) => {
     },
   ];
   var layout = {
-    title: `<sup>8</sup>B Solar Neutrinos- Scattered Electron Kinetic Energy<br /><sub>${
+    title: `<sup>8</sup>B- Scattered Electron Kinetic Energy Spectrum<br /><sub>${
       "(" +
       crossSection.elasticScatteringTMin.toFixed(1) +
       " < T < " +
@@ -232,7 +232,7 @@ export const Boron8KEPlot = ({ boron8 }) => {
   return (
     <Card>
       <Card.Header>
-        <sup>8</sup>B Solar Neutrinos- Scattered Electron Kinetic Energy
+        <sup>8</sup>B Solar ν<sub>e</sub>- Scattered Electron Kinetic Energy Spectrum
       </Card.Header>
       <Card.Body>
         <Plot
@@ -261,7 +261,7 @@ export const Boron8SpectraPlot = ({ boron8, reactorLF }) => {
     },
   ];
   var layout = {
-    title: `<sup>8</sup>B Solar Neutrinos- Interaction Rate Spectrum<br /><sub>${
+    title: `<sup>8</sup>B Solar ν<sub>e</sub>- Interaction Rate Spectrum<br /><sub>${
       "(" +
       crossSection.elasticScatteringTMin.toFixed(1) +
       " < T < " +
@@ -302,7 +302,7 @@ export const Boron8SpectraPlot = ({ boron8, reactorLF }) => {
   return (
     <Card>
       <Card.Header>
-        <sup>8</sup>B Solar Neutrinos- Interaction Rate Spectrum
+        <sup>8</sup>B Solar ν<sub>e</sub>- Interaction Rate Spectrum
       </Card.Header>
       <Card.Body>
         <Card.Text>
