@@ -191,7 +191,7 @@ export const Boron8KEPlot = ({ boron8 }) => {
     },
   ];
   var layout = {
-    title: `<sup>8</sup>B Solar Neutrinos- Scattered Electron Kinetic Energy<br /><sub>${
+    title: `<sup>8</sup>B- Scattered Electron Kinetic Energy Spectrum<br /><sub>${
       "(" +
       crossSection.elasticScatteringTMin.toFixed(1) +
       " < T < " +
@@ -232,7 +232,7 @@ export const Boron8KEPlot = ({ boron8 }) => {
   return (
     <Card>
       <Card.Header>
-        <sup>8</sup>B Solar Neutrinos- Scattered Electron Kinetic Energy
+        <sup>8</sup>B Solar Neutrinos- Scattered Electron Kinetic Energy Spectrum
       </Card.Header>
       <Card.Body>
         <Plot
