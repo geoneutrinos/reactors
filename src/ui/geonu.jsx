@@ -49,7 +49,7 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo}) => {
           <Form.Control
             value={geoFluxRatios.U238flux}
             type="range"
-            step={100000}
+            step={10000}
             min={0}
             max={5000000}
             onChange={(event) =>
