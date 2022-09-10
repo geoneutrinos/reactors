@@ -68,12 +68,6 @@ export const energyValues = new Float64Array(energyBins).map(
   (v, i) => i * deltaEnergy + deltaEnergy / 2
 );
 
-// make the non-oscillated neutrino speciaes flux spectra with different average energy in MeV
-// TODO import average neutrino energies set by UI
-const avgNrgNue = 12;
-const avgNrgAnu = 15;
-const avgNrgNux = 18;
-
 /**
  * Calcualtes the unoscilated neutrino flux spectrum from a supernova for all the neutrino types we use
  * @param averageNeutrinoEnergyNue 
