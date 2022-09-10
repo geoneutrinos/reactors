@@ -184,7 +184,7 @@ export const SupernovaFluxPlots = ({fluxSpectrums}) => {
 export const SupernovaOscillatedFluxPlots = ({oscillatedFluxSpectrums}) => {
   const data = [
     {
-      y: oscillatedFluxSpectrums[NeutrinoType.electronNeutrino][MassOrdering.Normal],
+      y: oscillatedFluxSpectrums[MassOrdering.Normal][NeutrinoType.electronNeutrino],
       x: energyValues,
       name: `ν<sub>e</sub> NO`,
       type: "scatter",
@@ -196,7 +196,7 @@ export const SupernovaOscillatedFluxPlots = ({oscillatedFluxSpectrums}) => {
       marker: { color: "blue" },
     },
     {
-      y: oscillatedFluxSpectrums[NeutrinoType.electronAntineutrino][MassOrdering.Normal],
+      y: oscillatedFluxSpectrums[MassOrdering.Normal][NeutrinoType.electronAntineutrino],
       x: energyValues,
       name: `ν̅<sub>e</sub> NO`,
       type: "scatter",
@@ -208,7 +208,7 @@ export const SupernovaOscillatedFluxPlots = ({oscillatedFluxSpectrums}) => {
       marker: { color: "red" },
     },
     {
-      y: oscillatedFluxSpectrums[NeutrinoType.muTauNeutrino][MassOrdering.Normal],
+      y: oscillatedFluxSpectrums[MassOrdering.Normal][NeutrinoType.muTauNeutrino],
       x: energyValues,
       name: `ν<sub>x</sub> NO`,
       type: "scatter",
@@ -267,7 +267,7 @@ export const SupernovaOscillatedFluxPlots = ({oscillatedFluxSpectrums}) => {
 export const SupernovaOscillatedInvertedFluxPlots = ({oscillatedFluxSpectrums}) => {
   const data = [
     {
-      y: oscillatedFluxSpectrums[NeutrinoType.electronNeutrino][MassOrdering.Inverted],
+      y: oscillatedFluxSpectrums[MassOrdering.Inverted][NeutrinoType.electronNeutrino],
       x: energyValues,
       name: `ν<sub>e</sub> IO`,
       type: "scatter",
@@ -277,7 +277,7 @@ export const SupernovaOscillatedInvertedFluxPlots = ({oscillatedFluxSpectrums}) 
       line: { dash: "dashdot" },
     },
     {
-      y: oscillatedFluxSpectrums[NeutrinoType.electronAntineutrino][MassOrdering.Inverted],
+      y: oscillatedFluxSpectrums[MassOrdering.Inverted][NeutrinoType.electronAntineutrino],
       x: energyValues,
       name: `ν̅<sub>e</sub> IO`,
       type: "scatter",
@@ -287,7 +287,7 @@ export const SupernovaOscillatedInvertedFluxPlots = ({oscillatedFluxSpectrums}) 
       line: { dash: "dashdot" },
     },
     {
-      y: oscillatedFluxSpectrums[NeutrinoType.muTauNeutrino][MassOrdering.Inverted],
+      y: oscillatedFluxSpectrums[MassOrdering.Inverted][NeutrinoType.muTauNeutrino],
       x: energyValues,
       name: `ν<sub>x</sub> IO`,
       type: "scatter",

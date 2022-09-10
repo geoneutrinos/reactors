@@ -33,6 +33,22 @@ interface CEvNSTarget {
   targetMass: number;
 }
 
+interface SNRecord {
+  crossSection: Float64Array
+  eventSpectrum: Float64Array
+  events: number
+}
+
+type SNFluxSpectrumInterface = Record<NeutrinoType, Float64Array>
+
+type OscilatedFluxSpectrums = Record<MassOrdering, SNFluxSpectrumInterface>
+
+interface CEvNSEventsInterface {
+  [NeutrinoType.electronNeutrino]: number;
+  [NeutrinoType.electronAntineutrino]: number;
+  [NeutrinoType.muTauNeutrino]: number; // both... Anti/Anti-anti
+}
+
 export const getTargetParamsCEvNS = (element: Element): CEvNSTarget => {
   return {
     molarMass: element.relative_atomic_mass,
@@ -58,8 +74,6 @@ const avgNrgNue = 12;
 const avgNrgAnu = 15;
 const avgNrgNux = 18;
 
-type SNFluxSpectrumInterface = Record<NeutrinoType, Float64Array>
-
 /**
  * Calcualtes the unoscilated neutrino flux spectrum from a supernova for all the neutrino types we use
  * @param averageNeutrinoEnergyNue 
@@ -79,8 +93,6 @@ export const SNFluxSpectrum = (averageNeutrinoEnergyNue: number, averageNeutrino
 
 // TODO make this called when needed
 const fluxSpectrums = SNFluxSpectrum(avgNrgNue, avgNrgAnu, avgNrgNux)
-
-type OscilatedFluxSpectrums = Record<MassOrdering, SNFluxSpectrumInterface>
 
 export const oscillatedFluxSpectrum = ({fluxSpectrums}:{fluxSpectrums: SNFluxSpectrumInterface}): OscilatedFluxSpectrums=> {
   const electronNeutrinoNeutrinoFluxSpectrum = fluxSpectrums[NeutrinoType.electronNeutrino]
@@ -110,30 +122,24 @@ export const oscillatedFluxSpectrum = ({fluxSpectrums}:{fluxSpectrums: SNFluxSpe
 const oscillatedFluxSpectrums = oscillatedFluxSpectrum({fluxSpectrums})
 
 
-// IBD cross section using SV 2003
-export const xsectionIBD = energyValues.map(crossSectionSV2003);
+const calcIBDSNRecord = (neutrinoType: NeutrinoType, fluxSpectrums: SNFluxSpectrumInterface): SNRecord => {
+  const crossSection = energyValues.map(crossSectionSV2003)
+  const eventSpectrum = fluxSpectrums[neutrinoType].map(
+    (v, i) => v * crossSection[i] * neutrinoTargets
+  );
+  const events = sum(eventSpectrum) * deltaEnergy;
 
-// IBD event spectra (/MeV)
-export const eventSpectrumIBDnoOsc = fluxSpectrums[NeutrinoType.electronAntineutrino].map(
-  (v, i) => v * xsectionIBD[i] * neutrinoTargets
-);
-export const eventSpectrumIBDforNO = oscillatedFluxSpectrums[MassOrdering.Normal][NeutrinoType.electronAntineutrino].map(
-  (v, i) => v * xsectionIBD[i] * neutrinoTargets
-);
-export const eventSpectrumIBDforIO = oscillatedFluxSpectrums[MassOrdering.Inverted][NeutrinoType.electronAntineutrino].map(
-  (v, i) => v * xsectionIBD[i] * neutrinoTargets
-);
-
-// IBD event totals
-export const sumSpectrumIBDnoOsc = sum(eventSpectrumIBDnoOsc) * deltaEnergy;
-export const sumSpectrumIBDforNO = sum(eventSpectrumIBDforNO) * deltaEnergy;
-export const sumSpectrumIBDforIO = sum(eventSpectrumIBDforIO) * deltaEnergy;
-
-interface SNRecord {
-  crossSection: Float64Array
-  eventSpectrum: Float64Array
-  events: number
+  return {
+    crossSection,
+    eventSpectrum,
+    events,
+  }
 }
+
+export const {eventSpectrum: eventSpectrumIBDnoOsc, events: sumSpectrumIBDnoOsc} = calcIBDSNRecord(NeutrinoType.electronAntineutrino, fluxSpectrums)
+export const {eventSpectrum: eventSpectrumIBDforNO, events: sumSpectrumIBDforNO} = calcIBDSNRecord(NeutrinoType.electronAntineutrino, oscillatedFluxSpectrums[MassOrdering.Normal])
+export const {eventSpectrum: eventSpectrumIBDforIO, events: sumSpectrumIBDforIO} = calcIBDSNRecord(NeutrinoType.electronAntineutrino, oscillatedFluxSpectrums[MassOrdering.Inverted])
+
 
 const calcSNRecord = (neutrinoType: NeutrinoType, neutrinoTarget:NeutrinoTarget, tMin: number, fluxSpectrums:SNFluxSpectrumInterface):SNRecord =>{
 
@@ -169,97 +175,23 @@ export const {crossSection: xsectionESpAnu, events: sumSpectrumAnuESP} = ESpAnu
 export const {crossSection: xsectionESpNux, events: sumSpectrumNuxESP} = ESpNux
 export const {crossSection: xsectionESpAnx, events: sumSpectrumAnxESP} = ESpAnx
 
-// make neutrino-electron elastic scattering (eES) cross section
-export const xsectionESeNue = energyValues.map(function (x) {
-  return crossSectionElasticScattering(
-    x,
-    NeutrinoType.electronNeutrino,
-    undefined,
-    undefined,
-    NeutrinoTarget.electron
-  );
-});
-export const eventSpectrumNueESEforNO = oscillatedFluxSpectrums[MassOrdering.Normal][NeutrinoType.electronNeutrino].map(
-  (v, i) => v * xsectionESeNue[i] * neutrinoTargets
-);
-export const sumSpectrumNueESEforNO =
-  sum(eventSpectrumNueESEforNO) * deltaEnergy;
-export const eventSpectrumNueESEforIO = oscillatedFluxSpectrums[MassOrdering.Inverted][NeutrinoType.electronNeutrino].map(
-  (v, i) => v * xsectionESeNue[i] * neutrinoTargets
-);
-export const sumSpectrumNueESEforIO =
-  sum(eventSpectrumNueESEforIO) * deltaEnergy;
+// Just need to pick one of the crossSections
+export const {crossSection: xsectionESeNue, eventSpectrum: eventSpectrumNueESEforNO, events: sumSpectrumNueESEforNO} = calcSNRecord(NeutrinoType.electronNeutrino, NeutrinoTarget.electron, 0, oscillatedFluxSpectrums[MassOrdering.Normal])
+export const {eventSpectrum: eventSpectrumNueESEforIO, events: sumSpectrumNueESEforIO} = calcSNRecord(NeutrinoType.electronNeutrino, NeutrinoTarget.electron, 0, oscillatedFluxSpectrums[MassOrdering.Inverted])
 
-export const xsectionESeAnu = energyValues.map(function (x) {
-  return crossSectionElasticScattering(
-    x,
-    NeutrinoType.electronAntineutrino,
-    undefined,
-    undefined,
-    NeutrinoTarget.electron
-  );
-});
-export const eventSpectrumAnuESEforNO = oscillatedFluxSpectrums[MassOrdering.Normal][NeutrinoType.electronAntineutrino].map(
-  (v, i) => v * xsectionESeAnu[i] * neutrinoTargets
-);
-export const sumSpectrumAnuESEforNO =
-  sum(eventSpectrumAnuESEforNO) * deltaEnergy;
-export const eventSpectrumAnuESEforIO = oscillatedFluxSpectrums[MassOrdering.Inverted][NeutrinoType.electronAntineutrino].map(
-  (v, i) => v * xsectionESeAnu[i] * neutrinoTargets
-);
-export const sumSpectrumAnuESEforIO =
-  sum(eventSpectrumAnuESEforIO) * deltaEnergy;
 
-// x2 for mu and tau
-export const xsectionESeNux = energyValues.map(function (x) {
-  return crossSectionElasticScattering(
-    x,
-    NeutrinoType.muTauNeutrino,
-    undefined,
-    undefined,
-    NeutrinoTarget.electron
-  );
-});
-export const eventSpectrumNuxESEforNO = oscillatedFluxSpectrums[MassOrdering.Normal][NeutrinoType.muTauNeutrino].map(
-  (v, i) => v * xsectionESeNux[i] * neutrinoTargets
-);
-export const sumSpectrumNuxESEforNO =
-  sum(eventSpectrumNuxESEforNO) * deltaEnergy * 2;
-export const eventSpectrumNuxESEforIO = oscillatedFluxSpectrums[MassOrdering.Inverted][NeutrinoType.muTauNeutrino].map(
-  (v, i) => v * xsectionESeNux[i] * neutrinoTargets
-);
-export const sumSpectrumNuxESEforIO =
-  sum(eventSpectrumNuxESEforIO) * deltaEnergy * 2;
+export const {crossSection: xsectionESeAnu, eventSpectrum: eventSpectrumAnuESEforNO, events: sumSpectrumAnuESEforNO} = calcSNRecord(NeutrinoType.electronAntineutrino, NeutrinoTarget.electron, 0, oscillatedFluxSpectrums[MassOrdering.Normal])
+export const {eventSpectrum: eventSpectrumAnuESEforIO, events: sumSpectrumAnuESEforIO} = calcSNRecord(NeutrinoType.electronAntineutrino, NeutrinoTarget.electron, 0, oscillatedFluxSpectrums[MassOrdering.Inverted])
 
-// x2 for mu and tau
-export const xsectionESeAnx = energyValues.map(function (x) {
-  return crossSectionElasticScattering(
-    x,
-    NeutrinoType.muTauAntineutrino,
-    undefined,
-    undefined,
-    NeutrinoTarget.electron
-  );
-});
-export const eventSpectrumAnxESEforNO = oscillatedFluxSpectrums[MassOrdering.Normal][NeutrinoType.muTauNeutrino].map(
-  (v, i) => v * xsectionESeAnx[i] * neutrinoTargets
-);
-export const sumSpectrumAnxESEforNO =
-  sum(eventSpectrumAnxESEforNO) * deltaEnergy * 2;
-export const eventSpectrumAnxESEforIO = oscillatedFluxSpectrums[MassOrdering.Inverted][NeutrinoType.muTauNeutrino].map(
-  (v, i) => v * xsectionESeAnx[i] * neutrinoTargets
-);
-export const sumSpectrumAnxESEforIO =
-  sum(eventSpectrumAnxESEforIO) * deltaEnergy * 2;
+export const {crossSection: xsectionESeNux, eventSpectrum: eventSpectrumNuxESEforNO, events: sumSpectrumNuxESEforNO} = calcSNRecord(NeutrinoType.muTauNeutrino, NeutrinoTarget.electron, 0, oscillatedFluxSpectrums[MassOrdering.Normal])
+export const {eventSpectrum: eventSpectrumNuxESEforIO, events: sumSpectrumNuxESEforIO} = calcSNRecord(NeutrinoType.muTauNeutrino, NeutrinoTarget.electron, 0, oscillatedFluxSpectrums[MassOrdering.Inverted])
+
+export const {crossSection: xsectionESeAnx, eventSpectrum: eventSpectrumAnxESEforNO, events: sumSpectrumAnxESEforNO} = calcSNRecord(NeutrinoType.muTauAntineutrino, NeutrinoTarget.electron, 0, oscillatedFluxSpectrums[MassOrdering.Normal])
+export const {eventSpectrum: eventSpectrumAnxESEforIO, events: sumSpectrumAnxESEforIO} = calcSNRecord(NeutrinoType.muTauAntineutrino, NeutrinoTarget.electron, 0, oscillatedFluxSpectrums[MassOrdering.Inverted])
 
 
 //-----
 
-interface CEvNSEventsInterface {
-  [NeutrinoType.electronNeutrino]: number;
-  [NeutrinoType.electronAntineutrino]: number;
-  [NeutrinoType.muTauNeutrino]: number; // both... Anti/Anti-anti
-}
 
 export const CEvNSEvents = (element: Element, TMin:number): CEvNSEventsInterface => {
   let targetParams = {tMin: TMin, ...getTargetParamsCEvNS(element)};
