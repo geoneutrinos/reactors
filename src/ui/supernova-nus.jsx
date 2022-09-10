@@ -6,7 +6,7 @@ import { Num } from ".";
 import { Node, Provider } from "@nteract/mathjax";
 
 import {
-  CEvNSEvents,
+  CEvNSEventsElemental,
   SNFluxSpectrum,
   oscillatedFluxSpectrum,
   calcIBDSNRecord,
@@ -29,7 +29,25 @@ import { MassOrdering } from "../physics/neutrino-oscillation"
 
 const SupernovaNusCEvNS = ({ nucleus, setNucleus, tESnMin, fluxSpectrums }) => {
 
-  const events = CEvNSEvents(Elements[nucleus], tESnMin/1000, fluxSpectrums); // KeV to MeV?
+  //const events = CEvNSEvents(Elements[nucleus], tESnMin/1000, fluxSpectrums); // KeV to MeV?
+  const events = (CEvNSEventsElemental(Elements[nucleus], tESnMin/1000, fluxSpectrums))
+
+  const isotopicContributions = Object.entries(events).filter(([key, value]) => key !== "total").map(([isotope, value]) => {
+    return (
+      <tr>
+      <td>{ElementsUI[isotope]}</td>
+      <td>
+        <Num v={value[NeutrinoType.electronNeutrino]} p={2} />
+      </td>
+      <td>
+        <Num v={value[NeutrinoType.electronAntineutrino]} p={2} />
+      </td>
+      <td>
+        <Num v={value[NeutrinoType.muTauNeutrino]} p={2} />
+      </td>
+    </tr> 
+    )
+  })
 
   return (
     <Card>
@@ -42,43 +60,48 @@ const SupernovaNusCEvNS = ({ nucleus, setNucleus, tESnMin, fluxSpectrums }) => {
             <Table>
               <tbody>
                 <tr>
-                  <td>{ElementsUI[nucleus]}</td>
+                  <td>{Elements[nucleus].atomic_symbol} Event Rate</td>
                   <td>
                     N(ν<sub>e</sub>) ={" "}
-                    <Num v={events[NeutrinoType.electronNeutrino]} p={2} />
+                    <Num v={events.total[NeutrinoType.electronNeutrino]} p={2} />
                   </td>
                   <td>
                     N(ν̅<sub>e</sub>) ={" "}
-                    <Num v={events[NeutrinoType.electronAntineutrino]} p={2} />
+                    <Num v={events.total[NeutrinoType.electronAntineutrino]} p={2} />
                   </td>
                   <td>
                     N(ν<sub>x</sub>) ={" "}
-                    <Num v={events[NeutrinoType.muTauNeutrino]} p={2} />
+                    <Num v={events.total[NeutrinoType.muTauNeutrino]} p={2} />
                   </td>
-                  <td></td>
                 </tr>
               </tbody>
             </Table>
+          <details>
+            <summary>Isotopic Event Rate Contributions</summary>
+            <Table>
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>N(ν<sub>e</sub>)</th>
+                  <th>N(ν̅<sub>e</sub>)</th>
+                  <th>N(ν<sub>x</sub>)</th>
+                </tr>
+              </thead>
+              <tbody>
+                {isotopicContributions}
+                </tbody>
+                </Table>
+                </details>
           </div>
           <Form noValidate>
             <Form.Group controlId="set_nucleus">
-              <Form.Label> Nucleus </Form.Label>
+              <Form.Label>Target Nucleus</Form.Label>
               <Form.Control as="select" onChange={(event) => setNucleus(event.target.value)} value={nucleus}>
-                <option value={Elements.Ar40.key}>Argon-40</option>
-                <option value={Elements.Ge70.key}>Germanium-70</option>
-                <option value={Elements.Ge72.key}>Germanium-72</option>
-                <option value={Elements.Ge73.key}>Germanium-73</option>
-                <option value={Elements.Ge74.key}>Germanium-74</option>
-                <option value={Elements.Ge76.key}>Germanium-76</option>
-                <option value={Elements.I127.key}>Iodine-127</option>
-                <option value={Elements.Xe128.key}>Xenon-128</option>
-                <option value={Elements.Xe129.key}>Xenon-129</option>
-                <option value={Elements.Xe130.key}>Xenon-130</option>
-                <option value={Elements.Xe131.key}>Xenon-131</option>                
-                <option value={Elements.Xe132.key}>Xenon-132</option>
-                <option value={Elements.Xe134.key}>Xenon-134</option>
-                <option value={Elements.Xe136.key}>Xenon-136</option>
-                <option value={Elements.Cs133.key}>Cesium-133</option>
+                <option value={Elements.Ar40.key}>Argon</option>
+                <option value={Elements.Ge76.key}>Germanium</option>
+                <option value={Elements.I127.key}>Iodine</option>
+                <option value={Elements.Xe136.key}>Xenon</option>
+                <option value={Elements.Cs133.key}>Cesium</option>
               </Form.Control>
             </Form.Group>
           </Form>

@@ -21,7 +21,7 @@ import { s2t12, c2t12, MassOrdering } from "../physics/neutrino-oscillation";
 
 import { sum } from "lodash";
 
-import { Element } from "../elements";
+import elements, { Element } from "../elements";
 
 export const neutrinoTargets = 1e32; // for IBD, eES, pES
 
@@ -149,8 +149,30 @@ export const calcSNRecord = (neutrinoType: NeutrinoType, neutrinoTarget:Neutrino
 
 //-----
 
+type ElementalRecord = Record<keyof typeof elements, CEvNSEventsInterface>
 
-export const CEvNSEvents = (element: Element, TMin:number, fluxSpectrums:SNFluxSpectrumInterface): CEvNSEventsInterface => {
+export const CEvNSEventsElemental = (element: Element, TMin:number, fluxSpectrums:SNFluxSpectrumInterface): ElementalRecord => {
+  const isotopes = Object.values(elements).filter(isotope => isotope.atomic_number === element.atomic_number)
+  const totals: CEvNSEventsInterface = {
+    [NeutrinoType.electronNeutrino]: 0,
+    [NeutrinoType.electronAntineutrino]: 0, 
+    [NeutrinoType.muTauNeutrino]:0,
+  }
+  const enteries = isotopes.map(isotope => {
+    const events = CEvNSEvents(isotope, TMin, fluxSpectrums, element.isotopic_composition)
+
+    totals[NeutrinoType.electronNeutrino] += events[NeutrinoType.electronNeutrino]
+    totals[NeutrinoType.electronAntineutrino] += events[NeutrinoType.electronAntineutrino]
+    totals[NeutrinoType.muTauNeutrino] += events[NeutrinoType.muTauNeutrino]
+
+    return [isotope.key, events]
+  })
+  const records: ElementalRecord = Object.fromEntries(enteries)
+  records["total"] = totals
+  return records
+}
+
+export const CEvNSEvents = (element: Element, TMin:number, fluxSpectrums:SNFluxSpectrumInterface, fractionalAbundance:number = 1): CEvNSEventsInterface => {
   let targetParams = {tMin: TMin, ...getTargetParamsCEvNS(element)};
   let xsectionCEvNS = energyValues.map((ev) => xSectionCEvNS(ev, targetParams));
   let eventSpectrumNueCEvNS = fluxSpectrums[NeutrinoType.electronNeutrino].map(
@@ -163,10 +185,10 @@ export const CEvNSEvents = (element: Element, TMin:number, fluxSpectrums:SNFluxS
     (v, i) => v * xsectionCEvNS[i] * targetParams.nuclearTargets
   );
   return {
-    [NeutrinoType.electronNeutrino]: sum(eventSpectrumNueCEvNS) * deltaEnergy,
+    [NeutrinoType.electronNeutrino]: sum(eventSpectrumNueCEvNS) * deltaEnergy * fractionalAbundance,
     [NeutrinoType.electronAntineutrino]:
-      sum(eventSpectrumAnuCEvNS) * deltaEnergy,
-    [NeutrinoType.muTauNeutrino]: sum(eventSpectrumNuxCEvNS) * deltaEnergy * 4,
+      sum(eventSpectrumAnuCEvNS) * deltaEnergy * fractionalAbundance,
+    [NeutrinoType.muTauNeutrino]: sum(eventSpectrumNuxCEvNS) * deltaEnergy * 4 * fractionalAbundance,
   };
 };
 
