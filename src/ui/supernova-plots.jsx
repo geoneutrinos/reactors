@@ -4,23 +4,12 @@ import Plot from "react-plotly.js";
 import {crossSectionSV2003, NeutrinoType} from "../physics/neutrino-cross-section"
 import { MassOrdering } from "../physics/neutrino-oscillation";
 
-import {
-  energyValues,
-  xsectionESpNue,
-  xsectionESpAnu,
-  xsectionESeNue,
-  xsectionESeAnu,
-  xsectionESeNux,
-  xsectionESeAnx,
-  eventSpectrumIBDnoOsc,
-  eventSpectrumIBDforNO,
-  eventSpectrumIBDforIO,
-} from "../supernova";
+import { energyValues} from "../supernova";
 
-export const SupernovaPlotsIBD = () => {
+export const SupernovaPlotsIBD = ({IBDUnoscilated, IBDOscilatedNormal, IBDOscilatedInverted}) => {
   const data = [
     {
-      y: eventSpectrumIBDnoOsc,
+      y: IBDUnoscilated.eventSpectrum,
       x: energyValues,
       name: `IBD w/o osc`,
       type: "scatter",
@@ -32,7 +21,7 @@ export const SupernovaPlotsIBD = () => {
       marker: { color: "blue" },
     },
     {
-      y: eventSpectrumIBDforNO,
+      y: IBDOscilatedNormal.eventSpectrum,
       x: energyValues,
       name: `IBD for NO`,
       type: "scatter",
@@ -44,7 +33,7 @@ export const SupernovaPlotsIBD = () => {
       marker: { color: "red" },
     },
     {
-      y: eventSpectrumIBDforIO,
+      y: IBDOscilatedInverted.eventSpectrum,
       x: energyValues,
       name: `IBD for IO`,
       type: "scatter",
@@ -341,7 +330,14 @@ export const SupernovaOscillatedInvertedFluxPlots = ({oscillatedFluxSpectrums}) 
     </Card>
   );
 };
-export const NeutrinoElectronElasticScatteringCrossSection = () => {
+export const NeutrinoElectronElasticScatteringCrossSection = ({
+  ESpNue,
+  ESpAnu,
+  ESEforNO,
+  AntiESEforNO,
+  NuxESEforNO,
+  AnxESEforNO,
+}) => {
   const xsectionIBD = energyValues.map(crossSectionSV2003)
 
   const data = [
@@ -358,7 +354,7 @@ export const NeutrinoElectronElasticScatteringCrossSection = () => {
       marker: { color: "darkgoldenrod" },
     },
     {
-      y: xsectionESpNue,
+      y: ESpNue.crossSection,
       x: energyValues,
       name: `νp`,
       type: "scatter",
@@ -370,7 +366,7 @@ export const NeutrinoElectronElasticScatteringCrossSection = () => {
       marker: { color: "aqua" },
     },
     {
-      y: xsectionESpAnu,
+      y: ESpAnu.crossSection,
       x: energyValues,
       name: `ν̅p`,
       type: "scatter",
@@ -380,7 +376,7 @@ export const NeutrinoElectronElasticScatteringCrossSection = () => {
       line: { dash: "dot" },
     },
     {
-      y: xsectionESeNue,
+      y: ESEforNO.crossSection,
       x: energyValues,
       name: `ν<sub>e</sub>e`,
       type: "scatter",
@@ -392,7 +388,7 @@ export const NeutrinoElectronElasticScatteringCrossSection = () => {
       marker: { color: "blue" },
     },
     {
-      y: xsectionESeAnu,
+      y: AntiESEforNO.crossSection,
       x: energyValues,
       name: `ν̅<sub>e</sub>e`,
       type: "scatter",
@@ -404,7 +400,7 @@ export const NeutrinoElectronElasticScatteringCrossSection = () => {
       marker: { color: "red" },
     },
     {
-      y: xsectionESeNux,
+      y: NuxESEforNO.crossSection,
       x: energyValues,
       name: `ν<sub>x</sub>e`,
       type: "scatter",
@@ -416,7 +412,7 @@ export const NeutrinoElectronElasticScatteringCrossSection = () => {
       marker: { color: "green" },
     },
     {
-      y: xsectionESeAnx,
+      y: AnxESEforNO.crossSection,
       x: energyValues,
       name: `ν̅<sub>x</sub>e`,
       type: "scatter",
