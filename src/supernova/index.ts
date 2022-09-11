@@ -185,10 +185,10 @@ export const CEvNSEvents = (element: Element, TMin:number, fluxSpectrums:SNFluxS
     (v, i) => v * xsectionCEvNS[i] * targetParams.nuclearTargets
   );
   return {
-    [NeutrinoType.electronNeutrino]: sum(eventSpectrumNueCEvNS) * deltaEnergy * fractionalAbundance,
+    [NeutrinoType.electronNeutrino]: sum(eventSpectrumNueCEvNS) * deltaEnergy,
     [NeutrinoType.electronAntineutrino]:
-      sum(eventSpectrumAnuCEvNS) * deltaEnergy * fractionalAbundance,
-    [NeutrinoType.muTauNeutrino]: sum(eventSpectrumNuxCEvNS) * deltaEnergy * 4 * fractionalAbundance,
+      sum(eventSpectrumAnuCEvNS) * deltaEnergy,
+    [NeutrinoType.muTauNeutrino]: sum(eventSpectrumNuxCEvNS) * deltaEnergy * 4,
   };
 };
 
