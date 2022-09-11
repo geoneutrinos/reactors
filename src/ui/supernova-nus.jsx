@@ -100,7 +100,7 @@ const SupernovaNusCEvNS = ({ nucleus, setNucleus, tESnMin, fluxSpectrums }) => {
                 <option value={Elements.Ar40.key}>Argon</option>
                 <option value={Elements.Ge76.key}>Germanium</option>
                 <option value={Elements.I127.key}>Iodine</option>
-                <option value={Elements.Xe136.key}>Xenon</option>
+                <option value={Elements.Xe132.key}>Xenon</option>
                 <option value={Elements.Cs133.key}>Cesium</option>
               </Form.Control>
             </Form.Group>

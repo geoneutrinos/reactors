@@ -159,7 +159,7 @@ export const CEvNSEventsElemental = (element: Element, TMin:number, fluxSpectrum
     [NeutrinoType.muTauNeutrino]:0,
   }
   const enteries = isotopes.map(isotope => {
-    const events = CEvNSEvents(isotope, TMin, fluxSpectrums, element.isotopic_composition)
+    const events = CEvNSEvents(isotope, TMin, fluxSpectrums)
 
     totals[NeutrinoType.electronNeutrino] += events[NeutrinoType.electronNeutrino]
     totals[NeutrinoType.electronAntineutrino] += events[NeutrinoType.electronAntineutrino]
@@ -172,7 +172,7 @@ export const CEvNSEventsElemental = (element: Element, TMin:number, fluxSpectrum
   return records
 }
 
-export const CEvNSEvents = (element: Element, TMin:number, fluxSpectrums:SNFluxSpectrumInterface, fractionalAbundance:number = 1): CEvNSEventsInterface => {
+export const CEvNSEvents = (element: Element, TMin:number, fluxSpectrums:SNFluxSpectrumInterface): CEvNSEventsInterface => {
   let targetParams = {tMin: TMin, ...getTargetParamsCEvNS(element)};
   let xsectionCEvNS = energyValues.map((ev) => xSectionCEvNS(ev, targetParams));
   let eventSpectrumNueCEvNS = fluxSpectrums[NeutrinoType.electronNeutrino].map(
