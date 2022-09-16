@@ -357,9 +357,11 @@ export const SupernovaNus = React.memo(() => {
   const [nucleus, setNucleus] = useState(Elements.Xe132.key);
 
   // TODO move to state
-  const avgNrgNue = 12;
-  const avgNrgAnu = 15;
-  const avgNrgNux = 18;
+  // inital guesses 12, 15, 18 MeV too hot and now reduced
+  // new values from P.C. Divari, Journal of Cosmology and Astroparticle Physics, JCAP09(2018)029
+  const avgNrgNue = 9.5;
+  const avgNrgAnu = 12;
+  const avgNrgNux = 15.6;
 
   const fluxSpectrums = SNFluxSpectrum(avgNrgNue, avgNrgAnu, avgNrgNux) 
   const oscillatedFluxSpectrums = oscillatedFluxSpectrum({fluxSpectrums})
