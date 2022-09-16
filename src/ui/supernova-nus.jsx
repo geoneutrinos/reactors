@@ -314,13 +314,13 @@ const SupernovaNusPane = () => {
               erg, <Node inline>{String.raw`\beta = 4`}</Node> ,{" "}
               <Node
                 inline
-              >{String.raw`\langle E_{\nu_{\mathrm{e}}} \rangle = 12`}</Node>{" "}
+              >{String.raw`\langle E_{\nu_{\mathrm{e}}} \rangle = 9.5`}</Node>{" "}
               MeV,{" "}
               <Node
                 inline
-              >{String.raw`\langle E_{\overline{\nu}_{\mathrm{e}}} \rangle = 15`}</Node>{" "}
+              >{String.raw`\langle E_{\overline{\nu}_{\mathrm{e}}} \rangle = 12`}</Node>{" "}
               MeV, and{" "}
-              <Node inline>{String.raw`\langle E_{\nu_{x}} \rangle = 18`}</Node>{" "}
+              <Node inline>{String.raw`\langle E_{\nu_{x}} \rangle = 15.6`}</Node>{" "}
               MeV.
             </p>
             <p>
