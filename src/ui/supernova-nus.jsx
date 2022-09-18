@@ -331,7 +331,7 @@ const SupernovaNusPane = () => {
               <Node>{String.raw`\begin{aligned}
                 & \Phi_{\nu_{\mathrm{e}}} = \Phi^0_{\nu_{e}}\sin^2\theta_{13} + \Phi^0_{\nu_{x}}\cos^2\theta_{13}\\
                 & \Phi_{\overline{\nu}_{\mathrm{e}}} = \Phi^0_{\overline{\nu}_{\mathrm{e}}}\cos^2\theta_{12}\cos^2\theta_{13} + \Phi^0_{\nu_{x}}(1-\cos^2\theta_{12}\cos^2\theta_{13}) \\
-                & \Phi_{\nu_{x}} = \frac1{2}\big(\Phi^0_{\nu_{\mathrm{e}}}\cos^2\theta_{13} + \Phi^0_{\nu_{x}}(1+\sin^2\theta_{13}} \big) \\
+                & \Phi_{\nu_{x}} = \frac1{2}\big(\Phi^0_{\nu_{\mathrm{e}}}\cos^2\theta_{13} + \Phi^0_{\nu_{x}}(1+\sin^2\theta_{13}) \big) \\
                 & \Phi_{\overline{\nu}_{x}} = \frac1{2}\big(\Phi^0_{\overline{\nu}_{\mathrm{e}}}(1-\cos^2\theta_{12}\cos^2\theta_{13}) + \Phi^0_{\nu_{x}}(1-\cos^2\theta_{12}\cos^2\theta_{13})\big)
                 \end{aligned}`}</Node>
             </p>
