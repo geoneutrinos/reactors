@@ -17,7 +17,7 @@ import {
 
 // TODO: the osc params are runtime modifiable, need to eventually get them
 // from the Physics Context
-import { s2t12, c2t12, MassOrdering } from "../physics/neutrino-oscillation";
+import { s2t12, c2t12, s2t13Normal, s2t13Inverted, MassOrdering } from "../physics/neutrino-oscillation";
 
 import { sum } from "lodash";
 
@@ -85,6 +85,7 @@ export const SNFluxSpectrum = (averageNeutrinoEnergyNue: number, averageNeutrino
   }
 }
 
+// TODO: refine oscillations to include theta13 following Nagakura et al. 2021 "Supernova neutrino signals based on long-term axisymmetric simulations"
 export const oscillatedFluxSpectrum = ({fluxSpectrums}:{fluxSpectrums: SNFluxSpectrumInterface}): OscilatedFluxSpectrums=> {
   const electronNeutrinoNeutrinoFluxSpectrum = fluxSpectrums[NeutrinoType.electronNeutrino]
   const electronAntineutrinoNeutrinoFluxSpectrum = fluxSpectrums[NeutrinoType.electronAntineutrino]
