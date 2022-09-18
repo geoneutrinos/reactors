@@ -98,8 +98,8 @@ export const oscillatedFluxSpectrum = ({fluxSpectrums}:{fluxSpectrums: SNFluxSpe
     [MassOrdering.Normal]: {
       [NeutrinoType.electronNeutrino]: electronNeutrinoNeutrinoFluxSpectrum.map((v,i) => v * s2t13Normal + muTauNeutrinoFluxSpectrum[i] * (1 - s2t13Normal)),
       [NeutrinoType.electronAntineutrino]: electronAntineutrinoNeutrinoFluxSpectrum.map((v,i) => v * c2t12 * (1 - s2t13Normal) + muTauNeutrinoFluxSpectrum[i] * (1 - c2t12 * (1 - s2t13Normal))),
-      [NeutrinoType.muTauNeutrino]: muTauNormal,
-      [NeutrinoType.muTauAntineutrino]: muTauNormal,
+      [NeutrinoType.muTauNeutrino]: electronNeutrinoNeutrinoFluxSpectrum.map((v,i) => (v * (1 - s2t13Normal) + muTauNeutrinoFluxSpectrum[i] * (1 + s2t13Normal))/2),
+      [NeutrinoType.muTauAntineutrino]: electronAntineutrinoNeutrinoFluxSpectrum.map((v,i) => (v * (1 - c2t12 * (1 - s2t13Normal)) + muTauNeutrinoFluxSpectrum[i] * (1 + c2t12 * (1 - s2t13Normal))/2),
     },
     [MassOrdering.Inverted]: {
       [NeutrinoType.electronNeutrino]: electronNeutrinoNeutrinoFluxSpectrum.map((v,i) => v * s2t12 * (1 - s2t13Inverted) + muTauNeutrinoFluxSpectrum[i] * (1 - s2t12 * (1 - s2t13Inverted))),
