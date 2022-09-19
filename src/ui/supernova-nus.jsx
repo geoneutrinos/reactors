@@ -324,7 +324,7 @@ const SupernovaNusPane = () => {
               MeV.
             </p>
             <p>
-              Oscillation effects depend on the neutrino mass ordering.
+              Oscillation effects depend on the neutrino mass ordering (Dighe, A.S. and Smirnov, A.Y. (2000) Phys. Rev. D 62, 033007). 
               <br />
               For normal ordering (NO) with{" "}
               <Node inline>{String.raw`m_3 > m_2 > m_1`}</Node>{" "}
