@@ -131,7 +131,7 @@ const SupernovaNusEvents = ({
   return (
     <Card>
       <Card.Header>
-        Core Collapse SN Neutrino IBD/ES Events (/10<sup>32</sup> targets)
+        Core Collapse SN Neutrino Events (/10<sup>32</sup> targets)
       </Card.Header>
       <Card.Body>
         <Provider>
@@ -139,7 +139,7 @@ const SupernovaNusEvents = ({
             <Table>
               <tbody>
                 <tr>
-                  <td>IBD</td>
+                  <td>ν̅<sub>e</sub> + p</td>
                   <td>
                     N<sup>0</sup> = <Num v={IBDUnoscilated.events} p={1} />
                   </td>
@@ -152,7 +152,7 @@ const SupernovaNusEvents = ({
                   <td></td>
                 </tr>
                 <tr>
-                  <td>pES</td>
+                  <td>ν + p</td>
                   <td>
                     N(ν<sub>e</sub>) = <Num v={ESpNue.events} p={1} />
                   </td>
@@ -167,7 +167,7 @@ const SupernovaNusEvents = ({
                   </td>
                 </tr>
                 <tr>
-                  <td>eES NO</td>
+                  <td>ν + e<sup>-</sup> NO</td>
                   <td>
                     N(ν<sub>e</sub>) = <Num v={ESEforNO.events} p={2} />
                   </td>
@@ -182,7 +182,7 @@ const SupernovaNusEvents = ({
                   </td>
                 </tr>
                 <tr>
-                  <td>eES IO</td>
+                  <td>ν + e<sup>-</sup> IO</td>
                   <td>
                     N(ν<sub>e</sub>) = <Num v={ESEforIO.events} p={2} />
                   </td>
@@ -208,7 +208,7 @@ const SupernovaNusEvents = ({
 const SupernovaNusESeTmin = ({ tESeMin, setTESeMin }) => {
   return (
     <Card>
-      <Card.Header>eES: Electron Minimum Kinetic Energy</Card.Header>
+      <Card.Header>ν + e<sup>-</sup>: Electron Minimum Kinetic Energy</Card.Header>
       <Card.Body>
         <Form.Group controlId="te_min">
           <Form.Label>
@@ -233,7 +233,7 @@ const SupernovaNusESeTmin = ({ tESeMin, setTESeMin }) => {
 const SupernovaNusESpTmin = ({ tESpMin, setTESpMin }) => {
   return (
     <Card>
-      <Card.Header>pES: Proton Minimum Kinetic Energy</Card.Header>
+      <Card.Header>ν + p: Proton Minimum Kinetic Energy</Card.Header>
       <Card.Body>
         <Form.Group controlId="tp_min">
           <Form.Label>
