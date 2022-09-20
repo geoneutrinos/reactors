@@ -60,7 +60,7 @@ const SupernovaNusCEvNS = ({ nucleus, setNucleus, tESnMin, fluxSpectrums }) => {
             <Table>
               <tbody>
                 <tr>
-                  <td>{Elements[nucleus].atomic_symbol} Event Rate</td>
+                  <td>{Elements[nucleus].atomic_symbol} Events</td>
                   <td>
                     N(ν<sub>e</sub>) ={" "}
                     <Num v={events.total[NeutrinoType.electronNeutrino]} p={2} />
@@ -77,7 +77,7 @@ const SupernovaNusCEvNS = ({ nucleus, setNucleus, tESnMin, fluxSpectrums }) => {
               </tbody>
             </Table>
           <details>
-            <summary>Isotopic Event Rate Contributions</summary>
+            <summary>Events by Isotope</summary>
             <Table>
               <thead>
                 <tr>
@@ -131,7 +131,7 @@ const SupernovaNusEvents = ({
   return (
     <Card>
       <Card.Header>
-        Core Collapse SN Neutrino Events (/10<sup>32</sup> targets)
+        Core Collapse SN Neutrino IBD/ES Events (/10<sup>32</sup> targets)
       </Card.Header>
       <Card.Body>
         <Provider>
@@ -226,6 +226,31 @@ const SupernovaNusEvents = ({
             </Table>
           </div>
         </Provider>
+      </Card.Body>
+    </Card>
+  );
+};
+
+const SupernovaNusIBDpTmin = ({ tIBDpMin, setTIBDpMin }) => {
+  return (
+    <Card>
+      <Card.Header>ν + e<sup>-</sup>: Positron Minimum Kinetic Energy</Card.Header>
+      <Card.Body>
+        <Form.Group controlId="teplus_min">
+          <Form.Label>
+            T<sub>min</sub> = {tIBDpMin} MeV
+          </Form.Label>
+          <InputGroup>
+            <Form.Control
+              value={tIBDpMin}
+              type="range"
+              step={0.5}
+              min={0}
+              max={10}
+              onChange={(event) => setTIBDpMin(event.target.value)}
+            />
+          </InputGroup>
+        </Form.Group>
       </Card.Body>
     </Card>
   );
@@ -379,6 +404,7 @@ const SupernovaNusPane = () => {
 };
 
 export const SupernovaNus = React.memo(() => {
+  const [tIBDpMin, setTIBDpMin] = useState(0.0);
   const [tESeMin, setTESeMin] = useState(0.0);
   const [tESpMin, setTESpMin] = useState(0.0);
   const [tESnMin, setTESnMin] = useState(0.0);
@@ -444,6 +470,10 @@ export const SupernovaNus = React.memo(() => {
       AnxESEforNO={AnxESEforNO}
       AnxESEforIO={AnxESEforIO}
       /> 
+      <SupernovaNusIBDpTmin
+        tIBDpMin={tIBDpMin}
+        setTIBDpMin={setTIBDpMin}
+      />
       <SupernovaNusESeTmin
         tESeMin={tESeMin}
         setTESeMin={setTESeMin}
