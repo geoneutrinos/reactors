@@ -11,7 +11,7 @@ export const SupernovaPlotsIBD = ({IBDUnoscilated, IBDOscilatedNormal, IBDOscila
     {
       y: IBDUnoscilated.eventSpectrum,
       x: energyValues,
-      name: `IBD w/o osc`,
+      name: `ν̅<sub>e</sub>+p w/o osc`,
       type: "scatter",
       mode: "lines",
       line: {
@@ -23,7 +23,7 @@ export const SupernovaPlotsIBD = ({IBDUnoscilated, IBDOscilatedNormal, IBDOscila
     {
       y: IBDOscilatedNormal.eventSpectrum,
       x: energyValues,
-      name: `IBD for NO`,
+      name: `ν̅<sub>e</sub>+p for NO`,
       type: "scatter",
       mode: "lines",
       line: {
@@ -35,7 +35,7 @@ export const SupernovaPlotsIBD = ({IBDUnoscilated, IBDOscilatedNormal, IBDOscila
     {
       y: IBDOscilatedInverted.eventSpectrum,
       x: energyValues,
-      name: `IBD for IO`,
+      name: `ν̅<sub>e</sub>+p for IO`,
       type: "scatter",
       mode: "lines",
       line: {
@@ -46,7 +46,7 @@ export const SupernovaPlotsIBD = ({IBDUnoscilated, IBDOscilatedNormal, IBDOscila
     },
   ];
   var layout = {
-    title: "Core Collapse SN Neutrino IBD Spectra",
+    title: "Core Collapse SN Neutrino ν̅<sub>e</sub>+p Spectra",
     yaxis: {
       title: { text: `Events dN/dE (/10<sup>32</sup> p/MeV)` },
       autorange: true,
@@ -74,7 +74,7 @@ export const SupernovaPlotsIBD = ({IBDUnoscilated, IBDOscilatedNormal, IBDOscila
   };
   return (
     <Card>
-      <Card.Header>Core Collapse SN Neutrino IBD Spectra</Card.Header>
+      <Card.Header>Core Collapse SN Neutrino ν̅<sub>e</sub>+p Spectra</Card.Header>
       <Card.Body>
         <Plot
           useResizeHandler={true}
@@ -344,7 +344,7 @@ export const NeutrinoElectronElasticScatteringCrossSection = ({
     {
       y: xsectionIBD,
       x: energyValues,
-      name: `ν̅<sub>e</sub>p`,
+      name: `ν̅<sub>e</sub>+p`,
       type: "scatter",
       mode: "lines",
       line: {
@@ -356,7 +356,7 @@ export const NeutrinoElectronElasticScatteringCrossSection = ({
     {
       y: ESpNue.crossSection,
       x: energyValues,
-      name: `νp`,
+      name: `ν+p`,
       type: "scatter",
       mode: "lines",
       line: {
@@ -368,7 +368,7 @@ export const NeutrinoElectronElasticScatteringCrossSection = ({
     {
       y: ESpAnu.crossSection,
       x: energyValues,
-      name: `ν̅p`,
+      name: `ν̅+p`,
       type: "scatter",
       mode: "lines",
       fill: "none",
@@ -378,7 +378,7 @@ export const NeutrinoElectronElasticScatteringCrossSection = ({
     {
       y: ESEforNO.crossSection,
       x: energyValues,
-      name: `ν<sub>e</sub>e`,
+      name: `ν<sub>e</sub>+e<sup>-</sup>`,
       type: "scatter",
       mode: "lines",
       line: {
@@ -390,7 +390,7 @@ export const NeutrinoElectronElasticScatteringCrossSection = ({
     {
       y: AntiESEforNO.crossSection,
       x: energyValues,
-      name: `ν̅<sub>e</sub>e`,
+      name: `ν̅<sub>e</sub>+e<sup>-</sup>`,
       type: "scatter",
       mode: "lines",
       line: {
@@ -402,7 +402,7 @@ export const NeutrinoElectronElasticScatteringCrossSection = ({
     {
       y: NuxESEforNO.crossSection,
       x: energyValues,
-      name: `ν<sub>x</sub>e`,
+      name: `ν<sub>x</sub>+e<sup>-</sup>`,
       type: "scatter",
       mode: "lines",
       line: {
@@ -414,7 +414,7 @@ export const NeutrinoElectronElasticScatteringCrossSection = ({
     {
       y: AnxESEforNO.crossSection,
       x: energyValues,
-      name: `ν̅<sub>x</sub>e`,
+      name: `ν̅<sub>x</sub>+e<sup>-</sup>`,
       type: "scatter",
       mode: "lines",
       fill: "none",
