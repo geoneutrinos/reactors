@@ -24,6 +24,7 @@ import { s2t12, c2t12, s2t13Normal, s2t13Inverted, MassOrdering } from "../physi
 import { sum } from "lodash";
 
 import elements, { Element } from "../elements";
+import { IBD_THRESHOLD } from "../physics/derived";
 
 export const neutrinoTargets = 1e32; // for IBD, eES, pES
 
@@ -109,8 +110,8 @@ export const oscillatedFluxSpectrum = ({fluxSpectrums}:{fluxSpectrums: SNFluxSpe
   }
 }
 
-export const calcIBDSNRecord = (neutrinoType: NeutrinoType, fluxSpectrums: SNFluxSpectrumInterface): SNRecord => {
-  const crossSection = energyValues.map(crossSectionSV2003)
+export const calcIBDSNRecord = (neutrinoType: NeutrinoType, fluxSpectrums: SNFluxSpectrumInterface, tMin:number = 0): SNRecord => {
+  const crossSection = energyValues.map(v => (v - IBD_THRESHOLD - tMin) > 0? crossSectionSV2003(v): 0)
   const eventSpectrum = fluxSpectrums[neutrinoType].map(
     (v, i) => v * crossSection[i] * neutrinoTargets
   );
