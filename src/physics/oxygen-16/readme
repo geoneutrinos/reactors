@@ -1,0 +1,5 @@
+The two files nue_o16_xsec.csv/nuebar_o16_xsec.csv in this folder contain IBD cross section data publically available at 
+SNOwGLoBES- https://github.com/SNOwGLoBES/snowglobes/tree/master/xscns
+The first column is neutrino/antineutrino energy in MeV
+The second column is the cross section in cm^2
+Note the energy bin increments are not equal but increase with energy. Event totals need to sum accordingly. 
