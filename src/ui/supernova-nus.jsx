@@ -256,6 +256,31 @@ const SupernovaNusIBDpTmin = ({ tIBDpMin, setTIBDpMin }) => {
   );
 };
 
+const SupernovaNusIBDoxyTmin = ({ tIBDoxyMin, setTIBDoxyMin }) => {
+  return (
+    <Card>
+      <Card.Header>ν<sub>e</sub> + <sup>16</sup>O, ν̅<sub>e</sub> + <sup>16</sup>O: e<sup>-</sup>, e<sup>+</sup> Minimum Kinetic Energy</Card.Header>
+      <Card.Body>
+        <Form.Group controlId="teoxy_min">
+          <Form.Label>
+            T<sub>min</sub> = {tIBDoxyMin} MeV
+          </Form.Label>
+          <InputGroup>
+            <Form.Control
+              value={tIBDoxyMin}
+              type="range"
+              step={0.5}
+              min={0}
+              max={10}
+              onChange={(event) => setTIBDoxyMin(event.target.value)}
+            />
+          </InputGroup>
+        </Form.Group>
+      </Card.Body>
+    </Card>
+  );
+};
+
 const SupernovaNusESeTmin = ({ tESeMin, setTESeMin }) => {
   return (
     <Card>
@@ -405,6 +430,7 @@ const SupernovaNusPane = () => {
 
 export const SupernovaNus = React.memo(() => {
   const [tIBDpMin, setTIBDpMin] = useState(0.0);
+  const [tIBDoxyMin, setTIBDoxyMin] = useState(0.0);
   const [tESeMin, setTESeMin] = useState(0.0);
   const [tESpMin, setTESpMin] = useState(0.0);
   const [tESnMin, setTESnMin] = useState(0.0);
@@ -473,6 +499,10 @@ export const SupernovaNus = React.memo(() => {
       <SupernovaNusIBDpTmin
         tIBDpMin={tIBDpMin}
         setTIBDpMin={setTIBDpMin}
+      />
+      <SupernovaNusIBDoxyTmin
+        tIBDoxyMin={tIBDoxyMin}
+        setTIBDoxyMin={setTIBDoxyMin}
       />
       <SupernovaNusESeTmin
         tESeMin={tESeMin}
