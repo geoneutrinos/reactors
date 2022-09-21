@@ -234,7 +234,7 @@ const SupernovaNusEvents = ({
 const SupernovaNusIBDpTmin = ({ tIBDpMin, setTIBDpMin }) => {
   return (
     <Card>
-      <Card.Header>ν + e<sup>-</sup>: Positron Minimum Kinetic Energy</Card.Header>
+      <Card.Header>ν̅<sub>e</sub> + p: Positron Minimum Kinetic Energy</Card.Header>
       <Card.Body>
         <Form.Group controlId="teplus_min">
           <Form.Label>
