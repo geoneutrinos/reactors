@@ -127,9 +127,9 @@ export const SupernovaFluxPlots = ({fluxSpectrums}) => {
     },
   ];
   var layout = {
-    title: "Core Collapse SN Neutrino Flux Spectra w/o Oscillations",
+    title: "Core Collapse SN Neutrino Fluence Spectra w/o Oscillations",
     yaxis: {
-      title: { text: `Flux (/cm<sup>2</sup>/MeV)` },
+      title: { text: `Fluence (/cm<sup>2</sup>/MeV)` },
       autorange: true,
     },
     xaxis: {
@@ -156,7 +156,7 @@ export const SupernovaFluxPlots = ({fluxSpectrums}) => {
   return (
     <Card>
       <Card.Header>
-        Core Collapse SN Neutrino Flux Spectra w/o Oscillations
+        Core Collapse SN Neutrino Fluence Spectra w/o Oscillations
       </Card.Header>
       <Card.Body>
         <Plot
@@ -210,9 +210,9 @@ export const SupernovaOscillatedFluxPlots = ({oscillatedFluxSpectrums}) => {
     },
   ];
   var layout = {
-    title: "Core Collapse SN Neutrino Flux Spectra w/ NO Oscillations",
+    title: "Core Collapse SN Neutrino Fluence Spectra w/ NO Oscillations",
     yaxis: {
-      title: { text: `Flux (/cm<sup>2</sup>/MeV)` },
+      title: { text: `Fluence (/cm<sup>2</sup>/MeV)` },
       autorange: true,
     },
     xaxis: {
@@ -239,7 +239,7 @@ export const SupernovaOscillatedFluxPlots = ({oscillatedFluxSpectrums}) => {
   return (
     <Card>
       <Card.Header>
-        Core Collapse SN Neutrino Flux Spectra w/ NO Oscillations
+        Core Collapse SN Neutrino Fluence Spectra w/ NO Oscillations
       </Card.Header>
       <Card.Body>
         <Plot
@@ -287,9 +287,9 @@ export const SupernovaOscillatedInvertedFluxPlots = ({oscillatedFluxSpectrums}) 
     },
   ];
   var layout = {
-    title: "Core Collapse SN Neutrino Flux Spectra w/ IO Oscillations",
+    title: "Core Collapse SN Neutrino Fluence Spectra w/ IO Oscillations",
     yaxis: {
-      title: { text: `Flux (/cm<sup>2</sup>/MeV)` },
+      title: { text: `Fluence (/cm<sup>2</sup>/MeV)` },
       autorange: true,
     },
     xaxis: {
@@ -316,7 +316,7 @@ export const SupernovaOscillatedInvertedFluxPlots = ({oscillatedFluxSpectrums}) 
   return (
     <Card>
       <Card.Header>
-        Core Collapse SN Neutrino Flux Spectra w/ IO Oscillations
+        Core Collapse SN Neutrino Fluence Spectra w/ IO Oscillations
       </Card.Header>
       <Card.Body>
         <Plot
