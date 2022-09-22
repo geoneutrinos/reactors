@@ -435,14 +435,14 @@ const NueAvgEnergy = ({ nueAvgEnrg, setAvgEnrgNue }) => {
       <Card.Body>
         <Form.Group controlId="avgenergy_nue">
           <Form.Label>
-            T<sub>min</sub> = {nueAvgEnrg} MeV
+            E<sub>avg</sub> = {nueAvgEnrg} MeV
           </Form.Label>
           <InputGroup>
             <Form.Control
               value={nueAvgEnrg}
               type="range"
               step={0.1}
-              min={8}
+              min={7}
               max={12}
               onChange={(event) => setAvgEnrgNue(event.target.value)}
             />
@@ -460,7 +460,7 @@ const AnuAvgEnergy = ({ anuAvgEnrg, setAvgEnrgAnu }) => {
       <Card.Body>
         <Form.Group controlId="avgenergy_anu">
           <Form.Label>
-            T<sub>min</sub> = {anuAvgEnrg} MeV
+            E<sub>avg</sub> = {anuAvgEnrg} MeV
           </Form.Label>
           <InputGroup>
             <Form.Control
@@ -485,14 +485,14 @@ const NuxAvgEnergy = ({ nuxAvgEnrg, setAvgEnrgNux }) => {
       <Card.Body>
         <Form.Group controlId="avgenergy_nux">
           <Form.Label>
-            T<sub>min</sub> = {nuxAvgEnrg} MeV
+            E<sub>avg</sub> = {nuxAvgEnrg} MeV
           </Form.Label>
           <InputGroup>
             <Form.Control
               value={nuxAvgEnrg}
               type="range"
               step={0.1}
-              min={12}
+              min={13}
               max={18}
               onChange={(event) => setAvgEnrgNux(event.target.value)}
             />
@@ -509,9 +509,9 @@ export const SupernovaNus = React.memo(() => {
   const [tESeMin, setTESeMin] = useState(0.0);
   const [tESpMin, setTESpMin] = useState(0.0);
   const [tESnMin, setTESnMin] = useState(0.0);
-  const [nueAvgEnrg,setAvgEnrgNue = useState(9.5);
-  const [anuAvgEnrg,setAvgEnrgAnu = useState(12.0);
-  const [nuxAvgEnrg,setAvgEnrgNux = useState(15.6);
+  const [nueAvgEnrg,setAvgEnrgNue] = useState(9.5);
+  const [anuAvgEnrg,setAvgEnrgAnu] = useState(12.0);
+  const [nuxAvgEnrg,setAvgEnrgNux] = useState(15.6);
   const [nucleus, setNucleus] = useState(Elements.Xe132.key);
 
   // TODO move to state
@@ -590,12 +590,6 @@ export const SupernovaNus = React.memo(() => {
         tESpMin={tESpMin}
         setTESpMin={setTESpMin}
       />
-      <SupernovaNusPane  />
-      <SupernovaPlotsIBD 
-      IBDUnoscilated={IBDUnoscilated} 
-      IBDOscilatedNormal={IBDOscilatedNormal} 
-      IBDOscilatedInverted={IBDOscilatedInverted} 
-      />
       <NueAvgEnergy
         nueAvgEnrg={nueAvgEnrg}
         setAvgEnrgNue={setAvgEnrgNue}
@@ -607,6 +601,12 @@ export const SupernovaNus = React.memo(() => {
       <NuxAvgEnergy
         nuxAvgEnrg={nuxAvgEnrg}
         setAvgEnrgNux={setAvgEnrgNux}
+      />
+      <SupernovaNusPane  />
+      <SupernovaPlotsIBD 
+      IBDUnoscilated={IBDUnoscilated} 
+      IBDOscilatedNormal={IBDOscilatedNormal} 
+      IBDOscilatedInverted={IBDOscilatedInverted} 
       />
       <SupernovaFluxPlots fluxSpectrums={fluxSpectrums}/>
       <SupernovaOscillatedFluxPlots oscillatedFluxSpectrums={oscillatedFluxSpectrums}/>
