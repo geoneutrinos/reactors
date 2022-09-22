@@ -95,7 +95,7 @@ const SupernovaNusCEvNS = ({ nucleus, setNucleus, tESnMin, fluxSpectrums }) => {
           </div>
           <Form noValidate>
             <Form.Group controlId="set_nucleus">
-              <Form.Label>Target Nucleus</Form.Label>
+              <Form.Label>Target Element</Form.Label>
               <Form.Control as="select" onChange={(event) => setNucleus(event.target.value)} value={nucleus}>
                 <option value={Elements.Ar40.key}>Argon</option>
                 <option value={Elements.Ge76.key}>Germanium</option>
@@ -428,12 +428,90 @@ const SupernovaNusPane = () => {
   );
 };
 
+const NueAvgEnergy = ({ nueAvgEnrg, setAvgEnrgNue }) => {
+  return (
+    <Card>
+      <Card.Header>ν<sub>e</sub> Average Energy</Card.Header>
+      <Card.Body>
+        <Form.Group controlId="avgenergy_nue">
+          <Form.Label>
+            T<sub>min</sub> = {nueAvgEnrg} MeV
+          </Form.Label>
+          <InputGroup>
+            <Form.Control
+              value={nueAvgEnrg}
+              type="range"
+              step={0.1}
+              min={8}
+              max={12}
+              onChange={(event) => setAvgEnrgNue(event.target.value)}
+            />
+          </InputGroup>
+        </Form.Group>
+      </Card.Body>
+    </Card>
+  );
+};
+
+const AnuAvgEnergy = ({ anuAvgEnrg, setAvgEnrgAnu }) => {
+  return (
+    <Card>
+      <Card.Header>ν̅<sub>e</sub> Average Energy</Card.Header>
+      <Card.Body>
+        <Form.Group controlId="avgenergy_anu">
+          <Form.Label>
+            T<sub>min</sub> = {anuAvgEnrg} MeV
+          </Form.Label>
+          <InputGroup>
+            <Form.Control
+              value={anuAvgEnrg}
+              type="range"
+              step={0.1}
+              min={10}
+              max={15}
+              onChange={(event) => setAvgEnrgAnu(event.target.value)}
+            />
+          </InputGroup>
+        </Form.Group>
+      </Card.Body>
+    </Card>
+  );
+};
+
+const NuxAvgEnergy = ({ nuxAvgEnrg, setAvgEnrgNux }) => {
+  return (
+    <Card>
+      <Card.Header>ν<sub>x</sub> Average Energy</Card.Header>
+      <Card.Body>
+        <Form.Group controlId="avgenergy_nux">
+          <Form.Label>
+            T<sub>min</sub> = {nuxAvgEnrg} MeV
+          </Form.Label>
+          <InputGroup>
+            <Form.Control
+              value={nuxAvgEnrg}
+              type="range"
+              step={0.1}
+              min={12}
+              max={18}
+              onChange={(event) => setAvgEnrgNux(event.target.value)}
+            />
+          </InputGroup>
+        </Form.Group>
+      </Card.Body>
+    </Card>
+  );
+};
+
 export const SupernovaNus = React.memo(() => {
   const [tIBDpMin, setTIBDpMin] = useState(0.0);
   const [tIBDoxyMin, setTIBDoxyMin] = useState(0.0);
   const [tESeMin, setTESeMin] = useState(0.0);
   const [tESpMin, setTESpMin] = useState(0.0);
   const [tESnMin, setTESnMin] = useState(0.0);
+  const [nueAvgEnrg,setAvgEnrgNue = useState(9.5);
+  const [anuAvgEnrg,setAvgEnrgAnu = useState(12.0);
+  const [nuxAvgEnrg,setAvgEnrgNux = useState(15.6);
   const [nucleus, setNucleus] = useState(Elements.Xe132.key);
 
   // TODO move to state
@@ -517,6 +595,18 @@ export const SupernovaNus = React.memo(() => {
       IBDUnoscilated={IBDUnoscilated} 
       IBDOscilatedNormal={IBDOscilatedNormal} 
       IBDOscilatedInverted={IBDOscilatedInverted} 
+      />
+      <NueAvgEnergy
+        nueAvgEnrg={nueAvgEnrg}
+        setAvgEnrgNue={setAvgEnrgNue}
+      />
+      <AnuAvgEnergy
+        anuAvgEnrg={anuAvgEnrg}
+        setAvgEnrgAnu={setAvgEnrgAnu}
+      />
+      <NuxAvgEnergy
+        nuxAvgEnrg={nuxAvgEnrg}
+        setAvgEnrgNux={setAvgEnrgNux}
       />
       <SupernovaFluxPlots fluxSpectrums={fluxSpectrums}/>
       <SupernovaOscillatedFluxPlots oscillatedFluxSpectrums={oscillatedFluxSpectrums}/>
