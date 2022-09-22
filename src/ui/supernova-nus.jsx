@@ -383,7 +383,7 @@ const SupernovaNusPane = () => {
               gamma function.
             </p>
             <p>
-              Initially assume <Node inline>{String.raw`D = 10`}</Node> kpc,{" "}
+              While distance <Node inline>{String.raw`D = 10`}</Node> kpc is fixed, the default values for{" "}
               <Node
                 inline
               >{String.raw`E_{\nu_{\alpha}}^\mathrm{tot} = 5\times10^{52}`}</Node>{" "}
@@ -397,7 +397,7 @@ const SupernovaNusPane = () => {
               >{String.raw`\langle E_{\overline{\nu}_{\mathrm{e}}} \rangle = 12`}</Node>{" "}
               MeV, and{" "}
               <Node inline>{String.raw`\langle E_{\nu_{x}} \rangle = 15.6`}</Node>{" "}
-              MeV.
+              MeV are user-settable for testing different models.
             </p>
             <p>
               Oscillation effects depend on the neutrino mass ordering (Dighe, A.S. and Smirnov, A.Y. (2000) Phys. Rev. D 62, 033007). 
@@ -510,15 +510,15 @@ const NueTotEnergy = ({ nueTotEnrg, setTotEnrgNue }) => {
       <Card.Body>
         <Form.Group controlId="totenergy_nue">
           <Form.Label>
-            E<sub>tot</sub> = {nueTotEnrg} erg
+            E<sub>tot</sub> = {nueTotEnrg} x10<sup>52</sup> erg
           </Form.Label>
           <InputGroup>
             <Form.Control
               value={nueTotEnrg}
               type="range"
-              step={1e51}
-              min={1e52}
-              max={5e52}
+              step={0.1}
+              min={1}
+              max={5}
               onChange={(event) => setTotEnrgNue(event.target.value)}
             />
           </InputGroup>
@@ -535,15 +535,15 @@ const AnuTotEnergy = ({ anuTotEnrg, setTotEnrgAnu }) => {
       <Card.Body>
         <Form.Group controlId="totenergy_anu">
           <Form.Label>
-            E<sub>tot</sub> = {anuTotEnrg} erg
+            E<sub>tot</sub> = {anuTotEnrg} x10<sup>52</sup> erg
           </Form.Label>
           <InputGroup>
             <Form.Control
               value={anuTotEnrg}
               type="range"
-              step={1e51}
-              min={1e52}
-              max={5e52}
+              step={0.1}
+              min={1}
+              max={5}
               onChange={(event) => setTotEnrgAnu(event.target.value)}
             />
           </InputGroup>
@@ -560,15 +560,15 @@ const NuxTotEnergy = ({ nuxTotEnrg, setTotEnrgNux }) => {
       <Card.Body>
         <Form.Group controlId="totenergy_nux">
           <Form.Label>
-            E<sub>tot</sub> = {nuxTotEnrg} erg
+            E<sub>tot</sub> = {nuxTotEnrg} x10<sup>52</sup> erg
           </Form.Label>
           <InputGroup>
             <Form.Control
               value={nuxTotEnrg}
               type="range"
-              step={1e51}
-              min={1e52}
-              max={5e52}
+              step={0.1}
+              min={1}
+              max={5}
               onChange={(event) => setTotEnrgNux(event.target.value)}
             />
           </InputGroup>
@@ -587,9 +587,9 @@ export const SupernovaNus = React.memo(() => {
   const [nueAvgEnrg,setAvgEnrgNue] = useState(9.5);
   const [anuAvgEnrg,setAvgEnrgAnu] = useState(12.0);
   const [nuxAvgEnrg,setAvgEnrgNux] = useState(15.6);
-  const [nueTotEnrg,setTotEnrgNue] = useState(5e52);
-  const [anuTotEnrg,setTotEnrgAnu] = useState(5e52);
-  const [nuxTotEnrg,setTotEnrgNux] = useState(5e52);
+  const [nueTotEnrg,setTotEnrgNue] = useState(5);
+  const [anuTotEnrg,setTotEnrgAnu] = useState(5);
+  const [nuxTotEnrg,setTotEnrgNux] = useState(5);
   const [nucleus, setNucleus] = useState(Elements.Xe132.key);
 
   // TODO move to state
@@ -598,9 +598,9 @@ export const SupernovaNus = React.memo(() => {
   const avgNrgNue = 9.5;
   const avgNrgAnu = 12;
   const avgNrgNux = 15.6;
-  const totNrgNue = 5e52;
-  const totNrgAnu = 5e52;
-  const totNrgNux = 5e52;
+  const totNrgNue = 5;
+  const totNrgAnu = 5;
+  const totNrgNux = 5;
 
   const fluxSpectrums = SNFluxSpectrum(avgNrgNue, avgNrgAnu, avgNrgNux, totNrgNue, totNrgAnu, totNrgNux) 
   const oscillatedFluxSpectrums = oscillatedFluxSpectrum({fluxSpectrums})
