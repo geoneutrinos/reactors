@@ -198,7 +198,7 @@ export const CEvNSEvents = (element: Element, TMin:number, fluxSpectrums:SNFluxS
 
 function neutrinoSpectrumCCSN(Ev: number, Ev_avg: number, Ev_tot: number) {
   const energy_convert = 1e-13 / ELEMENTARY_CHARGE; // MeV per erg
-  const enu_tot = Ev_tot * energy_convert; // MeV
+  const enu_tot = Ev_tot * 1e52 * energy_convert; // MeV
   const d_ccsn = 10 * 3.086e21; // cm
   const beta = 4;
 
