@@ -666,13 +666,13 @@ export const SupernovaNus = React.memo(() => {
         tIBDoxyMin={tIBDoxyMin}
         setTIBDoxyMin={setTIBDoxyMin}
       />
-      <SupernovaNusESeTmin
-        tESeMin={tESeMin}
-        setTESeMin={setTESeMin}
-      />
       <SupernovaNusESpTmin
         tESpMin={tESpMin}
         setTESpMin={setTESpMin}
+      />
+      <SupernovaNusESeTmin
+        tESeMin={tESeMin}
+        setTESeMin={setTESeMin}
       />
       <SupernovaNusPane  />
       <NueAvgEnergy
