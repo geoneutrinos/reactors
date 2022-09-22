@@ -587,6 +587,9 @@ export const SupernovaNus = React.memo(() => {
   const [nueAvgEnrg,setAvgEnrgNue] = useState(9.5);
   const [anuAvgEnrg,setAvgEnrgAnu] = useState(12.0);
   const [nuxAvgEnrg,setAvgEnrgNux] = useState(15.6);
+  const [nueTotEnrg,setTotEnrgNue] = useState(5e52);
+  const [anuTotEnrg,setTotEnrgAnu] = useState(5e52);
+  const [nuxTotEnrg,setTotEnrgNux] = useState(5e52);
   const [nucleus, setNucleus] = useState(Elements.Xe132.key);
 
   // TODO move to state
