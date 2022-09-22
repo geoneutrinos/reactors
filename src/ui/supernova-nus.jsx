@@ -503,6 +503,81 @@ const NuxAvgEnergy = ({ nuxAvgEnrg, setAvgEnrgNux }) => {
   );
 };
 
+const NueTotEnergy = ({ nueTotEnrg, setTotEnrgNue }) => {
+  return (
+    <Card>
+      <Card.Header>Total Energy of ν<sub>e</sub></Card.Header>
+      <Card.Body>
+        <Form.Group controlId="totenergy_nue">
+          <Form.Label>
+            E<sub>tot</sub> = {nueTotEnrg} erg
+          </Form.Label>
+          <InputGroup>
+            <Form.Control
+              value={nueTotEnrg}
+              type="range"
+              step={1e51}
+              min={1e52}
+              max={5e52}
+              onChange={(event) => setTotEnrgNue(event.target.value)}
+            />
+          </InputGroup>
+        </Form.Group>
+      </Card.Body>
+    </Card>
+  );
+};
+
+const AnuTotEnergy = ({ anuTotEnrg, setTotEnrgAnu }) => {
+  return (
+    <Card>
+      <Card.Header>Total Energy of ν̅<sub>e</sub></Card.Header>
+      <Card.Body>
+        <Form.Group controlId="totenergy_anu">
+          <Form.Label>
+            E<sub>tot</sub> = {anuTotEnrg} erg
+          </Form.Label>
+          <InputGroup>
+            <Form.Control
+              value={anuTotEnrg}
+              type="range"
+              step={1e51}
+              min={1e52}
+              max={5e52}
+              onChange={(event) => setTotEnrgAnu(event.target.value)}
+            />
+          </InputGroup>
+        </Form.Group>
+      </Card.Body>
+    </Card>
+  );
+};
+
+const NuxTotEnergy = ({ nuxTotEnrg, setTotEnrgNux }) => {
+  return (
+    <Card>
+      <Card.Header>Total Energy of ν<sub>x</sub></Card.Header>
+      <Card.Body>
+        <Form.Group controlId="totenergy_nux">
+          <Form.Label>
+            E<sub>tot</sub> = {nuxTotEnrg} erg
+          </Form.Label>
+          <InputGroup>
+            <Form.Control
+              value={nuxTotEnrg}
+              type="range"
+              step={1e51}
+              min={1e52}
+              max={5e52}
+              onChange={(event) => setTotEnrgNux(event.target.value)}
+            />
+          </InputGroup>
+        </Form.Group>
+      </Card.Body>
+    </Card>
+  );
+};
+
 export const SupernovaNus = React.memo(() => {
   const [tIBDpMin, setTIBDpMin] = useState(0.0);
   const [tIBDoxyMin, setTIBDoxyMin] = useState(0.0);
@@ -605,6 +680,18 @@ export const SupernovaNus = React.memo(() => {
       <NuxAvgEnergy
         nuxAvgEnrg={nuxAvgEnrg}
         setAvgEnrgNux={setAvgEnrgNux}
+      />
+      <NueTotEnergy
+        nueTotEnrg={nueTotEnrg}
+        setTotEnrgNue={setTotEnrgNue}
+      />
+      <AnuTotEnergy
+        anuTotEnrg={anuTotEnrg}
+        setTotEnrgAnu={setTotEnrgAnu}
+      />
+      <NuxTotEnergy
+        nuxTotEnrg={nuxTotEnrg}
+        setTotEnrgNux={setTotEnrgNux}
       />
       <SupernovaPlotsIBD 
       IBDUnoscilated={IBDUnoscilated} 
