@@ -72,13 +72,16 @@ export const energyValues = new Float64Array(energyBins).map(
 );
 
 /**
- * Calcualtes the unoscilated neutrino flux spectrum from a supernova for all the neutrino types we use
+ * Calculates the unoscillated neutrino flux spectrum from a supernova for all the neutrino types we use
  * @param averageNeutrinoEnergyNue 
  * @param averageNeutrinoEnergyAnu 
- * @param averageNeutrinoEnergyNux 
+ * @param averageNeutrinoEnergyNux
+ * @param totalEnergyNeutrinoNue
+ * @param totalEnergyNeutrinoAnu
+ * @param totalEnergyNeutrinoNux
  * @returns 
  */
-export const SNFluxSpectrum = (averageNeutrinoEnergyNue: number, averageNeutrinoEnergyAnu: number, averageNeutrinoEnergyNux: number) : SNFluxSpectrumInterface => {
+export const SNFluxSpectrum = (averageNeutrinoEnergyNue: number, averageNeutrinoEnergyAnu: number, averageNeutrinoEnergyNux: number, totalEnergyNeutrinoNue: number, totalEnergyNeutrinoAnu: number, totalEnergyNeutrinoNux: number) : SNFluxSpectrumInterface => {
   const muTauSpec = energyValues.map((x) => neutrinoSpectrumCCSN(x, averageNeutrinoEnergyNux)) 
   return {
     [NeutrinoType.electronNeutrino]: energyValues.map((x) => neutrinoSpectrumCCSN(x, averageNeutrinoEnergyNue)),
