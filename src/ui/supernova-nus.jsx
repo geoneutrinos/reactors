@@ -520,8 +520,11 @@ export const SupernovaNus = React.memo(() => {
   const avgNrgNue = 9.5;
   const avgNrgAnu = 12;
   const avgNrgNux = 15.6;
+  const totNrgNue = 5e52;
+  const totNrgAnu = 5e52;
+  const totNrgNux = 5e52;
 
-  const fluxSpectrums = SNFluxSpectrum(avgNrgNue, avgNrgAnu, avgNrgNux) 
+  const fluxSpectrums = SNFluxSpectrum(avgNrgNue, avgNrgAnu, avgNrgNux, totNrgNue, totNrgAnu, totNrgNux) 
   const oscillatedFluxSpectrums = oscillatedFluxSpectrum({fluxSpectrums})
 
   const IBDUnoscilated = calcIBDSNRecord(NeutrinoType.electronAntineutrino, fluxSpectrums, tIBDpMin)
