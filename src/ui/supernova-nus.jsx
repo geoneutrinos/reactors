@@ -595,17 +595,10 @@ export const SupernovaNus = React.memo(() => {
   const [nuxTotEnrg,setTotEnrgNux] = useState(5);
   const [nucleus, setNucleus] = useState(Elements.Xe132.key);
 
-  // TODO move to state
   // inital guesses 12, 15, 18 MeV too hot and now reduced
   // new values from P.C. Divari, Journal of Cosmology and Astroparticle Physics, JCAP09(2018)029
-  const avgNrgNue = 9.5;
-  const avgNrgAnu = 12;
-  const avgNrgNux = 15.6;
-  const totNrgNue = 5;
-  const totNrgAnu = 5;
-  const totNrgNux = 5;
 
-  const fluxSpectrums = SNFluxSpectrum(avgNrgNue, avgNrgAnu, avgNrgNux, totNrgNue, totNrgAnu, totNrgNux) 
+  const fluxSpectrums = SNFluxSpectrum(nueAvgEnrg, anuAvgEnrg, nuxAvgEnrg, nueTotEnrg, anuTotEnrg, nuxTotEnrg) 
   const oscillatedFluxSpectrums = oscillatedFluxSpectrum({fluxSpectrums})
 
   const IBDUnoscilated = calcIBDSNRecord(NeutrinoType.electronAntineutrino, fluxSpectrums, tIBDpMin)
