@@ -470,8 +470,8 @@ const AnuAvgEnergy = ({ anuAvgEnrg, setAvgEnrgAnu }) => {
               value={anuAvgEnrg}
               type="range"
               step={0.1}
-              min={10}
-              max={15}
+              min={9.5}
+              max={14.5}
               onChange={(event) => setAvgEnrgAnu(event.target.value)}
             />
           </InputGroup>
