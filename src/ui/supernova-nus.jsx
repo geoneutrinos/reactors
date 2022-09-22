@@ -383,11 +383,14 @@ const SupernovaNusPane = () => {
               gamma function.
             </p>
             <p>
-              While distance <Node inline>{String.raw`D = 10`}</Node> kpc is fixed, the default values for{" "}
+              While distance <Node inline>{String.raw`D = 10`}</Node>{" "}
+              kpc and spectrum shape parameter{" "}
+              <Node inline>{String.raw`\beta = 4`}</Node>{" "} 
+              are fixed, the default values for{" "}
               <Node
                 inline
               >{String.raw`E_{\nu_{\alpha}}^\mathrm{tot} = 5\times10^{52}`}</Node>{" "}
-              erg, <Node inline>{String.raw`\beta = 4`}</Node> ,{" "}
+              erg,{" "}
               <Node
                 inline
               >{String.raw`\langle E_{\nu_{\mathrm{e}}} \rangle = 9.5`}</Node>{" "}
@@ -397,7 +400,7 @@ const SupernovaNusPane = () => {
               >{String.raw`\langle E_{\overline{\nu}_{\mathrm{e}}} \rangle = 12`}</Node>{" "}
               MeV, and{" "}
               <Node inline>{String.raw`\langle E_{\nu_{x}} \rangle = 15.6`}</Node>{" "}
-              MeV are user-settable for testing different models.
+              MeV are user-settable for exploring different models.
             </p>
             <p>
               Oscillation effects depend on the neutrino mass ordering (Dighe, A.S. and Smirnov, A.Y. (2000) Phys. Rev. D 62, 033007). 
