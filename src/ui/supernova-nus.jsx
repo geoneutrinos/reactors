@@ -590,6 +590,7 @@ export const SupernovaNus = React.memo(() => {
         tESpMin={tESpMin}
         setTESpMin={setTESpMin}
       />
+      <SupernovaNusPane  />
       <NueAvgEnergy
         nueAvgEnrg={nueAvgEnrg}
         setAvgEnrgNue={setAvgEnrgNue}
@@ -602,7 +603,6 @@ export const SupernovaNus = React.memo(() => {
         nuxAvgEnrg={nuxAvgEnrg}
         setAvgEnrgNux={setAvgEnrgNux}
       />
-      <SupernovaNusPane  />
       <SupernovaPlotsIBD 
       IBDUnoscilated={IBDUnoscilated} 
       IBDOscilatedNormal={IBDOscilatedNormal} 
