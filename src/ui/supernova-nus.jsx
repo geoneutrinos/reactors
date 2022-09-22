@@ -364,7 +364,7 @@ const SupernovaNusPane = () => {
         <Provider>
           <div>
             <p>
-              The non-oscillated flux spectrum of neutrinos of a given species{" "}
+              The non-oscillated fluence spectrum of neutrinos of a given species{" "}
               <Node
                 inline
               >{String.raw`(\nu_\mathrm{e}, \overline{\nu}_\mathrm{e}, \nu_x)`}</Node>{" "}
