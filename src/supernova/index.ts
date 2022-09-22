@@ -82,10 +82,10 @@ export const energyValues = new Float64Array(energyBins).map(
  * @returns 
  */
 export const SNFluxSpectrum = (averageNeutrinoEnergyNue: number, averageNeutrinoEnergyAnu: number, averageNeutrinoEnergyNux: number, totalEnergyNeutrinoNue: number, totalEnergyNeutrinoAnu: number, totalEnergyNeutrinoNux: number) : SNFluxSpectrumInterface => {
-  const muTauSpec = energyValues.map((x) => neutrinoSpectrumCCSN(x, averageNeutrinoEnergyNux)) 
+  const muTauSpec = energyValues.map((x) => neutrinoSpectrumCCSN(x, averageNeutrinoEnergyNux, totalEnergyNeutrinoNux)) 
   return {
-    [NeutrinoType.electronNeutrino]: energyValues.map((x) => neutrinoSpectrumCCSN(x, averageNeutrinoEnergyNue)),
-    [NeutrinoType.electronAntineutrino]: energyValues.map((x) => neutrinoSpectrumCCSN(x, averageNeutrinoEnergyAnu)),
+    [NeutrinoType.electronNeutrino]: energyValues.map((x) => neutrinoSpectrumCCSN(x, averageNeutrinoEnergyNue, totalEnergyNeutrinoNue)),
+    [NeutrinoType.electronAntineutrino]: energyValues.map((x) => neutrinoSpectrumCCSN(x, averageNeutrinoEnergyAnu, totalEnergyNeutrinoAnu)),
     [NeutrinoType.muTauNeutrino]: muTauSpec, 
     [NeutrinoType.muTauAntineutrino]: muTauSpec,
   }
@@ -196,8 +196,9 @@ export const CEvNSEvents = (element: Element, TMin:number, fluxSpectrums:SNFluxS
   };
 };
 
-function neutrinoSpectrumCCSN(Ev: number, Ev_avg: number) {
-  const enu_tot = (5e52 * 1e-13) / ELEMENTARY_CHARGE; // MeV
+function neutrinoSpectrumCCSN(Ev: number, Ev_avg: number, Ev_tot: number) {
+  const energy_convert = 1e-13 / ELEMENTARY_CHARGE; // MeV per erg
+  const enu_tot = Ev_tot * energy_convert; MeV
   const d_ccsn = 10 * 3.086e21; // cm
   const beta = 4;
 
