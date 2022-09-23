@@ -1,6 +1,7 @@
 import elementsRaw from "./elements.json";
 
-interface Element {
+export interface Element {
+  key: string;
   atomic_number: number;
   atomic_symbol: string;
   isotopic_composition: number;
@@ -11,10 +12,11 @@ interface Element {
 }
 
 const elements: Record<string, Element> = Object.fromEntries(
-  (elementsRaw as Element[]).map((element) => [
-    `${element.atomic_symbol}${element.mass_number}`,
-    element,
-  ])
+  (elementsRaw as Element[]).map((element) => {
+    let key = `${element.atomic_symbol}${element.mass_number}`;
+    let value: Element = { ...element, key };
+    return [key, value];
+  })
 );
 
 export default elements;

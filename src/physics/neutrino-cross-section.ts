@@ -1,9 +1,16 @@
-import { ELECTRON_REST_MASS, HBAR_C, FERMI_COUPLING_CONSTANT, WEAK_MIXING_ANGLE } from './constants'
+import { ELECTRON_REST_MASS, HBAR_C, FERMI_COUPLING_CONSTANT, WEAK_MIXING_ANGLE, PROTON_REST_MASS, NEUTRON_REST_MASS } from './constants'
 import {IBD_THRESHOLD} from "./derived"
 import { memoize } from 'lodash';
 
 export interface CrossSectionFunc {
   (Ev: number): number
+}
+
+export enum NeutrinoTarget {
+  electron,
+  proton,
+  neutron,
+  nucleus
 }
 
 export enum NeutrinoType {
@@ -36,18 +43,40 @@ export const XSAbrev: {[key in XSNames | XSNamesNormal]: string} = {
   [XSNamesNormal.ESMUTAUNORM]: "ESnux",
 }
 
-export const ES_COEFFICIENTS_RIGHT = {
-  [NeutrinoType.electronNeutrino]: WEAK_MIXING_ANGLE,
-  [NeutrinoType.muTauNeutrino]: WEAK_MIXING_ANGLE,
-  [NeutrinoType.electronAntineutrino]: 0.5 + WEAK_MIXING_ANGLE,
-  [NeutrinoType.muTauAntineutrino]: -0.5 + WEAK_MIXING_ANGLE,
+export const ES_TARGET_MASSES = {
+  [NeutrinoTarget.electron]: ELECTRON_REST_MASS,
+  [NeutrinoTarget.proton]: PROTON_REST_MASS,
+  [NeutrinoTarget.neutron]: NEUTRON_REST_MASS,
+  [NeutrinoTarget.nucleus]: 0  // needs other input
 }
-export const ES_COEFFICIENTS_LEFT = {
-  [NeutrinoType.electronNeutrino]: 0.5 + WEAK_MIXING_ANGLE,
-  [NeutrinoType.muTauNeutrino]: -0.5 + WEAK_MIXING_ANGLE,
-  [NeutrinoType.electronAntineutrino]: WEAK_MIXING_ANGLE,
-  [NeutrinoType.muTauAntineutrino]: WEAK_MIXING_ANGLE,
+
+export const ES_COEFFICIENTS_VECTOR = {
+  [NeutrinoType.electronNeutrino]: 0.5 + 2 * WEAK_MIXING_ANGLE,
+  [NeutrinoType.muTauNeutrino]: -0.5 + 2 * WEAK_MIXING_ANGLE,
+  [NeutrinoType.electronAntineutrino]: 0.5 + 2 * WEAK_MIXING_ANGLE,
+  [NeutrinoType.muTauAntineutrino]: -0.5 + 2 * WEAK_MIXING_ANGLE,
 }
+export const ES_COEFFICIENTS_AXIAL = {
+  [NeutrinoType.electronNeutrino]: 0.5,
+  [NeutrinoType.muTauNeutrino]: -0.5,
+  [NeutrinoType.electronAntineutrino]: -0.5,
+  [NeutrinoType.muTauAntineutrino]: 0.5,
+}
+export const PS_COEFFICIENTS_AXIAL = {
+  [NeutrinoType.electronNeutrino]: 1.27 / 2,
+  [NeutrinoType.muTauNeutrino]: 1.27 / 2,
+  [NeutrinoType.electronAntineutrino]: -1.27 / 2,
+  [NeutrinoType.muTauAntineutrino]: -1.27 / 2,
+}
+export const PS_COEFFICIENTS_VECTOR = {
+  [NeutrinoType.electronNeutrino]: 0.5 - 2 * WEAK_MIXING_ANGLE,
+  [NeutrinoType.muTauNeutrino]: 0.5 - 2 * WEAK_MIXING_ANGLE,
+  [NeutrinoType.electronAntineutrino]: 0.5 - 2 * WEAK_MIXING_ANGLE,
+  [NeutrinoType.muTauAntineutrino]: 0.5 - 2 * WEAK_MIXING_ANGLE,
+}
+export const CEvNS_PROTON_VECTOR = 0.5 - 2 * WEAK_MIXING_ANGLE
+export const CEvNS_NEUTRON_VECTOR = -0.5
+ 
 
 /** 
  * Calculates the neutrino cross section, sometimes called sigma
@@ -118,20 +147,20 @@ function differentialTeFromEvCos(Ev: number, cosT:number): number{
   return num/dem;
 }
 
-export function TEMax(Ev: number): number{
-  return Ev/(1 + ELECTRON_REST_MASS/(2 * Ev)) 
+export function TEMax(Ev: number, targetMass:number = ELECTRON_REST_MASS): number{
+  return Ev/(1 + targetMass/(2 * Ev)) 
 }
 
 export function differentialCrossSectionElasticScattering(Ev: number, Te:number, neutrinoType:NeutrinoType): number{
-  const cL = ES_COEFFICIENTS_LEFT[neutrinoType]
-  const cR = ES_COEFFICIENTS_RIGHT[neutrinoType]
+  const cL = ES_COEFFICIENTS_VECTOR[neutrinoType] + ES_COEFFICIENTS_AXIAL[neutrinoType]
+  const cR = ES_COEFFICIENTS_VECTOR[neutrinoType] - ES_COEFFICIENTS_AXIAL[neutrinoType]
 
   // The following impliments equation 11... it's big so there will be
   // 4 terms to make the equation the following: term1(term2 + term3 - term4)
 
   const FERMI_COUPLING_CONSTANT_MeV = FERMI_COUPLING_CONSTANT / 1e6
 
-  const term1 = (2 * (FERMI_COUPLING_CONSTANT_MeV ** 2) * (HBAR_C ** 2)) * ELECTRON_REST_MASS / Math.PI;
+  const term1 = ((FERMI_COUPLING_CONSTANT_MeV ** 2) * (HBAR_C ** 2)) * ELECTRON_REST_MASS / (2 * Math.PI);
   const term2 = cL ** 2;
   const term3 = cR ** 2 * (1 - Te/Ev) ** 2;
   const term4 = cL * cR * (ELECTRON_REST_MASS * Te)/(Ev ** 2);
@@ -146,13 +175,21 @@ export function differentialCrossSectionElasticScatteringAngular(Ev: number, cos
   return diffXs * diffTe;
 }
 
-export function crossSectionElasticScattering(Ev: number, neutrinoType: NeutrinoType, T_min:number = 0, Tmax?:number): number {
-  const cL = ES_COEFFICIENTS_LEFT[neutrinoType]
-  const cR = ES_COEFFICIENTS_RIGHT[neutrinoType]
+export function crossSectionElasticScattering(Ev: number, neutrinoType: NeutrinoType, T_min:number = 0, Tmax?:number, target: NeutrinoTarget = NeutrinoTarget.electron,  targetMass:number = 0): number {
+  let cL = 0
+  let cR = 0
+  if (target === NeutrinoTarget.electron){
+    cL = ES_COEFFICIENTS_VECTOR[neutrinoType] + ES_COEFFICIENTS_AXIAL[neutrinoType]
+    cR = ES_COEFFICIENTS_VECTOR[neutrinoType] - ES_COEFFICIENTS_AXIAL[neutrinoType]
+  } else {
+    cL = PS_COEFFICIENTS_VECTOR[neutrinoType] + PS_COEFFICIENTS_AXIAL[neutrinoType]
+    cR = PS_COEFFICIENTS_VECTOR[neutrinoType] - PS_COEFFICIENTS_AXIAL[neutrinoType]
+  }
+  const tMass = targetMass > 0 ? targetMass : ES_TARGET_MASSES[target]
 
   // The following implements equation 13... it's big so there will be
   // 4 terms to make the equation the following: term1(term2 + term3 - term4)
-  const T_max = Tmax !== undefined && Tmax < TEMax(Ev)? Tmax: TEMax(Ev)
+  const T_max = Tmax !== undefined && Tmax < TEMax(Ev, tMass)? Tmax: TEMax(Ev, tMass)
   if (T_max < T_min){
     return 0;
   }
@@ -162,14 +199,14 @@ export function crossSectionElasticScattering(Ev: number, neutrinoType: Neutrino
   
   const FERMI_COUPLING_CONSTANT_MeV = FERMI_COUPLING_CONSTANT / 1e6
 
-  const term1 = (2 * (FERMI_COUPLING_CONSTANT_MeV ** 2) * (HBAR_C ** 2)) * ELECTRON_REST_MASS * Ev / Math.PI;
+  const term1 = ((FERMI_COUPLING_CONSTANT_MeV ** 2) * (HBAR_C ** 2)) * tMass * Ev / (2 * Math.PI);
   const term2 = cL ** 2 * y_max;
   const term3 = cR ** 2 * (1/3) * (1 - (1 - y_max) ** 3);
-  const term4 = cL * cR * (ELECTRON_REST_MASS/(2 * Ev)) * y_max ** 2;
+  const term4 = cL * cR * (tMass/(2 * Ev)) * y_max ** 2;
 
   const term5 = cL ** 2 * y_min;
   const term6 = cR ** 2 * (1/3) * (1 - (1 - y_min) ** 3);
-  const term7 = cL * cR * (ELECTRON_REST_MASS/(2 * Ev)) * y_min ** 2;
+  const term7 = cL * cR * (tMass/(2 * Ev)) * y_min ** 2;
 
   return term1 * ((term2 + term3 - term4) - (term5 + term6 - term7));
 
