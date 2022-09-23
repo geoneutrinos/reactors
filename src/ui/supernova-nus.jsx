@@ -26,6 +26,7 @@ import { Elements as ElementsUI } from "./elements";
 import Elements from "../elements";
 import { NeutrinoType, NeutrinoTarget } from "../physics/neutrino-cross-section";
 import { MassOrdering } from "../physics/neutrino-oscillation"
+import {crossSection16OElectronAntineutrino, crossSection16OElectronNeutrino} from "../physics/oxygen-16";
 
 const SupernovaNusCEvNS = ({ nucleus, setNucleus, tESnMin, fluxSpectrums }) => {
 
@@ -127,6 +128,12 @@ const SupernovaNusEvents = ({
   NuxESEforIO,
   AnxESEforNO,
   AnxESEforIO,
+  AntiE16OIBDUnoscilated,
+  AntiE16OIBDOscilatedNormal,
+  AntiE16OIBDOscilatedInverted,
+  E16OIBDUnoscilated,
+  E16OIBDOscilatedNormal,
+  E16OIBDOscilatedInverted,
 }) => {
   return (
     <Card>
@@ -154,26 +161,26 @@ const SupernovaNusEvents = ({
                 <tr>
                   <td>ν<sub>e</sub> + <sup>16</sup>O</td>
                   <td>
-                    N<sup>0</sup> = 
+                    N<sup>0</sup> = <Num v={E16OIBDUnoscilated.events} p={1} />
                   </td>
                   <td>
-                    N<sub>NO</sub> = 
+                    N<sub>NO</sub> = <Num v={E16OIBDOscilatedNormal.events} p={1} />
                   </td>
                   <td>
-                    N<sub>IO</sub> = 
+                    N<sub>IO</sub> = <Num v={E16OIBDOscilatedInverted.events} p={1} /> 
                   </td>
                   <td></td>
                 </tr>
                 <tr>
                   <td>ν̅<sub>e</sub> + <sup>16</sup>O</td>
                   <td>
-                    N<sup>0</sup> = 
+                    N<sup>0</sup> = <Num v={AntiE16OIBDUnoscilated.events} p={1} />
                   </td>
                   <td>
-                    N<sub>NO</sub> = 
+                    N<sub>NO</sub> = <Num v={AntiE16OIBDOscilatedNormal.events} p={1} />
                   </td>
                   <td>
-                    N<sub>IO</sub> = 
+                    N<sub>IO</sub> = <Num v={AntiE16OIBDOscilatedInverted.events} p={1} />
                   </td>
                   <td></td>
                 </tr>
@@ -271,7 +278,7 @@ const SupernovaNusIBDoxyTmin = ({ tIBDoxyMin, setTIBDoxyMin }) => {
               type="range"
               step={0.5}
               min={0}
-              max={10}
+              max={100}
               onChange={(event) => setTIBDoxyMin(event.target.value)}
             />
           </InputGroup>
@@ -605,6 +612,14 @@ export const SupernovaNus = React.memo(() => {
   const IBDOscilatedNormal = calcIBDSNRecord(NeutrinoType.electronAntineutrino, oscillatedFluxSpectrums[MassOrdering.Normal], tIBDpMin)
   const IBDOscilatedInverted = calcIBDSNRecord(NeutrinoType.electronAntineutrino, oscillatedFluxSpectrums[MassOrdering.Inverted], tIBDpMin)
 
+  const AntiE16OIBDUnoscilated = calcIBDSNRecord(NeutrinoType.electronAntineutrino, fluxSpectrums, tIBDoxyMin, crossSection16OElectronAntineutrino)
+  const AntiE16OIBDOscilatedNormal = calcIBDSNRecord(NeutrinoType.electronAntineutrino, oscillatedFluxSpectrums[MassOrdering.Normal], tIBDoxyMin, crossSection16OElectronAntineutrino)
+  const AntiE16OIBDOscilatedInverted = calcIBDSNRecord(NeutrinoType.electronAntineutrino, oscillatedFluxSpectrums[MassOrdering.Inverted], tIBDoxyMin, crossSection16OElectronAntineutrino)
+
+  const E16OIBDUnoscilated = calcIBDSNRecord(NeutrinoType.electronNeutrino, fluxSpectrums, tIBDoxyMin, crossSection16OElectronNeutrino)
+  const E16OIBDOscilatedNormal = calcIBDSNRecord(NeutrinoType.electronNeutrino, oscillatedFluxSpectrums[MassOrdering.Normal], tIBDoxyMin, crossSection16OElectronNeutrino)
+  const E16OIBDOscilatedInverted = calcIBDSNRecord(NeutrinoType.electronNeutrino, oscillatedFluxSpectrums[MassOrdering.Inverted], tIBDoxyMin, crossSection16OElectronNeutrino)
+
   const ESpNue = calcSNRecord(NeutrinoType.electronNeutrino, NeutrinoTarget.proton, tESpMin, fluxSpectrums)
   const ESpAnu = calcSNRecord(NeutrinoType.electronAntineutrino, NeutrinoTarget.proton, tESpMin, fluxSpectrums)
   const ESpNux = calcSNRecord(NeutrinoType.muTauNeutrino, NeutrinoTarget.proton, tESpMin, fluxSpectrums)
@@ -650,6 +665,12 @@ export const SupernovaNus = React.memo(() => {
       NuxESEforIO={NuxESEforIO}
       AnxESEforNO={AnxESEforNO}
       AnxESEforIO={AnxESEforIO}
+      AntiE16OIBDUnoscilated={AntiE16OIBDUnoscilated}
+      AntiE16OIBDOscilatedNormal={AntiE16OIBDOscilatedNormal}
+      AntiE16OIBDOscilatedInverted={AntiE16OIBDOscilatedInverted}
+      E16OIBDUnoscilated = {E16OIBDUnoscilated}
+      E16OIBDOscilatedNormal = {E16OIBDOscilatedNormal}
+      E16OIBDOscilatedInverted = {E16OIBDOscilatedInverted}
       /> 
       <SupernovaNusIBDpTmin
         tIBDpMin={tIBDpMin}
@@ -707,6 +728,8 @@ export const SupernovaNus = React.memo(() => {
       AntiESEforNO={AntiESEforNO}
       NuxESEforNO={NuxESEforNO}
       AnxESEforNO={AnxESEforNO}
+      AntiE16OIBDUnoscilated={AntiE16OIBDUnoscilated}
+      E16OIBDUnoscilated={E16OIBDUnoscilated}
       />
     </div>
   )

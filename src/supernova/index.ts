@@ -113,8 +113,8 @@ export const oscillatedFluxSpectrum = ({fluxSpectrums}:{fluxSpectrums: SNFluxSpe
   }
 }
 
-export const calcIBDSNRecord = (neutrinoType: NeutrinoType, fluxSpectrums: SNFluxSpectrumInterface, tMin:number = 0): SNRecord => {
-  const crossSection = energyValues.map(v => (v - IBD_THRESHOLD - tMin) > 0? crossSectionSV2003(v): 0)
+export const calcIBDSNRecord = (neutrinoType: NeutrinoType, fluxSpectrums: SNFluxSpectrumInterface, tMin:number = 0, xsFunc = crossSectionSV2003): SNRecord => {
+  const crossSection = energyValues.map(v => (v - IBD_THRESHOLD - tMin) > 0? xsFunc(v): 0)
   const eventSpectrum = fluxSpectrums[neutrinoType].map(
     (v, i) => v * crossSection[i] * neutrinoTargets
   );

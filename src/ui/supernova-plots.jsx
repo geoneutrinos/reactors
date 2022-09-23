@@ -6,9 +6,6 @@ import { MassOrdering } from "../physics/neutrino-oscillation";
 
 import { energyValues} from "../supernova";
 
-import {crossSection16OElectronNeutrino, crossSection16OElectronAntineutrino} from "../physics/oxygen-16"
-
-
 export const SupernovaPlotsIBD = ({IBDUnoscilated, IBDOscilatedNormal, IBDOscilatedInverted}) => {
   const data = [
     {
@@ -340,6 +337,8 @@ export const NeutrinoElectronElasticScatteringCrossSection = ({
   AntiESEforNO,
   NuxESEforNO,
   AnxESEforNO,
+  AntiE16OIBDUnoscilated,
+  E16OIBDUnoscilated,
 }) => {
   const xsectionIBD = energyValues.map(crossSectionSV2003)
 
@@ -425,7 +424,7 @@ export const NeutrinoElectronElasticScatteringCrossSection = ({
       line: { dash: "dot" },
     },
     {
-      y: energyValues.map(crossSection16OElectronAntineutrino),
+      y: AntiE16OIBDUnoscilated.crossSection,
       x: energyValues,
       name: `ν̅<sub>e</sub>+<sup>16</sup>O`,
       type: "scatter",
@@ -437,7 +436,7 @@ export const NeutrinoElectronElasticScatteringCrossSection = ({
       marker: { color: "blue" },
     },
     {
-      y: energyValues.map(crossSection16OElectronNeutrino),
+      y: E16OIBDUnoscilated.crossSection,
       x: energyValues,
       name: `ν<sub>e</sub>+<sup>16</sup>O`,
       type: "scatter",
