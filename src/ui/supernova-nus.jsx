@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useMemo, memo} from "react";
 import { Card, Form, InputGroup, Table } from "react-bootstrap";
 
 import { Num } from ".";
@@ -28,7 +28,7 @@ import { NeutrinoType, NeutrinoTarget } from "../physics/neutrino-cross-section"
 import { MassOrdering } from "../physics/neutrino-oscillation"
 import {crossSection16OElectronAntineutrino, crossSection16OElectronNeutrino} from "../physics/oxygen-16";
 
-const SupernovaNusCEvNS = ({ nucleus, setNucleus, tESnMin, fluxSpectrums }) => {
+const SupernovaNusCEvNS = memo(({ nucleus, setNucleus, tESnMin, fluxSpectrums }) => {
 
   //const events = CEvNSEvents(Elements[nucleus], tESnMin/1000, fluxSpectrums); // KeV to MeV?
   const events = (CEvNSEventsElemental(Elements[nucleus], tESnMin/1000, fluxSpectrums))
@@ -110,7 +110,7 @@ const SupernovaNusCEvNS = ({ nucleus, setNucleus, tESnMin, fluxSpectrums }) => {
       </Card.Body>
     </Card>
   );
-};
+});
 
 const SupernovaNusEvents = ({
   IBDUnoscilated, 
@@ -605,7 +605,7 @@ export const SupernovaNus = React.memo(() => {
   // inital guesses 12, 15, 18 MeV too hot and now reduced
   // new values from P.C. Divari, Journal of Cosmology and Astroparticle Physics, JCAP09(2018)029
 
-  const fluxSpectrums = SNFluxSpectrum(nueAvgEnrg, anuAvgEnrg, nuxAvgEnrg, nueTotEnrg, anuTotEnrg, nuxTotEnrg) 
+  const fluxSpectrums = useMemo(() => SNFluxSpectrum(nueAvgEnrg, anuAvgEnrg, nuxAvgEnrg, nueTotEnrg, anuTotEnrg, nuxTotEnrg), [nueAvgEnrg, anuAvgEnrg, nuxAvgEnrg, nueTotEnrg, anuTotEnrg, nuxTotEnrg])
   const oscillatedFluxSpectrums = oscillatedFluxSpectrum({fluxSpectrums})
 
   const IBDUnoscilated = calcIBDSNRecord(NeutrinoType.electronAntineutrino, fluxSpectrums, tIBDpMin)
