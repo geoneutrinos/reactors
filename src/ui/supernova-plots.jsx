@@ -433,7 +433,7 @@ export const NeutrinoElectronElasticScatteringCrossSection = ({
         width: 2,
       },
       fill: "none",
-      marker: { color: "blue" },
+      marker: { color: "blueviolet" },
     },
     {
       y: E16OIBDUnoscilated.crossSection,
@@ -445,7 +445,7 @@ export const NeutrinoElectronElasticScatteringCrossSection = ({
         width: 2,
       },
       fill: "none",
-      marker: { color: "red" },
+      marker: { color: "fuchsia" },
     },
   ];
   var layout = {
