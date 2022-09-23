@@ -278,7 +278,7 @@ const SupernovaNusIBDoxyTmin = ({ tIBDoxyMin, setTIBDoxyMin }) => {
               type="range"
               step={0.5}
               min={0}
-              max={100}
+              max={20}
               onChange={(event) => setTIBDoxyMin(event.target.value)}
             />
           </InputGroup>
