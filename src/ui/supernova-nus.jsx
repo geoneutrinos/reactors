@@ -455,7 +455,6 @@ const NueAvgEnergy = ({ nueAvgEnrg, setAvgEnrgNue }) => {
               min={7}
               max={12}
               onChange={(event) => setAvgEnrgNue(event.target.value)}
-              variant="primary"
             />
           </InputGroup>
         </Form.Group>
@@ -481,7 +480,6 @@ const AnuAvgEnergy = ({ anuAvgEnrg, setAvgEnrgAnu }) => {
               min={9.5}
               max={14.5}
               onChange={(event) => setAvgEnrgAnu(event.target.value)}
-              variant="success"
             />
           </InputGroup>
         </Form.Group>
@@ -507,7 +505,6 @@ const NuxAvgEnergy = ({ nuxAvgEnrg, setAvgEnrgNux }) => {
               min={13}
               max={18}
               onChange={(event) => setAvgEnrgNux(event.target.value)}
-              variant="danger"
             />
           </InputGroup>
         </Form.Group>
