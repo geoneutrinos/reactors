@@ -35,7 +35,7 @@ const SupernovaNusCEvNS = ({ nucleus, setNucleus, tESnMin, fluxSpectrums }) => {
 
   const isotopicContributions = Object.entries(events).filter(([key, value]) => key !== "total").map(([isotope, value]) => {
     return (
-      <tr>
+      <tr key={isotope}>
       <td>{ElementsUI[isotope]}</td>
       <td>
         <Num v={value[NeutrinoType.electronNeutrino]} p={2} />
