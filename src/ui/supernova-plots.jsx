@@ -6,6 +6,78 @@ import { MassOrdering } from "../physics/neutrino-oscillation";
 
 import { energyValues} from "../supernova";
 
+import {crossSection16OElectronNeutrino, crossSection16OElectronAntineutrino} from "../physics/oxygen-16"
+
+export const SupernovaO16IBD = () => {
+  const data = [
+    {
+      y: energyValues.map(crossSection16OElectronAntineutrino),
+      x: energyValues,
+      name: `ν̅<sub>e</sub>+<sup>16</sup>O`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        width: 2,
+      },
+      fill: "none",
+      marker: { color: "blue" },
+    },
+    {
+      y: energyValues.map(crossSection16OElectronNeutrino),
+      x: energyValues,
+      name: `ν<sub>e</sub>+<sup>16</sup>O`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        width: 2,
+      },
+      fill: "none",
+      marker: { color: "red" },
+    },
+  ];
+  var layout = {
+    title: "<sup>16</sup>O Cross Section",
+    yaxis: {
+      title: { text: `Cross Section (cm<sup>2</sup>)` },
+      autorange: true,
+    },
+    xaxis: {
+      title: { text: `Neutrino Energy (MeV)` },
+      range: [0.05, 100.05],
+    },
+    autosize: true,
+    annotations: [
+      {
+        showarrow: false,
+        text: "geoneutrinos.org",
+        x: 1.1,
+        xref: "paper",
+        y: -0.15,
+        yref: "paper",
+      },
+    ],
+  };
+  var config = {
+    toImageButtonOptions: {
+      filename: "Supernova-16O-XS",
+    },
+  };
+  return (
+    <Card>
+      <Card.Header><sup>16</sup>O Cross Section</Card.Header>
+      <Card.Body>
+        <Plot
+          useResizeHandler={true}
+          style={{ width: "100%" }}
+          data={data}
+          layout={layout}
+          config={config}
+        />
+      </Card.Body>
+    </Card>
+  );
+};
+
 export const SupernovaPlotsIBD = ({IBDUnoscilated, IBDOscilatedNormal, IBDOscilatedInverted}) => {
   const data = [
     {

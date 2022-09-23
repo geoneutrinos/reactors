@@ -2,6 +2,7 @@
 
 # reactors db is now always built on deploy
 src/reactor-cores/reactor-database/reactors.json
+src/physics/oxygen-16/*.json
 
 # dependencies
 /node_modules

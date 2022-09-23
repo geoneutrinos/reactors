@@ -19,6 +19,7 @@ import {
   SupernovaOscillatedFluxPlots,
   SupernovaOscillatedInvertedFluxPlots,
   NeutrinoElectronElasticScatteringCrossSection,
+  SupernovaO16IBD,
 } from "./supernova-plots"
 
 import { Elements as ElementsUI } from "./elements";
@@ -692,6 +693,7 @@ export const SupernovaNus = React.memo(() => {
         nuxTotEnrg={nuxTotEnrg}
         setTotEnrgNux={setTotEnrgNux}
       />
+      <SupernovaO16IBD />
       <SupernovaPlotsIBD 
       IBDUnoscilated={IBDUnoscilated} 
       IBDOscilatedNormal={IBDOscilatedNormal} 
