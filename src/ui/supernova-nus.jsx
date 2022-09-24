@@ -28,7 +28,7 @@ import { NeutrinoType, NeutrinoTarget } from "../physics/neutrino-cross-section"
 import { MassOrdering } from "../physics/neutrino-oscillation"
 import {crossSection16OElectronAntineutrino, crossSection16OElectronNeutrino, electronAntineutrino16OThresholdEnergy, electronNeutrino16OThresholdEnergy} from "../physics/oxygen-16";
 
-const SupernovaNusCEvNS = memo(({ nucleus, setNucleus, tESnMin, fluxSpectrums }) => {
+const SupernovaNusCEvNS = memo(({ nucleus, setNucleus, tESnMin, setTESnMin, fluxSpectrums }) => {
 
   //const events = CEvNSEvents(Elements[nucleus], tESnMin/1000, fluxSpectrums); // KeV to MeV?
   const events = (CEvNSEventsElemental(Elements[nucleus], tESnMin/1000, fluxSpectrums))
@@ -53,7 +53,7 @@ const SupernovaNusCEvNS = memo(({ nucleus, setNucleus, tESnMin, fluxSpectrums })
   return (
     <Card>
       <Card.Header>
-        Core Collapse SN Neutrino CEvNS Events (/1000 kg)
+        Core Collapse SN Neutrino: CEvNS Events (/1000 kg)
       </Card.Header>
       <Card.Body>
         <Provider>
@@ -105,6 +105,21 @@ const SupernovaNusCEvNS = memo(({ nucleus, setNucleus, tESnMin, fluxSpectrums })
                 <option value={Elements.Cs133.key}>Cesium</option>
               </Form.Control>
             </Form.Group>
+            <Form.Group controlId="tn_min">
+              <Form.Label>
+                Nucleus T<sub>min</sub> = {tESnMin} keV
+              </Form.Label>
+              <InputGroup>
+                <Form.Control
+                  value={tESnMin}
+                  type="range"
+                  step={.1}
+                  min={0}
+                  max={10}
+                  onChange={(event) => setTESnMin(event.target.value)}
+                />
+              </InputGroup>
+            </Form.Group>
           </Form>
         </Provider>
       </Card.Body>
@@ -112,33 +127,25 @@ const SupernovaNusCEvNS = memo(({ nucleus, setNucleus, tESnMin, fluxSpectrums })
   );
 });
 
-const SupernovaNusEvents = ({
+const SupernovaNusEventsIBD = ({
   IBDUnoscilated, 
   IBDOscilatedNormal, 
   IBDOscilatedInverted,
-  ESpNue,
-  ESpAnu,
-  ESpNux,
-  ESpAnx,
-  ESEforNO,
-  ESEforIO,
-  AntiESEforNO, 
-  AntiESEforIO,
-  NuxESEforNO,
-  NuxESEforIO,
-  AnxESEforNO,
-  AnxESEforIO,
   AntiE16OIBDUnoscilated,
   AntiE16OIBDOscilatedNormal,
   AntiE16OIBDOscilatedInverted,
   E16OIBDUnoscilated,
   E16OIBDOscilatedNormal,
   E16OIBDOscilatedInverted,
+  tIBDpMin,
+  setTIBDpMin,
+  tIBDoxyMin,
+  setTIBDoxyMin,
 }) => {
   return (
     <Card>
       <Card.Header>
-        Core Collapse SN Neutrino IBD/ES Events (/10<sup>32</sup> targets)
+        Core Collapse SN Neutrino: IBD Events (/10<sup>32</sup> targets)
       </Card.Header>
       <Card.Body>
         <Provider>
@@ -184,21 +191,73 @@ const SupernovaNusEvents = ({
                   </td>
                   <td></td>
                 </tr>
-                <tr>
-                  <td>ν + p</td>
-                  <td>
-                    N(ν<sub>e</sub>) = <Num v={ESpNue.events} p={1} />
-                  </td>
-                  <td>
-                    N(ν̅<sub>e</sub>) = <Num v={ESpAnu.events} p={1} />
-                  </td>
-                  <td>
-                    N(ν<sub>x</sub>) = <Num v={ESpNux.events} p={1} />
-                  </td>
-                  <td>
-                    N(ν̅<sub>x</sub>) = <Num v={ESpAnx.events} p={1} />
-                  </td>
-                </tr>
+              </tbody>
+            </Table>
+            <Form.Group controlId="teplus_min">
+              <Form.Label>
+                ν̅<sub>e</sub> + p: e<sup>+</sup> T<sub>min</sub> = {tIBDpMin} MeV
+              </Form.Label>
+              <InputGroup>
+                <Form.Control
+                  value={tIBDpMin}
+                  type="range"
+                  step={0.5}
+                  min={0}
+                  max={10}
+                  onChange={(event) => setTIBDpMin(event.target.value)}
+                />
+              </InputGroup>
+            </Form.Group>
+            <Form.Group controlId="teoxy_min">
+              <Form.Label>
+                ν<sub>e</sub> + <sup>16</sup>O, ν̅<sub>e</sub> + <sup>16</sup>O: e<sup>-</sup>, e<sup>+</sup> T<sub>min</sub> = {tIBDoxyMin} MeV
+              </Form.Label>
+              <InputGroup>
+                <Form.Control
+                  value={tIBDoxyMin}
+                  type="range"
+                  step={0.5}
+                  min={0}
+                  max={20}
+                  onChange={(event) => setTIBDoxyMin(event.target.value)}
+                />
+              </InputGroup>
+            </Form.Group>
+          </div>
+        </Provider>
+      </Card.Body>
+    </Card>
+  );
+};
+
+const SupernovaNusEventsES = ({
+  ESEforNO,
+  ESEforIO,
+  AntiESEforNO, 
+  AntiESEforIO,
+  NuxESEforNO,
+  NuxESEforIO,
+  AnxESEforNO,
+  AnxESEforIO,
+  ESpNue,
+  ESpAnu,
+  ESpNux,
+  ESpAnx,
+  tESeMin,
+  setTESeMin,
+  tESpMin,
+  setTESpMin,
+}) => {
+  return (
+    <Card>
+      <Card.Header>
+        Core Collapse SN Neutrino: ES Events (/10<sup>32</sup> targets)
+      </Card.Header>
+      <Card.Body>
+        <Provider>
+          <div>
+            <Table>
+              <tbody>
                 <tr>
                   <td>ν + e<sup>-</sup> NO</td>
                   <td>
@@ -229,135 +288,55 @@ const SupernovaNusEvents = ({
                     N(ν̅<sub>x</sub>) = <Num v={AnxESEforIO.events} p={2} />
                   </td>
                 </tr>
+                <tr>
+                  <td>ν + p</td>
+                  <td>
+                    N(ν<sub>e</sub>) = <Num v={ESpNue.events} p={1} />
+                  </td>
+                  <td>
+                    N(ν̅<sub>e</sub>) = <Num v={ESpAnu.events} p={1} />
+                  </td>
+                  <td>
+                    N(ν<sub>x</sub>) = <Num v={ESpNux.events} p={1} />
+                  </td>
+                  <td>
+                    N(ν̅<sub>x</sub>) = <Num v={ESpAnx.events} p={1} />
+                  </td>
+                </tr>
               </tbody>
             </Table>
+            <Form.Group controlId="te_min">
+              <Form.Label>
+                ν + e<sup>-</sup>: e<sup>-</sup> T<sub>min</sub> = {tESeMin} MeV
+              </Form.Label>
+              <InputGroup>
+                <Form.Control
+                  value={tESeMin}
+                  type="range"
+                  step={0.5}
+                  min={0}
+                  max={10}
+                  onChange={(event) => setTESeMin(event.target.value)}
+                />
+              </InputGroup>
+            </Form.Group>
+            <Form.Group controlId="tp_min">
+              <Form.Label>
+                ν + p: p<sup>+</sup> T<sub>min</sub> = {tESpMin} MeV
+              </Form.Label>
+              <InputGroup>
+                <Form.Control
+                  value={tESpMin}
+                  type="range"
+                  step={0.1}
+                  min={0}
+                  max={2}
+                  onChange={(event) => setTESpMin(event.target.value)}
+                />
+              </InputGroup>
+            </Form.Group>
           </div>
         </Provider>
-      </Card.Body>
-    </Card>
-  );
-};
-
-const SupernovaNusIBDpTmin = ({ tIBDpMin, setTIBDpMin }) => {
-  return (
-    <Card>
-      <Card.Header>ν̅<sub>e</sub> + p: Positron Minimum Kinetic Energy</Card.Header>
-      <Card.Body>
-        <Form.Group controlId="teplus_min">
-          <Form.Label>
-            T<sub>min</sub> = {tIBDpMin} MeV
-          </Form.Label>
-          <InputGroup>
-            <Form.Control
-              value={tIBDpMin}
-              type="range"
-              step={0.5}
-              min={0}
-              max={10}
-              onChange={(event) => setTIBDpMin(event.target.value)}
-            />
-          </InputGroup>
-        </Form.Group>
-      </Card.Body>
-    </Card>
-  );
-};
-
-const SupernovaNusIBDoxyTmin = ({ tIBDoxyMin, setTIBDoxyMin }) => {
-  return (
-    <Card>
-      <Card.Header>ν<sub>e</sub> + <sup>16</sup>O, ν̅<sub>e</sub> + <sup>16</sup>O: e<sup>-</sup>, e<sup>+</sup> Minimum Kinetic Energy</Card.Header>
-      <Card.Body>
-        <Form.Group controlId="teoxy_min">
-          <Form.Label>
-            T<sub>min</sub> = {tIBDoxyMin} MeV
-          </Form.Label>
-          <InputGroup>
-            <Form.Control
-              value={tIBDoxyMin}
-              type="range"
-              step={0.5}
-              min={0}
-              max={20}
-              onChange={(event) => setTIBDoxyMin(event.target.value)}
-            />
-          </InputGroup>
-        </Form.Group>
-      </Card.Body>
-    </Card>
-  );
-};
-
-const SupernovaNusESeTmin = ({ tESeMin, setTESeMin }) => {
-  return (
-    <Card>
-      <Card.Header>ν + e<sup>-</sup>: Electron Minimum Kinetic Energy</Card.Header>
-      <Card.Body>
-        <Form.Group controlId="te_min">
-          <Form.Label>
-            T<sub>min</sub> = {tESeMin} MeV
-          </Form.Label>
-          <InputGroup>
-            <Form.Control
-              value={tESeMin}
-              type="range"
-              step={0.5}
-              min={0}
-              max={10}
-              onChange={(event) => setTESeMin(event.target.value)}
-            />
-          </InputGroup>
-        </Form.Group>
-      </Card.Body>
-    </Card>
-  );
-};
-
-const SupernovaNusESpTmin = ({ tESpMin, setTESpMin }) => {
-  return (
-    <Card>
-      <Card.Header>ν + p: Proton Minimum Kinetic Energy</Card.Header>
-      <Card.Body>
-        <Form.Group controlId="tp_min">
-          <Form.Label>
-            T<sub>min</sub> = {tESpMin} MeV
-          </Form.Label>
-          <InputGroup>
-            <Form.Control
-              value={tESpMin}
-              type="range"
-              step={0.1}
-              min={0}
-              max={2}
-              onChange={(event) => setTESpMin(event.target.value)}
-            />
-          </InputGroup>
-        </Form.Group>
-      </Card.Body>
-    </Card>
-  );
-};
-
-const SupernovaNusESnTmin = ({ tESnMin, setTESnMin }) => {
-  return (
-    <Card>
-      <Card.Header>CEvNS: Nucleus Minimum Kinetic Energy</Card.Header>
-      <Card.Body>
-        <Form.Group controlId="tn_min">
-          <Form.Label>
-            T<sub>min</sub> = {tESnMin} keV
-          </Form.Label>
-          <InputGroup>
-            <Form.Control
-              value={tESnMin}
-              type="range"
-              step={.1}
-              min={0}
-              max={10}
-              onChange={(event) => setTESnMin(event.target.value)}
-            />
-          </InputGroup>
-        </Form.Group>
       </Card.Body>
     </Card>
   );
@@ -603,50 +582,41 @@ export const SupernovaNus = React.memo(() => {
         nucleus={nucleus}
         setNucleus={setNucleus}
         tESnMin={tESnMin}
+        setTESnMin={setTESnMin}
         fluxSpectrums={fluxSpectrums}
       />
-      <SupernovaNusESnTmin
-        tESnMin={tESnMin}
-        setTESnMin={setTESnMin}
-      />
-      <SupernovaNusEvents
-      IBDUnoscilated={IBDUnoscilated} 
-      IBDOscilatedNormal={IBDOscilatedNormal} 
-      IBDOscilatedInverted={IBDOscilatedInverted} 
-      ESpNue={ESpNue}
-      ESpAnu={ESpAnu}
-      ESpNux={ESpNux}
-      ESpAnx={ESpAnx}
-      ESEforNO={ESEforNO}
-      ESEforIO={ESEforIO}
-      AntiESEforNO={AntiESEforNO}
-      AntiESEforIO={AntiESEforIO}
-      NuxESEforNO={NuxESEforNO}
-      NuxESEforIO={NuxESEforIO}
-      AnxESEforNO={AnxESEforNO}
-      AnxESEforIO={AnxESEforIO}
-      AntiE16OIBDUnoscilated={AntiE16OIBDUnoscilated}
-      AntiE16OIBDOscilatedNormal={AntiE16OIBDOscilatedNormal}
-      AntiE16OIBDOscilatedInverted={AntiE16OIBDOscilatedInverted}
-      E16OIBDUnoscilated = {E16OIBDUnoscilated}
-      E16OIBDOscilatedNormal = {E16OIBDOscilatedNormal}
-      E16OIBDOscilatedInverted = {E16OIBDOscilatedInverted}
-      /> 
-      <SupernovaNusIBDpTmin
+      <SupernovaNusEventsIBD
+        IBDUnoscilated={IBDUnoscilated} 
+        IBDOscilatedNormal={IBDOscilatedNormal} 
+        IBDOscilatedInverted={IBDOscilatedInverted} 
+        AntiE16OIBDUnoscilated={AntiE16OIBDUnoscilated}
+        AntiE16OIBDOscilatedNormal={AntiE16OIBDOscilatedNormal}
+        AntiE16OIBDOscilatedInverted={AntiE16OIBDOscilatedInverted}
+        E16OIBDUnoscilated = {E16OIBDUnoscilated}
+        E16OIBDOscilatedNormal = {E16OIBDOscilatedNormal}
+        E16OIBDOscilatedInverted = {E16OIBDOscilatedInverted}
         tIBDpMin={tIBDpMin}
         setTIBDpMin={setTIBDpMin}
-      />
-      <SupernovaNusIBDoxyTmin
         tIBDoxyMin={tIBDoxyMin}
         setTIBDoxyMin={setTIBDoxyMin}
-      />
-      <SupernovaNusESpTmin
-        tESpMin={tESpMin}
-        setTESpMin={setTESpMin}
-      />
-      <SupernovaNusESeTmin
+      /> 
+      <SupernovaNusEventsES
+        ESpNue={ESpNue}
+        ESpAnu={ESpAnu}
+        ESpNux={ESpNux}
+        ESpAnx={ESpAnx}
+        ESEforNO={ESEforNO}
+        ESEforIO={ESEforIO}
+        AntiESEforNO={AntiESEforNO}
+        AntiESEforIO={AntiESEforIO}
+        NuxESEforNO={NuxESEforNO}
+        NuxESEforIO={NuxESEforIO}
+        AnxESEforNO={AnxESEforNO}
+        AnxESEforIO={AnxESEforIO}
         tESeMin={tESeMin}
         setTESeMin={setTESeMin}
+        tESpMin={tESpMin}
+        setTESpMin={setTESpMin}
       />
       <SupernovaNusPane  />
       <NeutrinoAvgEnergy
@@ -666,22 +636,22 @@ export const SupernovaNus = React.memo(() => {
         setTotEnrgNux={setTotEnrgNux}
       />
       <SupernovaPlotsIBD 
-      IBDUnoscilated={IBDUnoscilated} 
-      IBDOscilatedNormal={IBDOscilatedNormal} 
-      IBDOscilatedInverted={IBDOscilatedInverted} 
+        IBDUnoscilated={IBDUnoscilated} 
+        IBDOscilatedNormal={IBDOscilatedNormal} 
+        IBDOscilatedInverted={IBDOscilatedInverted} 
       />
       <SupernovaFluxPlots fluxSpectrums={fluxSpectrums}/>
       <SupernovaOscillatedFluxPlots oscillatedFluxSpectrums={oscillatedFluxSpectrums}/>
       <SupernovaOscillatedInvertedFluxPlots oscillatedFluxSpectrums={oscillatedFluxSpectrums}/>
       <NeutrinoElectronElasticScatteringCrossSection 
-      ESpNue={ESpNue}
-      ESpAnu={ESpAnu}
-      ESEforNO={ESEforNO}
-      AntiESEforNO={AntiESEforNO}
-      NuxESEforNO={NuxESEforNO}
-      AnxESEforNO={AnxESEforNO}
-      AntiE16OIBDUnoscilated={AntiE16OIBDUnoscilated}
-      E16OIBDUnoscilated={E16OIBDUnoscilated}
+        ESpNue={ESpNue}
+        ESpAnu={ESpAnu}
+        ESEforNO={ESEforNO}
+        AntiESEforNO={AntiESEforNO}
+        NuxESEforNO={NuxESEforNO}
+        AnxESEforNO={AnxESEforNO}
+        AntiE16OIBDUnoscilated={AntiE16OIBDUnoscilated}
+        E16OIBDUnoscilated={E16OIBDUnoscilated}
       />
     </div>
   )
