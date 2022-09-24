@@ -438,14 +438,14 @@ const SupernovaNusPane = () => {
   );
 };
 
-const NueAvgEnergy = ({ nueAvgEnrg, setAvgEnrgNue }) => {
+const NeutrinoAvgEnergy = ({ nueAvgEnrg, setAvgEnrgNue, anuAvgEnrg, setAvgEnrgAnu, nuxAvgEnrg, setAvgEnrgNux }) => {
   return (
     <Card>
-      <Card.Header>ν<sub>e</sub> Average Energy</Card.Header>
+      <Card.Header>Average Energy of Neutrinos</Card.Header>
       <Card.Body>
         <Form.Group controlId="avgenergy_nue">
           <Form.Label>
-            E<sub>avg</sub> = {nueAvgEnrg} MeV
+            ν<sub>e</sub> E<sub>avg</sub> = {nueAvgEnrg} MeV
           </Form.Label>
           <InputGroup>
             <Form.Control
@@ -458,19 +458,9 @@ const NueAvgEnergy = ({ nueAvgEnrg, setAvgEnrgNue }) => {
             />
           </InputGroup>
         </Form.Group>
-      </Card.Body>
-    </Card>
-  );
-};
-
-const AnuAvgEnergy = ({ anuAvgEnrg, setAvgEnrgAnu }) => {
-  return (
-    <Card>
-      <Card.Header>ν̅<sub>e</sub> Average Energy</Card.Header>
-      <Card.Body>
         <Form.Group controlId="avgenergy_anu">
           <Form.Label>
-            E<sub>avg</sub> = {anuAvgEnrg} MeV
+            ν̅<sub>e</sub> E<sub>avg</sub> = {anuAvgEnrg} MeV
           </Form.Label>
           <InputGroup>
             <Form.Control
@@ -483,19 +473,9 @@ const AnuAvgEnergy = ({ anuAvgEnrg, setAvgEnrgAnu }) => {
             />
           </InputGroup>
         </Form.Group>
-      </Card.Body>
-    </Card>
-  );
-};
-
-const NuxAvgEnergy = ({ nuxAvgEnrg, setAvgEnrgNux }) => {
-  return (
-    <Card>
-      <Card.Header>ν<sub>x</sub> Average Energy</Card.Header>
-      <Card.Body>
         <Form.Group controlId="avgenergy_nux">
           <Form.Label>
-            E<sub>avg</sub> = {nuxAvgEnrg} MeV
+            ν<sub>x</sub> E<sub>avg</sub> = {nuxAvgEnrg} MeV
           </Form.Label>
           <InputGroup>
             <Form.Control
@@ -689,15 +669,11 @@ export const SupernovaNus = React.memo(() => {
         setTESeMin={setTESeMin}
       />
       <SupernovaNusPane  />
-      <NueAvgEnergy
+      <NeutrinoAvgEnergy
         nueAvgEnrg={nueAvgEnrg}
         setAvgEnrgNue={setAvgEnrgNue}
-      />
-      <AnuAvgEnergy
         anuAvgEnrg={anuAvgEnrg}
         setAvgEnrgAnu={setAvgEnrgAnu}
-      />
-      <NuxAvgEnergy
         nuxAvgEnrg={nuxAvgEnrg}
         setAvgEnrgNux={setAvgEnrgNux}
       />
