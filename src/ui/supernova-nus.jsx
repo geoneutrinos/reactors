@@ -231,10 +231,6 @@ const SupernovaNusEventsIBD = ({
 };
 
 const SupernovaNusEventsES = ({
-  ESpNue,
-  ESpAnu,
-  ESpNux,
-  ESpAnx,
   ESEforNO,
   ESEforIO,
   AntiESEforNO, 
@@ -243,6 +239,10 @@ const SupernovaNusEventsES = ({
   NuxESEforIO,
   AnxESEforNO,
   AnxESEforIO,
+  ESpNue,
+  ESpAnu,
+  ESpNux,
+  ESpAnx,
   tESeMin,
   setTESeMin,
   tESpMin,
@@ -258,21 +258,6 @@ const SupernovaNusEventsES = ({
           <div>
             <Table>
               <tbody>
-                <tr>
-                  <td>ν + p</td>
-                  <td>
-                    N(ν<sub>e</sub>) = <Num v={ESpNue.events} p={1} />
-                  </td>
-                  <td>
-                    N(ν̅<sub>e</sub>) = <Num v={ESpAnu.events} p={1} />
-                  </td>
-                  <td>
-                    N(ν<sub>x</sub>) = <Num v={ESpNux.events} p={1} />
-                  </td>
-                  <td>
-                    N(ν̅<sub>x</sub>) = <Num v={ESpAnx.events} p={1} />
-                  </td>
-                </tr>
                 <tr>
                   <td>ν + e<sup>-</sup> NO</td>
                   <td>
@@ -301,6 +286,21 @@ const SupernovaNusEventsES = ({
                   </td>
                   <td>
                     N(ν̅<sub>x</sub>) = <Num v={AnxESEforIO.events} p={2} />
+                  </td>
+                </tr>
+                <tr>
+                  <td>ν + p</td>
+                  <td>
+                    N(ν<sub>e</sub>) = <Num v={ESpNue.events} p={1} />
+                  </td>
+                  <td>
+                    N(ν̅<sub>e</sub>) = <Num v={ESpAnu.events} p={1} />
+                  </td>
+                  <td>
+                    N(ν<sub>x</sub>) = <Num v={ESpNux.events} p={1} />
+                  </td>
+                  <td>
+                    N(ν̅<sub>x</sub>) = <Num v={ESpAnx.events} p={1} />
                   </td>
                 </tr>
               </tbody>
