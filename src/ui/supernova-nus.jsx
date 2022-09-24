@@ -168,26 +168,26 @@ const SupernovaNusEventsIBD = ({
                 <tr>
                   <td>ν<sub>e</sub> + <sup>12</sup>C</td>
                   <td>
-                    N<sup>0</sup> =
+                    N<sup>0</sup> = 1.497
                   </td>
                   <td>
-                    N<sub>NO</sub> = 
+                    N<sub>NO</sub> = 19.207
                   </td>
                   <td>
-                    N<sub>IO</sub> =  
+                    N<sub>IO</sub> = 14.227
                   </td>
                   <td></td>
                 </tr>
                 <tr>
                   <td>ν̅<sub>e</sub> + <sup>12</sup>C</td>
                   <td>
-                    N<sup>0</sup> = 
+                    N<sup>0</sup> = 7.144
                   </td>
                   <td>
-                    N<sub>NO</sub> = 
+                    N<sub>NO</sub> = 11.269
                   </td>
                   <td>
-                    N<sub>IO</sub> = 
+                    N<sub>IO</sub> = 19.769
                   </td>
                   <td></td>
                 </tr>
