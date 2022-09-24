@@ -127,22 +127,10 @@ const SupernovaNusCEvNS = memo(({ nucleus, setNucleus, tESnMin, setTESnMin, flux
   );
 });
 
-const SupernovaNusEvents = ({
+const SupernovaNusEventsIBD = ({
   IBDUnoscilated, 
   IBDOscilatedNormal, 
   IBDOscilatedInverted,
-  ESpNue,
-  ESpAnu,
-  ESpNux,
-  ESpAnx,
-  ESEforNO,
-  ESEforIO,
-  AntiESEforNO, 
-  AntiESEforIO,
-  NuxESEforNO,
-  NuxESEforIO,
-  AnxESEforNO,
-  AnxESEforIO,
   AntiE16OIBDUnoscilated,
   AntiE16OIBDOscilatedNormal,
   AntiE16OIBDOscilatedInverted,
@@ -153,7 +141,7 @@ const SupernovaNusEvents = ({
   return (
     <Card>
       <Card.Header>
-        Core Collapse SN Neutrino IBD/ES Events (/10<sup>32</sup> targets)
+        Core Collapse SN Neutrino IBD Events (/10<sup>32</sup> targets)
       </Card.Header>
       <Card.Body>
         <Provider>
@@ -199,6 +187,39 @@ const SupernovaNusEvents = ({
                   </td>
                   <td></td>
                 </tr>
+              </tbody>
+            </Table>
+          </div>
+        </Provider>
+      </Card.Body>
+    </Card>
+  );
+};
+
+const SupernovaNusEventsES = ({
+  ESpNue,
+  ESpAnu,
+  ESpNux,
+  ESpAnx,
+  ESEforNO,
+  ESEforIO,
+  AntiESEforNO, 
+  AntiESEforIO,
+  NuxESEforNO,
+  NuxESEforIO,
+  AnxESEforNO,
+  AnxESEforIO,
+}) => {
+  return (
+    <Card>
+      <Card.Header>
+        Core Collapse SN Neutrino ES Events (/10<sup>32</sup> targets)
+      </Card.Header>
+      <Card.Body>
+        <Provider>
+          <div>
+            <Table>
+              <tbody>
                 <tr>
                   <td>ν + p</td>
                   <td>
@@ -596,10 +617,18 @@ export const SupernovaNus = React.memo(() => {
         setTESnMin={setTESnMin}
         fluxSpectrums={fluxSpectrums}
       />
-      <SupernovaNusEvents
+      <SupernovaNusEventsIBD
       IBDUnoscilated={IBDUnoscilated} 
       IBDOscilatedNormal={IBDOscilatedNormal} 
       IBDOscilatedInverted={IBDOscilatedInverted} 
+      AntiE16OIBDUnoscilated={AntiE16OIBDUnoscilated}
+      AntiE16OIBDOscilatedNormal={AntiE16OIBDOscilatedNormal}
+      AntiE16OIBDOscilatedInverted={AntiE16OIBDOscilatedInverted}
+      E16OIBDUnoscilated = {E16OIBDUnoscilated}
+      E16OIBDOscilatedNormal = {E16OIBDOscilatedNormal}
+      E16OIBDOscilatedInverted = {E16OIBDOscilatedInverted}
+      /> 
+      <SupernovaNusEventsES
       ESpNue={ESpNue}
       ESpAnu={ESpAnu}
       ESpNux={ESpNux}
@@ -612,12 +641,6 @@ export const SupernovaNus = React.memo(() => {
       NuxESEforIO={NuxESEforIO}
       AnxESEforNO={AnxESEforNO}
       AnxESEforIO={AnxESEforIO}
-      AntiE16OIBDUnoscilated={AntiE16OIBDUnoscilated}
-      AntiE16OIBDOscilatedNormal={AntiE16OIBDOscilatedNormal}
-      AntiE16OIBDOscilatedInverted={AntiE16OIBDOscilatedInverted}
-      E16OIBDUnoscilated = {E16OIBDUnoscilated}
-      E16OIBDOscilatedNormal = {E16OIBDOscilatedNormal}
-      E16OIBDOscilatedInverted = {E16OIBDOscilatedInverted}
       /> 
       <SupernovaNusIBDpTmin
         tIBDpMin={tIBDpMin}
