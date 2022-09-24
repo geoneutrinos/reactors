@@ -28,7 +28,7 @@ import { NeutrinoType, NeutrinoTarget } from "../physics/neutrino-cross-section"
 import { MassOrdering } from "../physics/neutrino-oscillation"
 import {crossSection16OElectronAntineutrino, crossSection16OElectronNeutrino, electronAntineutrino16OThresholdEnergy, electronNeutrino16OThresholdEnergy} from "../physics/oxygen-16";
 
-const SupernovaNusCEvNS = memo(({ nucleus, setNucleus, tESnMin, fluxSpectrums }) => {
+const SupernovaNusCEvNS = memo(({ nucleus, setNucleus, tESnMin, setTESnMin, fluxSpectrums }) => {
 
   //const events = CEvNSEvents(Elements[nucleus], tESnMin/1000, fluxSpectrums); // KeV to MeV?
   const events = (CEvNSEventsElemental(Elements[nucleus], tESnMin/1000, fluxSpectrums))
@@ -104,6 +104,21 @@ const SupernovaNusCEvNS = memo(({ nucleus, setNucleus, tESnMin, fluxSpectrums })
                 <option value={Elements.Xe132.key}>Xenon</option>
                 <option value={Elements.Cs133.key}>Cesium</option>
               </Form.Control>
+            </Form.Group>
+            <Form.Group controlId="tn_min">
+              <Form.Label>
+                Nucleus T<sub>min</sub> = {tESnMin} keV
+              </Form.Label>
+              <InputGroup>
+                <Form.Control
+                  value={tESnMin}
+                  type="range"
+                  step={.1}
+                  min={0}
+                  max={10}
+                  onChange={(event) => setTESnMin(event.target.value)}
+                />
+              </InputGroup>
             </Form.Group>
           </Form>
         </Provider>
@@ -330,31 +345,6 @@ const SupernovaNusESpTmin = ({ tESpMin, setTESpMin }) => {
               min={0}
               max={2}
               onChange={(event) => setTESpMin(event.target.value)}
-            />
-          </InputGroup>
-        </Form.Group>
-      </Card.Body>
-    </Card>
-  );
-};
-
-const SupernovaNusESnTmin = ({ tESnMin, setTESnMin }) => {
-  return (
-    <Card>
-      <Card.Header>CEvNS: Nucleus Minimum Kinetic Energy</Card.Header>
-      <Card.Body>
-        <Form.Group controlId="tn_min">
-          <Form.Label>
-            T<sub>min</sub> = {tESnMin} keV
-          </Form.Label>
-          <InputGroup>
-            <Form.Control
-              value={tESnMin}
-              type="range"
-              step={.1}
-              min={0}
-              max={10}
-              onChange={(event) => setTESnMin(event.target.value)}
             />
           </InputGroup>
         </Form.Group>
@@ -603,11 +593,8 @@ export const SupernovaNus = React.memo(() => {
         nucleus={nucleus}
         setNucleus={setNucleus}
         tESnMin={tESnMin}
-        fluxSpectrums={fluxSpectrums}
-      />
-      <SupernovaNusESnTmin
-        tESnMin={tESnMin}
         setTESnMin={setTESnMin}
+        fluxSpectrums={fluxSpectrums}
       />
       <SupernovaNusEvents
       IBDUnoscilated={IBDUnoscilated} 
