@@ -493,14 +493,14 @@ const NeutrinoAvgEnergy = ({ nueAvgEnrg, setAvgEnrgNue, anuAvgEnrg, setAvgEnrgAn
   );
 };
 
-const NueTotEnergy = ({ nueTotEnrg, setTotEnrgNue }) => {
+const NeutrinoTotEnergy = ({ nueTotEnrg, setTotEnrgNue, anuTotEnrg, setTotEnrgAnu, nuxTotEnrg, setTotEnrgNux }) => {
   return (
     <Card>
-      <Card.Header>Total Energy of ν<sub>e</sub></Card.Header>
+      <Card.Header>Total Energy of Neutrinos</Card.Header>
       <Card.Body>
         <Form.Group controlId="totenergy_nue">
           <Form.Label>
-            E<sub>tot</sub> = {nueTotEnrg} x10<sup>52</sup> erg
+            ν<sub>e</sub> E<sub>tot</sub> = {nueTotEnrg} x10<sup>52</sup> erg
           </Form.Label>
           <InputGroup>
             <Form.Control
@@ -513,19 +513,9 @@ const NueTotEnergy = ({ nueTotEnrg, setTotEnrgNue }) => {
             />
           </InputGroup>
         </Form.Group>
-      </Card.Body>
-    </Card>
-  );
-};
-
-const AnuTotEnergy = ({ anuTotEnrg, setTotEnrgAnu }) => {
-  return (
-    <Card>
-      <Card.Header>Total Energy of ν̅<sub>e</sub></Card.Header>
-      <Card.Body>
         <Form.Group controlId="totenergy_anu">
           <Form.Label>
-            E<sub>tot</sub> = {anuTotEnrg} x10<sup>52</sup> erg
+            ν̅<sub>e</sub> E<sub>tot</sub> = {anuTotEnrg} x10<sup>52</sup> erg
           </Form.Label>
           <InputGroup>
             <Form.Control
@@ -538,19 +528,9 @@ const AnuTotEnergy = ({ anuTotEnrg, setTotEnrgAnu }) => {
             />
           </InputGroup>
         </Form.Group>
-      </Card.Body>
-    </Card>
-  );
-};
-
-const NuxTotEnergy = ({ nuxTotEnrg, setTotEnrgNux }) => {
-  return (
-    <Card>
-      <Card.Header>Total Energy of ν<sub>x</sub></Card.Header>
-      <Card.Body>
         <Form.Group controlId="totenergy_nux">
           <Form.Label>
-            E<sub>tot</sub> = {nuxTotEnrg} x10<sup>52</sup> erg
+            ν<sub>x</sub> E<sub>tot</sub> = {nuxTotEnrg} x10<sup>52</sup> erg
           </Form.Label>
           <InputGroup>
             <Form.Control
@@ -677,15 +657,11 @@ export const SupernovaNus = React.memo(() => {
         nuxAvgEnrg={nuxAvgEnrg}
         setAvgEnrgNux={setAvgEnrgNux}
       />
-      <NueTotEnergy
+      <NeutrinoTotEnergy
         nueTotEnrg={nueTotEnrg}
         setTotEnrgNue={setTotEnrgNue}
-      />
-      <AnuTotEnergy
         anuTotEnrg={anuTotEnrg}
         setTotEnrgAnu={setTotEnrgAnu}
-      />
-      <NuxTotEnergy
         nuxTotEnrg={nuxTotEnrg}
         setTotEnrgNux={setTotEnrgNux}
       />
