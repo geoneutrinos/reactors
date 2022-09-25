@@ -93,6 +93,7 @@ const SupernovaNusCEvNS = memo(({ nucleus, setNucleus, tESnMin, setTESnMin, flux
                 </tbody>
                 </Table>
                 </details>
+                <br />
           </div>
           <Form noValidate>
             <Form.Group controlId="set_nucleus">
