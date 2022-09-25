@@ -39,10 +39,11 @@
     "build": "npm run processAll; react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "processAll": "npm run processReactorSpectrum; npm run processReactorDB; npm run processOxygen16",
+    "processAll": "npm run processReactorSpectrum; npm run processReactorDB; npm run processOxygen16; npm run processCarbon12",
     "processReactorSpectrum": "node src/physics/reactor-antineutrinos/data/processReactorAntinuData.js",
     "processReactorDB": "node src/reactor-cores/reactor-database/processReactors.js",
-    "processOxygen16": "node src/physics/oxygen-16/processOxygen16Data.js"
+    "processOxygen16": "node src/physics/oxygen-16/processOxygen16Data.js",
+    "processCarbon12": "node src/physics/carbon-12/processCarbon12Data.js"
   },
   "eslintConfig": {
     "extends": "react-app"
