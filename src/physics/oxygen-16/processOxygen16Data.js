@@ -5,7 +5,7 @@ const path = require('path')
 const {zip, unzip} = lodash;
 
 const processOxygen16nuebar = () => {
-    let extra = path.join(__dirname, "nuebarIBDxsec.dat")
+    let extra = path.join(__dirname, "nuebarIBD_o16xsec.dat")
     let out = path.join(__dirname, "nuebarIBDxsec.json")
 
     let columns = [
@@ -28,7 +28,7 @@ const processOxygen16nuebar = () => {
 }
 
 const processOxygen16nue = () => {
-    let extra = path.join(__dirname, "nueIBDxsec.dat")
+    let extra = path.join(__dirname, "nueIBD_o16xsec.dat")
     let out = path.join(__dirname, "nueIBDxsec.json")
 
     let columns = [
