@@ -698,6 +698,8 @@ export const SupernovaNus = React.memo(() => {
         AntiESEforNO={AntiESEforNO}
         NuxESEforNO={NuxESEforNO}
         AnxESEforNO={AnxESEforNO}
+        AntiE12CIBDUnoscilated={AntiE12CIBDUnoscilated}
+        E12CIBDUnoscilated={E12CIBDUnoscilated}
         AntiE16OIBDUnoscilated={AntiE16OIBDUnoscilated}
         E16OIBDUnoscilated={E16OIBDUnoscilated}
       />
