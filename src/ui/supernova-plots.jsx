@@ -428,7 +428,7 @@ export const NeutrinoElectronElasticScatteringCrossSection = ({
     {
       y: AntiE12CIBDUnoscilated.crossSection,
       x: energyValues,
-      name: `ν̅<sub>e</sub>+<sup>16</sup>O`,
+      name: `ν̅<sub>e</sub>+<sup>12</sup>C`,
       type: "scatter",
       mode: "lines",
       line: {
@@ -440,14 +440,14 @@ export const NeutrinoElectronElasticScatteringCrossSection = ({
     {
       y: E12CIBDUnoscilated.crossSection,
       x: energyValues,
-      name: `ν<sub>e</sub>+<sup>16</sup>O`,
+      name: `ν<sub>e</sub>+<sup>12</sup>C`,
       type: "scatter",
       mode: "lines",
       line: {
         width: 2,
       },
       fill: "none",
-      marker: { color: "slategray" },
+      marker: { color: "grey" },
     },
     {
       y: AntiE16OIBDUnoscilated.crossSection,
