@@ -237,7 +237,7 @@ const SupernovaNusEventsIBD = ({
             </Form.Group>
             <Form.Group controlId="teoxy_min">
               <Form.Label>
-                ν<sub>e</sub> + <sup>16</sup>O, ν̅<sub>e</sub> + <sup>16</sup>O: e<sup>-</sup>, e<sup>+</sup> T<sub>min</sub> = {tIBDoxyMin} MeV
+                ν<sub>e</sub> + <sup>A</sup>X, ν̅<sub>e</sub> + <sup>A</sup>X: e<sup>-</sup>, e<sup>+</sup> T<sub>min</sub> = {tIBDoxyMin} MeV
               </Form.Label>
               <InputGroup>
                 <Form.Control
