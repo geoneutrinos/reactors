@@ -46,7 +46,7 @@ export const SupernovaPlotsIBD = ({IBDUnoscilated, IBDOscilatedNormal, IBDOscila
     },
   ];
   var layout = {
-    title: "Core Collapse SN Neutrino ν̅<sub>e</sub>+p Spectra",
+    title: "CCSN (10 kpc, β=4): ν̅<sub>e</sub>+p Spectra",
     yaxis: {
       title: { text: `Events dN/dE (/10<sup>32</sup> p/MeV)` },
       autorange: true,
@@ -74,7 +74,7 @@ export const SupernovaPlotsIBD = ({IBDUnoscilated, IBDOscilatedNormal, IBDOscila
   };
   return (
     <Card>
-      <Card.Header>Core Collapse SN Neutrino ν̅<sub>e</sub>+p Spectra</Card.Header>
+      <Card.Header>CCSN (10 kpc, β=4): ν̅<sub>e</sub>+p Spectra</Card.Header>
       <Card.Body>
         <Plot
           useResizeHandler={true}
@@ -127,7 +127,7 @@ export const SupernovaFluxPlots = ({fluxSpectrums}) => {
     },
   ];
   var layout = {
-    title: "Core Collapse SN Neutrino Fluence Spectra w/o Oscillations",
+    title: "CCSN (10 kpc, β=4): Neutrino Fluence Spectra w/o Oscillations",
     yaxis: {
       title: { text: `Fluence (/cm<sup>2</sup>/MeV)` },
       autorange: true,
@@ -156,7 +156,7 @@ export const SupernovaFluxPlots = ({fluxSpectrums}) => {
   return (
     <Card>
       <Card.Header>
-        Core Collapse SN Neutrino Fluence Spectra w/o Oscillations
+        CCSN (10 kpc, β=4): Neutrino Fluence Spectra w/o Oscillations
       </Card.Header>
       <Card.Body>
         <Plot
@@ -210,7 +210,7 @@ export const SupernovaOscillatedFluxPlots = ({oscillatedFluxSpectrums}) => {
     },
   ];
   var layout = {
-    title: "Core Collapse SN Neutrino Fluence Spectra w/ NO Oscillations",
+    title: "CCSN (10 kpc, β=4): Neutrino Fluence Spectra w/ NO Oscillations",
     yaxis: {
       title: { text: `Fluence (/cm<sup>2</sup>/MeV)` },
       autorange: true,
@@ -239,7 +239,7 @@ export const SupernovaOscillatedFluxPlots = ({oscillatedFluxSpectrums}) => {
   return (
     <Card>
       <Card.Header>
-        Core Collapse SN Neutrino Fluence Spectra w/ NO Oscillations
+        CCSN (10 kpc, β=4): Neutrino Fluence Spectra w/ NO Oscillations
       </Card.Header>
       <Card.Body>
         <Plot
@@ -287,7 +287,7 @@ export const SupernovaOscillatedInvertedFluxPlots = ({oscillatedFluxSpectrums}) 
     },
   ];
   var layout = {
-    title: "Core Collapse SN Neutrino Fluence Spectra w/ IO Oscillations",
+    title: "CCSN (10 kpc, β=4): Neutrino Fluence Spectra w/ IO Oscillations",
     yaxis: {
       title: { text: `Fluence (/cm<sup>2</sup>/MeV)` },
       autorange: true,
@@ -316,7 +316,7 @@ export const SupernovaOscillatedInvertedFluxPlots = ({oscillatedFluxSpectrums}) 
   return (
     <Card>
       <Card.Header>
-        Core Collapse SN Neutrino Fluence Spectra w/ IO Oscillations
+        CCSN (10 kpc, β=4): Neutrino Fluence Spectra w/ IO Oscillations
       </Card.Header>
       <Card.Body>
         <Plot
@@ -475,7 +475,7 @@ export const NeutrinoElectronElasticScatteringCrossSection = ({
     },
   ];
   var layout = {
-    title: "Core-Collapse Supernova Neutrino Cross Sections",
+    title: "Neutrino Cross Sections",
     yaxis: {
       title: { text: `Cross Section (cm<sup>2</sup>)` },
       type: "log",
@@ -505,7 +505,7 @@ export const NeutrinoElectronElasticScatteringCrossSection = ({
   return (
     <Card>
       <Card.Header>
-        Core-Collapse Supernova Neutrino Cross Sections
+        Neutrino Cross Sections
       </Card.Header>
       <Card.Body>
         <Plot
