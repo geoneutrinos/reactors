@@ -167,6 +167,32 @@ const SupernovaNusEventsIBD = ({
                   <td></td>
                 </tr>
                 <tr>
+                  <td>ν<sub>e</sub> + <sup>12</sup>C</td>
+                  <td>
+                    N<sup>0</sup> = <Num v={E16OIBDUnoscilated.events} p={1} />
+                  </td>
+                  <td>
+                    N<sub>NO</sub> = <Num v={E16OIBDOscilatedNormal.events} p={1} />
+                  </td>
+                  <td>
+                    N<sub>IO</sub> = <Num v={E16OIBDOscilatedInverted.events} p={1} /> 
+                  </td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>ν̅<sub>e</sub> + <sup>12</sup>C</td>
+                  <td>
+                    N<sup>0</sup> = <Num v={AntiE16OIBDUnoscilated.events} p={1} />
+                  </td>
+                  <td>
+                    N<sub>NO</sub> = <Num v={AntiE16OIBDOscilatedNormal.events} p={1} />
+                  </td>
+                  <td>
+                    N<sub>IO</sub> = <Num v={AntiE16OIBDOscilatedInverted.events} p={1} />
+                  </td>
+                  <td></td>
+                </tr>
+                <tr>
                   <td>ν<sub>e</sub> + <sup>16</sup>O</td>
                   <td>
                     N<sup>0</sup> = <Num v={E16OIBDUnoscilated.events} p={1} />
