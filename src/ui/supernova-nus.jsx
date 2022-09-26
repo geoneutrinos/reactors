@@ -27,6 +27,7 @@ import Elements from "../elements";
 import { NeutrinoType, NeutrinoTarget } from "../physics/neutrino-cross-section";
 import { MassOrdering } from "../physics/neutrino-oscillation"
 import {crossSection16OElectronAntineutrino, crossSection16OElectronNeutrino, electronAntineutrino16OThresholdEnergy, electronNeutrino16OThresholdEnergy} from "../physics/oxygen-16";
+import {crossSection12CElectronAntineutrino, crossSection12CElectronNeutrino, electronAntineutrino12CThresholdEnergy, electronNeutrino12CThresholdEnergy} from "../physics/carbon-12";
 
 const SupernovaNusCEvNS = memo(({ nucleus, setNucleus, tESnMin, setTESnMin, fluxSpectrums }) => {
 
