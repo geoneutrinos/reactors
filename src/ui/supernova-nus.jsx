@@ -467,7 +467,7 @@ const NeutrinoAvgEnergy = ({ nueAvgEnrg, setAvgEnrgNue, anuAvgEnrg, setAvgEnrgAn
               step={0.1}
               min={6}
               max={13}
-              onChange={(event) => setAvgEnrgNue(event.target.value)}
+              onChange={(event) => setAvgEnrgNue(parseFloat(event.target.value))}
             />
           </InputGroup>
         </Form.Group>
@@ -482,7 +482,7 @@ const NeutrinoAvgEnergy = ({ nueAvgEnrg, setAvgEnrgNue, anuAvgEnrg, setAvgEnrgAn
               step={0.1}
               min={9}
               max={16}
-              onChange={(event) => setAvgEnrgAnu(event.target.value)}
+              onChange={(event) => setAvgEnrgAnu(parseFloat(event.target.value))}
             />
           </InputGroup>
         </Form.Group>
@@ -497,7 +497,7 @@ const NeutrinoAvgEnergy = ({ nueAvgEnrg, setAvgEnrgNue, anuAvgEnrg, setAvgEnrgAn
               step={0.1}
               min={12}
               max={19}
-              onChange={(event) => setAvgEnrgNux(event.target.value)}
+              onChange={(event) => setAvgEnrgNux(parseFloat(event.target.value))}
             />
           </InputGroup>
         </Form.Group>
