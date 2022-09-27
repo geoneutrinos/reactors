@@ -56,9 +56,9 @@ export const SupernovaPlotsIBD = ({
     },
   ];
   var layout = {
-    title: `CCSN (10 kpc, β=4): ν̅<sub>e</sub>+p Spectra <br />
-    <sub>Total E ${nueTotEnrg.toFixed(1)}, ${anuTotEnrg.toFixed(1)}, ${nuxTotEnrg.toFixed(1)} x10<sup>52</sup>erg</sub> <br />
-    <sub>Average E ${nueAvgEnrg.toFixed(1)}, ${anuAvgEnrg.toFixed(1)}, ${nuxAvgEnrg.toFixed(1)} MeV</sub>`,
+    title: `CCSN (10 kpc, β=4): ν̅<sub>e</sub>+p Spectra<br />
+    <sub>ν<sub>e</sub>, ν̅<sub>e</sub>, ν<sub>x</sub> Total E (10<sup>52</sup> erg) ${nueTotEnrg.toFixed(1)}, ${anuTotEnrg.toFixed(1)}, ${nuxTotEnrg.toFixed(1)}</sub><br />
+    <sub>ν<sub>e</sub>, ν̅<sub>e</sub>, ν<sub>x</sub> Average E (MeV) ${nueAvgEnrg.toFixed(1)}, ${anuAvgEnrg.toFixed(1)}, ${nuxAvgEnrg.toFixed(1)}</sub>`,
     yaxis: {
       title: { text: `Events dN/dE (/10<sup>32</sup> p/MeV)` },
       autorange: true,
