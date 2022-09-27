@@ -694,9 +694,33 @@ export const SupernovaNus = React.memo(() => {
         anuTotEnrg={anuTotEnrg}
         nuxTotEnrg={nuxTotEnrg}
       />
-      <SupernovaFluxPlots fluxSpectrums={fluxSpectrums}/>
-      <SupernovaOscillatedFluxPlots oscillatedFluxSpectrums={oscillatedFluxSpectrums}/>
-      <SupernovaOscillatedInvertedFluxPlots oscillatedFluxSpectrums={oscillatedFluxSpectrums}/>
+      <SupernovaFluxPlots
+        fluxSpectrums={fluxSpectrums}
+        nueAvgEnrg={nueAvgEnrg}
+        anuAvgEnrg={anuAvgEnrg}
+        nuxAvgEnrg={nuxAvgEnrg}
+        nueTotEnrg={nueTotEnrg}
+        anuTotEnrg={anuTotEnrg}
+        nuxTotEnrg={nuxTotEnrg}
+      />
+      <SupernovaOscillatedFluxPlots
+        oscillatedFluxSpectrums={oscillatedFluxSpectrums}
+        nueAvgEnrg={nueAvgEnrg}
+        anuAvgEnrg={anuAvgEnrg}
+        nuxAvgEnrg={nuxAvgEnrg}
+        nueTotEnrg={nueTotEnrg}
+        anuTotEnrg={anuTotEnrg}
+        nuxTotEnrg={nuxTotEnrg}
+      />
+      <SupernovaOscillatedInvertedFluxPlots
+        oscillatedFluxSpectrums={oscillatedFluxSpectrums}
+        nueAvgEnrg={nueAvgEnrg}
+        anuAvgEnrg={anuAvgEnrg}
+        nuxAvgEnrg={nuxAvgEnrg}
+        nueTotEnrg={nueTotEnrg}
+        anuTotEnrg={anuTotEnrg}
+        nuxTotEnrg={nuxTotEnrg}
+      />
       <NeutrinoElectronElasticScatteringCrossSection 
         ESpNue={ESpNue}
         ESpAnu={ESpAnu}
