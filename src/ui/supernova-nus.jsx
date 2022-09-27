@@ -118,7 +118,7 @@ const SupernovaNusCEvNS = memo(({ nucleus, setNucleus, tESnMin, setTESnMin, flux
                   step={.1}
                   min={0}
                   max={10}
-                  onChange={(event) => setTESnMin(event.target.value)}
+                  onChange={(event) => setTESnMin(parseFloat(event.target.value))}
                 />
               </InputGroup>
             </Form.Group>
@@ -238,7 +238,7 @@ const SupernovaNusEventsIBD = ({
                   step={0.5}
                   min={0}
                   max={10}
-                  onChange={(event) => setTIBDpMin(event.target.value)}
+                  onChange={(event) => setTIBDpMin(parseFloat(event.target.value))}
                 />
               </InputGroup>
             </Form.Group>
@@ -253,7 +253,7 @@ const SupernovaNusEventsIBD = ({
                   step={0.5}
                   min={0}
                   max={20}
-                  onChange={(event) => setTIBDoxyMin(event.target.value)}
+                  onChange={(event) => setTIBDoxyMin(parseFloat(event.target.value))}
                 />
               </InputGroup>
             </Form.Group>
@@ -350,7 +350,7 @@ const SupernovaNusEventsES = ({
                   step={0.5}
                   min={0}
                   max={10}
-                  onChange={(event) => setTESeMin(event.target.value)}
+                  onChange={(event) => setTESeMin(parseFloat(event.target.value))}
                 />
               </InputGroup>
             </Form.Group>
@@ -365,7 +365,7 @@ const SupernovaNusEventsES = ({
                   step={0.1}
                   min={0}
                   max={2}
-                  onChange={(event) => setTESpMin(event.target.value)}
+                  onChange={(event) => setTESpMin(parseFloat(event.target.value))}
                 />
               </InputGroup>
             </Form.Group>
@@ -522,7 +522,7 @@ const NeutrinoTotEnergy = ({ nueTotEnrg, setTotEnrgNue, anuTotEnrg, setTotEnrgAn
               step={0.1}
               min={1}
               max={5}
-              onChange={(event) => setTotEnrgNue(event.target.value)}
+              onChange={(event) => setTotEnrgNue(parseFloat(event.target.value))}
             />
           </InputGroup>
         </Form.Group>
@@ -537,7 +537,7 @@ const NeutrinoTotEnergy = ({ nueTotEnrg, setTotEnrgNue, anuTotEnrg, setTotEnrgAn
               step={0.1}
               min={1}
               max={5}
-              onChange={(event) => setTotEnrgAnu(event.target.value)}
+              onChange={(event) => setTotEnrgAnu(parseFloat(event.target.value))}
             />
           </InputGroup>
         </Form.Group>
@@ -552,7 +552,7 @@ const NeutrinoTotEnergy = ({ nueTotEnrg, setTotEnrgNue, anuTotEnrg, setTotEnrgAn
               step={0.1}
               min={1}
               max={5}
-              onChange={(event) => setTotEnrgNux(event.target.value)}
+              onChange={(event) => setTotEnrgNux(parseFloat(event.target.value))}
             />
           </InputGroup>
         </Form.Group>
