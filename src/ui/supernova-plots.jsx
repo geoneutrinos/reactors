@@ -7,9 +7,9 @@ import { MassOrdering } from "../physics/neutrino-oscillation";
 import { energyValues} from "../supernova";
 
 export const SupernovaPlotsIBD = ({
-  IBDUnoscilated, 
-  IBDOscilatedNormal, 
-  IBDOscilatedInverted, 
+  pIBDUnoscillated, 
+  pIBDOscillatedNormal, 
+  pIBDOscillatedInverted, 
   nueAvgEnrg, 
   anuAvgEnrg, 
   nuxAvgEnrg, 
@@ -19,7 +19,7 @@ export const SupernovaPlotsIBD = ({
 }) => {
   const data = [
     {
-      y: IBDUnoscilated.eventSpectrum,
+      y: pIBDUnoscillated.eventSpectrum,
       x: energyValues,
       name: `ν̅<sub>e</sub>+p w/o osc`,
       type: "scatter",
@@ -31,7 +31,7 @@ export const SupernovaPlotsIBD = ({
       marker: { color: "blue" },
     },
     {
-      y: IBDOscilatedNormal.eventSpectrum,
+      y: pIBDOscillatedNormal.eventSpectrum,
       x: energyValues,
       name: `ν̅<sub>e</sub>+p for NO`,
       type: "scatter",
@@ -43,7 +43,7 @@ export const SupernovaPlotsIBD = ({
       marker: { color: "red" },
     },
     {
-      y: IBDOscilatedInverted.eventSpectrum,
+      y: pIBDOscillatedInverted.eventSpectrum,
       x: energyValues,
       name: `ν̅<sub>e</sub>+p for IO`,
       type: "scatter",
