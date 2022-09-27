@@ -6,7 +6,7 @@ import { MassOrdering } from "../physics/neutrino-oscillation";
 
 import { energyValues} from "../supernova";
 
-export const SupernovaPlotsIBD = ({IBDUnoscilated, IBDOscilatedNormal, IBDOscilatedInverted}) => {
+export const SupernovaPlotsIBD = ({IBDUnoscilated, IBDOscilatedNormal, IBDOscilatedInverted, nueAvgEnrg}) => {
   const data = [
     {
       y: IBDUnoscilated.eventSpectrum,
