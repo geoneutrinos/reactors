@@ -46,7 +46,7 @@ export const SupernovaPlotsIBD = ({IBDUnoscilated, IBDOscilatedNormal, IBDOscila
     },
   ];
   var layout = {
-    title: "CCSN (10 kpc, β=4): ν̅<sub>e</sub>+p Spectra <br /><sub>Note avg/tot E<sub>ν</sub></sub>" ,
+    title: "CCSN (10 kpc, β=4): ν̅<sub>e</sub>+p Spectra <br /><sub>${nueAvgEnrg}</sub>" ,
     yaxis: {
       title: { text: `Events dN/dE (/10<sup>32</sup> p/MeV)` },
       autorange: true,
