@@ -688,6 +688,11 @@ export const SupernovaNus = React.memo(() => {
         IBDOscilatedNormal={IBDOscilatedNormal} 
         IBDOscilatedInverted={IBDOscilatedInverted}
         nueAvgEnrg={nueAvgEnrg}
+        anuAvgEnrg={anuAvgEnrg}
+        nuxAvgEnrg={nuxAvgEnrg}
+        nueTotEnrg={nueTotEnrg}
+        anuTotEnrg={anuTotEnrg}
+        nuxTotEnrg={nuxTotEnrg}
       />
       <SupernovaFluxPlots fluxSpectrums={fluxSpectrums}/>
       <SupernovaOscillatedFluxPlots oscillatedFluxSpectrums={oscillatedFluxSpectrums}/>
