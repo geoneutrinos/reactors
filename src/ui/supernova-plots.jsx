@@ -6,7 +6,17 @@ import { MassOrdering } from "../physics/neutrino-oscillation";
 
 import { energyValues} from "../supernova";
 
-export const SupernovaPlotsIBD = ({IBDUnoscilated, IBDOscilatedNormal, IBDOscilatedInverted, nueAvgEnrg}) => {
+export const SupernovaPlotsIBD = ({
+  IBDUnoscilated, 
+  IBDOscilatedNormal, 
+  IBDOscilatedInverted, 
+  nueAvgEnrg, 
+  anuAvgEnrg, 
+  nuxAvgEnrg, 
+  nueTotEnrg, 
+  anuTotEnrg, 
+  nuxTotEnrg,
+}) => {
   const data = [
     {
       y: IBDUnoscilated.eventSpectrum,
@@ -46,7 +56,9 @@ export const SupernovaPlotsIBD = ({IBDUnoscilated, IBDOscilatedNormal, IBDOscila
     },
   ];
   var layout = {
-    title: `CCSN (10 kpc, β=4): ν̅<sub>e</sub>+p Spectra <br /><sub>${nueAvgEnrg.toFixed(1)} MeV</sub>` ,
+    title: `CCSN (10 kpc, β=4): ν̅<sub>e</sub>+p Spectra <br />
+    <sub>Total E ${nueTotEnrg.toFixed(1)}, ${anuTotEnrg.toFixed(1)}, ${nuxTotEnrg.toFixed(1)} erg</sub> <br />
+    <sub>Average E ${nueAvgEnrg.toFixed(1)}, ${anuAvgEnrg.toFixed(1)}, ${nuxAvgEnrg.toFixed(1)} MeV</sub>`,
     yaxis: {
       title: { text: `Events dN/dE (/10<sup>32</sup> p/MeV)` },
       autorange: true,
