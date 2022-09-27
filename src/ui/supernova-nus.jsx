@@ -130,9 +130,9 @@ const SupernovaNusCEvNS = memo(({ nucleus, setNucleus, tESnMin, setTESnMin, flux
 });
 
 const SupernovaNusEventsIBD = ({
-  IBDUnoscilated, 
-  IBDOscilatedNormal, 
-  IBDOscilatedInverted,
+  pIBDUnoscillated, 
+  pIBDOscillatedNormal, 
+  pIBDOscillatedInverted,
   AntiE12CIBDUnoscilated,
   AntiE12CIBDOscilatedNormal,
   AntiE12CIBDOscilatedInverted,
@@ -163,13 +163,13 @@ const SupernovaNusEventsIBD = ({
                 <tr>
                   <td>ν̅<sub>e</sub> + p</td>
                   <td>
-                    N<sup>0</sup> = <Num v={IBDUnoscilated.events} p={1} />
+                    N<sup>0</sup> = <Num v={pIBDUnoscillated.events} p={1} />
                   </td>
                   <td>
-                    N<sub>NO</sub> = <Num v={IBDOscilatedNormal.events} p={1} />
+                    N<sub>NO</sub> = <Num v={pIBDOscillatedNormal.events} p={1} />
                   </td>
                   <td>
-                    N<sub>IO</sub> = <Num v={IBDOscilatedInverted.events} p={1} />
+                    N<sub>IO</sub> = <Num v={pIBDOscillatedInverted.events} p={1} />
                   </td>
                   <td></td>
                 </tr>
