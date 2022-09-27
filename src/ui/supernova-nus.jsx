@@ -466,7 +466,7 @@ const NeutrinoAvgEnergy = ({ nueAvgEnrg, setAvgEnrgNue, anuAvgEnrg, setAvgEnrgAn
               type="range"
               step={0.1}
               min={6}
-              max={13}
+              max={16}
               onChange={(event) => setAvgEnrgNue(event.target.value)}
             />
           </InputGroup>
@@ -480,8 +480,8 @@ const NeutrinoAvgEnergy = ({ nueAvgEnrg, setAvgEnrgNue, anuAvgEnrg, setAvgEnrgAn
               value={anuAvgEnrg}
               type="range"
               step={0.1}
-              min={9}
-              max={16}
+              min={8}
+              max={18}
               onChange={(event) => setAvgEnrgAnu(event.target.value)}
             />
           </InputGroup>
@@ -495,8 +495,8 @@ const NeutrinoAvgEnergy = ({ nueAvgEnrg, setAvgEnrgNue, anuAvgEnrg, setAvgEnrgAn
               value={nuxAvgEnrg}
               type="range"
               step={0.1}
-              min={12}
-              max={19}
+              min={10}
+              max={20}
               onChange={(event) => setAvgEnrgNux(event.target.value)}
             />
           </InputGroup>
