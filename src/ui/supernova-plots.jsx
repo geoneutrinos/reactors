@@ -375,10 +375,10 @@ export const NeutrinoElectronElasticScatteringCrossSection = ({
   AntiESEforNO,
   NuxESEforNO,
   AnxESEforNO,
-  AntiE12CIBDUnoscilated,
-  E12CIBDUnoscilated,
-  AntiE16OIBDUnoscilated,
-  E16OIBDUnoscilated,
+  AntiE12CIBDUnoscillated,
+  E12CIBDUnoscillated,
+  AntiE16OIBDUnoscillated,
+  E16OIBDUnoscillated,
 }) => {
   const xsectionIBD = energyValues.map(crossSectionSV2003)
 
@@ -464,7 +464,7 @@ export const NeutrinoElectronElasticScatteringCrossSection = ({
       line: { dash: "dot" },
     },
     {
-      y: AntiE12CIBDUnoscilated.crossSection,
+      y: AntiE12CIBDUnoscillated.crossSection,
       x: energyValues,
       name: `ν̅<sub>e</sub>+<sup>12</sup>C`,
       type: "scatter",
@@ -476,7 +476,7 @@ export const NeutrinoElectronElasticScatteringCrossSection = ({
       marker: { color: "black" },
     },
     {
-      y: E12CIBDUnoscilated.crossSection,
+      y: E12CIBDUnoscillated.crossSection,
       x: energyValues,
       name: `ν<sub>e</sub>+<sup>12</sup>C`,
       type: "scatter",
@@ -488,7 +488,7 @@ export const NeutrinoElectronElasticScatteringCrossSection = ({
       marker: { color: "grey" },
     },
     {
-      y: AntiE16OIBDUnoscilated.crossSection,
+      y: AntiE16OIBDUnoscillated.crossSection,
       x: energyValues,
       name: `ν̅<sub>e</sub>+<sup>16</sup>O`,
       type: "scatter",
@@ -500,7 +500,7 @@ export const NeutrinoElectronElasticScatteringCrossSection = ({
       marker: { color: "blueviolet" },
     },
     {
-      y: E16OIBDUnoscilated.crossSection,
+      y: E16OIBDUnoscillated.crossSection,
       x: energyValues,
       name: `ν<sub>e</sub>+<sup>16</sup>O`,
       type: "scatter",
