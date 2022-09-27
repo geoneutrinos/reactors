@@ -102,6 +102,42 @@ export const SupernovaPlotsIBD = ({
       fill: "none",
       marker: { color: "grey" },
     },
+    {
+      y: AntiE16OIBDUnoscillated.eventSpectrum,
+      x: energyValues,
+      name: `ν̅<sub>e</sub>+<sup>16</sup>O w/o osc`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        width: 2,
+      },
+      fill: "none",
+      marker: { color: "blueviolet" },
+    },
+    {
+      y: AntiE16OIBDOscillatedNormal.eventSpectrum,
+      x: energyValues,
+      name: `ν̅<sub>e</sub>+<sup>16</sup>O for NO`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        width: 2,
+      },
+      fill: "none",
+      marker: { color: "pink" },
+    },
+    {
+      y: AntiE16OIBDOscillatedInverted.eventSpectrum,
+      x: energyValues,
+      name: `ν̅<sub>e</sub>+<sup>16</sup>O for IO`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        width: 2,
+      },
+      fill: "none",
+      marker: { color: "purple" },
+    },
   ];
   var layout = {
     title: `CCSN (10 kpc, β=4): ν̅<sub>e</sub>+p Spectra
