@@ -404,9 +404,10 @@ const SupernovaNusPane = () => {
             </p>
             <p>
               While distance <Node inline>{String.raw`D = 10`}</Node>{" "}
-              kpc and spectrum shape parameter{" "}
-              <Node inline>{String.raw`\beta = 4`}</Node>{" "} 
-              are fixed, the default values for{" "}
+              kpc is fixed, the default values for{" "}
+              <Node 
+                inline
+              >{String.raw`\beta = 4`}</Node>,{" "} 
               <Node
                 inline
               >{String.raw`E_{\nu_{\alpha}}^\mathrm{tot} = 5\times10^{52}`}</Node>{" "}
@@ -446,6 +447,31 @@ const SupernovaNusPane = () => {
             </p>
           </div>
         </Provider>
+      </Card.Body>
+    </Card>
+  );
+};
+
+const SpectrumShapeParameter = ({ nuSpectrumShapeParam, setNuSpectrumShapeParam }) => {
+  return (
+    <Card>
+      <Card.Header>Spectrum Shape Parameter</Card.Header>
+      <Card.Body>
+        <Form.Group controlId="shape_param">
+          <Form.Label>
+             β = {nuSpectrumShapeParam}
+          </Form.Label>
+          <InputGroup>
+            <Form.Control
+              value={nuSpectrumShapeParam}
+              type="range"
+              step={1}
+              min={1}
+              max={5}
+              onChange={(event) => setNuSpectrumShapeParam(parseFloat(event.target.value))}
+            />
+          </InputGroup>
+        </Form.Group>
       </Card.Body>
     </Card>
   );
@@ -573,6 +599,7 @@ export const SupernovaNus = React.memo(() => {
   const [nueTotEnrg,setTotEnrgNue] = useState(5);
   const [anuTotEnrg,setTotEnrgAnu] = useState(5);
   const [nuxTotEnrg,setTotEnrgNux] = useState(5);
+  const [nuSpectrumShapeParam,setNuSpectrumShapeParam] = useState(4);
   const [nucleus, setNucleus] = useState(Elements.Xe132.key);
 
   // inital guesses 12, 15, 18 MeV too hot and now reduced
@@ -667,6 +694,10 @@ export const SupernovaNus = React.memo(() => {
         setTESpMin={setTESpMin}
       />
       <SupernovaNusPane  />
+      <SpectrumShapeParameter
+        nuSpectrumShapeParam={nuSpectrumShapeParam}
+        setNuSpectrumShapeParam={setNuSpectrumShapeParam}
+      />
       <NeutrinoAvgEnergy
         nueAvgEnrg={nueAvgEnrg}
         setAvgEnrgNue={setAvgEnrgNue}
