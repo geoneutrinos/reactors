@@ -79,13 +79,14 @@ export const energyValues = new Float64Array(energyBins).map(
  * @param totalEnergyNeutrinoNue
  * @param totalEnergyNeutrinoAnu
  * @param totalEnergyNeutrinoNux
+ * @param nuSpectrumShapeParam
  * @returns 
  */
-export const SNFluxSpectrum = (averageNeutrinoEnergyNue: number, averageNeutrinoEnergyAnu: number, averageNeutrinoEnergyNux: number, totalEnergyNeutrinoNue: number, totalEnergyNeutrinoAnu: number, totalEnergyNeutrinoNux: number) : SNFluxSpectrumInterface => {
-  const muTauSpec = energyValues.map((x) => neutrinoSpectrumCCSN(x, averageNeutrinoEnergyNux, totalEnergyNeutrinoNux)) 
+export const SNFluxSpectrum = (averageNeutrinoEnergyNue: number, averageNeutrinoEnergyAnu: number, averageNeutrinoEnergyNux: number, totalEnergyNeutrinoNue: number, totalEnergyNeutrinoAnu: number, totalEnergyNeutrinoNux: number, nuSpectrumShapeParam: number) : SNFluxSpectrumInterface => {
+  const muTauSpec = energyValues.map((x) => neutrinoSpectrumCCSN(x, averageNeutrinoEnergyNux, totalEnergyNeutrinoNux, nuSpectrumShapeParam)) 
   return {
-    [NeutrinoType.electronNeutrino]: energyValues.map((x) => neutrinoSpectrumCCSN(x, averageNeutrinoEnergyNue, totalEnergyNeutrinoNue)),
-    [NeutrinoType.electronAntineutrino]: energyValues.map((x) => neutrinoSpectrumCCSN(x, averageNeutrinoEnergyAnu, totalEnergyNeutrinoAnu)),
+    [NeutrinoType.electronNeutrino]: energyValues.map((x) => neutrinoSpectrumCCSN(x, averageNeutrinoEnergyNue, totalEnergyNeutrinoNue, nuSpectrumShapeParam)),
+    [NeutrinoType.electronAntineutrino]: energyValues.map((x) => neutrinoSpectrumCCSN(x, averageNeutrinoEnergyAnu, totalEnergyNeutrinoAnu, nuSpectrumShapeParam)),
     [NeutrinoType.muTauNeutrino]: muTauSpec, 
     [NeutrinoType.muTauAntineutrino]: muTauSpec,
   }
@@ -196,16 +197,17 @@ export const CEvNSEvents = (element: Element, TMin:number, fluxSpectrums:SNFluxS
   };
 };
 
-function neutrinoSpectrumCCSN(Ev: number, Ev_avg: number, Ev_tot: number) {
+function neutrinoSpectrumCCSN(Ev: number, Ev_avg: number, Ev_tot: number, shape_param: number) {
   const energy_convert = 1e-13 / ELEMENTARY_CHARGE; // MeV per erg
   const enu_tot = Ev_tot * 1e52 * energy_convert; // MeV
   const d_ccsn = 10 * 3.086e21; // cm
-  const beta = 4;
 
-  const prefix = beta ** beta / (4 * Math.PI * 6 * Ev_avg * Ev_avg);
+// the factor of 6 in the denominator is (shape_param - 1)! for shape_param=4
+// TODO: code the factorial described above
+  const prefix = shape_param ** shape_param / (4 * Math.PI * 6 * Ev_avg * Ev_avg);
 
   const energy_factor =
-    (Ev / Ev_avg) ** (beta - 1) * Math.exp((-beta * Ev) / Ev_avg);
+    (Ev / Ev_avg) ** (shape_param - 1) * Math.exp((-shape_param * Ev) / Ev_avg);
 
   return (prefix * enu_tot * energy_factor) / d_ccsn / d_ccsn;
 }
