@@ -7,9 +7,21 @@ import { MassOrdering } from "../physics/neutrino-oscillation";
 import { energyValues} from "../supernova";
 
 export const SupernovaPlotsIBD = ({
-  IBDUnoscilated, 
-  IBDOscilatedNormal, 
-  IBDOscilatedInverted, 
+  pIBDUnoscillated, 
+  pIBDOscillatedNormal, 
+  pIBDOscillatedInverted, 
+  AntiE12CIBDUnoscillated,
+  AntiE12CIBDOscillatedNormal,
+  AntiE12CIBDOscillatedInverted,
+  E12CIBDUnoscillated,
+  E12CIBDOscillatedNormal,
+  E12CIBDOscillatedInverted,
+  AntiE16OIBDUnoscillated,
+  AntiE16OIBDOscillatedNormal,
+  AntiE16OIBDOscillatedInverted,
+  E16OIBDUnoscillated,
+  E16OIBDOscillatedNormal,
+  E16OIBDOscillatedInverted,
   nueAvgEnrg, 
   anuAvgEnrg, 
   nuxAvgEnrg, 
@@ -19,7 +31,7 @@ export const SupernovaPlotsIBD = ({
 }) => {
   const data = [
     {
-      y: IBDUnoscilated.eventSpectrum,
+      y: pIBDUnoscillated.eventSpectrum,
       x: energyValues,
       name: `ν̅<sub>e</sub>+p w/o osc`,
       type: "scatter",
@@ -28,10 +40,10 @@ export const SupernovaPlotsIBD = ({
         width: 2,
       },
       fill: "none",
-      marker: { color: "blue" },
+      marker: { color: "darkgoldenrod" },
     },
     {
-      y: IBDOscilatedNormal.eventSpectrum,
+      y: pIBDOscillatedNormal.eventSpectrum,
       x: energyValues,
       name: `ν̅<sub>e</sub>+p for NO`,
       type: "scatter",
@@ -40,10 +52,10 @@ export const SupernovaPlotsIBD = ({
         width: 2,
       },
       fill: "none",
-      marker: { color: "red" },
+      marker: { color: "goldenrod" },
     },
     {
-      y: IBDOscilatedInverted.eventSpectrum,
+      y: pIBDOscillatedInverted.eventSpectrum,
       x: energyValues,
       name: `ν̅<sub>e</sub>+p for IO`,
       type: "scatter",
@@ -52,15 +64,160 @@ export const SupernovaPlotsIBD = ({
         width: 2,
       },
       fill: "none",
-      marker: { color: "green" },
+      marker: { color: "gold" },
+    },
+    {
+      y: AntiE12CIBDUnoscillated.eventSpectrum,
+      x: energyValues,
+      name: `ν̅<sub>e</sub>+<sup>12</sup>C w/o osc`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        width: 2,
+      },
+      fill: "none",
+      marker: { color: "black" },
+    },
+    {
+      y: AntiE12CIBDOscillatedNormal.eventSpectrum,
+      x: energyValues,
+      name: `ν̅<sub>e</sub>+<sup>12</sup>C for NO`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        width: 2,
+      },
+      fill: "none",
+      marker: { color: "dimgrey" },
+    },
+    {
+      y: AntiE12CIBDOscillatedInverted.eventSpectrum,
+      x: energyValues,
+      name: `ν̅<sub>e</sub>+<sup>12</sup>C for IO`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        width: 2,
+      },
+      fill: "none",
+      marker: { color: "grey" },
+    },
+    {
+      y: E12CIBDUnoscillated.eventSpectrum,
+      x: energyValues,
+      name: `ν<sub>e</sub>+<sup>12</sup>C w/o osc`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        width: 2,
+      },
+      fill: "none",
+      marker: { color: "darkolivegreen" },
+    },
+    {
+      y: E12CIBDOscillatedNormal.eventSpectrum,
+      x: energyValues,
+      name: `ν<sub>e</sub>+<sup>12</sup>C for NO`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        width: 2,
+      },
+      fill: "none",
+      marker: { color: "olive" },
+    },
+    {
+      y: E12CIBDOscillatedInverted.eventSpectrum,
+      x: energyValues,
+      name: `ν<sub>e</sub>+<sup>12</sup>C for IO`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        width: 2,
+      },
+      fill: "none",
+      marker: { color: "yellowgreen" },
+    },
+    {
+      y: AntiE16OIBDUnoscillated.eventSpectrum,
+      x: energyValues,
+      name: `ν̅<sub>e</sub>+<sup>16</sup>O w/o osc`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        width: 2,
+      },
+      fill: "none",
+      marker: { color: "blueviolet" },
+    },
+    {
+      y: AntiE16OIBDOscillatedNormal.eventSpectrum,
+      x: energyValues,
+      name: `ν̅<sub>e</sub>+<sup>16</sup>O for NO`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        width: 2,
+      },
+      fill: "none",
+      marker: { color: "orchid" },
+    },
+    {
+      y: AntiE16OIBDOscillatedInverted.eventSpectrum,
+      x: energyValues,
+      name: `ν̅<sub>e</sub>+<sup>16</sup>O for IO`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        width: 2,
+      },
+      fill: "none",
+      marker: { color: "violet" },
+    },
+    {
+      y: E16OIBDUnoscillated.eventSpectrum,
+      x: energyValues,
+      name: `ν<sub>e</sub>+<sup>16</sup>O w/o osc`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        width: 2,
+      },
+      fill: "none",
+      marker: { color: "darkblue" },
+    },
+    {
+      y: E16OIBDOscillatedNormal.eventSpectrum,
+      x: energyValues,
+      name: `ν<sub>e</sub>+<sup>16</sup>O for NO`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        width: 2,
+      },
+      fill: "none",
+      marker: { color: "mediumblue" },
+    },
+    {
+      y: E16OIBDOscillatedInverted.eventSpectrum,
+      x: energyValues,
+      name: `ν<sub>e</sub>+<sup>16</sup>O for IO`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        width: 2,
+      },
+      fill: "none",
+      marker: { color: "blue" },
     },
   ];
   var layout = {
-    title: `CCSN (10 kpc, β=4): ν̅<sub>e</sub>+p Spectra
+    title: `CCSN (10 kpc, β=4): ν<sub>e</sub> , ν̅<sub>e</sub> IBD Spectra
     <br /><sub>ν<sub>e</sub> , ν̅<sub>e</sub> , ν<sub>x</sub> : E<sub>tot</sub> (10<sup>52</sup> erg) / E<sub>avg</sub> (MeV) ${nueTotEnrg.toFixed(1)} / ${nueAvgEnrg.toFixed(1)} , ${anuTotEnrg.toFixed(1)} / ${anuAvgEnrg.toFixed(1)} , ${nuxTotEnrg.toFixed(1)} / ${nuxAvgEnrg.toFixed(1)}</sub></sub>`,
     yaxis: {
-      title: { text: `Events dN/dE (/10<sup>32</sup> p/MeV)` },
-      autorange: true,
+      title: { text: `Events dN/dE (/10<sup>32</sup> targets/MeV)` },
+      type: "log",
+      range: [-4, 1.7],
     },
     xaxis: {
       title: { text: `Neutrino Energy (MeV)` },
@@ -85,7 +242,7 @@ export const SupernovaPlotsIBD = ({
   };
   return (
     <Card>
-      <Card.Header>CCSN (10 kpc, β=4): ν̅<sub>e</sub>+p Spectra</Card.Header>
+      <Card.Header>CCSN (10 kpc, β=4): ν<sub>e</sub> , ν̅<sub>e</sub> IBD Spectra</Card.Header>
       <Card.Body>
         <Plot
           useResizeHandler={true}
@@ -375,10 +532,10 @@ export const NeutrinoElectronElasticScatteringCrossSection = ({
   AntiESEforNO,
   NuxESEforNO,
   AnxESEforNO,
-  AntiE12CIBDUnoscilated,
-  E12CIBDUnoscilated,
-  AntiE16OIBDUnoscilated,
-  E16OIBDUnoscilated,
+  AntiE12CIBDUnoscillated,
+  E12CIBDUnoscillated,
+  AntiE16OIBDUnoscillated,
+  E16OIBDUnoscillated,
 }) => {
   const xsectionIBD = energyValues.map(crossSectionSV2003)
 
@@ -464,7 +621,7 @@ export const NeutrinoElectronElasticScatteringCrossSection = ({
       line: { dash: "dot" },
     },
     {
-      y: AntiE12CIBDUnoscilated.crossSection,
+      y: AntiE12CIBDUnoscillated.crossSection,
       x: energyValues,
       name: `ν̅<sub>e</sub>+<sup>12</sup>C`,
       type: "scatter",
@@ -476,7 +633,7 @@ export const NeutrinoElectronElasticScatteringCrossSection = ({
       marker: { color: "black" },
     },
     {
-      y: E12CIBDUnoscilated.crossSection,
+      y: E12CIBDUnoscillated.crossSection,
       x: energyValues,
       name: `ν<sub>e</sub>+<sup>12</sup>C`,
       type: "scatter",
@@ -488,7 +645,7 @@ export const NeutrinoElectronElasticScatteringCrossSection = ({
       marker: { color: "grey" },
     },
     {
-      y: AntiE16OIBDUnoscilated.crossSection,
+      y: AntiE16OIBDUnoscillated.crossSection,
       x: energyValues,
       name: `ν̅<sub>e</sub>+<sup>16</sup>O`,
       type: "scatter",
@@ -500,7 +657,7 @@ export const NeutrinoElectronElasticScatteringCrossSection = ({
       marker: { color: "blueviolet" },
     },
     {
-      y: E16OIBDUnoscilated.crossSection,
+      y: E16OIBDUnoscillated.crossSection,
       x: energyValues,
       name: `ν<sub>e</sub>+<sup>16</sup>O`,
       type: "scatter",
@@ -517,7 +674,7 @@ export const NeutrinoElectronElasticScatteringCrossSection = ({
     yaxis: {
       title: { text: `Cross Section (cm<sup>2</sup>)` },
       type: "log",
-      autorange: true,
+      range: [-46.,-38.6],
     },
     xaxis: {
       title: { text: `Neutrino Energy (MeV)` },
