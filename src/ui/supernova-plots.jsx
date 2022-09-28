@@ -212,10 +212,10 @@ export const SupernovaPlotsIBD = ({
     },
   ];
   var layout = {
-    title: `CCSN (10 kpc, β=4): ν̅<sub>e</sub>+p Spectra
+    title: `CCSN (10 kpc, β=4): ν<sub>e</sub> , ν̅<sub>e</sub> IBD  Spectra
     <br /><sub>ν<sub>e</sub> , ν̅<sub>e</sub> , ν<sub>x</sub> : E<sub>tot</sub> (10<sup>52</sup> erg) / E<sub>avg</sub> (MeV) ${nueTotEnrg.toFixed(1)} / ${nueAvgEnrg.toFixed(1)} , ${anuTotEnrg.toFixed(1)} / ${anuAvgEnrg.toFixed(1)} , ${nuxTotEnrg.toFixed(1)} / ${nuxAvgEnrg.toFixed(1)}</sub></sub>`,
     yaxis: {
-      title: { text: `Events dN/dE (/10<sup>32</sup> p/MeV)` },
+      title: { text: `Events dN/dE (/10<sup>32</sup> targets/MeV)` },
       type: "log",
       autorange: true,
     },
@@ -242,7 +242,7 @@ export const SupernovaPlotsIBD = ({
   };
   return (
     <Card>
-      <Card.Header>CCSN (10 kpc, β=4): ν̅<sub>e</sub>+p Spectra</Card.Header>
+      <Card.Header>CCSN (10 kpc, β=4): ν<sub>e</sub> , ν̅<sub>e</sub> IBD Spectra</Card.Header>
       <Card.Body>
         <Plot
           useResizeHandler={true}
