@@ -419,7 +419,7 @@ const SupernovaNusPane = () => {
                 inline
               >{String.raw`\langle E_{\overline{\nu}_{\mathrm{e}}} \rangle = 12`}</Node>{" "}
               MeV, and{" "}
-              <Node inline>{String.raw`\langle E_{\nu_{x}} \rangle = 15.6`}</Node>{" "}
+              <Node inline>{String.raw`\langle E_{\nu_{x}} \rangle = 15.5`}</Node>{" "}
               MeV are user-settable for exploring different models.
             </p>
             <p>
@@ -464,9 +464,9 @@ const NeutrinoAvgEnergy = ({ nueAvgEnrg, setAvgEnrgNue, anuAvgEnrg, setAvgEnrgAn
             <Form.Control
               value={nueAvgEnrg}
               type="range"
-              step={0.1}
-              min={6}
-              max={13}
+              step={0.5}
+              min={5}
+              max={25}
               onChange={(event) => setAvgEnrgNue(parseFloat(event.target.value))}
             />
           </InputGroup>
@@ -479,9 +479,9 @@ const NeutrinoAvgEnergy = ({ nueAvgEnrg, setAvgEnrgNue, anuAvgEnrg, setAvgEnrgAn
             <Form.Control
               value={anuAvgEnrg}
               type="range"
-              step={0.1}
-              min={9}
-              max={16}
+              step={0.5}
+              min={5}
+              max={25}
               onChange={(event) => setAvgEnrgAnu(parseFloat(event.target.value))}
             />
           </InputGroup>
@@ -494,9 +494,9 @@ const NeutrinoAvgEnergy = ({ nueAvgEnrg, setAvgEnrgNue, anuAvgEnrg, setAvgEnrgAn
             <Form.Control
               value={nuxAvgEnrg}
               type="range"
-              step={0.1}
-              min={12}
-              max={19}
+              step={0.5}
+              min={5}
+              max={25}
               onChange={(event) => setAvgEnrgNux(parseFloat(event.target.value))}
             />
           </InputGroup>
@@ -569,7 +569,7 @@ export const SupernovaNus = React.memo(() => {
   const [tESnMin, setTESnMin] = useState(0.0);
   const [nueAvgEnrg,setAvgEnrgNue] = useState(9.5);
   const [anuAvgEnrg,setAvgEnrgAnu] = useState(12.0);
-  const [nuxAvgEnrg,setAvgEnrgNux] = useState(15.6);
+  const [nuxAvgEnrg,setAvgEnrgNux] = useState(15.5);
   const [nueTotEnrg,setTotEnrgNue] = useState(5);
   const [anuTotEnrg,setTotEnrgAnu] = useState(5);
   const [nuxTotEnrg,setTotEnrgNux] = useState(5);
