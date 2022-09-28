@@ -212,12 +212,12 @@ export const SupernovaPlotsIBD = ({
     },
   ];
   var layout = {
-    title: `CCSN (10 kpc, β=4): ν<sub>e</sub> , ν̅<sub>e</sub> IBD  Spectra
+    title: `CCSN (10 kpc, β=4): ν<sub>e</sub> , ν̅<sub>e</sub> IBD Spectra
     <br /><sub>ν<sub>e</sub> , ν̅<sub>e</sub> , ν<sub>x</sub> : E<sub>tot</sub> (10<sup>52</sup> erg) / E<sub>avg</sub> (MeV) ${nueTotEnrg.toFixed(1)} / ${nueAvgEnrg.toFixed(1)} , ${anuTotEnrg.toFixed(1)} / ${anuAvgEnrg.toFixed(1)} , ${nuxTotEnrg.toFixed(1)} / ${nuxAvgEnrg.toFixed(1)}</sub></sub>`,
     yaxis: {
       title: { text: `Events dN/dE (/10<sup>32</sup> targets/MeV)` },
       type: "log",
-      range: [-6, 1.5],
+      range: [-4, 1.7],
     },
     xaxis: {
       title: { text: `Neutrino Energy (MeV)` },
