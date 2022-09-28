@@ -40,7 +40,7 @@ export const SupernovaPlotsIBD = ({
         width: 2,
       },
       fill: "none",
-      marker: { color: "blue" },
+      marker: { color: "darkgoldenrod" },
     },
     {
       y: pIBDOscillatedNormal.eventSpectrum,
@@ -52,7 +52,7 @@ export const SupernovaPlotsIBD = ({
         width: 2,
       },
       fill: "none",
-      marker: { color: "red" },
+      marker: { color: "goldenrod" },
     },
     {
       y: pIBDOscillatedInverted.eventSpectrum,
@@ -64,7 +64,7 @@ export const SupernovaPlotsIBD = ({
         width: 2,
       },
       fill: "none",
-      marker: { color: "green" },
+      marker: { color: "gold" },
     },
     {
       y: AntiE12CIBDUnoscillated.eventSpectrum,
@@ -88,7 +88,7 @@ export const SupernovaPlotsIBD = ({
         width: 2,
       },
       fill: "none",
-      marker: { color: "orange" },
+      marker: { color: "dimgrey" },
     },
     {
       y: AntiE12CIBDOscillatedInverted.eventSpectrum,
@@ -124,7 +124,7 @@ export const SupernovaPlotsIBD = ({
         width: 2,
       },
       fill: "none",
-      marker: { color: "pink" },
+      marker: { color: "orchid" },
     },
     {
       y: AntiE16OIBDOscillatedInverted.eventSpectrum,
@@ -136,7 +136,7 @@ export const SupernovaPlotsIBD = ({
         width: 2,
       },
       fill: "none",
-      marker: { color: "purple" },
+      marker: { color: "violet" },
     },
   ];
   var layout = {
@@ -144,6 +144,7 @@ export const SupernovaPlotsIBD = ({
     <br /><sub>ν<sub>e</sub> , ν̅<sub>e</sub> , ν<sub>x</sub> : E<sub>tot</sub> (10<sup>52</sup> erg) / E<sub>avg</sub> (MeV) ${nueTotEnrg.toFixed(1)} / ${nueAvgEnrg.toFixed(1)} , ${anuTotEnrg.toFixed(1)} / ${anuAvgEnrg.toFixed(1)} , ${nuxTotEnrg.toFixed(1)} / ${nuxAvgEnrg.toFixed(1)}</sub></sub>`,
     yaxis: {
       title: { text: `Events dN/dE (/10<sup>32</sup> p/MeV)` },
+      type: "log",
       autorange: true,
     },
     xaxis: {
