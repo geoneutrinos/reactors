@@ -103,6 +103,42 @@ export const SupernovaPlotsIBD = ({
       marker: { color: "grey" },
     },
     {
+      y: E12CIBDUnoscillated.eventSpectrum,
+      x: energyValues,
+      name: `ν<sub>e</sub>+<sup>12</sup>C w/o osc`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        width: 2,
+      },
+      fill: "none",
+      marker: { color: "darkolivegreen" },
+    },
+    {
+      y: E12CIBDOscillatedNormal.eventSpectrum,
+      x: energyValues,
+      name: `ν<sub>e</sub>+<sup>12</sup>C for NO`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        width: 2,
+      },
+      fill: "none",
+      marker: { color: "olive" },
+    },
+    {
+      y: E12CIBDOscillatedInverted.eventSpectrum,
+      x: energyValues,
+      name: `ν<sub>e</sub>+<sup>12</sup>C for IO`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        width: 2,
+      },
+      fill: "none",
+      marker: { color: "yellowgreen" },
+    },
+    {
       y: AntiE16OIBDUnoscillated.eventSpectrum,
       x: energyValues,
       name: `ν̅<sub>e</sub>+<sup>16</sup>O w/o osc`,
@@ -137,6 +173,42 @@ export const SupernovaPlotsIBD = ({
       },
       fill: "none",
       marker: { color: "violet" },
+    },
+    {
+      y: E16OIBDUnoscillated.eventSpectrum,
+      x: energyValues,
+      name: `ν<sub>e</sub>+<sup>16</sup>O w/o osc`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        width: 2,
+      },
+      fill: "none",
+      marker: { color: "darkblue" },
+    },
+    {
+      y: E16OIBDOscillatedNormal.eventSpectrum,
+      x: energyValues,
+      name: `ν<sub>e</sub>+<sup>16</sup>O for NO`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        width: 2,
+      },
+      fill: "none",
+      marker: { color: "mediumblue" },
+    },
+    {
+      y: E16OIBDOscillatedInverted.eventSpectrum,
+      x: energyValues,
+      name: `ν<sub>e</sub>+<sup>16</sup>O for IO`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        width: 2,
+      },
+      fill: "none",
+      marker: { color: "blue" },
     },
   ];
   var layout = {
