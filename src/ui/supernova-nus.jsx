@@ -388,7 +388,7 @@ const SupernovaNusPane = () => {
               <Node
                 inline
               >{String.raw`(\nu_\mathrm{e}, \overline{\nu}_\mathrm{e}, \nu_x)`}</Node>{" "}
-              arriving at Earth from a core-collapse supernova is estimated by{" "}
+              arriving at Earth from a core-collapse supernova is estimated by (M.T. Keil, G.G. Raffelt, and H.T. Janka, Astrophys. J. 590 (2003), 971){" "}
               <Node>{String.raw`
                 \Phi^0_{\nu_{\alpha}}(E)=\frac1{4 \pi D^2} \frac{E_{\nu_{\alpha}}^\mathrm{tot}}{\langle E_{\nu_\alpha} \rangle^2} \frac{\beta^\beta}{\Gamma(\beta)}\bigg[\frac{E}{\langle E_{\nu_\alpha} \rangle}\bigg]^{\beta-1} \mathrm{exp}\bigg[-\beta \frac{E}{\langle E_{\nu_\alpha} \rangle}\bigg]
                 ,`}</Node>{" "}
@@ -423,7 +423,7 @@ const SupernovaNusPane = () => {
               MeV are user-settable for exploring different models.
             </p>
             <p>
-              Oscillation effects depend on the neutrino mass ordering (Dighe, A.S. and Smirnov, A.Y. (2000) Phys. Rev. D 62, 033007). 
+              Oscillation effects depend on the neutrino mass ordering (A.S. Dighe and A.Y. Smirnov, Phys. Rev. D 62 (2000), 033007). 
               <br />
               For normal ordering (NO) with{" "}
               <Node inline>{String.raw`m_3 > m_2 > m_1`}</Node>{" "}
