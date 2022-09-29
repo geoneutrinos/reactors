@@ -212,7 +212,7 @@ function neutrinoSpectrumCCSN(Ev: number, Ev_avg: number, Ev_tot: number, shape_
   return (prefix * enu_tot * energy_factor) / d_ccsn / d_ccsn;
 }
 
-function factorial(x) {
+function factorial(x: number) {
   return (x > 1) ? x * factorial(x-1) : 1;
 }
 
