@@ -466,8 +466,8 @@ const SpectrumShapeParameter = ({ nuSpectrumShapeParam, setNuSpectrumShapeParam 
               value={nuSpectrumShapeParam}
               type="range"
               step={1}
-              min={1}
-              max={5}
+              min={2}
+              max={6}
               onChange={(event) => setNuSpectrumShapeParam(parseFloat(event.target.value))}
             />
           </InputGroup>
@@ -605,7 +605,7 @@ export const SupernovaNus = React.memo(() => {
   // inital guesses 12, 15, 18 MeV too hot and now reduced
   // new values from P.C. Divari, Journal of Cosmology and Astroparticle Physics, JCAP09(2018)029
 
-  const fluxSpectrums = useMemo(() => SNFluxSpectrum(nueAvgEnrg, anuAvgEnrg, nuxAvgEnrg, nueTotEnrg, anuTotEnrg, nuxTotEnrg), [nueAvgEnrg, anuAvgEnrg, nuxAvgEnrg, nueTotEnrg, anuTotEnrg, nuxTotEnrg])
+  const fluxSpectrums = useMemo(() => SNFluxSpectrum(nueAvgEnrg, anuAvgEnrg, nuxAvgEnrg, nueTotEnrg, anuTotEnrg, nuxTotEnrg), [nueAvgEnrg, anuAvgEnrg, nuxAvgEnrg, nueTotEnrg, anuTotEnrg, nuxTotEnrg, nuSpectrumShapeParam])
   const oscillatedFluxSpectrums = oscillatedFluxSpectrum({fluxSpectrums})
 
   const pIBDUnoscillated = calcIBDSNRecord(NeutrinoType.electronAntineutrino, fluxSpectrums, tIBDpMin)
@@ -736,6 +736,7 @@ export const SupernovaNus = React.memo(() => {
         nueTotEnrg={nueTotEnrg}
         anuTotEnrg={anuTotEnrg}
         nuxTotEnrg={nuxTotEnrg}
+        nuSpectrumShapeParam={nuSpectrumShapeParam}
       />
       <SupernovaFluxPlots
         fluxSpectrums={fluxSpectrums}
@@ -745,6 +746,7 @@ export const SupernovaNus = React.memo(() => {
         nueTotEnrg={nueTotEnrg}
         anuTotEnrg={anuTotEnrg}
         nuxTotEnrg={nuxTotEnrg}
+        nuSpectrumShapeParam={nuSpectrumShapeParam}
       />
       <SupernovaOscillatedFluxPlots
         oscillatedFluxSpectrums={oscillatedFluxSpectrums}
@@ -754,6 +756,7 @@ export const SupernovaNus = React.memo(() => {
         nueTotEnrg={nueTotEnrg}
         anuTotEnrg={anuTotEnrg}
         nuxTotEnrg={nuxTotEnrg}
+        nuSpectrumShapeParam={nuSpectrumShapeParam}
       />
       <SupernovaOscillatedInvertedFluxPlots
         oscillatedFluxSpectrums={oscillatedFluxSpectrums}
@@ -763,6 +766,7 @@ export const SupernovaNus = React.memo(() => {
         nueTotEnrg={nueTotEnrg}
         anuTotEnrg={anuTotEnrg}
         nuxTotEnrg={nuxTotEnrg}
+        nuSpectrumShapeParam={nuSpectrumShapeParam}
       />
       <NeutrinoElectronElasticScatteringCrossSection 
         ESpNue={ESpNue}
