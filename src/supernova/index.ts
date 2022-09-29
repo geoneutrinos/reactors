@@ -204,7 +204,7 @@ function neutrinoSpectrumCCSN(Ev: number, Ev_avg: number, Ev_tot: number, shape_
 
 // the factor of 6 in the denominator is (shape_param - 1)! for shape_param=4
 // TODO: code the factorial described above
-  const prefix = shape_param ** shape_param / (4 * Math.PI * factorial(shape_param - 1) * Ev_avg * Ev_avg);
+  const prefix = shape_param ** shape_param / (4 * Math.PI * 6 * Ev_avg * Ev_avg);
 
   const energy_factor =
     (Ev / Ev_avg) ** (shape_param - 1) * Math.exp((-shape_param * Ev) / Ev_avg);
