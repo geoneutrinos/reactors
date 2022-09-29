@@ -218,7 +218,7 @@ export const SupernovaPlotsIBD = ({
     yaxis: {
       title: { text: `Events dN/dE (/10<sup>32</sup> targets/MeV)` },
       type: "log",
-      range: [-4, 1.7],
+      autorange: true,
     },
     xaxis: {
       title: { text: `Neutrino Energy (MeV)` },
