@@ -264,6 +264,7 @@ export const SupernovaFluxPlots = ({
   nueTotEnrg, 
   anuTotEnrg, 
   nuxTotEnrg,
+  nuSpectrumShapeParam,
 }) => {
   const data = [
     {
@@ -356,6 +357,7 @@ export const SupernovaOscillatedFluxPlots = ({
   nueTotEnrg, 
   anuTotEnrg, 
   nuxTotEnrg,
+  nuSpectrumShapeParam,
 }) => {
   const data = [
     {
@@ -448,6 +450,7 @@ export const SupernovaOscillatedInvertedFluxPlots = ({
   nueTotEnrg, 
   anuTotEnrg, 
   nuxTotEnrg,
+  nuSpectrumShapeParam,
 }) => {
   const data = [
     {
@@ -526,6 +529,7 @@ export const SupernovaOscillatedInvertedFluxPlots = ({
     </Card>
   );
 };
+
 export const NeutrinoElectronElasticScatteringCrossSection = ({
   ESpNue,
   ESpAnu,
