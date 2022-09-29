@@ -21,7 +21,7 @@ import {
 // tabulated rates are given for both normal and inverted mass ordering
 import { s2t12, c2t12, s2t13Normal, s2t13Inverted, MassOrdering } from "../physics/neutrino-oscillation";
 
-import { sum } from "lodash";
+import { sum, memoize } from "lodash";
 
 import elements, { Element } from "../elements";
 import { IBD_THRESHOLD } from "../physics/derived";
@@ -197,6 +197,15 @@ export const CEvNSEvents = (element: Element, TMin:number, fluxSpectrums:SNFluxS
   };
 };
 
+const factorial = memoize((x: number) => {
+  let n = 1;
+  while (x > 0){
+    n *= x;
+    x--;
+  }
+  return n
+})
+
 function neutrinoSpectrumCCSN(Ev: number, Ev_avg: number, Ev_tot: number, shape_param: number) {
   const energy_convert = 1e-13 / ELEMENTARY_CHARGE; // MeV per erg
   const enu_tot = Ev_tot * 1e52 * energy_convert; // MeV
@@ -210,9 +219,6 @@ function neutrinoSpectrumCCSN(Ev: number, Ev_avg: number, Ev_tot: number, shape_
 // the factor of 6 in the denominator is (shape_param - 1)! for shape_param=4
 // TODO: code the factorial described above
 
-  function factorial(x: number) {
-    return (x > 1) ? x * factorial(x-1) : 1;
-  }
 
   return (prefix * enu_tot * energy_factor) / d_ccsn / d_ccsn / factorial(shape_param - 1);
 }
