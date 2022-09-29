@@ -243,7 +243,7 @@ export const SupernovaPlotsIBD = ({
   };
   return (
     <Card>
-      <Card.Header>CCSN (10 kpc, β=4): ν<sub>e</sub> , ν̅<sub>e</sub> IBD Spectra</Card.Header>
+      <Card.Header>CCSN (10 kpc, β=${nuSpectrumShapeParam.toFixed(0)}): ν<sub>e</sub> , ν̅<sub>e</sub> IBD Spectra</Card.Header>
       <Card.Body>
         <Plot
           useResizeHandler={true}
@@ -304,7 +304,7 @@ export const SupernovaFluxPlots = ({
     },
   ];
   var layout = {
-    title: `CCSN (10 kpc, β=4): Neutrino Fluence Spectra w/o Oscillations
+    title: `CCSN (10 kpc, β=${nuSpectrumShapeParam.toFixed(0)}): Neutrino Fluence Spectra w/o Oscillations
     <br /><sub>ν<sub>e</sub> , ν̅<sub>e</sub> , ν<sub>x</sub> : E<sub>tot</sub> (10<sup>52</sup> erg) / E<sub>avg</sub> (MeV) ${nueTotEnrg.toFixed(1)} / ${nueAvgEnrg.toFixed(1)} , ${anuTotEnrg.toFixed(1)} / ${anuAvgEnrg.toFixed(1)} , ${nuxTotEnrg.toFixed(1)} / ${nuxAvgEnrg.toFixed(1)}</sub></sub>`,
     yaxis: {
       title: { text: `Fluence (/cm<sup>2</sup>/MeV)` },
@@ -334,7 +334,7 @@ export const SupernovaFluxPlots = ({
   return (
     <Card>
       <Card.Header>
-        CCSN (10 kpc, β=4): Neutrino Fluence Spectra w/o Oscillations
+        CCSN (10 kpc, β=${nuSpectrumShapeParam.toFixed(0)}): Neutrino Fluence Spectra w/o Oscillations
       </Card.Header>
       <Card.Body>
         <Plot
@@ -396,7 +396,7 @@ export const SupernovaOscillatedFluxPlots = ({
     },
   ];
   var layout = {
-    title: `CCSN (10 kpc, β=4): Neutrino Fluence Spectra w/ NO Oscillations
+    title: `CCSN (10 kpc, β=${nuSpectrumShapeParam.toFixed(0)}): Neutrino Fluence Spectra w/ NO Oscillations
     <br /><sub>ν<sub>e</sub> , ν̅<sub>e</sub> , ν<sub>x</sub> : E<sub>tot</sub> (10<sup>52</sup> erg) / E<sub>avg</sub> (MeV) ${nueTotEnrg.toFixed(1)} / ${nueAvgEnrg.toFixed(1)} , ${anuTotEnrg.toFixed(1)} / ${anuAvgEnrg.toFixed(1)} , ${nuxTotEnrg.toFixed(1)} / ${nuxAvgEnrg.toFixed(1)}</sub></sub>`,
     yaxis: {
       title: { text: `Fluence (/cm<sup>2</sup>/MeV)` },
@@ -426,7 +426,7 @@ export const SupernovaOscillatedFluxPlots = ({
   return (
     <Card>
       <Card.Header>
-        CCSN (10 kpc, β=4): Neutrino Fluence Spectra w/ NO Oscillations
+        CCSN (10 kpc, β=${nuSpectrumShapeParam.toFixed(0)}): Neutrino Fluence Spectra w/ NO Oscillations
       </Card.Header>
       <Card.Body>
         <Plot
@@ -482,7 +482,7 @@ export const SupernovaOscillatedInvertedFluxPlots = ({
     },
   ];
   var layout = {
-    title: `CCSN (10 kpc, β=4): Neutrino Fluence Spectra w/ IO Oscillations
+    title: `CCSN (10 kpc, β=${nuSpectrumShapeParam.toFixed(0)}): Neutrino Fluence Spectra w/ IO Oscillations
     <br /><sub>ν<sub>e</sub> , ν̅<sub>e</sub> , ν<sub>x</sub> : E<sub>tot</sub> (10<sup>52</sup> erg) / E<sub>avg</sub> (MeV) ${nueTotEnrg.toFixed(1)} / ${nueAvgEnrg.toFixed(1)} , ${anuTotEnrg.toFixed(1)} / ${anuAvgEnrg.toFixed(1)} , ${nuxTotEnrg.toFixed(1)} / ${nuxAvgEnrg.toFixed(1)}</sub></sub>`,
     yaxis: {
       title: { text: `Fluence (/cm<sup>2</sup>/MeV)` },
@@ -512,7 +512,7 @@ export const SupernovaOscillatedInvertedFluxPlots = ({
   return (
     <Card>
       <Card.Header>
-        CCSN (10 kpc, β=4): Neutrino Fluence Spectra w/ IO Oscillations
+        CCSN (10 kpc, β=${nuSpectrumShapeParam.toFixed(0)}): Neutrino Fluence Spectra w/ IO Oscillations
       </Card.Header>
       <Card.Body>
         <Plot
