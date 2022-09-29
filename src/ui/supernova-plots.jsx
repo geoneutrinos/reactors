@@ -243,7 +243,7 @@ export const SupernovaPlotsIBD = ({
   };
   return (
     <Card>
-      <Card.Header>CCSN (10 kpc, β=${nuSpectrumShapeParam.toFixed(0)}): ν<sub>e</sub> , ν̅<sub>e</sub> IBD Spectra</Card.Header>
+      <Card.Header>CCSN (10 kpc): ν<sub>e</sub> , ν̅<sub>e</sub> IBD Spectra</Card.Header>
       <Card.Body>
         <Plot
           useResizeHandler={true}
@@ -334,7 +334,7 @@ export const SupernovaFluxPlots = ({
   return (
     <Card>
       <Card.Header>
-        CCSN (10 kpc, β=${nuSpectrumShapeParam.toFixed(0)}): Neutrino Fluence Spectra w/o Oscillations
+        CCSN (10 kpc): Neutrino Fluence Spectra w/o Oscillations
       </Card.Header>
       <Card.Body>
         <Plot
@@ -426,7 +426,7 @@ export const SupernovaOscillatedFluxPlots = ({
   return (
     <Card>
       <Card.Header>
-        CCSN (10 kpc, β=${nuSpectrumShapeParam.toFixed(0)}): Neutrino Fluence Spectra w/ NO Oscillations
+        CCSN (10 kpc): Neutrino Fluence Spectra w/ NO Oscillations
       </Card.Header>
       <Card.Body>
         <Plot
@@ -512,7 +512,7 @@ export const SupernovaOscillatedInvertedFluxPlots = ({
   return (
     <Card>
       <Card.Header>
-        CCSN (10 kpc, β=${nuSpectrumShapeParam.toFixed(0)}): Neutrino Fluence Spectra w/ IO Oscillations
+        CCSN (10 kpc): Neutrino Fluence Spectra w/ IO Oscillations
       </Card.Header>
       <Card.Body>
         <Plot
