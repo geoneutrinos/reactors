@@ -202,18 +202,19 @@ function neutrinoSpectrumCCSN(Ev: number, Ev_avg: number, Ev_tot: number, shape_
   const enu_tot = Ev_tot * 1e52 * energy_convert; // MeV
   const d_ccsn = 10 * 3.086e21; // cm
 
-// the factor of 6 in the denominator is (shape_param - 1)! for shape_param=4
-// TODO: code the factorial described above
-  const prefix = shape_param ** shape_param / (4 * Math.PI * 6 * Ev_avg * Ev_avg);
-
   const energy_factor =
     (Ev / Ev_avg) ** (shape_param - 1) * Math.exp((-shape_param * Ev) / Ev_avg);
 
-  return (prefix * enu_tot * energy_factor) / d_ccsn / d_ccsn;
-}
+  const prefix = shape_param ** shape_param / (4 * Math.PI * Ev_avg * Ev_avg);
 
-function factorial(x: number) {
-  return (x > 1) ? x * factorial(x-1) : 1;
+// the factor of 6 in the denominator is (shape_param - 1)! for shape_param=4
+// TODO: code the factorial described above
+
+  function factorial(x: number) {
+    return (x > 1) ? x * factorial(x-1) : 1;
+  }
+
+  return (prefix * enu_tot * energy_factor) / d_ccsn / d_ccsn / factorial(shape_param - 1);
 }
 
 //TODO Integrate with the main ES function
