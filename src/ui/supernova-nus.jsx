@@ -605,7 +605,7 @@ export const SupernovaNus = React.memo(() => {
   // inital guesses 12, 15, 18 MeV too hot and now reduced
   // new values from P.C. Divari, Journal of Cosmology and Astroparticle Physics, JCAP09(2018)029
 
-  const fluxSpectrums = useMemo(() => SNFluxSpectrum(nueAvgEnrg, anuAvgEnrg, nuxAvgEnrg, nueTotEnrg, anuTotEnrg, nuxTotEnrg), [nueAvgEnrg, anuAvgEnrg, nuxAvgEnrg, nueTotEnrg, anuTotEnrg, nuxTotEnrg, nuSpectrumShapeParam])
+  const fluxSpectrums = useMemo(() => SNFluxSpectrum(nueAvgEnrg, anuAvgEnrg, nuxAvgEnrg, nueTotEnrg, anuTotEnrg, nuxTotEnrg, nuSpectrumShapeParam), [nueAvgEnrg, anuAvgEnrg, nuxAvgEnrg, nueTotEnrg, anuTotEnrg, nuxTotEnrg, nuSpectrumShapeParam])
   const oscillatedFluxSpectrums = oscillatedFluxSpectrum({fluxSpectrums})
 
   const pIBDUnoscillated = calcIBDSNRecord(NeutrinoType.electronAntineutrino, fluxSpectrums, tIBDpMin)
