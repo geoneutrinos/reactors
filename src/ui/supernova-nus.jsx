@@ -694,10 +694,6 @@ export const SupernovaNus = React.memo(() => {
         setTESpMin={setTESpMin}
       />
       <SupernovaNusPane  />
-      <SpectrumShapeParameter
-        nuSpectrumShapeParam={nuSpectrumShapeParam}
-        setNuSpectrumShapeParam={setNuSpectrumShapeParam}
-      />
       <NeutrinoAvgEnergy
         nueAvgEnrg={nueAvgEnrg}
         setAvgEnrgNue={setAvgEnrgNue}
@@ -714,29 +710,9 @@ export const SupernovaNus = React.memo(() => {
         nuxTotEnrg={nuxTotEnrg}
         setTotEnrgNux={setTotEnrgNux}
       />
-      <SupernovaPlotsIBD 
-        pIBDUnoscillated={pIBDUnoscillated} 
-        pIBDOscillatedNormal={pIBDOscillatedNormal} 
-        pIBDOscillatedInverted={pIBDOscillatedInverted}
-        AntiE12CIBDUnoscillated={AntiE12CIBDUnoscillated}
-        AntiE12CIBDOscillatedNormal={AntiE12CIBDOscillatedNormal}
-        AntiE12CIBDOscillatedInverted={AntiE12CIBDOscillatedInverted}
-        E12CIBDUnoscillated = {E12CIBDUnoscillated}
-        E12CIBDOscillatedNormal = {E12CIBDOscillatedNormal}
-        E12CIBDOscillatedInverted = {E12CIBDOscillatedInverted}
-        AntiE16OIBDUnoscillated={AntiE16OIBDUnoscillated}
-        AntiE16OIBDOscillatedNormal={AntiE16OIBDOscillatedNormal}
-        AntiE16OIBDOscillatedInverted={AntiE16OIBDOscillatedInverted}
-        E16OIBDUnoscillated = {E16OIBDUnoscillated}
-        E16OIBDOscillatedNormal = {E16OIBDOscillatedNormal}
-        E16OIBDOscillatedInverted = {E16OIBDOscillatedInverted}
-        nueAvgEnrg={nueAvgEnrg}
-        anuAvgEnrg={anuAvgEnrg}
-        nuxAvgEnrg={nuxAvgEnrg}
-        nueTotEnrg={nueTotEnrg}
-        anuTotEnrg={anuTotEnrg}
-        nuxTotEnrg={nuxTotEnrg}
+      <SpectrumShapeParameter
         nuSpectrumShapeParam={nuSpectrumShapeParam}
+        setNuSpectrumShapeParam={setNuSpectrumShapeParam}
       />
       <SupernovaFluxPlots
         fluxSpectrums={fluxSpectrums}
@@ -779,6 +755,30 @@ export const SupernovaNus = React.memo(() => {
         E12CIBDUnoscillated={E12CIBDUnoscillated}
         AntiE16OIBDUnoscillated={AntiE16OIBDUnoscillated}
         E16OIBDUnoscillated={E16OIBDUnoscillated}
+      />
+      <SupernovaPlotsIBD 
+        pIBDUnoscillated={pIBDUnoscillated} 
+        pIBDOscillatedNormal={pIBDOscillatedNormal} 
+        pIBDOscillatedInverted={pIBDOscillatedInverted}
+        AntiE12CIBDUnoscillated={AntiE12CIBDUnoscillated}
+        AntiE12CIBDOscillatedNormal={AntiE12CIBDOscillatedNormal}
+        AntiE12CIBDOscillatedInverted={AntiE12CIBDOscillatedInverted}
+        E12CIBDUnoscillated = {E12CIBDUnoscillated}
+        E12CIBDOscillatedNormal = {E12CIBDOscillatedNormal}
+        E12CIBDOscillatedInverted = {E12CIBDOscillatedInverted}
+        AntiE16OIBDUnoscillated={AntiE16OIBDUnoscillated}
+        AntiE16OIBDOscillatedNormal={AntiE16OIBDOscillatedNormal}
+        AntiE16OIBDOscillatedInverted={AntiE16OIBDOscillatedInverted}
+        E16OIBDUnoscillated = {E16OIBDUnoscillated}
+        E16OIBDOscillatedNormal = {E16OIBDOscillatedNormal}
+        E16OIBDOscillatedInverted = {E16OIBDOscillatedInverted}
+        nueAvgEnrg={nueAvgEnrg}
+        anuAvgEnrg={anuAvgEnrg}
+        nuxAvgEnrg={nuxAvgEnrg}
+        nueTotEnrg={nueTotEnrg}
+        anuTotEnrg={anuTotEnrg}
+        nuxTotEnrg={nuxTotEnrg}
+        nuSpectrumShapeParam={nuSpectrumShapeParam}
       />
     </div>
   )
