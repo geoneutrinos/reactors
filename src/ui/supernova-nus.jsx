@@ -54,7 +54,7 @@ const SupernovaNusCEvNS = memo(({ nucleus, setNucleus, tESnMin, setTESnMin, flux
   return (
     <Card>
       <Card.Header>
-        CCSNν (10 kpc, β=4): CEvNS Events (/1000 kg)
+        CCSNν (10 kpc): CEvNS Events (/1000 kg)
       </Card.Header>
       <Card.Body>
         <Provider>
@@ -153,7 +153,7 @@ const SupernovaNusEventsIBD = ({
   return (
     <Card>
       <Card.Header>
-        CCSNν (10 kpc, β=4): IBD Events (/10<sup>32</sup> targets)
+        CCSNν (10 kpc): IBD Events (/10<sup>32</sup> targets)
       </Card.Header>
       <Card.Body>
         <Provider>
@@ -285,7 +285,7 @@ const SupernovaNusEventsES = ({
   return (
     <Card>
       <Card.Header>
-        CCSNν (10 kpc, β=4): ES Events (/10<sup>32</sup> targets)
+        CCSNν (10 kpc): ES Events (/10<sup>32</sup> targets)
       </Card.Header>
       <Card.Body>
         <Provider>
