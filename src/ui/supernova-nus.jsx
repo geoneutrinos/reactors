@@ -54,7 +54,7 @@ const SupernovaNusCEvNS = memo(({ nucleus, setNucleus, tESnMin, setTESnMin, flux
   return (
     <Card>
       <Card.Header>
-        CCSNν (10 kpc, β=4): CEvNS Events (/1000 kg)
+        CCSNν (10 kpc): CEvNS Events (/1000 kg)
       </Card.Header>
       <Card.Body>
         <Provider>
@@ -153,7 +153,7 @@ const SupernovaNusEventsIBD = ({
   return (
     <Card>
       <Card.Header>
-        CCSNν (10 kpc, β=4): IBD Events (/10<sup>32</sup> targets)
+        CCSNν (10 kpc): IBD Events (/10<sup>32</sup> targets)
       </Card.Header>
       <Card.Body>
         <Provider>
@@ -285,7 +285,7 @@ const SupernovaNusEventsES = ({
   return (
     <Card>
       <Card.Header>
-        CCSNν (10 kpc, β=4): ES Events (/10<sup>32</sup> targets)
+        CCSNν (10 kpc): ES Events (/10<sup>32</sup> targets)
       </Card.Header>
       <Card.Body>
         <Provider>
@@ -404,9 +404,10 @@ const SupernovaNusPane = () => {
             </p>
             <p>
               While distance <Node inline>{String.raw`D = 10`}</Node>{" "}
-              kpc and spectrum shape parameter{" "}
-              <Node inline>{String.raw`\beta = 4`}</Node>{" "} 
-              are fixed, the default values for{" "}
+              kpc is fixed, the default values for{" "}
+              <Node 
+                inline
+              >{String.raw`\beta = 4`}</Node>,{" "} 
               <Node
                 inline
               >{String.raw`E_{\nu_{\alpha}}^\mathrm{tot} = 5\times10^{52}`}</Node>{" "}
@@ -446,6 +447,31 @@ const SupernovaNusPane = () => {
             </p>
           </div>
         </Provider>
+      </Card.Body>
+    </Card>
+  );
+};
+
+const SpectrumShapeParameter = ({ nuSpectrumShapeParam, setNuSpectrumShapeParam }) => {
+  return (
+    <Card>
+      <Card.Header>Spectrum Shape Parameter</Card.Header>
+      <Card.Body>
+        <Form.Group controlId="shape_param">
+          <Form.Label>
+             β = {nuSpectrumShapeParam}
+          </Form.Label>
+          <InputGroup>
+            <Form.Control
+              value={nuSpectrumShapeParam}
+              type="range"
+              step={1}
+              min={2}
+              max={6}
+              onChange={(event) => setNuSpectrumShapeParam(parseFloat(event.target.value))}
+            />
+          </InputGroup>
+        </Form.Group>
       </Card.Body>
     </Card>
   );
@@ -573,12 +599,13 @@ export const SupernovaNus = React.memo(() => {
   const [nueTotEnrg,setTotEnrgNue] = useState(5);
   const [anuTotEnrg,setTotEnrgAnu] = useState(5);
   const [nuxTotEnrg,setTotEnrgNux] = useState(5);
+  const [nuSpectrumShapeParam,setNuSpectrumShapeParam] = useState(4);
   const [nucleus, setNucleus] = useState(Elements.Xe132.key);
 
   // inital guesses 12, 15, 18 MeV too hot and now reduced
   // new values from P.C. Divari, Journal of Cosmology and Astroparticle Physics, JCAP09(2018)029
 
-  const fluxSpectrums = useMemo(() => SNFluxSpectrum(nueAvgEnrg, anuAvgEnrg, nuxAvgEnrg, nueTotEnrg, anuTotEnrg, nuxTotEnrg), [nueAvgEnrg, anuAvgEnrg, nuxAvgEnrg, nueTotEnrg, anuTotEnrg, nuxTotEnrg])
+  const fluxSpectrums = useMemo(() => SNFluxSpectrum(nueAvgEnrg, anuAvgEnrg, nuxAvgEnrg, nueTotEnrg, anuTotEnrg, nuxTotEnrg, nuSpectrumShapeParam), [nueAvgEnrg, anuAvgEnrg, nuxAvgEnrg, nueTotEnrg, anuTotEnrg, nuxTotEnrg, nuSpectrumShapeParam])
   const oscillatedFluxSpectrums = oscillatedFluxSpectrum({fluxSpectrums})
 
   const pIBDUnoscillated = calcIBDSNRecord(NeutrinoType.electronAntineutrino, fluxSpectrums, tIBDpMin)
@@ -683,6 +710,52 @@ export const SupernovaNus = React.memo(() => {
         nuxTotEnrg={nuxTotEnrg}
         setTotEnrgNux={setTotEnrgNux}
       />
+      <SpectrumShapeParameter
+        nuSpectrumShapeParam={nuSpectrumShapeParam}
+        setNuSpectrumShapeParam={setNuSpectrumShapeParam}
+      />
+      <SupernovaFluxPlots
+        fluxSpectrums={fluxSpectrums}
+        nueAvgEnrg={nueAvgEnrg}
+        anuAvgEnrg={anuAvgEnrg}
+        nuxAvgEnrg={nuxAvgEnrg}
+        nueTotEnrg={nueTotEnrg}
+        anuTotEnrg={anuTotEnrg}
+        nuxTotEnrg={nuxTotEnrg}
+        nuSpectrumShapeParam={nuSpectrumShapeParam}
+      />
+      <SupernovaOscillatedFluxPlots
+        oscillatedFluxSpectrums={oscillatedFluxSpectrums}
+        nueAvgEnrg={nueAvgEnrg}
+        anuAvgEnrg={anuAvgEnrg}
+        nuxAvgEnrg={nuxAvgEnrg}
+        nueTotEnrg={nueTotEnrg}
+        anuTotEnrg={anuTotEnrg}
+        nuxTotEnrg={nuxTotEnrg}
+        nuSpectrumShapeParam={nuSpectrumShapeParam}
+      />
+      <SupernovaOscillatedInvertedFluxPlots
+        oscillatedFluxSpectrums={oscillatedFluxSpectrums}
+        nueAvgEnrg={nueAvgEnrg}
+        anuAvgEnrg={anuAvgEnrg}
+        nuxAvgEnrg={nuxAvgEnrg}
+        nueTotEnrg={nueTotEnrg}
+        anuTotEnrg={anuTotEnrg}
+        nuxTotEnrg={nuxTotEnrg}
+        nuSpectrumShapeParam={nuSpectrumShapeParam}
+      />
+      <NeutrinoElectronElasticScatteringCrossSection 
+        ESpNue={ESpNue}
+        ESpAnu={ESpAnu}
+        ESEforNO={ESEforNO}
+        AntiESEforNO={AntiESEforNO}
+        NuxESEforNO={NuxESEforNO}
+        AnxESEforNO={AnxESEforNO}
+        AntiE12CIBDUnoscillated={AntiE12CIBDUnoscillated}
+        E12CIBDUnoscillated={E12CIBDUnoscillated}
+        AntiE16OIBDUnoscillated={AntiE16OIBDUnoscillated}
+        E16OIBDUnoscillated={E16OIBDUnoscillated}
+      />
       <SupernovaPlotsIBD 
         pIBDUnoscillated={pIBDUnoscillated} 
         pIBDOscillatedNormal={pIBDOscillatedNormal} 
@@ -705,45 +778,7 @@ export const SupernovaNus = React.memo(() => {
         nueTotEnrg={nueTotEnrg}
         anuTotEnrg={anuTotEnrg}
         nuxTotEnrg={nuxTotEnrg}
-      />
-      <SupernovaFluxPlots
-        fluxSpectrums={fluxSpectrums}
-        nueAvgEnrg={nueAvgEnrg}
-        anuAvgEnrg={anuAvgEnrg}
-        nuxAvgEnrg={nuxAvgEnrg}
-        nueTotEnrg={nueTotEnrg}
-        anuTotEnrg={anuTotEnrg}
-        nuxTotEnrg={nuxTotEnrg}
-      />
-      <SupernovaOscillatedFluxPlots
-        oscillatedFluxSpectrums={oscillatedFluxSpectrums}
-        nueAvgEnrg={nueAvgEnrg}
-        anuAvgEnrg={anuAvgEnrg}
-        nuxAvgEnrg={nuxAvgEnrg}
-        nueTotEnrg={nueTotEnrg}
-        anuTotEnrg={anuTotEnrg}
-        nuxTotEnrg={nuxTotEnrg}
-      />
-      <SupernovaOscillatedInvertedFluxPlots
-        oscillatedFluxSpectrums={oscillatedFluxSpectrums}
-        nueAvgEnrg={nueAvgEnrg}
-        anuAvgEnrg={anuAvgEnrg}
-        nuxAvgEnrg={nuxAvgEnrg}
-        nueTotEnrg={nueTotEnrg}
-        anuTotEnrg={anuTotEnrg}
-        nuxTotEnrg={nuxTotEnrg}
-      />
-      <NeutrinoElectronElasticScatteringCrossSection 
-        ESpNue={ESpNue}
-        ESpAnu={ESpAnu}
-        ESEforNO={ESEforNO}
-        AntiESEforNO={AntiESEforNO}
-        NuxESEforNO={NuxESEforNO}
-        AnxESEforNO={AnxESEforNO}
-        AntiE12CIBDUnoscillated={AntiE12CIBDUnoscillated}
-        E12CIBDUnoscillated={E12CIBDUnoscillated}
-        AntiE16OIBDUnoscillated={AntiE16OIBDUnoscillated}
-        E16OIBDUnoscillated={E16OIBDUnoscillated}
+        nuSpectrumShapeParam={nuSpectrumShapeParam}
       />
     </div>
   )

@@ -28,6 +28,7 @@ export const SupernovaPlotsIBD = ({
   nueTotEnrg, 
   anuTotEnrg, 
   nuxTotEnrg,
+  nuSpectrumShapeParam,
 }) => {
   const data = [
     {
@@ -212,12 +213,12 @@ export const SupernovaPlotsIBD = ({
     },
   ];
   var layout = {
-    title: `CCSN (10 kpc, β=4): ν<sub>e</sub> , ν̅<sub>e</sub> IBD Spectra
-    <br /><sub>ν<sub>e</sub> , ν̅<sub>e</sub> , ν<sub>x</sub> : E<sub>tot</sub> (10<sup>52</sup> erg) / E<sub>avg</sub> (MeV) ${nueTotEnrg.toFixed(1)} / ${nueAvgEnrg.toFixed(1)} , ${anuTotEnrg.toFixed(1)} / ${anuAvgEnrg.toFixed(1)} , ${nuxTotEnrg.toFixed(1)} / ${nuxAvgEnrg.toFixed(1)}</sub></sub>`,
+    title: `CCSN (10 kpc): ν<sub>e</sub> , ν̅<sub>e</sub> IBD Spectra
+    <br /><sub>β=${nuSpectrumShapeParam.toFixed(0)}; ν<sub>e</sub> , ν̅<sub>e</sub> , ν<sub>x</sub> : E<sub>tot</sub> (10<sup>52</sup> erg) / E<sub>avg</sub> (MeV) ${nueTotEnrg.toFixed(1)} / ${nueAvgEnrg.toFixed(1)} , ${anuTotEnrg.toFixed(1)} / ${anuAvgEnrg.toFixed(1)} , ${nuxTotEnrg.toFixed(1)} / ${nuxAvgEnrg.toFixed(1)}</sub></sub>`,
     yaxis: {
       title: { text: `Events dN/dE (/10<sup>32</sup> targets/MeV)` },
       type: "log",
-      range: [-4, 1.7],
+      autorange: true,
     },
     xaxis: {
       title: { text: `Neutrino Energy (MeV)` },
@@ -242,7 +243,7 @@ export const SupernovaPlotsIBD = ({
   };
   return (
     <Card>
-      <Card.Header>CCSN (10 kpc, β=4): ν<sub>e</sub> , ν̅<sub>e</sub> IBD Spectra</Card.Header>
+      <Card.Header>CCSN (10 kpc): ν<sub>e</sub> , ν̅<sub>e</sub> IBD Spectra</Card.Header>
       <Card.Body>
         <Plot
           useResizeHandler={true}
@@ -263,6 +264,7 @@ export const SupernovaFluxPlots = ({
   nueTotEnrg, 
   anuTotEnrg, 
   nuxTotEnrg,
+  nuSpectrumShapeParam,
 }) => {
   const data = [
     {
@@ -303,8 +305,8 @@ export const SupernovaFluxPlots = ({
     },
   ];
   var layout = {
-    title: `CCSN (10 kpc, β=4): Neutrino Fluence Spectra w/o Oscillations
-    <br /><sub>ν<sub>e</sub> , ν̅<sub>e</sub> , ν<sub>x</sub> : E<sub>tot</sub> (10<sup>52</sup> erg) / E<sub>avg</sub> (MeV) ${nueTotEnrg.toFixed(1)} / ${nueAvgEnrg.toFixed(1)} , ${anuTotEnrg.toFixed(1)} / ${anuAvgEnrg.toFixed(1)} , ${nuxTotEnrg.toFixed(1)} / ${nuxAvgEnrg.toFixed(1)}</sub></sub>`,
+    title: `CCSN (10 kpc): Neutrino Fluence Spectra w/o Oscillations
+    <br /><sub>β=${nuSpectrumShapeParam.toFixed(0)}; ν<sub>e</sub> , ν̅<sub>e</sub> , ν<sub>x</sub> : E<sub>tot</sub> (10<sup>52</sup> erg) / E<sub>avg</sub> (MeV) ${nueTotEnrg.toFixed(1)} / ${nueAvgEnrg.toFixed(1)} , ${anuTotEnrg.toFixed(1)} / ${anuAvgEnrg.toFixed(1)} , ${nuxTotEnrg.toFixed(1)} / ${nuxAvgEnrg.toFixed(1)}</sub></sub>`,
     yaxis: {
       title: { text: `Fluence (/cm<sup>2</sup>/MeV)` },
       autorange: true,
@@ -333,7 +335,7 @@ export const SupernovaFluxPlots = ({
   return (
     <Card>
       <Card.Header>
-        CCSN (10 kpc, β=4): Neutrino Fluence Spectra w/o Oscillations
+        CCSN (10 kpc): Neutrino Fluence Spectra w/o Oscillations
       </Card.Header>
       <Card.Body>
         <Plot
@@ -355,6 +357,7 @@ export const SupernovaOscillatedFluxPlots = ({
   nueTotEnrg, 
   anuTotEnrg, 
   nuxTotEnrg,
+  nuSpectrumShapeParam,
 }) => {
   const data = [
     {
@@ -395,8 +398,8 @@ export const SupernovaOscillatedFluxPlots = ({
     },
   ];
   var layout = {
-    title: `CCSN (10 kpc, β=4): Neutrino Fluence Spectra w/ NO Oscillations
-    <br /><sub>ν<sub>e</sub> , ν̅<sub>e</sub> , ν<sub>x</sub> : E<sub>tot</sub> (10<sup>52</sup> erg) / E<sub>avg</sub> (MeV) ${nueTotEnrg.toFixed(1)} / ${nueAvgEnrg.toFixed(1)} , ${anuTotEnrg.toFixed(1)} / ${anuAvgEnrg.toFixed(1)} , ${nuxTotEnrg.toFixed(1)} / ${nuxAvgEnrg.toFixed(1)}</sub></sub>`,
+    title: `CCSN (10 kpc): Neutrino Fluence Spectra w/ NO Oscillations
+    <br /><sub>β=${nuSpectrumShapeParam.toFixed(0)}; ν<sub>e</sub> , ν̅<sub>e</sub> , ν<sub>x</sub> : E<sub>tot</sub> (10<sup>52</sup> erg) / E<sub>avg</sub> (MeV) ${nueTotEnrg.toFixed(1)} / ${nueAvgEnrg.toFixed(1)} , ${anuTotEnrg.toFixed(1)} / ${anuAvgEnrg.toFixed(1)} , ${nuxTotEnrg.toFixed(1)} / ${nuxAvgEnrg.toFixed(1)}</sub></sub>`,
     yaxis: {
       title: { text: `Fluence (/cm<sup>2</sup>/MeV)` },
       autorange: true,
@@ -425,7 +428,7 @@ export const SupernovaOscillatedFluxPlots = ({
   return (
     <Card>
       <Card.Header>
-        CCSN (10 kpc, β=4): Neutrino Fluence Spectra w/ NO Oscillations
+        CCSN (10 kpc): Neutrino Fluence Spectra w/ NO Oscillations
       </Card.Header>
       <Card.Body>
         <Plot
@@ -447,6 +450,7 @@ export const SupernovaOscillatedInvertedFluxPlots = ({
   nueTotEnrg, 
   anuTotEnrg, 
   nuxTotEnrg,
+  nuSpectrumShapeParam,
 }) => {
   const data = [
     {
@@ -481,8 +485,8 @@ export const SupernovaOscillatedInvertedFluxPlots = ({
     },
   ];
   var layout = {
-    title: `CCSN (10 kpc, β=4): Neutrino Fluence Spectra w/ IO Oscillations
-    <br /><sub>ν<sub>e</sub> , ν̅<sub>e</sub> , ν<sub>x</sub> : E<sub>tot</sub> (10<sup>52</sup> erg) / E<sub>avg</sub> (MeV) ${nueTotEnrg.toFixed(1)} / ${nueAvgEnrg.toFixed(1)} , ${anuTotEnrg.toFixed(1)} / ${anuAvgEnrg.toFixed(1)} , ${nuxTotEnrg.toFixed(1)} / ${nuxAvgEnrg.toFixed(1)}</sub></sub>`,
+    title: `CCSN (10 kpc): Neutrino Fluence Spectra w/ IO Oscillations
+    <br /><sub>β=${nuSpectrumShapeParam.toFixed(0)}; ν<sub>e</sub> , ν̅<sub>e</sub> , ν<sub>x</sub> : E<sub>tot</sub> (10<sup>52</sup> erg) / E<sub>avg</sub> (MeV) ${nueTotEnrg.toFixed(1)} / ${nueAvgEnrg.toFixed(1)} , ${anuTotEnrg.toFixed(1)} / ${anuAvgEnrg.toFixed(1)} , ${nuxTotEnrg.toFixed(1)} / ${nuxAvgEnrg.toFixed(1)}</sub></sub>`,
     yaxis: {
       title: { text: `Fluence (/cm<sup>2</sup>/MeV)` },
       autorange: true,
@@ -511,7 +515,7 @@ export const SupernovaOscillatedInvertedFluxPlots = ({
   return (
     <Card>
       <Card.Header>
-        CCSN (10 kpc, β=4): Neutrino Fluence Spectra w/ IO Oscillations
+        CCSN (10 kpc): Neutrino Fluence Spectra w/ IO Oscillations
       </Card.Header>
       <Card.Body>
         <Plot
@@ -525,6 +529,7 @@ export const SupernovaOscillatedInvertedFluxPlots = ({
     </Card>
   );
 };
+
 export const NeutrinoElectronElasticScatteringCrossSection = ({
   ESpNue,
   ESpAnu,
