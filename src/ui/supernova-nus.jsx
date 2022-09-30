@@ -647,52 +647,6 @@ export const SupernovaNus = React.memo(() => {
 
   return (
     <div>
-      <SupernovaNusCEvNS
-        nucleus={nucleus}
-        setNucleus={setNucleus}
-        tESnMin={tESnMin}
-        setTESnMin={setTESnMin}
-        fluxSpectrums={fluxSpectrums}
-      />
-      <SupernovaNusEventsIBD
-        pIBDUnoscillated={pIBDUnoscillated} 
-        pIBDOscillatedNormal={pIBDOscillatedNormal} 
-        pIBDOscillatedInverted={pIBDOscillatedInverted} 
-        AntiE12CIBDUnoscillated={AntiE12CIBDUnoscillated}
-        AntiE12CIBDOscillatedNormal={AntiE12CIBDOscillatedNormal}
-        AntiE12CIBDOscillatedInverted={AntiE12CIBDOscillatedInverted}
-        E12CIBDUnoscillated = {E12CIBDUnoscillated}
-        E12CIBDOscillatedNormal = {E12CIBDOscillatedNormal}
-        E12CIBDOscillatedInverted = {E12CIBDOscillatedInverted}
-        AntiE16OIBDUnoscillated={AntiE16OIBDUnoscillated}
-        AntiE16OIBDOscillatedNormal={AntiE16OIBDOscillatedNormal}
-        AntiE16OIBDOscillatedInverted={AntiE16OIBDOscillatedInverted}
-        E16OIBDUnoscillated = {E16OIBDUnoscillated}
-        E16OIBDOscillatedNormal = {E16OIBDOscillatedNormal}
-        E16OIBDOscillatedInverted = {E16OIBDOscillatedInverted}
-        tIBDpMin={tIBDpMin}
-        setTIBDpMin={setTIBDpMin}
-        tIBDoxyMin={tIBDoxyMin}
-        setTIBDoxyMin={setTIBDoxyMin}
-      /> 
-      <SupernovaNusEventsES
-        ESpNue={ESpNue}
-        ESpAnu={ESpAnu}
-        ESpNux={ESpNux}
-        ESpAnx={ESpAnx}
-        ESEforNO={ESEforNO}
-        ESEforIO={ESEforIO}
-        AntiESEforNO={AntiESEforNO}
-        AntiESEforIO={AntiESEforIO}
-        NuxESEforNO={NuxESEforNO}
-        NuxESEforIO={NuxESEforIO}
-        AnxESEforNO={AnxESEforNO}
-        AnxESEforIO={AnxESEforIO}
-        tESeMin={tESeMin}
-        setTESeMin={setTESeMin}
-        tESpMin={tESpMin}
-        setTESpMin={setTESpMin}
-      />
       <SupernovaNusPane  />
       <NeutrinoAvgEnergy
         nueAvgEnrg={nueAvgEnrg}
@@ -779,6 +733,52 @@ export const SupernovaNus = React.memo(() => {
         anuTotEnrg={anuTotEnrg}
         nuxTotEnrg={nuxTotEnrg}
         nuSpectrumShapeParam={nuSpectrumShapeParam}
+      />
+      <SupernovaNusEventsIBD
+        pIBDUnoscillated={pIBDUnoscillated} 
+        pIBDOscillatedNormal={pIBDOscillatedNormal} 
+        pIBDOscillatedInverted={pIBDOscillatedInverted} 
+        AntiE12CIBDUnoscillated={AntiE12CIBDUnoscillated}
+        AntiE12CIBDOscillatedNormal={AntiE12CIBDOscillatedNormal}
+        AntiE12CIBDOscillatedInverted={AntiE12CIBDOscillatedInverted}
+        E12CIBDUnoscillated = {E12CIBDUnoscillated}
+        E12CIBDOscillatedNormal = {E12CIBDOscillatedNormal}
+        E12CIBDOscillatedInverted = {E12CIBDOscillatedInverted}
+        AntiE16OIBDUnoscillated={AntiE16OIBDUnoscillated}
+        AntiE16OIBDOscillatedNormal={AntiE16OIBDOscillatedNormal}
+        AntiE16OIBDOscillatedInverted={AntiE16OIBDOscillatedInverted}
+        E16OIBDUnoscillated = {E16OIBDUnoscillated}
+        E16OIBDOscillatedNormal = {E16OIBDOscillatedNormal}
+        E16OIBDOscillatedInverted = {E16OIBDOscillatedInverted}
+        tIBDpMin={tIBDpMin}
+        setTIBDpMin={setTIBDpMin}
+        tIBDoxyMin={tIBDoxyMin}
+        setTIBDoxyMin={setTIBDoxyMin}
+      /> 
+      <SupernovaNusEventsES
+        ESpNue={ESpNue}
+        ESpAnu={ESpAnu}
+        ESpNux={ESpNux}
+        ESpAnx={ESpAnx}
+        ESEforNO={ESEforNO}
+        ESEforIO={ESEforIO}
+        AntiESEforNO={AntiESEforNO}
+        AntiESEforIO={AntiESEforIO}
+        NuxESEforNO={NuxESEforNO}
+        NuxESEforIO={NuxESEforIO}
+        AnxESEforNO={AnxESEforNO}
+        AnxESEforIO={AnxESEforIO}
+        tESeMin={tESeMin}
+        setTESeMin={setTESeMin}
+        tESpMin={tESpMin}
+        setTESpMin={setTESpMin}
+      />
+      <SupernovaNusCEvNS
+        nucleus={nucleus}
+        setNucleus={setNucleus}
+        tESnMin={tESnMin}
+        setTESnMin={setTESnMin}
+        fluxSpectrums={fluxSpectrums}
       />
     </div>
   )
