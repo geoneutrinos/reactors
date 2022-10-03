@@ -198,14 +198,14 @@ export function NuMap({
       <Marker position={{ lat: detector.lat, lng: detector.lon }} />
 
       <LayersControl position="topright">
-        <LayersControl.Overlay checked name="Active Reactor Cores">
-          <LayerGroup>
-            <CoreCircles cores={cores} customCores={customCores} zoom={zoom} shutdownCores={false}/>
-          </LayerGroup>
-        </LayersControl.Overlay>
         <LayersControl.Overlay checked name="Shutdown Reactor Cores">
           <LayerGroup>
             <CoreCircles cores={cores} customCores={customCores} zoom={zoom} shutdownCores={true}/>
+          </LayerGroup>
+        </LayersControl.Overlay>
+        <LayersControl.Overlay checked name="Active Reactor Cores">
+          <LayerGroup>
+            <CoreCircles cores={cores} customCores={customCores} zoom={zoom} shutdownCores={false}/>
           </LayerGroup>
         </LayersControl.Overlay>
         <LayersControl.Overlay checked name="Detector Locations">
