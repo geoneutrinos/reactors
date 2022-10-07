@@ -299,48 +299,55 @@ const SupernovaNusEventsES = ({
             <Table>
               <tbody>
                 <tr>
+                  <th></th>
+                  <th>N(ν<sub>e</sub>)</th>
+                  <th>N(ν̅<sub>e</sub>)</th>
+                  <th>N(ν<sub>x</sub>)</th>
+                  <th>N(ν̅<sub>x</sub>)</th>
+                </tr>
+                <tr>
                   <td>ν + e<sup>-</sup> NO</td>
                   <td>
-                    N(ν<sub>e</sub>) = <Num v={ESEforNO.events} p={2} />
+                    <Num v={ESEforNO.events} p={2} />
                   </td>
                   <td>
-                    N(ν̅<sub>e</sub>) = <Num v={AntiESEforNO.events} p={2} />
+                    <Num v={AntiESEforNO.events} p={2} />
                   </td>
                   <td>
-                    N(ν<sub>x</sub>) = <Num v={NuxESEforNO.events} p={2} />
+                    <Num v={NuxESEforNO.events} p={2} />
                   </td>
                   <td>
-                    N(ν̅<sub>x</sub>) = <Num v={AnxESEforNO.events} p={2} />
+                    <Num v={AnxESEforNO.events} p={2} />
                   </td>
                 </tr>
                 <tr>
                   <td>ν + e<sup>-</sup> IO</td>
                   <td>
-                    N(ν<sub>e</sub>) = <Num v={ESEforIO.events} p={2} />
+                    <Num v={ESEforIO.events} p={2} />
                   </td>
                   <td>
-                    N(ν̅<sub>e</sub>) = <Num v={AntiESEforIO.events} p={2} />
+                    <Num v={AntiESEforIO.events} p={2} />
                   </td>
                   <td>
-                    N(ν<sub>x</sub>) = <Num v={NuxESEforIO.events} p={2} />
+                    <Num v={NuxESEforIO.events} p={2} />
                   </td>
                   <td>
-                    N(ν̅<sub>x</sub>) = <Num v={AnxESEforIO.events} p={2} />
+                    <Num v={AnxESEforIO.events} p={2} />
                   </td>
                 </tr>
                 <tr>
                   <td>ν + p</td>
                   <td>
-                    N(ν<sub>e</sub>) = <Num v={ESpNue.events} p={1} />
+                    <Num v={ESpNue.events} p={1} />
                   </td>
                   <td>
-                    N(ν̅<sub>e</sub>) = <Num v={ESpAnu.events} p={1} />
+                    <Num v={ESpAnu.events} p={1} />
                   </td>
                   <td>
-                    N(ν<sub>x</sub>) = <Num v={ESpNux.events} p={1} />
+                    <Num v={ESpNux.events} p={1} />
                   </td>
                   <td>
-                    N(ν̅<sub>x</sub>) = <Num v={ESpAnx.events} p={1} />
+                    <Num v={ESpAnx.events} p={1} />
                   </td>
                 </tr>
               </tbody>
