@@ -79,8 +79,10 @@ export const energyValues = new Float64Array(energyBins).map(
  * @param totalEnergyNeutrinoNue
  * @param totalEnergyNeutrinoAnu
  * @param totalEnergyNeutrinoNux
- * @param nuSpectrumShapeParam
- * @returns 
+ * @param nueSpectrumShapeParam
+ * @param anuSpectrumShapeParam
+ * @param nuxSpectrumShapeParam
+ * @returns
  */
 export const SNFluxSpectrum = (averageNeutrinoEnergyNue: number, averageNeutrinoEnergyAnu: number, averageNeutrinoEnergyNux: number, totalEnergyNeutrinoNue: number, totalEnergyNeutrinoAnu: number, totalEnergyNeutrinoNux: number, nueSpectrumShapeParam: number, anuSpectrumShapeParam: number, nuxSpectrumShapeParam: number) : SNFluxSpectrumInterface => {
   const muTauSpec = energyValues.map((x) => neutrinoSpectrumCCSN(x, averageNeutrinoEnergyNux, totalEnergyNeutrinoNux, nuxSpectrumShapeParam)) 
