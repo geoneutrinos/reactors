@@ -490,7 +490,7 @@ const NeutrinoAvgEnergy = ({ nueAvgEnrg, setAvgEnrgNue, anuAvgEnrg, setAvgEnrgAn
             <Form.Control
               value={nueAvgEnrg}
               type="range"
-              step={0.5}
+              step={0.1}
               min={5}
               max={25}
               onChange={(event) => setAvgEnrgNue(parseFloat(event.target.value))}
@@ -505,7 +505,7 @@ const NeutrinoAvgEnergy = ({ nueAvgEnrg, setAvgEnrgNue, anuAvgEnrg, setAvgEnrgAn
             <Form.Control
               value={anuAvgEnrg}
               type="range"
-              step={0.5}
+              step={0.1}
               min={5}
               max={25}
               onChange={(event) => setAvgEnrgAnu(parseFloat(event.target.value))}
@@ -520,7 +520,7 @@ const NeutrinoAvgEnergy = ({ nueAvgEnrg, setAvgEnrgNue, anuAvgEnrg, setAvgEnrgAn
             <Form.Control
               value={nuxAvgEnrg}
               type="range"
-              step={0.5}
+              step={0.1}
               min={5}
               max={25}
               onChange={(event) => setAvgEnrgNux(parseFloat(event.target.value))}
@@ -547,7 +547,7 @@ const NeutrinoTotEnergy = ({ nueTotEnrg, setTotEnrgNue, anuTotEnrg, setTotEnrgAn
               type="range"
               step={0.1}
               min={1}
-              max={5}
+              max={10}
               onChange={(event) => setTotEnrgNue(parseFloat(event.target.value))}
             />
           </InputGroup>
@@ -562,7 +562,7 @@ const NeutrinoTotEnergy = ({ nueTotEnrg, setTotEnrgNue, anuTotEnrg, setTotEnrgAn
               type="range"
               step={0.1}
               min={1}
-              max={5}
+              max={10}
               onChange={(event) => setTotEnrgAnu(parseFloat(event.target.value))}
             />
           </InputGroup>
@@ -577,7 +577,7 @@ const NeutrinoTotEnergy = ({ nueTotEnrg, setTotEnrgNue, anuTotEnrg, setTotEnrgAn
               type="range"
               step={0.1}
               min={1}
-              max={5}
+              max={10}
               onChange={(event) => setTotEnrgNux(parseFloat(event.target.value))}
             />
           </InputGroup>
@@ -593,9 +593,9 @@ export const SupernovaNus = React.memo(() => {
   const [tESeMin, setTESeMin] = useState(0.0);
   const [tESpMin, setTESpMin] = useState(0.0);
   const [tESnMin, setTESnMin] = useState(0.0);
-  const [nueAvgEnrg,setAvgEnrgNue] = useState(9.5);
+  const [nueAvgEnrg,setAvgEnrgNue] = useState(10.0);
   const [anuAvgEnrg,setAvgEnrgAnu] = useState(12.0);
-  const [nuxAvgEnrg,setAvgEnrgNux] = useState(15.5);
+  const [nuxAvgEnrg,setAvgEnrgNux] = useState(15.0);
   const [nueTotEnrg,setTotEnrgNue] = useState(5);
   const [anuTotEnrg,setTotEnrgAnu] = useState(5);
   const [nuxTotEnrg,setTotEnrgNux] = useState(5);
