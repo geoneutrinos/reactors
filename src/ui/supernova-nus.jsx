@@ -440,18 +440,10 @@ const SupernovaNusPane = () => {
               >{String.raw`\beta`}</Node>,{" "} 
               <Node
                 inline
-              >{String.raw`E_{\nu_{\alpha}}^\mathrm{tot}`}</Node>{" "}
-              erg,{" "}
-              <Node
-                inline
-              >{String.raw`\langle E_{\nu_{\mathrm{e}}} \rangle`}</Node>{" "}
-              MeV,{" "}
-              <Node
-                inline
-              >{String.raw`\langle E_{\overline{\nu}_{\mathrm{e}}} \rangle`}</Node>{" "}
-              MeV, and{" "}
-              <Node inline>{String.raw`\langle E_{\nu_{x}} \rangle`}</Node>{" "}
-              MeV are user-settable for exploring signals from different models.
+              >{String.raw`E_{\nu_{\alpha}}^\mathrm{tot}`}</Node>,{" "}
+              and{" "}
+              <Node inline>{String.raw`\langle E_{\nu_{\alpha}} \rangle`}</Node>,{" "}
+              are user-settable for exploring signals from different models.
             </p>
             <p>
               Oscillation effects depend on the neutrino mass ordering (A.S. Dighe and A.Y. Smirnov, Phys. Rev. D 62 (2000), 033007). 
@@ -496,7 +488,7 @@ const SpectrumShapeParameter = ({
       <Card.Body>
         <Form.Group controlId="nue_shape_param">
           <Form.Label>
-             β(ν<sub>e</sub>) = {nueSpectrumShapeParam}
+             ν<sub>e</sub> β = {nueSpectrumShapeParam}
           </Form.Label>
           <InputGroup>
             <Form.Control
@@ -511,7 +503,7 @@ const SpectrumShapeParameter = ({
         </Form.Group>
         <Form.Group controlId="anu_shape_param">
           <Form.Label>
-             β(ν̅<sub>e</sub>) = {anuSpectrumShapeParam}
+             ν̅<sub>e</sub> β = {anuSpectrumShapeParam}
           </Form.Label>
           <InputGroup>
             <Form.Control
@@ -526,7 +518,7 @@ const SpectrumShapeParameter = ({
         </Form.Group>
         <Form.Group controlId="nux_shape_param">
           <Form.Label>
-             β(ν<sub>x</sub>) = {nuxSpectrumShapeParam}
+             ν<sub>x</sub> β = {nuxSpectrumShapeParam}
           </Form.Label>
           <InputGroup>
             <Form.Control
