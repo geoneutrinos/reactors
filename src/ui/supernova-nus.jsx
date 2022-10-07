@@ -694,15 +694,19 @@ export const SupernovaNus = React.memo(() => {
   const ESpNux = calcSNRecord(NeutrinoType.muTauNeutrino, NeutrinoTarget.proton, tESpMin, fluxSpectrums)
   const ESpAnx = calcSNRecord(NeutrinoType.muTauAntineutrino, NeutrinoTarget.proton, tESpMin, fluxSpectrums)
 
+  const ESEfor0O = calcSNRecord(NeutrinoType.electronNeutrino, NeutrinoTarget.electron, tESeMin, fluxSpectrums)
   const ESEforNO = calcSNRecord(NeutrinoType.electronNeutrino, NeutrinoTarget.electron, tESeMin, oscillatedFluxSpectrums[MassOrdering.Normal])
   const ESEforIO = calcSNRecord(NeutrinoType.electronNeutrino, NeutrinoTarget.electron, tESeMin, oscillatedFluxSpectrums[MassOrdering.Inverted])
 
+  const AntiESEfor0O = calcSNRecord(NeutrinoType.electronAntineutrino, NeutrinoTarget.electron, tESeMin, fluxSpectrums)
   const AntiESEforNO = calcSNRecord(NeutrinoType.electronAntineutrino, NeutrinoTarget.electron, tESeMin, oscillatedFluxSpectrums[MassOrdering.Normal])
   const AntiESEforIO = calcSNRecord(NeutrinoType.electronAntineutrino, NeutrinoTarget.electron, tESeMin, oscillatedFluxSpectrums[MassOrdering.Inverted])
 
+  const NuxESEfor0O = calcSNRecord(NeutrinoType.muTauNeutrino, NeutrinoTarget.electron, tESeMin, fluxSpectrums)
   const NuxESEforNO = calcSNRecord(NeutrinoType.muTauNeutrino, NeutrinoTarget.electron, tESeMin, oscillatedFluxSpectrums[MassOrdering.Normal])
   const NuxESEforIO = calcSNRecord(NeutrinoType.muTauNeutrino, NeutrinoTarget.electron, tESeMin, oscillatedFluxSpectrums[MassOrdering.Inverted])
 
+  const AnxESEfor0O = calcSNRecord(NeutrinoType.muTauAntineutrino, NeutrinoTarget.electron, tESeMin, fluxSpectrums)
   const AnxESEforNO = calcSNRecord(NeutrinoType.muTauAntineutrino, NeutrinoTarget.electron, tESeMin, oscillatedFluxSpectrums[MassOrdering.Normal])
   const AnxESEforIO = calcSNRecord(NeutrinoType.muTauAntineutrino, NeutrinoTarget.electron, tESeMin, oscillatedFluxSpectrums[MassOrdering.Inverted])
 
@@ -833,12 +837,16 @@ export const SupernovaNus = React.memo(() => {
         ESpAnu={ESpAnu}
         ESpNux={ESpNux}
         ESpAnx={ESpAnx}
+        ESEfor0O={ESEfor0O}
         ESEforNO={ESEforNO}
         ESEforIO={ESEforIO}
+        AntiESEfor0O={AntiESEfor0O}
         AntiESEforNO={AntiESEforNO}
         AntiESEforIO={AntiESEforIO}
+        NuxESEfor0O={NuxESEfor0O}
         NuxESEforNO={NuxESEforNO}
         NuxESEforIO={NuxESEforIO}
+        AnxESEfor0O={AnxESEfor0O}
         AnxESEforNO={AnxESEforNO}
         AnxESEforIO={AnxESEforIO}
         tESeMin={tESeMin}
