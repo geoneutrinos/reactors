@@ -336,7 +336,7 @@ const SupernovaNusEventsES = ({
                   </td>
                 </tr>
                 <tr>
-                  <td>ν + e<sup>-</sup> NO</td>
+                  <td>ν + e<sup>-</sup> w/ NO Osc</td>
                   <td>
                     <Num v={ESEforNO.events} p={2} />
                   </td>
@@ -354,7 +354,7 @@ const SupernovaNusEventsES = ({
                   </td>
                 </tr>
                 <tr>
-                  <td>ν + e<sup>-</sup> IO</td>
+                  <td>ν + e<sup>-</sup> w/ IO Osc</td>
                   <td>
                     <Num v={ESEforIO.events} p={2} />
                   </td>
