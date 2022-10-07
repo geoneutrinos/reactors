@@ -160,68 +160,74 @@ const SupernovaNusEventsIBD = ({
           <div>
             <Table>
               <tbody>
+                <th>
+                  <td></td>
+                  <td>N<sup>0</sup></td>
+                  <td>N<sub>NO</sub></td>
+                  <td>N<sub>IO</sub></td>
+                </th>
                 <tr>
                   <td>ν̅<sub>e</sub> + p</td>
                   <td>
-                    N<sup>0</sup> = <Num v={pIBDUnoscillated.events} p={1} />
+                    <Num v={pIBDUnoscillated.events} p={1} />
                   </td>
                   <td>
-                    N<sub>NO</sub> = <Num v={pIBDOscillatedNormal.events} p={1} />
+                    <Num v={pIBDOscillatedNormal.events} p={1} />
                   </td>
                   <td>
-                    N<sub>IO</sub> = <Num v={pIBDOscillatedInverted.events} p={1} />
+                    <Num v={pIBDOscillatedInverted.events} p={1} />
                   </td>
                   <td></td>
                 </tr>
                 <tr>
                   <td>ν<sub>e</sub> + <sup>12</sup>C</td>
                   <td>
-                    N<sup>0</sup> = <Num v={E12CIBDUnoscillated.events} p={1} />
+                    <Num v={E12CIBDUnoscillated.events} p={1} />
                   </td>
                   <td>
-                    N<sub>NO</sub> = <Num v={E12CIBDOscillatedNormal.events} p={1} />
+                    <Num v={E12CIBDOscillatedNormal.events} p={1} />
                   </td>
                   <td>
-                    N<sub>IO</sub> = <Num v={E12CIBDOscillatedInverted.events} p={1} /> 
+                    <Num v={E12CIBDOscillatedInverted.events} p={1} /> 
                   </td>
                   <td></td>
                 </tr>
                 <tr>
                   <td>ν̅<sub>e</sub> + <sup>12</sup>C</td>
                   <td>
-                    N<sup>0</sup> = <Num v={AntiE12CIBDUnoscillated.events} p={1} />
+                    <Num v={AntiE12CIBDUnoscillated.events} p={1} />
                   </td>
                   <td>
-                    N<sub>NO</sub> = <Num v={AntiE12CIBDOscillatedNormal.events} p={1} />
+                    <Num v={AntiE12CIBDOscillatedNormal.events} p={1} />
                   </td>
                   <td>
-                    N<sub>IO</sub> = <Num v={AntiE12CIBDOscillatedInverted.events} p={1} />
+                    <Num v={AntiE12CIBDOscillatedInverted.events} p={1} />
                   </td>
                   <td></td>
                 </tr>
                 <tr>
                   <td>ν<sub>e</sub> + <sup>16</sup>O</td>
                   <td>
-                    N<sup>0</sup> = <Num v={E16OIBDUnoscillated.events} p={1} />
+                    <Num v={E16OIBDUnoscillated.events} p={1} />
                   </td>
                   <td>
-                    N<sub>NO</sub> = <Num v={E16OIBDOscillatedNormal.events} p={1} />
+                    <Num v={E16OIBDOscillatedNormal.events} p={1} />
                   </td>
                   <td>
-                    N<sub>IO</sub> = <Num v={E16OIBDOscillatedInverted.events} p={1} /> 
+                    <Num v={E16OIBDOscillatedInverted.events} p={1} /> 
                   </td>
                   <td></td>
                 </tr>
                 <tr>
                   <td>ν̅<sub>e</sub> + <sup>16</sup>O</td>
                   <td>
-                    N<sup>0</sup> = <Num v={AntiE16OIBDUnoscillated.events} p={1} />
+                    <Num v={AntiE16OIBDUnoscillated.events} p={1} />
                   </td>
                   <td>
-                    N<sub>NO</sub> = <Num v={AntiE16OIBDOscillatedNormal.events} p={1} />
+                    <Num v={AntiE16OIBDOscillatedNormal.events} p={1} />
                   </td>
                   <td>
-                    N<sub>IO</sub> = <Num v={AntiE16OIBDOscillatedInverted.events} p={1} />
+                    <Num v={AntiE16OIBDOscillatedInverted.events} p={1} />
                   </td>
                   <td></td>
                 </tr>
