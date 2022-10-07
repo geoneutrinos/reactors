@@ -160,12 +160,12 @@ const SupernovaNusEventsIBD = ({
           <div>
             <Table>
               <tbody>
-                <th>
-                  <td></td>
-                  <td>N<sup>0</sup></td>
-                  <td>N<sub>NO</sub></td>
-                  <td>N<sub>IO</sub></td>
-                </th>
+                <tr>
+                  <th></th>
+                  <th>N<sup>0</sup></th>
+                  <th>N<sub>NO</sub></th>
+                  <th>N<sub>IO</sub></th>
+                </tr>
                 <tr>
                   <td>ν̅<sub>e</sub> + p</td>
                   <td>
