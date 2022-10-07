@@ -364,7 +364,7 @@ const SupernovaNusEventsES = ({
                     <Num v={ESpAnx.events} p={1} />
                   </td>
                   <td>
-                    <Num v={ESpNue.events + ESpAnu.events + ESpNux.events + ESpAnx.events} p={2} />
+                    <Num v={ESpNue.events + ESpAnu.events + ESpNux.events + ESpAnx.events} p={1} />
                   </td>
                 </tr>
               </tbody>
