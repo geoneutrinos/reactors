@@ -62,17 +62,20 @@ const SupernovaNusCEvNS = memo(({ nucleus, setNucleus, tESnMin, setTESnMin, flux
             <Table>
               <tbody>
                 <tr>
+                  <th></th>
+                  <th>N(ν<sub>e</sub>)</th>
+                  <th>N(ν̅<sub>e</sub>)</th>
+                  <th>N(ν<sub>x</sub>)</th>
+                </tr>
+                <tr>
                   <td>{Elements[nucleus].atomic_symbol} Events</td>
                   <td>
-                    N(ν<sub>e</sub>) ={" "}
                     <Num v={events.total[NeutrinoType.electronNeutrino]} p={2} />
                   </td>
                   <td>
-                    N(ν̅<sub>e</sub>) ={" "}
                     <Num v={events.total[NeutrinoType.electronAntineutrino]} p={2} />
                   </td>
                   <td>
-                    N(ν<sub>x</sub>) ={" "}
                     <Num v={events.total[NeutrinoType.muTauNeutrino]} p={2} />
                   </td>
                 </tr>
