@@ -311,6 +311,7 @@ const SupernovaNusEventsES = ({
                   <th>N(ν̅<sub>e</sub>)</th>
                   <th>N(ν<sub>x</sub>)</th>
                   <th>N(ν̅<sub>x</sub>)</th>
+                  <th>N<sub>tot</sub></th>
                 </tr>
                 <tr>
                   <td>ν + e<sup>-</sup> NO</td>
@@ -325,6 +326,9 @@ const SupernovaNusEventsES = ({
                   </td>
                   <td>
                     <Num v={AnxESEforNO.events} p={2} />
+                  </td>
+                  <td>
+                    <Num v={ESEforNO.events + AntiESEforNO.events + NuxESEforNO.events + AnxESEforNO.events} p={2} />
                   </td>
                 </tr>
                 <tr>
@@ -341,7 +345,10 @@ const SupernovaNusEventsES = ({
                   <td>
                     <Num v={AnxESEforIO.events} p={2} />
                   </td>
-                </tr>
+                  <td>
+                    <Num v={ESEforIO.events + AntiESEforIO.events + NuxESEforIO.events + AnxESEforIO.events} p={2} />
+                  </td>
+               </tr>
                 <tr>
                   <td>ν + p</td>
                   <td>
@@ -355,6 +362,9 @@ const SupernovaNusEventsES = ({
                   </td>
                   <td>
                     <Num v={ESpAnx.events} p={1} />
+                  </td>
+                  <td>
+                    <Num v={ESpNue.events + ESpAnu.events + ESpNux.events + ESpAnx.events} p={2} />
                   </td>
                 </tr>
               </tbody>
