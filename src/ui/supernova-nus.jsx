@@ -444,13 +444,13 @@ const SupernovaNusPane = () => {
               erg,{" "}
               <Node
                 inline
-              >{String.raw`\langle E_{\nu_{\mathrm{e}}} \rangle = 9.5`}</Node>{" "}
+              >{String.raw`\langle E_{\nu_{\mathrm{e}}} \rangle = 10`}</Node>{" "}
               MeV,{" "}
               <Node
                 inline
               >{String.raw`\langle E_{\overline{\nu}_{\mathrm{e}}} \rangle = 12`}</Node>{" "}
               MeV, and{" "}
-              <Node inline>{String.raw`\langle E_{\nu_{x}} \rangle = 15.5`}</Node>{" "}
+              <Node inline>{String.raw`\langle E_{\nu_{x}} \rangle = 15`}</Node>{" "}
               MeV are user-settable for exploring different models.
             </p>
             <p>
@@ -482,23 +482,60 @@ const SupernovaNusPane = () => {
   );
 };
 
-const SpectrumShapeParameter = ({ nuSpectrumShapeParam, setNuSpectrumShapeParam }) => {
+const SpectrumShapeParameter = ({
+  nueSpectrumShapeParam,
+  setNueSpectrumShapeParam,
+  anuSpectrumShapeParam,
+  setAnuSpectrumShapeParam,
+  nuxSpectrumShapeParam,
+  setNuxSpectrumShapeParam 
+}) => {
   return (
     <Card>
-      <Card.Header>Spectrum Shape Parameter</Card.Header>
+      <Card.Header>Spectrum Shape Parameters</Card.Header>
       <Card.Body>
-        <Form.Group controlId="shape_param">
+        <Form.Group controlId="nue_shape_param">
           <Form.Label>
-             β = {nuSpectrumShapeParam}
+             β = {nueSpectrumShapeParam}
           </Form.Label>
           <InputGroup>
             <Form.Control
-              value={nuSpectrumShapeParam}
+              value={nueSpectrumShapeParam}
               type="range"
               step={1}
               min={2}
               max={6}
-              onChange={(event) => setNuSpectrumShapeParam(parseFloat(event.target.value))}
+              onChange={(event) => setNueSpectrumShapeParam(parseFloat(event.target.value))}
+            />
+          </InputGroup>
+        </Form.Group>
+        <Form.Group controlId="anu_shape_param">
+          <Form.Label>
+             β = {anuSpectrumShapeParam}
+          </Form.Label>
+          <InputGroup>
+            <Form.Control
+              value={anuSpectrumShapeParam}
+              type="range"
+              step={1}
+              min={2}
+              max={6}
+              onChange={(event) => setAnuSpectrumShapeParam(parseFloat(event.target.value))}
+            />
+          </InputGroup>
+        </Form.Group>
+        <Form.Group controlId="nux_shape_param">
+          <Form.Label>
+             β = {nuxSpectrumShapeParam}
+          </Form.Label>
+          <InputGroup>
+            <Form.Control
+              value={nuxSpectrumShapeParam}
+              type="range"
+              step={1}
+              min={2}
+              max={6}
+              onChange={(event) => setNuxSpectrumShapeParam(parseFloat(event.target.value))}
             />
           </InputGroup>
         </Form.Group>
@@ -629,13 +666,15 @@ export const SupernovaNus = React.memo(() => {
   const [nueTotEnrg,setTotEnrgNue] = useState(5);
   const [anuTotEnrg,setTotEnrgAnu] = useState(5);
   const [nuxTotEnrg,setTotEnrgNux] = useState(5);
-  const [nuSpectrumShapeParam,setNuSpectrumShapeParam] = useState(4);
+  const [nueSpectrumShapeParam,setNueSpectrumShapeParam] = useState(4);
+  const [anuSpectrumShapeParam,setAnuSpectrumShapeParam] = useState(4);
+  const [nuxSpectrumShapeParam,setNuxSpectrumShapeParam] = useState(4);
   const [nucleus, setNucleus] = useState(Elements.Xe132.key);
 
   // inital guesses 12, 15, 18 MeV too hot and now reduced
   // new values from P.C. Divari, Journal of Cosmology and Astroparticle Physics, JCAP09(2018)029
 
-  const fluxSpectrums = useMemo(() => SNFluxSpectrum(nueAvgEnrg, anuAvgEnrg, nuxAvgEnrg, nueTotEnrg, anuTotEnrg, nuxTotEnrg, nuSpectrumShapeParam), [nueAvgEnrg, anuAvgEnrg, nuxAvgEnrg, nueTotEnrg, anuTotEnrg, nuxTotEnrg, nuSpectrumShapeParam])
+  const fluxSpectrums = useMemo(() => SNFluxSpectrum(nueAvgEnrg, anuAvgEnrg, nuxAvgEnrg, nueTotEnrg, anuTotEnrg, nuxTotEnrg, nuSpectrumShapeParam), [nueAvgEnrg, anuAvgEnrg, nuxAvgEnrg, nueTotEnrg, anuTotEnrg, nuxTotEnrg, nueSpectrumShapeParam, anuSpectrumShapeParam, nuxSpectrumShapeParam])
   const oscillatedFluxSpectrums = oscillatedFluxSpectrum({fluxSpectrums})
 
   const pIBDUnoscillated = calcIBDSNRecord(NeutrinoType.electronAntineutrino, fluxSpectrums, tIBDpMin)
@@ -695,8 +734,12 @@ export const SupernovaNus = React.memo(() => {
         setTotEnrgNux={setTotEnrgNux}
       />
       <SpectrumShapeParameter
-        nuSpectrumShapeParam={nuSpectrumShapeParam}
-        setNuSpectrumShapeParam={setNuSpectrumShapeParam}
+        nueSpectrumShapeParam={nueSpectrumShapeParam}
+        setNueSpectrumShapeParam={setNueSpectrumShapeParam}
+        anuSpectrumShapeParam={anuSpectrumShapeParam}
+        setAnuSpectrumShapeParam={setAnuSpectrumShapeParam}
+        nuxSpectrumShapeParam={nuxSpectrumShapeParam}
+        setNuxSpectrumShapeParam={setNuxSpectrumShapeParam}
       />
       <SupernovaFluxPlots
         fluxSpectrums={fluxSpectrums}
@@ -706,7 +749,9 @@ export const SupernovaNus = React.memo(() => {
         nueTotEnrg={nueTotEnrg}
         anuTotEnrg={anuTotEnrg}
         nuxTotEnrg={nuxTotEnrg}
-        nuSpectrumShapeParam={nuSpectrumShapeParam}
+        nueSpectrumShapeParam={nueSpectrumShapeParam}
+        anuSpectrumShapeParam={anuSpectrumShapeParam}
+        nuxSpectrumShapeParam={nuxSpectrumShapeParam}
       />
       <SupernovaOscillatedFluxPlots
         oscillatedFluxSpectrums={oscillatedFluxSpectrums}
@@ -716,7 +761,9 @@ export const SupernovaNus = React.memo(() => {
         nueTotEnrg={nueTotEnrg}
         anuTotEnrg={anuTotEnrg}
         nuxTotEnrg={nuxTotEnrg}
-        nuSpectrumShapeParam={nuSpectrumShapeParam}
+        nueSpectrumShapeParam={nueSpectrumShapeParam}
+        anuSpectrumShapeParam={anuSpectrumShapeParam}
+        nuxSpectrumShapeParam={nuxSpectrumShapeParam}
       />
       <SupernovaOscillatedInvertedFluxPlots
         oscillatedFluxSpectrums={oscillatedFluxSpectrums}
@@ -726,7 +773,9 @@ export const SupernovaNus = React.memo(() => {
         nueTotEnrg={nueTotEnrg}
         anuTotEnrg={anuTotEnrg}
         nuxTotEnrg={nuxTotEnrg}
-        nuSpectrumShapeParam={nuSpectrumShapeParam}
+        nueSpectrumShapeParam={nueSpectrumShapeParam}
+        anuSpectrumShapeParam={anuSpectrumShapeParam}
+        nuxSpectrumShapeParam={nuxSpectrumShapeParam}
       />
       <NeutrinoElectronElasticScatteringCrossSection 
         ESpNue={ESpNue}
@@ -762,7 +811,9 @@ export const SupernovaNus = React.memo(() => {
         nueTotEnrg={nueTotEnrg}
         anuTotEnrg={anuTotEnrg}
         nuxTotEnrg={nuxTotEnrg}
-        nuSpectrumShapeParam={nuSpectrumShapeParam}
+        nueSpectrumShapeParam={nueSpectrumShapeParam}
+        anuSpectrumShapeParam={anuSpectrumShapeParam}
+        nuxSpectrumShapeParam={nuxSpectrumShapeParam}
       />
       <SupernovaNusEventsIBD
         pIBDUnoscillated={pIBDUnoscillated} 
