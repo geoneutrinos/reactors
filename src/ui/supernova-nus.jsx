@@ -437,21 +437,21 @@ const SupernovaNusPane = () => {
               kpc is fixed, the default values for{" "}
               <Node 
                 inline
-              >{String.raw`\beta = 4`}</Node>,{" "} 
+              >{String.raw`\beta`}</Node>,{" "} 
               <Node
                 inline
-              >{String.raw`E_{\nu_{\alpha}}^\mathrm{tot} = 5\times10^{52}`}</Node>{" "}
+              >{String.raw`E_{\nu_{\alpha}}^\mathrm{tot}`}</Node>{" "}
               erg,{" "}
               <Node
                 inline
-              >{String.raw`\langle E_{\nu_{\mathrm{e}}} \rangle = 10`}</Node>{" "}
+              >{String.raw`\langle E_{\nu_{\mathrm{e}}} \rangle`}</Node>{" "}
               MeV,{" "}
               <Node
                 inline
-              >{String.raw`\langle E_{\overline{\nu}_{\mathrm{e}}} \rangle = 12`}</Node>{" "}
+              >{String.raw`\langle E_{\overline{\nu}_{\mathrm{e}}} \rangle`}</Node>{" "}
               MeV, and{" "}
-              <Node inline>{String.raw`\langle E_{\nu_{x}} \rangle = 15`}</Node>{" "}
-              MeV are user-settable for exploring different models.
+              <Node inline>{String.raw`\langle E_{\nu_{x}} \rangle`}</Node>{" "}
+              MeV are user-settable for exploring signals from different models.
             </p>
             <p>
               Oscillation effects depend on the neutrino mass ordering (A.S. Dighe and A.Y. Smirnov, Phys. Rev. D 62 (2000), 033007). 
