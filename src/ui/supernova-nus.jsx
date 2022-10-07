@@ -488,7 +488,7 @@ const SpectrumShapeParameter = ({
   anuSpectrumShapeParam,
   setAnuSpectrumShapeParam,
   nuxSpectrumShapeParam,
-  setNuxSpectrumShapeParam 
+  setNuxSpectrumShapeParam, 
 }) => {
   return (
     <Card>
@@ -496,7 +496,7 @@ const SpectrumShapeParameter = ({
       <Card.Body>
         <Form.Group controlId="nue_shape_param">
           <Form.Label>
-             β = {nueSpectrumShapeParam}
+             β(ν<sub>e</sub>) = {nueSpectrumShapeParam}
           </Form.Label>
           <InputGroup>
             <Form.Control
@@ -511,7 +511,7 @@ const SpectrumShapeParameter = ({
         </Form.Group>
         <Form.Group controlId="anu_shape_param">
           <Form.Label>
-             β = {anuSpectrumShapeParam}
+             β(ν̅<sub>e</sub>) = {anuSpectrumShapeParam}
           </Form.Label>
           <InputGroup>
             <Form.Control
@@ -526,7 +526,7 @@ const SpectrumShapeParameter = ({
         </Form.Group>
         <Form.Group controlId="nux_shape_param">
           <Form.Label>
-             β = {nuxSpectrumShapeParam}
+             β(ν<sub>x</sub>) = {nuxSpectrumShapeParam}
           </Form.Label>
           <InputGroup>
             <Form.Control
@@ -674,7 +674,7 @@ export const SupernovaNus = React.memo(() => {
   // inital guesses 12, 15, 18 MeV too hot and now reduced
   // new values from P.C. Divari, Journal of Cosmology and Astroparticle Physics, JCAP09(2018)029
 
-  const fluxSpectrums = useMemo(() => SNFluxSpectrum(nueAvgEnrg, anuAvgEnrg, nuxAvgEnrg, nueTotEnrg, anuTotEnrg, nuxTotEnrg, nuSpectrumShapeParam), [nueAvgEnrg, anuAvgEnrg, nuxAvgEnrg, nueTotEnrg, anuTotEnrg, nuxTotEnrg, nueSpectrumShapeParam, anuSpectrumShapeParam, nuxSpectrumShapeParam])
+  const fluxSpectrums = useMemo(() => SNFluxSpectrum(nueAvgEnrg, anuAvgEnrg, nuxAvgEnrg, nueTotEnrg, anuTotEnrg, nuxTotEnrg, nueSpectrumShapeParam, anuSpectrumShapeParam, nuxSpectrumShapeParam), [nueAvgEnrg, anuAvgEnrg, nuxAvgEnrg, nueTotEnrg, anuTotEnrg, nuxTotEnrg, nueSpectrumShapeParam, anuSpectrumShapeParam, nuxSpectrumShapeParam])
   const oscillatedFluxSpectrums = oscillatedFluxSpectrum({fluxSpectrums})
 
   const pIBDUnoscillated = calcIBDSNRecord(NeutrinoType.electronAntineutrino, fluxSpectrums, tIBDpMin)
