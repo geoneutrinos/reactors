@@ -79,14 +79,16 @@ export const energyValues = new Float64Array(energyBins).map(
  * @param totalEnergyNeutrinoNue
  * @param totalEnergyNeutrinoAnu
  * @param totalEnergyNeutrinoNux
- * @param nuSpectrumShapeParam
- * @returns 
+ * @param nueSpectrumShapeParam
+ * @param anuSpectrumShapeParam
+ * @param nuxSpectrumShapeParam
+ * @returns
  */
-export const SNFluxSpectrum = (averageNeutrinoEnergyNue: number, averageNeutrinoEnergyAnu: number, averageNeutrinoEnergyNux: number, totalEnergyNeutrinoNue: number, totalEnergyNeutrinoAnu: number, totalEnergyNeutrinoNux: number, nuSpectrumShapeParam: number) : SNFluxSpectrumInterface => {
-  const muTauSpec = energyValues.map((x) => neutrinoSpectrumCCSN(x, averageNeutrinoEnergyNux, totalEnergyNeutrinoNux, nuSpectrumShapeParam)) 
+export const SNFluxSpectrum = (averageNeutrinoEnergyNue: number, averageNeutrinoEnergyAnu: number, averageNeutrinoEnergyNux: number, totalEnergyNeutrinoNue: number, totalEnergyNeutrinoAnu: number, totalEnergyNeutrinoNux: number, nueSpectrumShapeParam: number, anuSpectrumShapeParam: number, nuxSpectrumShapeParam: number) : SNFluxSpectrumInterface => {
+  const muTauSpec = energyValues.map((x) => neutrinoSpectrumCCSN(x, averageNeutrinoEnergyNux, totalEnergyNeutrinoNux, nuxSpectrumShapeParam)) 
   return {
-    [NeutrinoType.electronNeutrino]: energyValues.map((x) => neutrinoSpectrumCCSN(x, averageNeutrinoEnergyNue, totalEnergyNeutrinoNue, nuSpectrumShapeParam)),
-    [NeutrinoType.electronAntineutrino]: energyValues.map((x) => neutrinoSpectrumCCSN(x, averageNeutrinoEnergyAnu, totalEnergyNeutrinoAnu, nuSpectrumShapeParam)),
+    [NeutrinoType.electronNeutrino]: energyValues.map((x) => neutrinoSpectrumCCSN(x, averageNeutrinoEnergyNue, totalEnergyNeutrinoNue, nueSpectrumShapeParam)),
+    [NeutrinoType.electronAntineutrino]: energyValues.map((x) => neutrinoSpectrumCCSN(x, averageNeutrinoEnergyAnu, totalEnergyNeutrinoAnu, anuSpectrumShapeParam)),
     [NeutrinoType.muTauNeutrino]: muTauSpec, 
     [NeutrinoType.muTauAntineutrino]: muTauSpec,
   }
