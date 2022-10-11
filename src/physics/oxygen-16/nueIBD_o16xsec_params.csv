@@ -1,0 +1,7 @@
+//Parameters for analytical fit to the nue+16O IBD cross section Eq. 4a,4b
+//from Nakazato, Suzuki, Sakuda PTEP 2018- Table 4
+//Column data are: Group#,E_x,a,b,c 
+1,15.21,-40.008,4.918,1.036
+2,22.47,-39.305,4.343,0.961
+3,25.51,-39.655,5.263,1.236
+4,29.35,-39.166,3.947,0.901

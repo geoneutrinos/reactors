@@ -1,0 +1,7 @@
+//Parameters for analytical fit to the nuebar+16O IBD cross section 
+//Eq. 4a,4b from Nakazato, Suzuki, Sakuda PTEP 2018- Table 4
+//Column data are: Group#,E_x,a,b,c 
+1,11.23,-40.656,4.528,0.887
+2,18.50,-40.026,4.117,0.895
+3,21.54,-40.060,3.743,0.565
+4,25.38,-39.862,3.636,0.846
