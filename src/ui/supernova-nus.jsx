@@ -489,6 +489,16 @@ const SupernovaNusPane = () => {
                 & \Phi_{\overline{\nu}_{x}} = \frac1{2}\big(\Phi^0_{\overline{\nu}_{\mathrm{e}}}(1-\sin^2\theta_{13}) + \Phi^0_{\nu_{x}}(1+\sin^2\theta_{13})\big)
                 \end{aligned}`}</Node>
             </p>
+            <p>
+              The relatively high energies, large fluence, and short duration of the burst of CCSN neutrinos allows consideration of 
+              several reactions not presented elsewhere on this site. In addition to pIBD and eES, the tables after the plots below 
+              show event totals for pES, 16OIBD, 12CIBD, and CEvNS for selected elements. While the cross sections for CEvNS and pES 
+              are calculated internally using the estabished code structure for two-body elastic scattering (e.g. eES), the calculations 
+              of the cross sections for 16OIBD and 12CIBD are much too complex for online execution. For the 16OIBD cross sections we use
+              parameterized fits (with threshold energies slightly elevated to prevent discontinuities encountered with 10 keV energy bins)
+              from Nakazato, Suzuki, Sakuda (2018). For the 12CIBD cross sections we use the fits to the data in Kolbe, Langanke, Vogel (1999)
+              as found on the SNOwGLoBES site.
+            </p>
           </div>
         </Provider>
       </Card.Body>
