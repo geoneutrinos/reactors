@@ -39,7 +39,7 @@ export const electronAntineutrino16OThresholdEnergyG2 = 18.68
 export const electronAntineutrino16OThresholdEnergyG3 = 21.57
 export const electronAntineutrino16OThresholdEnergyG4 = 25.70
 export const electronNeutrino16OThresholdEnergy = 15.21
-export const electronNeutrino16OThresholdEnergyG1 = 15.35
+
 export const electronNeutrino16OThresholdEnergyG2 = 22.70
 export const electronNeutrino16OThresholdEnergyG3 = 25.85
 export const electronNeutrino16OThresholdEnergyG4 = 29.68
@@ -49,7 +49,8 @@ const partial16OCrossSection = (Ev: number, {Ex, a,b,c}:{Ex:number, a:number, b:
   return 10 ** (a + b * TurnedV + c * TurnedV ** 2) || 0
 }
 
-const crossSection16OElectronNeutrinoG1 = (Ev: number): number => {
+export const electronNeutrino16OThresholdEnergyG1 = 15.35
+export const crossSection16OElectronNeutrinoG1 = (Ev: number): number => {
   const TurnedV = Math.log10(Ev ** 0.25 - 15.21 ** 0.25)
   return 10 ** (-40.008 + 4.918 * TurnedV + 1.036 * TurnedV ** 2) || 0
 }
