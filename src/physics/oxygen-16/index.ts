@@ -34,10 +34,6 @@ export const crossSection16OElectronAntineutrinoOld = memoize((Ev: number): numb
 //export const electronAntineutrino16OThresholdEnergy = firstNonZero(nuebar.energy, nuebar.crossSection)
 //export const electronNeutrino16OThresholdEnergy = firstNonZero(nue.energy, nue.crossSection)
 export const electronAntineutrino16OThresholdEnergy = 11.23
-export const electronAntineutrino16OThresholdEnergyG1 = 11.30
-export const electronAntineutrino16OThresholdEnergyG2 = 18.68
-export const electronAntineutrino16OThresholdEnergyG3 = 21.57
-export const electronAntineutrino16OThresholdEnergyG4 = 25.70
 export const electronNeutrino16OThresholdEnergy = 15.21
 
 const partial16OCrossSection = (Ev: number, {Ex, a,b,c}:{Ex:number, a:number, b:number, c:number}): number => {
@@ -64,6 +60,27 @@ export const electronNeutrino16OThresholdEnergyG4 = 29.68
 export const crossSection16OElectronNeutrinoG4 = (Ev: number): number => {
   const TurnedV = Math.log10(Ev ** 0.25 - 29.35 ** 0.25)
   return 10 ** (-39.116 + 3.947 * TurnedV + 0.901 * TurnedV ** 2) || 0
+}
+
+export const electronAntineutrino16OThresholdEnergyG1 = 11.30
+export const crossSection16OElectronAntineutrinoG1 = (Ev: number): number => {
+  const TurnedV = Math.log10(Ev ** 0.25 - 11.23 ** 0.25)
+  return 10 ** (-40.656 + 4.528 * TurnedV + 0.887 * TurnedV ** 2) || 0
+}
+export const electronAntineutrino16OThresholdEnergyG2 = 18.68
+export const crossSection16OElectronAntineutrinoG2 = (Ev: number): number => {
+  const TurnedV = Math.log10(Ev ** 0.25 - 18.50 ** 0.25)
+  return 10 ** (-40.026 + 4.117 * TurnedV + 0.895 * TurnedV ** 2) || 0
+}
+export const electronAntineutrino16OThresholdEnergyG3 = 21.57
+export const crossSection16OElectronAntineutrinoG3 = (Ev: number): number => {
+  const TurnedV = Math.log10(Ev ** 0.25 - 21.54 ** 0.25)
+  return 10 ** (-40.060 + 3.743 * TurnedV + 0.565 * TurnedV ** 2) || 0
+}
+export const electronAntineutrino16OThresholdEnergyG4 = 25.70
+export const crossSection16OElectronAntineutrinoG4 = (Ev: number): number => {
+  const TurnedV = Math.log10(Ev ** 0.25 - 25.38 ** 0.25)
+  return 10 ** (-39.862 + 3.636 * TurnedV + 0.846 * TurnedV ** 2) || 0
 }
 
 const electronNeutrino16OFitParams = [ // Table 4
