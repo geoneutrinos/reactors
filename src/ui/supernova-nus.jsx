@@ -895,8 +895,6 @@ export const SupernovaNus = React.memo(() => {
   const E16OIBDOscillatedNormalG4 = calcIBDSNRecord(NeutrinoType.electronNeutrino, oscillatedFluxSpectrums[MassOrdering.Normal], tIBDoxyMin, crossSection16OElectronNeutrinoG4, electronNeutrino16OThresholdEnergyG4)
   const E16OIBDOscillatedInvertedG4 = calcIBDSNRecord(NeutrinoType.electronNeutrino, oscillatedFluxSpectrums[MassOrdering.Inverted], tIBDoxyMin, crossSection16OElectronNeutrinoG4, electronNeutrino16OThresholdEnergyG4)
 
-  const crossSection16OElectronNeutrinoGroup = E16OUnoscillatedG1.crossSection.map((v, i) => v + E16OUnoscillatedG2.crossSection[i] + E16OUnoscillatedG3.crossSection[i]+ E16OUnoscillatedG4.crossSection[i]); 
-
   const AntiE16OIBDUnoscillatedG1 = calcIBDSNRecord(NeutrinoType.electronAntineutrino, fluxSpectrums, tIBDoxyMin, crossSection16OElectronAntineutrinoG1, electronAntineutrino16OThresholdEnergyG1)
   const AntiE16OIBDOscillatedNormalG1 = calcIBDSNRecord(NeutrinoType.electronAntineutrino, oscillatedFluxSpectrums[MassOrdering.Normal], tIBDoxyMin, crossSection16OElectronAntineutrinoG1, electronAntineutrino16OThresholdEnergyG1)
   const AntiE16OIBDOscillatedInvertedG1 = calcIBDSNRecord(NeutrinoType.electronAntineutrino, oscillatedFluxSpectrums[MassOrdering.Inverted], tIBDoxyMin, crossSection16OElectronAntineutrinoG1, electronAntineutrino16OThresholdEnergyG1)
@@ -912,8 +910,6 @@ export const SupernovaNus = React.memo(() => {
   const AntiE16OIBDUnoscillatedG4 = calcIBDSNRecord(NeutrinoType.electronAntineutrino, fluxSpectrums, tIBDoxyMin, crossSection16OElectronAntineutrinoG4, electronAntineutrino16OThresholdEnergyG4)
   const AntiE16OIBDOscillatedNormalG4 = calcIBDSNRecord(NeutrinoType.electronAntineutrino, oscillatedFluxSpectrums[MassOrdering.Normal], tIBDoxyMin, crossSection16OElectronAntineutrinoG4, electronAntineutrino16OThresholdEnergyG4)
   const AntiE16OIBDOscillatedInvertedG4 = calcIBDSNRecord(NeutrinoType.electronAntineutrino, oscillatedFluxSpectrums[MassOrdering.Inverted], tIBDoxyMin, crossSection16OElectronAntineutrinoG4, electronAntineutrino16OThresholdEnergyG4)
-
-  const crossSection16OElectronAntineutrinoGroup = AntiE16OUnoscillatedG1.crossSection.map((v, i) => v + AntiE16OUnoscillatedG2.crossSection[i] + AntiE16OUnoscillatedG3.crossSection[i]+ AntiE16OUnoscillatedG4.crossSection[i]); 
 
   const ESpNue = calcSNRecord(NeutrinoType.electronNeutrino, NeutrinoTarget.proton, tESpMin, fluxSpectrums)
   const ESpAnu = calcSNRecord(NeutrinoType.electronAntineutrino, NeutrinoTarget.proton, tESpMin, fluxSpectrums)
