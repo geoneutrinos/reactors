@@ -176,7 +176,7 @@ export const SupernovaPlotsIBDnue16O = ({
     },
   ];
   var layout = {
-    title: `CCSN (10 kpc): ν<sub>e</sub> , ν̅<sub>e</sub> 16O IBD Spectra
+    title: `CCSN (10 kpc): ν<sub>e</sub> 16O IBD Spectra
     <br /><sub>ν<sub>e</sub> , ν̅<sub>e</sub> , ν<sub>x</sub> : E<sub>tot</sub> (10<sup>52</sup> erg) / E<sub>avg</sub> (MeV) / β = ${nueTotEnrg.toFixed(1)} / ${nueAvgEnrg.toFixed(1)} / ${nueSpectrumShapeParam.toFixed(0)}, ${anuTotEnrg.toFixed(1)} / ${anuAvgEnrg.toFixed(1)} / ${anuSpectrumShapeParam.toFixed(0)}, ${nuxTotEnrg.toFixed(1)} / ${nuxAvgEnrg.toFixed(1)} / ${nuxSpectrumShapeParam.toFixed(0)}</sub>`,
     yaxis: {
       title: { text: `Events dN/dE (/10<sup>32</sup> targets/MeV)` },
@@ -201,12 +201,12 @@ export const SupernovaPlotsIBDnue16O = ({
   };
   var config = {
     toImageButtonOptions: {
-      filename: "Supernova-IBD-16O-Spectra",
+      filename: "Supernova-IBD-nue-16O-Spectra",
     },
   };
   return (
     <Card>
-      <Card.Header>CCSN (10 kpc): ν<sub>e</sub> , ν̅<sub>e</sub> 16O IBD Spectra</Card.Header>
+      <Card.Header>CCSN (10 kpc): ν<sub>e</sub> 16O IBD Spectra</Card.Header>
       <Card.Body>
         <Plot
           useResizeHandler={true}
@@ -219,7 +219,221 @@ export const SupernovaPlotsIBDnue16O = ({
     </Card>
   );
 };
-  
+
+export const SupernovaPlotsIBDnuebar16O = ({
+  AntiE16OIBDUnoscillatedG1,
+  AntiE16OIBDOscillatedNormalG1,
+  AntiE16OIBDOscillatedInvertedG1,
+  AntiE16OIBDUnoscillatedG2,
+  AntiE16OIBDOscillatedNormalG2,
+  AntiE16OIBDOscillatedInvertedG2,
+  AntiE16OIBDUnoscillatedG3,
+  AntiE16OIBDOscillatedNormalG3,
+  AntiE16OIBDOscillatedInvertedG3,
+  AntiE16OIBDUnoscillatedG4,
+  AntiE16OIBDOscillatedNormalG4,
+  AntiE16OIBDOscillatedInvertedG4,
+  nueAvgEnrg, 
+  anuAvgEnrg, 
+  nuxAvgEnrg, 
+  nueTotEnrg, 
+  anuTotEnrg, 
+  nuxTotEnrg,
+  nueSpectrumShapeParam,
+  anuSpectrumShapeParam,
+  nuxSpectrumShapeParam,
+}) => {
+  const data = [
+    {
+      y: AntiE16OIBDUnoscillatedG1.eventSpectrum,
+      x: energyValues,
+      name: `ν<sub>e</sub>+<sup>16</sup>O w/o osc- G1`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        width: 2,
+      },
+      fill: "none",
+      marker: { color: "violet" },
+    },
+    {
+      y: AntiE16OIBDOscillatedNormalG1.eventSpectrum,
+      x: energyValues,
+      name: `ν<sub>e</sub>+<sup>16</sup>O for NO- G1`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        width: 2,
+      },
+      fill: "none",
+      marker: { color: "orchid" },
+    },
+    {
+      y: AntiE16OIBDOscillatedInvertedG1.eventSpectrum,
+      x: energyValues,
+      name: `ν<sub>e</sub>+<sup>16</sup>O for IO- G1`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        width: 2,
+      },
+      fill: "none",
+      marker: { color: "blueviolet" },
+    },
+    {
+      y: AntiE16OIBDUnoscillatedG2.eventSpectrum,
+      x: energyValues,
+      name: `ν<sub>e</sub>+<sup>16</sup>O w/o osc- G2`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        width: 2,
+      },
+      fill: "none",
+      marker: { color: "blue" },
+    },
+    {
+      y: AntiE16OIBDOscillatedNormalG2.eventSpectrum,
+      x: energyValues,
+      name: `ν<sub>e</sub>+<sup>16</sup>O for NO- G2`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        width: 2,
+      },
+      fill: "none",
+      marker: { color: "mediumblue" },
+    },
+    {
+      y: AntiE16OIBDOscillatedInvertedG2.eventSpectrum,
+      x: energyValues,
+      name: `ν<sub>e</sub>+<sup>16</sup>O for IO- G2`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        width: 2,
+      },
+      fill: "none",
+      marker: { color: "darkblue" },
+    },
+    {
+      y: AntiE16OIBDUnoscillatedG3.eventSpectrum,
+      x: energyValues,
+      name: `ν<sub>e</sub>+<sup>16</sup>O w/o osc- G3`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        width: 2,
+      },
+      fill: "none",
+      marker: { color: "yellowgreen" },
+    },
+    {
+      y: AntiE16OIBDOscillatedNormalG3.eventSpectrum,
+      x: energyValues,
+      name: `ν<sub>e</sub>+<sup>16</sup>O for NO- G3`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        width: 2,
+      },
+      fill: "none",
+      marker: { color: "olive" },
+    },
+    {
+      y: AntiE16OIBDOscillatedInvertedG3.eventSpectrum,
+      x: energyValues,
+      name: `ν<sub>e</sub>+<sup>16</sup>O for IO- G3`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        width: 2,
+      },
+      fill: "none",
+      marker: { color: "darkolivegreen" },
+    },
+    {
+      y: AntiE16OIBDUnoscillatedG4.eventSpectrum,
+      x: energyValues,
+      name: `ν<sub>e</sub>+<sup>16</sup>O w/o osc- G4`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        width: 2,
+      },
+      fill: "none",
+      marker: { color: "tomato" },
+    },
+    {
+      y: AntiE16OIBDOscillatedNormalG4.eventSpectrum,
+      x: energyValues,
+      name: `ν<sub>e</sub>+<sup>16</sup>O for NO- G4`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        width: 2,
+      },
+      fill: "none",
+      marker: { color: "red" },
+    },
+    {
+      y: AntiE16OIBDOscillatedInvertedG4.eventSpectrum,
+      x: energyValues,
+      name: `ν<sub>e</sub>+<sup>16</sup>O for IO- G4`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        width: 2,
+      },
+      fill: "none",
+      marker: { color: "darkred" },
+    },
+  ];
+  var layout = {
+    title: `CCSN (10 kpc): ν̅<sub>e</sub> 16O IBD Spectra
+    <br /><sub>ν<sub>e</sub> , ν̅<sub>e</sub> , ν<sub>x</sub> : E<sub>tot</sub> (10<sup>52</sup> erg) / E<sub>avg</sub> (MeV) / β = ${nueTotEnrg.toFixed(1)} / ${nueAvgEnrg.toFixed(1)} / ${nueSpectrumShapeParam.toFixed(0)}, ${anuTotEnrg.toFixed(1)} / ${anuAvgEnrg.toFixed(1)} / ${anuSpectrumShapeParam.toFixed(0)}, ${nuxTotEnrg.toFixed(1)} / ${nuxAvgEnrg.toFixed(1)} / ${nuxSpectrumShapeParam.toFixed(0)}</sub>`,
+    yaxis: {
+      title: { text: `Events dN/dE (/10<sup>32</sup> targets/MeV)` },
+      type: "log",
+      autorange: true,
+    },
+    xaxis: {
+      title: { text: `Neutrino Energy (MeV)` },
+      range: [0.05, 80.05],
+    },
+    autosize: true,
+    annotations: [
+      {
+        showarrow: false,
+        text: "geoneutrinos.org",
+        x: 1.1,
+        xref: "paper",
+        y: -0.15,
+        yref: "paper",
+      },
+    ],
+  };
+  var config = {
+    toImageButtonOptions: {
+      filename: "Supernova-IBD-nuebar-16O-Spectra",
+    },
+  };
+  return (
+    <Card>
+      <Card.Header>CCSN (10 kpc): ν̅<sub>e</sub> 16O IBD Spectra</Card.Header>
+      <Card.Body>
+        <Plot
+          useResizeHandler={true}
+          style={{ width: "100%" }}
+          data={data}
+          layout={layout}
+          config={config}
+        />
+      </Card.Body>
+    </Card>
+  );
+};
+
 export const SupernovaPlotsIBD = ({
   pIBDUnoscillated, 
   pIBDOscillatedNormal, 
