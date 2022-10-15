@@ -321,13 +321,13 @@ const SupernovaNusEventsIBD = ({
                 <tr>
                   <td>ν<sub>e</sub> + <sup>16</sup>O</td>
                   <td>
-                    <Num v={E16OIBDUnoscillated.events} p={1} />
+                    <Num v={E16OIBDUnoscillatedG1.events + E16OIBDUnoscillatedG2.events + E16OIBDUnoscillatedG3.events + E16OIBDUnoscillatedG4.events} p={1} />
                   </td>
                   <td>
-                    <Num v={E16OIBDOscillatedNormal.events} p={1} />
+                    <Num v={E16OIBDOscillatedNormalG1.events + E16OIBDOscillatedNormalG2.events + E16OIBDOscillatedNormalG3.events + E16OIBDOscillatedNormalG4.events} p={1} />
                   </td>
                   <td>
-                    <Num v={E16OIBDOscillatedInverted.events} p={1} /> 
+                    <Num v={E16OIBDOscillatedInvertedG1.events + E16OIBDOscillatedInvertedG2.events + E16OIBDOscillatedInvertedG3.events + E16OIBDOscillatedInvertedG4.events} p={1} /> 
                   </td>
                   <td></td>
                 </tr>
@@ -386,13 +386,13 @@ const SupernovaNusEventsIBD = ({
                 <tr>
                   <td>ν̅<sub>e</sub> + <sup>16</sup>O</td>
                   <td>
-                    <Num v={AntiE16OIBDUnoscillated.events} p={1} />
+                    <Num v={AntiE16OIBDUnoscillatedG1.events + AntiE16OIBDUnoscillatedG2.events + AntiE16OIBDUnoscillatedG3.events + AntiE16OIBDUnoscillatedG4.events} p={1} />
                   </td>
                   <td>
-                    <Num v={AntiE16OIBDOscillatedNormal.events} p={1} />
+                    <Num v={AntiE16OIBDOscillatedNormalG1.events + AntiE16OIBDOscillatedNormalG2.events + AntiE16OIBDOscillatedNormalG3.events + AntiE16OIBDOscillatedNormalG4.events} p={1} />
                   </td>
                   <td>
-                    <Num v={AntiE16OIBDOscillatedInverted.events} p={1} />
+                    <Num v={AntiE16OIBDOscillatedInvertedG1.events + AntiE16OIBDOscillatedInvertedG2.events + AntiE16OIBDOscillatedInvertedG3.events + AntiE16OIBDOscillatedInvertedG4.events} p={1} />
                   </td>
                   <td></td>
                 </tr>
