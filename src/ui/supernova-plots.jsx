@@ -19,6 +19,15 @@ export const SupernovaPlotsIBDnue16O = ({
   E16OIBDUnoscillatedG4,
   E16OIBDOscillatedNormalG4,
   E16OIBDOscillatedInvertedG4,
+  nueAvgEnrg, 
+  anuAvgEnrg, 
+  nuxAvgEnrg, 
+  nueTotEnrg, 
+  anuTotEnrg, 
+  nuxTotEnrg,
+  nueSpectrumShapeParam,
+  anuSpectrumShapeParam,
+  nuxSpectrumShapeParam,
 }) => {
   const data = [
     {
