@@ -26,8 +26,22 @@ import { Elements as ElementsUI } from "./elements";
 import Elements from "../elements";
 import { NeutrinoType, NeutrinoTarget } from "../physics/neutrino-cross-section";
 import { MassOrdering } from "../physics/neutrino-oscillation"
-import {crossSection16OElectronAntineutrino, crossSection16OElectronNeutrino, electronAntineutrino16OThresholdEnergy, electronNeutrino16OThresholdEnergy} from "../physics/oxygen-16";
-import {crossSection12CElectronAntineutrino, crossSection12CElectronNeutrino, electronAntineutrino12CThresholdEnergy, electronNeutrino12CThresholdEnergy} from "../physics/carbon-12";
+
+import {
+  crossSection16OElectronAntineutrino, 
+  crossSection16OElectronNeutrino, 
+  electronAntineutrino16OThresholdEnergy, 
+  electronNeutrino16OThresholdEnergy,
+  crossSection16OElectronNeutrinoG1, 
+  electronNeutrino16OThresholdEnergyG1,
+} from "../physics/oxygen-16";
+
+import {
+  crossSection12CElectronAntineutrino, 
+  crossSection12CElectronNeutrino, 
+  electronAntineutrino12CThresholdEnergy, 
+  electronNeutrino12CThresholdEnergy
+} from "../physics/carbon-12";
 
 const SupernovaNusCEvNS = memo(({ nucleus, setNucleus, tESnMin, setTESnMin, fluxSpectrums }) => {
 
@@ -152,6 +166,9 @@ const SupernovaNusEventsIBD = ({
   E16OIBDUnoscillated,
   E16OIBDOscillatedNormal,
   E16OIBDOscillatedInverted,
+  E16OIBDUnoscillatedG1,
+  E16OIBDOscillatedNormalG1,
+  E16OIBDOscillatedInvertedG1,
   tIBDpMin,
   setTIBDpMin,
   tIBDoxyMin,
@@ -209,6 +226,19 @@ const SupernovaNusEventsIBD = ({
                   </td>
                   <td>
                     <Num v={AntiE12CIBDOscillatedInverted.events} p={1} />
+                  </td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>ν<sub>e</sub> + <sup>16</sup>O Group 1</td>
+                  <td>
+                    <Num v={E16OIBDUnoscillatedG1.events} p={1} />
+                  </td>
+                  <td>
+                    <Num v={E16OIBDOscillatedNormalG1.events} p={1} />
+                  </td>
+                  <td>
+                    <Num v={E16OIBDOscillatedInvertedG1.events} p={1} /> 
                   </td>
                   <td></td>
                 </tr>
@@ -721,6 +751,10 @@ export const SupernovaNus = React.memo(() => {
   const E16OIBDOscillatedNormal = calcIBDSNRecord(NeutrinoType.electronNeutrino, oscillatedFluxSpectrums[MassOrdering.Normal], tIBDoxyMin, crossSection16OElectronNeutrino, electronNeutrino16OThresholdEnergy)
   const E16OIBDOscillatedInverted = calcIBDSNRecord(NeutrinoType.electronNeutrino, oscillatedFluxSpectrums[MassOrdering.Inverted], tIBDoxyMin, crossSection16OElectronNeutrino, electronNeutrino16OThresholdEnergy)
 
+  const E16OIBDUnoscillatedG1 = calcIBDSNRecord(NeutrinoType.electronNeutrino, fluxSpectrums, tIBDoxyMin, crossSection16OElectronNeutrinoG1, electronNeutrino16OThresholdEnergyG1)
+  const E16OIBDOscillatedNormalG1 = calcIBDSNRecord(NeutrinoType.electronNeutrino, oscillatedFluxSpectrums[MassOrdering.Normal], tIBDoxyMin, crossSection16OElectronNeutrinoG1, electronNeutrino16OThresholdEnergyG1)
+  const E16OIBDOscillatedInvertedG1 = calcIBDSNRecord(NeutrinoType.electronNeutrino, oscillatedFluxSpectrums[MassOrdering.Inverted], tIBDoxyMin, crossSection16OElectronNeutrinoG1, electronNeutrino16OThresholdEnergyG1)
+
   const ESpNue = calcSNRecord(NeutrinoType.electronNeutrino, NeutrinoTarget.proton, tESpMin, fluxSpectrums)
   const ESpAnu = calcSNRecord(NeutrinoType.electronAntineutrino, NeutrinoTarget.proton, tESpMin, fluxSpectrums)
   const ESpNux = calcSNRecord(NeutrinoType.muTauNeutrino, NeutrinoTarget.proton, tESpMin, fluxSpectrums)
@@ -859,6 +893,9 @@ export const SupernovaNus = React.memo(() => {
         E16OIBDUnoscillated = {E16OIBDUnoscillated}
         E16OIBDOscillatedNormal = {E16OIBDOscillatedNormal}
         E16OIBDOscillatedInverted = {E16OIBDOscillatedInverted}
+        E16OIBDUnoscillatedG1 = {E16OIBDUnoscillatedG1}
+        E16OIBDOscillatedNormalG1 = {E16OIBDOscillatedNormalG1}
+        E16OIBDOscillatedInvertedG1 = {E16OIBDOscillatedInvertedG1}
         tIBDpMin={tIBDpMin}
         setTIBDpMin={setTIBDpMin}
         tIBDoxyMin={tIBDoxyMin}
