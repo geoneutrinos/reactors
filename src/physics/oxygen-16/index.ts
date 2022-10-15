@@ -59,7 +59,7 @@ export const crossSection16OElectronNeutrinoG3 = (Ev: number): number => {
 export const electronNeutrino16OThresholdEnergyG4 = 29.675
 export const crossSection16OElectronNeutrinoG4 = (Ev: number): number => {
   const TurnedV = Math.log10(Ev ** 0.25 - 29.35 ** 0.25)
-  return 10 ** (-39.116 + 3.947 * TurnedV + 0.901 * TurnedV ** 2) || 0
+  return 10 ** (-39.166 + 3.947 * TurnedV + 0.901 * TurnedV ** 2) || 0
 }
 
 export const electronAntineutrino16OThresholdEnergyG1 = 11.295
@@ -87,7 +87,7 @@ const electronNeutrino16OFitParams = [ // Table 4
   {Ex: 15.21, a:-40.008, b:4.918, c:1.036},
   {Ex: 22.47, a:-39.305, b:4.343, c:0.961},
   {Ex: 25.51, a:-39.655, b:5.263, c:1.236},
-  {Ex: 29.35, a:-39.116, b:3.947, c:0.901},
+  {Ex: 29.35, a:-39.166, b:3.947, c:0.901},
 ]
 
 const electronAntieutrino16OFitParams = [ // Table 4
