@@ -1029,6 +1029,29 @@ export const SupernovaNus = React.memo(() => {
         anuSpectrumShapeParam={anuSpectrumShapeParam}
         nuxSpectrumShapeParam={nuxSpectrumShapeParam}
       />
+      <SupernovaPlotsIBDnuebar16O
+        AntiE16OIBDUnoscillatedG1 = {AntiE16OIBDUnoscillatedG1}
+        AntiE16OIBDOscillatedNormalG1 = {AntiE16OIBDOscillatedNormalG1}
+        AntiE16OIBDOscillatedInvertedG1 = {AntiE16OIBDOscillatedInvertedG1}
+        AntiE16OIBDUnoscillatedG2 = {AntiE16OIBDUnoscillatedG2}
+        AntiE16OIBDOscillatedNormalG2 = {AntiE16OIBDOscillatedNormalG2}
+        AntiE16OIBDOscillatedInvertedG2 = {AntiE16OIBDOscillatedInvertedG2}
+        AntiE16OIBDUnoscillatedG3 = {AntiE16OIBDUnoscillatedG3}
+        AntiE16OIBDOscillatedNormalG3 = {AntiE16OIBDOscillatedNormalG3}
+        AntiE16OIBDOscillatedInvertedG3 = {AntiE16OIBDOscillatedInvertedG3}
+        AntiE16OIBDUnoscillatedG4 = {AntiE16OIBDUnoscillatedG4}
+        AntiE16OIBDOscillatedNormalG4 = {AntiE16OIBDOscillatedNormalG4}
+        AntiE16OIBDOscillatedInvertedG4 = {AntiE16OIBDOscillatedInvertedG4}
+        nueAvgEnrg={nueAvgEnrg}
+        anuAvgEnrg={anuAvgEnrg}
+        nuxAvgEnrg={nuxAvgEnrg}
+        nueTotEnrg={nueTotEnrg}
+        anuTotEnrg={anuTotEnrg}
+        nuxTotEnrg={nuxTotEnrg}
+        nueSpectrumShapeParam={nueSpectrumShapeParam}
+        anuSpectrumShapeParam={anuSpectrumShapeParam}
+        nuxSpectrumShapeParam={nuxSpectrumShapeParam}
+      />
       <SupernovaPlotsIBD 
         pIBDUnoscillated={pIBDUnoscillated} 
         pIBDOscillatedNormal={pIBDOscillatedNormal} 
