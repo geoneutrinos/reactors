@@ -15,6 +15,7 @@ import {
 
 import {
   SupernovaPlotsIBD,
+  SupernovaPlotsIBDnue16O,
   SupernovaFluxPlots,
   SupernovaOscillatedFluxPlots,
   SupernovaOscillatedInvertedFluxPlots,
@@ -916,6 +917,20 @@ export const SupernovaNus = React.memo(() => {
         E12CIBDUnoscillated={E12CIBDUnoscillated}
         AntiE16OIBDUnoscillated={AntiE16OIBDUnoscillated}
         E16OIBDUnoscillated={E16OIBDUnoscillated}
+      />
+      <SupernovaPlotsIBDnue16O
+        E16OIBDUnoscillatedG1 = {E16OIBDUnoscillatedG1}
+        E16OIBDOscillatedNormalG1 = {E16OIBDOscillatedNormalG1}
+        E16OIBDOscillatedInvertedG1 = {E16OIBDOscillatedInvertedG1}
+        E16OIBDUnoscillatedG2 = {E16OIBDUnoscillatedG2}
+        E16OIBDOscillatedNormalG2 = {E16OIBDOscillatedNormalG2}
+        E16OIBDOscillatedInvertedG2 = {E16OIBDOscillatedInvertedG2}
+        E16OIBDUnoscillatedG3 = {E16OIBDUnoscillatedG3}
+        E16OIBDOscillatedNormalG3 = {E16OIBDOscillatedNormalG3}
+        E16OIBDOscillatedInvertedG3 = {E16OIBDOscillatedInvertedG3}
+        E16OIBDUnoscillatedG4 = {E16OIBDUnoscillatedG4}
+        E16OIBDOscillatedNormalG4 = {E16OIBDOscillatedNormalG4}
+        E16OIBDOscillatedInvertedG4 = {E16OIBDOscillatedInvertedG4}
       />
       <SupernovaPlotsIBD 
         pIBDUnoscillated={pIBDUnoscillated} 
