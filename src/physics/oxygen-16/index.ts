@@ -40,10 +40,6 @@ export const electronAntineutrino16OThresholdEnergyG3 = 21.57
 export const electronAntineutrino16OThresholdEnergyG4 = 25.70
 export const electronNeutrino16OThresholdEnergy = 15.21
 
-export const electronNeutrino16OThresholdEnergyG2 = 22.70
-export const electronNeutrino16OThresholdEnergyG3 = 25.85
-export const electronNeutrino16OThresholdEnergyG4 = 29.68
-
 const partial16OCrossSection = (Ev: number, {Ex, a,b,c}:{Ex:number, a:number, b:number, c:number}): number => {
   const TurnedV = Math.log10(Ev ** 0.25 - Ex ** 0.25)
   return 10 ** (a + b * TurnedV + c * TurnedV ** 2) || 0
@@ -53,6 +49,21 @@ export const electronNeutrino16OThresholdEnergyG1 = 15.35
 export const crossSection16OElectronNeutrinoG1 = (Ev: number): number => {
   const TurnedV = Math.log10(Ev ** 0.25 - 15.21 ** 0.25)
   return 10 ** (-40.008 + 4.918 * TurnedV + 1.036 * TurnedV ** 2) || 0
+}
+export const electronNeutrino16OThresholdEnergyG2 = 22.70
+export const crossSection16OElectronNeutrinoG2 = (Ev: number): number => {
+  const TurnedV = Math.log10(Ev ** 0.25 - 22.47 ** 0.25)
+  return 10 ** (-39.305 + 4.343 * TurnedV + 0.961 * TurnedV ** 2) || 0
+}
+export const electronNeutrino16OThresholdEnergyG3 = 25.85
+export const crossSection16OElectronNeutrinoG3 = (Ev: number): number => {
+  const TurnedV = Math.log10(Ev ** 0.25 - 25.51 ** 0.25)
+  return 10 ** (-39.655 + 5.263 * TurnedV + 1.236 * TurnedV ** 2) || 0
+}
+export const electronNeutrino16OThresholdEnergyG4 = 29.68
+export const crossSection16OElectronNeutrinoG4 = (Ev: number): number => {
+  const TurnedV = Math.log10(Ev ** 0.25 - 29.35 ** 0.25)
+  return 10 ** (-39.116 + 3.947 * TurnedV + 0.901 * TurnedV ** 2) || 0
 }
 
 const electronNeutrino16OFitParams = [ // Table 4
