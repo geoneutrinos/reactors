@@ -1063,12 +1063,6 @@ export const SupernovaNus = React.memo(() => {
         E12CIBDUnoscillated = {E12CIBDUnoscillated}
         E12CIBDOscillatedNormal = {E12CIBDOscillatedNormal}
         E12CIBDOscillatedInverted = {E12CIBDOscillatedInverted}
-        AntiE16OIBDUnoscillated={AntiE16OIBDUnoscillated}
-        AntiE16OIBDOscillatedNormal={AntiE16OIBDOscillatedNormal}
-        AntiE16OIBDOscillatedInverted={AntiE16OIBDOscillatedInverted}
-        E16OIBDUnoscillated = {E16OIBDUnoscillated}
-        E16OIBDOscillatedNormal = {E16OIBDOscillatedNormal}
-        E16OIBDOscillatedInverted = {E16OIBDOscillatedInverted}
         nueAvgEnrg={nueAvgEnrg}
         anuAvgEnrg={anuAvgEnrg}
         nuxAvgEnrg={nuxAvgEnrg}
