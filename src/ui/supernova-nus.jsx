@@ -267,58 +267,6 @@ const SupernovaNusEventsIBD = ({
                   <td></td>
                 </tr>
                 <tr>
-                  <td>ν<sub>e</sub> + <sup>16</sup>O Group 1</td>
-                  <td>
-                    <Num v={E16OIBDUnoscillatedG1.events} p={1} />
-                  </td>
-                  <td>
-                    <Num v={E16OIBDOscillatedNormalG1.events} p={1} />
-                  </td>
-                  <td>
-                    <Num v={E16OIBDOscillatedInvertedG1.events} p={1} /> 
-                  </td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>ν<sub>e</sub> + <sup>16</sup>O Group 2</td>
-                  <td>
-                    <Num v={E16OIBDUnoscillatedG2.events} p={1} />
-                  </td>
-                  <td>
-                    <Num v={E16OIBDOscillatedNormalG2.events} p={1} />
-                  </td>
-                  <td>
-                    <Num v={E16OIBDOscillatedInvertedG2.events} p={1} /> 
-                  </td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>ν<sub>e</sub> + <sup>16</sup>O Group 3</td>
-                  <td>
-                    <Num v={E16OIBDUnoscillatedG3.events} p={1} />
-                  </td>
-                  <td>
-                    <Num v={E16OIBDOscillatedNormalG3.events} p={1} />
-                  </td>
-                  <td>
-                    <Num v={E16OIBDOscillatedInvertedG3.events} p={1} /> 
-                  </td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>ν<sub>e</sub> + <sup>16</sup>O Group 4</td>
-                  <td>
-                    <Num v={E16OIBDUnoscillatedG4.events} p={1} />
-                  </td>
-                  <td>
-                    <Num v={E16OIBDOscillatedNormalG4.events} p={1} />
-                  </td>
-                  <td>
-                    <Num v={E16OIBDOscillatedInvertedG4.events} p={1} /> 
-                  </td>
-                  <td></td>
-                </tr>
-                <tr>
                   <td>ν<sub>e</sub> + <sup>16</sup>O</td>
                   <td>
                     <Num v={E16OIBDUnoscillatedG1.events + E16OIBDUnoscillatedG2.events + E16OIBDUnoscillatedG3.events + E16OIBDUnoscillatedG4.events} p={1} />
@@ -328,58 +276,6 @@ const SupernovaNusEventsIBD = ({
                   </td>
                   <td>
                     <Num v={E16OIBDOscillatedInvertedG1.events + E16OIBDOscillatedInvertedG2.events + E16OIBDOscillatedInvertedG3.events + E16OIBDOscillatedInvertedG4.events} p={1} /> 
-                  </td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>ν̅<sub>e</sub> + <sup>16</sup>O Group 1</td>
-                  <td>
-                    <Num v={AntiE16OIBDUnoscillatedG1.events} p={1} />
-                  </td>
-                  <td>
-                    <Num v={AntiE16OIBDOscillatedNormalG1.events} p={1} />
-                  </td>
-                  <td>
-                    <Num v={AntiE16OIBDOscillatedInvertedG1.events} p={1} /> 
-                  </td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>ν̅<sub>e</sub> + <sup>16</sup>O Group 2</td>
-                  <td>
-                    <Num v={AntiE16OIBDUnoscillatedG2.events} p={1} />
-                  </td>
-                  <td>
-                    <Num v={AntiE16OIBDOscillatedNormalG2.events} p={1} />
-                  </td>
-                  <td>
-                    <Num v={AntiE16OIBDOscillatedInvertedG2.events} p={1} /> 
-                  </td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>ν̅<sub>e</sub> + <sup>16</sup>O Group 3</td>
-                  <td>
-                    <Num v={AntiE16OIBDUnoscillatedG3.events} p={1} />
-                  </td>
-                  <td>
-                    <Num v={AntiE16OIBDOscillatedNormalG3.events} p={1} />
-                  </td>
-                  <td>
-                    <Num v={AntiE16OIBDOscillatedInvertedG3.events} p={1} /> 
-                  </td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>ν̅<sub>e</sub> + <sup>16</sup>O Group 4</td>
-                  <td>
-                    <Num v={AntiE16OIBDUnoscillatedG4.events} p={1} />
-                  </td>
-                  <td>
-                    <Num v={AntiE16OIBDOscillatedNormalG4.events} p={1} />
-                  </td>
-                  <td>
-                    <Num v={AntiE16OIBDOscillatedInvertedG4.events} p={1} /> 
                   </td>
                   <td></td>
                 </tr>
