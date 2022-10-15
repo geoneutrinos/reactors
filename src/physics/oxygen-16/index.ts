@@ -49,9 +49,9 @@ const partial16OCrossSection = (Ev: number, {Ex, a,b,c}:{Ex:number, a:number, b:
   return 10 ** (a + b * TurnedV + c * TurnedV ** 2) || 0
 }
 
-const group16OCrossSection = (Ev: number, Ex: number, a: number, b: number, c: number): number => {
-  const TurnedV = Math.log10(Ev ** 0.25 - Ex ** 0.25)
-  return 10 ** (a + b * TurnedV + c * TurnedV ** 2) || 0
+const crossSection16OElectronNeutrinoG1 = (Ev: number): number => {
+  const TurnedV = Math.log10(Ev ** 0.25 - 15.21 ** 0.25)
+  return 10 ** (-40.008 + 4.918 * TurnedV + 1.036 * TurnedV ** 2) || 0
 }
 
 const electronNeutrino16OFitParams = [ // Table 4
