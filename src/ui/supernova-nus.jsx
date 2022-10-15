@@ -16,6 +16,7 @@ import {
 import {
   SupernovaPlotsIBD,
   SupernovaPlotsIBDnue16O,
+  SupernovaPlotsIBDnuebar16O,
   SupernovaFluxPlots,
   SupernovaOscillatedFluxPlots,
   SupernovaOscillatedInvertedFluxPlots,
