@@ -276,8 +276,10 @@ const SupernovaNusEventsIBD = ({
                     <Num v={E16OIBDUnoscillatedGroup.events} p={1} />
                   </td>
                   <td>
+                    <Num v={E16OIBDOscillatedNormalGroup.events} p={1} />
                   </td>
                   <td>
+                    <Num v={E16OIBDOscillatedInvertedGroup.events} p={1} />
                   </td>
                   <td></td>
                 </tr>
@@ -287,8 +289,10 @@ const SupernovaNusEventsIBD = ({
                     <Num v={AntiE16OIBDUnoscillatedGroup.events} p={1} />
                   </td>
                   <td>
+                    <Num v={AntiE16OIBDOscillatedNormalGroup.events} p={1} />
                   </td>
                   <td>
+                    <Num v={AntiE16OIBDOscillatedInvertedGroup.events} p={1} />
                   </td>
                   <td></td>
                 </tr>
@@ -802,6 +806,8 @@ export const SupernovaNus = React.memo(() => {
   const E16OIBDOscillatedInverted = calcIBDSNRecord(NeutrinoType.electronNeutrino, oscillatedFluxSpectrums[MassOrdering.Inverted], tIBDoxyMin, crossSection16OElectronNeutrino, electronNeutrino16OThresholdEnergy)
 
   const E16OIBDUnoscillatedGroup = calcIBDSNRecord(NeutrinoType.electronNeutrino, fluxSpectrums, tIBDoxyMin, crossSection16OElectronNeutrinoGroup, electronNeutrino16OThresholdEnergy)
+  const E16OIBDOscillatedNormalGroup = calcIBDSNRecord(NeutrinoType.electronNeutrino, oscillatedFluxSpectrums[MassOrdering.Normal], tIBDoxyMin, crossSection16OElectronNeutrinoGroup, electronNeutrino16OThresholdEnergy)
+  const E16OIBDOscillatedInvertedGroup = calcIBDSNRecord(NeutrinoType.electronNeutrino, oscillatedFluxSpectrums[MassOrdering.Inverted], tIBDoxyMin, crossSection16OElectronNeutrinoGroup, electronNeutrino16OThresholdEnergy)
 
   const E16OIBDUnoscillatedG1 = calcIBDSNRecord(NeutrinoType.electronNeutrino, fluxSpectrums, tIBDoxyMin, crossSection16OElectronNeutrinoG1, electronNeutrino16OThresholdEnergyG1)
   const E16OIBDOscillatedNormalG1 = calcIBDSNRecord(NeutrinoType.electronNeutrino, oscillatedFluxSpectrums[MassOrdering.Normal], tIBDoxyMin, crossSection16OElectronNeutrinoG1, electronNeutrino16OThresholdEnergyG1)
@@ -820,6 +826,8 @@ export const SupernovaNus = React.memo(() => {
   const E16OIBDOscillatedInvertedG4 = calcIBDSNRecord(NeutrinoType.electronNeutrino, oscillatedFluxSpectrums[MassOrdering.Inverted], tIBDoxyMin, crossSection16OElectronNeutrinoG4, electronNeutrino16OThresholdEnergyG4)
 
   const AntiE16OIBDUnoscillatedGroup = calcIBDSNRecord(NeutrinoType.electronAntineutrino, fluxSpectrums, tIBDoxyMin, crossSection16OElectronAntineutrinoGroup, electronAntineutrino16OThresholdEnergy)
+  const AntiE16OIBDOscillatedNormalGroup = calcIBDSNRecord(NeutrinoType.electronAntineutrino, oscillatedFluxSpectrums[MassOrdering.Normal], tIBDoxyMin, crossSection16OElectronAntineutrinoGroup, electronAntineutrino16OThresholdEnergy)
+  const AntiE16OIBDOscillatedInvertedGroup = calcIBDSNRecord(NeutrinoType.electronAntineutrino, oscillatedFluxSpectrums[MassOrdering.Inverted], tIBDoxyMin, crossSection16OElectronAntineutrinoGroup, electronAntineutrino16OThresholdEnergy)
   
   const AntiE16OIBDUnoscillatedG1 = calcIBDSNRecord(NeutrinoType.electronAntineutrino, fluxSpectrums, tIBDoxyMin, crossSection16OElectronAntineutrinoG1, electronAntineutrino16OThresholdEnergyG1)
   const AntiE16OIBDOscillatedNormalG1 = calcIBDSNRecord(NeutrinoType.electronAntineutrino, oscillatedFluxSpectrums[MassOrdering.Normal], tIBDoxyMin, crossSection16OElectronAntineutrinoG1, electronAntineutrino16OThresholdEnergyG1)
@@ -1012,10 +1020,14 @@ export const SupernovaNus = React.memo(() => {
         E12CIBDOscillatedNormal = {E12CIBDOscillatedNormal}
         E12CIBDOscillatedInverted = {E12CIBDOscillatedInverted}
         AntiE16OIBDUnoscillatedGroup={AntiE16OIBDUnoscillatedGroup}
+        AntiE16OIBDOscillatedNormalGroup={AntiE16OIBDOscillatedNormalGroup}
+        AntiE16OIBDOscillatedInvertedGroup={AntiE16OIBDOscillatedInvertedGroup}
         AntiE16OIBDUnoscillated={AntiE16OIBDUnoscillated}
         AntiE16OIBDOscillatedNormal={AntiE16OIBDOscillatedNormal}
         AntiE16OIBDOscillatedInverted={AntiE16OIBDOscillatedInverted}
         E16OIBDUnoscillatedGroup = {E16OIBDUnoscillatedGroup}
+        E16OIBDOscillatedNormalGroup = {E16OIBDOscillatedNormalGroup}
+        E16OIBDOscillatedInvertedGroup = {E16OIBDOscillatedInvertedGroup}
         E16OIBDUnoscillated = {E16OIBDUnoscillated}
         E16OIBDOscillatedNormal = {E16OIBDOscillatedNormal}
         E16OIBDOscillatedInverted = {E16OIBDOscillatedInverted}
