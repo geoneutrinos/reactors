@@ -20,7 +20,7 @@ import {
   SupernovaFluxPlots,
   SupernovaOscillatedFluxPlots,
   SupernovaOscillatedInvertedFluxPlots,
-  NeutrinoElectronElasticScatteringCrossSection,
+  SupernovaNeutrinoCrossSections,
 } from "./supernova-plots"
 
 import { Elements as ElementsUI } from "./elements";
@@ -891,7 +891,7 @@ export const SupernovaNus = React.memo(() => {
         anuSpectrumShapeParam={anuSpectrumShapeParam}
         nuxSpectrumShapeParam={nuxSpectrumShapeParam}
       />
-      <NeutrinoElectronElasticScatteringCrossSection 
+      <SupernovaNeutrinoCrossSections 
         ESpNue={ESpNue}
         ESpAnu={ESpAnu}
         ESEforNO={ESEforNO}
