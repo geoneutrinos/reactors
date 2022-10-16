@@ -178,9 +178,11 @@ const SupernovaNusEventsIBD = ({
   E12CIBDUnoscillated,
   E12CIBDOscillatedNormal,
   E12CIBDOscillatedInverted,
+  AntiE16OIBDUnoscillatedGroup,
   AntiE16OIBDUnoscillated,
   AntiE16OIBDOscillatedNormal,
   AntiE16OIBDOscillatedInverted,
+  E16OIBDUnoscillatedGroup,
   E16OIBDUnoscillated,
   E16OIBDOscillatedNormal,
   E16OIBDOscillatedInverted,
@@ -274,10 +276,8 @@ const SupernovaNusEventsIBD = ({
                     <Num v={E16OIBDUnoscillatedGroup.events} p={1} />
                   </td>
                   <td>
-                    <Num v={E16OIBDOscillatedNormalGroup.events} p={1} />
                   </td>
                   <td>
-                    <Num v={E16OIBDOscillatedInvertedGroup.events} p={1} /> 
                   </td>
                   <td></td>
                 </tr>
@@ -287,10 +287,8 @@ const SupernovaNusEventsIBD = ({
                     <Num v={AntiE16OIBDUnoscillatedGroup.events} p={1} />
                   </td>
                   <td>
-                    <Num v={AntiE16OIBDOscillatedNormalGroup.events} p={1} />
                   </td>
                   <td>
-                    <Num v={AntiE16OIBDOscillatedInvertedGroup.events} p={1} />
                   </td>
                   <td></td>
                 </tr>
@@ -1013,9 +1011,11 @@ export const SupernovaNus = React.memo(() => {
         E12CIBDUnoscillated = {E12CIBDUnoscillated}
         E12CIBDOscillatedNormal = {E12CIBDOscillatedNormal}
         E12CIBDOscillatedInverted = {E12CIBDOscillatedInverted}
+        AntiE16OIBDUnoscillatedGroup={AntiE16OIBDUnoscillatedGroup}
         AntiE16OIBDUnoscillated={AntiE16OIBDUnoscillated}
         AntiE16OIBDOscillatedNormal={AntiE16OIBDOscillatedNormal}
         AntiE16OIBDOscillatedInverted={AntiE16OIBDOscillatedInverted}
+        E16OIBDUnoscillatedGroup = {E16OIBDUnoscillatedGroup}
         E16OIBDUnoscillated = {E16OIBDUnoscillated}
         E16OIBDOscillatedNormal = {E16OIBDOscillatedNormal}
         E16OIBDOscillatedInverted = {E16OIBDOscillatedInverted}
