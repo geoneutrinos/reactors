@@ -32,6 +32,8 @@ import { MassOrdering } from "../physics/neutrino-oscillation"
 import {
   crossSection16OElectronAntineutrino, 
   crossSection16OElectronNeutrino, 
+  crossSection16OElectronAntineutrinoGroup, 
+  crossSection16OElectronNeutrinoGroup, 
   electronAntineutrino16OThresholdEnergy, 
   electronNeutrino16OThresholdEnergy,
   crossSection16OElectronNeutrinoG1, 
@@ -775,6 +777,8 @@ export const SupernovaNus = React.memo(() => {
   const E16OIBDOscillatedNormal = calcIBDSNRecord(NeutrinoType.electronNeutrino, oscillatedFluxSpectrums[MassOrdering.Normal], tIBDoxyMin, crossSection16OElectronNeutrino, electronNeutrino16OThresholdEnergy)
   const E16OIBDOscillatedInverted = calcIBDSNRecord(NeutrinoType.electronNeutrino, oscillatedFluxSpectrums[MassOrdering.Inverted], tIBDoxyMin, crossSection16OElectronNeutrino, electronNeutrino16OThresholdEnergy)
 
+  const E16OIBDUnoscillatedGroup = calcIBDSNRecord(NeutrinoType.electronNeutrino, fluxSpectrums, tIBDoxyMin, crossSection16OElectronNeutrinoGroup, electronNeutrino16OThresholdEnergy)
+
   const E16OIBDUnoscillatedG1 = calcIBDSNRecord(NeutrinoType.electronNeutrino, fluxSpectrums, tIBDoxyMin, crossSection16OElectronNeutrinoG1, electronNeutrino16OThresholdEnergyG1)
   const E16OIBDOscillatedNormalG1 = calcIBDSNRecord(NeutrinoType.electronNeutrino, oscillatedFluxSpectrums[MassOrdering.Normal], tIBDoxyMin, crossSection16OElectronNeutrinoG1, electronNeutrino16OThresholdEnergyG1)
   const E16OIBDOscillatedInvertedG1 = calcIBDSNRecord(NeutrinoType.electronNeutrino, oscillatedFluxSpectrums[MassOrdering.Inverted], tIBDoxyMin, crossSection16OElectronNeutrinoG1, electronNeutrino16OThresholdEnergyG1)
@@ -791,6 +795,8 @@ export const SupernovaNus = React.memo(() => {
   const E16OIBDOscillatedNormalG4 = calcIBDSNRecord(NeutrinoType.electronNeutrino, oscillatedFluxSpectrums[MassOrdering.Normal], tIBDoxyMin, crossSection16OElectronNeutrinoG4, electronNeutrino16OThresholdEnergyG4)
   const E16OIBDOscillatedInvertedG4 = calcIBDSNRecord(NeutrinoType.electronNeutrino, oscillatedFluxSpectrums[MassOrdering.Inverted], tIBDoxyMin, crossSection16OElectronNeutrinoG4, electronNeutrino16OThresholdEnergyG4)
 
+  const AntiE16OIBDUnoscillatedGroup = calcIBDSNRecord(NeutrinoType.electronAntineutrino, fluxSpectrums, tIBDoxyMin, crossSection16OElectronAntineutrinoGroup, electronAntineutrino16OThresholdEnergy)
+  
   const AntiE16OIBDUnoscillatedG1 = calcIBDSNRecord(NeutrinoType.electronAntineutrino, fluxSpectrums, tIBDoxyMin, crossSection16OElectronAntineutrinoG1, electronAntineutrino16OThresholdEnergyG1)
   const AntiE16OIBDOscillatedNormalG1 = calcIBDSNRecord(NeutrinoType.electronAntineutrino, oscillatedFluxSpectrums[MassOrdering.Normal], tIBDoxyMin, crossSection16OElectronAntineutrinoG1, electronAntineutrino16OThresholdEnergyG1)
   const AntiE16OIBDOscillatedInvertedG1 = calcIBDSNRecord(NeutrinoType.electronAntineutrino, oscillatedFluxSpectrums[MassOrdering.Inverted], tIBDoxyMin, crossSection16OElectronAntineutrinoG1, electronAntineutrino16OThresholdEnergyG1)
@@ -900,8 +906,8 @@ export const SupernovaNus = React.memo(() => {
         AnxESEforNO={AnxESEforNO}
         AntiE12CIBDUnoscillated={AntiE12CIBDUnoscillated}
         E12CIBDUnoscillated={E12CIBDUnoscillated}
-        AntiE16OIBDUnoscillatedG4={AntiE16OIBDUnoscillatedG4}
-        E16OIBDUnoscillatedG4={E16OIBDUnoscillatedG4}
+        AntiE16OIBDUnoscillatedGroup={AntiE16OIBDUnoscillatedGroup}
+        E16OIBDUnoscillatedGroup={E16OIBDUnoscillatedGroup}
       />
       <SupernovaPlotsIBDnue16O
         E16OIBDUnoscillatedG1 = {E16OIBDUnoscillatedG1}
