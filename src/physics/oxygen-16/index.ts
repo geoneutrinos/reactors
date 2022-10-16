@@ -83,6 +83,10 @@ export const crossSection16OElectronAntineutrinoG4 = (Ev: number): number => {
   return 10 ** (-39.862 + 3.636 * TurnedV + 0.846 * TurnedV ** 2) || 0
 }
 
+export const crossSection16OElectronAntineutrinoGroup = (Ev:number): number => {
+  return crossSection16OElectronAntineutrinoG1(Ev) + crossSection16OElectronAntineutrinoG2(Ev) + crossSection16OElectronAntineutrinoG3(Ev) + crossSection16OElectronAntineutrinoG4(Ev)
+}
+
 const electronNeutrino16OFitParams = [ // Table 4
   {Ex: 15.21, a:-40.008, b:4.918, c:1.036},
   {Ex: 22.47, a:-39.305, b:4.343, c:0.961},
