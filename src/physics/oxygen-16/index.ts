@@ -84,7 +84,12 @@ export const crossSection16OElectronAntineutrinoG4 = (Ev: number): number => {
 }
 
 export const crossSection16OElectronAntineutrinoGroup = (Ev:number): number => {
-  return crossSection16OElectronAntineutrinoG1(Ev) + crossSection16OElectronAntineutrinoG2(Ev) + crossSection16OElectronAntineutrinoG3(Ev) + crossSection16OElectronAntineutrinoG4(Ev)
+  const term1 = (Ev - electronAntineutrino16OThresholdEnergyG1) > 0 ? crossSection16OElectronAntineutrinoG1(Ev) : 0
+  const term2 = (Ev - electronAntineutrino16OThresholdEnergyG2) > 0 ? crossSection16OElectronAntineutrinoG2(Ev) : 0
+  const term3 = (Ev - electronAntineutrino16OThresholdEnergyG3) > 0 ? crossSection16OElectronAntineutrinoG3(Ev) : 0
+  const term4 = (Ev - electronAntineutrino16OThresholdEnergyG4) > 0 ? crossSection16OElectronAntineutrinoG4(Ev) : 0
+  
+  return (term1 + term2 + term3 + term4)
 }
 
 const electronNeutrino16OFitParams = [ // Table 4
