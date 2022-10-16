@@ -1008,7 +1008,7 @@ export const SupernovaNeutrinoCrossSections = ({
       marker: { color: "grey" },
     },
     {
-      y: AntiE16OIBDUnoscillated.crossSection,
+      y: AntiE16OIBDUnoscillatedG1.crossSection,
       x: energyValues,
       name: `ν̅<sub>e</sub>+<sup>16</sup>O`,
       type: "scatter",
@@ -1020,7 +1020,7 @@ export const SupernovaNeutrinoCrossSections = ({
       marker: { color: "blueviolet" },
     },
     {
-      y: E16OIBDUnoscillated.crossSection,
+      y: E16OIBDUnoscillatedG1.crossSection,
       x: energyValues,
       name: `ν<sub>e</sub>+<sup>16</sup>O`,
       type: "scatter",
