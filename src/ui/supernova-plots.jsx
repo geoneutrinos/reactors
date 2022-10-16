@@ -7,6 +7,7 @@ import { MassOrdering } from "../physics/neutrino-oscillation";
 import { energyValues} from "../supernova";
 
 export const SupernovaPlotsIBDnue16O = ({
+  E16OIBDUnoscillatedGroup,
   E16OIBDUnoscillatedG1,
   E16OIBDOscillatedNormalG1,
   E16OIBDOscillatedInvertedG1,
@@ -30,6 +31,18 @@ export const SupernovaPlotsIBDnue16O = ({
   nuxSpectrumShapeParam,
 }) => {
   const data = [
+    {
+      y: E16OIBDUnoscillatedGroup.eventSpectrum,
+      x: energyValues,
+      name: `ν<sub>e</sub>+<sup>16</sup>O w/o osc- Group`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        width: 2,
+      },
+      fill: "none",
+      marker: { color: "black" },
+    },
     {
       y: E16OIBDUnoscillatedG1.eventSpectrum,
       x: energyValues,
@@ -221,6 +234,7 @@ export const SupernovaPlotsIBDnue16O = ({
 };
 
 export const SupernovaPlotsIBDnuebar16O = ({
+  AntiE16OIBDUnoscillatedGroup,
   AntiE16OIBDUnoscillatedG1,
   AntiE16OIBDOscillatedNormalG1,
   AntiE16OIBDOscillatedInvertedG1,
@@ -244,6 +258,18 @@ export const SupernovaPlotsIBDnuebar16O = ({
   nuxSpectrumShapeParam,
 }) => {
   const data = [
+    {
+      y: AntiE16OIBDUnoscillatedGroup.eventSpectrum,
+      x: energyValues,
+      name: `ν̅<sub>e</sub>+<sup>16</sup>O w/o osc- Group`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        width: 2,
+      },
+      fill: "none",
+      marker: { color: "black" },
+    },
     {
       y: AntiE16OIBDUnoscillatedG1.eventSpectrum,
       x: energyValues,
