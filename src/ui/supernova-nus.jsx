@@ -910,6 +910,7 @@ export const SupernovaNus = React.memo(() => {
         E16OIBDUnoscillatedGroup={E16OIBDUnoscillatedGroup}
       />
       <SupernovaPlotsIBDnue16O
+        E16OIBDUnoscillatedGroup = {E16OIBDUnoscillatedGroup}
         E16OIBDUnoscillatedG1 = {E16OIBDUnoscillatedG1}
         E16OIBDOscillatedNormalG1 = {E16OIBDOscillatedNormalG1}
         E16OIBDOscillatedInvertedG1 = {E16OIBDOscillatedInvertedG1}
@@ -933,6 +934,7 @@ export const SupernovaNus = React.memo(() => {
         nuxSpectrumShapeParam={nuxSpectrumShapeParam}
       />
       <SupernovaPlotsIBDnuebar16O
+        AntiE16OIBDUnoscillatedGroup = {AntiE16OIBDUnoscillatedGroup}
         AntiE16OIBDUnoscillatedG1 = {AntiE16OIBDUnoscillatedG1}
         AntiE16OIBDOscillatedNormalG1 = {AntiE16OIBDOscillatedNormalG1}
         AntiE16OIBDOscillatedInvertedG1 = {AntiE16OIBDOscillatedInvertedG1}
