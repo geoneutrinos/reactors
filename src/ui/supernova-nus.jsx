@@ -900,8 +900,8 @@ export const SupernovaNus = React.memo(() => {
         AnxESEforNO={AnxESEforNO}
         AntiE12CIBDUnoscillated={AntiE12CIBDUnoscillated}
         E12CIBDUnoscillated={E12CIBDUnoscillated}
-        AntiE16OIBDUnoscillated={AntiE16OIBDUnoscillated}
-        E16OIBDUnoscillated={E16OIBDUnoscillated}
+        AntiE16OIBDUnoscillatedG1={AntiE16OIBDUnoscillatedG1}
+        E16OIBDUnoscillatedG1={E16OIBDUnoscillatedG1}
       />
       <SupernovaPlotsIBDnue16O
         E16OIBDUnoscillatedG1 = {E16OIBDUnoscillatedG1}
