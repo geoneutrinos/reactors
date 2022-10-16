@@ -897,8 +897,8 @@ export const SupernovaNeutrinoCrossSections = ({
   AnxESEforNO,
   AntiE12CIBDUnoscillated,
   E12CIBDUnoscillated,
-  AntiE16OIBDUnoscillated,
-  E16OIBDUnoscillated,
+  AntiE16OIBDUnoscillatedG1,
+  E16OIBDUnoscillatedG1,
 }) => {
   const xsectionIBD = energyValues.map(crossSectionSV2003)
 
