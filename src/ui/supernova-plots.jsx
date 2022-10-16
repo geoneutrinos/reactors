@@ -888,7 +888,7 @@ export const SupernovaOscillatedInvertedFluxPlots = ({
   );
 };
 
-export const NeutrinoElectronElasticScatteringCrossSection = ({
+export const SupernovaNeutrinoCrossSections = ({
   ESpNue,
   ESpAnu,
   ESEforNO,
