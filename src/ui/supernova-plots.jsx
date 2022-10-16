@@ -897,8 +897,8 @@ export const SupernovaNeutrinoCrossSections = ({
   AnxESEforNO,
   AntiE12CIBDUnoscillated,
   E12CIBDUnoscillated,
-  AntiE16OIBDUnoscillatedG4,
-  E16OIBDUnoscillatedG4,
+  AntiE16OIBDUnoscillatedGroup,
+  E16OIBDUnoscillatedGroup,
 }) => {
   const xsectionIBD = energyValues.map(crossSectionSV2003)
 
@@ -1008,7 +1008,7 @@ export const SupernovaNeutrinoCrossSections = ({
       marker: { color: "grey" },
     },
     {
-      y: AntiE16OIBDUnoscillatedG4.crossSection,
+      y: AntiE16OIBDUnoscillatedGroup.crossSection,
       x: energyValues,
       name: `ν̅<sub>e</sub>+<sup>16</sup>O`,
       type: "scatter",
@@ -1020,7 +1020,7 @@ export const SupernovaNeutrinoCrossSections = ({
       marker: { color: "blueviolet" },
     },
     {
-      y: E16OIBDUnoscillatedG4.crossSection,
+      y: E16OIBDUnoscillatedGroup.crossSection,
       x: energyValues,
       name: `ν<sub>e</sub>+<sup>16</sup>O`,
       type: "scatter",
