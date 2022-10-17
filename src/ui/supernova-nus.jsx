@@ -522,12 +522,12 @@ const SupernovaNusPane = () => {
                 \end{aligned}`}</Node>
             </p>
             <p>
-              The relatively high energies, large fluence, and short duration of the burst of CCSN neutrinos allows consideration of 
-              several reactions not presented elsewhere on this site. In addition to pIBD and eES, on this tab we present cross section plots 
+              The relatively high energy, large fluence, and short duration of the CCSN neutrinos allows consideration of 
+              several reactions not presented elsewhere on this site. On this tab, in addition to pIBD and eES, we present cross section plots 
               and event totals for pES, <sup>16</sup>O IBD, <sup>12</sup>C IBD, and CEvNS. While the cross sections for CEvNS and pES 
               are calculated internally using the estabished code for two-body elastic scattering (e.g. eES), the calculations 
-              of the cross sections for <sup>16</sup>O IBD and <sup>12</sup>C IBD are not conducive to online execution. For the <sup>16</sup>O IBD cross sections we use
-              parameterized fits (with threshold energies slightly larger than the excitation energies of each group)
+              of the cross sections for <sup>16</sup>O IBD and <sup>12</sup>C IBD are not conducive to online execution. For the <sup>16</sup>O IBD 
+              cross sections we use parameterized fits (with threshold energies slightly larger than the excitation energies of each group)
               from Nakazato, Suzuki, Sakuda (2018). For the <sup>12</sup>C IBD cross sections we use the fits to the data in Kolbe, Langanke, Vogel (1999)
               as found on the SNOwGLoBES site.
             </p>
