@@ -883,6 +883,8 @@ export const SupernovaNus = React.memo(() => {
       />
       <SupernovaPlotsIBDnue16O
         E16OIBDUnoscillated = {E16OIBDUnoscillated}
+        E16OIBDOscillatedNormal = {E16OIBDOscillatedNormal}
+        E16OIBDOscillatedInverted = {E16OIBDOscillatedInverted}
         E16OIBDUnoscillatedG1 = {E16OIBDUnoscillatedG1}
         E16OIBDOscillatedNormalG1 = {E16OIBDOscillatedNormalG1}
         E16OIBDOscillatedInvertedG1 = {E16OIBDOscillatedInvertedG1}
@@ -907,6 +909,8 @@ export const SupernovaNus = React.memo(() => {
       />
       <SupernovaPlotsIBDnuebar16O
         AntiE16OIBDUnoscillated = {AntiE16OIBDUnoscillated}
+        AntiE16OIBDOscillatedNormal = {AntiE16OIBDOscillatedNormal}
+        AntiE16OIBDOscillatedInverted = {AntiE16OIBDOscillatedInverted}
         AntiE16OIBDUnoscillatedG1 = {AntiE16OIBDUnoscillatedG1}
         AntiE16OIBDOscillatedNormalG1 = {AntiE16OIBDOscillatedNormalG1}
         AntiE16OIBDOscillatedInvertedG1 = {AntiE16OIBDOscillatedInvertedG1}
