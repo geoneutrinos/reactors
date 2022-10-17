@@ -600,7 +600,7 @@ export const SupernovaPlotsIBD = ({
         width: 2,
       },
       fill: "none",
-      marker: { color: "dimgrey" },
+      marker: { color: "darkred" },
     },
     {
       y: AntiE12CIBDOscillatedNormal.eventSpectrum,
@@ -612,7 +612,7 @@ export const SupernovaPlotsIBD = ({
         width: 2,
       },
       fill: "none",
-      marker: { color: "dimgrey" },
+      marker: { color: "darkred" },
       line: { dash: "dot" },
     },
     {
@@ -625,7 +625,7 @@ export const SupernovaPlotsIBD = ({
         width: 2,
       },
       fill: "none",
-      marker: { color: "dimgrey" },
+      marker: { color: "darkred" },
       line: { dash: "dashdot" },
     },
     {
@@ -1053,7 +1053,7 @@ export const SupernovaNeutrinoCrossSections = ({
         width: 2,
       },
       fill: "none",
-      marker: { color: "blue" },
+      marker: { color: "navy" },
     },
     {
       y: AntiESEforNO.crossSection,
@@ -1065,7 +1065,7 @@ export const SupernovaNeutrinoCrossSections = ({
         width: 2,
       },
       fill: "none",
-      marker: { color: "red" },
+      marker: { color: "darkred" },
     },
     {
       y: NuxESEforNO.crossSection,
@@ -1077,7 +1077,7 @@ export const SupernovaNeutrinoCrossSections = ({
         width: 2,
       },
       fill: "none",
-      marker: { color: "green" },
+      marker: { color: "yellowgreen" },
     },
     {
       y: AnxESEforNO.crossSection,
@@ -1086,7 +1086,7 @@ export const SupernovaNeutrinoCrossSections = ({
       type: "scatter",
       mode: "lines",
       fill: "none",
-      marker: { color: "purple" },
+      marker: { color: "indigo" },
       line: { dash: "dot" },
     },
     {
