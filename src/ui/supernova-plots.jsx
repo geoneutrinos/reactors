@@ -7,7 +7,7 @@ import { MassOrdering } from "../physics/neutrino-oscillation";
 import { energyValues} from "../supernova";
 
 export const SupernovaPlotsIBDnue16O = ({
-  E16OIBDUnoscillatedGroup,
+  E16OIBDUnoscillated,
   E16OIBDUnoscillatedG1,
   E16OIBDOscillatedNormalG1,
   E16OIBDOscillatedInvertedG1,
@@ -32,7 +32,7 @@ export const SupernovaPlotsIBDnue16O = ({
 }) => {
   const data = [
     {
-      y: E16OIBDUnoscillatedGroup.eventSpectrum,
+      y: E16OIBDUnoscillated.eventSpectrum,
       x: energyValues,
       name: `ν<sub>e</sub>+<sup>16</sup>O w/o osc- Group`,
       type: "scatter",
@@ -234,7 +234,7 @@ export const SupernovaPlotsIBDnue16O = ({
 };
 
 export const SupernovaPlotsIBDnuebar16O = ({
-  AntiE16OIBDUnoscillatedGroup,
+  AntiE16OIBDUnoscillated,
   AntiE16OIBDUnoscillatedG1,
   AntiE16OIBDOscillatedNormalG1,
   AntiE16OIBDOscillatedInvertedG1,
@@ -259,7 +259,7 @@ export const SupernovaPlotsIBDnuebar16O = ({
 }) => {
   const data = [
     {
-      y: AntiE16OIBDUnoscillatedGroup.eventSpectrum,
+      y: AntiE16OIBDUnoscillated.eventSpectrum,
       x: energyValues,
       name: `ν̅<sub>e</sub>+<sup>16</sup>O w/o osc- Group`,
       type: "scatter",
@@ -923,8 +923,8 @@ export const SupernovaNeutrinoCrossSections = ({
   AnxESEforNO,
   AntiE12CIBDUnoscillated,
   E12CIBDUnoscillated,
-  AntiE16OIBDUnoscillatedGroup,
-  E16OIBDUnoscillatedGroup,
+  AntiE16OIBDUnoscillated,
+  E16OIBDUnoscillated,
 }) => {
   const xsectionIBD = energyValues.map(crossSectionSV2003)
 
@@ -1034,7 +1034,7 @@ export const SupernovaNeutrinoCrossSections = ({
       marker: { color: "grey" },
     },
     {
-      y: AntiE16OIBDUnoscillatedGroup.crossSection,
+      y: AntiE16OIBDUnoscillated.crossSection,
       x: energyValues,
       name: `ν̅<sub>e</sub>+<sup>16</sup>O`,
       type: "scatter",
@@ -1046,7 +1046,7 @@ export const SupernovaNeutrinoCrossSections = ({
       marker: { color: "blueviolet" },
     },
     {
-      y: E16OIBDUnoscillatedGroup.crossSection,
+      y: E16OIBDUnoscillated.crossSection,
       x: energyValues,
       name: `ν<sub>e</sub>+<sup>16</sup>O`,
       type: "scatter",
