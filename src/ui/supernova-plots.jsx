@@ -8,6 +8,8 @@ import { energyValues} from "../supernova";
 
 export const SupernovaPlotsIBDnue16O = ({
   E16OIBDUnoscillated,
+  E16OIBDOscillatedNormal,
+  E16OIBDOscillatedInverted,
   E16OIBDUnoscillatedG1,
   E16OIBDOscillatedNormalG1,
   E16OIBDOscillatedInvertedG1,
@@ -34,7 +36,7 @@ export const SupernovaPlotsIBDnue16O = ({
     {
       y: E16OIBDUnoscillated.eventSpectrum,
       x: energyValues,
-      name: `ν<sub>e</sub>+<sup>16</sup>O w/o osc- Group`,
+      name: `ν<sub>e</sub>+<sup>16</sup>O w/o osc`,
       type: "scatter",
       mode: "lines",
       line: {
@@ -42,6 +44,32 @@ export const SupernovaPlotsIBDnue16O = ({
       },
       fill: "none",
       marker: { color: "black" },
+    },
+    {
+      y: E16OIBDOscillatedNormal.eventSpectrum,
+      x: energyValues,
+      name: `ν<sub>e</sub>+<sup>16</sup>O for NO`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        width: 2,
+      },
+      fill: "none",
+      marker: { color: "black" },
+      line: { dash: "dash" },
+    },
+    {
+      y: E16OIBDOscillatedInverted.eventSpectrum,
+      x: energyValues,
+      name: `ν<sub>e</sub>+<sup>16</sup>O for IO`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        width: 2,
+      },
+      fill: "none",
+      marker: { color: "black" },
+      line: { dash: "dashdot" },
     },
     {
       y: E16OIBDUnoscillatedG1.eventSpectrum,
@@ -235,6 +263,8 @@ export const SupernovaPlotsIBDnue16O = ({
 
 export const SupernovaPlotsIBDnuebar16O = ({
   AntiE16OIBDUnoscillated,
+  AntiE16OIBDOscillatedNormal,
+  AntiE16OIBDOscillatedInverted,
   AntiE16OIBDUnoscillatedG1,
   AntiE16OIBDOscillatedNormalG1,
   AntiE16OIBDOscillatedInvertedG1,
@@ -261,7 +291,7 @@ export const SupernovaPlotsIBDnuebar16O = ({
     {
       y: AntiE16OIBDUnoscillated.eventSpectrum,
       x: energyValues,
-      name: `ν̅<sub>e</sub>+<sup>16</sup>O w/o osc- Group`,
+      name: `ν̅<sub>e</sub>+<sup>16</sup>O w/o osc`,
       type: "scatter",
       mode: "lines",
       line: {
@@ -269,6 +299,32 @@ export const SupernovaPlotsIBDnuebar16O = ({
       },
       fill: "none",
       marker: { color: "black" },
+    },
+    {
+      y: AntiE16OIBDOscillatedNormal.eventSpectrum,
+      x: energyValues,
+      name: `ν̅<sub>e</sub>+<sup>16</sup>O for NO`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        width: 2,
+      },
+      fill: "none",
+      marker: { color: "black" },
+      line: { dash: "dash" },
+    },
+    {
+      y: AntiE16OIBDOscillatedInverted.eventSpectrum,
+      x: energyValues,
+      name: `ν̅<sub>e</sub>+<sup>16</sup>O for IO`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        width: 2,
+      },
+      fill: "none",
+      marker: { color: "black" },
+      line: { dash: "dashdot" },
     },
     {
       y: AntiE16OIBDUnoscillatedG1.eventSpectrum,
