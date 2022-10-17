@@ -48,7 +48,7 @@ export const SupernovaPlotsIBDnue16O = ({
     {
       y: E16OIBDOscillatedNormal.eventSpectrum,
       x: energyValues,
-      name: `ν<sub>e</sub>+<sup>16</sup>O for NO`,
+      name: `ν<sub>e</sub>+<sup>16</sup>O NO`,
       type: "scatter",
       mode: "lines",
       line: {
@@ -61,7 +61,7 @@ export const SupernovaPlotsIBDnue16O = ({
     {
       y: E16OIBDOscillatedInverted.eventSpectrum,
       x: energyValues,
-      name: `ν<sub>e</sub>+<sup>16</sup>O for IO`,
+      name: `ν<sub>e</sub>+<sup>16</sup>O IO`,
       type: "scatter",
       mode: "lines",
       line: {
@@ -86,7 +86,7 @@ export const SupernovaPlotsIBDnue16O = ({
     {
       y: E16OIBDOscillatedNormalG1.eventSpectrum,
       x: energyValues,
-      name: `ν<sub>e</sub>+<sup>16</sup>O for NO- G1`,
+      name: `ν<sub>e</sub>+<sup>16</sup>O NO- G1`,
       type: "scatter",
       mode: "lines",
       line: {
@@ -99,7 +99,7 @@ export const SupernovaPlotsIBDnue16O = ({
     {
       y: E16OIBDOscillatedInvertedG1.eventSpectrum,
       x: energyValues,
-      name: `ν<sub>e</sub>+<sup>16</sup>O for IO- G1`,
+      name: `ν<sub>e</sub>+<sup>16</sup>O IO- G1`,
       type: "scatter",
       mode: "lines",
       line: {
@@ -124,7 +124,7 @@ export const SupernovaPlotsIBDnue16O = ({
     {
       y: E16OIBDOscillatedNormalG2.eventSpectrum,
       x: energyValues,
-      name: `ν<sub>e</sub>+<sup>16</sup>O for NO- G2`,
+      name: `ν<sub>e</sub>+<sup>16</sup>O NO- G2`,
       type: "scatter",
       mode: "lines",
       line: {
@@ -137,7 +137,7 @@ export const SupernovaPlotsIBDnue16O = ({
     {
       y: E16OIBDOscillatedInvertedG2.eventSpectrum,
       x: energyValues,
-      name: `ν<sub>e</sub>+<sup>16</sup>O for IO- G2`,
+      name: `ν<sub>e</sub>+<sup>16</sup>O IO- G2`,
       type: "scatter",
       mode: "lines",
       line: {
@@ -162,7 +162,7 @@ export const SupernovaPlotsIBDnue16O = ({
     {
       y: E16OIBDOscillatedNormalG3.eventSpectrum,
       x: energyValues,
-      name: `ν<sub>e</sub>+<sup>16</sup>O for NO- G3`,
+      name: `ν<sub>e</sub>+<sup>16</sup>O NO- G3`,
       type: "scatter",
       mode: "lines",
       line: {
@@ -175,7 +175,7 @@ export const SupernovaPlotsIBDnue16O = ({
     {
       y: E16OIBDOscillatedInvertedG3.eventSpectrum,
       x: energyValues,
-      name: `ν<sub>e</sub>+<sup>16</sup>O for IO- G3`,
+      name: `ν<sub>e</sub>+<sup>16</sup>O IO- G3`,
       type: "scatter",
       mode: "lines",
       line: {
@@ -200,7 +200,7 @@ export const SupernovaPlotsIBDnue16O = ({
     {
       y: E16OIBDOscillatedNormalG4.eventSpectrum,
       x: energyValues,
-      name: `ν<sub>e</sub>+<sup>16</sup>O for NO- G4`,
+      name: `ν<sub>e</sub>+<sup>16</sup>O NO- G4`,
       type: "scatter",
       mode: "lines",
       line: {
@@ -213,7 +213,7 @@ export const SupernovaPlotsIBDnue16O = ({
     {
       y: E16OIBDOscillatedInvertedG4.eventSpectrum,
       x: energyValues,
-      name: `ν<sub>e</sub>+<sup>16</sup>O for IO- G4`,
+      name: `ν<sub>e</sub>+<sup>16</sup>O IO- G4`,
       type: "scatter",
       mode: "lines",
       line: {
@@ -311,7 +311,7 @@ export const SupernovaPlotsIBDnuebar16O = ({
     {
       y: AntiE16OIBDOscillatedNormal.eventSpectrum,
       x: energyValues,
-      name: `ν̅<sub>e</sub>+<sup>16</sup>O for NO`,
+      name: `ν̅<sub>e</sub>+<sup>16</sup>O NO`,
       type: "scatter",
       mode: "lines",
       line: {
@@ -324,7 +324,7 @@ export const SupernovaPlotsIBDnuebar16O = ({
     {
       y: AntiE16OIBDOscillatedInverted.eventSpectrum,
       x: energyValues,
-      name: `ν̅<sub>e</sub>+<sup>16</sup>O for IO`,
+      name: `ν̅<sub>e</sub>+<sup>16</sup>O IO`,
       type: "scatter",
       mode: "lines",
       line: {
@@ -349,7 +349,7 @@ export const SupernovaPlotsIBDnuebar16O = ({
     {
       y: AntiE16OIBDOscillatedNormalG1.eventSpectrum,
       x: energyValues,
-      name: `ν̅<sub>e</sub>+<sup>16</sup>O for NO- G1`,
+      name: `ν̅<sub>e</sub>+<sup>16</sup>O NO- G1`,
       type: "scatter",
       mode: "lines",
       line: {
@@ -362,7 +362,7 @@ export const SupernovaPlotsIBDnuebar16O = ({
     {
       y: AntiE16OIBDOscillatedInvertedG1.eventSpectrum,
       x: energyValues,
-      name: `ν̅<sub>e</sub>+<sup>16</sup>O for IO- G1`,
+      name: `ν̅<sub>e</sub>+<sup>16</sup>O IO- G1`,
       type: "scatter",
       mode: "lines",
       line: {
@@ -387,7 +387,7 @@ export const SupernovaPlotsIBDnuebar16O = ({
     {
       y: AntiE16OIBDOscillatedNormalG2.eventSpectrum,
       x: energyValues,
-      name: `ν̅<sub>e</sub>+<sup>16</sup>O for NO- G2`,
+      name: `ν̅<sub>e</sub>+<sup>16</sup>O NO- G2`,
       type: "scatter",
       mode: "lines",
       line: {
@@ -400,7 +400,7 @@ export const SupernovaPlotsIBDnuebar16O = ({
     {
       y: AntiE16OIBDOscillatedInvertedG2.eventSpectrum,
       x: energyValues,
-      name: `ν̅<sub>e</sub>+<sup>16</sup>O for IO- G2`,
+      name: `ν̅<sub>e</sub>+<sup>16</sup>O IO- G2`,
       type: "scatter",
       mode: "lines",
       line: {
@@ -425,7 +425,7 @@ export const SupernovaPlotsIBDnuebar16O = ({
     {
       y: AntiE16OIBDOscillatedNormalG3.eventSpectrum,
       x: energyValues,
-      name: `ν̅<sub>e</sub>+<sup>16</sup>O for NO- G3`,
+      name: `ν̅<sub>e</sub>+<sup>16</sup>O NO- G3`,
       type: "scatter",
       mode: "lines",
       line: {
@@ -438,7 +438,7 @@ export const SupernovaPlotsIBDnuebar16O = ({
     {
       y: AntiE16OIBDOscillatedInvertedG3.eventSpectrum,
       x: energyValues,
-      name: `ν̅<sub>e</sub>+<sup>16</sup>O for IO- G3`,
+      name: `ν̅<sub>e</sub>+<sup>16</sup>O IO- G3`,
       type: "scatter",
       mode: "lines",
       line: {
@@ -463,7 +463,7 @@ export const SupernovaPlotsIBDnuebar16O = ({
     {
       y: AntiE16OIBDOscillatedNormalG4.eventSpectrum,
       x: energyValues,
-      name: `ν̅<sub>e</sub>+<sup>16</sup>O for NO- G4`,
+      name: `ν̅<sub>e</sub>+<sup>16</sup>O NO- G4`,
       type: "scatter",
       mode: "lines",
       line: {
@@ -475,7 +475,7 @@ export const SupernovaPlotsIBDnuebar16O = ({
     {
       y: AntiE16OIBDOscillatedInvertedG4.eventSpectrum,
       x: energyValues,
-      name: `ν̅<sub>e</sub>+<sup>16</sup>O for IO- G4`,
+      name: `ν̅<sub>e</sub>+<sup>16</sup>O IO- G4`,
       type: "scatter",
       mode: "lines",
       line: {
@@ -567,7 +567,7 @@ export const SupernovaPlotsIBD = ({
     {
       y: pIBDOscillatedNormal.eventSpectrum,
       x: energyValues,
-      name: `ν̅<sub>e</sub>+p for NO`,
+      name: `ν̅<sub>e</sub>+p NO`,
       type: "scatter",
       mode: "lines",
       line: {
@@ -580,7 +580,7 @@ export const SupernovaPlotsIBD = ({
     {
       y: pIBDOscillatedInverted.eventSpectrum,
       x: energyValues,
-      name: `ν̅<sub>e</sub>+p for IO`,
+      name: `ν̅<sub>e</sub>+p IO`,
       type: "scatter",
       mode: "lines",
       line: {
@@ -605,7 +605,7 @@ export const SupernovaPlotsIBD = ({
     {
       y: AntiE12CIBDOscillatedNormal.eventSpectrum,
       x: energyValues,
-      name: `ν̅<sub>e</sub>+<sup>12</sup>C for NO`,
+      name: `ν̅<sub>e</sub>+<sup>12</sup>C NO`,
       type: "scatter",
       mode: "lines",
       line: {
@@ -618,7 +618,7 @@ export const SupernovaPlotsIBD = ({
     {
       y: AntiE12CIBDOscillatedInverted.eventSpectrum,
       x: energyValues,
-      name: `ν̅<sub>e</sub>+<sup>12</sup>C for IO`,
+      name: `ν̅<sub>e</sub>+<sup>12</sup>C IO`,
       type: "scatter",
       mode: "lines",
       line: {
@@ -643,7 +643,7 @@ export const SupernovaPlotsIBD = ({
     {
       y: E12CIBDOscillatedNormal.eventSpectrum,
       x: energyValues,
-      name: `ν<sub>e</sub>+<sup>12</sup>C for NO`,
+      name: `ν<sub>e</sub>+<sup>12</sup>C NO`,
       type: "scatter",
       mode: "lines",
       line: {
@@ -656,7 +656,7 @@ export const SupernovaPlotsIBD = ({
     {
       y: E12CIBDOscillatedInverted.eventSpectrum,
       x: energyValues,
-      name: `ν<sub>e</sub>+<sup>12</sup>C for IO`,
+      name: `ν<sub>e</sub>+<sup>12</sup>C IO`,
       type: "scatter",
       mode: "lines",
       line: {
@@ -860,7 +860,7 @@ export const SupernovaOscillatedFluxPlots = ({
     },
   ];
   var layout = {
-    title: `CCSN (10 kpc): Neutrino Fluence Spectra w/ NO Oscillations
+    title: `CCSN (10 kpc): Neutrino Fluence Spectra NO Oscillations
     <br /><sub>ν<sub>e</sub> , ν̅<sub>e</sub> , ν<sub>x</sub> : E<sub>tot</sub> (10<sup>52</sup> erg) / E<sub>avg</sub> (MeV) / β = ${nueTotEnrg.toFixed(1)} / ${nueAvgEnrg.toFixed(1)} / ${nueSpectrumShapeParam.toFixed(0)}, ${anuTotEnrg.toFixed(1)} / ${anuAvgEnrg.toFixed(1)} / ${anuSpectrumShapeParam.toFixed(0)}, ${nuxTotEnrg.toFixed(1)} / ${nuxAvgEnrg.toFixed(1)} / ${nuxSpectrumShapeParam.toFixed(0)}</sub>`,
     yaxis: {
       title: { text: `Fluence (/cm<sup>2</sup>/MeV)` },
@@ -890,7 +890,7 @@ export const SupernovaOscillatedFluxPlots = ({
   return (
     <Card>
       <Card.Header>
-        CCSN (10 kpc): Neutrino Fluence Spectra w/ NO Oscillations
+        CCSN (10 kpc): Neutrino Fluence Spectra NO Oscillations
       </Card.Header>
       <Card.Body>
         <Plot
@@ -949,7 +949,7 @@ export const SupernovaOscillatedInvertedFluxPlots = ({
     },
   ];
   var layout = {
-    title: `CCSN (10 kpc): Neutrino Fluence Spectra w/ IO Oscillations
+    title: `CCSN (10 kpc): Neutrino Fluence Spectra IO Oscillations
     <br /><sub>ν<sub>e</sub> , ν̅<sub>e</sub> , ν<sub>x</sub> : E<sub>tot</sub> (10<sup>52</sup> erg) / E<sub>avg</sub> (MeV) / β = ${nueTotEnrg.toFixed(1)} / ${nueAvgEnrg.toFixed(1)} / ${nueSpectrumShapeParam.toFixed(0)}, ${anuTotEnrg.toFixed(1)} / ${anuAvgEnrg.toFixed(1)} / ${anuSpectrumShapeParam.toFixed(0)}, ${nuxTotEnrg.toFixed(1)} / ${nuxAvgEnrg.toFixed(1)} / ${nuxSpectrumShapeParam.toFixed(0)}</sub>`,
     yaxis: {
       title: { text: `Fluence (/cm<sup>2</sup>/MeV)` },
@@ -979,7 +979,7 @@ export const SupernovaOscillatedInvertedFluxPlots = ({
   return (
     <Card>
       <Card.Header>
-        CCSN (10 kpc): Neutrino Fluence Spectra w/ IO Oscillations
+        CCSN (10 kpc): Neutrino Fluence Spectra IO Oscillations
       </Card.Header>
       <Card.Body>
         <Plot
