@@ -22,7 +22,7 @@ export { ParticleMasses } from "./physics-masses";
 export { EesCouplingFactors, PesCouplingFactors } from "./physics-coupling-factors";
 export { GeoFluxUncertainties } from "./geo-uncertainties";
 export { IsotopeData } from "./isotope-data";
-export { GeoRateFluxYields } from "./geo-ratefluxyields"
+export { GeoRateFluxYields } from "./geo-ratefluxyields";
 export { SupernovaNus } from "./supernova-nus";
 export { Muons } from "./muon-backgrounds";
 export {
