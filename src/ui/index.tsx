@@ -24,6 +24,7 @@ export { GeoFluxUncertainties } from "./geo-uncertainties";
 export { IsotopeData } from "./isotope-data";
 export { GeoRateFluxYields } from "./geo-ratefluxyields"
 export { SupernovaNus } from "./supernova-nus";
+export { Muons } from "./muon-backgrounds";
 export {
   CrossSectionPlots,
   SV03PercentDifference,
