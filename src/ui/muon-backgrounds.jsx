@@ -1,9 +1,7 @@
-import React, {useState, useMemo, memo} from "react";
-import { Card, Form, InputGroup, Table } from "react-bootstrap";
+import React from "react";
+import { Card } from "react-bootstrap";
 
-import { Num } from ".";
-
-import { Node, Provider } from "@nteract/mathjax";
+import { Provider } from "@nteract/mathjax";
 
 const MuonsPane = () => {
   return (
@@ -13,7 +11,7 @@ const MuonsPane = () => {
         <Provider>
           <div>
             <p>
-              This pane describes the overburden-dependent muon-induced backgrunds{" "}
+              Description of the overburden-dependent muon-induced backgrunds goes here...
             </p>
           </div>
         </Provider>
@@ -22,10 +20,10 @@ const MuonsPane = () => {
   );
 };
 
-export const Muons = React.memo(() => {
+export const Muons = () => {
   return (
     <div>
       <MuonsPane />
     </div>
-  )
-})
+  );
+}
