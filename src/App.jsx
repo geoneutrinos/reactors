@@ -64,6 +64,8 @@ import {
   SupernovaNus,
   //About tab
   AboutPane,
+  // Muon tab
+  Muons,
   // Custom Core UI
   AddCustomCoreModal,
   ManageCustomCoreModal,
@@ -343,6 +345,9 @@ function App(props) {
                   <PhysicsOscillationPane />
                   <AverageSurvivalPane />
                 </Visible>
+              </Tab>
+              <Tab eventKey="muon" title="Muon">
+                  <Muons />
               </Tab>
               <Tab eventKey="output" title="Output">
                 <Visible>
