@@ -170,12 +170,30 @@ const SupernovaNusEventsIBD = ({
   E12CIBDUnoscillated,
   E12CIBDOscillatedNormal,
   E12CIBDOscillatedInverted,
-  AntiE16OIBDUnoscillated,
-  AntiE16OIBDOscillatedNormal,
-  AntiE16OIBDOscillatedInverted,
-  E16OIBDUnoscillated,
-  E16OIBDOscillatedNormal,
-  E16OIBDOscillatedInverted,
+  AntiE16OIBDUnoscillatedG1,
+  AntiE16OIBDOscillatedNormalG1,
+  AntiE16OIBDOscillatedInvertedG1,
+  E16OIBDUnoscillatedG1,
+  E16OIBDOscillatedNormalG1,
+  E16OIBDOscillatedInvertedG1,
+  AntiE16OIBDUnoscillatedG2,
+  AntiE16OIBDOscillatedNormalG2,
+  AntiE16OIBDOscillatedInvertedG2,
+  E16OIBDUnoscillatedG2,
+  E16OIBDOscillatedNormalG2,
+  E16OIBDOscillatedInvertedG2,
+  AntiE16OIBDUnoscillatedG3,
+  AntiE16OIBDOscillatedNormalG3,
+  AntiE16OIBDOscillatedInvertedG3,
+  E16OIBDUnoscillatedG3,
+  E16OIBDOscillatedNormalG3,
+  E16OIBDOscillatedInvertedG3,
+  AntiE16OIBDUnoscillatedG4,
+  AntiE16OIBDOscillatedNormalG4,
+  AntiE16OIBDOscillatedInvertedG4,
+  E16OIBDUnoscillatedG4,
+  E16OIBDOscillatedNormalG4,
+  E16OIBDOscillatedInvertedG4,
   tIBDpMin,
   setTIBDpMin,
   tIBDoxyMin,
@@ -239,26 +257,26 @@ const SupernovaNusEventsIBD = ({
                 <tr>
                   <td>ν<sub>e</sub> + <sup>16</sup>O</td>
                   <td>
-                    <Num v={E16OIBDUnoscillated.events} p={1} />
+                    <Num v={E16OIBDUnoscillatedG1.events + E16OIBDUnoscillatedG2.events + E16OIBDUnoscillatedG3.events + E16OIBDUnoscillatedG4.events} p={1} />
                   </td>
                   <td>
-                    <Num v={E16OIBDOscillatedNormal.events} p={1} />
+                    <Num v={E16OIBDOscillatedNormalG1.events + E16OIBDOscillatedNormalG2.events + E16OIBDOscillatedNormalG3.events + E16OIBDOscillatedNormalG4.events} p={1} />
                   </td>
                   <td>
-                    <Num v={E16OIBDOscillatedInverted.events} p={1} />
+                    <Num v={E16OIBDOscillatedInvertedG1.events + E16OIBDOscillatedInvertedG2.events + E16OIBDOscillatedInvertedG3.events + E16OIBDOscillatedInvertedG4.events} p={1} />
                   </td>
                   <td></td>
                 </tr>
                 <tr>
                   <td>ν̅<sub>e</sub> + <sup>16</sup>O</td>
                   <td>
-                    <Num v={AntiE16OIBDUnoscillated.events} p={1} />
+                    <Num v={AntiE16OIBDUnoscillatedG1.events + AntiE16OIBDUnoscillatedG2.events + AntiE16OIBDUnoscillatedG3.events + AntiE16OIBDUnoscillatedG4.events} p={1} />
                   </td>
                   <td>
-                    <Num v={AntiE16OIBDOscillatedNormal.events} p={1} />
+                    <Num v={AntiE16OIBDOscillatedNormalG1.events + AntiE16OIBDOscillatedNormalG2.events + AntiE16OIBDOscillatedNormalG3.events + AntiE16OIBDOscillatedNormalG4.events} p={1} />
                   </td>
                   <td>
-                    <Num v={AntiE16OIBDOscillatedInverted.events} p={1} />
+                    <Num v={AntiE16OIBDOscillatedInvertedG1.events + AntiE16OIBDOscillatedInvertedG2.events + AntiE16OIBDOscillatedInvertedG3.events + AntiE16OIBDOscillatedInvertedG4.events} p={1} />
                   </td>
                   <td></td>
                 </tr>
@@ -955,13 +973,30 @@ export const SupernovaNus = React.memo(() => {
         E12CIBDUnoscillated = {E12CIBDUnoscillated}
         E12CIBDOscillatedNormal = {E12CIBDOscillatedNormal}
         E12CIBDOscillatedInverted = {E12CIBDOscillatedInverted}
-        AntiE16OIBDUnoscillated={AntiE16OIBDUnoscillated}
-        AntiE16OIBDOscillatedNormal={AntiE16OIBDOscillatedNormal}
-        AntiE16OIBDOscillatedInverted={AntiE16OIBDOscillatedInverted}
-        E16OIBDUnoscillated = {E16OIBDUnoscillated}
-        E16OIBDOscillatedNormal = {E16OIBDOscillatedNormal}
-        E16OIBDOscillatedInverted = {E16OIBDOscillatedInverted}
+        AntiE16OIBDUnoscillatedG1 = {AntiE16OIBDUnoscillatedG1}
+        AntiE16OIBDOscillatedNormalG1 = {AntiE16OIBDOscillatedNormalG1}
+        AntiE16OIBDOscillatedInvertedG1 = {AntiE16OIBDOscillatedInvertedG1}
         E16OIBDUnoscillatedG1 = {E16OIBDUnoscillatedG1}
+        E16OIBDOscillatedNormalG1 = {E16OIBDOscillatedNormalG1}
+        E16OIBDOscillatedInvertedG1 = {E16OIBDOscillatedInvertedG1}
+        AntiE16OIBDUnoscillatedG2 = {AntiE16OIBDUnoscillatedG2}
+        AntiE16OIBDOscillatedNormalG2 = {AntiE16OIBDOscillatedNormalG2}
+        AntiE16OIBDOscillatedInvertedG2 = {AntiE16OIBDOscillatedInvertedG2}
+        E16OIBDUnoscillatedG2 = {E16OIBDUnoscillatedG2}
+        E16OIBDOscillatedNormalG2 = {E16OIBDOscillatedNormalG2}
+        E16OIBDOscillatedInvertedG2 = {E16OIBDOscillatedInvertedG2}
+        AntiE16OIBDUnoscillatedG3 = {AntiE16OIBDUnoscillatedG3}
+        AntiE16OIBDOscillatedNormalG3 = {AntiE16OIBDOscillatedNormalG3}
+        AntiE16OIBDOscillatedInvertedG3 = {AntiE16OIBDOscillatedInvertedG3}
+        E16OIBDUnoscillatedG3 = {E16OIBDUnoscillatedG3}
+        E16OIBDOscillatedNormalG3 = {E16OIBDOscillatedNormalG3}
+        E16OIBDOscillatedInvertedG3 = {E16OIBDOscillatedInvertedG3}
+        AntiE16OIBDUnoscillatedG4 = {AntiE16OIBDUnoscillatedG4}
+        AntiE16OIBDOscillatedNormalG4 = {AntiE16OIBDOscillatedNormalG4}
+        AntiE16OIBDOscillatedInvertedG4 = {AntiE16OIBDOscillatedInvertedG4}
+        E16OIBDUnoscillatedG4 = {E16OIBDUnoscillatedG4}
+        E16OIBDOscillatedNormalG4 = {E16OIBDOscillatedNormalG4}
+        E16OIBDOscillatedInvertedG4 = {E16OIBDOscillatedInvertedG4}
         tIBDpMin={tIBDpMin}
         setTIBDpMin={setTIBDpMin}
         tIBDoxyMin={tIBDoxyMin}
