@@ -1,3 +1,9 @@
+interface FluxesAtDepth {
+  muonSlantIntensity: Float64Array
+  muonFlatIntensity: Float64Array
+  neutronFlatIntensity: Float64Array
+}
+  
 // overburden-dependent muon-induced backgrouds
 
 const depthBins = 1000;
@@ -35,4 +41,16 @@ function neutronInducedFlux(flatDepth: number) {
   const overburdenCoefficient13 = 0.86; // km.w.e.
     
   return (intensityParameter13 * (overburdenCoefficient13 / flatDepth) * Math.exp(-flatDepth / overburdenCoefficient13));
+}
+
+export const muonBackgroundFluxes = (fluxFunc: differentialMuonIntensity ): => FluxesAtDepth => {
+  const muonSlantIntensity = depthValues.map((Dv) => differentialMuonIntensity(Dv))
+  const muonFlatIntensity = depthValues.map((Dv) => flatOverburdenMuonIntensity(Dv))
+  const neutronFlatIntensity = depthValues.map((Dv) => neutronInducedFlux(Dv))
+  
+  return {
+    muonSlantIntensity,
+    muonFlatIntensity,
+    neutronFlatIntensity
+  }
 }
