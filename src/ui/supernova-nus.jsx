@@ -984,7 +984,7 @@ export const SupernovaNus = React.memo(() => {
         AntiE16OIBDOscillatedInvertedG2 = {AntiE16OIBDOscillatedInvertedG2}
         E16OIBDUnoscillatedG2 = {E16OIBDUnoscillatedG2}
         E16OIBDOscillatedNormalG2 = {E16OIBDOscillatedNormalG2}
-        E16OIBDOscillatedInvertedG2 = {E16OIBDOscillatedInvertedG1}
+        E16OIBDOscillatedInvertedG2 = {E16OIBDOscillatedInvertedG2}
         AntiE16OIBDUnoscillatedG3 = {AntiE16OIBDUnoscillatedG3}
         AntiE16OIBDOscillatedNormalG3 = {AntiE16OIBDOscillatedNormalG3}
         AntiE16OIBDOscillatedInvertedG3 = {AntiE16OIBDOscillatedInvertedG3}
