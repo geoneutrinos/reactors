@@ -3,6 +3,8 @@ import { Card } from "react-bootstrap";
 
 import { Provider } from "@nteract/mathjax";
 
+import { muonBackgroundFluxes } from "../muons";
+
 const MuonsPane = () => {
   return (
     <Card>
@@ -11,7 +13,10 @@ const MuonsPane = () => {
         <Provider>
           <div>
             <p>
-              Description of the overburden-dependent muon-induced backgrunds goes here...
+              This page is an inital attempt to model the muon-induced backgrounds that depend on the overburden of the detector site.  
+              So far there are three plots- differential muon intensity corresonding to slant depth, differential muon intensity 
+              corresponding to a falt overburden, and the neutron flux emerging from the rock into the underground cavern as a function of
+              the depth relative to a flat overburden.
             </p>
           </div>
         </Provider>
