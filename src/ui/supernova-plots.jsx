@@ -53,10 +53,10 @@ export const SupernovaPlotsIBDnue16O = ({
       mode: "lines",
       line: {
         width: 2,
+        dash: "dot"
       },
       fill: "none",
       marker: { color: "black" },
-      line: { dash: "dot" },
     },
     {
       y: E16OIBDOscillatedInverted.eventSpectrum,
@@ -66,10 +66,10 @@ export const SupernovaPlotsIBDnue16O = ({
       mode: "lines",
       line: {
         width: 2,
+        dash: "dashdot",
       },
       fill: "none",
       marker: { color: "black" },
-      line: { dash: "dashdot" },
     },
     {
       y: E16OIBDUnoscillatedG1.eventSpectrum,
@@ -79,9 +79,9 @@ export const SupernovaPlotsIBDnue16O = ({
       mode: "lines",
       line: {
         width: 2,
+        color: "orchid",
       },
       fill: "none",
-      marker: { color: "orchid" },
     },
     {
       y: E16OIBDOscillatedNormalG1.eventSpectrum,
@@ -91,10 +91,10 @@ export const SupernovaPlotsIBDnue16O = ({
       mode: "lines",
       line: {
         width: 2,
+        dash: "dot",
       },
       fill: "none",
       marker: { color: "orchid" },
-      line: { dash: "dot" },
     },
     {
       y: E16OIBDOscillatedInvertedG1.eventSpectrum,
@@ -104,10 +104,10 @@ export const SupernovaPlotsIBDnue16O = ({
       mode: "lines",
       line: {
         width: 2,
+        dash: "dashdot",
       },
       fill: "none",
       marker: { color: "orchid" },
-      line: { dash: "dashdot" },
     },
     {
       y: E16OIBDUnoscillatedG2.eventSpectrum,
@@ -129,10 +129,10 @@ export const SupernovaPlotsIBDnue16O = ({
       mode: "lines",
       line: {
         width: 2,
+        dash: "dot",
       },
       fill: "none",
       marker: { color: "mediumblue" },
-      line: { dash: "dot" },
     },
     {
       y: E16OIBDOscillatedInvertedG2.eventSpectrum,
@@ -142,10 +142,10 @@ export const SupernovaPlotsIBDnue16O = ({
       mode: "lines",
       line: {
         width: 2,
+        dash: "dashdot",
       },
       fill: "none",
       marker: { color: "mediumblue" },
-      line: { dash: "dashdot" },
     },
     {
       y: E16OIBDUnoscillatedG3.eventSpectrum,
@@ -167,10 +167,10 @@ export const SupernovaPlotsIBDnue16O = ({
       mode: "lines",
       line: {
         width: 2,
+        dash: "dot",
       },
       fill: "none",
       marker: { color: "olive" },
-      line: { dash: "dot" },
     },
     {
       y: E16OIBDOscillatedInvertedG3.eventSpectrum,
@@ -180,10 +180,10 @@ export const SupernovaPlotsIBDnue16O = ({
       mode: "lines",
       line: {
         width: 2,
+        dash: "dashdot",
       },
       fill: "none",
       marker: { color: "olive" },
-      line: { dash: "dashdot" },
     },
     {
       y: E16OIBDUnoscillatedG4.eventSpectrum,
@@ -205,10 +205,10 @@ export const SupernovaPlotsIBDnue16O = ({
       mode: "lines",
       line: {
         width: 2,
+        dash: "dot",
       },
       fill: "none",
       marker: { color: "tomato" },
-      line: { dash: "dot" },
     },
     {
       y: E16OIBDOscillatedInvertedG4.eventSpectrum,
@@ -218,10 +218,10 @@ export const SupernovaPlotsIBDnue16O = ({
       mode: "lines",
       line: {
         width: 2,
+        dash: "dashdot",
       },
       fill: "none",
       marker: { color: "tomato" },
-      line: { dash: "dashdot" },
     },
   ];
   var layout = {
@@ -316,10 +316,10 @@ export const SupernovaPlotsIBDnuebar16O = ({
       mode: "lines",
       line: {
         width: 2,
+        dash: "dot",
       },
       fill: "none",
       marker: { color: "black" },
-      line: { dash: "dot" },
     },
     {
       y: AntiE16OIBDOscillatedInverted.eventSpectrum,
@@ -329,10 +329,10 @@ export const SupernovaPlotsIBDnuebar16O = ({
       mode: "lines",
       line: {
         width: 2,
+        dash: "dashdot",
       },
       fill: "none",
       marker: { color: "black" },
-      line: { dash: "dashdot" },
     },
     {
       y: AntiE16OIBDUnoscillatedG1.eventSpectrum,
@@ -354,10 +354,10 @@ export const SupernovaPlotsIBDnuebar16O = ({
       mode: "lines",
       line: {
         width: 2,
+        dash: "dot",
       },
       fill: "none",
       marker: { color: "orchid" },
-      line: { dash: "dot" },
     },
     {
       y: AntiE16OIBDOscillatedInvertedG1.eventSpectrum,
@@ -367,10 +367,10 @@ export const SupernovaPlotsIBDnuebar16O = ({
       mode: "lines",
       line: {
         width: 2,
+        dash: "dashdot",
       },
       fill: "none",
       marker: { color: "orchid" },
-      line: { dash: "dashdot" },
     },
     {
       y: AntiE16OIBDUnoscillatedG2.eventSpectrum,
@@ -392,10 +392,10 @@ export const SupernovaPlotsIBDnuebar16O = ({
       mode: "lines",
       line: {
         width: 2,
+        dash: "dot",
       },
       fill: "none",
       marker: { color: "mediumblue" },
-      line: { dash: "dot" },
     },
     {
       y: AntiE16OIBDOscillatedInvertedG2.eventSpectrum,
@@ -405,10 +405,10 @@ export const SupernovaPlotsIBDnuebar16O = ({
       mode: "lines",
       line: {
         width: 2,
+        dash: "dot",
       },
       fill: "none",
       marker: { color: "mediumblue" },
-      line: { dash: "dashdot" },
     },
     {
       y: AntiE16OIBDUnoscillatedG3.eventSpectrum,
@@ -430,10 +430,10 @@ export const SupernovaPlotsIBDnuebar16O = ({
       mode: "lines",
       line: {
         width: 2,
+        dash: "dot",
       },
       fill: "none",
       marker: { color: "olive" },
-      line: { dash: "dot" },
     },
     {
       y: AntiE16OIBDOscillatedInvertedG3.eventSpectrum,
@@ -443,10 +443,10 @@ export const SupernovaPlotsIBDnuebar16O = ({
       mode: "lines",
       line: {
         width: 2,
+        dash: "dashdot",
       },
       fill: "none",
       marker: { color: "olive" },
-      line: { dash: "dashdot" },
     },
     {
       y: AntiE16OIBDUnoscillatedG4.eventSpectrum,
@@ -468,10 +468,11 @@ export const SupernovaPlotsIBDnuebar16O = ({
       mode: "lines",
       line: {
         width: 2,
+        dash: "dot",
       },
       fill: "none",
       marker: { color: "tomato" },
-      line: { dash: "dot" },    },
+    },
     {
       y: AntiE16OIBDOscillatedInvertedG4.eventSpectrum,
       x: energyValues,
@@ -480,10 +481,10 @@ export const SupernovaPlotsIBDnuebar16O = ({
       mode: "lines",
       line: {
         width: 2,
+        dash: "dashdot",
       },
       fill: "none",
       marker: { color: "tomato" },
-      line: { dash: "dashdot" },
     },
   ];
   var layout = {
@@ -572,10 +573,10 @@ export const SupernovaPlotsIBD = ({
       mode: "lines",
       line: {
         width: 2,
+        dash: "dot",
       },
       fill: "none",
       marker: { color: "goldenrod" },
-      line: { dash: "dot" },
     },
     {
       y: pIBDOscillatedInverted.eventSpectrum,
@@ -585,10 +586,10 @@ export const SupernovaPlotsIBD = ({
       mode: "lines",
       line: {
         width: 2,
+        dash: "dashdot",
       },
       fill: "none",
       marker: { color: "goldenrod" },
-      line: { dash: "dashdot" },
     },
     {
       y: AntiE12CIBDUnoscillated.eventSpectrum,
@@ -610,10 +611,10 @@ export const SupernovaPlotsIBD = ({
       mode: "lines",
       line: {
         width: 2,
+        dash: "dot",
       },
       fill: "none",
       marker: { color: "darkred" },
-      line: { dash: "dot" },
     },
     {
       y: AntiE12CIBDOscillatedInverted.eventSpectrum,
@@ -623,10 +624,10 @@ export const SupernovaPlotsIBD = ({
       mode: "lines",
       line: {
         width: 2,
+        dash: "dashdot",
       },
       fill: "none",
       marker: { color: "darkred" },
-      line: { dash: "dashdot" },
     },
     {
       y: E12CIBDUnoscillated.eventSpectrum,
@@ -648,10 +649,10 @@ export const SupernovaPlotsIBD = ({
       mode: "lines",
       line: {
         width: 2,
+        dash: "dot",
       },
       fill: "none",
       marker: { color: "olive" },
-      line: { dash: "dot" },
     },
     {
       y: E12CIBDOscillatedInverted.eventSpectrum,
@@ -661,10 +662,10 @@ export const SupernovaPlotsIBD = ({
       mode: "lines",
       line: {
         width: 2,
+        dash: "dashdot",
       },
       fill: "none",
       marker: { color: "olive" },
-      line: { dash: "dashdot" },
     },
   ];
   var layout = {
@@ -827,10 +828,10 @@ export const SupernovaOscillatedFluxPlots = ({
       mode: "lines",
       line: {
         width: 2,
+        dash: "dot",
       },
       fill: "none",
       marker: { color: "blue" },
-      line: { dash: "dot" },
     },
     {
       y: oscillatedFluxSpectrums[MassOrdering.Normal][NeutrinoType.electronAntineutrino],
@@ -840,10 +841,10 @@ export const SupernovaOscillatedFluxPlots = ({
       mode: "lines",
       line: {
         width: 2,
+        dash: "dot",
       },
       fill: "none",
       marker: { color: "red" },
-      line: { dash: "dot" },
     },
     {
       y: oscillatedFluxSpectrums[MassOrdering.Normal][NeutrinoType.muTauNeutrino],
@@ -853,10 +854,10 @@ export const SupernovaOscillatedFluxPlots = ({
       mode: "lines",
       line: {
         width: 2,
+        dash: "dot",
       },
       fill: "none",
       marker: { color: "green" },
-      line: { dash: "dot" },
     },
   ];
   var layout = {
