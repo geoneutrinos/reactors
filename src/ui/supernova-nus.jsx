@@ -977,7 +977,7 @@ export const SupernovaNus = React.memo(() => {
         AntiE16OIBDOscillatedNormalG1 = {AntiE16OIBDOscillatedNormalG1}
         AntiE16OIBDOscillatedInvertedG1 = {AntiE16OIBDOscillatedInvertedG1}
         E16OIBDUnoscillatedG1 = {E16OIBDUnoscillatedG1}
-        E16OIBDOscillatedNormalG1 = {E16OIBDOscillatedNorma1Gl}
+        E16OIBDOscillatedNormalG1 = {E16OIBDOscillatedNormalG1}
         E16OIBDOscillatedInvertedG1 = {E16OIBDOscillatedInvertedG1}
         AntiE16OIBDUnoscillatedG2 = {AntiE16OIBDUnoscillatedG2}
         AntiE16OIBDOscillatedNormalG2 = {AntiE16OIBDOscillatedNormalG2}
@@ -989,13 +989,13 @@ export const SupernovaNus = React.memo(() => {
         AntiE16OIBDOscillatedNormalG3 = {AntiE16OIBDOscillatedNormalG3}
         AntiE16OIBDOscillatedInvertedG3 = {AntiE16OIBDOscillatedInvertedG3}
         E16OIBDUnoscillatedG3 = {E16OIBDUnoscillatedG3}
-        E16OIBDOscillatedNormalG3 = {E16OIBDOscillatedNorma1G3}
+        E16OIBDOscillatedNormalG3 = {E16OIBDOscillatedNormalG3}
         E16OIBDOscillatedInvertedG3 = {E16OIBDOscillatedInvertedG3}
         AntiE16OIBDUnoscillatedG4 = {AntiE16OIBDUnoscillatedG4}
         AntiE16OIBDOscillatedNormalG4 = {AntiE16OIBDOscillatedNormalG4}
         AntiE16OIBDOscillatedInvertedG4 = {AntiE16OIBDOscillatedInvertedG4}
         E16OIBDUnoscillatedG4 = {E16OIBDUnoscillatedG4}
-        E16OIBDOscillatedNormalG4 = {E16OIBDOscillatedNorma1G4}
+        E16OIBDOscillatedNormalG4 = {E16OIBDOscillatedNormalG4}
         E16OIBDOscillatedInvertedG4 = {E16OIBDOscillatedInvertedG4}
         tIBDpMin={tIBDpMin}
         setTIBDpMin={setTIBDpMin}
