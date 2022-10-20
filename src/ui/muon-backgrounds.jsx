@@ -5,6 +5,8 @@ import { Provider } from "@nteract/mathjax";
 
 import { muonBackgroundFluxes } from "../muons";
 
+import { MuonBackgroundPlots } from "./muon-backgrounds-plots";
+
 const MuonsPane = () => {
   return (
     <Card>
