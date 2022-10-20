@@ -31,7 +31,11 @@ export const Muons = () => {
   return (
     <div>
       <MuonsPane />
-      <MuonBackgroundPlots />
+      <MuonBackgroundPlots
+        muonSlantIntensity={muonSlantIntensity}
+        muonFlatIntensity={muonFlatIntensity}
+        neutronFlatIntensity={neutronFlatIntensity}
+      />
     </div>
   );
 }
