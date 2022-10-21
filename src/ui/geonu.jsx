@@ -41,7 +41,7 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo}) => {
       <Card.Body>
         <Form.Group controlId="U238flux">
           <Form.Label>
-            {U238} Mantle Flux: {geoFluxRatios.U238flux.toExponential(1)} cm
+            {U238} Mantle Flux: {geoFluxRatios.U238flux.toExponential(2)} cm
             <sup>-2</sup>s<sup>-1</sup>
             {" "}
             <small>({U238} plus {U235}: <Num v={heating.U238 + heating.U235} p={2} func={(v) => v / 1e12}/> TW)</small>
@@ -49,9 +49,9 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo}) => {
           <Form.Control
             value={geoFluxRatios.U238flux}
             type="range"
-            step={100000}
+            step={20000}
             min={0}
-            max={5000000}
+            max={3000000}
             onChange={(event) =>
               setGeoFluxRatios({
                 ...geoFluxRatios,
