@@ -3,8 +3,6 @@ import { Card } from "react-bootstrap";
 
 import { Provider } from "@nteract/mathjax";
 
-import { calcFluxesAtDepth } from "../muons";
-
 import { MuonBackgroundPlots } from "./muon-backgrounds-plots";
 
 const MuonsPane = () => {
@@ -32,9 +30,7 @@ export const Muons = () => {
     <div>
       <MuonsPane />
       <MuonBackgroundPlots
-        muonSlantIntensity={muonSlantIntensity}
-        muonFlatIntensity={muonFlatIntensity}
-        neutronFlatIntensity={neutronFlatIntensity}
+        calcFluxesAtDepth={calcFluxesAtDepth}
       />
     </div>
   );
