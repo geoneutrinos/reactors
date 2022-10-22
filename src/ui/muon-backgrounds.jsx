@@ -1,7 +1,15 @@
 import React from "react";
 import { Card } from "react-bootstrap";
 
+import Plot from "react-plotly.js";
 import { Provider } from "@nteract/mathjax";
+
+import { 
+  depthValues,
+  muonSlantIntensity,
+  muonFlatIntensity,
+  neutronFlatIntensity,
+} from "../muons";
 
 const MuonsPane = () => {
   return (
