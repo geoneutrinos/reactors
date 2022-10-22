@@ -8,6 +8,8 @@ import {Elements} from './elements'
 
 import Plot from "react-plotly.js";
 
+import { MANTLE_GEOPHYSICAL_RESPONSE, MANTLE_MASS } from "../mantle/geophysics";
+
 const {K40, Th232, U235, U238} = Elements
 
 export const CrustFlux = ({ includeCrust, setIncludeCrust }) => {
@@ -24,9 +26,9 @@ export const CrustFlux = ({ includeCrust, setIncludeCrust }) => {
         />
         <small>
           A pre-computed model of the crust fluxes, kindly provided by W.F.
-          McDonough, is described in Y. Huang <i>et al.</i>, "A reference Earth model
-          for the heat producing elements and associated geoneutrino flux,"
-          Geochem., Geophys., Geosyst. 14, 2003 (2013).
+          McDonough, is described in Y. Huang <i>et al.</i> (2013), <i>A reference Earth model
+          for the heat producing elements and associated geoneutrino flux</i>,
+          Geochem., Geophys., Geosyst. 14, 2003-2029.
         </small>
       </Card.Body>
     </Card>
@@ -105,7 +107,8 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo}) => {
           </InputGroup>
         </Form.Group>
         Total Mantle Radiogenic Heating: <Num v={heating.U238 + heating.U235 + heating.Th232 + heating.K40Beta + heating.K40Ec} p={2} func={(v) => v / 1e12}/> TW
-        <br /> <small>Assumes homogeneous element concentrations, PREM mantle mass and geophysical response</small>
+        <br /> <small>Assumes homogeneous element concentrations, PREM mantle mass ({MANTLE_MASS} kg) and geophysical response ({MANTLE_GEOPHYSICAL_RESPONSE} kg cm<sup>-2</sup>)</small>
+        <br /> <small>PREM- A. M. Dziewonski and D. L. Anderson (1981), <i>Preliminary Reference Earth Model (PREM)</i>, Phys. Earth Planet. Inter. 25, 297-356</small>
         <br /> <small><sup>238</sup>U flux value above does not include neutrino oscillations</small>
       </Card.Body>
     </Card>
