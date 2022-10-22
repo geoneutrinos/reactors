@@ -8,6 +8,8 @@ import {Elements} from './elements'
 
 import Plot from "react-plotly.js";
 
+import { MANTLE_GEOPHYSICAL_RESPONSE, MANTLE_MASS } from "../mantle/geophysics";
+
 const {K40, Th232, U235, U238} = Elements
 
 export const CrustFlux = ({ includeCrust, setIncludeCrust }) => {
