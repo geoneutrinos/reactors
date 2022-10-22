@@ -43,7 +43,7 @@ function neutronInducedFlux(flatDepth: number) {
   return (intensityParameter13 * (overburdenCoefficient13 / flatDepth) * Math.exp(-flatDepth / overburdenCoefficient13));
 }
 
-export const muonBackgroundFluxes = ():FluxesAtDepth => {
+export const calcFluxesAtDepth = ():FluxesAtDepth => {
   const muonSlantIntensity = depthValues.map((Dv) => differentialMuonIntensity(Dv))
   const muonFlatIntensity = depthValues.map((Dv) => flatOverburdenMuonIntensity(Dv))
   const neutronFlatIntensity = depthValues.map((Dv) => neutronInducedFlux(Dv))
