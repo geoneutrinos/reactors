@@ -4,9 +4,7 @@ import Plot from "react-plotly.js";
 import { depthValues, calcFluxesAtDepth } from "../muons";
 
 export const MuonBackgroundPlots = ({
-  muonSlantIntensity,
-  muonFlatIntensity,
-  neutronFlatIntensity,
+  calcFluxesAtDepth
 }) => {
   const data = [
     {
