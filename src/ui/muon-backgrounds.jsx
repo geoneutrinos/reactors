@@ -3,7 +3,7 @@ import { Card } from "react-bootstrap";
 
 import { Provider } from "@nteract/mathjax";
 
-import { muonBackgroundFluxes } from "../muons";
+import { calcFluxesAtDepth } from "../muons";
 
 import { MuonBackgroundPlots } from "./muon-backgrounds-plots";
 
