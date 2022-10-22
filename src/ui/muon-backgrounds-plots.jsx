@@ -5,7 +5,7 @@ import {
   depthValues,
   muonSlantIntensity,
   muonFlatIntensity,
-  neutronFlat)intensity,
+  neutronFlatIntensity,
 } from "../muons";
 
 export const MuonBackgroundPlots = () => {
