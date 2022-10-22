@@ -36,7 +36,7 @@ const MuonBackgroundPlot = () => {
     {
       y: muonSlantIntensity,
       x: depthValues,
-      name: `μ slant (cm<sup>-2</sup>s<sup>-1</sup>sr<sup>-1</sup>)`,
+      name: "μ slant (cm<sup>-2</sup>s<sup>-1</sup>sr<sup>-1</sup>)",
       type: "scatter",
       mode: "lines",
       line: {
@@ -48,7 +48,7 @@ const MuonBackgroundPlot = () => {
     {
       y: muonFlatIntensity,
       x: depthValues,
-      name: `μ flat (cm<sup>-2</sup>s<sup>-1</sup>)`,
+      name: "μ flat (cm<sup>-2</sup>s<sup>-1</sup>)",
       type: "scatter",
       mode: "lines",
       line: {
@@ -60,7 +60,7 @@ const MuonBackgroundPlot = () => {
     {
       y: neutronFlatIntensity,
       x: depthValues,
-      name: `n flat (cm<sup>-2</sup>s<sup>-1</sup>)`,
+      name: "n flat (cm<sup>-2</sup>s<sup>-1</sup>)",
       type: "scatter",
       mode: "lines",
       line: {
@@ -71,7 +71,7 @@ const MuonBackgroundPlot = () => {
     },
   ];
   var layout = {
-    title: `Background Fluxes',
+    title: "Background Fluxes",
     yaxis: {
       title: { text: `Flux` },
       type: "log",
@@ -95,7 +95,7 @@ const MuonBackgroundPlot = () => {
   };
   var config = {
     toImageButtonOptions: {
-      filename: "Muon-induced-fluxes",
+      filename: 'Muon-induced-fluxes',
     },
   };
   return (
