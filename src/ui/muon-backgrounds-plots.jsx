@@ -1,7 +1,7 @@
 import { Card } from "react-bootstrap";
 import Plot from "react-plotly.js";
 
-import { depthValues} from "../muons";
+import { depthValues, calcFluxesAtDepth } from "../muons";
 
 export const MuonBackgroundPlots = ({
   muonSlantIntensity,
@@ -10,7 +10,7 @@ export const MuonBackgroundPlots = ({
 }) => {
   const data = [
     {
-      y: muonSlantIntensity,
+      y: calcFluxesAtDepth.muonSlantIntensity,
       x: depthValues,
       name: `μ slant (cm<sup>-2</sup>s<sup>-1</sup>sr<sup>-1</sup>)`,
       type: "scatter",
@@ -22,7 +22,7 @@ export const MuonBackgroundPlots = ({
       marker: { color: "black" },
     },
     {
-      y: muonFlatIntensity,
+      y: calcFluxesAtDepth.muonFlatIntensity,
       x: depthValues,
       name: `μ flat (cm<sup>-2</sup>s<sup>-1</sup>)`,
       type: "scatter",
@@ -34,7 +34,7 @@ export const MuonBackgroundPlots = ({
       marker: { color: "blue" },
     },
     {
-      y: neutronFlatIntensity,
+      y: calcFluxesAtDepth.neutronFlatIntensity,
       x: depthValues,
       name: `n flat (cm<sup>-2</sup>s<sup>-1</sup>)`,
       type: "scatter",
