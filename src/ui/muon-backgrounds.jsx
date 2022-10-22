@@ -101,7 +101,7 @@ const MuonBackgroundPlot = () => {
   };
   return (
     <Card>
-      <Card.Header>Muon-induced-fluxes</Card.Header>
+      <Card.Header>Background Fluxes</Card.Header>
       <Card.Body>
         <Plot
           useResizeHandler={true}
