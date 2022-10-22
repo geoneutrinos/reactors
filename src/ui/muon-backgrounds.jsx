@@ -19,10 +19,11 @@ const MuonsPane = () => {
         <Provider>
           <div>
             <p>
-              This page is an inital attempt to model the muon-induced backgrounds that depend on the overburden of the detector site.  
-              So far there are three plots- differential muon intensity corresonding to slant depth, differential muon intensity 
-              corresponding to a falt overburden, and the neutron flux emerging from the rock into the underground cavern as a function of
-              the depth relative to a flat overburden.
+              This page is under development. It displays parameterized fits of the muon-induced backgrounds that depend on the overburden of 
+              the detector site, following equations given in D.-M. Mei and A. Hime (2006), <i>Muon-induced background study for underground 
+              laboratories</i>, Phys. Rev. D 73, 053004. The plot below has three curves, showing the differential muon intensity corresonding 
+              to slant depth (Eq. 1), the differential muon intensity corresponding to a falt overburden (Eq. 4), and the neutron flux emerging 
+              from the rock into the underground cavern as a function of the depth relative to a flat overburden (Eq. 13). 
             </p>
           </div>
         </Provider>
