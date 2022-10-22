@@ -3,10 +3,6 @@ import { Card } from "react-bootstrap";
 
 import { Provider } from "@nteract/mathjax";
 
-import { calcFluxesAtDepth } from "../muons";
-
-import { MuonBackgroundPlots } from "./muon-backgrounds-plots";
-
 const MuonsPane = () => {
   return (
     <Card>
@@ -31,9 +27,6 @@ export const Muons = () => {
   return (
     <div>
       <MuonsPane />
-      <MuonBackgroundPlots
-        calcFluxesAtDepth={calcFluxesAtDepth}
-      />
     </div>
   );
 }
