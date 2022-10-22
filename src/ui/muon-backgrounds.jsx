@@ -118,7 +118,6 @@ export const Muons = () => {
   return (
     <div>
       <MuonsPane />
-      <MuonBackgroundPlot />
     </div>
   );
 }
