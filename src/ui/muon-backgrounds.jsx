@@ -32,12 +32,12 @@ const MuonsPane = () => {
   );
 };
 
-const MuonBackgroundPlot = () => {
+const MuonDepthIntensity = () => {
   const data = [
     {
       y: muonSlantIntensity,
       x: depthValues,
-      name: "μ slant (cm<sup>-2</sup>s<sup>-1</sup>sr<sup>-1</sup>)",
+      name: "μ slant ",
       type: "scatter",
       mode: "lines",
       line: {
@@ -46,40 +46,16 @@ const MuonBackgroundPlot = () => {
       fill: "none",
       marker: { color: "black" },
     },
-    {
-      y: muonFlatIntensity,
-      x: depthValues,
-      name: "μ flat (cm<sup>-2</sup>s<sup>-1</sup>)",
-      type: "scatter",
-      mode: "lines",
-      line: {
-        width: 2,
-      },
-      fill: "none",
-      marker: { color: "blue" },
-    },
-    {
-      y: neutronFlatIntensity,
-      x: depthValues,
-      name: "n flat (cm<sup>-2</sup>s<sup>-1</sup>)",
-      type: "scatter",
-      mode: "lines",
-      line: {
-        width: 2,
-      },
-      fill: "none",
-      marker: { color: "red" },
-    },
   ];
   var layout = {
-    title: "Background Fluxes",
+    title: "Muon Depth Intensity Relationship",
     yaxis: {
-      title: { text: `Flux` },
+      title: { text: `Differential Muon Intensity (cm<sup>-2</sup>s<sup>-1</sup>sr<sup>-1</sup>)` },
       type: "log",
       autorange: true,
     },
     xaxis: {
-      title: { text: `Overburden depth (km.w.e.)` },
+      title: { text: `Slant depth (km.w.e.)` },
       range: [0.05, 10.05],
     },
     autosize: true,
@@ -96,7 +72,78 @@ const MuonBackgroundPlot = () => {
   };
   var config = {
     toImageButtonOptions: {
-      filename: 'Muon-induced-fluxes',
+      filename: 'Muon-DIR',
+    },
+  };
+  return (
+    <Card>
+      <Card.Header>Muon Depth Intensity Relationship</Card.Header>
+      <Card.Body>
+        <Plot
+          useResizeHandler={true}
+          style={{ width: "100%" }}
+          data={data}
+          layout={layout}
+          config={config}
+        />
+      </Card.Body>
+    </Card>
+  );
+};
+
+const BackgroundFluxes = () => {
+  const data = [
+    {
+      y: muonFlatIntensity,
+      x: depthValues,
+      name: "μ flat",
+      type: "scatter",
+      mode: "lines",
+      line: {
+        width: 2,
+      },
+      fill: "none",
+      marker: { color: "blue" },
+    },
+    {
+      y: neutronFlatIntensity,
+      x: depthValues,
+      name: "n flat",
+      type: "scatter",
+      mode: "lines",
+      line: {
+        width: 2,
+      },
+      fill: "none",
+      marker: { color: "red" },
+    },
+  ];
+  var layout = {
+    title: "Background Fluxes",
+    yaxis: {
+      title: { text: `Flux (cm<sup>-2</sup>s<sup>-1</sup>)` },
+      type: "log",
+      autorange: true,
+    },
+    xaxis: {
+      title: { text: `Equivalent Vertical Depth (km.w.e.)` },
+      range: [0.05, 10.05],
+    },
+    autosize: true,
+    annotations: [
+      {
+        showarrow: false,
+        text: "geoneutrinos.org",
+        x: 1.1,
+        xref: "paper",
+        y: -0.15,
+        yref: "paper",
+      },
+    ],
+  };
+  var config = {
+    toImageButtonOptions: {
+      filename: 'Flat-overburden-fluxes',
     },
   };
   return (
@@ -119,7 +166,8 @@ export const Muons = () => {
   return (
     <div>
       <MuonsPane />
-      <MuonBackgroundPlot />
+      <MuonDepthIntensity />
+      <BackgroundFluxes />
     </div>
   );
 }
