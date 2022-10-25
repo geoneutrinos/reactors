@@ -1113,9 +1113,9 @@ export const CrossSectionPlots = () => {
         <p>
           Inverse beta decay (IBD) cross sections are from:
         <br />
-          P. Vogel and J. F. Beacom, "Angular distribution of inverse neutron decay, <i>ν̅<sub>𝑒</sub></i> + <i>𝑝</i> ⭢ <i>𝑒</i><sup>+</sup> + <i>𝑛</i>," Phys. Rev. D 60, 053003 (1999).
+          P. Vogel and J. F. Beacom (1999), <i>Angular distribution of inverse neutron decay, ν̅<sub>𝑒</sub> + 𝑝 ⭢ 𝑒<sup>+</sup> + 𝑛</i>, Phys. Rev. D 60, 053003.
         <br />
-          A. Strumia and F. Vissani, "Precise quasielastic neutrino/nucleon cross-section," Phys. Lett. B 564, 42 (2003).
+          A. Strumia and F. Vissani (2003), <i>Precise quasielastic neutrino/nucleon cross-section</i>, Phys. Lett. B 564, 42.
         </p>
         <p>
           Elastic scattering (ES) cross sections are from:
