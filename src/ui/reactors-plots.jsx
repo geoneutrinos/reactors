@@ -152,20 +152,20 @@ export const FissionIsotopeSpectraPlots = () => {
         <p>
           <sup>235</sup>U, <sup>238</sup>U, <sup>239</sup>Pu, <sup>241</sup>Pu summation spectra (solid):
           <br />
-          M. Estienne et al., "Updated Summation Model: An Improved Agreement with the Daya Bay Antineutrino Fluxes,"
-          Phys. Rev. Lett. 123, 022502, (2019).
+          M. Estienne <i>et al.</i> (2019), <i>Updated Summation Model: An Improved Agreement with the Daya Bay Antineutrino Fluxes</i>,
+          Phys. Rev. Lett. 123, 022502.
         </p>
         <p>
           <sup>239</sup>Pu, <sup>241</sup>Pu conversion spectra (dot-dash):
           <br />
-          P. Huber, "Determination of antineutrino spectra from nuclear
-          reactors," Phys. Rev. C 84, 024617 (2011).
+          P. Huber (2011), <i>Determination of antineutrino spectra from nuclear
+          reactors</i>, Phys. Rev. C 84, 024617.
         </p>
         <p>
           <sup>235</sup>U, <sup>238</sup>U conversion spectra (dot-dash):
           <br />
-          V. Kopeikin, M. Skorokhvatov, O. Titov, "Reevaluating reactor antineutrino spectra with new measurements of the ratio
-          between <sup>235</sup>U and <sup>239</sup>Pu β spectra," Phys. Rev. D 104, L071301 (2021).
+          V. Kopeikin, M. Skorokhvatov, O. Titov (2021), <i>Reevaluating reactor antineutrino spectra with new measurements of the ratio
+          between <sup>235</sup>U and <sup>239</sup>Pu β spectra</i>, Phys. Rev. D 104, L071301.
         </p>
         <Plot
           useResizeHandler={true}
@@ -262,20 +262,20 @@ export const U235IsotopeSpectraPlots = () => {
         <p>
           <sup>235</sup>U conversion spectrum parameterization:
           <br />
-          P. Huber, "Determination of antineutrino spectra from nuclear
-          reactors," Phys. Rev. C 84, 024617 (2011).
+          P. Huber (2011), <i>Determination of antineutrino spectra from nuclear
+          reactors</i>, Phys. Rev. C 84, 024617.
         </p>
         <p>
           <sup>235</sup>U conversion spectrum data points:
           <br />
-          V. Kopeikin, M. Skorokhvatov, O. Titov, "Reevaluating reactor antineutrino spectra with new measurements of the ratio
-          between <sup>235</sup>U and <sup>239</sup>Pu β spectra," Phys. Rev. D 104, L071301 (2021).
+          V. Kopeikin, M. Skorokhvatov, O. Titov (2021), <i>Reevaluating reactor antineutrino spectra with new measurements of the ratio
+          between <sup>235</sup>U and <sup>239</sup>Pu β spectra</i>, Phys. Rev. D 104, L071301.
         </p>
         <p>
           <sup>235</sup>U summation spectrum:
           <br />
-          M. Estienne et al., "Updated Summation Model: An Improved Agreement with the Daya Bay Antineutrino Fluxes,"
-          Phys. Rev. Lett. 123, 022502, (2019).
+          M. Estienne <i>et al.</i> (2019), <i>Updated Summation Model: An Improved Agreement with the Daya Bay Antineutrino Fluxes</i>,
+          Phys. Rev. Lett. 123, 022502.
         </p>
 
         <Plot
@@ -373,20 +373,20 @@ export const U238IsotopeSpectraPlots = () => {
         <p>
           <sup>238</sup>U summation spectrum parameterization:
           <br />
-          Mueller, Th. A. et al., "Improved predictions of reactor antineutrino
-          spectra," Phys. Rev. C 83, 054615 (2011).
+          Mueller, Th. A. <i>et al.</i> (2011), <i>Improved predictions of reactor antineutrino
+          spectra</i>, Phys. Rev. C 83, 054615.
         </p>
         <p>
           <sup>238</sup>U conversion spectrum data points:
           <br />
-          V. Kopeikin, M. Skorokhvatov, O. Titov, "Reevaluating reactor antineutrino spectra with new measurements of the ratio
-          between <sup>235</sup>U and <sup>239</sup>Pu β spectra," Phys. Rev. D 104, L071301 (2021).
+          V. Kopeikin, M. Skorokhvatov, O. Titov (2021), <i>Reevaluating reactor antineutrino spectra with new measurements of the ratio
+          between <sup>235</sup>U and <sup>239</sup>Pu β spectra</i>, Phys. Rev. D 104, L071301.
         </p>
         <p>
           <sup>238</sup>U summation spectrum:
           <br />
-          M. Estienne et al., "Updated Summation Model: An Improved Agreement with the Daya Bay Antineutrino Fluxes,"
-          Phys. Rev. Lett. 123, 022502, (2019).
+          M. Estienne <i>et al.</i> (2019), <i>Updated Summation Model: An Improved Agreement with the Daya Bay Antineutrino Fluxes</i>,
+          Phys. Rev. Lett. 123, 022502.
         </p>
         <Plot
           useResizeHandler={true}
