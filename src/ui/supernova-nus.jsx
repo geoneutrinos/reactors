@@ -482,7 +482,7 @@ const SupernovaNusPane = () => {
               <Node
                 inline
               >{String.raw`(\nu_\mathrm{e}, \overline{\nu}_\mathrm{e}, \nu_x)`}</Node>{" "}
-              arriving at Earth from a core-collapse supernova is estimated by (M.T. Keil, G.G. Raffelt, and H.T. Janka (2003), <i>MONTE CARLO STUDY OF SUPERNOVA NEUTRINO SPECTRA FORMATION</i>, Astrophys. J. 590, 971){" "}
+              arriving at Earth from a core-collapse supernova is estimated by (M.T. Keil, G.G. Raffelt, and H.T. Janka (2003), <i>Monte Carlo Study of Supernova Neutrino Spectra Formation</i>, Astrophys. J. 590, 971){" "}
               <Node>{String.raw`
                 \Phi^0_{\nu_{\alpha}}(E)=\frac1{4 \pi D^2} \frac{E_{\nu_{\alpha}}^\mathrm{tot}}{\langle E_{\nu_\alpha} \rangle^2} \frac{\beta^\beta}{\Gamma(\beta)}\bigg[\frac{E}{\langle E_{\nu_\alpha} \rangle}\bigg]^{\beta-1} \mathrm{exp}\bigg[-\beta \frac{E}{\langle E_{\nu_\alpha} \rangle}\bigg]
                 ,`}</Node>{" "}
@@ -510,7 +510,7 @@ const SupernovaNusPane = () => {
               are user-settable for exploring signals from different models.
             </p>
             <p>
-              Oscillation effects depend on the neutrino mass ordering (A.S. Dighe and A.Y. Smirnov (2000), 
+              Oscillation effects depend on the neutrino mass ordering (A.S. Dighe and A.Y. Smirnov (2000),{" "} 
               <i>Identifying the neutrino mass spectrum from a supernova neutrino burst</i>, Phys. Rev. D 62, 033007). 
               <br />
               For normal ordering (NO) with{" "}
