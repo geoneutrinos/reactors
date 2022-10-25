@@ -482,7 +482,7 @@ const SupernovaNusPane = () => {
               <Node
                 inline
               >{String.raw`(\nu_\mathrm{e}, \overline{\nu}_\mathrm{e}, \nu_x)`}</Node>{" "}
-              arriving at Earth from a core-collapse supernova is estimated by (M.T. Keil, G.G. Raffelt, and H.T. Janka, Astrophys. J. 590 (2003), 971){" "}
+              arriving at Earth from a core-collapse supernova is estimated by (M.T. Keil, G.G. Raffelt, and H.T. Janka (2003), <i>MONTE CARLO STUDY OF SUPERNOVA NEUTRINO SPECTRA FORMATION</i>, Astrophys. J. 590, 971){" "}
               <Node>{String.raw`
                 \Phi^0_{\nu_{\alpha}}(E)=\frac1{4 \pi D^2} \frac{E_{\nu_{\alpha}}^\mathrm{tot}}{\langle E_{\nu_\alpha} \rangle^2} \frac{\beta^\beta}{\Gamma(\beta)}\bigg[\frac{E}{\langle E_{\nu_\alpha} \rangle}\bigg]^{\beta-1} \mathrm{exp}\bigg[-\beta \frac{E}{\langle E_{\nu_\alpha} \rangle}\bigg]
                 ,`}</Node>{" "}
@@ -510,7 +510,8 @@ const SupernovaNusPane = () => {
               are user-settable for exploring signals from different models.
             </p>
             <p>
-              Oscillation effects depend on the neutrino mass ordering (A.S. Dighe and A.Y. Smirnov, Phys. Rev. D 62 (2000), 033007). 
+              Oscillation effects depend on the neutrino mass ordering (A.S. Dighe and A.Y. Smirnov (2000), 
+              <i>Identifying the neutrino mass spectrum from a supernova neutrino burst</i>, Phys. Rev. D 62, 033007). 
               <br />
               For normal ordering (NO) with{" "}
               <Node inline>{String.raw`m_3 > m_2 > m_1`}</Node>{" "}
@@ -537,9 +538,11 @@ const SupernovaNusPane = () => {
               and event totals for pES, <sup>16</sup>O IBD, <sup>12</sup>C IBD, and CEvNS. While the cross sections for CEvNS and pES 
               are calculated internally using the estabished code for two-body elastic scattering (e.g. eES), the calculations 
               of the cross sections for <sup>16</sup>O IBD and <sup>12</sup>C IBD are not conducive to online execution. For the <sup>16</sup>O IBD 
-              cross sections we use parameterized fits (with threshold energies slightly larger than the excitation energies of each of the four groups)
-              from Nakazato, Suzuki and Sakuda (Prog. Theor. Exp. Phys. 2018, 123E02). For the <sup>12</sup>C IBD cross sections we use the fits to 
-              calculated values (E. Kolbe, K. Langanke and P. Vogel, Nucl. Phys. A 652 (1999) 91-100) as found on the SNOwGLoBES site.
+              cross sections we use parameterized fits (with threshold energies slightly larger than the excitation energies of each of four excitation groups-
+              from K. Nakazato, T. Suzuki and M. Sakuda (2018), <i>Charged-current scattering off the <sup>16</sup>O nucleus as a detection channel for
+              supernova neutrinos</i>, Prog. Theor. Exp. Phys., 123E02). For the <sup>12</sup>C IBD cross sections we use the fits to 
+              calculated values (E. Kolbe, K. Langanke and P. Vogel (1999), <i>Weak reactions on <sup>12</sup>C within the continuum random phase 
+              approximation with partial occupancies</i>, Nucl. Phys. A 652, 91-100) as found on the SNOwGLoBES site.
             </p>
           </div>
         </Provider>
