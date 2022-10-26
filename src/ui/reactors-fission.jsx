@@ -13,9 +13,11 @@ export const FissionFractionPane = () => {
         <Card.Body>
             <p> Mid-cycle fission fractions- <i>f</i>
             <br />
+            LEU: K. Eguchi <i>et al.</i> (2003), <i>First Results from KamLAND: Evidence for Reactor Anti-Neutrino Disappearance</i>. Phys. Rev. Lett. 90, 021802.
+            <br />
             GCR: R. Mills, private communication, Dec. 12, 2018.
             <br />
-            PHWR: M. Chen, private communication, Aug. 14, 2017.
+            PHWR: M. Chen, private communication, Aug. 14, 2017 also (arXiv:2210.14154).
             </p>
             <p> Mid-cycle power fractions- <i>p</i>
             <br />
@@ -47,15 +49,6 @@ export const FissionFractionPane = () => {
               </tr>
               <tr>
                 <td>
-                 <i>p</i> (PWR, BWR)
-                </td>
-                <td>{POWER_FRACTIONS.LEU.U235.toFixed(3)}</td>
-                <td>{POWER_FRACTIONS.LEU.U238.toFixed(3)}</td>
-                <td>{POWER_FRACTIONS.LEU.PU239.toFixed(3)}</td>
-                <td>{POWER_FRACTIONS.LEU.PU241.toFixed(3)}</td>
-              </tr>
-              <tr>
-                <td>
                  <i>p</i> (PWR/MOX)
                 </td>
                 <td>{POWER_FRACTIONS.LEU_MOX.U235.toFixed(3)}</td>
@@ -63,7 +56,16 @@ export const FissionFractionPane = () => {
                 <td>{POWER_FRACTIONS.LEU_MOX.PU239.toFixed(3)}</td>
                 <td>{POWER_FRACTIONS.LEU_MOX.PU241.toFixed(3)}</td>
               </tr>
-              <tr>
+               <tr>
+                <td>
+                 <i>f</i> (PWR, BWR)
+                </td>
+                <td>{FISSION_FRACTIONS.LEU.U235.toFixed(3)}</td>
+                <td>{FISSION_FRACTIONS.LEU.U238.toFixed(3)}</td>
+                <td>{FISSION_FRACTIONS.LEU.PU239.toFixed(3)}</td>
+                <td>{FISSION_FRACTIONS.LEU.PU241.toFixed(3)}</td>
+              </tr>
+             <tr>
                 <td>
                  <i>f</i> (GCR)
                 </td>
