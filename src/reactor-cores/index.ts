@@ -30,12 +30,6 @@ interface FissionFractions extends ReactorFractions {}
 interface PowerFractions extends ReactorFractions {}
 
 export const POWER_FRACTIONS: { [type: string]: PowerFractions } = {
-  LEU: {
-    U235: 0.56,
-    U238: 0.08,
-    PU239: 0.3,
-    PU241: 0.06,
-  },
   FBR: {
     U235: 0.56,
     U238: 0.08,
@@ -63,6 +57,12 @@ export const POWER_FRACTIONS: { [type: string]: PowerFractions } = {
 };
 
 export const FISSION_FRACTIONS: { [type: string]: FissionFractions } = {
+  LEU: {
+    U235: 0.568,
+    U238: 0.078,
+    PU239: 0.297,
+    PU241: 0.057,
+  },
   GCR: {
     U235: 0.7248,
     U238: 0.0423,
