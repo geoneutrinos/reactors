@@ -66,7 +66,7 @@ function coreCircleColor(type) {
 
 const CoreCircles = React.memo(function CoreCircles({ cores, customCores, zoom, shutdownCores }) {
   let coreList = Object.values({...cores, ...customCores});
-  const radius = zoom > 6? zoom > 8? zoom > 10? zoom > 12? zoom > 14? 50 : 500 : 1000 : 2000 : 5000 : 10000
+  const radius = zoom > 6? zoom > 8? zoom > 10? zoom > 12? zoom > 14? zoom > 18? 25 : 50 : 500 : 1000 : 2000 : 5000 : 10000
 
   if (shutdownCores === true){
     coreList = coreList.filter((core) => (core.shutdown < new Date()))
