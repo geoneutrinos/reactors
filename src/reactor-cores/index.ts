@@ -135,6 +135,7 @@ function fissionFractionToPowerFraction(
 }
 
 const POWER_FRACTIONS_ALL: {[type: string]: PowerFractions} = {
+  LEU: fissionFractionToPowerFraction(FISSION_FRACTIONS.LEU),
   GCR: fissionFractionToPowerFraction(FISSION_FRACTIONS.GCR),
   PHWR: fissionFractionToPowerFraction(FISSION_FRACTIONS.PHWR),
   ...POWER_FRACTIONS
