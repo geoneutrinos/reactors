@@ -186,7 +186,7 @@ export function NuMap({
       maxBoundsViscosity={1}
       zoom={2}
       minZoom={2}
-      maxZoom={19}
+      maxZoom={20}
       {...contextMenu}
       onZoom={(e) => setZoom(e.target._zoom)}
       attributionControl={false}
