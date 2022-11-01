@@ -109,9 +109,9 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo}) => {
           </InputGroup>
         </Form.Group>
         Total Mantle Radiogenic Heating: <Num v={heating.U238 + heating.U235 + heating.Th232 + heating.K40Beta + heating.K40Ec} p={2} func={(v) => v / 1e12}/> TW
-        <br /> <small>Assumes homogeneous element concentrations, PREM mantle mass ({MANTLE_MASS} kg) and geophysical response ({MANTLE_GEOPHYSICAL_RESPONSE} kg cm<sup>-2</sup>)</small>
-        <br /> <small>PREM- A. M. Dziewonski and D. L. Anderson (1981), <i>Preliminary Reference Earth Model (PREM)</i>, Phys. Earth Planet. Inter. 25, 297-356</small>
-        <br /> <small>The settable <sup>238</sup>U flux does not include the average oscillation survival probability ({averageSurvivalProbabilityNormal.toFixed(3)}) </small>
+        <br /> •<small>Assumes homogeneous element concentrations, PREM mantle mass ({MANTLE_MASS} kg) and geophysical response ({MANTLE_GEOPHYSICAL_RESPONSE} kg cm<sup>-2</sup>)</small>
+        <br /> •<small>A. M. Dziewonski and D. L. Anderson (1981), <i>Preliminary Reference Earth Model (PREM)</i>, Phys. Earth Planet. Inter. 25, 297-356</small>
+        <br /> •<small>The settable <sup>238</sup>U mantle flux does not include the average oscillation survival probability ({averageSurvivalProbabilityNormal.toFixed(3)}) </small>
       </Card.Body>
     </Card>
   );
