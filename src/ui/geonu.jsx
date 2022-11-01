@@ -25,7 +25,7 @@ export const CrustFlux = ({ includeCrust, setIncludeCrust }) => {
           onChange={(event) => setIncludeCrust(event.target.checked)}
         />
         <small>
-          A pre-computed model of the crust fluxes, kindly provided by W.F.
+          A pre-computed (1°x1°) model of the crust fluxes from <sup>238</sup>U, <sup>232</sup>Th, and <sup>40</sup>K, kindly provided by W.F.
           McDonough, is described in Y. Huang <i>et al.</i> (2013), <i>A reference Earth model
           for the heat producing elements and associated geoneutrino flux</i>,
           Geochem., Geophys., Geosyst. 14, 2003-2029.
