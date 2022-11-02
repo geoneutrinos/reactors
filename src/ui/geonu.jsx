@@ -219,11 +219,12 @@ export const GeoNusPane = () => {
             <p>
               Antineutrinos stream freely from long-lived natural radioactivity within the rocky layers of the Earth. The dominant fluxes of these 
               geo-neutrinos originate from isotopes of uranium, thorium, and potassium. Through a series of decays leading to stable isotopes of lead,
-              <sup>238</sup>U, <sup>235></sup>U, and <sup>232</sup>Th, each emit 6, 4, and 4 antineutrinos, respectively. The potassium isotope
-              <sup>40</sup>K emits either a single antineutrino through beta decay to calcium or a single neutrino through electron capture to argon.
+              <sup>238</sup>U, <sup>235></sup>U, and <sup>232</sup>Th, each emit 6, 4, and 4 antineutrinos, respectively. The potassium isotope 
+              <sup>40</sup>K emits either a single antineutrino through beta decay to calcium or a single neutrino through electron capture to argon. 
+              Each of these isotopes has a lifetime comparable to the age of the Earth, leaving ample abundances for producing an observable flux. 
               Significant variation in the flux of geo-neutrinos is predicted at the surface of the Earth with higher fluxes on continental crust and 
               lower fluxes on oceanic crust.
-              The geo-neutrino model includes a pre-computed crust flux on a 1°x1° (lat/lon) grid and a user-defined mantle flux from concentric shells
+              The geo-neutrino model includes a pre-computed crust flux on a 1° latitude x 1° longitude grid and a user-defined mantle flux from concentric shells
               with constant isotope concentrations. 
             </p>
           </div>
