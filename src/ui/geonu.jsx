@@ -217,15 +217,15 @@ export const GeoNusPane = () => {
         <Provider>
           <div>
             <p>
-              Antineutrinos stream freely from long-lived natural radioactivity within the rocky layers of the Earth. The dominant fluxes of these 
-              geo-neutrinos originate from isotopes of uranium, thorium, and potassium. Through a series of decays leading to stable isotopes of lead,
-              <sup>238</sup>U, <sup>235></sup>U, and <sup>232</sup>Th, each emit 6, 4, and 4 antineutrinos, respectively. The potassium isotope 
-              <sup>40</sup>K emits either a single antineutrino through beta decay to calcium or a single neutrino through electron capture to argon. 
-              Each of these isotopes has a lifetime comparable to the age of the Earth, leaving ample abundances for producing an observable flux. 
-              Significant variation in the flux of geo-neutrinos is predicted at the surface of the Earth with higher fluxes on continental crust and 
-              lower fluxes on oceanic crust.
-              The geo-neutrino model includes a pre-computed crust flux on a 1° latitude x 1° longitude grid and a user-defined mantle flux from concentric shells
-              with constant isotope concentrations. 
+              Antineutrinos from long-lived natural radioactivity within the rocky layers of the Earth are commonly known as geo-neutrinos. 
+              Geo-neutrinos from isotopes of uranium, thorium, and potassium have energy spectra extending above 1 MeV facilitating detection.
+              Through a series of decays leading to stable isotopes of lead, <sup>238</sup>U, <sup>235></sup>U, and <sup>232</sup>Th, each
+              emit 6, 4, and 4 antineutrinos, respectively. The potassium isotope <sup>40</sup>K emits either a single antineutrino 
+              through beta decay to calcium (<sup>40</sup>Ca) or a single neutrino through electron capture to argon (<sup>40</sup>Ar). 
+              All of these isotopes have lifetimes comparable to the age of the Earth, allowing ample abundances for producing observable geo-neutrino 
+              fluxes. Significant spatial variation of geo-neutrino fluxes is predicted at the surface of the Earth, higher fluxes on continental crust 
+              and lower fluxes on oceanic crust. The geo-neutrino model herein uses pre-computed crust fluxes, spatially resolved on a 1° latitude 
+              x 1° longitude grid, and user-defined mantle fluxes from concentric shells with constant density and isotope concentrations. 
             </p>
           </div>
           </Provider>
