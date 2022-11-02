@@ -8,7 +8,7 @@ import {Elements} from './elements'
 
 import Plot from "react-plotly.js";
 
-import { averageSurvivalProbabilityNormal, averageSurvivalProbabilityInverted } from "../physics/neutrino-oscillation";
+import { averageSurvivalProbabilityNormal } from "../physics/neutrino-oscillation";
 
 import { MANTLE_GEOPHYSICAL_RESPONSE, MANTLE_MASS } from "../mantle/geophysics";
 
