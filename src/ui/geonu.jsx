@@ -212,11 +212,15 @@ export const GeoNuSpectrumSource = ({ includeCrust, setIncludeCrust }) => {
 export const GeoNusPane = () => {
   return (
     <Card>
-      <Card.Header>Neutrinos from the Earth</Card.Header>
+      <Card.Header>Antineutrinos from the Earth</Card.Header>
       <Card.Body>
         <Provider>
           <div>
             <p>
+              Antineutrinos stream freely from long-lived natural radioactivity within the rocky layers of the Earth. The dominant fluxes of 
+              geo-neutrinos originate from isotopes of uranium, thorium, and potassium. Through a series of decays leading to stable isotopes of lead,
+              <sup>238</sup>U, <sup>235></sup>U, and <sup>232</sup>Th, each emit 6, 4, and 4 antineutrinos, respectively.
+              <sup>40</sup>K emits a single antineutrino through beta decay to calcium or a single neutrino through electron capture to argon.
               The geo-neutrino model includes a pre-computed crust flux on a 1°x1° (lat/lon) grid and a user-defined mantle flux from 
               homogeneous isotope concentrations.
             </p>
