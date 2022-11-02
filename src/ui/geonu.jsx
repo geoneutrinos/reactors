@@ -4,6 +4,8 @@ import { rawAntineutrinoSpectrum } from "../antineutrino-spectrum";
 import { Card, Form, InputGroup } from "react-bootstrap";
 import { Num } from ".";
 
+import { Node, Provider } from "@nteract/mathjax";
+
 import {Elements} from './elements'
 
 import Plot from "react-plotly.js";
@@ -206,3 +208,22 @@ export const GeoNuSpectrumSource = ({ includeCrust, setIncludeCrust }) => {
     </Card>
   );
 };
+
+export const GeoNusPane = () => {
+  return (
+    <Card>
+      <Card.Header>Neutrinos from the Earth</Card.Header>
+      <Card.Body>
+        <Provider>
+          <div>
+            <p>
+              The geo-neutrino model includes a pre-computed crust flux on a 1°x1° (lat/lon) grid and a user-defined mantle flux from 
+              homogeneous isotope concentrations.
+            </p>
+          </div>
+          </Provider>
+      </Card.Body>
+    </Card>
+  );
+};
+
