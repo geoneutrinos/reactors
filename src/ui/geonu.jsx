@@ -4,6 +4,8 @@ import { rawAntineutrinoSpectrum } from "../antineutrino-spectrum";
 import { Card, Form, InputGroup } from "react-bootstrap";
 import { Num } from ".";
 
+import { Node, Provider } from "@nteract/mathjax";
+
 import {Elements} from './elements'
 
 import Plot from "react-plotly.js";
@@ -206,3 +208,34 @@ export const GeoNuSpectrumSource = ({ includeCrust, setIncludeCrust }) => {
     </Card>
   );
 };
+
+export const GeoNusPane = () => {
+  return (
+    <Card>
+      <Card.Header>Antineutrinos from the Earth</Card.Header>
+      <Card.Body>
+        <Provider>
+          <div>
+            <p>
+              Antineutrinos from long-lived natural radioactivity within the rocky layers of the Earth are commonly known as geo-neutrinos. 
+              Geo-neutrinos from isotopes of uranium, thorium, and potassium have energy spectra extending above 1 MeV, facilitating their detection.
+              Through a series of decays leading to stable isotopes of lead, <sup>238</sup>U, <sup>235</sup>U, and <sup>232</sup>Th, each
+              emit 6, 4, and 4 antineutrinos, respectively. The potassium isotope <sup>40</sup>K emits either a single antineutrino 
+              through beta decay to calcium (<sup>40</sup>Ca) or a single neutrino through electron capture to argon (<sup>40</sup>Ar). 
+              All of these isotopes have lifetimes comparable to the age of the Earth, allowing ample abundances for producing observable geo-neutrino 
+              fluxes. Significant spatial variation of the geo-neutrino fluxes at the surface of the Earth is mandated by a correlation between crust 
+              thickness and isotope concentrations, forecasting higher fluxes on continental crust and lower fluxes on oceanic crust.
+            </p>
+            <p>
+              The geo-neutrino model herein uses pre-computed crust fluxes, spatially resolved on a grid of 1° 
+              latitude x 1° longitude, and user-defined mantle fluxes from uniform isotope concentrations in concentric isodensity shells. Fluxes 
+              from the metallic outer and inner core of the Earth are assumed to be negligible. Model outputs are the reaction rates on free proton 
+              (pIBD) or atomic electron (eES) targets and the radiogenic power of the user-defined mantle.
+            </p>
+          </div>
+          </Provider>
+      </Card.Body>
+    </Card>
+  );
+};
+

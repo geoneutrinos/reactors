@@ -17,6 +17,7 @@ import {
   CoreIAEARange,
   CoreList,
   //GeuNu Tab
+  GeoNusPane,
   MantleFlux,
   CrustFlux,
   GeoFluxUncertainties,
@@ -266,6 +267,7 @@ function App(props) {
               </Tab>
               <Tab eventKey="geonu" title="GeoNu">
                 <Visible>
+                  <GeoNusPane />
                   <MantleFlux
                     geoFluxRatios={geoFluxRatios}
                     setGeoFluxRatios={setGeoFluxRatios}
