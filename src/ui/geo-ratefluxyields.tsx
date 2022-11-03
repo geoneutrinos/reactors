@@ -33,7 +33,7 @@ export const GeoRateFluxYields = () => {
             </thead>
             <tbody>
               <tr>
-                <td>IBD: Strumia and Vissani (2003)</td>
+                <td>pIBD: Strumia and Vissani (2003)</td>
                 <td>
                   ---
                 </td>
@@ -48,7 +48,7 @@ export const GeoRateFluxYields = () => {
                 </td>
               </tr>
               <tr>
-                <td>IBD: Vogel and Beacom (1999)</td>
+                <td>pIBD: Vogel and Beacom (1999)</td>
                 <td>
                   ---
                 </td>
@@ -95,7 +95,7 @@ export const GeoRateFluxYields = () => {
           </tbody>
           </Table>
         <p><small>
-          These factors convert isotopic geo-neutrino rates in NIU to fluxes in cm<sup>-2</sup>s<sup>-1</sup><br />
+          These factors convert isotopic geo-neutrino pIBD and eES rates in NIU to fluxes in cm<sup>-2</sup>s<sup>-1</sup><br />
         </small></p>
       </Card.Body>
     </Card>
