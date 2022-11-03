@@ -1,4 +1,5 @@
 import React, { useState, useMemo, useReducer } from "react";
+import {Provider as MathJaxProvider} from "@nteract/mathjax"
 
 import { project } from "ecef-projector";
 import { Container, Row, Col, Tab, Tabs } from "react-bootstrap";
@@ -203,6 +204,7 @@ function App(props) {
   };
   return (
     <PhysicsContext.Provider value={physicsContextValue}>
+      <MathJaxProvider>
       <Container fluid={true}>
         <Row style={{ minHeight: "100vh" }}>
           <Col style={{ minHeight: "50vh" }}>
@@ -354,6 +356,7 @@ function App(props) {
           </Col>
         </Row>
       </Container>
+      </MathJaxProvider>
     </PhysicsContext.Provider>
   );
 }

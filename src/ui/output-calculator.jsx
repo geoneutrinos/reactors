@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { Card, Form, InputGroup, Table, Row, Col } from "react-bootstrap";
 import { sum } from "lodash";
-import { Node, Provider } from "@nteract/mathjax";
+import { Node } from "@nteract/mathjax";
 import { PhysicsContext } from "../state";
 import { XSNames } from "../physics/neutrino-cross-section";
 import { IBD_THRESHOLD } from "../physics/derived";
@@ -569,7 +569,6 @@ export const CalculatorPanel = ({ cores, geo, active}) => {
     <Card>
       <Card.Header>Significance/Exposure Calculator</Card.Header>
       <Card.Body>
-        <Provider>
           <div>
             <small>The numbers of detected signal <i>S</i> and background <i>B</i> events are the integrals of the respective rate spectra multiplied by the detector exposure. 
                    The currently selected cross section is {crossSection.crossSection}. 
@@ -882,7 +881,6 @@ export const CalculatorPanel = ({ cores, geo, active}) => {
             Conversion of the detection efficiency from a function of antineutrino energy to a function of scattered charged particle kinetic energy is a planned upgrade.
             </p>
           </div>
-        </Provider>
       </Card.Body>
     </Card>
   );

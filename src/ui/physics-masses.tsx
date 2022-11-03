@@ -4,7 +4,7 @@ import {NEUTRON_REST_MASS, PROTON_REST_MASS, ELECTRON_REST_MASS} from '../physic
 
 import {IBD_THRESHOLD} from '../physics/derived'
 
-import { Node, Provider } from "@nteract/mathjax";
+import { Node } from "@nteract/mathjax";
 
 import { Card, Table } from 'react-bootstrap';
 
@@ -13,7 +13,6 @@ export const ParticleMasses = () => {
     <Card>
       <Card.Header>Particle Masses / IBD Threshold</Card.Header>
       <Card.Body>
-        <Provider>
         <p>Mass values (MeV) are from the Particle Data Group <a href="https://pdg.lbl.gov/2020/reviews/rpp2020-rev-phys-constants.pdf">at this link</a>.</p>
         <Table>
             <thead>
@@ -50,7 +49,6 @@ export const ParticleMasses = () => {
             of the neutron, proton, and electron, respectively, initiate the IBD reaction on free protons.
             </p>
           </div>
-        </Provider>
       </Card.Body>
     </Card>
   );

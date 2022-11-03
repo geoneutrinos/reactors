@@ -3,7 +3,7 @@ import { Card, Form, InputGroup, Table } from "react-bootstrap";
 
 import { Num } from ".";
 
-import { Node, Provider } from "@nteract/mathjax";
+import { Node } from "@nteract/mathjax";
 
 import {
   CEvNSEventsElemental,
@@ -81,7 +81,6 @@ const SupernovaNusCEvNS = memo(({ nucleus, setNucleus, tESnMin, setTESnMin, flux
         CCSNν (10 kpc): CEvNS Events (/1000 kg)
       </Card.Header>
       <Card.Body>
-        <Provider>
           <div>
             <Table>
               <tbody>
@@ -154,7 +153,6 @@ const SupernovaNusCEvNS = memo(({ nucleus, setNucleus, tESnMin, setTESnMin, flux
               </InputGroup>
             </Form.Group>
           </Form>
-        </Provider>
       </Card.Body>
     </Card>
   );
@@ -205,7 +203,6 @@ const SupernovaNusEventsIBD = ({
         CCSNν (10 kpc): IBD Events (/10<sup>32</sup> targets)
       </Card.Header>
       <Card.Body>
-        <Provider>
           <div>
             <Table>
               <tbody>
@@ -313,7 +310,6 @@ const SupernovaNusEventsIBD = ({
               </InputGroup>
             </Form.Group>
           </div>
-        </Provider>
       </Card.Body>
     </Card>
   );
@@ -347,7 +343,6 @@ const SupernovaNusEventsES = ({
         CCSNν (10 kpc): ES Events (/10<sup>32</sup> targets)
       </Card.Header>
       <Card.Body>
-        <Provider>
           <div>
             <Table>
               <tbody>
@@ -464,7 +459,6 @@ const SupernovaNusEventsES = ({
               </InputGroup>
             </Form.Group>
           </div>
-        </Provider>
       </Card.Body>
     </Card>
   );
@@ -475,7 +469,6 @@ const SupernovaNusPane = () => {
     <Card>
       <Card.Header>Core Collapse SN Neutrinos (CCSNν)</Card.Header>
       <Card.Body>
-        <Provider>
           <div>
             <p>
               The non-oscillated fluence spectrum of neutrinos of a given species{" "}
@@ -545,7 +538,6 @@ const SupernovaNusPane = () => {
               approximation with partial occupancies</i>, Nucl. Phys. A 652, 91-100) as found on the SNOwGLoBES site.
             </p>
           </div>
-        </Provider>
       </Card.Body>
     </Card>
   );
