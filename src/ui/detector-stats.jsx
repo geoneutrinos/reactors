@@ -157,7 +157,7 @@ export function StatsPanel({ cores, geo, reactorLF}) {
               <td>=</td>
               <td>
                 {closestDistace > 100000 ? "N/A" : Math.round(closestDistace) === closestDistace? closestDistace.toFixed(0): closestDistace.toFixed(3)} km
-                <small> ({closestName}) </small>
+                <small> ({closestName} elevation {closestElevation} m) </small>
               </td>
             </tr>
           </tbody>
