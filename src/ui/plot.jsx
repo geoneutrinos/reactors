@@ -215,7 +215,7 @@ export function KESpectrumPlot({ cores, spectrum, detector, reactorLF}) {
 }
 
 export function CoreDirectionPlot({ cores, detector }) {
-  const coreArr = Object.values(cores);
+  const coreArr = Object.values(cores).filter(core => core.shutdown > new Date());
 
   const PHWRcores = coreArr.filter((core) => core.spectrumType === "PHWR");
   const GCRcores = coreArr.filter((core) => core.spectrumType === "GCR");

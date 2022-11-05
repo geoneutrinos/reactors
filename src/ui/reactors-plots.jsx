@@ -402,6 +402,7 @@ export const U238IsotopeSpectraPlots = () => {
 
 export const CoreDirectionSignalPlots = ({ cores, detector, reactorLF }) => {
   const sortedCores = Object.values(cores)
+    .filter(core => core.shutdown > new Date())
     .filter((a) => a.detectorNIU > 0)
     .sort((a, b) => b.detectorNIU - a.detectorNIU);
   let [first, ...rest] = sortedCores;
