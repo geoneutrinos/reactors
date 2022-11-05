@@ -60,6 +60,7 @@ export function StatsPanel({ cores, geo, reactorLF}) {
   )[0];
   // Close Things
   const closestName = closestActiveCore?.name || "";
+  const closestElevation = closestActiveCore?.elevation || 0;
   const closestNIU = closestActiveCore?.detectorNIU || 0;
   const closestNIUUncertainty = closestActiveCore?.detectorNIUUncertainty || 0;
   const closestDistace = closestActiveCore?.detectorDistance || 1000000;
@@ -156,7 +157,7 @@ export function StatsPanel({ cores, geo, reactorLF}) {
               <td>=</td>
               <td>
                 {closestDistace > 100000 ? "N/A" : Math.round(closestDistace) === closestDistace? closestDistace.toFixed(0): closestDistace.toFixed(3)} km
-                <small> ({closestName}) </small>
+                <small> ({closestName} elevation {closestElevation} m) </small>
               </td>
             </tr>
           </tbody>
