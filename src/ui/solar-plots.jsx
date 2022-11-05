@@ -56,7 +56,7 @@ export const AnalemmaPlot = ({ detector, cores, reactorLF, boron8 }) => {
     }
     return d;
   });
-  const coreData = Object.values(cores);
+  const coreData = Object.values(cores).filter(core => core.shutdown > new Date());
   const PHWRcores = coreData.filter((core) => core.spectrumType === "PHWR");
   const GCRcores = coreData.filter((core) => core.spectrumType === "GCR");
   const LEUMoxCores = coreData.filter(
