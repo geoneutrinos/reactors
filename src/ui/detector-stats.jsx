@@ -60,6 +60,7 @@ export function StatsPanel({ cores, geo, reactorLF}) {
   )[0];
   // Close Things
   const closestName = closestActiveCore?.name || "";
+  const closestElevation = closestActiveCore?.elevation || 0;
   const closestNIU = closestActiveCore?.detectorNIU || 0;
   const closestNIUUncertainty = closestActiveCore?.detectorNIUUncertainty || 0;
   const closestDistace = closestActiveCore?.detectorDistance || 1000000;
