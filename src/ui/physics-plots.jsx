@@ -1,6 +1,7 @@
 import React, {useContext} from 'react';
 
-import { Card} from "react-bootstrap";
+import { Card } from "react-bootstrap";
+import { Node } from "@nteract/mathjax";
 import Plot from "react-plotly.js";
 
 import { XSAbrev, XSNames, XSNamesNormal } from '../physics/neutrino-cross-section';
@@ -1111,7 +1112,11 @@ export const CrossSectionPlots = () => {
       <Card.Header>Total Cross Sections- Antineutrinos</Card.Header>
       <Card.Body>
         <p>
-          Free proton inverse beta decay (pIBD) cross sections are from:
+          Two versions of the free proton inverse beta decay (pIBD) cross section available for selection. The default version is the parameterizd equation, that 
+          estimates the precise cross section, given by A. Strumia and F. Vissani (2003), <i>Precise quasielastic neutrino/nucleon cross-section</i>, Phys. Lett. B 564, 42.
+          <Node>{String.raw`
+            \sigma^\mathrm{IBD}(E_\mathrm{e}) = (10.0 \times10^{-44} \mathrm{cm}^2 \mathrm{MeV}^{-2} )p_\mathrm{e} E_\mathrm{e} E_{\overline{\nu}_\mathrm{e}}^{\alpha\mathstrut},`}</Node>{" "}
+            where <Node inline>{String.raw`\alpha = -0.07056+0.02018\,\mathrm{ln}E_{\overline{\nu}_\mathrm{e}}-0.001953\,\mathrm{ln}^3E_{\overline{\nu}_\mathrm{e}`}</Node>. 
         <br />
           P. Vogel and J. F. Beacom (1999), <i>Angular distribution of inverse neutron decay, ν̅<sub>𝑒</sub> + 𝑝 ⭢ 𝑒<sup>+</sup> + 𝑛</i>, Phys. Rev. D 60, 053003.
         <br />
