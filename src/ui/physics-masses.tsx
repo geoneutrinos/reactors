@@ -11,7 +11,7 @@ import { Card, Table } from 'react-bootstrap';
 export const ParticleMasses = () => {
   return (
     <Card>
-      <Card.Header>Particle Masses / IBD Threshold</Card.Header>
+      <Card.Header>Particle Masses / pIBD Threshold</Card.Header>
       <Card.Body>
         <p>Mass values (MeV) are from the Particle Data Group <a href="https://pdg.lbl.gov/2020/reviews/rpp2020-rev-phys-constants.pdf">at this link</a>.</p>
         <Table>
@@ -46,7 +46,9 @@ export const ParticleMasses = () => {
             <Node inline>{String.raw`m_\mathrm{n},`}</Node> {" "}
             <Node inline>{String.raw`m_\mathrm{p},`}</Node> and {" "}
             <Node inline>{String.raw`m_\mathrm{e},`}</Node> are the masses
-            of the neutron, proton, and electron, respectively, initiate the IBD reaction on free protons.
+            of the neutron, proton, and electron, respectively, initiate free proton inverse beta decay (pIBD - {" "}
+            <Node inline>{String.raw`\overline{\nu}_\mathrm{e} + \mathrm{p} \rightarrow \mathrm{n} + \mathrm{e}^+`}</Node> {" "}
+            ).
             </p>
           </div>
       </Card.Body>
