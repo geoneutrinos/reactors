@@ -55,20 +55,21 @@ export const presets: DetecorPreset[] = [
     {name: "Nestor", lat:36.63, lon: 21.58, elevation:-4000, overburden:4000, region:"Mediterranean Sea"},
     {name: "NEMO Test", lat:37.551, lon: 15.384, elevation:-2080, overburden:2080, region:"Mediterranean Sea"},
     //North America
-    //Mt San Jacinto water tunnel in southern California- http://www.sns.ias.edu/~jnb/Laboratory/SanJacinto/visit.pdf
-    {name: "San Jacinto", lat:33.81471, lon:-116.67944, elevation:0, overburden:5000, region:"North America"},
-    //Henderson molybdenum mine in central Colorado- https://www.phy.bnl.gov/~diwan/talks/talks/virginia%20colloquium/colloquium/UNO_Henderson.pdf
-    {name: "Henderson", lat:39.77107, lon: -105.84596, elevation:0, overburden:4000, region:"North America"},
     //Fairport- detector height -580 m, surface height 180 m, geoid height -33.24 m
     {name: "Fairport", lat:41.756, lon: -81.286, elevation:-433, overburden:1570, region:"North America"},
+    //Henderson molybdenum mine in central Colorado- https://www.phy.bnl.gov/~diwan/talks/talks/virginia%20colloquium/colloquium/UNO_Henderson.pdf
+    {name: "Henderson", lat:39.77107, lon: -105.84596, elevation:0, overburden:4000, region:"North America"},
     {name: "KURF", lat:37.38, lon: -80.66, elevation:0, overburden:1400, region:"North America"},
+    //Mt San Jacinto water tunnel in southern California- http://www.sns.ias.edu/~jnb/Laboratory/SanJacinto/visit.pdf
+    {name: "Resolution", lat:33.301336, lon:-111.103363, elevation:0, overburden:5000, region:"North America"},
+    {name: "San Jacinto", lat:33.81471, lon:-116.67944, elevation:0, overburden:5000, region:"North America"},
     {name: "Soudan", lat:47.82, lon: -92.24, elevation:-210, overburden:1950, region:"North America"},
+    //SNOLab- detector height -2070 m, surface height 309 m, Geoid height -33.65 m, Ellipsoid height -1795 m
+    {name: "SNOLAB", lat:46.475, lon: -81.20111, elevation:-1795, overburden:6010, region:"North America"},
     //SURF- detector height -1478, surface height 1682 m, geoid height -11.98 m
     {name: "SURF", lat:44.36, lon: -103.76, elevation:192, overburden:4300, region:"North America"},
     //WIPP- detector height -689 m, surface height 1004 m, geoid height -21.48
     {name: "WIPP", lat:32.371667, lon: -103.793611, elevation:294, overburden:1624, region:"North America"},
-    //SNOLab- detector height -2070 m, surface height 309 m, Geoid height -33.65 m, Ellipsoid height -1795 m
-    {name: "SNOLAB", lat:46.475, lon: -81.20111, elevation:-1795, overburden:6010, region:"North America"},
     //Oceania
     //Stawell- detector height -1050 m, surface height 230 m, geoid height 5.62 m
     {name: "SUPL", lat:-37.07, lon: 142.81, elevation:-812, overburden:2700, region:"Oceania"},
