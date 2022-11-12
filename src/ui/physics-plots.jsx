@@ -99,7 +99,7 @@ export const DifferentialCrossSectionPlotsNeutrinos = () => {
     },
   ]
   const layout = {
-    title: "ES Differential Cross Section- T<sub>e</sub>",
+    title: "eES Differential Cross Section- T<sub>e</sub>",
     yaxis: {
       title: { text: `d𝛔/dT<sub>e</sub> (cm<sup>2</sup>/MeV)` },
       type: 'log',
@@ -132,7 +132,7 @@ export const DifferentialCrossSectionPlotsNeutrinos = () => {
   };
   return (
     <Card>
-      <Card.Header>ES Differential Cross Section- T<sub>e</sub></Card.Header>
+      <Card.Header>eES Differential Cross Section- T<sub>e</sub></Card.Header>
       <Card.Body>
         <Plot
           useResizeHandler={true}
@@ -226,7 +226,7 @@ export const AngularDifferentialCrossSectionPlotsNeutrinos = () => {
     },
   ]
   const layout = {
-    title: "ES Differential Cross Section- cosθ",
+    title: "eES Differential Cross Section- cosθ",
     yaxis: {
       title: { text: `d𝛔/dcosθ (cm<sup>2</sup>)` },
       type: 'log',
@@ -259,7 +259,7 @@ export const AngularDifferentialCrossSectionPlotsNeutrinos = () => {
   };
   return (
     <Card>
-      <Card.Header>ES Differential Cross Section- cosθ</Card.Header>
+      <Card.Header>eES Differential Cross Section- cosθ</Card.Header>
       <Card.Body>
         <Plot
           useResizeHandler={true}
@@ -353,7 +353,7 @@ export const AngularDifferentialCrossSectionPlots = () => {
     },
   ]
   const layout = {
-    title: "ES Differential Cross Section- cosθ",
+    title: "eES Differential Cross Section- cosθ",
     yaxis: {
       title: { text: `d𝛔/dcosθ (cm<sup>2</sup>)` },
       type: 'log',
@@ -386,7 +386,7 @@ export const AngularDifferentialCrossSectionPlots = () => {
   };
   return (
     <Card>
-      <Card.Header>ES Differential Cross Section- cosθ</Card.Header>
+      <Card.Header>eES Differential Cross Section- cosθ</Card.Header>
       <Card.Body>
         <Plot
           useResizeHandler={true}
@@ -480,7 +480,7 @@ export const CDFAngularDifferentialCrossSectionPlotsNeutrinos = () => {
     },
   ]
   const layout = {
-    title: "ES Cumulative Differential Cross Section- cosθ",
+    title: "eES Cumulative Differential Cross Section- cosθ",
     yaxis: {
       title: { text: `P(cosθ≤cosϑ)` },
       autorange: true
@@ -512,7 +512,7 @@ export const CDFAngularDifferentialCrossSectionPlotsNeutrinos = () => {
   };
   return (
     <Card>
-      <Card.Header>ES Cumulative Differential Cross Section- cosθ</Card.Header>
+      <Card.Header>eES Cumulative Differential Cross Section- cosθ</Card.Header>
       <Card.Body>
         <Plot
           useResizeHandler={true}
@@ -606,7 +606,7 @@ export const CDFAngularDifferentialCrossSectionPlots = () => {
     },
   ]
   const layout = {
-    title: "ES Cumulative Differential Cross Section- cosθ",
+    title: "eES Cumulative Differential Cross Section- cosθ",
     yaxis: {
       title: { text: `P(cosθ≤cosϑ)` },
       autorange: true
@@ -638,7 +638,7 @@ export const CDFAngularDifferentialCrossSectionPlots = () => {
   };
   return (
     <Card>
-      <Card.Header>ES Cumulative Differential Cross Section- cosθ</Card.Header>
+      <Card.Header>eES Cumulative Differential Cross Section- cosθ</Card.Header>
       <Card.Body>
         <Plot
           useResizeHandler={true}
@@ -732,7 +732,7 @@ export const DifferentialCrossSectionPlots = () => {
     },
   ]
   const layout = {
-    title: "ES Differential Cross Section- T<sub>e</sub>",
+    title: "eES Differential Cross Section- T<sub>e</sub>",
     yaxis: {
       title: { text: `d𝛔/dT<sub>e</sub> (cm<sup>2</sup>/MeV)` },
       type: 'log',
@@ -765,7 +765,7 @@ export const DifferentialCrossSectionPlots = () => {
   };
   return (
     <Card>
-      <Card.Header>ES Differential Cross Section- T<sub>e</sub></Card.Header>
+      <Card.Header>eES Differential Cross Section- T<sub>e</sub></Card.Header>
       <Card.Body>
         <Plot
           useResizeHandler={true}
@@ -860,7 +860,7 @@ export const CDFdifferentialCrossSectionPlots = () => {
     },
   ]
   const layout = {
-    title: "ES Cumulative Differential Cross Section- T<sub>e</sub>",
+    title: "eES Cumulative Differential Cross Section- T<sub>e</sub>",
     yaxis: {
       title: { text: `P(T<sub>e</sub>≤t)` },
       autorange: true
@@ -892,7 +892,7 @@ export const CDFdifferentialCrossSectionPlots = () => {
   };
   return (
     <Card>
-      <Card.Header>ES Cumulative Differential Cross Section- T<sub>e</sub></Card.Header>
+      <Card.Header>eES Cumulative Differential Cross Section- T<sub>e</sub></Card.Header>
       <Card.Body>
         <Plot
           useResizeHandler={true}
@@ -987,7 +987,7 @@ export const CDFdifferentialCrossSectionPlotsNeutrinos = () => {
     },
   ]
   const layout = {
-    title: "ES Cumulative Differential Cross Section- T<sub>e</sub>",
+    title: "eES Cumulative Differential Cross Section- T<sub>e</sub>",
     yaxis: {
       title: { text: `P(T<sub>e</sub>≤t)` },
       autorange: true
@@ -1019,7 +1019,7 @@ export const CDFdifferentialCrossSectionPlotsNeutrinos = () => {
   };
   return (
     <Card>
-      <Card.Header>ES Cumulative Differential Cross Section- T<sub>e</sub></Card.Header>
+      <Card.Header>eES Cumulative Differential Cross Section- T<sub>e</sub></Card.Header>
       <Card.Body>
         <Plot
           useResizeHandler={true}
@@ -1075,7 +1075,7 @@ export const CrossSectionPlots = () => {
     },
   ]
   var layout = {
-    title: `Total Cross Sections- Antineutrinos<br /><sub>${"(ES " + crossSection.elasticScatteringTMin.toFixed(1) + " < T < " + crossSection.elasticScatteringTMax.toFixed(1) + " MeV)"}</sub>`,
+    title: `Total Cross Sections- Antineutrinos<br /><sub>${"(eES " + crossSection.elasticScatteringTMin.toFixed(1) + " < T < " + crossSection.elasticScatteringTMax.toFixed(1) + " MeV)"}</sub>`,
     yaxis: {
       title: { text: `Total Cross Section (cm<sup>2</sup>)` },
       type: 'log',
@@ -1111,14 +1111,14 @@ export const CrossSectionPlots = () => {
       <Card.Header>Total Cross Sections- Antineutrinos</Card.Header>
       <Card.Body>
         <p>
-          Inverse beta decay (IBD) cross sections are from:
+          Free proton inverse beta decay (pIBD) cross sections are from:
         <br />
           P. Vogel and J. F. Beacom (1999), <i>Angular distribution of inverse neutron decay, ν̅<sub>𝑒</sub> + 𝑝 ⭢ 𝑒<sup>+</sup> + 𝑛</i>, Phys. Rev. D 60, 053003.
         <br />
           A. Strumia and F. Vissani (2003), <i>Precise quasielastic neutrino/nucleon cross-section</i>, Phys. Lett. B 564, 42.
         </p>
         <p>
-          Elastic scattering (ES) cross sections are from:
+          Neutrino-electon elastic scattering (eES) cross sections are from:
         <br />
           M. Fukugita and T. Yanagida, <i>Physics of Neutrinos</i> (Springer-Verlag, Berlin Heidelberg, 2003).
         </p>
@@ -1193,7 +1193,7 @@ export const CrossSectionPlotsNormal = () => {
       <Card.Header>Total Cross Sections- Neutrinos</Card.Header>
       <Card.Body>
         <p>
-          Elastic scattering (ES) cross sections are from:
+          Neutrino-electron elastic scattering (eES) cross sections are from:
         <br />
           M. Fukugita and T. Yanagida, <i>Physics of Neutrinos</i> (Springer-Verlag, Berlin Heidelberg, 2003).
         </p>

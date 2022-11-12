@@ -21,26 +21,26 @@ export enum NeutrinoType {
 }
 
 export enum XSNames {
-  IBDVB1999 = "IBD: Vogel and Beacom (1999)",
-  IBDSV2003 = "IBD: Strumia and Vissani (2003)",
-  ESTOTAL = "ES: Antineutrino",
-  ESANTI = "ES: Electron Antineutrino",
-  ESMUTAU = "ES: Mu Tau Antineutrino",
+  IBDVB1999 = "pIBD: Vogel and Beacom (1999)",
+  IBDSV2003 = "pIBD: Strumia and Vissani (2003)",
+  ESTOTAL = "eES: Antineutrino",
+  ESANTI = "eES: Electron Antineutrino",
+  ESMUTAU = "eES: Mu Tau Antineutrino",
 }
 
 export enum XSNamesNormal {
-  ESNORMAL = "ES: Electron Neutrino",
-  ESMUTAUNORM = "ES: Mu Tau Neutrino"
+  ESNORMAL = "eES: Electron Neutrino",
+  ESMUTAUNORM = "eES: Mu Tau Neutrino"
 }
 
 export const XSAbrev: {[key in XSNames | XSNamesNormal]: string} = {
-  [XSNames.IBDVB1999]: "IBDvb99",
-  [XSNames.IBDSV2003]: "IBDsv03",
-  [XSNames.ESTOTAL]: "ESnubars",
-  [XSNames.ESANTI]: "ESnuebar",
-  [XSNames.ESMUTAU]: "ESnuxbar",
-  [XSNamesNormal.ESNORMAL]: "ESnue",
-  [XSNamesNormal.ESMUTAUNORM]: "ESnux",
+  [XSNames.IBDVB1999]: "pIBDvb99",
+  [XSNames.IBDSV2003]: "pIBDsv03",
+  [XSNames.ESTOTAL]: "eESnubars",
+  [XSNames.ESANTI]: "eESnuebar",
+  [XSNames.ESMUTAU]: "eESnuxbar",
+  [XSNamesNormal.ESNORMAL]: "eESnue",
+  [XSNamesNormal.ESMUTAUNORM]: "eESnux",
 }
 
 export const ES_TARGET_MASSES = {
