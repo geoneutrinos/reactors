@@ -14,18 +14,19 @@ export const presets: DetecorPreset[] = [
     //East Rand Proprietary Mines 3585 m below surface
     {name: "Witwatersrand", lat:-26.213205, lon:28.249712, elevation:0, overburden:9000, region:"Africa"},
     //Asia
-    //Jaduguda uranium mine 640 m below surface 22.65208 N, 86.34687 E
-    //Kolar Gold Fields- mine closed, overburder from Achar et al., Phys. Lett. 18 (1965) 196
-    {name: "Kolar Gold Fields", lat:12.93926, lon: 78.25565, elevation:848, overburden:7500, region:"Asia"},
+    {name: "Lake Baikal", lat:51.771, lon: 104.398, elevation:-644.5, overburden:1100, region:"Asia"},
     {name: "Guemseong", lat:35.05, lon: 126.70, elevation:0, overburden:950, region:"Asia"},
     //INO- detector height -1200 m, surface height 2207 m, geoid height -93.33
     {name: "INO", lat:9.955514, lon: 77.283654, elevation:914, overburden:3000, region:"Asia"},
+    //Jaduguda uranium mine 640 m below surface 22.65208 N, 86.34687 E
+    {name: "Jaduguda", lat:22.652095, lon:86.346882, elevation:0, overburden:1430, region:"Asia"},
     {name: "Jiangmen", lat:22.12, lon: 112.51, elevation:-481.25, overburden:2100, region:"Asia"},
     //Jinping- detector height -2400 m, surface height 4000 m, geoid height -29.14 m
     {name: "Jinping", lat:28.15323, lon: 101.7114, elevation:1571, overburden:6720, region:"Asia"},
     //Kamioka- detector height -1000 m, surface height 1368 m, geoid height 43.54 m 
     {name: "Kamioka", lat:36.425659, lon: 137.310508, elevation:412, overburden:2050, region:"Asia"},
-    {name: "Lake Baikal", lat:51.771, lon: 104.398, elevation:-644.5, overburden:1100, region:"Asia"},
+    //Kolar Gold Fields- mine closed, overburder from Achar et al., Phys. Lett. 18 (1965) 196
+    {name: "Kolar Gold Fields", lat:12.93926, lon: 78.25565, elevation:848, overburden:7500, region:"Asia"},
     {name: "TRIDENT", lat:17.4, lon: 114.0, elevation:-3500, overburden:3500, region:"Asia"},
     //Yemilab- detector height -1100 m, surface height 900 m, geoid height 30.34 m
     {name: "Yemilab", lat:37.188639, lon: 128.659406, elevation:-170, overburden:2500, region:"Asia"},
