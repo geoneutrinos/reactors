@@ -11,7 +11,7 @@ import { Card, Table } from 'react-bootstrap';
 export const ParticleMasses = () => {
   return (
     <Card>
-      <Card.Header>Particle Masses / IBD Threshold</Card.Header>
+      <Card.Header>Particle Masses / pIBD Threshold</Card.Header>
       <Card.Body>
         <p>Mass values (MeV) are from the Particle Data Group <a href="https://pdg.lbl.gov/2020/reviews/rpp2020-rev-phys-constants.pdf">at this link</a>.</p>
         <Table>
