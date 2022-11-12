@@ -1132,11 +1132,10 @@ export const CrossSectionPlots = () => {
         <p>
           The default version of the pIBD cross section is from 
           A. Strumia and F. Vissani (2003), <i>Precise quasielastic neutrino/nucleon cross-section</i>, Phys. Lett. B 564, 42.
-          The parameterizd equation, estimating the precise cross section, is
+          The implemented parameterized equation, estimating the precise cross section, is
         <Node>{String.raw`
             \sigma^\mathrm{pIBD}(E_\mathrm{e}) = (10.0 \times10^{-44} \mathrm{cm}^2 \mathrm{MeV}^{-2} )p_\mathrm{e} E_\mathrm{e} E_{\overline{\nu}_\mathrm{e}}^{\alpha\mathstrut},`}</Node>{" "}
-            where <Node inline>{String.raw`E_{\overline{\nu}_\mathrm{e}}`}</Node>{" "}
-            is the antineutrino energy and
+            where the exponent{" "}
             <Node inline>{String.raw`\alpha = -0.07056+0.02018\,\mathrm{ln}E_{\overline{\nu}_\mathrm{e}}-0.001953\,\mathrm{ln}^3E_{\overline{\nu}_\mathrm{e}}`}</Node>. 
         </p>
         <p>
