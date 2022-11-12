@@ -1127,7 +1127,7 @@ export const CrossSectionPlots = () => {
           <Node inline>{String.raw`E_{\overline{\nu}_\mathrm{e}} = E_\mathrm{e}+E_\mathrm{thr}-m_\mathrm{e},`}</Node>{" "}
           where{" "}
           <Node inline>{String.raw`E_\mathrm{thr}`}</Node>{" "} 
-          is the threshold energy as defined and given on the Input tab.{" "}
+          is the threshold energy.{" "}
         </p>
         <p>
           The default version of the pIBD cross section is from 
@@ -1146,7 +1146,7 @@ export const CrossSectionPlots = () => {
             \sigma^\mathrm{pIBD}(E_\mathrm{e}) = (9.52 \times10^{-44} \mathrm{cm}^2 \mathrm{MeV}^{-2} )p_\mathrm{e} E_\mathrm{e}.`}</Node>{" "}
         </p>
         <p>
-          Neutrino-electon elastic scattering (eES) cross sections are from
+          Neutrino-electon elastic scattering (eES) cross section is from
           M. Fukugita and T. Yanagida, <i>Physics of Neutrinos</i> (Springer-Verlag, Berlin Heidelberg, 2003). {" "}
         <Node>{String.raw`
           \begin{split}
