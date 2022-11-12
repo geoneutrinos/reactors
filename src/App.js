@@ -32,6 +32,8 @@ import {
   //IBD/ES Tab
   DetectorPhysicsPane,
   CrossSectionPlots,
+  ParticleMasses,
+  PhysicsConstants,
   DifferentialCrossSectionPlots,
   AngularDifferentialCrossSectionPlots,
   CDFdifferentialCrossSectionPlots,
@@ -39,8 +41,6 @@ import {
   //Input Tab
   NeutrinoOscillationPane,
   PhysicsOscillationPane,
-  PhysicsConstants,
-  ParticleMasses,
   FissionFractionPane,
   FissionIsotopeSpectraPlots,
   U235IsotopeSpectraPlots,
@@ -310,10 +310,12 @@ function App(props) {
                   />
                 </Visible>
               </Tab>
-              <Tab eventKey="ibd/es" title="IBD/ES">
+              <Tab eventKey="ibd/es" title="pIBD/eES">
                 <Visible>
                   <DetectorPhysicsPane />
                   <CrossSectionPlots />
+                  <ParticleMasses />
+                  <PhysicsConstants />
                   <DifferentialCrossSectionPlots />
                   <CDFdifferentialCrossSectionPlots />
                   <AngularDifferentialCrossSectionPlots />
@@ -324,8 +326,6 @@ function App(props) {
                 <Visible>
                   <NeutrinoOscillationPane />
                   <PhysicsOscillationPane />
-                  <ParticleMasses />
-                  <PhysicsConstants />
                   <FissionFractionPane />
                   <FissionIsotopeSpectraPlots />
                   <U235IsotopeSpectraPlots />
