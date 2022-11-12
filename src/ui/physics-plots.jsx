@@ -1124,10 +1124,6 @@ export const CrossSectionPlots = () => {
           <Node inline>{String.raw`m_\mathrm{e}`}</Node>{" "}
           is the electron (positron) rest mass.
           Assuming the antineutrino is massless, then the energy of the incident electron antineutrino{" "} 
-          <Node inline>{String.raw`E_{\overline{\nu}_\mathrm{e}}`}</Node>{" "} 
-          relates to the energy of the positron{" "}
-          <Node inline>{String.raw`E_\mathrm{e}`}</Node>{" "} 
-          by{" "}
           <Node inline>{String.raw`E_{\overline{\nu}_\mathrm{e}} = E_\mathrm{e}+E_\mathrm{thr}-m_\mathrm{e},`}</Node>{" "}
           where{" "}
           <Node inline>{String.raw`E_\mathrm{thr}`}</Node>{" "} 
