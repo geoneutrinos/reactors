@@ -1150,7 +1150,7 @@ export const CrossSectionPlots = () => {
           M. Fukugita and T. Yanagida, <i>Physics of Neutrinos</i> (Springer-Verlag, Berlin Heidelberg, 2003). {" "}
         <Node>{String.raw`
           \begin{split}
-          \sigma_{T \ge T_\mathrm{min}}^\mathrm{eES}(E_{\nu}) = \frac{G_F^2mE_\nu}{2\pi} \\
+          \sigma_{T_\mathrm{min} \ge T \le T_\mathrm{max}}^\mathrm{eES}(E_{\nu}) = \frac{G_F^2mE_\nu}{2\pi} \\
           \bigg[\Big(c_\mathrm{L}^2 y_{\mathrm{max}} + c_\mathrm{R}^2\frac{1}{3}\big(1-(1- y_{\mathrm{max}})^3\big) - c_\mathrm{L}c_\mathrm{R}\frac{m}{2E_\nu}y_{\mathrm{max}}^2\Big) - \\
           \Big(c_\mathrm{L}^2 y_{\mathrm{min}} + c_\mathrm{R}^2\frac{1}{3}\big(1-(1- y_{\mathrm{min}})^3\big) - c_\mathrm{L}c_\mathrm{R}\frac{m}{2E_\nu}y_{\mathrm{min}}^2\Big)\bigg],
           \end{split}
