@@ -1138,7 +1138,7 @@ export const CrossSectionPlots = () => {
           A. Strumia and F. Vissani (2003), <i>Precise quasielastic neutrino/nucleon cross-section</i>, Phys. Lett. B 564, 42.
           The parameterizd equation, estimating the precise cross section, is
         <Node>{String.raw`
-            \sigma^\mathrm{IBD}(E_\mathrm{e}) = (10.0 \times10^{-44} \mathrm{cm}^2 \mathrm{MeV}^{-2} )p_\mathrm{e} E_\mathrm{e} E_{\overline{\nu}_\mathrm{e}}^{\alpha\mathstrut},`}</Node>{" "}
+            \sigma^\mathrm{pIBD}(E_\mathrm{e}) = (10.0 \times10^{-44} \mathrm{cm}^2 \mathrm{MeV}^{-2} )p_\mathrm{e} E_\mathrm{e} E_{\overline{\nu}_\mathrm{e}}^{\alpha\mathstrut},`}</Node>{" "}
             where <Node inline>{String.raw`E_{\overline{\nu}_\mathrm{e}}`}</Node>{" "}
             is the antineutrino energy and
             <Node inline>{String.raw`\alpha = -0.07056+0.02018\,\mathrm{ln}E_{\overline{\nu}_\mathrm{e}}-0.001953\,\mathrm{ln}^3E_{\overline{\nu}_\mathrm{e}}`}</Node>. 
@@ -1148,12 +1148,32 @@ export const CrossSectionPlots = () => {
           P. Vogel and J. F. Beacom (1999), <i>Angular distribution of inverse neutron decay, ν̅<sub>𝑒</sub> + 𝑝 ⭢ 𝑒<sup>+</sup> + 𝑛</i>, Phys. Rev. D 60, 053003.
           This version, which tends to over-predict the cross section at high energy, is
         <Node>{String.raw`
-            \sigma^\mathrm{IBD}(E_\mathrm{e}) = (9.52 \times10^{-44} \mathrm{cm}^2 \mathrm{MeV}^{-2} )p_\mathrm{e} E_\mathrm{e}.`}</Node>{" "}
+            \sigma^\mathrm{pIBD}(E_\mathrm{e}) = (9.52 \times10^{-44} \mathrm{cm}^2 \mathrm{MeV}^{-2} )p_\mathrm{e} E_\mathrm{e}.`}</Node>{" "}
         </p>
         <p>
-          Neutrino-electon elastic scattering (eES) cross sections are from:
-        <br />
-          M. Fukugita and T. Yanagida, <i>Physics of Neutrinos</i> (Springer-Verlag, Berlin Heidelberg, 2003).
+          Neutrino-electon elastic scattering (eES) cross sections are from
+          M. Fukugita and T. Yanagida, <i>Physics of Neutrinos</i> (Springer-Verlag, Berlin Heidelberg, 2003). {" "}
+        <Node>{String.raw`
+          \begin{split}
+          \sigma_{T \ge T_\mathrm{min}}^\mathrm{eES}(E_{\nu})=\int_{y_\mathrm{min}}^{y_\mathrm{max}}\frac{d\sigma^\mathrm{ES}(E_\nu)} {dy}dy=\frac{G_F^2mE_\nu}{2\pi} \\
+          \bigg[\Big(c_\mathrm{L}^2 y_{\mathrm{max}} + c_\mathrm{R}^2\frac{1}{3}\big(1-(1- y_{\mathrm{max}})^3\big) - c_\mathrm{L}c_\mathrm{R}\frac{m}{2E_\nu}y_{\mathrm{max}}^2\Big) - \\
+          \Big(c_\mathrm{L}^2 y_{\mathrm{min}} + c_\mathrm{R}^2\frac{1}{3}\big(1-(1- y_{\mathrm{min}})^3\big) - c_\mathrm{L}c_\mathrm{R}\frac{m}{2E_\nu}y_{\mathrm{min}}^2\Big)\bigg],
+          \end{split}
+        `}</Node>{" "}
+          where{" "}
+          <Node inline>{String.raw`y_{\mathrm{max}}=T_\mathrm{max}/E_\nu,`}</Node>{" "} 
+          <Node inline>{String.raw`y_\mathrm{min} = T_\mathrm{min}/E_\nu,`}</Node>{" "}
+          and the coefficients{" "}
+          <Node inline>{String.raw`c_mathrm{L},`}</Node>{" "}
+          <Node inline>{String.raw`c_mathrm{R},`}</Node>{" "}
+          are functions of the coupling factors{" "}
+          <Node inline>{String.raw`c_V`}</Node>{" "} 
+          and{" "}
+          <Node inline>{String.raw`c_A.`}</Node>{" "}
+          Specifically,{" "}
+          <Node inline>{String.raw`c_\mathrm{L} = c_V + c_A`}</Node>{" "}
+          and{" "}
+          <Node inline>{String.raw`c_\mathrm{R} = c_V - c_A.`}</Node>{" "}
         </p>
         <Plot
           useResizeHandler={true}
