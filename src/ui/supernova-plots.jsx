@@ -225,7 +225,7 @@ export const SupernovaPlotsIBDnue16O = ({
     },
   ];
   var layout = {
-    title: `CCSN (10 kpc): ν<sub>e</sub> 16O IBD Spectra
+    title: `CCSN (10 kpc): ν<sub>e</sub> <sup>16</sup>O IBD Spectra
     <br /><sub>ν<sub>e</sub> , ν̅<sub>e</sub> , ν<sub>x</sub> : E<sub>tot</sub> (10<sup>52</sup> erg) / E<sub>avg</sub> (MeV) / β = ${nueTotEnrg.toFixed(1)} / ${nueAvgEnrg.toFixed(1)} / ${nueSpectrumShapeParam.toFixed(0)}, ${anuTotEnrg.toFixed(1)} / ${anuAvgEnrg.toFixed(1)} / ${anuSpectrumShapeParam.toFixed(0)}, ${nuxTotEnrg.toFixed(1)} / ${nuxAvgEnrg.toFixed(1)} / ${nuxSpectrumShapeParam.toFixed(0)}</sub>`,
     yaxis: {
       title: { text: `Events dN/dE (/10<sup>32</sup> targets/MeV)` },
@@ -255,7 +255,7 @@ export const SupernovaPlotsIBDnue16O = ({
   };
   return (
     <Card>
-      <Card.Header>CCSN (10 kpc): ν<sub>e</sub> 16O IBD Spectra</Card.Header>
+      <Card.Header>CCSN (10 kpc): ν<sub>e</sub> <sup>16</sup>O IBD Spectra</Card.Header>
       <Card.Body>
         <Plot
           useResizeHandler={true}
@@ -488,7 +488,7 @@ export const SupernovaPlotsIBDnuebar16O = ({
     },
   ];
   var layout = {
-    title: `CCSN (10 kpc): ν̅<sub>e</sub> 16O IBD Spectra
+    title: `CCSN (10 kpc): ν̅<sub>e</sub> <sup>16</sup>O IBD Spectra
     <br /><sub>ν<sub>e</sub> , ν̅<sub>e</sub> , ν<sub>x</sub> : E<sub>tot</sub> (10<sup>52</sup> erg) / E<sub>avg</sub> (MeV) / β = ${nueTotEnrg.toFixed(1)} / ${nueAvgEnrg.toFixed(1)} / ${nueSpectrumShapeParam.toFixed(0)}, ${anuTotEnrg.toFixed(1)} / ${anuAvgEnrg.toFixed(1)} / ${anuSpectrumShapeParam.toFixed(0)}, ${nuxTotEnrg.toFixed(1)} / ${nuxAvgEnrg.toFixed(1)} / ${nuxSpectrumShapeParam.toFixed(0)}</sub>`,
     yaxis: {
       title: { text: `Events dN/dE (/10<sup>32</sup> targets/MeV)` },
@@ -518,7 +518,7 @@ export const SupernovaPlotsIBDnuebar16O = ({
   };
   return (
     <Card>
-      <Card.Header>CCSN (10 kpc): ν̅<sub>e</sub> 16O IBD Spectra</Card.Header>
+      <Card.Header>CCSN (10 kpc): ν̅<sub>e</sub> <sup>16</sup>O IBD Spectra</Card.Header>
       <Card.Body>
         <Plot
           useResizeHandler={true}
