@@ -46,7 +46,7 @@ export const ParticleMasses = () => {
             <Node inline>{String.raw`m_\mathrm{n},`}</Node> {" "}
             <Node inline>{String.raw`m_\mathrm{p},`}</Node> and {" "}
             <Node inline>{String.raw`m_\mathrm{e},`}</Node> are the masses
-            of the neutron, proton, and electron, respectively, initiate free proton inverse beta decay (pIBD- 
+            of the neutron, proton, and electron, respectively, initiate free proton inverse beta decay (pIBD - {" "}
             <Node inline>{String.raw`\overline{\nu}_\mathrm{e} + \mathrm{p} \rightarrow \mathrm{n} + \mathrm{e}^+`}</Node> {" "}
             ).
             </p>
