@@ -1120,17 +1120,18 @@ export const CrossSectionPlots = () => {
           >{String.raw`E_\mathrm{e}`}</Node>{" "} 
           and{" "}
           <Node inline>{String.raw`p_\mathrm{e}= \sqrt{E^2_\mathrm{e}-m^2_\mathrm{e}}`}</Node>,{" "}
-          respectively. Assuming the antineutrino is massless, then the energy of the incident electron antineutrino{" "} 
+          respectively, where{" "}
+          <Node inline>{String.raw`m_\mathrm{e}`}</Node>{" "}
+          is the electron (positron) rest mass.
+          Assuming the antineutrino is massless, then the energy of the incident electron antineutrino{" "} 
           <Node inline>{String.raw`E_{\overline{\nu}_\mathrm{e}}`}</Node>{" "} 
           relates to the energy of the positron{" "}
           <Node inline>{String.raw`E_\mathrm{e}`}</Node>{" "} 
           by{" "}
           <Node inline>{String.raw`E_{\overline{\nu}_\mathrm{e}} = E_\mathrm{e}+E_\mathrm{thr}-m_\mathrm{e},`}</Node>{" "}
-          with{" "}
+          where{" "}
           <Node inline>{String.raw`E_\mathrm{thr}`}</Node>{" "} 
-          the threshold energy and{" "}
-          <Node inline>{String.raw`m_\mathrm{e}`}</Node>{" "}
-          the electron rest mass.
+          is the threshold energy as defined and given on the Input tab.{" "}
         </p>
         <p>
           The default version of the pIBD cross section is from 
