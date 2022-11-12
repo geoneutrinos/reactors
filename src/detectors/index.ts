@@ -12,6 +12,7 @@ type DetecorPreset = {
 export const presets: DetecorPreset[] = [
     //Africa
     //East Rand Proprietary Mines 3585 m below surface
+    {name: "Witwatersrand", lat:-26.213205, lon:28.249712, elevation:0, overburden:9000, region:"Africa"},
     //Asia
     //Jaduguda uranium mine 640 m below surface 22.65208 N, 86.34687 E
     //Kolar Gold Fields- mine closed, overburder from Achar et al., Phys. Lett. 18 (1965) 196
