@@ -1,6 +1,7 @@
 import React, {useContext} from 'react';
 
-import { Card} from "react-bootstrap";
+import { Card } from "react-bootstrap";
+import { Node } from "@nteract/mathjax";
 import Plot from "react-plotly.js";
 
 import { XSAbrev, XSNames, XSNamesNormal } from '../physics/neutrino-cross-section';
@@ -1111,16 +1112,63 @@ export const CrossSectionPlots = () => {
       <Card.Header>Total Cross Sections- Antineutrinos</Card.Header>
       <Card.Body>
         <p>
-          Free proton inverse beta decay (pIBD) cross sections are from:
-        <br />
-          P. Vogel and J. F. Beacom (1999), <i>Angular distribution of inverse neutron decay, ν̅<sub>𝑒</sub> + 𝑝 ⭢ 𝑒<sup>+</sup> + 𝑛</i>, Phys. Rev. D 60, 053003.
-        <br />
-          A. Strumia and F. Vissani (2003), <i>Precise quasielastic neutrino/nucleon cross-section</i>, Phys. Lett. B 564, 42.
+          Two versions of the cross section for free proton inverse beta decay (pIBD- {" "}
+          <Node inline>{String.raw`\overline{\nu}_\mathrm{e} + \mathrm{p} \rightarrow \mathrm{n} + \mathrm{e}^+`}</Node> {" "}) are available for selection. 
+          Both versions are functions of the scattered positron energy and momentum,{" "}
+          <Node
+            inline
+          >{String.raw`E_\mathrm{e}`}</Node>{" "} 
+          and{" "}
+          <Node inline>{String.raw`p_\mathrm{e}= \sqrt{E^2_\mathrm{e}-m^2_\mathrm{e}}`}</Node>,{" "}
+          respectively, where{" "}
+          <Node inline>{String.raw`m_\mathrm{e}`}</Node>{" "}
+          is the electron (positron) rest mass.
+          Assuming the antineutrino is massless, then the energy of the incident electron antineutrino{" "} 
+          <Node inline>{String.raw`E_{\overline{\nu}_\mathrm{e}} = E_\mathrm{e}+E_\mathrm{thr}-m_\mathrm{e},`}</Node>{" "}
+          where{" "}
+          <Node inline>{String.raw`E_\mathrm{thr}`}</Node>{" "} 
+          is the threshold energy.{" "}
         </p>
         <p>
-          Neutrino-electon elastic scattering (eES) cross sections are from:
-        <br />
-          M. Fukugita and T. Yanagida, <i>Physics of Neutrinos</i> (Springer-Verlag, Berlin Heidelberg, 2003).
+          The default version of the pIBD cross section is from 
+          A. Strumia and F. Vissani (2003), <i>Precise quasielastic neutrino/nucleon cross-section</i>, Phys. Lett. B 564, 42.
+          The implemented parameterized equation, estimating the precise cross section, is
+        <Node>{String.raw`
+            \sigma^\mathrm{pIBD}(E_\mathrm{e}) = (10.0 \times10^{-44} \mathrm{cm}^2 \mathrm{MeV}^{-2} )p_\mathrm{e} E_\mathrm{e} E_{\overline{\nu}_\mathrm{e}}^{\alpha\mathstrut},`}</Node>{" "}
+            where the exponent{" "}
+            <Node inline>{String.raw`\alpha = -0.07056+0.02018\,\mathrm{ln}E_{\overline{\nu}_\mathrm{e}}-0.001953\,\mathrm{ln}^3E_{\overline{\nu}_\mathrm{e}}`}</Node>. 
+        </p>
+        <p>
+          The optional version of the pIBD cross section is from 
+          P. Vogel and J. F. Beacom (1999), <i>Angular distribution of inverse neutron decay, ν̅<sub>𝑒</sub> + 𝑝 ⭢ 𝑒<sup>+</sup> + 𝑛</i>, Phys. Rev. D 60, 053003.
+          This version, which tends to over-predict the cross section at high energy, is
+        <Node>{String.raw`
+            \sigma^\mathrm{pIBD}(E_\mathrm{e}) = (9.52 \times10^{-44} \mathrm{cm}^2 \mathrm{MeV}^{-2} )p_\mathrm{e} E_\mathrm{e}.`}</Node>{" "}
+        </p>
+        <p>
+          Neutrino-electon elastic scattering (eES) cross section is from
+          M. Fukugita and T. Yanagida, <i>Physics of Neutrinos</i> (Springer-Verlag, Berlin Heidelberg, 2003). {" "}
+        <Node>{String.raw`
+          \begin{split}
+          \sigma_{T_\mathrm{min} \le T \le T_\mathrm{max}}^\mathrm{eES}(E_{\nu}) = \frac{G_F^2mE_\nu}{2\pi} \\
+          \bigg[\Big(c_\mathrm{L}^2 y_{\mathrm{max}} + c_\mathrm{R}^2\frac{1}{3}\big(1-(1- y_{\mathrm{max}})^3\big) - c_\mathrm{L}c_\mathrm{R}\frac{m}{2E_\nu}y_{\mathrm{max}}^2\Big) - \\
+          \Big(c_\mathrm{L}^2 y_{\mathrm{min}} + c_\mathrm{R}^2\frac{1}{3}\big(1-(1- y_{\mathrm{min}})^3\big) - c_\mathrm{L}c_\mathrm{R}\frac{m}{2E_\nu}y_{\mathrm{min}}^2\Big)\bigg],
+          \end{split}
+        `}</Node>{" "}
+          where{" "}
+          <Node inline>{String.raw`y_{\mathrm{max}}=T_\mathrm{max}/E_\nu,`}</Node>{" "} 
+          <Node inline>{String.raw`y_\mathrm{min} = T_\mathrm{min}/E_\nu,`}</Node>{" "}
+          and the coefficients{" "}
+          <Node inline>{String.raw`c_\mathrm{L},`}</Node>{" "}
+          <Node inline>{String.raw`c_\mathrm{R},`}</Node>{" "}
+          are functions of the coupling factors{" "}
+          <Node inline>{String.raw`c_V`}</Node>{" "} 
+          and{" "}
+          <Node inline>{String.raw`c_A.`}</Node>{" "}
+          Specifically,{" "}
+          <Node inline>{String.raw`c_\mathrm{L} = c_V + c_A`}</Node>{" "}
+          and{" "}
+          <Node inline>{String.raw`c_\mathrm{R} = c_V - c_A.`}</Node>{" "}
         </p>
         <Plot
           useResizeHandler={true}
