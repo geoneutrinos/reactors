@@ -192,7 +192,7 @@ export const Boron8KEPlot = ({ boron8 }) => {
   ];
   var layout = {
     title: `<sup>8</sup>B- Scattered Electron Kinetic Energy Spectrum<br /><sub>${
-      "(" +
+      "(eES " +
       crossSection.elasticScatteringTMin.toFixed(1) +
       " < T < " +
       crossSection.elasticScatteringTMax.toFixed(1) +
@@ -262,7 +262,7 @@ export const Boron8SpectraPlot = ({ boron8, reactorLF }) => {
   ];
   var layout = {
     title: `<sup>8</sup>B Solar ν<sub>e</sub>- Interaction Rate Spectrum<br /><sub>${
-      "(" +
+      "(eES " +
       crossSection.elasticScatteringTMin.toFixed(1) +
       " < T < " +
       crossSection.elasticScatteringTMax.toFixed(1) +
