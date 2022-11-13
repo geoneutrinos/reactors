@@ -52,7 +52,7 @@ export const RASwitcher = ({active}) => {
   const InteractionYield = (
     <div>
       <br />
-      <h6>IBD/ES Yields- <small>10<sup>-43</sup> cm<sup>2</sup> fission<sup>-1</sup></small> </h6>
+      <h6>pIBD/eES Yields- <small>10<sup>-43</sup> cm<sup>2</sup> fission<sup>-1</sup></small> </h6>
     <Table>
        <caption>Double click on, or hover pointer over, values to see more decimal places.</caption>
       <thead>
