@@ -773,6 +773,7 @@ export const CalculatorPanel = ({ cores, geo, active}) => {
         </Row>
   
         <Row>
+          <small>The parameters below modify the pIBD detection efficiency. See plot and description below.</small>
           <Col>
             <Form.Group controlId="eff_max">
               <Form.Label>Efficiency Maximum</Form.Label>
