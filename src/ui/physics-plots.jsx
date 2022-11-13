@@ -1135,8 +1135,8 @@ export const CrossSectionPlots = () => {
           The implemented parameterized equation, estimating the precise cross section, is
         <Node>{String.raw`
             \sigma^\mathrm{pIBD}(E_\mathrm{e}) = (10.0 \times10^{-44} \mathrm{cm}^2 \mathrm{MeV}^{-2} )p_\mathrm{e} E_\mathrm{e} E_{\overline{\nu}_\mathrm{e}}^{\alpha\mathstrut},`}</Node>{" "}
-            where the exponent{" "}
-            <Node inline>{String.raw`\alpha = -0.07056+0.02018\,\mathrm{ln}E_{\overline{\nu}_\mathrm{e}}-0.001953\,\mathrm{ln}^3E_{\overline{\nu}_\mathrm{e}}`}</Node>. 
+            with the exponent{" "}
+            <Node inline>{String.raw`\alpha = -0.07056+0.02018\,\mathrm{ln}E_{\overline{\nu}_\mathrm{e}}-0.001953\,\mathrm{ln}^3E_{\overline{\nu}_\mathrm{e}}.`}</Node> 
         </p>
         <p>
           The optional version of the pIBD cross section is from 
@@ -1171,10 +1171,13 @@ export const CrossSectionPlots = () => {
           <Node inline>{String.raw`c_\mathrm{R} = c_V - c_A.`}</Node>{" "}
         </p>
         <p>
-          The eES cross section equation given above applies to any two-body elastic scattering process. For neutrino-proton elastic scattering 
-          pES simply replace the electron rest mass <i>m</i><sub>e</sub> with the proton rest mass <i>m</i><sub>p</sub> to account for the heavier 
-          target and use the vector and axial vector coupling factors given for pES in the table below. The pES reaction is an important detection 
-          channel for supernova burst neutrinos (see the SnNu tab).
+          The eES cross section equation given above applies to any two-body elastic scattering process. 
+          For neutrino-proton elastic scattering pES simply replace the electron rest mass{" "}
+          <Node inline>{String.raw`m_\mathrm{e}`}</Node>{" "} 
+          with the proton rest mass{" "}
+          <Node inline>{String.raw`m_\mathrm{p}`}</Node>{" "} 
+          to account for the heavier target and use the vector and axial vector coupling factors given for pES in the table below. 
+          The pES reaction is an important detection channel for supernova burst neutrinos (see the SnNu tab).
         </p>
         <Plot
           useResizeHandler={true}
@@ -1211,7 +1214,7 @@ export const CrossSectionPlotsNormal = () => {
     },
   ]
   var layout = {
-    title: `Total Cross Sections- Neutrinos<br /><sub>${"(" + crossSection.elasticScatteringTMin.toFixed(1) + " < T < " + crossSection.elasticScatteringTMax.toFixed(1) + " MeV)"}</sub>`,
+    title: `Total Cross Sections- Neutrinos<br /><sub>${"(eES " + crossSection.elasticScatteringTMin.toFixed(1) + " < T < " + crossSection.elasticScatteringTMax.toFixed(1) + " MeV)"}</sub>`,
     yaxis: {
       title: { text: `Total Cross Section (cm<sup>2</sup>)` },
       type: 'log',

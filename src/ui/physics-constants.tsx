@@ -9,17 +9,17 @@ export const PhysicsConstants = () => {
     <Card>
       <Card.Header>Physical Constants</Card.Header>
       <Card.Body>
-        <p>
-          Values are from the Particle Data Group <a href="https://pdg.lbl.gov/2020/reviews/rpp2020-rev-phys-constants.pdf">at this link</a> 
-          except for sin<sup>2</sup> <i>θ</i><sub>W</sub>, which is taken from J. Erler and M.J. Ramsey-Musolf (2005), <i>Weak mixing angle at 
-          low energies</i>, Phys. Rev. D 72, 073003.
+        <p> 
+          Except for sin<sup>2</sup><i>θ</i><sub>W</sub>, which is taken from J. Erler and M.J. Ramsey-Musolf (2005), <i>Weak mixing angle at 
+          low energies</i>, Phys. Rev. D 72, 073003, values are from the 
+          <a href="https://pdg.lbl.gov/2020/reviews/rpp2020-rev-phys-constants.pdf">{" "}Particle Data Group</a>.
         </p>
         <Table>
             <thead>
               <tr>
                 <th><i>G<sub>F</sub></i> / (<i>ħc</i>)<sup>3</sup> (GeV<sup>-2</sup>)</th>
                 <th><i>ħc</i> (MeV cm)</th>
-                <th>sin<sup>2</sup> <i>θ</i><sub>W</sub></th>
+                <th>sin<sup>2</sup><i>θ</i><sub>W</sub></th>
               </tr>
             </thead>
             <tbody>
