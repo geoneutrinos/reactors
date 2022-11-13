@@ -785,7 +785,7 @@ export const CalculatorPanel = ({ cores, geo, active}) => {
                 <Form.Control
                   onChange={UIsetEffMax}
                   type="number"
-                  step="0.1"
+                  step="0.05"
                   value={isIBD? effMax: ""}
                   disabled={!isIBD}
                 />
