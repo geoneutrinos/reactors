@@ -1170,6 +1170,12 @@ export const CrossSectionPlots = () => {
           and{" "}
           <Node inline>{String.raw`c_\mathrm{R} = c_V - c_A.`}</Node>{" "}
         </p>
+        <p>
+          The eES cross section equation given above applies to any two-body elastic scattering process. For neutrino-proton elastic scattering 
+          pES simply replace the electron rest mass <i>m</i><sub>e</sub> with the proton rest mass <i>m</i><sub>p</sub> to account for the heavier 
+          target and use the vector and axial vector coupling factors given for pES in the table below. The pES reaction is an important detection 
+          channel for supernova burst neutrinos (see the SnNu tab).
+        </p>
         <Plot
           useResizeHandler={true}
           style={{ width: "100%" }}
