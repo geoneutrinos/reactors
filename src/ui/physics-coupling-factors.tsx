@@ -21,16 +21,16 @@ export const EesCouplingFactors = () => {
               <tr>
                 <td><i>c</i><sub>V</sub></td>
                 <td>
-                  1/2 + 2sin<sup>2</sup> <i>θ</i><sub>W</sub>
+                  1/2 + 2sin<sup>2</sup><i>θ</i><sub>W</sub>
                 </td>
                 <td>
-                  1/2 + 2sin<sup>2</sup> <i>θ</i><sub>W</sub>
+                  1/2 + 2sin<sup>2</sup><i>θ</i><sub>W</sub>
                 </td>
                 <td>
-                  -1/2 + 2sin<sup>2</sup> <i>θ</i><sub>W</sub>
+                  -1/2 + 2sin<sup>2</sup><i>θ</i><sub>W</sub>
                 </td>
                 <td>
-                  -1/2 + 2sin<sup>2</sup> <i>θ</i><sub>W</sub>
+                  -1/2 + 2sin<sup>2</sup><i>θ</i><sub>W</sub>
                 </td>
               </tr>
                <tr>
