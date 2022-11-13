@@ -17,7 +17,7 @@ export const FissionFractionPane = () => {
             </p>          
             <p> Mid-cycle fractional fission rates- <i>ffr</i>
             <br />
-            LEU: K. Eguchi <i>et al.</i> (2003), <i>First Results from KamLAND: Evidence for Reactor Anti-Neutrino Disappearance</i>, Phys. Rev. Lett. 90, 021802.
+            PWR, BWR: K. Eguchi <i>et al.</i> (2003), <i>First Results from KamLAND: Evidence for Reactor Anti-Neutrino Disappearance</i>, Phys. Rev. Lett. 90, 021802.
             <br />
             GCR: R. Mills, private communication, Dec. 12, 2018.
             <br />
