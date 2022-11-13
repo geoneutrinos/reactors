@@ -2,9 +2,7 @@ import React from 'react';
 
 import { Card, Table } from 'react-bootstrap';
 
-// import { ES_COEFFICIENTS_VECTOR, ES_COEFFICIENTS_AXIAL } "../physics/neutrino-cross-section"
-
-export const eESCouplingFactors = () => {
+export const EesCouplingFactors = () => {
   return (
     <Card>
       <Card.Header>eES Coupling Factors</Card.Header>
