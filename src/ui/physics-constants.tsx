@@ -19,7 +19,7 @@ export const PhysicsConstants = () => {
               <tr>
                 <th><i>G<sub>F</sub></i> / (<i>ħc</i>)<sup>3</sup> (GeV<sup>-2</sup>)</th>
                 <th><i>ħc</i> (MeV cm)</th>
-                <th>sin<sup>2</sup> <i>θ</i><sub>W</sub></th>
+                <th>sin<sup>2</sup><i>θ</i><sub>W</sub></th>
               </tr>
             </thead>
             <tbody>
