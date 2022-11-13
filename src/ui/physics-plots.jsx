@@ -1161,11 +1161,11 @@ export const CrossSectionPlots = () => {
           and the coefficients{" "}
           <Node inline>{String.raw`c_\mathrm{L},`}</Node>{" "}
           <Node inline>{String.raw`c_\mathrm{R},`}</Node>{" "}
-          are functions of the coupling factors{" "}
+          are functions of the vector and axial vector coupling factors{" "}
           <Node inline>{String.raw`c_V`}</Node>{" "} 
           and{" "}
-          <Node inline>{String.raw`c_A.`}</Node>{" "}
-          Specifically,{" "}
+          <Node inline>{String.raw`c_A,`}</Node>{" "}
+          respectively. Specifically,{" "}
           <Node inline>{String.raw`c_\mathrm{L} = c_V + c_A`}</Node>{" "}
           and{" "}
           <Node inline>{String.raw`c_\mathrm{R} = c_V - c_A.`}</Node>{" "}
