@@ -34,7 +34,7 @@ import {
   CrossSectionPlots,
   ParticleMasses,
   PhysicsConstants,
-  eESCouplingFactors,
+  EesCouplingFactors,
   DifferentialCrossSectionPlots,
   AngularDifferentialCrossSectionPlots,
   CDFdifferentialCrossSectionPlots,
@@ -317,7 +317,7 @@ function App(props) {
                   <CrossSectionPlots />
                   <ParticleMasses />
                   <PhysicsConstants />
-                  <eESCouplingFactors />
+                  <EesCouplingFactors />
                   <DifferentialCrossSectionPlots />
                   <CDFdifferentialCrossSectionPlots />
                   <AngularDifferentialCrossSectionPlots />
