@@ -21,7 +21,7 @@ export const FissionFractionPane = () => {
             <br />
             GCR: R. Mills, private communication, Dec. 12, 2018.
             <br />
-            PHWR: M. Chen, private communication, Aug. 14, 2017 (also arXiv:2210.14154).
+            PHWR: M. Chen, private communication, Aug. 14, 2017 (also <a href="https://arxiv.org/abs/2210.14154"> arXiv:2210.14154 </a>).
             </p>
             <p> Mid-cycle power fractions- <i>p</i>
             <br />
