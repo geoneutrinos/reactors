@@ -95,7 +95,7 @@ export const CalculatorPanel = ({ cores, geo, active}) => {
   ]
   
   var layout = {
-    title: "IBD Detection Efficiency",
+    title: "pIBD Detection Efficiency",
     yaxis: {
       title: { text: `Efficiency` },
       range: [0, 1.05]
@@ -572,8 +572,8 @@ export const CalculatorPanel = ({ cores, geo, active}) => {
           <div>
             <small>The numbers of detected signal <i>S</i> and background <i>B</i> events are the integrals of the respective rate spectra multiplied by the detector exposure. 
                    The currently selected cross section is {crossSection.crossSection}. 
-                   If IBD, <i>S</i> is modified by the detection efficiency.
-                   If ES, <i>S</i> is modified by the selected range of the scattered electron kinetic energy, which is currently from {crossSection.elasticScatteringTMin.toFixed(1)} to {crossSection.elasticScatteringTMax.toFixed(1)} MeV.</small>
+                   If pIBD, <i>S</i> is modified by the detection efficiency.
+                   If eES, <i>S</i> is modified by the selected range of the scattered electron kinetic energy, which is currently from {crossSection.elasticScatteringTMin.toFixed(1)} to {crossSection.elasticScatteringTMax.toFixed(1)} MeV.</small>
             <Table>
               <tbody>
               <tr>
@@ -773,6 +773,8 @@ export const CalculatorPanel = ({ cores, geo, active}) => {
         </Row>
   
         <Row>
+          <small>The following parameters modify the pIBD detection efficiency as plotted and described below.</small>
+          <br />
           <Col>
             <Form.Group controlId="eff_max">
               <Form.Label>Efficiency Maximum</Form.Label>
@@ -783,7 +785,7 @@ export const CalculatorPanel = ({ cores, geo, active}) => {
                 <Form.Control
                   onChange={UIsetEffMax}
                   type="number"
-                  step="0.1"
+                  step="0.05"
                   value={isIBD? effMax: ""}
                   disabled={!isIBD}
                 />
@@ -835,12 +837,6 @@ export const CalculatorPanel = ({ cores, geo, active}) => {
         </Row>
   
           </Form>
-            <div>
-              <small>
-                The parameters above modify the IBD detection efficiency. See plot and description below. 
-              </small>
-              <br />
-            </div>
             <Visible>
             <Plot
               useResizeHandler={true}
@@ -868,9 +864,9 @@ export const CalculatorPanel = ({ cores, geo, active}) => {
             <i> Alternative Hypothesis- H<sub>1</sub></i><br />  
             <Node>{String.raw`N_{\sigma} = \frac{ s * \xi }{\sqrt{(s + b) * \xi + (\delta b * \xi )^2}}`}</Node>{" "}
             <br />
-            <b> IBD Detection Efficiency</b><br />
+            <b> pIBD Detection Efficiency</b><br />
             <p> When expressed as a function of antineutrino energy <i>E</i>, the detection efficiency is
-            valid for IBD only. Here it is approximated by a sigmoid curve{" "}
+            valid for pIBD only. Here it is approximated by a sigmoid curve{" "}
             <Node>{String.raw`\varepsilon (E) = \frac {\varepsilon_\mathrm{max}} {1 + \exp(-\rho * (E - E_\mathrm{HM}))},`}</Node>{" "}
             where <Node inline>{String.raw`\varepsilon_\mathrm{max}`}</Node> is the asymptote at infinite energy 
             (maximum detection efficiency),{" "}
