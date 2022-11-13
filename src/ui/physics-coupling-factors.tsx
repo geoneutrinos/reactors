@@ -19,7 +19,7 @@ export const EesCouplingFactors = () => {
             </thead>
             <tbody>
               <tr>
-                <td>c<sub>V</sub></td>
+                <td><i>c</i><sub>V</sub></td>
                 <td>
                   1/2 + 2sin<sup>2</sup> <i>θ</i><sub>W</sub>
                 </td>
@@ -34,7 +34,7 @@ export const EesCouplingFactors = () => {
                 </td>
               </tr>
                <tr>
-                <td>c<sub>A</sub></td>
+                <td><i>c</i><sub>A</sub></td>
                 <td>
                   1/2
                 </td>
