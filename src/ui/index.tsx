@@ -18,6 +18,7 @@ export { OutputDownload } from "./output-download";
 export { PhysicsOscillationPane } from "./physics-osc-params";
 export { PhysicsConstants } from "./physics-constants";
 export { ParticleMasses } from "./physics-masses";
+export { eESCouplingFactors } from "./physics-coupling-factors";
 export { GeoFluxUncertainties } from "./geo-uncertainties";
 export { IsotopeData } from "./isotope-data";
 export { GeoRateFluxYields } from "./geo-ratefluxyields"
