@@ -349,7 +349,7 @@ export const FissionIsotopeSpectraPlotsHM = () => {
   );
 };
 
-export const U235IsotopeSpectraPlots = () => {
+const U235IsotopeSpectraPlots = () => {
   const data = [
     {
       y: bins.map(neutrinoEnergyForES(Isotopes.U235)),
@@ -459,7 +459,7 @@ export const U235IsotopeSpectraPlots = () => {
   );
 };
 
-export const U238IsotopeSpectraPlots = () => {
+const U238IsotopeSpectraPlots = () => {
   const data = [
     {
       y: bins.map(neutrinoEnergyForES(Isotopes.U238)),
