@@ -16,6 +16,7 @@ import {
   //Reactors Tab
   RASwitcher,
   FissionFractionPane,
+  FissionIsotopeSpectraPlots,
   CoreIAEARange,
   CoreList,
   //GeuNu Tab
@@ -44,7 +45,6 @@ import {
   //Input Tab
   NeutrinoOscillationPane,
   PhysicsOscillationPane,
-  FissionIsotopeSpectraPlots,
   U235IsotopeSpectraPlots,
   U238IsotopeSpectraPlots,
   //Output Tab
@@ -254,9 +254,10 @@ function App(props) {
                   setCustomCores={setCustomCores}
                   close={() => setManCustomModal(false)}
                 />
-              <Visible>
-                <FissionFractionPane />
-              </Visible>
+                <Visible>
+                  <FissionFractionPane />
+                  <FissionIsotopeSpectraPlots />
+                </Visible>
                 <CoreIAEARange
                   reactorLF={reactorLF}
                   setReactorLF={setReactorLF}
@@ -333,7 +334,6 @@ function App(props) {
                 <Visible>
                   <NeutrinoOscillationPane />
                   <PhysicsOscillationPane />
-                  <FissionIsotopeSpectraPlots />
                   <U235IsotopeSpectraPlots />
                   <U238IsotopeSpectraPlots />
                 </Visible>
