@@ -15,8 +15,8 @@ import {
   DetectorLocationPane,
   //Reactors Tab
   RASwitcher,
-  FissionFractionPane,
   FissionIsotopeSpectraPlots,
+  FissionFractionPane,
   CoreIAEARange,
   CoreList,
   //GeuNu Tab
@@ -255,8 +255,8 @@ function App(props) {
                   close={() => setManCustomModal(false)}
                 />
                 <Visible>
-                  <FissionFractionPane />
                   <FissionIsotopeSpectraPlots />
+                  <FissionFractionPane />
                 </Visible>
                 <CoreIAEARange
                   reactorLF={reactorLF}
