@@ -43,11 +43,9 @@ import {
   AngularDifferentialCrossSectionPlots,
   CDFdifferentialCrossSectionPlots,
   CDFAngularDifferentialCrossSectionPlots,
-  //Input Tab
+  //NuOsc Tab
   NeutrinoOscillationPane,
   PhysicsOscillationPane,
-//  U235IsotopeSpectraPlots,
-//  U238IsotopeSpectraPlots,
   //Output Tab
   OutputDownload,
   CalculatorPanel,
@@ -336,8 +334,6 @@ function App(props) {
                 <Visible>
                   <NeutrinoOscillationPane />
                   <PhysicsOscillationPane />
-//                  <U235IsotopeSpectraPlots />
-//                  <U238IsotopeSpectraPlots />
                 </Visible>
               </Tab>
               <Tab eventKey="output" title="Output">
