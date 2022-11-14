@@ -36,7 +36,8 @@ export {
   CDFAngularDifferentialCrossSectionPlotsNeutrinos,
 } from "./physics-plots";
 export {
-  FissionIsotopeSpectraPlots,
+  FissionIsotopeSpectraPlotsHK,
+  FissionIsotopeSpectraPlotsHM,
   U235IsotopeSpectraPlots,
   U238IsotopeSpectraPlots,
   CoreDirectionSignalPlots,
