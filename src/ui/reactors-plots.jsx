@@ -113,7 +113,7 @@ export const FissionIsotopeSpectraPlotsHK = () => {
     },
   ];
   var layout = {
-    title: "Fission Isotope Emission Spectra",
+    title: "Huber-Kopeikin: Fission Isotope Emission Spectra",
     yaxis: {
       title: { text: `Emission (/fission/MeV)` },
       type: "log",
@@ -142,12 +142,12 @@ export const FissionIsotopeSpectraPlotsHK = () => {
   };
   var config = {
     toImageButtonOptions: {
-      filename: 'Fission-Isotope-Spectra'
+      filename: 'HK-Fission-Isotope-Spectra'
     }
   };
   return (
     <Card>
-      <Card.Header>HK- Fission Isotope Emission Spectra</Card.Header>
+      <Card.Header>Huber-Kopeikin: Fission Isotope Emission Spectra</Card.Header>
       <Card.Body>
         <p>
           <sup>235</sup>U, <sup>238</sup>U, <sup>239</sup>Pu, <sup>241</sup>Pu summation spectra (solid):
@@ -283,7 +283,7 @@ export const FissionIsotopeSpectraPlotsHM = () => {
     },
   ];
   var layout = {
-    title: "HM- Fission Isotope Emission Spectra",
+    title: "Huber-Mueller: Fission Isotope Emission Spectra",
     yaxis: {
       title: { text: `Emission (/fission/MeV)` },
       type: "log",
@@ -312,12 +312,12 @@ export const FissionIsotopeSpectraPlotsHM = () => {
   };
   var config = {
     toImageButtonOptions: {
-      filename: 'Fission-Isotope-Spectra'
+      filename: 'HM-Fission-Isotope-Spectra'
     }
   };
   return (
     <Card>
-      <Card.Header>HM- Fission Isotope Emission Spectra</Card.Header>
+      <Card.Header>Huber-Mueller: Fission Isotope Emission Spectra</Card.Header>
       <Card.Body>
         <p>
           <sup>235</sup>U, <sup>238</sup>U, <sup>239</sup>Pu, <sup>241</sup>Pu summation spectra (solid):
