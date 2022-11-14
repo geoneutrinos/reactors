@@ -1,0 +1,23 @@
+# Values for the total IBD cross section at selected reactor antineutrino energies as given in Table 1
+# of Strumia and Vissani (2003) Phys Lett B 564, 42-54. 
+----------------------------------------------
+Total cross section- full result SV03
+----------------------------------------------
+Energy	sigma_tot
+(MeV)	(10^-41 cm^2)
+2.01	0.00351
+2.25	0.00735
+2.51	0.0127
+2.80	0.0202
+3.12	0.0304
+3.48	0.0440
+3.89	0.0619
+4.33	0.0854
+4.84	0.116
+5.40	0.155
+6.02	0.205
+6.72	0.269
+7.49	0.349
+8.36	0.451
+8.83	0.511
+9.85	0.654
