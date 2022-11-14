@@ -38,8 +38,6 @@ export {
 export {
   FissionIsotopeSpectraPlotsHK,
   FissionIsotopeSpectraPlotsHM,
-//  U235IsotopeSpectraPlots,
-//  U238IsotopeSpectraPlots,
   CoreDirectionSignalPlots,
 } from "./reactors-plots";
 export { Boron8SpectraPlot, AnalemmaPlot, Boron8KEPlot } from "./solar-plots";
