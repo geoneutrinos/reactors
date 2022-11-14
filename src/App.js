@@ -15,6 +15,9 @@ import {
   DetectorLocationPane,
   //Reactors Tab
   RASwitcher,
+  FissionIsotopeSpectraPlotsHK,
+  FissionIsotopeSpectraPlotsHM,
+  FissionFractionPane,
   CoreIAEARange,
   CoreList,
   //GeuNu Tab
@@ -40,13 +43,9 @@ import {
   AngularDifferentialCrossSectionPlots,
   CDFdifferentialCrossSectionPlots,
   CDFAngularDifferentialCrossSectionPlots,
-  //Input Tab
+  //NuOsc Tab
   NeutrinoOscillationPane,
   PhysicsOscillationPane,
-  FissionFractionPane,
-  FissionIsotopeSpectraPlots,
-  U235IsotopeSpectraPlots,
-  U238IsotopeSpectraPlots,
   //Output Tab
   OutputDownload,
   CalculatorPanel,
@@ -254,6 +253,11 @@ function App(props) {
                   setCustomCores={setCustomCores}
                   close={() => setManCustomModal(false)}
                 />
+                <Visible>
+                  <FissionIsotopeSpectraPlotsHK />
+                  <FissionIsotopeSpectraPlotsHM />
+                  <FissionFractionPane />
+                </Visible>
                 <CoreIAEARange
                   reactorLF={reactorLF}
                   setReactorLF={setReactorLF}
@@ -326,14 +330,10 @@ function App(props) {
                   <CDFAngularDifferentialCrossSectionPlots />
                 </Visible>
               </Tab>
-              <Tab eventKey="input" title="Input">
+              <Tab eventKey="nuosc" title="NuOsc">
                 <Visible>
                   <NeutrinoOscillationPane />
                   <PhysicsOscillationPane />
-                  <FissionFractionPane />
-                  <FissionIsotopeSpectraPlots />
-                  <U235IsotopeSpectraPlots />
-                  <U238IsotopeSpectraPlots />
                 </Visible>
               </Tab>
               <Tab eventKey="output" title="Output">

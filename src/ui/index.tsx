@@ -36,9 +36,8 @@ export {
   CDFAngularDifferentialCrossSectionPlotsNeutrinos,
 } from "./physics-plots";
 export {
-  FissionIsotopeSpectraPlots,
-  U235IsotopeSpectraPlots,
-  U238IsotopeSpectraPlots,
+  FissionIsotopeSpectraPlotsHK,
+  FissionIsotopeSpectraPlotsHM,
   CoreDirectionSignalPlots,
 } from "./reactors-plots";
 export { Boron8SpectraPlot, AnalemmaPlot, Boron8KEPlot } from "./solar-plots";
