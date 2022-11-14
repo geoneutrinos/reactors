@@ -333,7 +333,6 @@ function App(props) {
                 <Visible>
                   <NeutrinoOscillationPane />
                   <PhysicsOscillationPane />
-                  <FissionFractionPane />
                   <FissionIsotopeSpectraPlots />
                   <U235IsotopeSpectraPlots />
                   <U238IsotopeSpectraPlots />
