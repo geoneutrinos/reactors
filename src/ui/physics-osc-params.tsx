@@ -21,7 +21,7 @@ export const PhysicsOscillationPane = () => {
     <Card>
       <Card.Header>Neutrino Oscillation Parameters</Card.Header>
       <Card.Body>
-        <p>Values are from NuFit v5.0 w/o SK atmnu: JHEP 09 (2020) 178, <a href="https://arxiv.org/abs/2007.14792"> arXiv:2007.14792 </a>, NuFIT 5.0 (2020) <a href="http://www.nu-fit.org"> www.nu-fit.org </a> </p>
+        <p>Values are from NuFit v5.0 w/o SK atmnu: JHEP 09 (2020) 178, <a href="https://arxiv.org/abs/2007.14792"> arXiv:2007.14792 </a>, NuFIT 5.1 (2021) <a href="http://www.nu-fit.org"> www.nu-fit.org </a> </p>
         <Table {...tableProps} className="text-right">
           <thead>
             <tr>
