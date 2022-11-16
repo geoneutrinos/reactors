@@ -356,6 +356,7 @@ function App(props) {
                 <p> The model presented by this website is further documented in this somewhat outdated paper{" "}
                   <a href="https://arxiv.org/pdf/1510.05633.pdf">arXiv:1510.05633.v3</a>.
                   Please cite this website when using the results of this model in research papers and/or presentations:
+                  <br />
                   A.M. Barna and S.T. Dye (est. 2010). <i>Antineutrino Model</i> at https://reactors.geoneutrinos.org. Accessed DAY MONTH YEAR.
                 </p>
                 <h5> ACKNOWLEDGMENT </h5>
