@@ -25,6 +25,7 @@ export { GeoRateFluxYields } from "./geo-ratefluxyields"
 export { SupernovaNus } from "./supernova-nus";
 export {
   CrossSectionPlots,
+  SV03PercentDifference,
   CrossSectionPlotsNormal,
   DifferentialCrossSectionPlots,
   DifferentialCrossSectionPlotsNeutrinos,
