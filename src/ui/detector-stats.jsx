@@ -322,13 +322,13 @@ export function StatsPanel({ cores, geo, reactorLF}) {
           </small>
           <br />
           • <small> 
-            Uncertainties shown obtain from the crust and mantle signal uncertainties added in quadrature.
+            Uncertainty shown for <i>R</i><sub>geo</sub> obtain from the crust and mantle signal uncertainties added in quadrature.
           </small>
         </div>
       <hr />
         <div>
           • <small>
-            Not included in the uncertainties shown is {"~1.8%"} for neutrino oscillations and {"1%"} for the cross section,
+            Not included in the uncertainties shown is {"~1.8%"} for neutrino oscillations and {"~1%"} for the cross section,
             which should be considered independent and added in quadrature.
           </small>
           <br />
