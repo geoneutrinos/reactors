@@ -66,9 +66,7 @@ export const PhysicsOscillationPane = () => {
           </tbody>
         </Table>
         <p>
-          NO: Normal mass ordering (m<sub>3</sub> {">"} m<sub>2</sub> {">"} m<sub>1</sub>)
-          <br />
-          IO: Inverted mass ordering (m<sub>2</sub> {">"} m<sub>1</sub> {">"} m<sub>3</sub>)
+          NO (IO): Normal (Inverted) mass ordering- m<sub>3</sub> {">"} m<sub>2</sub> {">"} m<sub>1</sub> (m<sub>2</sub> {">"} m<sub>1</sub> {">"} m<sub>3</sub>)
         </p>
       </Card.Body>
     </Card>
@@ -82,7 +80,7 @@ export const AverageSurvivalPane = () => {
     <Card>
       <Card.Header>Average Survival Probability</Card.Header>
       <Card.Body>
-        <p>Derived from NuFit v5.1 w/o SK atmnu: JHEP 09 (2020) 178, <a href="https://arxiv.org/abs/2007.14792"> arXiv:2007.14792 </a>, NuFIT 5.1 (2021) <a href="http://www.nu-fit.org"> www.nu-fit.org </a> </p>
+        <p>Derived from mixing angles given by NuFit v5.1 w/o SK atmnu: JHEP 09 (2020) 178, <a href="https://arxiv.org/abs/2007.14792"> arXiv:2007.14792 </a>, NuFIT 5.1 (2021) <a href="http://www.nu-fit.org"> www.nu-fit.org </a> </p>
         <Table {...tableProps} className="text-right">
           <thead>
             <tr>
@@ -124,9 +122,7 @@ export const AverageSurvivalPane = () => {
           </tbody>
         </Table>
         <p>
-          {"<"}P<sub>ee</sub>{">"}<sub>max</sub> obtains with mixing angles at 1𝜎 minima
-          <br />
-          {"<"}P<sub>ee</sub>{">"}<sub>min</sub> obtains with mixing angles at 1𝜎 maxima
+          {"<"}P<sub>ee</sub>{">"}<sub>max</sub> ({"<"}P<sub>ee</sub>{">"}<sub>min</sub>) obtains with mixing angles at 1𝜎 minima (maxima)
         </p>
       </Card.Body>
     </Card>
