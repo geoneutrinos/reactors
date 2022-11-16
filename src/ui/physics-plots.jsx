@@ -1202,7 +1202,14 @@ export const SV03PercentDifference = () => {
       name: ``,
       type: "scatter",
       mode: "markers",
-      marker: { color: "black", size: 12},
+      marker: { 
+        color: "red", 
+        size: 12,
+        line: {
+          color: "black",
+          width: 2,
+          }
+      },
     },
   ];
   var layout = {
