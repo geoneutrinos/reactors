@@ -355,11 +355,13 @@ function App(props) {
                 <h5> REFERENCE </h5>
                 <p> The model presented by this website is further documented in this somewhat outdated paper{" "}
                   <a href="https://arxiv.org/pdf/1510.05633.pdf">arXiv:1510.05633.v3</a>.
-                  Please cite this website when using the results of this model in your research papers and presentations:
-                  A.M. Barna and S.T. Dye. WEBSITE NAME, https://reactors.geoneutrinos.org. Accessed DAY MONTH YEAR.
+                  Please cite this website when using the results of this model in research papers and/or presentations:
+                  A.M. Barna and S.T. Dye (est. 2010). <i>Antineutrino Model</i> at https://reactors.geoneutrinos.org. Accessed DAY MONTH YEAR.
                 </p>
                 <h5> ACKNOWLEDGMENT </h5>
-                <p> Development of the model and this web application has been supported in part by NSF and LLNL.
+                <p> Development of the model and this web application has been supported through the years in part by 
+                NSF EAR Division of Earth Sciences (Award{"#"} 0855838) and Lawrence Livermore National Security, LLC 
+                (Research Subcontract No.s B602732, B612361, B618031, B621682, B628127, B636606, B639958, B644724, B651218).
                 </p>
               </Tab>
             </Tabs>
