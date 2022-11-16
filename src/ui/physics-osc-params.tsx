@@ -53,7 +53,7 @@ export const PhysicsOscillationPane = () => {
               <td>{dmsq31Normal.toExponential(4)}</td>
               <td>{dmsq32Normal.toExponential(4)}</td>
               <td>{s2t12.toFixed(3)}</td>
-              <td>{s2t13Normal}</td>
+              <td>{s2t13Normal.toFixed(5)}</td>
             </tr>
             <tr>
               <td>IO</td>
@@ -119,7 +119,7 @@ export const AverageSurvivalPane = () => {
               <td>0.5617</td>
               <td>-1.766</td>
               <td>0.5417</td>
-              <td>--1.864</td>
+              <td>-1.864</td>
             </tr>
           </tbody>
         </Table>
