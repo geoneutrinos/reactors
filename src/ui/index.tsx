@@ -15,7 +15,7 @@ export {
 } from "./reactors-core-custom";
 export { CoreIAEARange } from "./reactors-core-iaea-select";
 export { OutputDownload } from "./output-download";
-export { PhysicsOscillationPane } from "./physics-osc-params";
+export { PhysicsOscillationPane, AverageSurvivalPane } from "./physics-osc-params";
 export { PhysicsConstants } from "./physics-constants";
 export { ParticleMasses } from "./physics-masses";
 export { EesCouplingFactors, PesCouplingFactors } from "./physics-coupling-factors";
