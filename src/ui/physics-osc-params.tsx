@@ -44,9 +44,6 @@ export const PhysicsOscillationPane = () => {
               <th>
                 sin<sup>2</sup><i>θ</i><sub>13</sub>
               </th>
-              <th>
-                {"<"}P<sub>ee</sub>{">"}
-              </th>
             </tr>
           </thead>
           <tbody>
@@ -57,7 +54,6 @@ export const PhysicsOscillationPane = () => {
               <td>{dmsq32Normal.toExponential(4)}</td>
               <td>{s2t12.toFixed(3)}</td>
               <td>{s2t13Normal}</td>
-              <td>{averageSurvivalProbabilityNormal.toFixed(4)}</td>
             </tr>
             <tr>
               <td>IO</td>
@@ -66,7 +62,6 @@ export const PhysicsOscillationPane = () => {
               <td>{dmsq32Inverted.toExponential(4)}</td>
               <td>{s2t12.toFixed(3)}</td>
               <td>{s2t13Inverted.toFixed(5)}</td>
-              <td>{averageSurvivalProbabilityInverted.toFixed(4)}</td>
             </tr>
           </tbody>
         </Table>
@@ -114,17 +109,17 @@ export const AverageSurvivalPane = () => {
               <td>NO</td>
               <td>{averageSurvivalProbabilityNormal.toFixed(4)}</td>
               <td>0.5620</td>
-              <td>0.995</td>
-              <td>05617</td>
-              <td>0.992</td>
+              <td>1.771</td>
+              <td>05419</td>
+              <td>-1.872</td>
             </tr>
             <tr>
               <td>IO</td>
               <td>{averageSurvivalProbabilityInverted.toFixed(4)}</td>
-              <td>0.5419</td>
-              <td>-1.014</td>
+              <td>0.5617</td>
+              <td>-1.766</td>
               <td>0.5417</td>
-              <td>-1.010</td>
+              <td>--1.864</td>
             </tr>
           </tbody>
         </Table>
