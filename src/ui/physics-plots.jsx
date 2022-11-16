@@ -1194,31 +1194,23 @@ export const CrossSectionPlots = () => {
 export const SV03PercentDifference = () => {
   const data = [
     {
-      x: [2.0, 2.25, 2.5, 2.75, 3.0, 3.25, 3.5, 3.75, 4.0, 4.25, 4.5, 4.75, 5.0, 5.25, 5.5, 5.75, 6.0, 6.25, 6.5, 6.75, 7.0, 7.25, 7.5, 7.75, 8.0],
-      y: [1.25, 1.06, .868, .731, .618, .525, .431, .345, .279, .218, .170, .131, .104, .0820, .0613, .0484, .0369, .0272, .0206, .0153, .0108, .00680, .00440, .00282, .00154],
-      error_y: {
-        type: "data",
-        array: [.0125, .0106, .00868, .00731, .00618, .00525, .00431, .00380, .00335, .00305, .00289, .00236, .00198, .00164, .00135, .00116, .000996, .000816, .000618, .000505, .000389, .000279, .000194, .000141, .000108],
-        thickness: 0.5,
-        width: 2,
-        color: "black"
-      },
-      name: `Kopeikin et al. (2021)`,
+      x: [2.01, 2.25, 2.51, 2.80, 3.12, 3.48, 3.89, 4.33, 4.84, 5.40, 6.02, 6.72, 7.49, 8.36, 8.83, 9.85, 11.0, 12.3],
+      y: [2.14, -.219, -.378, .030, .700, .786, .085, .781, .362, .167, .251, .148, .080, -.024, -.110, -.142, -.491, -1.43],
+      name: ``,
       type: "scatter",
       mode: "markers",
       marker: { color: "black", size: 1},
     },
   ];
   var layout = {
-    title: `<sup>235</sup>U Emission Spectrum`,
+    title: `Percent Difference SV03`,
     yaxis: {
-      title: { text: `Emission (/fission/MeV)` },
-      type: "log",
-      range: [-3, Math.log10(4)],
+      title: { text: `% diff` },
+      autorange: true,
     },
     xaxis: {
       title: { text: `Antineutrino Energy (MeV)` },
-      range: [1.875, 8.125],
+      autorange: true,
     },
     autosize: true,
     legend: {
@@ -1239,31 +1231,18 @@ export const SV03PercentDifference = () => {
   };
   var config = {
     toImageButtonOptions: {
-      filename: 'Fission-U235-Spectrum'
+      filename: 'SV03-pct-diff'
     }
   };
   return (
     <Card>
-      <Card.Header><sup>235</sup>U Emission Spectrum</Card.Header>
+      <Card.Header>Percent Difference SV03</Card.Header>
       <Card.Body>
         <p>
-          <sup>235</sup>U conversion spectrum parameterization:
-          <br />
-          P. Huber (2011), <i>Determination of antineutrino spectra from nuclear
-          reactors</i>, Phys. Rev. C 84, 024617.
-        </p>
-        <p>
-          <sup>235</sup>U conversion spectrum data points:
-          <br />
-          V. Kopeikin, M. Skorokhvatov, O. Titov (2021), <i>Reevaluating reactor antineutrino spectra with new measurements of the ratio
-          between <sup>235</sup>U and <sup>239</sup>Pu β spectra</i>, Phys. Rev. D 104, L071301.
-        </p>
-        <p>
-          <sup>235</sup>U summation spectrum:
-          <br />
-          M. Estienne <i>et al.</i> (2019), <i>Updated Summation Model: An Improved Agreement with the Daya Bay Antineutrino Fluxes</i>,
-          Phys. Rev. Lett. 123, 022502.
-        </p>
+          Plot shows the percent differences between the more precise formulation- see Table 3 in Strumia and Vissani (2003)- and its 
+          parameterized estimate at selected antineutrino energies. This comparison reveals small spectral distortions in the energy 
+          region relevant to reactor antineutrinos and geo-neutrinos.
+       </p>
         <Plot
           useResizeHandler={true}
           style={{ width: "100%" }}
