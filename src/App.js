@@ -46,6 +46,7 @@ import {
   //NuOsc Tab
   NeutrinoOscillationPane,
   PhysicsOscillationPane,
+  AverageSurvivalPane,
   //Output Tab
   OutputDownload,
   CalculatorPanel,
@@ -334,6 +335,7 @@ function App(props) {
                 <Visible>
                   <NeutrinoOscillationPane />
                   <PhysicsOscillationPane />
+                  <AverageSurvivalPane />
                 </Visible>
               </Tab>
               <Tab eventKey="output" title="Output">
