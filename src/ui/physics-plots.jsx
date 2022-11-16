@@ -1136,7 +1136,10 @@ export const CrossSectionPlots = () => {
         <Node>{String.raw`
             \sigma^\mathrm{pIBD}(E_\mathrm{e}) = (10.0 \times10^{-44} \mathrm{cm}^2 \mathrm{MeV}^{-2} )p_\mathrm{e} E_\mathrm{e} E_{\overline{\nu}_\mathrm{e}}^{\alpha\mathstrut},`}</Node>{" "}
             with the exponent{" "}
-            <Node inline>{String.raw`\alpha = -0.07056+0.02018\,\mathrm{ln}E_{\overline{\nu}_\mathrm{e}}-0.001953\,\mathrm{ln}^3E_{\overline{\nu}_\mathrm{e}}.`}</Node> 
+            <Node inline>{String.raw`\alpha = -0.07056+0.02018\,\mathrm{ln}E_{\overline{\nu}_\mathrm{e}}-0.001953\,\mathrm{ln}^3E_{\overline{\nu}_\mathrm{e}}.`}</Node>{" "}
+            The percent differences at selected energies between the precise cross section and the parameterized estimate are show in the plot below. Based on these differences
+            the use of the parameterized cross section conservatively contributes an uncertainty of{" "}
+            <Node inline>{String.raw`1 \%`}</Node>{" "} to the calculated pIBD reaction rates.
         </p>
         <p>
           The optional version of the pIBD cross section is from 
@@ -1241,7 +1244,8 @@ export const SV03PercentDifference = () => {
         <p>
           Plot shows the percent differences between the more precise formulation- see Table 3 in Strumia and Vissani (2003)- and its 
           parameterized estimate at selected antineutrino energies. This comparison reveals small spectral distortions in the energy 
-          region relevant to reactor antineutrinos and geo-neutrinos.
+          region relevant to reactor antineutrinos and geo-neutrinos. Based on these differences the use of the parameterized cross section 
+          conservatively contributes an uncertainty of 1 {"%"} to the calculated pIBD reaction rates.
        </p>
         <Plot
           useResizeHandler={true}
