@@ -123,6 +123,10 @@ export function StatsPanel({ cores, geo, reactorLF}) {
           <small>
             1 {NIU} (Neutrino Interaction Unit) = 1 interaction/10<sup>32</sup>{" "} targets/year
           </small>
+          <br />
+          <small> 
+            Uncertainty shown obtains from the reactor and geo-neutrino signal uncertainties added in quadrature.
+          </small>
         </div>
         <hr />
         <h6>IAEA Cores- <small>{reactorAntineutrinoModel.modelName}; Avg LF {reactorLF.start.toISOString().slice(0, 7)} thru {reactorLF.end.toISOString().slice(0, 7)}</small></h6>
@@ -206,6 +210,10 @@ export function StatsPanel({ cores, geo, reactorLF}) {
         <div>
           <small>
             Monthly load factors since 2020 from IAEA-Power Reactor Information System (PRIS)
+          </small>
+          <br />
+          <small> 
+            Uncertainties shown derive solely from the isotope emission spectra.
           </small>
         </div>
         <div>
@@ -312,9 +320,18 @@ export function StatsPanel({ cores, geo, reactorLF}) {
           <small>
             Geo-neutrino spectra for {U238}, {U235}, {Th232}, and {K40}<sub>β</sub> from Enomoto Sanshiro
           </small>
+          <br />
+          <small> 
+            Uncertainties shown obtain from the crust and mantle signal uncertainties added in quadrature.
+          </small>
         </div>
       <hr />
         <div>
+          <small>
+            Not included in the uncertainties shown is {"~1.8%"} for neutrino oscillations and {"1%"} for the cross section,
+            which should be considered independent and added in quadrature.
+          </small>
+          <br />
           <small>
             Double click on, or hover pointer over, values to display more decimal places
           </small>
