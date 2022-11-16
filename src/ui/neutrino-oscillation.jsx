@@ -47,7 +47,10 @@ export const NeutrinoOscillationPane = () => {
               of electron flavor. The Table below lists the neutrino oscillation parameter values used to estimate the spectral distortion of reactor 
               antineutrino reactions and the overall suppression of geo-neutrino reactions. An average survival probability, given by {" "}
               <Node>{String.raw`<\!\!{P}_\mathrm{ee}\!\!> = 1- \frac{1} {2} \big(\cos^4 \theta_{13} \sin^2(2\theta_{12}) + \sin^2(2\theta_{13}) \big),`}</Node> 
-              accounts for the effect of oscillations on geo-neutrinos.
+              approximates the effect of oscillations on geo-neutrinos. The{" "}
+              <Node inline>{String.raw`\pm 1\sigma`}</Node>{" "} uncertainties on the average survival probability{" "}
+              <Node inline>{String.raw`(\sim \pm1.8 \%)`}</Node>{" "} conservatively estimate the errors on the calculated antineutrino reaction rates 
+              introduced by the imprecise knowledge of the oscillation parameters.
             </p>
           </div>
         </Provider>
