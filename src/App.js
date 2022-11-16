@@ -32,9 +32,10 @@ import {
   AnalemmaPlot,
   CoreDirectionPlot,
   CoreDirectionSignalPlots,
-  //IBD/ES Tab
+  //pIBD/eES Tab
   DetectorPhysicsPane,
   CrossSectionPlots,
+  SV03PercentDifference,
   ParticleMasses,
   PhysicsConstants,
   EesCouplingFactors,
@@ -321,6 +322,7 @@ function App(props) {
                 <Visible>
                   <DetectorPhysicsPane />
                   <CrossSectionPlots />
+                  <SV03PercentDifference />
                   <ParticleMasses />
                   <PhysicsConstants />
                   <EesCouplingFactors />

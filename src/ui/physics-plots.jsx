@@ -1136,7 +1136,10 @@ export const CrossSectionPlots = () => {
         <Node>{String.raw`
             \sigma^\mathrm{pIBD}(E_\mathrm{e}) = (10.0 \times10^{-44} \mathrm{cm}^2 \mathrm{MeV}^{-2} )p_\mathrm{e} E_\mathrm{e} E_{\overline{\nu}_\mathrm{e}}^{\alpha\mathstrut},`}</Node>{" "}
             with the exponent{" "}
-            <Node inline>{String.raw`\alpha = -0.07056+0.02018\,\mathrm{ln}E_{\overline{\nu}_\mathrm{e}}-0.001953\,\mathrm{ln}^3E_{\overline{\nu}_\mathrm{e}}.`}</Node> 
+            <Node inline>{String.raw`\alpha = -0.07056+0.02018\,\mathrm{ln}E_{\overline{\nu}_\mathrm{e}}-0.001953\,\mathrm{ln}^3E_{\overline{\nu}_\mathrm{e}}.`}</Node>{" "}
+            The percent differences at selected energies between the precise cross section and the parameterized estimate are show in the plot below. Based on these differences
+            the use of the parameterized cross section conservatively contributes an uncertainty of{" "}
+            <Node inline>{String.raw`1 \%`}</Node>{" "} to the calculated pIBD reaction rates.
         </p>
         <p>
           The optional version of the pIBD cross section is from 
@@ -1183,6 +1186,78 @@ export const CrossSectionPlots = () => {
           useResizeHandler={true}
           style={{ width: "100%" }}
           data={data} 
+          layout={layout}
+          config={config}
+        />
+      </Card.Body>
+    </Card>
+  );
+};
+
+export const SV03PercentDifference = () => {
+  const data = [
+    {
+      x: [2.01, 2.25, 2.51, 2.80, 3.12, 3.48, 3.89, 4.33, 4.84, 5.40, 6.02, 6.72, 7.49, 8.36, 8.83, 9.85, 11.0, 12.3],
+      y: [2.14, -.219, -.378, .030, .700, .786, .085, .781, .362, .167, .251, .148, .080, -.024, -.110, -.142, -.491, -1.43],
+      name: ``,
+      type: "scatter",
+      mode: "markers",
+      marker: { 
+        color: "red", 
+        size: 12,
+        line: {
+          color: "black",
+          width: 2,
+          }
+      },
+    },
+  ];
+  var layout = {
+    title: `Percent Difference SV03`,
+    yaxis: {
+      title: { text: `% diff` },
+      autorange: true,
+    },
+    xaxis: {
+      title: { text: `Antineutrino Energy (MeV)` },
+      autorange: true,
+    },
+    autosize: true,
+    legend: {
+      x: 1,
+      xanchor: "right",
+      y: 1,
+    },
+    annotations: [
+      {
+        showarrow: false,
+        text: "geoneutrinos.org",
+        x: 1.1,
+        xref: "paper",
+        y: -0.15,
+        yref: "paper",
+      },
+    ],
+  };
+  var config = {
+    toImageButtonOptions: {
+      filename: 'SV03-pct-diff'
+    }
+  };
+  return (
+    <Card>
+      <Card.Header>Percent Difference SV03</Card.Header>
+      <Card.Body>
+        <p>
+          Plot shows the percent differences between the more precise formulation- see Table 3 in Strumia and Vissani (2003)- and its 
+          parameterized estimate at selected antineutrino energies. This comparison reveals small spectral distortions in the energy 
+          region relevant to reactor antineutrinos and geo-neutrinos. Based on these differences the use of the parameterized cross section 
+          conservatively contributes an uncertainty of 1 {"%"} to the calculated pIBD reaction rates.
+       </p>
+        <Plot
+          useResizeHandler={true}
+          style={{ width: "100%" }}
+          data={data}
           layout={layout}
           config={config}
         />
