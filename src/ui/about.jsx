@@ -6,14 +6,15 @@ export const AboutPane = () => {
       <Card.Header>Antineutrino Model</Card.Header>
       <Card.Body>
         <div>
-          <p> REFERENCE: The antinutrino model presented by this website is further documented in this somewhat outdated paper{" "}
+          <p> RESOURCE: The antinutrino model presented by this website is further documented in this somewhat outdated paper{" "}
             <a href="https://arxiv.org/pdf/1510.05633.pdf">arXiv:1510.05633.v3</a>
-            <br />
-            Please cite this website when using the results of this model in research papers and/or presentations:
+          </p>
+          <p>
+            REFERENCE: Please cite this website when using the results of this model in research papers and/or presentations:
             <br />
             A.M. Barna and S.T. Dye (est. 2010). <i>Antineutrino Model</i> https://reactors.geoneutrinos.org. Accessed DAY MONTH YEAR
           </p>
-          <p> Development of the model and this web application has been supported through the years in part by:
+          <p> ACKNOWLEDGEMENT: Development of the model and this web application has been supported through the years in part by:
             <br />
             • NSF EAR Division of Earth Sciences (Award{"#"} 0855838)
             <br />
