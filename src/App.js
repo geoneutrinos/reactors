@@ -341,11 +341,6 @@ function App(props) {
                 </Visible>
               </Tab>
               <Tab eventKey="output" title="Output">
-                <h5> REFERENCE </h5>
-                <p> The model presented by this website is further documented here{" "}
-                  <a href="https://arxiv.org/pdf/1510.05633.pdf">arXiv:1510.05633.v3</a>.
-                  Cite this paper when using the results of this model in your research papers and presentations.
-                </p>
                 <Visible>
                   <OutputDownload
                     geo={geo}
@@ -355,9 +350,22 @@ function App(props) {
                   />
                 </Visible>
                 <CalculatorPanel cores={cores} geo={geo} active={activeTab === "output"} />
+              </Tab>
+              <Tab eventKey="about" title="About">
+                <h5> REFERENCE </h5>
+                <p> The antinutrino model presented by this website is further documented in this somewhat outdated paper{" "}
+                  <a href="https://arxiv.org/pdf/1510.05633.pdf">arXiv:1510.05633.v3</a>.
+                  Please cite this website when using the results of this model in research papers and/or presentations:
+                  <br />
+                  A.M. Barna and S.T. Dye (est. 2010). <i>Antineutrino Model</i> https://reactors.geoneutrinos.org. Accessed DAY MONTH YEAR.
+                </p>
                 <h5> ACKNOWLEDGMENT </h5>
-                <p> Development of the model and this web application is supported in part by Lawrence Livermore National
-                  Security, LLC.
+                <p> Development of the model and this web application has been supported through the years in part by:
+                <br />
+                • NSF EAR Division of Earth Sciences (Award{"#"} 0855838)
+                <br />
+                • Lawrence Livermore National Security, LLC 
+                (Research Subcontract No.s B602732, B612361, B618031, B621682, B628127, B636606, B639958, B644724, B651218).
                 </p>
               </Tab>
             </Tabs>

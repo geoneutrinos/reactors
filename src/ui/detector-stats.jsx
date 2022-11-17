@@ -120,8 +120,12 @@ export function StatsPanel({ cores, geo, reactorLF}) {
           </tbody>
         </Table>
         <div>
-          <small>
+          • <small>
             1 {NIU} (Neutrino Interaction Unit) = 1 interaction/10<sup>32</sup>{" "} targets/year
+          </small>
+          <br />
+          • <small> 
+            Uncertainty shown obtains from the reactor and geo-neutrino signal uncertainties added in quadrature.
           </small>
         </div>
         <hr />
@@ -204,8 +208,12 @@ export function StatsPanel({ cores, geo, reactorLF}) {
           </Table>
         </div>
         <div>
-          <small>
+          • <small>
             Monthly load factors since 2020 from IAEA-Power Reactor Information System (PRIS)
+          </small>
+          <br />
+          • <small> 
+            Uncertainties shown derive solely from the isotope emission spectra.
           </small>
         </div>
         <div>
@@ -309,17 +317,26 @@ export function StatsPanel({ cores, geo, reactorLF}) {
           </Table>
         </div>
           <div>
-          <small>
+          • <small>
             Geo-neutrino spectra for {U238}, {U235}, {Th232}, and {K40}<sub>β</sub> from Enomoto Sanshiro
+          </small>
+          <br />
+          • <small> 
+            Uncertainty shown for <i>R</i><sub>geo</sub> obtains from the crust and mantle signal uncertainties added in quadrature.
           </small>
         </div>
       <hr />
         <div>
-          <small>
+          • <small>
+            Not included in the uncertainties shown is {"~1.8%"} for neutrino oscillations and {"~1%"} for the cross section,
+            which should be considered independent and added in quadrature.
+          </small>
+          <br />
+          • <small>
             Double click on, or hover pointer over, values to display more decimal places
           </small>
           <br />
-          <small>
+          • <small>
             1 kT H<sub>2</sub>O contains 6.686x10<sup>31</sup> free proton and
             3.343x10<sup>32</sup> electron targets
           </small>
