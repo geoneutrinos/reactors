@@ -1172,6 +1172,7 @@ export const CrossSectionPlots = () => {
           <Node inline>{String.raw`c_\mathrm{L} = c_V + c_A`}</Node>{" "}
           and{" "}
           <Node inline>{String.raw`c_\mathrm{R} = c_V - c_A.`}</Node>{" "}
+          Radiative corrections are currently ignored.
         </p>
         <p>
           The eES cross section equation given above applies to any two-body elastic scattering process. 
