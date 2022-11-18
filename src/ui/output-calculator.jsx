@@ -867,7 +867,7 @@ export const CalculatorPanel = ({ cores, geo, active}) => {
             <b> pIBD Detection Efficiency</b><br />
             <p> When expressed as a function of antineutrino energy <i>E</i>, the detection efficiency is
             valid for pIBD only. Here it is approximated by a sigmoid curve{" "}
-            <Node>{String.raw`\varepsilon (E) = \frac {\varepsilon_\mathrm{max}} {1 + \exp(-\rho * (E - E_\mathrm{HM}))},`}</Node>{" "}
+            <Node>{String.raw`\varepsilon (E) = \frac {\varepsilon_\mathrm{max}} {1 + \exp\big(-\rho * (E - E_\mathrm{HM})\big)},`}</Node>{" "}
             where <Node inline>{String.raw`\varepsilon_\mathrm{max}`}</Node> is the asymptote at infinite energy 
             (maximum detection efficiency),{" "}
             <Node inline>{String.raw`E_\mathrm{HM}`}</Node> is the inflection point energy 
