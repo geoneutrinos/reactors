@@ -22,15 +22,15 @@ export type ReactorAntineutrinoModelFunc = (Ev: number) => number
 export type ReactorAntineutrinoModel = Record<IsotopeKeys, ReactorAntineutrinoModelFunc>
 
 export enum RANames {
+  KO2021 = "Huber (2011) + Kopeikin et al. (2021)",
   HM2011 = "Huber (2011) + Mueller et al. (2011)",
   ES2018 = "Estienne et al. (2019) - SM2018",
-  KO2021 = "Huber (2011) + Kopeikin et al. (2021)",
 }
 
 const uncertanties = {
+  [RANames.KO2021]: KO_uncertanties,
   [RANames.HM2011]: HM2011_uncertanties,
   [RANames.ES2018]: ES2018_uncertanties,
-  [RANames.KO2021]: KO_uncertanties,
 }
 
 
@@ -41,9 +41,9 @@ interface ReactorAntineutrinoModelAction {
 
 export const reactorAntineutrinoModel  = {
   modelName: RANames.KO2021,
+  [RANames.KO2021]: KO2021,
   [RANames.HM2011]: HM2011,
   [RANames.ES2018]: ES2018,
-  [RANames.KO2021]: KO2021,
   model: KO2021,
   uncertanty: uncertanties[RANames.KO2021],
 }
