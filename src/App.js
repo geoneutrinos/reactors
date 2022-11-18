@@ -17,6 +17,7 @@ import {
   RASwitcher,
   FissionIsotopeSpectraPlotsHK,
   FissionIsotopeSpectraPlotsHM,
+  FissionIsotopeSpectraPlotsES,
   FissionFractionPane,
   CoreIAEARange,
   CoreList,
@@ -260,6 +261,7 @@ function App(props) {
                 <Visible>
                   <FissionIsotopeSpectraPlotsHK />
                   <FissionIsotopeSpectraPlotsHM />
+                  <FissionIsotopeSpectraPlotsES />
                   <FissionFractionPane />
                 </Visible>
                 <CoreIAEARange
