@@ -349,6 +349,112 @@ export const FissionIsotopeSpectraPlotsHM = () => {
   );
 };
 
+export const FissionIsotopeSpectraPlotsES = () => {
+  const data = [
+    {
+      y: bins.map(neutrinoEnergyForES(Isotopes.U235)),
+      x: bins,
+      name: `<sup>235</sup>U`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        width: 1
+      },
+      fill: "none",
+      marker: { color: "blue" },
+    },
+    {
+      y: bins.map(neutrinoEnergyForES(Isotopes.U238)),
+      x: bins,
+      name: `<sup>238</sup>U`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        width: 1
+      },
+      fill: "none",
+      marker: { color: "green" },
+    },
+    {
+      y: bins.map(neutrinoEnergyForES(Isotopes.PU239)),
+      x: bins,
+      name: `<sup>239</sup>Pu`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        width: 1
+      },
+      fill: "none",
+      marker: { color: "red" },
+    },
+    {
+      y: bins.map(neutrinoEnergyForES(Isotopes.PU241)),
+      x: bins,
+      name: `<sup>241</sup>Pu`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        width: 1
+      },
+      fill: "none",
+      marker: { color: "magenta" },
+    },
+  ];
+  var layout = {
+    title: "Estienne et al.: Fission Isotope Emission Spectra",
+    yaxis: {
+      title: { text: `Emission (/fission/MeV)` },
+      type: "log",
+      range: [-5, 1],
+    },
+    xaxis: {
+      title: { text: `Antineutrino Energy (MeV)` },
+      range: [0.05, 10.05],
+    },
+    autosize: true,
+    legend: {
+      x: 1,
+      xanchor: "right",
+      y: 1,
+    },
+    annotations: [
+      {
+        showarrow: false,
+        text: "geoneutrinos.org",
+        x: 1.1,
+        xref: "paper",
+        y: -0.15,
+        yref: "paper",
+      },
+    ],
+  };
+  var config = {
+    toImageButtonOptions: {
+      filename: 'ES-Fission-Isotope-Spectra'
+    }
+  };
+  return (
+    <Card>
+      <Card.Header>Estienne et al.: Fission Isotope Emission Spectra</Card.Header>
+      <Card.Body>
+        <p>
+          <sup>235</sup>U, <sup>238</sup>U, <sup>239</sup>Pu, <sup>241</sup>Pu summation spectra (solid):
+          <br />
+          M. Estienne <i>et al.</i> (2019), <i>Updated Summation Model: An Improved Agreement with the Daya Bay Antineutrino Fluxes</i>,
+          Phys. Rev. Lett. 123, 022502.
+        </p>
+        <Plot
+          useResizeHandler={true}
+          style={{ width: "100%" }}
+          data={data}
+          layout={layout}
+          config={config}
+        />
+      </Card.Body>
+    </Card>
+  );
+};
+
 export const CoreDirectionSignalPlots = ({ cores, detector, reactorLF }) => {
   const sortedCores = Object.values(cores)
     .filter(core => core.shutdown > new Date())
