@@ -12,54 +12,6 @@ import bins from "../physics/bins";
 export const FissionIsotopeSpectraPlotsHK = () => {
   const data = [
     {
-      y: bins.map(neutrinoEnergyForES(Isotopes.U235)),
-      x: bins,
-      name: `<sup>235</sup>U`,
-      type: "scatter",
-      mode: "lines",
-      line: {
-        width: 1
-      },
-      fill: "none",
-      marker: { color: "blue" },
-    },
-    {
-      y: bins.map(neutrinoEnergyForES(Isotopes.U238)),
-      x: bins,
-      name: `<sup>238</sup>U`,
-      type: "scatter",
-      mode: "lines",
-      line: {
-        width: 1
-      },
-      fill: "none",
-      marker: { color: "green" },
-    },
-    {
-      y: bins.map(neutrinoEnergyForES(Isotopes.PU239)),
-      x: bins,
-      name: `<sup>239</sup>Pu`,
-      type: "scatter",
-      mode: "lines",
-      line: {
-        width: 1
-      },
-      fill: "none",
-      marker: { color: "red" },
-    },
-    {
-      y: bins.map(neutrinoEnergyForES(Isotopes.PU241)),
-      x: bins,
-      name: `<sup>241</sup>Pu`,
-      type: "scatter",
-      mode: "lines",
-      line: {
-        width: 1
-      },
-      fill: "none",
-      marker: { color: "magenta" },
-    },
-    {
       y: bins.map(neutrinoEnergyForKO(Isotopes.U235)),
       x: bins,
       name: `<sup>235</sup>U`,
@@ -106,6 +58,54 @@ export const FissionIsotopeSpectraPlotsHK = () => {
       mode: "lines",
       line: {
         dash: "dashdot",
+        width: 1
+      },
+      fill: "none",
+      marker: { color: "magenta" },
+    },
+    {
+      y: bins.map(neutrinoEnergyForES(Isotopes.U235)),
+      x: bins,
+      name: `<sup>235</sup>U`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        width: 1
+      },
+      fill: "none",
+      marker: { color: "blue" },
+    },
+    {
+      y: bins.map(neutrinoEnergyForES(Isotopes.U238)),
+      x: bins,
+      name: `<sup>238</sup>U`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        width: 1
+      },
+      fill: "none",
+      marker: { color: "green" },
+    },
+    {
+      y: bins.map(neutrinoEnergyForES(Isotopes.PU239)),
+      x: bins,
+      name: `<sup>239</sup>Pu`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        width: 1
+      },
+      fill: "none",
+      marker: { color: "red" },
+    },
+    {
+      y: bins.map(neutrinoEnergyForES(Isotopes.PU241)),
+      x: bins,
+      name: `<sup>241</sup>Pu`,
+      type: "scatter",
+      mode: "lines",
+      line: {
         width: 1
       },
       fill: "none",
@@ -182,54 +182,6 @@ export const FissionIsotopeSpectraPlotsHK = () => {
 export const FissionIsotopeSpectraPlotsHM = () => {
   const data = [
     {
-      y: bins.map(neutrinoEnergyForES(Isotopes.U235)),
-      x: bins,
-      name: `<sup>235</sup>U`,
-      type: "scatter",
-      mode: "lines",
-      line: {
-        width: 1
-      },
-      fill: "none",
-      marker: { color: "blue" },
-    },
-    {
-      y: bins.map(neutrinoEnergyForES(Isotopes.U238)),
-      x: bins,
-      name: `<sup>238</sup>U`,
-      type: "scatter",
-      mode: "lines",
-      line: {
-        width: 1
-      },
-      fill: "none",
-      marker: { color: "green" },
-    },
-    {
-      y: bins.map(neutrinoEnergyForES(Isotopes.PU239)),
-      x: bins,
-      name: `<sup>239</sup>Pu`,
-      type: "scatter",
-      mode: "lines",
-      line: {
-        width: 1
-      },
-      fill: "none",
-      marker: { color: "red" },
-    },
-    {
-      y: bins.map(neutrinoEnergyForES(Isotopes.PU241)),
-      x: bins,
-      name: `<sup>241</sup>Pu`,
-      type: "scatter",
-      mode: "lines",
-      line: {
-        width: 1
-      },
-      fill: "none",
-      marker: { color: "magenta" },
-    },
-    {
       y: bins.map(neutrinoEnergyForHM(Isotopes.U235)),
       x: bins,
       name: `<sup>235</sup>U`,
@@ -276,6 +228,54 @@ export const FissionIsotopeSpectraPlotsHM = () => {
       mode: "lines",
       line: {
         dash: "dashdot",
+        width: 1
+      },
+      fill: "none",
+      marker: { color: "magenta" },
+    },
+    {
+      y: bins.map(neutrinoEnergyForES(Isotopes.U235)),
+      x: bins,
+      name: `<sup>235</sup>U`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        width: 1
+      },
+      fill: "none",
+      marker: { color: "blue" },
+    },
+    {
+      y: bins.map(neutrinoEnergyForES(Isotopes.U238)),
+      x: bins,
+      name: `<sup>238</sup>U`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        width: 1
+      },
+      fill: "none",
+      marker: { color: "green" },
+    },
+    {
+      y: bins.map(neutrinoEnergyForES(Isotopes.PU239)),
+      x: bins,
+      name: `<sup>239</sup>Pu`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        width: 1
+      },
+      fill: "none",
+      marker: { color: "red" },
+    },
+    {
+      y: bins.map(neutrinoEnergyForES(Isotopes.PU241)),
+      x: bins,
+      name: `<sup>241</sup>Pu`,
+      type: "scatter",
+      mode: "lines",
+      line: {
         width: 1
       },
       fill: "none",
