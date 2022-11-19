@@ -102,6 +102,12 @@ export const RASwitcher = ({active}) => {
     <Card>
       <Card.Body>
         {RASelector}
+        <p>
+          <small>
+            Reactor isotope emission spectra are constructed following the methods presented by C. Giunti, Y.F. Li, C.A. Ternes, Z. Xin (2021),
+            <i>Reactor antineutrino anomaly in light of recent flux model refinements</i>, arXiv:2110.06820v2.
+          </small>
+        </p>
         {InteractionYield}
       </Card.Body>
     </Card>
