@@ -12,54 +12,6 @@ import bins from "../physics/bins";
 export const FissionIsotopeSpectraPlotsHK = () => {
   const data = [
     {
-      y: bins.map(neutrinoEnergyForES(Isotopes.U235)),
-      x: bins,
-      name: `<sup>235</sup>U`,
-      type: "scatter",
-      mode: "lines",
-      line: {
-        width: 1
-      },
-      fill: "none",
-      marker: { color: "blue" },
-    },
-    {
-      y: bins.map(neutrinoEnergyForES(Isotopes.U238)),
-      x: bins,
-      name: `<sup>238</sup>U`,
-      type: "scatter",
-      mode: "lines",
-      line: {
-        width: 1
-      },
-      fill: "none",
-      marker: { color: "green" },
-    },
-    {
-      y: bins.map(neutrinoEnergyForES(Isotopes.PU239)),
-      x: bins,
-      name: `<sup>239</sup>Pu`,
-      type: "scatter",
-      mode: "lines",
-      line: {
-        width: 1
-      },
-      fill: "none",
-      marker: { color: "red" },
-    },
-    {
-      y: bins.map(neutrinoEnergyForES(Isotopes.PU241)),
-      x: bins,
-      name: `<sup>241</sup>Pu`,
-      type: "scatter",
-      mode: "lines",
-      line: {
-        width: 1
-      },
-      fill: "none",
-      marker: { color: "magenta" },
-    },
-    {
       y: bins.map(neutrinoEnergyForKO(Isotopes.U235)),
       x: bins,
       name: `<sup>235</sup>U`,
@@ -111,76 +63,6 @@ export const FissionIsotopeSpectraPlotsHK = () => {
       fill: "none",
       marker: { color: "magenta" },
     },
-  ];
-  var layout = {
-    title: "Huber-Kopeikin: Fission Isotope Emission Spectra",
-    yaxis: {
-      title: { text: `Emission (/fission/MeV)` },
-      type: "log",
-      range: [-5, 1],
-    },
-    xaxis: {
-      title: { text: `Antineutrino Energy (MeV)` },
-      range: [0.05, 10.05],
-    },
-    autosize: true,
-    legend: {
-      x: 1,
-      xanchor: "right",
-      y: 1,
-    },
-    annotations: [
-      {
-        showarrow: false,
-        text: "geoneutrinos.org",
-        x: 1.1,
-        xref: "paper",
-        y: -0.15,
-        yref: "paper",
-      },
-    ],
-  };
-  var config = {
-    toImageButtonOptions: {
-      filename: 'HK-Fission-Isotope-Spectra'
-    }
-  };
-  return (
-    <Card>
-      <Card.Header>Huber-Kopeikin: Fission Isotope Emission Spectra</Card.Header>
-      <Card.Body>
-        <p>
-          <sup>235</sup>U, <sup>238</sup>U, <sup>239</sup>Pu, <sup>241</sup>Pu summation spectra (solid):
-          <br />
-          M. Estienne <i>et al.</i> (2019), <i>Updated Summation Model: An Improved Agreement with the Daya Bay Antineutrino Fluxes</i>,
-          Phys. Rev. Lett. 123, 022502.
-        </p>
-        <p>
-          <sup>239</sup>Pu, <sup>241</sup>Pu conversion spectra (dot-dash):
-          <br />
-          P. Huber (2011), <i>Determination of antineutrino spectra from nuclear
-          reactors</i>, Phys. Rev. C 84, 024617.
-        </p>
-        <p>
-          <sup>235</sup>U, <sup>238</sup>U conversion spectra (dot-dash):
-          <br />
-          V. Kopeikin, M. Skorokhvatov, O. Titov (2021), <i>Reevaluating reactor antineutrino spectra with new measurements of the ratio
-          between <sup>235</sup>U and <sup>239</sup>Pu β spectra</i>, Phys. Rev. D 104, L071301.
-        </p>
-        <Plot
-          useResizeHandler={true}
-          style={{ width: "100%" }}
-          data={data}
-          layout={layout}
-          config={config}
-        />
-      </Card.Body>
-    </Card>
-  );
-};
-
-export const FissionIsotopeSpectraPlotsHM = () => {
-  const data = [
     {
       y: bins.map(neutrinoEnergyForES(Isotopes.U235)),
       x: bins,
@@ -229,6 +111,76 @@ export const FissionIsotopeSpectraPlotsHM = () => {
       fill: "none",
       marker: { color: "magenta" },
     },
+  ];
+  var layout = {
+    title: "Huber-Kopeikin: Fission Isotope Emission Spectra",
+    yaxis: {
+      title: { text: `Emission (/fission/MeV)` },
+      type: "log",
+      range: [-5, 1],
+    },
+    xaxis: {
+      title: { text: `Antineutrino Energy (MeV)` },
+      range: [0.05, 10.05],
+    },
+    autosize: true,
+    legend: {
+      x: 1,
+      xanchor: "right",
+      y: 1,
+    },
+    annotations: [
+      {
+        showarrow: false,
+        text: "geoneutrinos.org",
+        x: 1.1,
+        xref: "paper",
+        y: -0.15,
+        yref: "paper",
+      },
+    ],
+  };
+  var config = {
+    toImageButtonOptions: {
+      filename: 'HK-Fission-Isotope-Spectra'
+    }
+  };
+  return (
+    <Card>
+      <Card.Header>Huber-Kopeikin: Fission Isotope Emission Spectra</Card.Header>
+      <Card.Body>
+        <p>
+          <sup>239</sup>Pu, <sup>241</sup>Pu conversion spectra (dot-dash):
+          <br />
+          P. Huber (2011), <i>Determination of antineutrino spectra from nuclear
+          reactors</i>, Phys. Rev. C 84, 024617.
+        </p>
+        <p>
+          <sup>235</sup>U, <sup>238</sup>U conversion spectra (dot-dash):
+          <br />
+          V. Kopeikin, M. Skorokhvatov, O. Titov (2021), <i>Reevaluating reactor antineutrino spectra with new measurements of the ratio
+          between <sup>235</sup>U and <sup>239</sup>Pu β spectra</i>, Phys. Rev. D 104, L071301.
+        </p>
+        <p>
+          <sup>235</sup>U, <sup>238</sup>U, <sup>239</sup>Pu, <sup>241</sup>Pu summation spectra (solid):
+          <br />
+          M. Estienne <i>et al.</i> (2019), <i>Updated Summation Model: An Improved Agreement with the Daya Bay Antineutrino Fluxes</i>,
+          Phys. Rev. Lett. 123, 022502.
+        </p>
+        <Plot
+          useResizeHandler={true}
+          style={{ width: "100%" }}
+          data={data}
+          layout={layout}
+          config={config}
+        />
+      </Card.Body>
+    </Card>
+  );
+};
+
+export const FissionIsotopeSpectraPlotsHM = () => {
+  const data = [
     {
       y: bins.map(neutrinoEnergyForHM(Isotopes.U235)),
       x: bins,
@@ -281,6 +233,54 @@ export const FissionIsotopeSpectraPlotsHM = () => {
       fill: "none",
       marker: { color: "magenta" },
     },
+    {
+      y: bins.map(neutrinoEnergyForES(Isotopes.U235)),
+      x: bins,
+      name: `<sup>235</sup>U`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        width: 1
+      },
+      fill: "none",
+      marker: { color: "blue" },
+    },
+    {
+      y: bins.map(neutrinoEnergyForES(Isotopes.U238)),
+      x: bins,
+      name: `<sup>238</sup>U`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        width: 1
+      },
+      fill: "none",
+      marker: { color: "green" },
+    },
+    {
+      y: bins.map(neutrinoEnergyForES(Isotopes.PU239)),
+      x: bins,
+      name: `<sup>239</sup>Pu`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        width: 1
+      },
+      fill: "none",
+      marker: { color: "red" },
+    },
+    {
+      y: bins.map(neutrinoEnergyForES(Isotopes.PU241)),
+      x: bins,
+      name: `<sup>241</sup>Pu`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        width: 1
+      },
+      fill: "none",
+      marker: { color: "magenta" },
+    },
   ];
   var layout = {
     title: "Huber-Mueller: Fission Isotope Emission Spectra",
@@ -320,12 +320,6 @@ export const FissionIsotopeSpectraPlotsHM = () => {
       <Card.Header>Huber-Mueller: Fission Isotope Emission Spectra</Card.Header>
       <Card.Body>
         <p>
-          <sup>235</sup>U, <sup>238</sup>U, <sup>239</sup>Pu, <sup>241</sup>Pu summation spectra (solid):
-          <br />
-          M. Estienne <i>et al.</i> (2019), <i>Updated Summation Model: An Improved Agreement with the Daya Bay Antineutrino Fluxes</i>,
-          Phys. Rev. Lett. 123, 022502.
-        </p>
-        <p>
           <sup>235</sup>U, <sup>239</sup>Pu, <sup>241</sup>Pu conversion spectra (dot-dash):
           <br />
           P. Huber (2011), <i>Determination of antineutrino spectra from nuclear
@@ -336,6 +330,118 @@ export const FissionIsotopeSpectraPlotsHM = () => {
           <br />
           Mueller, Th. A. <i>et al.</i> (2011), <i>Improved predictions of reactor antineutrino
           spectra</i>, Phys. Rev. C 83, 054615.
+        </p>
+        <p>
+          <sup>235</sup>U, <sup>238</sup>U, <sup>239</sup>Pu, <sup>241</sup>Pu summation spectra (solid):
+          <br />
+          M. Estienne <i>et al.</i> (2019), <i>Updated Summation Model: An Improved Agreement with the Daya Bay Antineutrino Fluxes</i>,
+          Phys. Rev. Lett. 123, 022502.
+        </p>
+        <Plot
+          useResizeHandler={true}
+          style={{ width: "100%" }}
+          data={data}
+          layout={layout}
+          config={config}
+        />
+      </Card.Body>
+    </Card>
+  );
+};
+
+export const FissionIsotopeSpectraPlotsES = () => {
+  const data = [
+    {
+      y: bins.map(neutrinoEnergyForES(Isotopes.U235)),
+      x: bins,
+      name: `<sup>235</sup>U`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        width: 1
+      },
+      fill: "none",
+      marker: { color: "blue" },
+    },
+    {
+      y: bins.map(neutrinoEnergyForES(Isotopes.U238)),
+      x: bins,
+      name: `<sup>238</sup>U`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        width: 1
+      },
+      fill: "none",
+      marker: { color: "green" },
+    },
+    {
+      y: bins.map(neutrinoEnergyForES(Isotopes.PU239)),
+      x: bins,
+      name: `<sup>239</sup>Pu`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        width: 1
+      },
+      fill: "none",
+      marker: { color: "red" },
+    },
+    {
+      y: bins.map(neutrinoEnergyForES(Isotopes.PU241)),
+      x: bins,
+      name: `<sup>241</sup>Pu`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        width: 1
+      },
+      fill: "none",
+      marker: { color: "magenta" },
+    },
+  ];
+  var layout = {
+    title: "Estienne et al.: Fission Isotope Emission Spectra",
+    yaxis: {
+      title: { text: `Emission (/fission/MeV)` },
+      type: "log",
+      range: [-5, 1],
+    },
+    xaxis: {
+      title: { text: `Antineutrino Energy (MeV)` },
+      range: [0.05, 10.05],
+    },
+    autosize: true,
+    legend: {
+      x: 1,
+      xanchor: "right",
+      y: 1,
+    },
+    annotations: [
+      {
+        showarrow: false,
+        text: "geoneutrinos.org",
+        x: 1.1,
+        xref: "paper",
+        y: -0.15,
+        yref: "paper",
+      },
+    ],
+  };
+  var config = {
+    toImageButtonOptions: {
+      filename: 'ES-Fission-Isotope-Spectra'
+    }
+  };
+  return (
+    <Card>
+      <Card.Header>Estienne et al.: Fission Isotope Emission Spectra</Card.Header>
+      <Card.Body>
+        <p>
+          <sup>235</sup>U, <sup>238</sup>U, <sup>239</sup>Pu, <sup>241</sup>Pu summation spectra (solid):
+          <br />
+          M. Estienne <i>et al.</i> (2019), <i>Updated Summation Model: An Improved Agreement with the Daya Bay Antineutrino Fluxes</i>,
+          Phys. Rev. Lett. 123, 022502.
         </p>
         <Plot
           useResizeHandler={true}
