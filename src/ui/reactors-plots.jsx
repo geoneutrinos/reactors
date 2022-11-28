@@ -257,8 +257,21 @@ export const FissionIsotopeSpectraPlotsHK = () => {
 export const FissionIsotopeSpectraPlotsHM = () => {
   const data = [
     {
-      y: bins.map(neutrinoEnergyForHM(Isotopes.U235)),
-      x: bins,
+      y: bins.map(neutrinoEnergyForHM(Isotopes.U235)).slice(199,801),
+      x: bins.slice(199,801),
+      name: `<sup>235</sup>U`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        width: 1
+      },
+      fill: "none",
+      marker: { color: "blue" },
+      legendgroup: "U235",
+    },
+    {
+      y: bins.map(neutrinoEnergyForES(Isotopes.U235)).slice(0,200),
+      x: bins.slice(0,200),
       name: `<sup>235</sup>U`,
       type: "scatter",
       mode: "lines",
@@ -268,61 +281,28 @@ export const FissionIsotopeSpectraPlotsHM = () => {
       },
       fill: "none",
       marker: { color: "blue" },
+      legendgroup: "U235",
+      showlegend: false,
     },
     {
-      y: bins.map(neutrinoEnergyForHM(Isotopes.U238)),
-      x: bins,
-      name: `<sup>238</sup>U`,
-      type: "scatter",
-      mode: "lines",
-      line: {
-        dash: "dashdot",
-        width: 1
-      },
-      fill: "none",
-      marker: { color: "green" },
-    },
-    {
-      y: bins.map(neutrinoEnergyForHM(Isotopes.PU239)),
-      x: bins,
-      name: `<sup>239</sup>Pu`,
-      type: "scatter",
-      mode: "lines",
-      line: {
-        dash: "dashdot",
-        width: 1
-      },
-      fill: "none",
-      marker: { color: "red" },
-    },
-    {
-      y: bins.map(neutrinoEnergyForHM(Isotopes.PU241)),
-      x: bins,
-      name: `<sup>241</sup>Pu`,
-      type: "scatter",
-      mode: "lines",
-      line: {
-        dash: "dashdot",
-        width: 1
-      },
-      fill: "none",
-      marker: { color: "magenta" },
-    },
-    {
-      y: bins.map(neutrinoEnergyForES(Isotopes.U235)),
-      x: bins,
+      y: bins.map(neutrinoEnergyForES(Isotopes.U235)).slice(800),
+      x: bins.slice(800),
       name: `<sup>235</sup>U`,
       type: "scatter",
       mode: "lines",
       line: {
+        dash: "dashdot",
         width: 1
       },
       fill: "none",
       marker: { color: "blue" },
+      legendgroup: "U235",
+      showlegend: false,
     },
+    // ---
     {
-      y: bins.map(neutrinoEnergyForES(Isotopes.U238)),
-      x: bins,
+      y: bins.map(neutrinoEnergyForHM(Isotopes.U238)).slice(199,801),
+      x: bins.slice(199,801),
       name: `<sup>238</sup>U`,
       type: "scatter",
       mode: "lines",
@@ -331,10 +311,42 @@ export const FissionIsotopeSpectraPlotsHM = () => {
       },
       fill: "none",
       marker: { color: "green" },
+      legendgroup: "U238",
     },
     {
-      y: bins.map(neutrinoEnergyForES(Isotopes.PU239)),
-      x: bins,
+      y: bins.map(neutrinoEnergyForES(Isotopes.U238)).slice(0,200),
+      x: bins.slice(0,200),
+      name: `<sup>238</sup>U`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        dash: "dashdot",
+        width: 1
+      },
+      fill: "none",
+      marker: { color: "green" },
+      legendgroup: "U238",
+      showlegend: false,
+    },
+    {
+      y: bins.map(neutrinoEnergyForES(Isotopes.U238)).slice(800),
+      x: bins.slice(800),
+      name: `<sup>238</sup>U`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        dash: "dashdot",
+        width: 1
+      },
+      fill: "none",
+      marker: { color: "green" },
+      legendgroup: "U238",
+      showlegend: false,
+    },
+    // ---
+    {
+      y: bins.map(neutrinoEnergyForHM(Isotopes.PU239)).slice(199,801),
+      x: bins.slice(199,801),
       name: `<sup>239</sup>Pu`,
       type: "scatter",
       mode: "lines",
@@ -343,10 +355,42 @@ export const FissionIsotopeSpectraPlotsHM = () => {
       },
       fill: "none",
       marker: { color: "red" },
+      legendgroup: "PU239",
     },
     {
-      y: bins.map(neutrinoEnergyForES(Isotopes.PU241)),
-      x: bins,
+      y: bins.map(neutrinoEnergyForES(Isotopes.PU239)).slice(0,200),
+      x: bins.slice(0,200),
+      name: `<sup>239</sup>Pu`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        dash: "dashdot",
+        width: 1
+      },
+      fill: "none",
+      marker: { color: "red" },
+      legendgroup: "PU239",
+      showlegend: false,
+    },
+    {
+      y: bins.map(neutrinoEnergyForES(Isotopes.PU239)).slice(800),
+      x: bins.slice(800),
+      name: `<sup>239</sup>Pu`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        dash: "dashdot",
+        width: 1
+      },
+      fill: "none",
+      marker: { color: "red" },
+      legendgroup: "PU239",
+      showlegend: false,
+    },
+    // ---
+    {
+      y: bins.map(neutrinoEnergyForHM(Isotopes.PU241)).slice(199,801),
+      x: bins.slice(199,801),
       name: `<sup>241</sup>Pu`,
       type: "scatter",
       mode: "lines",
@@ -355,6 +399,37 @@ export const FissionIsotopeSpectraPlotsHM = () => {
       },
       fill: "none",
       marker: { color: "magenta" },
+      legendgroup: "PU241",
+    },
+    {
+      y: bins.map(neutrinoEnergyForES(Isotopes.PU241)).slice(0,200),
+      x: bins.slice(0,200),
+      name: `<sup>241</sup>Pu`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        dash: "dashdot",
+        width: 1
+      },
+      fill: "none",
+      marker: { color: "magenta" },
+      legendgroup: "PU241",
+      showlegend: false,
+    },
+    {
+      y: bins.map(neutrinoEnergyForES(Isotopes.PU241)).slice(800),
+      x: bins.slice(800),
+      name: `<sup>241</sup>Pu`,
+      type: "scatter",
+      mode: "lines",
+      line: {
+        dash: "dashdot",
+        width: 1
+      },
+      fill: "none",
+      marker: { color: "magenta" },
+      legendgroup: "PU241",
+      showlegend: false,
     },
   ];
   var layout = {
@@ -395,19 +470,19 @@ export const FissionIsotopeSpectraPlotsHM = () => {
       <Card.Header>Huber-Mueller: Fission Isotope Emission Spectra</Card.Header>
       <Card.Body>
         <p>
-          <sup>235</sup>U, <sup>239</sup>Pu, <sup>241</sup>Pu conversion spectra (dot-dash):
+          <sup>235</sup>U, <sup>239</sup>Pu, <sup>241</sup>Pu conversion spectra (solid):
           <br />
           P. Huber (2011), <i>Determination of antineutrino spectra from nuclear
           reactors</i>, Phys. Rev. C 84, 024617.
         </p>
         <p>
-          <sup>238</sup>U <i>ab initio</i> spectrum (dot-dash):
+          <sup>238</sup>U <i>ab initio</i> spectrum (solid):
           <br />
           Mueller, Th. A. <i>et al.</i> (2011), <i>Improved predictions of reactor antineutrino
           spectra</i>, Phys. Rev. C 83, 054615.
         </p>
         <p>
-          <sup>235</sup>U, <sup>238</sup>U, <sup>239</sup>Pu, <sup>241</sup>Pu summation spectra (solid):
+          <sup>235</sup>U, <sup>238</sup>U, <sup>239</sup>Pu, <sup>241</sup>Pu summation spectra (dot-dash):
           <br />
           M. Estienne <i>et al.</i> (2019), <i>Updated Summation Model: An Improved Agreement with the Daya Bay Antineutrino Fluxes</i>,
           Phys. Rev. Lett. 123, 022502.
