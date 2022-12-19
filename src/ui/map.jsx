@@ -182,10 +182,10 @@ export function NuMap({
       onMousemove={mapMouseMove}
       style={mapStyle}
       center={[0, 0]}
-      maxBounds={[[-90, -270],[90,270]]}
+      maxBounds={[[-90, -200],[90,200]]}
       maxBoundsViscosity={1}
-      zoom={2}
-      minZoom={2}
+      zoom={1}
+      minZoom={1}
       maxZoom={19}
       {...contextMenu}
       onZoom={(e) => setZoom(e.target._zoom)}
