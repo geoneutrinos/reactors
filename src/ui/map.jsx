@@ -184,7 +184,7 @@ export function NuMap({
       center={[0, 0]}
       maxBounds={[[-90, -200],[90,200]]}
       maxBoundsViscosity={1}
-      zoom={1.5}
+      zoom={1}
       minZoom={1}
       maxZoom={19}
       {...contextMenu}
