@@ -30,9 +30,9 @@ import {
   GeoNuSpectrumSource,
   IsotopeData,
   //Direction Tab
-  AnalemmaPlot,
-  CoreDirectionPlot,
   CoreDirectionSignalPlots,
+  CoreDirectionPlot,
+  AnalemmaPlot,
   //pIBD/eES Tab
   DetectorPhysicsPane,
   CrossSectionPlots,
@@ -313,13 +313,13 @@ function App(props) {
               </Tab>
               <Tab eventKey="directionality" title="Direction">
                 <Visible>
-                  <AnalemmaPlot boron8={boron8} detector={detector} cores={cores} reactorLF={reactorLF} />
-                  <CoreDirectionPlot cores={cores} detector={detector} />
                   <CoreDirectionSignalPlots
                     cores={cores}
                     detector={detector}
                     reactorLF={reactorLF}
                   />
+                  <CoreDirectionPlot cores={cores} detector={detector} />
+                  <AnalemmaPlot boron8={boron8} detector={detector} cores={cores} reactorLF={reactorLF} />
                 </Visible>
               </Tab>
               <Tab eventKey="ibd/es" title="pIBD/eES">
