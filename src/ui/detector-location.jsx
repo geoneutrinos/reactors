@@ -147,6 +147,12 @@ export const DetectorLocationPane = ({ detector, setDetector }) => {
             </InputGroup.Append>
           </InputGroup>
         </Form.Group>
+        <div>
+          • <small>
+            Elevation is height above the WGS84 reference ellipsoid
+            </small>
+          <br />
+         </div>
       </Card.Body>
     </Card>
   );
