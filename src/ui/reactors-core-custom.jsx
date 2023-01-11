@@ -31,7 +31,7 @@ export const AddCustomCoreModal = ({
 
   const suggestions = [
     { name: "ATR", lat: 43.588023, lon: -112.965868, power: 250, elevation: 1520 },
-    { name: "HFIR", lat: 35.918, lon: -84.304, power: 85, elevation: 267 },
+    { name: "HFIR", lat: 35.91763, lon: -84.30341, power: 85, elevation: 267 },
     { name: "Arak IR-40", lat: 34.373, lon: 49.241, power: 40, elevation: 1750 },
     { name: "Dhruva", lat: 19.00833, lon: 72.92028, power: 100, elevation: 65 },
     { name: "Khushab-1", lat: 32.02012, lon: 72.20797, power: 50, elevation: 190 },
