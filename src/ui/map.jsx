@@ -149,7 +149,7 @@ export function NuMap({
     contextmenuWidth: 175,
     contextmenuItems: [
       {
-        text: "Place Detector Here",
+        text: "Place Detector Here w/ Elevation 0 m",
         callback: (e) =>
         setDetector({
             current: "custom",
