@@ -201,7 +201,7 @@ export function StatsPanel({ cores, geo, reactorLF}) {
               <td>=</td>
                 <td>
                   {Math.round(customClosestDistance) === customClosestDistance? customClosestDistance.toFixed(0): customClosestDistance.toFixed(2)} km 
-                  <small> ({customClosestName}) </small>
+                  <small> ({customClosestName} elevation {customClosestElevation} m) </small>
                 </td>
               </tr>
             </tbody>
