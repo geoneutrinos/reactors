@@ -126,7 +126,7 @@ export function StatsPanel({ cores, geo, reactorLF}) {
           </small>
           <br />
           • <small> 
-            Uncertainty shown obtains from the reactor and geo-neutrino signal uncertainties added in quadrature.
+            Uncertainty shown obtains from the reactor and geo-neutrino signal uncertainties added in quadrature
           </small>
         </div>
         <hr />
@@ -214,7 +214,7 @@ export function StatsPanel({ cores, geo, reactorLF}) {
           </small>
           <br />
           • <small> 
-            Uncertainties shown derive solely from the isotope emission spectra.
+            Uncertainties shown derive solely from the isotope emission spectra
           </small>
         </div>
         <div>
@@ -323,14 +323,18 @@ export function StatsPanel({ cores, geo, reactorLF}) {
           </small>
           <br />
           • <small> 
-            Uncertainty shown for <i>R</i><sub>geo</sub> obtains from the crust and mantle signal uncertainties added in quadrature.
+            Uncertainty shown for <i>R</i><sub>geo</sub> obtains from the crust and mantle signal uncertainties added in quadrature
           </small>
         </div>
       <hr />
         <div>
           • <small>
-            Not included in the uncertainties shown is {"~1.8%"} for neutrino oscillations and {"~1%"} for the cross section,
-            which should be considered independent and added in quadrature.
+            Elevation is height above the WGS84 reference ellipsoid
+          </small>
+          <br />
+          • <small>
+            Uncertainties on signal rates do not include {"~1.8%"} for neutrino oscillations and {"~1%"} for the cross section,
+            which should be considered independent and added in quadrature
           </small>
           <br />
           • <small>
