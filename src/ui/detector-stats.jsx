@@ -216,6 +216,10 @@ export function StatsPanel({ cores, geo, reactorLF}) {
           • <small> 
             Uncertainties shown derive solely from the isotope emission spectra
           </small>
+          <br />
+          • <small>
+            Elevation is height above the WGS84 reference ellipsoid
+          </small>
         </div>
         <div>
           <hr />
@@ -328,10 +332,6 @@ export function StatsPanel({ cores, geo, reactorLF}) {
         </div>
       <hr />
         <div>
-          • <small>
-            Elevation is height above the WGS84 reference ellipsoid
-          </small>
-          <br />
           • <small>
             Uncertainties on signal rates do not include {"~1.8%"} for neutrino oscillations and {"~1%"} for the cross section,
             which should be considered independent and added in quadrature
