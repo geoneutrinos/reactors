@@ -106,7 +106,7 @@ L.Icon.Default.mergeOptions({
   shadowUrl: shadowUrl,
 });
 
-const defaultDetector = presets.find((detector) => detector.name === "Kamioka");
+const defaultDetector = presets.find((detector) => detector.name === "Palo Verde");
 
 function App(props) {
   const [oscillation, oscillationDispatch] = useReducer(
