@@ -62,7 +62,7 @@ export const presets: DetecorPreset[] = [
     //Henderson molybdenum mine in central Colorado- https://www.phy.bnl.gov/~diwan/talks/talks/virginia%20colloquium/colloquium/UNO_Henderson.pdf
     {name: "Henderson", lat:39.77107, lon: -105.84596, elevation:0, overburden:4000, region:"North America"},
     {name: "KURF", lat:37.38, lon: -80.66, elevation:0, overburden:1400, region:"North America"},
-    {name: "Palo Verde", lat:33.39056, lon: -112.87236, elevation:251, overburden:32, region:"North America"},
+    {name: "Palo Verde", lat:33.390616, lon: -112.872296, elevation:251, overburden:32, region:"North America"},
     {name: "Resolution", lat:33.301336, lon:-111.103363, elevation:0, overburden:5000, region:"North America"},
     //Mt San Jacinto water tunnel in southern California- http://www.sns.ias.edu/~jnb/Laboratory/SanJacinto/visit.pdf
     {name: "San Jacinto", lat:33.81471, lon:-116.67944, elevation:0, overburden:5000, region:"North America"},
