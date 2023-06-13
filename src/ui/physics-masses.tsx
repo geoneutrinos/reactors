@@ -1,5 +1,3 @@
-import React from 'react';
-
 import {NEUTRON_REST_MASS, PROTON_REST_MASS, ELECTRON_REST_MASS} from '../physics/constants'
 
 import {IBD_THRESHOLD} from '../physics/derived'

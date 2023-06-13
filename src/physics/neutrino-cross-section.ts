@@ -265,7 +265,7 @@ const defaultCrossSection: CrossSection = {
   elasticScatteringTMax: 15.3,
   crossSection: XSNames.IBDSV2003,
   crossSectionFunction: XSFuncs[XSNames.IBDSV2003],
-  crossSectionElectronAntineutrinoFractionES: (Ev) => 0,
+  crossSectionElectronAntineutrinoFractionES: (_Ev) => 0,
 }
 
 export const crossSectionReducer = (state: CrossSection, action: CrossSectionAction): CrossSection => {

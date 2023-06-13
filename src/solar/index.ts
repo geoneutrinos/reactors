@@ -19,7 +19,7 @@ const boron8FluxStatU = 0.014 / 2.345;
 const boron8FluxSysU = 0.036 / 2.345;
 const boron8U = Math.hypot(boron8FluxStatU, boron8FluxSysU);
 
-export const boron8Bins = boron8.map(([bin, spec]) => bin);
+export const boron8Bins = boron8.map(([bin, _spec]) => bin);
 
 export const times = flatten(
   range(0, 365, 2).map((jd) => {

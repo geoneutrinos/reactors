@@ -66,11 +66,11 @@ export let oscillation: Oscillation = {
   averageSurvivalProbability: 0,
 
   // empty functions
-  normalNeutrinoFlavor: (Ev, dist) => 0,
-  normalNeutrinoOscillationSpectrum: (dist) => new Float64Array(),
-  invertedNeutrinoFlavor: (Ev, dist) => 0,
-  invertedNeutrinoOscillationSpectrum: (dist) => new Float64Array(),
-  neutrinoOscillationSpectrum: (dist) => new Float64Array(),
+  normalNeutrinoFlavor: (_Ev, _dist) => 0,
+  normalNeutrinoOscillationSpectrum: (_dist) => new Float64Array(),
+  invertedNeutrinoFlavor: (_Ev, _dist) => 0,
+  invertedNeutrinoOscillationSpectrum: (_dist) => new Float64Array(),
+  neutrinoOscillationSpectrum: (_dist) => new Float64Array(),
 
   // Config things
   massOrdering: MassOrdering.Normal

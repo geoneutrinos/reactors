@@ -1,5 +1,3 @@
-import React from 'react';
-
 import {
   averageNeutrinoEnergy232Th,
   averageNeutrinoEnergy238U,

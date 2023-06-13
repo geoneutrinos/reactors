@@ -63,7 +63,7 @@ export const Visible: React.FC<VisibleProps> = ({ children }) => {
       threshold: 0,
     };
 
-    let observer = new IntersectionObserver((entries, observer) => {
+    let observer = new IntersectionObserver((entries, _) => {
       setVisible(entries[0].isIntersecting);
     }, options);
     observer.observe(ref.current as Element);

@@ -1,5 +1,3 @@
-import React from 'react';
-
 import {FERMI_COUPLING_CONSTANT, HBAR_C, WEAK_MIXING_ANGLE} from '../physics/constants'
 
 import { Card, Table } from 'react-bootstrap';

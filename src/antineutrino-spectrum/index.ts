@@ -34,7 +34,7 @@ function resample(
   const inputBinWidth = 1/1000
   const sliceSize = Math.floor(binWidth/inputBinWidth);
 
-  return output.map((v, i) => {
+  return output.map((_, i) => {
     return antineutrinoSpectrum
       .slice(i * sliceSize, i * sliceSize + sliceSize)
       .reduce((p, c) => p + c * binCount/10, 0);
