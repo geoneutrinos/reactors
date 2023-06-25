@@ -25,8 +25,10 @@ export const presets: DetecorPreset[] = [
     {name: "Jinping", lat:28.15323, lon: 101.7114, elevation:1571, overburden:6720, region:"Asia"},
     //Kamioka- detector height -1000 m, surface height 1368 m, geoid height 43.54 m 
     {name: "Kamioka", lat:36.425659, lon: 137.310508, elevation:412, overburden:2050, region:"Asia"},
-    //Kolar Gold Fields- mine closed, overburder from Achar et al., Phys. Lett. 18 (1965) 196
+    //Kolar Gold Fields- mine closed, overburden from Achar et al., Phys. Lett. 18 (1965) 196
     {name: "Kolar Gold Fields", lat:12.93926, lon: 78.25565, elevation:848, overburden:7500, region:"Asia"},
+    // RENO far- estimated location and overburden from arXiv:1003.1391
+    {name: "RENO", lat:35.401487, lon: 126.425682, elevation:70, overburden:450, region:"Asia"},
     {name: "TRIDENT", lat:17.4, lon: 114.0, elevation:-3500, overburden:3500, region:"Asia"},
     //Yemilab- detector height -1100 m, surface height 900 m, geoid height 30.34 m
     {name: "Yemilab", lat:37.188639, lon: 128.659406, elevation:-170, overburden:2500, region:"Asia"},
