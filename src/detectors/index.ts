@@ -13,10 +13,12 @@ export const presets: DetecorPreset[] = [
     //Africa
     //East Rand Proprietary Mines 3585 m below surface
     {name: "Witwatersrand", lat:-26.213205, lon:28.249712, elevation:0, overburden:9000, region:"Africa"},
+    //Huguenot Tunnel east of Paarl SA, surface height 500 m, geoid height 33 m
+    {name: "PAUL", lat:-33.730907, lon:19.085144, elevation:533, overburden:2000, region:"Africa"},
     //Asia
     {name: "Lake Baikal", lat:51.771, lon: 104.398, elevation:-644.5, overburden:1100, region:"Asia"},
     {name: "Guemseong", lat:35.05, lon: 126.70, elevation:0, overburden:950, region:"Asia"},
-    //INO- detector height -1200 m, surface height 2207 m, geoid height -93.33
+    //INO- detector height -1200 m, surface height 2207 m, geoid height -93.33 m
     {name: "INO", lat:9.955514, lon: 77.283654, elevation:914, overburden:3000, region:"Asia"},
     //Jaduguda uranium mine 640 m below surface 22.65208 N, 86.34687 E
     {name: "Jaduguda", lat:22.652095, lon:86.346882, elevation:0, overburden:1430, region:"Asia"},
