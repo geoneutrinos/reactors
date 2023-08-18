@@ -20,8 +20,8 @@ export const presets: DetecorPreset[] = [
     {name: "Guemseong", lat:35.05, lon: 126.70, elevation:0, overburden:950, region:"Asia"},
     //INO- detector height -1200 m, surface height 2207 m, geoid height -93.33 m
     {name: "INO", lat:9.955514, lon: 77.283654, elevation:914, overburden:3000, region:"Asia"},
-    //Jaduguda uranium mine 640 m below surface 22.65208 N, 86.34687 E
-    {name: "Jaduguda", lat:22.652095, lon:86.346882, elevation:0, overburden:1430, region:"Asia"},
+    //Jaduguda uranium mine -555 m, 118 m.s.l., geoid height -57 m M.K. Sharan et al. 2021, NIMA 994, 165083
+    {name: "Jaduguda", lat:22.6560, lon:86.3529, elevation:61, overburden:1554, region:"Asia"},
     {name: "Jiangmen", lat:22.12, lon: 112.51, elevation:-481.25, overburden:2100, region:"Asia"},
     //Jinping- detector height -2400 m, surface height 4000 m, geoid height -29.14 m
     {name: "Jinping", lat:28.15323, lon: 101.7114, elevation:1571, overburden:6720, region:"Asia"},
@@ -42,8 +42,8 @@ export const presets: DetecorPreset[] = [
     {name: "Bergwerk Saar", lat:49.319, lon: 6.779, elevation: 198, overburden: 2000, region:"Europe"},
     //Boulby- detector height -1100 m, surface height 85 m, geoid height 55.13 m
     {name: "Boulby", lat:54.555129, lon: -0.80089, elevation:-960, overburden:2805, region:"Europe"},
-    //Canfranc- lab floor height 1206 m, geoid height 58.54 m
-    {name: "Canfranc", lat:42.77529, lon: -0.529517, elevation:1265, overburden:2450, region:"Europe"},
+    //Canfranc- lab floor height 1206.47 m, geoid height 58.54 m arXix:1902.00868
+    {name: "Canfranc Lab2500", lat:42.77529, lon: -0.529239, elevation:1265, overburden:2450, region:"Europe"},
     {name: "Chooz", lat:50.084758, lon: 4.802295, elevation:250, overburden:300, region:"Europe"},
     //Modane- lab floor height 1263 m, geoid height 62.14 m
     {name: "Modane", lat:45.178547, lon: 6.689201, elevation:1325, overburden:4200, region:"Europe"},
