@@ -42,8 +42,8 @@ export const presets: DetecorPreset[] = [
     {name: "Bergwerk Saar", lat:49.319, lon: 6.779, elevation: 198, overburden: 2000, region:"Europe"},
     //Boulby- detector height -1100 m, surface height 85 m, geoid height 55.13 m
     {name: "Boulby", lat:54.555129, lon: -0.80089, elevation:-960, overburden:2805, region:"Europe"},
-    //Canfranc- lab floor height 1206 m, geoid height 58.54 m
-    {name: "Canfranc", lat:42.77529, lon: -0.529517, elevation:1265, overburden:2450, region:"Europe"},
+    //Canfranc- lab floor height 1206.47 m, geoid height 58.54 m arXix:1902.00868
+    {name: "Canfranc Lab2500", lat:42.77529, lon: -0.529239, elevation:1265, overburden:2450, region:"Europe"},
     {name: "Chooz", lat:50.084758, lon: 4.802295, elevation:250, overburden:300, region:"Europe"},
     //Modane- lab floor height 1263 m, geoid height 62.14 m
     {name: "Modane", lat:45.178547, lon: 6.689201, elevation:1325, overburden:4200, region:"Europe"},
