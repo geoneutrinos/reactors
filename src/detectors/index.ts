@@ -16,6 +16,8 @@ export const presets: DetecorPreset[] = [
     //Huguenot Tunnel east of Paarl SA, surface height 500 m, geoid height 33 m
     {name: "PAUL", lat:-33.730907, lon:19.085144, elevation:533, overburden:2000, region:"Africa"},
     //Asia
+    // 22 m.s.l., geoid height 0 m, arXiv:1509.09038
+    {name: "Aberdeen Tunnel", lat:22.23, lon: 114.6, elevation:22, overburden:611, region:"Asia"},
     {name: "Lake Baikal", lat:51.771, lon: 104.398, elevation:-644.5, overburden:1100, region:"Asia"},
     {name: "Guemseong", lat:35.05, lon: 126.70, elevation:0, overburden:950, region:"Asia"},
     //INO- detector height -1200 m, surface height 2207 m, geoid height -93.33 m
