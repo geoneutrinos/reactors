@@ -20,8 +20,8 @@ export const presets: DetecorPreset[] = [
     {name: "Guemseong", lat:35.05, lon: 126.70, elevation:0, overburden:950, region:"Asia"},
     //INO- detector height -1200 m, surface height 2207 m, geoid height -93.33 m
     {name: "INO", lat:9.955514, lon: 77.283654, elevation:914, overburden:3000, region:"Asia"},
-    //Jaduguda uranium mine 640 m below surface 22.65208 N, 86.34687 E
-    {name: "Jaduguda", lat:22.652095, lon:86.346882, elevation:0, overburden:1430, region:"Asia"},
+    //Jaduguda uranium mine -555 m, 118 m.s.l., geoid height -57 m M.K. Sharan et al. 2021, NIMA 994, 165083
+    {name: "Jaduguda", lat:22.6560, lon:86.3529, elevation:61, overburden:1554, region:"Asia"},
     {name: "Jiangmen", lat:22.12, lon: 112.51, elevation:-481.25, overburden:2100, region:"Asia"},
     //Jinping- detector height -2400 m, surface height 4000 m, geoid height -29.14 m
     {name: "Jinping", lat:28.15323, lon: 101.7114, elevation:1571, overburden:6720, region:"Asia"},
