@@ -743,7 +743,7 @@ export const CalculatorPanel = ({ cores, geo, active}) => {
                   </InputGroup.Text>
                 </InputGroup.Append>
                 <Form.Control.Feedback type="invalid">
-                  <i>N<sub>σ</sub></i> &lowast; <i>&delta;B > S</i> 
+                  <i>N<sub>σ</sub></i> &lowast; <i>&delta;B &gt; S</i> 
                 </Form.Control.Feedback>
               </InputGroup>
             </Form.Group>
