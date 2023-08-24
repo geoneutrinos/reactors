@@ -6,7 +6,7 @@ const deltaDepth = maximumDepth / depthBins; // km.w.e.
 
 // make the array of overburdens 0 - 10 km.w.e.
 export const depthValues = new Float64Array(depthBins).map(
-  (v, i) => i * deltaDepth + deltaDepth / 2
+  (_v, i) => i * deltaDepth + deltaDepth / 2
 );
 
 // differential muon intensity corresponding to slant depth- Eq. 1 in Mei and Hime, PRD 73 (2006) 053004
