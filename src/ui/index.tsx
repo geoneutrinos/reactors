@@ -77,7 +77,7 @@ interface NumProps {
   p: number
   u?: number
   func?: (arg: number) =>  number
-  formatFunc: "toFixed" | "toExponential" | "toPrecision"
+  formatFunc?: "toFixed" | "toExponential" | "toPrecision"
 }
 
 export const Num: React.FC<NumProps> = ({ v, p, u, func, formatFunc = "toFixed" }) => {
