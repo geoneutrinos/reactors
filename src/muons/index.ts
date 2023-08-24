@@ -20,7 +20,7 @@ function differentialMuonIntensity(slantDepth: number) {
 }
 
 // differential muon intensity corresponding to flat overburden- Eq. 4 in Mei and Hime, PRD 73 (2006) 053004
-function flatOverburdenMuonIntensity(equivalentDepth: number) {
+export function flatOverburdenMuonIntensity(equivalentDepth: number) {
   const intensityParameter4a = 69.97e-6; // /cm^2/s
   const intensityParameter4b = 2.071e-6; // /cm^2/s
   const overburdenCoefficient4a = 0.285; // km.w.e.
@@ -30,7 +30,7 @@ function flatOverburdenMuonIntensity(equivalentDepth: number) {
 }
 
 // muon-induced neutron flux emerging from rock into cavern- Eq. 13 in Mei and Hime, PRD 73 (2006) 053004
-function neutronInducedFlux(flatDepth: number) {
+export function neutronInducedFlux(flatDepth: number) {
   const intensityParameter13 = 4.0e-7; // /cm^2/s
   const overburdenCoefficient13 = 0.86; // km.w.e.
     

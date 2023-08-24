@@ -1,5 +1,5 @@
-import React from "react";
-import { Card } from "react-bootstrap";
+import { useState } from "react";
+import { Card, Form, InputGroup,Table } from "react-bootstrap";
 
 import Plot from "react-plotly.js";
 import { Provider } from "@nteract/mathjax";
@@ -9,7 +9,71 @@ import {
   muonSlantIntensity,
   muonFlatIntensity,
   neutronFlatIntensity,
+  neutronInducedFlux,
+  flatOverburdenMuonIntensity,
 } from "../muons";
+
+import {
+  Num
+} from "."
+
+const MuonFluxCalculator = () => {
+  const [overburden, setOverburden] = useState(1.5) // km.w.e.
+  return (
+    <Card>
+      <Card.Header>Muon Flux Calculator</Card.Header>
+      <Card.Body>
+        <Form.Group controlId="muon_overburden">
+          <InputGroup>
+            <InputGroup.Prepend>
+              <InputGroup.Text>
+              Overburden
+              </InputGroup.Text>
+            </InputGroup.Prepend>
+            <Form.Control
+              onChange={(e) => setOverburden(parseFloat(e.target.value))}
+              type="number"
+              step="0.1"
+              min="1.5"
+              max="8.0"
+              value={overburden}
+            />
+            <InputGroup.Append>
+              <InputGroup.Text>km w.e.</InputGroup.Text>
+            </InputGroup.Append>
+          </InputGroup>
+          {}
+          <Table>
+            <thead>
+              <tr>
+                <th>Muon Flux</th>
+                <th>Neutron Flux</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <Num
+                    v={flatOverburdenMuonIntensity(overburden)}
+                    p={5}
+                    formatFunc="toPrecision"
+                  />
+                </td>
+                <td>
+                  <Num
+                    v={neutronInducedFlux(overburden)}
+                    p={5}
+                    formatFunc="toPrecision"
+                  />
+                </td>
+              </tr>
+            </tbody>
+          </Table>
+        </Form.Group>
+      </Card.Body>
+    </Card>
+  );
+}
 
 const MuonsPane = () => {
   return (
@@ -166,6 +230,7 @@ export const Muons = () => {
   return (
     <div>
       <MuonsPane />
+      <MuonFluxCalculator />
       <MuonDepthIntensity />
       <BackgroundFluxes />
     </div>
