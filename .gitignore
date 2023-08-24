@@ -15,6 +15,7 @@ src/physics/carbon-12/*.json
 
 # production
 /build
+/dist
 
 # misc
 .DS_Store

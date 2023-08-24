@@ -27,26 +27,20 @@
     "react-dom": "^17.0.1",
     "react-leaflet": "^2.6.3",
     "react-plotly.js": "^2.5.0",
-    "react-scripts": "^5.0.0",
     "suncalc": "^1.8.0",
-    "typescript": "^4.5.4"
+    "typescript": "^5.1.3"
   },
   "scripts": {
-    "predeploy": "npm run build",
-    "stage": "npm run predeploy; gh-pages -o docotak -d build",
-    "deploy": "gh-pages -d build",
-    "start": "react-scripts start",
-    "build": "npm run processAll; react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
+    "predeploy": "tsc && vite build",
+    "stage": "npm run predeploy; gh-pages -o docotak -d dist",
+    "deploy": "gh-pages -d dist",
+    "dev": "vite",
+    "build": "npm run processAll; tsc && vite build",
     "processAll": "npm run processReactorSpectrum; npm run processReactorDB; npm run processOxygen16; npm run processCarbon12",
     "processReactorSpectrum": "node src/physics/reactor-antineutrinos/data/processReactorAntinuData.js",
     "processReactorDB": "node src/reactor-cores/reactor-database/processReactors.js",
     "processOxygen16": "node src/physics/oxygen-16/processOxygen16Data.js",
     "processCarbon12": "node src/physics/carbon-12/processCarbon12Data.js"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
   },
   "browserslist": {
     "production": [
@@ -61,6 +55,10 @@
     ]
   },
   "devDependencies": {
-    "prettier": "^2.3.2"
+    "@vitejs/plugin-react": "^4.0.0",
+    "prettier": "^2.3.2",
+    "vite": "^4.3.9",
+    "vite-plugin-svgr": "^3.2.0",
+    "vite-tsconfig-paths": "^4.2.0"
   }
 }

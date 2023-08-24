@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { Card, Table } from 'react-bootstrap';
 
 export const EesCouplingFactors = () => {

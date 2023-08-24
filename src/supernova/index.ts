@@ -68,7 +68,7 @@ const deltaEnergy = maximumEnergy / energyBins; // MeV
 
 // make the array of neutrino energies 0 - 100 MeV
 export const energyValues = new Float64Array(energyBins).map(
-  (v, i) => i * deltaEnergy + deltaEnergy / 2
+  (_v, i) => i * deltaEnergy + deltaEnergy / 2
 );
 
 /**
