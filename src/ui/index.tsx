@@ -25,6 +25,7 @@ export { IsotopeData } from "./isotope-data";
 export { GeoRateFluxYields } from "./geo-ratefluxyields";
 export { SupernovaNus } from "./supernova-nus";
 export { Muons } from "./muon-backgrounds";
+export {DetectorOverburdens} from "./detector-overburden";
 export {
   CrossSectionPlots,
   SV03PercentDifference,

@@ -66,6 +66,7 @@ import {
   AboutPane,
   // Muon tab
   Muons,
+  DetectorOverburdens,
   // Custom Core UI
   AddCustomCoreModal,
   ManageCustomCoreModal,
@@ -348,6 +349,7 @@ function App(props) {
               </Tab>
               <Tab eventKey="muon" title="Muon">
                   <Muons />
+                  <DetectorOverburdens />
               </Tab>
               <Tab eventKey="output" title="Output">
                 <Visible>
