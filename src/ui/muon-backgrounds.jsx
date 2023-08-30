@@ -18,7 +18,9 @@ import {
 } from "."
 
 const MuonFluxCalculator = () => {
-  const [overburden, setOverburden] = useState(1.5) // km.w.e.
+  const [overburden, setOverburden] = useState("1.5") // km.w.e.
+
+  const overburdenValue = parseFloat(overburden)
   return (
     <Card>
       <Card.Header>Muon Flux Calculator</Card.Header>
@@ -31,7 +33,7 @@ const MuonFluxCalculator = () => {
               </InputGroup.Text>
             </InputGroup.Prepend>
             <Form.Control
-              onChange={(e) => setOverburden(parseFloat(e.target.value))}
+              onChange={(e) => setOverburden(e.target.value)}
               type="number"
               step="0.1"
               min="1.5"
@@ -54,14 +56,14 @@ const MuonFluxCalculator = () => {
               <tr>
                 <td>
                   <Num
-                    v={flatOverburdenMuonIntensity(overburden)}
+                    v={flatOverburdenMuonIntensity(overburdenValue)}
                     p={5}
                     formatFunc="toPrecision"
                   />
                 </td>
                 <td>
                   <Num
-                    v={neutronInducedFlux(overburden)}
+                    v={neutronInducedFlux(overburdenValue)}
                     p={5}
                     formatFunc="toPrecision"
                   />
