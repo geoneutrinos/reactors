@@ -128,8 +128,8 @@ function App(props) {
     ...defaultDetector,
   });
   const [reactorLF, setReactorLF] = useState({
-    start: new Date("2021-01-01T00:00:00Z"),
-    end: new Date("2021-12-01T00:00:00Z"),
+    start: new Date("2022-01-01T00:00:00Z"),
+    end: new Date("2022-12-01T00:00:00Z"),
   });
 
   const [coreMods, setCoreMods] = useState({});
