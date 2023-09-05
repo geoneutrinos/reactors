@@ -5,7 +5,7 @@ const papaparse = require("papaparse")
 const {parse} = papaparse
 
 const startDate = new Date("2003-01-01Z")
-const endDate = new Date("2021-12-31Z")
+const endDate = new Date("2022-12-31Z")
 
 const processReactorDB = () => {
     let reactor_base = path.join(__dirname, "reactors.csv")
