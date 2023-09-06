@@ -293,7 +293,7 @@ export function ReactorCore({
   function loadFactor(
     this: ReactorCore,
     start = new Date(Date.UTC(2003, 0)),
-    stop = new Date(Date.UTC(2021, 11))
+    stop = new Date(Date.UTC(2022, 11))
   ) {
     if (this.loadOverride !== undefined) {
       return this.loadOverride;

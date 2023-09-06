@@ -213,6 +213,10 @@ export function StatsPanel({ cores, geo, reactorLF}) {
             Monthly load factors since 2020 from IAEA-Power Reactor Information System (PRIS)
           </small>
           <br />
+          • <small>
+            2022 load factors for reactor cores in Ukraine not reported and arbitrarily set to 0
+          </small>
+          <br />
           • <small> 
             Uncertainties shown derive solely from the isotope emission spectra
           </small>
