@@ -23,7 +23,7 @@ const MuonFluxCalculator = () => {
   const invalid = (overburdenValue > 8) || (overburdenValue < 1.5)
   return (
     <Card>
-      <Card.Header>Muon/Neutron Flux Calculator (m<sup>-2</sup>s<sup>-1</sup>)</Card.Header>
+      <Card.Header>Muon and Neutron Flux Calculator</Card.Header>
       <Card.Body>
         <Form.Group controlId="muon_overburden">
           <InputGroup hasValidation>
@@ -52,8 +52,8 @@ const MuonFluxCalculator = () => {
           <Table>
             <thead>
               <tr>
-                <th>Muon Flux</th>
-                <th>Neutron Flux</th>
+                <th>Muon Flux (m<sup>-2</sup>s<sup>-1</sup>)</th>
+                <th>Neutron Flux (m<sup>-2</sup>s<sup>-1</sup>)</th>
               </tr>
             </thead>
             <tbody>
@@ -131,9 +131,9 @@ const BackgroundFluxes = () => {
     },
   ];
   var layout = {
-    title: "Background Fluxes",
+    title: "Muon and Neutron Fluxes",
     yaxis: {
-      title: { text: `Flux (cm<sup>-2</sup>s<sup>-1</sup>)` },
+      title: { text: `Flux (m<sup>-2</sup>s<sup>-1</sup>)` },
       type: "log",
       autorange: true,
     },
@@ -160,7 +160,7 @@ const BackgroundFluxes = () => {
   };
   return (
     <Card>
-      <Card.Header>Background Fluxes</Card.Header>
+      <Card.Header>Muon and Neutron Fluxes</Card.Header>
       <Card.Body>
         <Plot
           useResizeHandler={true}
