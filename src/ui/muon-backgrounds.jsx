@@ -23,13 +23,13 @@ const MuonFluxCalculator = () => {
   const invalid = (overburdenValue > 8) || (overburdenValue < 1.5)
   return (
     <Card>
-      <Card.Header>Muon Flux Calculator</Card.Header>
+      <Card.Header>Muon/Neutron Flux Calculator</Card.Header>
       <Card.Body>
         <Form.Group controlId="muon_overburden">
           <InputGroup hasValidation>
             <InputGroup.Prepend>
               <InputGroup.Text>
-              Overburden
+              Equivalent Flat Overburden
               </InputGroup.Text>
             </InputGroup.Prepend>
             <Form.Control
@@ -42,10 +42,10 @@ const MuonFluxCalculator = () => {
               isInvalid={invalid}
             />
             <InputGroup.Append>
-              <InputGroup.Text>km w.e.</InputGroup.Text>
+              <InputGroup.Text>km.w.e.</InputGroup.Text>
             </InputGroup.Append>
           <Form.Control.Feedback type="invalid">
-            Function only defined between 1.5 and 8 km w.e.
+            Function only defined between 1.5 and 8 km.w.e.
           </Form.Control.Feedback>
           </InputGroup>
           {}
