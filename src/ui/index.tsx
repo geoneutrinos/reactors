@@ -22,8 +22,10 @@ export { ParticleMasses } from "./physics-masses";
 export { EesCouplingFactors, PesCouplingFactors } from "./physics-coupling-factors";
 export { GeoFluxUncertainties } from "./geo-uncertainties";
 export { IsotopeData } from "./isotope-data";
-export { GeoRateFluxYields } from "./geo-ratefluxyields"
+export { GeoRateFluxYields } from "./geo-ratefluxyields";
 export { SupernovaNus } from "./supernova-nus";
+export { Muons } from "./muon-backgrounds";
+export {DetectorOverburdens} from "./detector-overburden";
 export {
   CrossSectionPlots,
   SV03PercentDifference,
@@ -76,16 +78,17 @@ interface NumProps {
   p: number
   u?: number
   func?: (arg: number) =>  number
+  formatFunc?: "toFixed" | "toExponential" | "toPrecision"
 }
 
-export const Num: React.FC<NumProps> = ({ v, p, u, func }) => {
+export const Num: React.FC<NumProps> = ({ v, p, u, func, formatFunc = "toFixed" }) => {
   const [full, setFull] = useState(false);
   if (func === undefined) {
     func = (v) => v;
   }
   const value = func(v)
   const uncertainty = u ? func(u) : undefined
-  const formattedString = uncertainty ? `${value.toFixed(p).toString()} ± ${uncertainty.toFixed(p).toString()}` : `${value.toFixed(p).toString()}`
+  const formattedString = uncertainty ? `${value[formatFunc](p).toString()} ± ${uncertainty[formatFunc](p).toString()}` : `${value[formatFunc](p).toString()}`
   const fullString = uncertainty ? `${value.toString()} ± ${uncertainty.toString()}` : `${value.toString()}`
   return (
     <span onDoubleClick={() => setFull(!full)} title={fullString}>
