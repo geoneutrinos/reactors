@@ -84,7 +84,7 @@ const MuonFluxCalculator = () => {
 const MuonsPane = () => {
   return (
     <Card>
-      <Card.Header>Muon-Induced Backgrounds</Card.Header>
+      <Card.Header>Cosmic Ray Muons</Card.Header>
       <Card.Body>
         <Provider>
           <div>
