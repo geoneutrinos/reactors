@@ -21,12 +21,13 @@ const MuonFluxCalculator = () => {
   const [overburden, setOverburden] = useState("1.5") // km.w.e.
 
   const overburdenValue = parseFloat(overburden)
+  const invalid = (overburdenValue > 8) || (overburdenValue < 1.5)
   return (
     <Card>
       <Card.Header>Muon Flux Calculator</Card.Header>
       <Card.Body>
         <Form.Group controlId="muon_overburden">
-          <InputGroup>
+          <InputGroup hasValidation>
             <InputGroup.Prepend>
               <InputGroup.Text>
               Overburden
@@ -39,10 +40,14 @@ const MuonFluxCalculator = () => {
               min="1.5"
               max="8.0"
               value={overburden}
+              isInvalid={invalid}
             />
             <InputGroup.Append>
               <InputGroup.Text>km w.e.</InputGroup.Text>
             </InputGroup.Append>
+          <Form.Control.Feedback type="invalid">
+            Function only defined between 1.5 and 8 km w.e.
+          </Form.Control.Feedback>
           </InputGroup>
           {}
           <Table>
@@ -85,11 +90,12 @@ const MuonsPane = () => {
         <Provider>
           <div>
             <p>
-              This page is under development. It displays parameterized fits of the muon-induced backgrounds that depend on the overburden of 
-              the detector site, following equations given in D.-M. Mei and A. Hime (2006), <i>Muon-induced background study for underground 
-              laboratories</i>, Phys. Rev. D 73, 053004. The plots below show three curves, the differential muon intensity corresonding 
-              to slant depth (Eq. 1), the differential muon intensity corresponding to a falt overburden (Eq. 4), and the neutron flux emerging 
-              from the rock into the underground cavern as a function of the depth relative to a flat overburden (Eq. 13). 
+              Parameterized depth spectra of the underground cosmic-ray muon flux and the associated neutron flux 
+              are presented following equations given in D.-M. Mei and A. Hime (2006),  
+              <i> Muon-induced background study for underground laboratories</i>, Phys. Rev. D 73, 053004. The first plot shows the 
+              differential muon intensity corresonding to slant depth (Eq. 1). The second plot shows the total muon intensity 
+              (Eq. 4) and the neutron flux emerging from the rock into the underground cavern (Eq. 13), both as 
+              a function of the depth corresponding to a flat overburden. 
             </p>
           </div>
         </Provider>
