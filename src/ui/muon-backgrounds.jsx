@@ -6,7 +6,7 @@ import { Provider } from "@nteract/mathjax";
 
 import { 
   depthValues,
-  muonSlantIntensity,
+//  muonSlantIntensity,
   muonFlatIntensity,
   neutronFlatIntensity,
   neutronInducedFlux,
@@ -92,72 +92,13 @@ const MuonsPane = () => {
             <p>
               Parameterized depth spectra of the underground cosmic-ray muon flux and the associated neutron flux 
               are presented following equations given in D.-M. Mei and A. Hime (2006),  
-              <i> Muon-induced background study for underground laboratories</i>, Phys. Rev. D 73, 053004. The first plot shows the 
-              differential muon intensity corresonding to slant depth (Eq. 1). The second plot shows the total muon intensity 
+              <i> Muon-induced background study for underground laboratories</i>, Phys. Rev. D 73, 053004. 
+              The plot below shows the total muon intensity 
               (Eq. 4) and the neutron flux emerging from the rock into the underground cavern (Eq. 13), both as 
               a function of the depth corresponding to a flat overburden. 
             </p>
           </div>
         </Provider>
-      </Card.Body>
-    </Card>
-  );
-};
-
-const MuonDepthIntensity = () => {
-  const data = [
-    {
-      y: muonSlantIntensity,
-      x: depthValues,
-      name: "μ slant ",
-      type: "scatter",
-      mode: "lines",
-      line: {
-        width: 2,
-      },
-      fill: "none",
-      marker: { color: "black" },
-    },
-  ];
-  var layout = {
-    title: "Muon Depth Intensity Relationship",
-    yaxis: {
-      title: { text: `Differential Muon Intensity (cm<sup>-2</sup>s<sup>-1</sup>sr<sup>-1</sup>)` },
-      type: "log",
-      autorange: true,
-    },
-    xaxis: {
-      title: { text: `Slant depth (km.w.e.)` },
-      range: [0.05, 10.05],
-    },
-    autosize: true,
-    annotations: [
-      {
-        showarrow: false,
-        text: "geoneutrinos.org",
-        x: 1.1,
-        xref: "paper",
-        y: -0.15,
-        yref: "paper",
-      },
-    ],
-  };
-  var config = {
-    toImageButtonOptions: {
-      filename: 'Muon-DIR',
-    },
-  };
-  return (
-    <Card>
-      <Card.Header>Muon Depth Intensity Relationship</Card.Header>
-      <Card.Body>
-        <Plot
-          useResizeHandler={true}
-          style={{ width: "100%" }}
-          data={data}
-          layout={layout}
-          config={config}
-        />
       </Card.Body>
     </Card>
   );
