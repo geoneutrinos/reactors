@@ -11,8 +11,8 @@ export const depthValues = new Float64Array(depthBins).map(
 
 // differential muon intensity corresponding to flat overburden- Eq. 4 in Mei and Hime, PRD 73 (2006) 053004
 export function flatOverburdenMuonIntensity(equivalentDepth: number) {
-  const intensityParameter4a = 69.97e-2; // /cm^2/s
-  const intensityParameter4b = 2.071e-2; // /cm^2/s
+  const intensityParameter4a = 69.97e-2; // /m^2/s
+  const intensityParameter4b = 2.071e-2; // /m^2/s
   const overburdenCoefficient4a = 0.285; // km.w.e.
   const overburdenCoefficient4b = 0.698; // km.w.e.
     
@@ -21,7 +21,7 @@ export function flatOverburdenMuonIntensity(equivalentDepth: number) {
 
 // muon-induced neutron flux emerging from rock into cavern- Eq. 13 in Mei and Hime, PRD 73 (2006) 053004
 export function neutronInducedFlux(flatDepth: number) {
-  const intensityParameter13 = 4.0e-3; // /cm^2/s
+  const intensityParameter13 = 4.0e-3; // /m^2/s
   const overburdenCoefficient13 = 0.86; // km.w.e.
     
   return (intensityParameter13 * (overburdenCoefficient13 / flatDepth) * Math.exp(-flatDepth / overburdenCoefficient13));
