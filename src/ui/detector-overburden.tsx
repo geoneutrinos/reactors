@@ -5,7 +5,7 @@ import { Card, Table } from 'react-bootstrap';
 export const DetectorOverburdens = () => {
   return (
     <Card>
-      <Card.Header>Detector Site Flux/Overburden</Card.Header>
+      <Card.Header>Detector Sites</Card.Header>
       <Card.Body>
         <Table>
             <thead>
