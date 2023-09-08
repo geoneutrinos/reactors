@@ -6,7 +6,6 @@ import { Provider } from "@nteract/mathjax";
 
 import { 
   depthValues,
-//  muonSlantIntensity,
   muonFlatIntensity,
   neutronFlatIntensity,
   neutronInducedFlux,
@@ -180,7 +179,6 @@ export const Muons = () => {
     <div>
       <MuonsPane />
       <MuonFluxCalculator />
-      <MuonDepthIntensity />
       <BackgroundFluxes />
     </div>
   );
