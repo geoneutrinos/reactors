@@ -23,7 +23,7 @@ const MuonFluxCalculator = () => {
   const invalid = (overburdenValue > 8) || (overburdenValue < 1.5)
   return (
     <Card>
-      <Card.Header>Muon/Neutron Flux Calculator</Card.Header>
+      <Card.Header>Muon/Neutron Flux Calculator (m<sup>-2</sup>s<sup>-1</sup>)</Card.Header>
       <Card.Body>
         <Form.Group controlId="muon_overburden">
           <InputGroup hasValidation>
@@ -138,7 +138,7 @@ const BackgroundFluxes = () => {
       autorange: true,
     },
     xaxis: {
-      title: { text: `Equivalent Vertical Depth (km.w.e.)` },
+      title: { text: `Equivalent Flat Overburden (km.w.e.)` },
       range: [0.05, 10.05],
     },
     autosize: true,
