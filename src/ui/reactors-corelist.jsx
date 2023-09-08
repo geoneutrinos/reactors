@@ -97,7 +97,7 @@ const CoreListItem = ({
     <ListGroup.Item>
       <h6>{core.name}
       {isShutdown &&
-        <span> (Permanently Shutdown in {core.shutdown.getUTCFullYear()}-{core.shutdown.getUTCMonth() + 1})
+        <span> (Permanently Shutdown in {core.shutdown.toISOString().slice(0,7)})
         </span>
 }
 </h6>
