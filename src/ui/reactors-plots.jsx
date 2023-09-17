@@ -478,7 +478,7 @@ export const FissionIsotopeSpectraPlotsHM = () => {
         <p>
           <sup>238</sup>U <i>ab initio</i> spectrum (solid 2-8 MeV):
           <br />
-          Mueller, Th. A. <i>et al.</i> (2011), <i>Improved predictions of reactor antineutrino
+          Th. A. Mueller <i>et al.</i> (2011), <i>Improved predictions of reactor antineutrino
           spectra</i>, Phys. Rev. C 83, 054615.
         </p>
         <p>
