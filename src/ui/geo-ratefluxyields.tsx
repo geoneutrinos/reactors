@@ -17,7 +17,7 @@ const {K40, Th232, U235, U238} = Elements
 export const GeoRateFluxYields = () => {
   return (
     <Card>
-      <Card.Header>Geoneutrino Isotopic Rate to Flux (NIU<sup>-1</sup> cm<sup>-2</sup>s<sup>-1</sup>) </Card.Header>
+      <Card.Header>Geo-neutrino Isotopic Rate to Flux (NIU<sup>-1</sup> cm<sup>-2</sup>s<sup>-1</sup>) </Card.Header>
       <Card.Body>
         <Table>
             <thead>
