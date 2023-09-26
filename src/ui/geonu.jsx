@@ -126,7 +126,7 @@ export const GeoNuSpectrumSource = ({ includeCrust, setIncludeCrust }) => {
   const x_values = new Float32Array(4500).map((v, i) => i / 1000);
   const data = [
     {
-      y: [...rawAntineutrinoSpectrum["238U"], 0].map((x) => x * 1000 * {ISOTOPIC_NEUTRINOS_PER_DECAY.U238}),
+      y: [...rawAntineutrinoSpectrum["238U"], 0].map((x) => x * 1000 * ISOTOPIC_NEUTRINOS_PER_DECAY.U238),
       x: x_values,
       name: "<sup>238</sup>U",
       type: "scatter",
@@ -135,7 +135,7 @@ export const GeoNuSpectrumSource = ({ includeCrust, setIncludeCrust }) => {
       marker: { color: "blue" },
     },
     {
-      y: [...rawAntineutrinoSpectrum["235U"], 0].map((x) => x * 1000 * {ISOTOPIC_NEUTRINOS_PER_DECAY.U235}),
+      y: [...rawAntineutrinoSpectrum["235U"], 0].map((x) => x * 1000 * ISOTOPIC_NEUTRINOS_PER_DECAY.U235),
       x: x_values,
       name: "<sup>235</sup>U",
       type: "scatter",
@@ -144,7 +144,7 @@ export const GeoNuSpectrumSource = ({ includeCrust, setIncludeCrust }) => {
       marker: { color: "purple" },
     },
     {
-      y: [...rawAntineutrinoSpectrum["232Th"], 0].map((x) => x * 1000 * {ISOTOPIC_NEUTRINOS_PER_DECAY.TH232}),
+      y: [...rawAntineutrinoSpectrum["232Th"], 0].map((x) => x * 1000 * ISOTOPIC_NEUTRINOS_PER_DECAY.TH232),
       x: x_values,
       name: "<sup>232</sup>Th",
       type: "scatter",
@@ -153,7 +153,7 @@ export const GeoNuSpectrumSource = ({ includeCrust, setIncludeCrust }) => {
       marker: { color: "red" },
     },
     {
-      y: [...rawAntineutrinoSpectrum["40K"], 0].map((x) => x * 1000 * {K40_BRANCH_RATIO.beta}),
+      y: [...rawAntineutrinoSpectrum["40K"], 0].map((x) => x * 1000 * K40_BRANCH_RATIO.beta),
       x: x_values,
       name: "<sup>40</sup>K<sub>β</sub>",
       type: "scatter",
