@@ -10,7 +10,7 @@ const {K40, Th232, U235, U238} = Elements
 export const GeoFluxUncertainties = () => {
   return (
     <Card>
-      <Card.Header>Geoneutrino Isotopic Flux Uncertainties</Card.Header>
+      <Card.Header>Geo-neutrino Isotopic Flux Uncertainties</Card.Header>
       <Card.Body>
         <Table>
             <thead>
@@ -57,7 +57,7 @@ export const GeoFluxUncertainties = () => {
           </Table>
         <p><small>
           • Crust uncertainties typical of site-specific results in Huang <i>et al.</i> (2013)<br />
-          • Mantle uncertainties represent range of predictions, precision of geoneutrino measurements<br />
+          • Mantle uncertainties represent range of predictions, precision of geo-neutrino measurements<br />
         </small></p>
       </Card.Body>
     </Card>
