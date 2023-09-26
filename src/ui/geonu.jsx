@@ -223,7 +223,7 @@ export const GeoNusPane = () => {
             Geo-neutrinos from isotopes of uranium, thorium, and potassium have energy spectra extending above 1 MeV, facilitating their detection.
             Through a series of decays leading to stable isotopes of lead, <sup>238</sup>U, <sup>235</sup>U, and <sup>232</sup>Th, each
             emit 6, 4, and 4 antineutrinos, respectively. The potassium isotope <sup>40</sup>K emits either a single antineutrino 
-            through beta decay to calcium (<sup>40</sup>Ca) or a single neutrino through electron capture to argon (<sup>40</sup>Ar). 
+            through beta decay to calcium (<sup>40</sup>Ca, ~89%) or a single neutrino through electron capture to argon (<sup>40</sup>Ar, ~11%). 
             All of these isotopes have lifetimes comparable to the age of the Earth, allowing ample abundances for producing observable geo-neutrino 
             fluxes. Significant spatial variation of the geo-neutrino fluxes at the surface of the Earth is mandated by a correlation between crust 
             thickness and isotope concentrations, forecasting higher fluxes on continental crust and lower fluxes on oceanic crust.
