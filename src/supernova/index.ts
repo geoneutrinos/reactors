@@ -8,8 +8,6 @@ import {
 
 import {
   NeutrinoType,
-  CEvNS_PROTON_VECTOR,
-  CEvNS_NEUTRON_VECTOR,
   crossSectionElasticScattering,
   NeutrinoTarget,
   crossSectionSV2003,
@@ -181,7 +179,7 @@ export const CEvNSEventsElemental = (element: Element, TMin:number, fluxSpectrum
 
 export const CEvNSEvents = (element: Element, TMin:number, fluxSpectrums:SNFluxSpectrumInterface): CEvNSEventsInterface => {
   let targetParams = {tMin: TMin, ...getTargetParamsCEvNS(element)};
-  let xsectionCEvNS = energyValues.map((ev) => xSectionCEvNS(ev, targetParams));
+  let xsectionCEvNS = energyValues.map((ev) => crossSectionElasticScattering(ev, NeutrinoType.electronNeutrino, targetParams.tMin, undefined, NeutrinoTarget.nucleus, targetParams.targetMass, targetParams.protonTargets, targetParams.neutronTargets));
   let eventSpectrumNueCEvNS = fluxSpectrums[NeutrinoType.electronNeutrino].map(
     (v, i) => v * xsectionCEvNS[i] * targetParams.nuclearTargets
   );
@@ -223,40 +221,4 @@ function neutrinoSpectrumCCSN(Ev: number, Ev_avg: number, Ev_tot: number, shape_
 
 
   return (prefix * enu_tot * energy_factor) / d_ccsn / d_ccsn / factorial(shape_param - 1);
-}
-
-//TODO Integrate with the main ES function
-function xSectionCEvNS(
-  Ev: number,
-  {
-    tMin,
-    targetMass,
-    protonTargets,
-    neutronTargets,
-  }: { tMin:number, targetMass: number; protonTargets: number; neutronTargets: number }
-) {
-  // assuming electro-weak parameters =1 and ignoring radiative corrections
-  // assuming no axial-vector contributions- equal numbers of up and down protons and neutrons
-  const cLeft = (CEvNS_PROTON_VECTOR * protonTargets +
-      CEvNS_NEUTRON_VECTOR * neutronTargets)
-  const cRight = cLeft
-  
-  const tCEvNSMax = Ev / (1 + targetMass / (2 * Ev));
-  if (tCEvNSMax < tMin) {
-    return 0;
-  }
-
-  const y_max = tCEvNSMax / Ev;
-  const y_min = tMin / Ev;
-
-  const term1 = (((FERMI_COUPLING_CONSTANT / 1e6) * HBAR_C) ** 2 * targetMass * Ev) / (2 * Math.PI);
-  const term2 = cLeft ** 2 * y_max;
-  const term3 = cRight ** 2 * (1/3) * (1 - (1 - y_max) ** 3);
-  const term4 = cLeft * cRight * (targetMass/(2 * Ev)) * y_max ** 2;
-
-  const term5 = cLeft ** 2 * y_min;
-  const term6 = cRight ** 2 * (1/3) * (1 - (1 - y_min) ** 3);
-  const term7 = cLeft * cRight * (targetMass/(2 * Ev)) * y_min ** 2;
-
-  return term1 * ((term2 + term3 - term4) - (term5 + term6 - term7));
 }

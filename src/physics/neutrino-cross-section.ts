@@ -68,15 +68,16 @@ export const PS_COEFFICIENTS_AXIAL = {
   [NeutrinoType.electronAntineutrino]: -1.27 / 2,
   [NeutrinoType.muTauAntineutrino]: -1.27 / 2,
 }
+const _PS_COEFFICIENTS_VECTOR = 0.5 - 2 * WEAK_MIXING_ANGLE
+
 export const PS_COEFFICIENTS_VECTOR = {
-  [NeutrinoType.electronNeutrino]: 0.5 - 2 * WEAK_MIXING_ANGLE,
-  [NeutrinoType.muTauNeutrino]: 0.5 - 2 * WEAK_MIXING_ANGLE,
-  [NeutrinoType.electronAntineutrino]: 0.5 - 2 * WEAK_MIXING_ANGLE,
-  [NeutrinoType.muTauAntineutrino]: 0.5 - 2 * WEAK_MIXING_ANGLE,
+  [NeutrinoType.electronNeutrino]: _PS_COEFFICIENTS_VECTOR,
+  [NeutrinoType.muTauNeutrino]: _PS_COEFFICIENTS_VECTOR,
+  [NeutrinoType.electronAntineutrino]: _PS_COEFFICIENTS_VECTOR,
+  [NeutrinoType.muTauAntineutrino]: _PS_COEFFICIENTS_VECTOR,
 }
-export const CEvNS_PROTON_VECTOR = 0.5 - 2 * WEAK_MIXING_ANGLE
-export const CEvNS_NEUTRON_VECTOR = -0.5
- 
+export const NEUTRON_COEFFICIENTS_VECTOR = -0.5
+
 
 /** 
  * Calculates the neutrino cross section, sometimes called sigma
@@ -175,41 +176,67 @@ export function differentialCrossSectionElasticScatteringAngular(Ev: number, cos
   return diffXs * diffTe;
 }
 
-export function crossSectionElasticScattering(Ev: number, neutrinoType: NeutrinoType, T_min:number = 0, Tmax?:number, target: NeutrinoTarget = NeutrinoTarget.electron,  targetMass:number = 0): number {
-  let cL = 0
-  let cR = 0
-  if (target === NeutrinoTarget.electron){
-    cL = ES_COEFFICIENTS_VECTOR[neutrinoType] + ES_COEFFICIENTS_AXIAL[neutrinoType]
-    cR = ES_COEFFICIENTS_VECTOR[neutrinoType] - ES_COEFFICIENTS_AXIAL[neutrinoType]
-  } else {
-    cL = PS_COEFFICIENTS_VECTOR[neutrinoType] + PS_COEFFICIENTS_AXIAL[neutrinoType]
-    cR = PS_COEFFICIENTS_VECTOR[neutrinoType] - PS_COEFFICIENTS_AXIAL[neutrinoType]
+export function crossSectionElasticScattering(
+  Ev: number,
+  neutrinoType: NeutrinoType,
+  T_min: number = 0,
+  Tmax?: number,
+  target: NeutrinoTarget = NeutrinoTarget.electron,
+  targetMass: number = 0,
+  protonTargets: number = 0,
+  neutronTargets: number = 0,
+): number {
+  let cL = 0;
+  let cR = 0;
+  switch (target) {
+    case NeutrinoTarget.electron:
+      cL =
+        ES_COEFFICIENTS_VECTOR[neutrinoType] +
+        ES_COEFFICIENTS_AXIAL[neutrinoType];
+      cR =
+        ES_COEFFICIENTS_VECTOR[neutrinoType] -
+        ES_COEFFICIENTS_AXIAL[neutrinoType];
+      break;
+    case NeutrinoTarget.neutron:
+    case NeutrinoTarget.nucleus: // CEvNS
+      // assuming electro-weak parameters =1 and ignoring radiative corrections
+      // assuming no axial-vector contributions- equal numbers of up and down protons and neutrons
+      cL = PS_COEFFICIENTS_VECTOR[neutrinoType] * protonTargets + NEUTRON_COEFFICIENTS_VECTOR * neutronTargets;
+      cR = cL;
+      break;
+    case NeutrinoTarget.proton:
+    default:
+      cL = PS_COEFFICIENTS_VECTOR[neutrinoType] + PS_COEFFICIENTS_AXIAL[neutrinoType];
+      cR = PS_COEFFICIENTS_VECTOR[neutrinoType] - PS_COEFFICIENTS_AXIAL[neutrinoType];
   }
-  const tMass = targetMass > 0 ? targetMass : ES_TARGET_MASSES[target]
+
+  const tMass = targetMass > 0 ? targetMass : ES_TARGET_MASSES[target];
 
   // The following implements equation 13... it's big so there will be
   // 4 terms to make the equation the following: term1(term2 + term3 - term4)
-  const T_max = Tmax !== undefined && Tmax < TEMax(Ev, tMass)? Tmax: TEMax(Ev, tMass)
-  if (T_max < T_min){
+  const T_max =
+    Tmax !== undefined && Tmax < TEMax(Ev, tMass) ? Tmax : TEMax(Ev, tMass);
+  if (T_max < T_min) {
     return 0;
   }
 
   const y_max = T_max / Ev;
   const y_min = T_min / Ev;
-  
-  const FERMI_COUPLING_CONSTANT_MeV = FERMI_COUPLING_CONSTANT / 1e6
 
-  const term1 = ((FERMI_COUPLING_CONSTANT_MeV ** 2) * (HBAR_C ** 2)) * tMass * Ev / (2 * Math.PI);
+  const FERMI_COUPLING_CONSTANT_MeV = FERMI_COUPLING_CONSTANT / 1e6;
+
+  const term1 =
+    (FERMI_COUPLING_CONSTANT_MeV ** 2 * HBAR_C ** 2 * tMass * Ev) /
+    (2 * Math.PI);
   const term2 = cL ** 2 * y_max;
-  const term3 = cR ** 2 * (1/3) * (1 - (1 - y_max) ** 3);
-  const term4 = cL * cR * (tMass/(2 * Ev)) * y_max ** 2;
+  const term3 = cR ** 2 * (1 / 3) * (1 - (1 - y_max) ** 3);
+  const term4 = cL * cR * (tMass / (2 * Ev)) * y_max ** 2;
 
   const term5 = cL ** 2 * y_min;
-  const term6 = cR ** 2 * (1/3) * (1 - (1 - y_min) ** 3);
-  const term7 = cL * cR * (tMass/(2 * Ev)) * y_min ** 2;
+  const term6 = cR ** 2 * (1 / 3) * (1 - (1 - y_min) ** 3);
+  const term7 = cL * cR * (tMass / (2 * Ev)) * y_min ** 2;
 
-  return term1 * ((term2 + term3 - term4) - (term5 + term6 - term7));
-
+  return term1 * (term2 + term3 - term4 - (term5 + term6 - term7));
 }
 
 const crossSectionElectronAntineutrinoES: CrossSectionFunc = memoize((Ev) => {
