@@ -53,7 +53,7 @@ import {
   electronNeutrino12CThresholdEnergy
 } from "../physics/carbon-12";
 
-const SupernovaNusCEvNS = memo(({ nucleus, setNucleus, tESnMin, setTESnMin, fluxSpectrums }) => {
+export const SupernovaNusCEvNS = memo(({ nucleus, setNucleus, tESnMin, setTESnMin, fluxSpectrums }) => {
 
   //const events = CEvNSEvents(Elements[nucleus], tESnMin/1000, fluxSpectrums); // KeV to MeV?
   const events = (CEvNSEventsElemental(Elements[nucleus], tESnMin/1000, fluxSpectrums))

@@ -1,10 +1,13 @@
-import React from "react";
+import {useState, memo} from "react";
 import { rawAntineutrinoSpectrum } from "../antineutrino-spectrum";
 
 import { Card, Form, InputGroup } from "react-bootstrap";
 import { Num } from ".";
+import { NeutrinoType } from "../physics/neutrino-cross-section";
 
 import {Elements} from './elements'
+import tableElements from '../elements';
+import {SupernovaNusCEvNS} from './supernova-nus';
 
 import Plot from "react-plotly.js";
 
@@ -18,6 +21,25 @@ import { averageSurvivalProbabilityNormal } from "../physics/neutrino-oscillatio
 import { MANTLE_GEOPHYSICAL_RESPONSE, MANTLE_MASS } from "../mantle/geophysics";
 
 const {K40, Th232, U235, U238} = Elements
+
+export const GeoCEvNS = ({GeoCEvNSFlux}) =>{
+  const [nucleus, setNucleus] = useState(tableElements.Xe132.key);
+  const [tESnMin, setTESnMin] = useState(0.0);
+  const fluxSpectrums = {
+    [NeutrinoType.electronNeutrino]: GeoCEvNSFlux.total.spectrum,
+    [NeutrinoType.electronAntineutrino]: (new Float32Array(1000)).fill(0),
+    [NeutrinoType.muTauNeutrino]: (new Float32Array(1000)).fill(0), 
+    [NeutrinoType.muTauAntineutrino]: (new Float32Array(1000)).fill(0),
+  }
+
+  return <SupernovaNusCEvNS 
+        nucleus={nucleus}
+        setNucleus={setNucleus}
+        tESnMin={tESnMin}
+        setTESnMin={setTESnMin}
+        fluxSpectrums={fluxSpectrums}
+  />
+}
 
 export const CrustFlux = ({ includeCrust, setIncludeCrust }) => {
   return (
