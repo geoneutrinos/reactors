@@ -144,8 +144,8 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo}) => {
   );
 };
 
-export const GeoNuSpectrumSource = ({ includeCrust, setIncludeCrust }) => {
-  const x_values = new Float32Array(4500).map((v, i) => i / 1000);
+export const GeoNuSpectrumSource = () => {
+  const x_values = new Float32Array(4500).map((_v, i) => i / 1000);
   const data = [
     {
       y: [...rawAntineutrinoSpectrum["238U"], 0].map((x) => x * 1000 * ISOTOPIC_NEUTRINOS_PER_DECAY.U238),
