@@ -5,11 +5,11 @@ import { Card, Form, InputGroup } from "react-bootstrap";
 import { Num } from ".";
 import { NeutrinoType } from "../physics/neutrino-cross-section";
 
-import {Elements} from './elements'
-import tableElements from '../elements';
+import {Elements as ElementsUI} from './elements'
 import {SupernovaNusCEvNS} from './supernova-nus';
 
 import Plot from "react-plotly.js";
+import Elements from '../elements';
 
 import {
   ISOTOPIC_NEUTRINOS_PER_DECAY,
@@ -20,10 +20,10 @@ import { averageSurvivalProbabilityNormal } from "../physics/neutrino-oscillatio
 
 import { MANTLE_GEOPHYSICAL_RESPONSE, MANTLE_MASS } from "../mantle/geophysics";
 
-const {K40, Th232, U235, U238} = Elements
+const {K40, Th232, U235, U238} = ElementsUI
 
 export const GeoCEvNS = ({GeoCEvNSFlux}) =>{
-  const [nucleus, setNucleus] = useState(tableElements.Xe132.key);
+  const [nucleus, setNucleus] = useState(Elements.Xe132.key);
   const [tESnMin, setTESnMin] = useState(0.0);
   const fluxSpectrums = {
     [NeutrinoType.electronNeutrino]: GeoCEvNSFlux.total.spectrum,
