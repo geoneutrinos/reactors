@@ -77,11 +77,11 @@ export let oscillation: Oscillation = {
 }
 
 const defaultOscillationParams: VariableOscillationParams = {
-  s2t12: 0.304,
-  dmsq21: 7.42e-5,
-  s2t13Normal:  0.02220,
-  s2t13Inverted: 0.02238,
-  dmsq31Normal: 2.515e-3,
+  s2t12: 0.303,
+  dmsq21: 7.41e-5,
+  s2t13Normal:  0.02203,
+  s2t13Inverted: 0.02219,
+  dmsq31Normal: 2.511e-3,
   dmsq32Inverted: -2.498e-3,
 }
 

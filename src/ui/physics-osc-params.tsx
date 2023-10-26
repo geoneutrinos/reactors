@@ -20,7 +20,7 @@ export const PhysicsOscillationPane = () => {
     <Card>
       <Card.Header>Neutrino Oscillation Parameters</Card.Header>
       <Card.Body>
-        <p>Values are from NuFit v5.1 w/o SK atmnu: JHEP 09 (2020) 178, <a href="https://arxiv.org/abs/2007.14792"> arXiv:2007.14792 </a>, NuFIT 5.1 (2021) <a href="http://www.nu-fit.org"> www.nu-fit.org </a> </p>
+        <p>Values are from NuFit v5.2 w/o SK atmnu: JHEP 09 (2020) 178, <a href="https://arxiv.org/abs/2007.14792"> arXiv:2007.14792 </a>, NuFIT 5.2 (2022) <a href="http://www.nu-fit.org"> www.nu-fit.org </a> </p>
         <Table {...tableProps} className="text-right">
           <thead>
             <tr>
@@ -79,7 +79,7 @@ export const AverageSurvivalPane = () => {
     <Card>
       <Card.Header>Average Survival Probability</Card.Header>
       <Card.Body>
-        <p>Derived from mixing angles given by NuFit v5.1 w/o SK atmnu: JHEP 09 (2020) 178, <a href="https://arxiv.org/abs/2007.14792"> arXiv:2007.14792 </a>, NuFIT 5.1 (2021) <a href="http://www.nu-fit.org"> www.nu-fit.org </a> </p>
+        <p>Derived from mixing angles given by NuFit v5.2 w/o SK atmnu: JHEP 09 (2020) 178, <a href="https://arxiv.org/abs/2007.14792"> arXiv:2007.14792 </a>, NuFIT 5.2 (2022) <a href="http://www.nu-fit.org"> www.nu-fit.org </a> </p>
         <Table {...tableProps} className="text-right">
           <thead>
             <tr>
