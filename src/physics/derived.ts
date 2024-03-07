@@ -38,7 +38,7 @@ export const ISOTOPIC_DECAY_ENERGIES = {
       (ALPHA_REST_MASS + 2 * ELECTRON_REST_MASS),
  };
 
-// ISOTOPIC_DECAY_HEATING moved to antineutrino-specturm due to circular import
+// ISOTOPIC_DECAY_HEATING resides in geophysics.ts
   
 export const ISOTOPIC_NEUTRINO_LUMINOSITY = {
   // kg-1 s-1
