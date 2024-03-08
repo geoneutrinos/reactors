@@ -10,6 +10,7 @@ import {
   ISOTOPIC_HALF_LIFE,
   ISOTOPIC_NATURAL_ABUNDANCE,
   ISOTOPIC_NEUTRINOS_PER_DECAY,
+  ISOTOPIC_ALPHAS_PER_DECAY,
   K40_BRANCH_RATIO,
 } from '../physics/constants';
 
@@ -98,6 +99,24 @@ export const IsotopeData = () => {
                 </td>
                 <td>
                   {ISOTOPIC_NEUTRINOS_PER_DECAY.U238}
+                </td>
+              </tr>
+              <tr>
+                <td> Number alphas (/decay) </td>
+                <td>
+                  {ISOTOPIC_ALPHAS_PER_DECAY.K40}
+                </td>
+                <td>
+                  {ISOTOPIC_ALPHAS_PER_DECAY.K40}
+                </td>
+                <td>
+                  {ISOTOPIC_ALPHAS_PER_DECAY.TH232}
+                </td>
+                <td>
+                  {ISOTOPIC_ALPHAS_PER_DECAY.U235}
+                </td>
+                <td>
+                  {ISOTOPIC_ALPHAS_PER_DECAY.U238}
                 </td>
               </tr>
               <tr>
