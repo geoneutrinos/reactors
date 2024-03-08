@@ -11,6 +11,7 @@ import {
   ISOTOPIC_NATURAL_ABUNDANCE,
   ISOTOPIC_NEUTRINOS_PER_DECAY,
   ISOTOPIC_ALPHAS_PER_DECAY,
+  ISOTOPIC_ATOMIC_MASS,
   K40_BRANCH_RATIO,
 } from '../physics/constants';
 
@@ -47,6 +48,21 @@ export const IsotopeData = () => {
               </tr>
             </thead>
             <tbody>
+              <tr>
+                <td> Atomic mass (kg) </td>
+                <td colSpan={2} style={{ textAlign: 'center' }}>
+                  <Num v={ISOTOPIC_ATOMIC_MASS.K40} p={3} />
+                </td>
+                <td>
+                  <Num v={ISOTOPIC_ATOMIC_MASS.TH232} p={3} />
+                </td>
+                <td>
+                  <Num v={ISOTOPIC_ATOMIC_MASS.U235} p={3} />
+                </td>
+                <td>
+                  <Num v={ISOTOPIC_ATOMIC_MASS.U238} p={3} />
+                </td>
+              </tr>
               <tr>
                 <td> Decay energy (MeV) </td>
                 <td>
