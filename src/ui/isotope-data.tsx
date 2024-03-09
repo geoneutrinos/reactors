@@ -270,6 +270,9 @@ export const IsotopeData = () => {
             <Node>{String.raw`
                Q_\mathrm{dk} = M_A - M_{A'} - N_\alpha(m_\alpha + 2m_\mathrm{e}) \text{.}`}</Node>
           </p>
+          <p><small>
+            <b>Double click on, or hover pointer over, table values to display more decimal places</b>
+          </small></p>
       </Card.Body>
     </Card>
   );
