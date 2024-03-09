@@ -214,21 +214,15 @@ export const IsotopeData = () => {
             The neutrino luminosity and decay heat for each isotope are calculated using the tabulated constants. The neutrino luminosity is {" "} 
             <Node>{String.raw`
                l_\nu = \frac {\mathrm{ln}(2)} {t_{1/2}} \frac {n_\nu} {M_A},`}</Node>{" "}
-            where 
-            <Node inline>{String.raw`t_{1/2}`}</Node>{" "} 
-            is the halflife, 
-            <Node inline>{String.raw`n_\nu`}</Node>{" "}
-            is the number of neutrinos, and
-            <Node inline>{String.raw`M_A`}</Node>{" "}
+            where <Node inline>{String.raw`t_{1/2}`}</Node>{" "} 
+            is the halflife, <Node inline>{String.raw`n_\nu`}</Node>{" "}
+            is the number of neutrinos, and <Node inline>{String.raw`M_A`}</Node>{" "}
             is the atomic mass. The decay heat is {" "}
             <Node>{String.raw`
                h = \frac {\mathrm{ln}(2)} {t_{1/2}} \frac {Q_h} {M_A},`}</Node>{" "}
-            where 
-            <Node inline>{String.raw`Q_h = Q_{\mathrm{dk}} - \langle Q_\nu \rangle`}</Node>{" "} 
-            with 
-            <Node inline>{String.raw`Q_{\mathrm{dk}}`}</Node>{" "}
-            the decay energy and {" "}
-            <Node inline>{String.raw`\langle Q_\nu \rangle`}</Node>{" "}
+            where <Node inline>{String.raw`Q_h = Q_{\mathrm{dk}} - \langle Q_\nu \rangle`}</Node>{" "} 
+            with <Node inline>{String.raw`Q_{\mathrm{dk}}`}</Node>{" "}
+            the decay energy and <Node inline>{String.raw`\langle Q_\nu \rangle`}</Node>{" "}
             the average neutrino energy.
           </p>
       </Card.Body>
