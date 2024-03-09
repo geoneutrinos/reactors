@@ -11,7 +11,6 @@ import {
   ISOTOPIC_NATURAL_ABUNDANCE,
   ISOTOPIC_NEUTRINOS_PER_DECAY,
   ISOTOPIC_ALPHAS_PER_DECAY,
-  ISOTOPIC_ATOMIC_MASS,
   AU,
   K40_BRANCH_RATIO,
 } from '../physics/constants';
@@ -19,6 +18,7 @@ import {
 import {
   ISOTOPIC_DECAY_ENERGIES,
   ISOTOPIC_NEUTRINO_LUMINOSITY,
+  ISOTOPIC_ATOMIC_MASS_KG,
 } from '../physics/derived';
 
 import {
@@ -53,16 +53,16 @@ export const IsotopeData = () => {
               <tr>
                 <td> Atomic mass (10<sup>-26</sup> kg) </td>
                 <td colSpan={2} style={{ textAlign: 'center' }}>
-                  <Num v={ISOTOPIC_ATOMIC_MASS.K40 * AU} p={3} />
+                  <Num v={ISOTOPIC_ATOMIC_MASS_KG.K40} p={3} />
                 </td>
                 <td>
-                  <Num v={ISOTOPIC_ATOMIC_MASS.TH232 * AU} p={3} func={(v) => v * 1e26} />
+                  <Num v={ISOTOPIC_ATOMIC_MASS_KG.TH232} p={3} func={(v) => v * 1e26} />
                 </td>
                 <td>
-                  <Num v={ISOTOPIC_ATOMIC_MASS.U235 * AU} p={3} func={(v) => v * 1e26} />
+                  <Num v={ISOTOPIC_ATOMIC_MASS_KG.U235} p={3} func={(v) => v * 1e26} />
                 </td>
                 <td>
-                  <Num v={ISOTOPIC_ATOMIC_MASS.U238 * AU} p={3} func={(v) => v * 1e26} />
+                  <Num v={ISOTOPIC_ATOMIC_MASS_KG.U238} p={3} func={(v) => v * 1e26} />
                 </td>
               </tr>
               <tr>
@@ -204,7 +204,7 @@ export const IsotopeData = () => {
           </Table>
           <p><small>
             <b>Atomic mass reference:</b> <br />
-              &nbsp;&nbsp; https://www-nds.iaea.org/amdc/ame2020/mass_1.mas20.txt <br />
+              &nbsp;&nbsp; https://physics.nist.gov/cgi-bin/Compositions/stand_alone.pl <br />
             <b>Half life references:</b> <br />
               &nbsp;&nbsp; {K40}: J. Chen, Nuclear Data Sheets A=40 140 (2017)<br />
               &nbsp;&nbsp; {Th232}: E. Browne, Nuclear Data Sheets A=232 107 (2006)<br />
