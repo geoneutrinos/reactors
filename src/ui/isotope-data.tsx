@@ -256,7 +256,7 @@ export const IsotopeData = () => {
             with <Node inline>{String.raw`Q_\mathrm{dk}`}</Node>{" "}
             the decay energy and <Node inline>{String.raw`\langle Q_\nu \rangle`}</Node>{" "}
             the average neutrino energy. The average neutrino energy depends on the decay 
-            spectrum <Node inline>{String.raw`dn(E_{\overline{\nu}_\mathrm{e}} \text{.}`}</Node>{" "}
+            spectrum <Node inline>{String.raw`dn(E_{\overline{\nu}_\mathrm{e}}) \text{.}`}</Node>{" "}
             Specifically
             <Node>{String.raw`
             \langle Q_\nu \rangle = \frac {\int E_{\overline{\nu}_\mathrm{e}} \big(dn(E_{\overline{\nu}_\mathrm{e}}) 
