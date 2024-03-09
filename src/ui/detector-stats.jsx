@@ -342,12 +342,12 @@ export function StatsPanel({ cores, geo, reactorLF}) {
           </small>
           <br />
           • <small>
-            Double click on, or hover pointer over, values to display more decimal places
+            1 kT H<sub>2</sub>O contains 6.686x10<sup>31</sup> free proton and
+            3.343x10<sup>32</sup> electron targets
           </small>
           <br />
           • <small>
-            1 kT H<sub>2</sub>O contains 6.686x10<sup>31</sup> free proton and
-            3.343x10<sup>32</sup> electron targets
+            <b>Double click on, or hover pointer over, values to display more decimal places</b>
           </small>
         </div>
       </Card.Body>
