@@ -255,10 +255,12 @@ export const IsotopeData = () => {
             where <Node inline>{String.raw`Q_h = Q_\mathrm{dk} - \langle Q_\nu \rangle`}</Node>{" "} 
             with <Node inline>{String.raw`Q_\mathrm{dk}`}</Node>{" "}
             the decay energy and <Node inline>{String.raw`\langle Q_\nu \rangle`}</Node>{" "}
-            the average neutrino energy. The average neutrino energy depends on the decay spectrum, specifically
+            the average neutrino energy. The average neutrino energy depends on the decay 
+            spectrum <Node inline>{String.raw`dn(E_{\overline{\nu}_\mathrm{e}} \text{.}`}</Node>{" "}
+            Specifically
             <Node>{String.raw`
-            <\!\!{Q}_\nu\!\!> = \frac {\int E_{\overline{\nu}_\mathrm{e}} \big(dn_i(E_{\overline{\nu}_\mathrm{e}}) 
-            / dE \big) \, dE} {\int \big(dn_i(E_{\overline{\nu}_\mathrm{e}}) / dE \big)\, dE} \text{.}`}</Node>
+            \langle Q_\nu \rangle = \frac {\int E_{\overline{\nu}_\mathrm{e}} \big(dn(E_{\overline{\nu}_\mathrm{e}}) 
+            / dE \big) \, dE} {\int \big(dn(E_{\overline{\nu}_\mathrm{e}}) / dE \big)\, dE} \text{.}`}</Node>
             Calculation of the decay energy uses established values 
             for the electron and alpha particles masses, <Node inline>{String.raw`m_\mathrm{e}`}</Node>{" "} 
             and <Node inline>{String.raw`m_\alpha,`}</Node>{" "} respectively, 
