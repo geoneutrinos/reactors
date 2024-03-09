@@ -202,13 +202,17 @@ export const IsotopeData = () => {
             </tbody>
           </Table>
           <p><small>
+            The neutrino luminosity and decay heat for each isotope are calculated from the tabulated constants. The neutrino luminosity is {" "} 
+            <Node
+                inline
+            >{String.raw`l_\nu = \frac {ln(2)}{t_{1/2}} \frac {n_\nu} {M_A}`}</Node>{" "}
           Atomic mass reference: <br />
-          &nbsp; https://www-nds.iaea.org/amdc/ame2020/mass_1.mas20.txt <br />
+          &nbsp;&nbsp; https://www-nds.iaea.org/amdc/ame2020/mass_1.mas20.txt <br />
           Half life references:<br />
-          &nbsp; {K40}: J. Chen, Nuclear Data Sheets A=40 140 (2017)<br />
-          &nbsp; {Th232}: E. Browne, Nuclear Data Sheets A=232 107 (2006)<br />
-          &nbsp; {U235}: E. Browne and J.K. Tuli, Nuclear Data Sheets A=235 122 (2014)<br />
-          &nbsp; {U238}: E. Browne and J.K. Tuli, Nuclear Data Sheets A=238 127 (2015)<br />
+          &nbsp;&nbsp; {K40}: J. Chen, Nuclear Data Sheets A=40 140 (2017)<br />
+          &nbsp;&nbsp; {Th232}: E. Browne, Nuclear Data Sheets A=232 107 (2006)<br />
+          &nbsp;&nbsp; {U235}: E. Browne and J.K. Tuli, Nuclear Data Sheets A=235 122 (2014)<br />
+          &nbsp;&nbsp; {U238}: E. Browne and J.K. Tuli, Nuclear Data Sheets A=238 127 (2015)<br />
         </small></p>
       </Card.Body>
     </Card>
