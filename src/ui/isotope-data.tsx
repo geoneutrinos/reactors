@@ -12,6 +12,7 @@ import {
   ISOTOPIC_NEUTRINOS_PER_DECAY,
   ISOTOPIC_ALPHAS_PER_DECAY,
   ISOTOPIC_ATOMIC_MASS,
+  AU,
   K40_BRANCH_RATIO,
 } from '../physics/constants';
 
@@ -52,16 +53,16 @@ export const IsotopeData = () => {
               <tr>
                 <td> Atomic mass (10<sup>-26</sup> kg) </td>
                 <td colSpan={2} style={{ textAlign: 'center' }}>
-                  <Num v={K40.relative_atomic_mass} p={3} />
+                  <Num v={ISOTOPIC_ATOMIC_MASS.K40 *AU} p={3} />
                 </td>
                 <td>
-                  <Num v={ISOTOPIC_ATOMIC_MASS.TH232} p={3} func={(v) => v * 1e26} />
+                  <Num v={ISOTOPIC_ATOMIC_MASS.TH232 * AU} p={3} func={(v) => v * 1e26} />
                 </td>
                 <td>
-                  <Num v={ISOTOPIC_ATOMIC_MASS.U235} p={3} func={(v) => v * 1e26} />
+                  <Num v={ISOTOPIC_ATOMIC_MASS.U235 * AU} p={3} func={(v) => v * 1e26} />
                 </td>
                 <td>
-                  <Num v={ISOTOPIC_ATOMIC_MASS.U238} p={3} func={(v) => v * 1e26} />
+                  <Num v={ISOTOPIC_ATOMIC_MASS.U238 * AU} p={3} func={(v) => v * 1e26} />
                 </td>
               </tr>
               <tr>
