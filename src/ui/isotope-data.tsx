@@ -233,7 +233,9 @@ export const IsotopeData = () => {
             </tbody>
           </Table>
           <p><small>
-            <b>Double click on, or hover pointer over, table values to display more decimal places</b> <br />
+            <b>Double click on, or hover pointer over, calculated values to display more decimal places</b>
+          </small></p>
+          <p><small>
             <b>Atomic mass reference:</b> <br />
               &nbsp;&nbsp; https://physics.nist.gov/cgi-bin/Compositions/stand_alone.pl <br />
             <b>Half life references:</b> <br />
