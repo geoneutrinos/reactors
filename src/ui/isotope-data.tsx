@@ -200,6 +200,7 @@ export const IsotopeData = () => {
                   <Num v={ISOTOPIC_DECAY_HEATING.U238} p={1} func={(v) => v * 1e6} />
                 </td>
               </tr>
+            </tbody>
             <thead>
               <tr>
                 <th></th>
@@ -210,6 +211,22 @@ export const IsotopeData = () => {
                 <th>{Pb206}</th>
               </tr>
             </thead>
+            <tbody>
+              <tr>
+                <td> Atomic mass (10<sup>-26</sup> kg) </td>
+                <td colSpan={2} style={{ textAlign: 'center' }}>
+                  <Num v={ISOTOPIC_ATOMIC_MASS_KG.K40} p={3} func={(v) => v * 1e26} />
+                </td>
+                <td>
+                  <Num v={ISOTOPIC_ATOMIC_MASS_KG.TH232} p={3} func={(v) => v * 1e26} />
+                </td>
+                <td>
+                  <Num v={ISOTOPIC_ATOMIC_MASS_KG.U235} p={3} func={(v) => v * 1e26} />
+                </td>
+                <td>
+                  <Num v={ISOTOPIC_ATOMIC_MASS_KG.U238} p={3} func={(v) => v * 1e26} />
+                </td>
+              </tr>
             </tbody>
           </Table>
           <p><small>
