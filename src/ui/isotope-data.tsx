@@ -36,12 +36,12 @@ const {K40, Th232, U235, U238, Ar40, Ca40, Pb206, Pb207, Pb208} = Elements
 export const IsotopeData = () => {
   return (
     <Card>
-      <Card.Header>Isotope Data</Card.Header>
+      <Card.Header>Nuclide Data</Card.Header>
       <Card.Body>
         <Table>
             <thead>
               <tr>
-                <th></th>
+                <th>Decay Parent</th>
                 <th>{K40}<sub>ec</sub></th>
                 <th>{K40}<sub>β</sub></th>
                 <th>{Th232}</th>
@@ -203,7 +203,7 @@ export const IsotopeData = () => {
             </tbody>
             <thead>
               <tr>
-                <th></th>
+                <th>Decay Daughter</th>
                 <th>{Ar40}</th>
                 <th>{Ca40}</th>
                 <th>{Pb208}</th>
@@ -242,7 +242,7 @@ export const IsotopeData = () => {
               &nbsp;&nbsp; {U238}: E. Browne and J.K. Tuli, Nuclear Data Sheets A=238 127 (2015)<br />
           </small></p>
           <p>
-            The neutrino luminosity and decay heat for each isotope are calculated using the tabulated constants. 
+            The neutrino luminosity and decay heat for each nuclide are calculated using the tabulated constants. 
             The neutrino luminosity is given by {" "} 
             <Node>{String.raw`
                l = \frac {\mathrm{ln}(2)} {t_{1/2}} \frac {n_\nu} {M_A},`}</Node>{" "}
