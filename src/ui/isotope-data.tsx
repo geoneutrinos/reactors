@@ -31,7 +31,7 @@ import { Card, Table } from 'react-bootstrap';
 import { Num } from '.';
 import { Node } from "@nteract/mathjax";
 
-const {K40, Th232, U235, U238} = Elements
+const {K40, Th232, U235, U238, Ar40, Ca40, Pb206, Pb207, Pb208} = Elements
 
 export const IsotopeData = () => {
   return (
@@ -200,6 +200,16 @@ export const IsotopeData = () => {
                   <Num v={ISOTOPIC_DECAY_HEATING.U238} p={1} func={(v) => v * 1e6} />
                 </td>
               </tr>
+            <thead>
+              <tr>
+                <th></th>
+                <th>{Ar40}</th>
+                <th>{Ca40}</th>
+                <th>{Pb208}</th>
+                <th>{Pb207}</th>
+                <th>{Pb206}</th>
+              </tr>
+            </thead>
             </tbody>
           </Table>
           <p><small>
@@ -215,9 +225,9 @@ export const IsotopeData = () => {
             The neutrino luminosity and decay heat for each isotope are calculated using the tabulated constants. 
             The neutrino luminosity is given by {" "} 
             <Node>{String.raw`
-               l_\nu = \frac {\mathrm{ln}(2)} {t_{1/2}} \frac {n_\nu} {M_A},`}</Node>{" "}
+               l = \frac {\mathrm{ln}(2)} {t_{1/2}} \frac {n_\nu} {M_A},`}</Node>{" "}
             where <Node inline>{String.raw`t_{1/2}`}</Node>{" "} 
-            is the halflife, <Node inline>{String.raw`n_\nu`}</Node>{" "}
+            is the half life, <Node inline>{String.raw`n_\nu`}</Node>{" "}
             is the number of neutrinos, and <Node inline>{String.raw`M_A`}</Node>{" "}
             is the atomic mass. The decay heat is given by {" "}
             <Node>{String.raw`
