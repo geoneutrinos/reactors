@@ -211,13 +211,14 @@ export const IsotopeData = () => {
               &nbsp;&nbsp; {U238}: E. Browne and J.K. Tuli, Nuclear Data Sheets A=238 127 (2015)<br />
           </small></p>
           <p>
-            The neutrino luminosity and decay heat for each isotope are calculated using the tabulated constants. The neutrino luminosity is {" "} 
+            The neutrino luminosity and decay heat for each isotope are calculated using the tabulated constants. 
+            The neutrino luminosity is given by {" "} 
             <Node>{String.raw`
                l_\nu = \frac {\mathrm{ln}(2)} {t_{1/2}} \frac {n_\nu} {M_A},`}</Node>{" "}
             where <Node inline>{String.raw`t_{1/2}`}</Node>{" "} 
             is the halflife, <Node inline>{String.raw`n_\nu`}</Node>{" "}
             is the number of neutrinos, and <Node inline>{String.raw`M_A`}</Node>{" "}
-            is the atomic mass. The decay heat is {" "}
+            is the atomic mass. The decay heat is given by {" "}
             <Node>{String.raw`
                h = \frac {\mathrm{ln}(2)} {t_{1/2}} \frac {Q_h} {M_A},`}</Node>{" "}
             where <Node inline>{String.raw`Q_h = Q_{\mathrm{dk}} - \langle Q_\nu \rangle`}</Node>{" "} 
