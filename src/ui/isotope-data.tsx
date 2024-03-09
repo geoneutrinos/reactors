@@ -255,14 +255,18 @@ export const IsotopeData = () => {
             where <Node inline>{String.raw`Q_h = Q_\mathrm{dk} - \langle Q_\nu \rangle`}</Node>{" "} 
             with <Node inline>{String.raw`Q_\mathrm{dk}`}</Node>{" "}
             the decay energy and <Node inline>{String.raw`\langle Q_\nu \rangle`}</Node>{" "}
-            the average neutrino energy. Calculation of the decay energy uses established values 
+            the average neutrino energy. The average neutrino energy depends on the decay spectrum, specifically
+            <Node>{String.raw`
+            <\!\!{Q}_\nu\!\!> = \frac {\int E_{\overline{\nu}_\mathrm{e}} \big(dn_i(E_{\overline{\nu}_\mathrm{e}}) 
+            / dE \big) \, dE} {\int \big(dn_i(E_{\overline{\nu}_\mathrm{e}}) / dE \big)\, dE} \text{.}`}</Node>
+            Calculation of the decay energy uses established values 
             for the electron and alpha particles masses, <Node inline>{String.raw`m_\mathrm{e}`}</Node>{" "} 
             and <Node inline>{String.raw`m_\alpha,`}</Node>{" "} respectively, 
             along with the tabulated number of alpha paticles <Node inline>{String.raw`N_\alpha`}</Node>{" "}
             as well as the parent and daughter atomic masses <Node inline>{String.raw`M_A`}</Node>{" "}
             and <Node inline>{String.raw`M_{A'},`}</Node>{" "} respectively, according to
             <Node>{String.raw`
-               Q_\mathrm{dk} = M_A - M_{A'} - N_\alpha(m_\alpha + 2m_\mathrm{e})`}</Node>.
+               Q_\mathrm{dk} = M_A - M_{A'} - N_\alpha(m_\alpha + 2m_\mathrm{e}) \text{.}`}</Node>
           </p>
       </Card.Body>
     </Card>
