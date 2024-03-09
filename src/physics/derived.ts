@@ -9,6 +9,7 @@ import {
   PROTON_REST_MASS,
   ALPHA_REST_MASS,
   ATOMIC_MASS_UNIT,
+  AU,
 } from "./constants";
 
 import Elements from "../elements";
@@ -45,7 +46,7 @@ export const ISOTOPIC_NEUTRINO_LUMINOSITY = {
   K40:
     (Math.log(2) / ISOTOPIC_HALF_LIFE.K40) *
     ((ISOTOPIC_NEUTRINOS_PER_DECAY.K40 * K40_BRANCH_RATIO.beta) /
-      (K40.relative_atomic_mass * ATOMIC_MASS_UNIT)),
+      (K40.relative_atomic_mass * AU)),
   K40EC:
     (Math.log(2) / ISOTOPIC_HALF_LIFE.K40) *
     ((ISOTOPIC_NEUTRINOS_PER_DECAY.K40 * K40_BRANCH_RATIO.ec) /
