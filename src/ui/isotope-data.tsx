@@ -199,7 +199,6 @@ export const IsotopeData = () => {
                   <Num v={ISOTOPIC_DECAY_HEATING.U238} p={1} func={(v) => v * 1e6} />
                 </td>
               </tr>
-              <hr>
             </tbody>
           </Table>
           <p><small>
