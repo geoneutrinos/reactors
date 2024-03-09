@@ -17,7 +17,7 @@ const {K40, Th232, U235, U238} = Elements
 export const GeoRateFluxYields = () => {
   return (
     <Card>
-      <Card.Header>Geo-neutrino Isotopic Rate to Flux (NIU<sup>-1</sup> cm<sup>-2</sup>s<sup>-1</sup>) </Card.Header>
+      <Card.Header>Geo-neutrino Nuclide Rate to Flux (NIU<sup>-1</sup> cm<sup>-2</sup>s<sup>-1</sup>) </Card.Header>
       <Card.Body>
         <Table>
             <thead>
@@ -93,7 +93,7 @@ export const GeoRateFluxYields = () => {
           </tbody>
           </Table>
         <p><small>
-          These factors convert isotopic geo-neutrino pIBD and eES rates in NIU to fluxes in cm<sup>-2</sup>s<sup>-1</sup><br />
+          These factors convert geo-neutrino nuclide pIBD and eES rates in NIU to fluxes in cm<sup>-2</sup>s<sup>-1</sup><br />
         </small></p>
       </Card.Body>
     </Card>
