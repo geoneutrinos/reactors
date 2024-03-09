@@ -10,7 +10,7 @@ const {K40, Th232, U235, U238} = Elements
 export const GeoFluxUncertainties = () => {
   return (
     <Card>
-      <Card.Header>Geo-neutrino Isotopic Flux Uncertainties</Card.Header>
+      <Card.Header>Geo-neutrino Nuclide Flux Uncertainties</Card.Header>
       <Card.Body>
         <Table>
             <thead>
