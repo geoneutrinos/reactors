@@ -28,6 +28,7 @@ import {Elements} from './elements'
 
 import { Card, Table } from 'react-bootstrap';
 import { Num } from '.';
+import { Node } from "@nteract/mathjax";
 
 const {K40, Th232, U235, U238} = Elements
 
@@ -201,6 +202,7 @@ export const IsotopeData = () => {
             </tbody>
           </Table>
           <p><small>
+          Atomic mass reference: https://www-nds.iaea.org/amdc/ame2020/mass_1.mas20.txt <br />
           Half life references:<br />
           {K40}: J. Chen, Nuclear Data Sheets A=40 140 (2017)<br />
           {Th232}: E. Browne, Nuclear Data Sheets A=232 107 (2006)<br />
