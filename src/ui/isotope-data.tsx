@@ -262,7 +262,7 @@ export const IsotopeData = () => {
             as well as the parent and daughter atomic masses <Node inline>{String.raw`M_A`}</Node>{" "}
             and <Node inline>{String.raw`M_{A^'},`}</Node>{" "} respectively, according to
             <Node>{String.raw`
-               Q_\mathrm{dk} = M_A - M_{A^'} - N_\alpha(m_\alpha + 2m_e)'}</Node>.
+               Q_\mathrm{dk} = M_A - M_{A^'} - N_\alpha(m_\alpha + 2m_e)`}</Node>.
           </p>
       </Card.Body>
     </Card>
