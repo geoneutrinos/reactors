@@ -61,6 +61,19 @@ export const ISOTOPIC_NEUTRINO_LUMINOSITY = {
     (ISOTOPIC_NEUTRINOS_PER_DECAY.U238 / (U238.relative_atomic_mass * AU)),
 };
 
+export const ISOTOPIC_ATOMIC_MASS_KG = {
+  // kg
+  // used only by isotope-data.tsx
+  K40:
+    K40.relative_atomic_mass * AU,
+  TH232:
+    Th232.relative_atomic_mass * AU,
+  U235:
+    U235.relative_atomic_mass * AU,
+  U238:
+    U238.relative_atomic_mass * AU,
+};
+
 export const IBD_THRESHOLD =
   ((ELECTRON_REST_MASS + NEUTRON_REST_MASS) ** 2 - PROTON_REST_MASS ** 2) /
   (2 * PROTON_REST_MASS);
