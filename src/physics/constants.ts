@@ -76,11 +76,3 @@ export const ISOTOPIC_NEUTRINOS_PER_DECAY = {
   U235: 4,
   U238: 6,
 };
-
-export const ISOTOPIC_ATOMIC_MASS = {
-  // u -> kg
-  K40: 39.963_998_165 * AU, // https://www-nds.iaea.org/amdc/ame2020/mass_1.mas20.txt
-  TH232: 232.038_053_606 * AU, // https://www-nds.iaea.org/amdc/ame2020/mass_1.mas20.txt
-  U235: 235.043_928_117 * AU, // https://www-nds.iaea.org/amdc/ame2020/mass_1.mas20.txt
-  U238: 238.050_786_936 * AU, // https://www-nds.iaea.org/amdc/ame2020/mass_1.mas20.txt
-};

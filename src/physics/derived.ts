@@ -1,5 +1,4 @@
 import {
-  ISOTOPIC_ATOMIC_MASS,
   ISOTOPIC_HALF_LIFE,
   ISOTOPIC_NEUTRINOS_PER_DECAY,
   ISOTOPIC_ALPHAS_PER_DECAY,
@@ -9,6 +8,7 @@ import {
   PROTON_REST_MASS,
   ALPHA_REST_MASS,
   ATOMIC_MASS_UNIT,
+  AU,
 } from "./constants";
 
 import Elements from "../elements";
@@ -45,20 +45,43 @@ export const ISOTOPIC_NEUTRINO_LUMINOSITY = {
   K40:
     (Math.log(2) / ISOTOPIC_HALF_LIFE.K40) *
     ((ISOTOPIC_NEUTRINOS_PER_DECAY.K40 * K40_BRANCH_RATIO.beta) /
-      ISOTOPIC_ATOMIC_MASS.K40),
+      (K40.relative_atomic_mass * AU)),
   K40EC:
     (Math.log(2) / ISOTOPIC_HALF_LIFE.K40) *
     ((ISOTOPIC_NEUTRINOS_PER_DECAY.K40 * K40_BRANCH_RATIO.ec) /
-      ISOTOPIC_ATOMIC_MASS.K40),
+      (K40.relative_atomic_mass * AU)),
   TH232:
     (Math.log(2) / ISOTOPIC_HALF_LIFE.TH232) *
-    (ISOTOPIC_NEUTRINOS_PER_DECAY.TH232 / ISOTOPIC_ATOMIC_MASS.TH232),
+    (ISOTOPIC_NEUTRINOS_PER_DECAY.TH232 / (Th232.relative_atomic_mass * AU)),
   U235:
     (Math.log(2) / ISOTOPIC_HALF_LIFE.U235) *
-    (ISOTOPIC_NEUTRINOS_PER_DECAY.U235 / ISOTOPIC_ATOMIC_MASS.U235),
+    (ISOTOPIC_NEUTRINOS_PER_DECAY.U235 / (U235.relative_atomic_mass * AU)),
   U238:
     (Math.log(2) / ISOTOPIC_HALF_LIFE.U238) *
-    (ISOTOPIC_NEUTRINOS_PER_DECAY.U238 / ISOTOPIC_ATOMIC_MASS.U238),
+    (ISOTOPIC_NEUTRINOS_PER_DECAY.U238 / (U238.relative_atomic_mass * AU)),
+};
+
+export const ISOTOPIC_ATOMIC_MASS_KG = {
+  // kg
+  // used only by isotope-data.tsx
+  K40:
+    K40.relative_atomic_mass * AU,
+  TH232:
+    Th232.relative_atomic_mass * AU,
+  U235:
+    U235.relative_atomic_mass * AU,
+  U238:
+    U238.relative_atomic_mass * AU,
+  AR40:
+    Ar40.relative_atomic_mass * AU,
+  CA40:
+    Ca40.relative_atomic_mass * AU,
+  PB208:
+    Pb208.relative_atomic_mass * AU,
+  PB207:
+    Pb207.relative_atomic_mass * AU,
+  PB206:
+    Pb206.relative_atomic_mass * AU,
 };
 
 export const IBD_THRESHOLD =

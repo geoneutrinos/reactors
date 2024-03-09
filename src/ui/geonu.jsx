@@ -190,7 +190,7 @@ export const GeoNuSpectrumSource = ({ includeCrust, setIncludeCrust }) => {
   };
   return (
     <Card>
-      <Card.Header>Geo-neutrino Spectra</Card.Header>
+      <Card.Header>Geo-neutrino Nuclide Spectra</Card.Header>
       <Card.Body>
         <Plot
           useResizeHandler={true}
@@ -220,17 +220,17 @@ export const GeoNusPane = () => {
         <div>
           <p>
             Antineutrinos from long-lived natural radioactivity within the rocky layers of the Earth are commonly known as geo-neutrinos. 
-            Geo-neutrinos from isotopes of uranium, thorium, and potassium have energy spectra extending above 1 MeV, facilitating their detection.
+            Geo-neutrinos from uranium, thorium, and potassium nuclides have energy spectra extending above 1 MeV, facilitating their detection.
             Through a series of decays leading to stable isotopes of lead, <sup>238</sup>U, <sup>235</sup>U, and <sup>232</sup>Th, each
-            emit 6, 4, and 4 antineutrinos, respectively. The potassium isotope <sup>40</sup>K emits either a single antineutrino 
+            emit 6, 4, and 4 antineutrinos, respectively. The potassium nuclide <sup>40</sup>K emits either a single antineutrino 
             through beta decay to calcium (<sup>40</sup>Ca, ~89%) or a single neutrino through electron capture to argon (<sup>40</sup>Ar, ~11%). 
-            All of these isotopes have lifetimes comparable to the age of the Earth, allowing ample abundances for producing observable geo-neutrino 
+            All of the parent nuclides have lifetimes comparable to the age of the Earth, allowing ample abundances for producing observable geo-neutrino 
             fluxes. Significant spatial variation of the geo-neutrino fluxes at the surface of the Earth is mandated by a correlation between crust 
             thickness and isotope concentrations, forecasting higher fluxes on continental crust and lower fluxes on oceanic crust.
           </p>
           <p>
             The geo-neutrino model herein uses pre-computed crust fluxes, spatially resolved on a grid of 1° 
-            latitude x 1° longitude, and user-defined mantle fluxes from uniform isotope concentrations in concentric isodensity shells. Fluxes 
+            latitude x 1° longitude, and user-defined mantle fluxes from uniform nuclide concentrations in concentric isodensity shells. Fluxes 
             from the metallic outer and inner core of the Earth are assumed to be negligible. Model outputs are the reaction rates on free proton 
             (pIBD) or atomic electron (eES) targets and the radiogenic power of the user-defined mantle.
           </p>
