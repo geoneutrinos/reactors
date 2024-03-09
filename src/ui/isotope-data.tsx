@@ -53,7 +53,7 @@ export const IsotopeData = () => {
               <tr>
                 <td> Atomic mass (10<sup>-26</sup> kg) </td>
                 <td colSpan={2} style={{ textAlign: 'center' }}>
-                  <Num v={ISOTOPIC_ATOMIC_MASS_KG.K40} p={3} />
+                  <Num v={ISOTOPIC_ATOMIC_MASS_KG.K40} p={3} func={(v) => v * 1e26} />
                 </td>
                 <td>
                   <Num v={ISOTOPIC_ATOMIC_MASS_KG.TH232} p={3} func={(v) => v * 1e26} />
