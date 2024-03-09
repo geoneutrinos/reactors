@@ -49,18 +49,18 @@ export const IsotopeData = () => {
             </thead>
             <tbody>
               <tr>
-                <td> Atomic mass (kg) </td>
+                <td> Atomic mass (10<sup>-26</sup> kg) </td>
                 <td colSpan={2} style={{ textAlign: 'center' }}>
-                  <Num v={ISOTOPIC_ATOMIC_MASS.K40} p={3} />
+                  <Num v={ISOTOPIC_ATOMIC_MASS.K40} p={3} func={(v) => v * 1e26} />
                 </td>
                 <td>
-                  <Num v={ISOTOPIC_ATOMIC_MASS.TH232} p={3} />
+                  <Num v={ISOTOPIC_ATOMIC_MASS.TH232} p={3} func={(v) => v * 1e26} />
                 </td>
                 <td>
-                  <Num v={ISOTOPIC_ATOMIC_MASS.U235} p={3} />
+                  <Num v={ISOTOPIC_ATOMIC_MASS.U235} p={3} func={(v) => v * 1e26} />
                 </td>
                 <td>
-                  <Num v={ISOTOPIC_ATOMIC_MASS.U238} p={3} />
+                  <Num v={ISOTOPIC_ATOMIC_MASS.U238} p={3} func={(v) => v * 1e26} />
                 </td>
               </tr>
               <tr>
@@ -119,10 +119,7 @@ export const IsotopeData = () => {
               </tr>
               <tr>
                 <td> Number alphas (/decay) </td>
-                <td>
-                  {ISOTOPIC_ALPHAS_PER_DECAY.K40}
-                </td>
-                <td>
+                <td colSpan={2} style={{ textAlign: 'center' }}>
                   {ISOTOPIC_ALPHAS_PER_DECAY.K40}
                 </td>
                 <td>
