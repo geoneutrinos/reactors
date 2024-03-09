@@ -118,7 +118,7 @@ export const IsotopeData = () => {
                 </td>
               </tr>
               <tr>
-                <td> Number &alpha (/decay) </td>
+                <td> Number <i>&alpha;</i> (/decay) </td>
                 <td colSpan={2} style={{ textAlign: 'center' }}>
                   {ISOTOPIC_ALPHAS_PER_DECAY.K40}
                 </td>
