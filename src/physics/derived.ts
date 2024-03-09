@@ -72,6 +72,16 @@ export const ISOTOPIC_ATOMIC_MASS_KG = {
     U235.relative_atomic_mass * AU,
   U238:
     U238.relative_atomic_mass * AU,
+  AR40:
+    Ar40.relative_atomic_mass * AU,
+  CA40:
+    Ca40.relative_atomic_mass * AU,
+  PB208:
+    Pb208.relative_atomic_mass * AU,
+  PB207:
+    Pb207.relative_atomic_mass * AU,
+  PB206:
+    Pb206.relative_atomic_mass * AU,
 };
 
 export const IBD_THRESHOLD =
