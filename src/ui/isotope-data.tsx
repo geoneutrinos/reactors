@@ -214,17 +214,20 @@ export const IsotopeData = () => {
             <tbody>
               <tr>
                 <td> Atomic mass (10<sup>-26</sup> kg) </td>
-                <td colSpan={2} style={{ textAlign: 'center' }}>
-                  <Num v={ISOTOPIC_ATOMIC_MASS_KG.K40} p={3} func={(v) => v * 1e26} />
+                <td>
+                  <Num v={ISOTOPIC_ATOMIC_MASS_KG.AR40} p={3} func={(v) => v * 1e26} />
                 </td>
                 <td>
-                  <Num v={ISOTOPIC_ATOMIC_MASS_KG.TH232} p={3} func={(v) => v * 1e26} />
+                  <Num v={ISOTOPIC_ATOMIC_MASS_KG.CA40} p={3} func={(v) => v * 1e26} />
                 </td>
                 <td>
-                  <Num v={ISOTOPIC_ATOMIC_MASS_KG.U235} p={3} func={(v) => v * 1e26} />
+                  <Num v={ISOTOPIC_ATOMIC_MASS_KG.PB208} p={3} func={(v) => v * 1e26} />
                 </td>
                 <td>
-                  <Num v={ISOTOPIC_ATOMIC_MASS_KG.U238} p={3} func={(v) => v * 1e26} />
+                  <Num v={ISOTOPIC_ATOMIC_MASS_KG.PB207} p={3} func={(v) => v * 1e26} />
+                </td>
+                <td>
+                  <Num v={ISOTOPIC_ATOMIC_MASS_KG.PB206} p={3} func={(v) => v * 1e26} />
                 </td>
               </tr>
             </tbody>
@@ -249,10 +252,17 @@ export const IsotopeData = () => {
             is the atomic mass. The decay heat is given by {" "}
             <Node>{String.raw`
                h = \frac {\mathrm{ln}(2)} {t_{1/2}} \frac {Q_h} {M_A},`}</Node>{" "}
-            where <Node inline>{String.raw`Q_h = Q_{\mathrm{dk}} - \langle Q_\nu \rangle`}</Node>{" "} 
-            with <Node inline>{String.raw`Q_{\mathrm{dk}}`}</Node>{" "}
+            where <Node inline>{String.raw`Q_h = Q_\mathrm{dk} - \langle Q_\nu \rangle`}</Node>{" "} 
+            with <Node inline>{String.raw`Q_\mathrm{dk}`}</Node>{" "}
             the decay energy and <Node inline>{String.raw`\langle Q_\nu \rangle`}</Node>{" "}
-            the average neutrino energy.
+            the average neutrino energy. Calculation of the decay energy uses established values 
+            for the electron and alpha particles masses, <Node inline>{String.raw`m_e`}</Node>{" "} 
+            and <Node inline>{String.raw`m_\alpha,`}</Node>{" "} respectively, 
+            along with the tabulated number of alpha paticles <Node inline>{String.raw`N_\alpha`}</Node>{" "}
+            as well as the parent and daughter atomic masses <Node inline>{String.raw`M_A`}</Node>{" "}
+            and <Node inline>{String.raw`M_{A^'},`}</Node>{" "} respectively, according to
+            <Node>{String.raw`
+               Q_\mathrm{dk} = M_A - M_{A^'} - N_\alpha(m_\alpha + 2m_e)'}</Node>.
           </p>
       </Card.Body>
     </Card>
