@@ -279,7 +279,7 @@ export const IsotopeData = () => {
           where <Node inline>{String.raw`\Phi`}</Node>{" "}
           is the flux, <Node inline>{String.raw`M_m`}</Node>{" "}
           is the mantle mass, <Node inline>{String.raw`G_m`}</Node>{" "}
-          is the mantle geophysical response, <Node inline>{String.raw`l`}</Node>{" "}
+          is the mantle geophysical response, <Node inline>{String.raw`h`}</Node>{" "}
           is the decay heating, and <Node inline>{String.raw`l`}</Node>{" "}
           is the neutrino luminosity. 
           </p>
