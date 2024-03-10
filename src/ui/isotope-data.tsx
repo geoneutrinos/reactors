@@ -183,7 +183,7 @@ export const IsotopeData = () => {
                 </td>
               </tr>
               <tr>
-                <td> Decay heat (µW kg<sup>-1</sup>) </td>
+                <td> Decay heating (µW kg<sup>-1</sup>) </td>
                 <td>
                   <Num v={ISOTOPIC_DECAY_HEATING.K40ec} p={1} func={(v) => v * 1e6}  />
                 </td>
@@ -252,7 +252,7 @@ export const IsotopeData = () => {
             where <Node inline>{String.raw`t_{1/2}`}</Node>{" "} 
             is the half life, <Node inline>{String.raw`n_\nu`}</Node>{" "}
             is the number of neutrinos, and <Node inline>{String.raw`M_A`}</Node>{" "}
-            is the atomic mass. The decay heat is given by {" "}
+            is the atomic mass. The decay heating is given by {" "}
             <Node>{String.raw`
                h = \frac {\mathrm{ln}(2)} {t_{1/2}} \frac {Q_h} {M_A},`}</Node>{" "}
             where <Node inline>{String.raw`Q_h = Q_\mathrm{dk} - \langle Q_\nu \rangle`}</Node>{" "} 
@@ -272,6 +272,16 @@ export const IsotopeData = () => {
             and <Node inline>{String.raw`M_{A'},`}</Node>{" "} respectively, according to
             <Node>{String.raw`
                Q_\mathrm{dk} = M_A - M_{A'} - N_\alpha(m_\alpha + 2m_\mathrm{e}) \text{.}`}</Node>
+          </p>
+          <p>The radiogenic heating in the mantle from a nuclide with uniform concentration is given by {" "}
+          <Node>{String.raw`
+            H = \frac{\Phi M_m}{G_m} \frac{h}{l},`}</Node>{" "}
+          where <Node inline>{String.raw`\Phi`}</Node>{" "}
+          is the flux, <Node inline>{String.raw`M_m`}</Node>{" "}
+          is the mantle mass, <Node inline>{String.raw`G_m`}</Node>{" "}
+          is the mantle geophysical response, <Node inline>{String.raw`h`}</Node>{" "}
+          is the decay heating, and <Node inline>{String.raw`l`}</Node>{" "}
+          is the neutrino luminosity. 
           </p>
       </Card.Body>
     </Card>
