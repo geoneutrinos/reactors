@@ -252,7 +252,7 @@ export const IsotopeData = () => {
             where <Node inline>{String.raw`t_{1/2}`}</Node>{" "} 
             is the half life, <Node inline>{String.raw`n_\nu`}</Node>{" "}
             is the number of neutrinos, and <Node inline>{String.raw`M_A`}</Node>{" "}
-            is the atomic mass. The decay heat is given by {" "}
+            is the atomic mass. The decay heating is given by {" "}
             <Node>{String.raw`
                h = \frac {\mathrm{ln}(2)} {t_{1/2}} \frac {Q_h} {M_A},`}</Node>{" "}
             where <Node inline>{String.raw`Q_h = Q_\mathrm{dk} - \langle Q_\nu \rangle`}</Node>{" "} 
