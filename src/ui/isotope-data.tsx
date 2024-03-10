@@ -273,6 +273,15 @@ export const IsotopeData = () => {
             <Node>{String.raw`
                Q_\mathrm{dk} = M_A - M_{A'} - N_\alpha(m_\alpha + 2m_\mathrm{e}) \text{.}`}</Node>
           </p>
+          <p>The radiogenic heating in the mantle from a nuclide with uniform concentration is given by {" "}
+          <Node>{String.raw`
+            H = h \frac{\Phi}{l} \frac{M_m}{G_m},`}</Node>{" "}
+          where <Node inline>{String.raw`\Phi`}</Node>{" "}
+          is the flux, <Node inline>{String.raw`l`}</Node>{" "}
+          is the neutrino luminosity, <Node inline>{String.raw`M_m`}</Node>{" "}
+          is the mantle mass, and <Node inline>{String.raw`G_m`}</Node>{" "}
+          is the mantle geophysical response.
+          </p>
       </Card.Body>
     </Card>
   );
