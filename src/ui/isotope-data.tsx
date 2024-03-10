@@ -203,7 +203,7 @@ export const IsotopeData = () => {
             </tbody>
             <thead>
               <tr>
-                <th>Decay Daughter</th>
+                <th>Stable Daughter</th>
                 <th>{Ar40}</th>
                 <th>{Ca40}</th>
                 <th>{Pb208}</th>
@@ -265,9 +265,9 @@ export const IsotopeData = () => {
             \langle Q_\nu \rangle = \frac {\int E_{\overline{\nu}_\mathrm{e}} \big(dn(E_{\overline{\nu}_\mathrm{e}}) 
             / dE \big) \, dE} {\int \big(dn(E_{\overline{\nu}_\mathrm{e}}) / dE \big)\, dE} \text{.}`}</Node>
             Calculation of the decay energy uses established values 
-            for the electron and alpha particles masses, <Node inline>{String.raw`m_\mathrm{e}`}</Node>{" "} 
+            for the electron and alpha particle masses, <Node inline>{String.raw`m_\mathrm{e}`}</Node>{" "} 
             and <Node inline>{String.raw`m_\alpha,`}</Node>{" "} respectively, 
-            along with the tabulated number of alpha paticles <Node inline>{String.raw`N_\alpha`}</Node>{" "}
+            along with the tabulated number of alpha paticls <Node inline>{String.raw`N_\alpha`}</Node>{" "}
             as well as the parent and daughter atomic masses <Node inline>{String.raw`M_A`}</Node>{" "}
             and <Node inline>{String.raw`M_{A'},`}</Node>{" "} respectively, according to
             <Node>{String.raw`
