@@ -54,7 +54,7 @@ function coreCircleColor(type) {
     case "custom":
       return "#000"
     case "FBR":
-      return "#Dfff00"
+      return "#00ffff"
     case "PHWR":
       return "#ff0000";
     case "GCR":
