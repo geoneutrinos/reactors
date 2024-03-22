@@ -7,7 +7,7 @@ const offset = binWidth * 0.5
 const bins = new Float64Array(6371).map((_, i) => 0 + offset + binWidth * i)
 console.log(bins)
 
-export const MantleDensityPlot = () => {
+export const GeoDensityPlot = () => {
     const data = [
       {
         y: bins.map(bin => rho(bin)),
