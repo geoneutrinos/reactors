@@ -25,7 +25,7 @@ import {
   GeoNusPane,
   CrustFlux,
   MantleFlux,
-  MantleDensityPlot,
+  GeoDensityPlot,
   GeoFluxUncertainties,
   GeoRateFluxYields,
   GeoNuSpectrumSource,
@@ -296,7 +296,7 @@ function App(props) {
                     setGeoFluxRatios={setGeoFluxRatios}
                     geo={geo}
                   />
-                  <MantleDensityPlot />
+                  <GeoDensityPlot />
                   <GeoFluxUncertainties />
                   <GeoRateFluxYields />
                   <GeoNuSpectrumSource />
