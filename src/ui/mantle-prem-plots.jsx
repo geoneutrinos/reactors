@@ -2,9 +2,9 @@ import {rho} from "../mantle/PREM";
 import { Card } from "react-bootstrap";
 import Plot from "react-plotly.js";
 
-export const binWidth = 6371 / 1000;
+export const binWidth = 6371 / 6371;
 const offset = binWidth * 0.5
-const bins = new Float64Array(1000).map((_, i) => 0 + offset + binWidth * i)
+const bins = new Float64Array(6371).map((_, i) => 0 + offset + binWidth * i)
 console.log(bins)
 
 export const MantleDensityPlot = () => {
