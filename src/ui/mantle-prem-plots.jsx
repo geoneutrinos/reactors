@@ -20,13 +20,13 @@ export const MantleDensityPlot = () => {
       },
     ]
     const layout = {
-      title: "Mantle Density",
+      title: "PREM Density",
       yaxis: {
-        title: { text: `Density (g/cm^2)` },
+        title: { text: `Density (g/cm<sup>3</sup>)` },
         autorange: true
       },
       xaxis: {
-        title: { text: `Depth` },
+        title: { text: `Radius (km)` },
       },
       autosize: true,
       legend: {
