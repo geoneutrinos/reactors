@@ -52,7 +52,7 @@ export const MantleDensityPlot = () => {
     };
     return (
       <Card>
-        <Card.Header>Mantle Density</Card.Header>
+        <Card.Header>PREM</Card.Header>
         <Card.Body>
           <Plot
             useResizeHandler={true}
