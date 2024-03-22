@@ -29,6 +29,7 @@ import {
   GeoRateFluxYields,
   GeoNuSpectrumSource,
   IsotopeData,
+  MantleDensityPlot,
   //Direction Tab
   CoreDirectionSignalPlots,
   CoreDirectionPlot,
@@ -91,6 +92,7 @@ import { reactorAntineutrinoModelReducer } from "./physics/reactor-antineutrinos
 import { defaultBoron8 } from "./solar";
 
 import { PhysicsContext } from "./state";
+import "./mantle/PREM";
 
 
 import "leaflet/dist/leaflet.css";
@@ -284,6 +286,7 @@ function App(props) {
               </Tab>
               <Tab eventKey="geonu" title="GeoNu">
                 <Visible>
+                  <MantleDensityPlot />
                   <GeoNusPane />
                   <MantleFlux
                     geoFluxRatios={geoFluxRatios}

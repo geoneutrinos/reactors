@@ -48,6 +48,7 @@ export {
 export { Boron8SpectraPlot, AnalemmaPlot, Boron8KEPlot } from "./solar-plots";
 export { FissionFractionPane } from "./reactors-fission";
 export { RASwitcher } from "./reactors-ra-switcher";
+export { MantleDensityPlot } from "./mantle-prem-plots";
 
 interface VisibleProps {
   children: React.ReactNode
