@@ -25,7 +25,7 @@ export { IsotopeData } from "./isotope-data";
 export { GeoRateFluxYields } from "./geo-ratefluxyields";
 export { SupernovaNus } from "./supernova-nus";
 export { Muons } from "./muon-backgrounds";
-export {DetectorOverburdens} from "./detector-overburden";
+export { DetectorOverburdens } from "./detector-overburden";
 export {
   CrossSectionPlots,
   SV03PercentDifference,
@@ -48,7 +48,7 @@ export {
 export { Boron8SpectraPlot, AnalemmaPlot, Boron8KEPlot } from "./solar-plots";
 export { FissionFractionPane } from "./reactors-fission";
 export { RASwitcher } from "./reactors-ra-switcher";
-export { PREMDensityPlot } from "./geo-prem-plots";
+export { GeoDensityPlot } from "./geo-prem-plots";
 
 interface VisibleProps {
   children: React.ReactNode
