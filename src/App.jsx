@@ -23,13 +23,13 @@ import {
   CoreList,
   //GeuNu Tab
   GeoNusPane,
-  MantleFlux,
   CrustFlux,
+  MantleFlux,
+  MantleDensityPlot,
   GeoFluxUncertainties,
   GeoRateFluxYields,
   GeoNuSpectrumSource,
   IsotopeData,
-  MantleDensityPlot,
   //Direction Tab
   CoreDirectionSignalPlots,
   CoreDirectionPlot,
@@ -286,17 +286,17 @@ function App(props) {
               </Tab>
               <Tab eventKey="geonu" title="GeoNu">
                 <Visible>
-                  <MantleDensityPlot />
                   <GeoNusPane />
+                  <CrustFlux
+                    includeCrust={includeCrust}
+                    setIncludeCrust={setIncludeCrust}
+                  />
                   <MantleFlux
                     geoFluxRatios={geoFluxRatios}
                     setGeoFluxRatios={setGeoFluxRatios}
                     geo={geo}
                   />
-                  <CrustFlux
-                    includeCrust={includeCrust}
-                    setIncludeCrust={setIncludeCrust}
-                  />
+                  <MantleDensityPlot />
                   <GeoFluxUncertainties />
                   <GeoRateFluxYields />
                   <GeoNuSpectrumSource />
