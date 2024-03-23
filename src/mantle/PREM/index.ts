@@ -44,6 +44,6 @@ export function rho(r:number): number {
     return poly(r/6371)
 }
 
-const layers = 6371;
-const layerVolumes = new Float64Array(layers).map((_v,i) => 4/3 * math.pi * ((i+1)**3 - i**3));
+const layers = 6371
+const layerVolumes = new Float64Array(layers).map((_v,i) => 4/3 * math.pi * ((i+1)**3 - i**3))
 
