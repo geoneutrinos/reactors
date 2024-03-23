@@ -49,6 +49,6 @@ const layerVolumes = new Float64Array(layers).map(
   (_v, i) => 4/3 * math.pi * ((i + 1) ** 3 - i ** 3)
 );
 const layerMasses = layerVolumes.map(
-    (v,i) => v * rho[i]
+    (v,i) => v * rho(i)
 );
 const totalMass = sum(layerMasses);
