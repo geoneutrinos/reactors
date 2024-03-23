@@ -43,3 +43,12 @@ export function rho(r:number): number {
     const poly = polynomial(...coefs)
     return poly(r/6371)
 }
+
+const layers = 6371;
+export const layerVolumes = new Float64Array(layers).map(
+  (_v, i) => 4/3 * math.pi * ((i + 1) ** 3 - i ** 3)
+);
+export const layerMasses = layerVolumes.map(
+    (v,i) => v * rho[i+1/2]
+);
+const totalMass = sum(layerMasses);
