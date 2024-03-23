@@ -61,6 +61,7 @@ export const GeoDensityPlot = () => {
             layout={layout}
             config={config}
           />
+          <p>This is work in progress with the goal of calculating both the mass and geophysical response of each PREM layer.</p>
         </Card.Body>
       </Card>
     );
