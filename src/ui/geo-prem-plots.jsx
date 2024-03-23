@@ -2,6 +2,9 @@ import {rho} from "../mantle/PREM";
 import { Card } from "react-bootstrap";
 import Plot from "react-plotly.js";
 
+const layers = 6371;
+const layerMasses = new Float64Array(layers).map((_v,i) => 4/3 * math.pi * ((i+1)**3 - i**3));
+
 export const binWidth = 6371 / 6371;
 const offset = binWidth * 0.5
 const bins = new Float64Array(6371).map((_, i) => 0 + offset + binWidth * i)
