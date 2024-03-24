@@ -2,7 +2,7 @@ import {rho} from "../mantle/PREM";
 import { Card } from "react-bootstrap";
 import Plot from "react-plotly.js";
 
-const layers = 6371;
+const layers = 63710;
 const maxRadius = 6371;
 export const binWidth = maxRadius / layers;
 const offset = binWidth * 0.5
