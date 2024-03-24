@@ -73,7 +73,7 @@ export const GeoDensityPlot = () => {
 export const GeoMassPlot = () => {
     const data = [
       {
-        y: volumes,
+        y: bins.map(bin => rho(bin)),
         x: bins,
         name: "Mass",
         type: "scatter",
