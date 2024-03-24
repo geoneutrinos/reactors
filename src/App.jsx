@@ -26,6 +26,7 @@ import {
   CrustFlux,
   MantleFlux,
   GeoDensityPlot,
+  GeoMassPlot,
   GeoFluxUncertainties,
   GeoRateFluxYields,
   GeoNuSpectrumSource,
@@ -297,6 +298,7 @@ function App(props) {
                     geo={geo}
                   />
                   <GeoDensityPlot />
+                  <GeoMassPlot />
                   <GeoFluxUncertainties />
                   <GeoRateFluxYields />
                   <GeoNuSpectrumSource />
