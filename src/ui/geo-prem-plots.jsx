@@ -4,10 +4,11 @@ import Plot from "react-plotly.js";
 
 const layers = 63710;
 const maxRadius = 6371;
+const preFactor = 4/3 * math.pi;
 export const binWidth = maxRadius / layers;
 const offset = binWidth * 0.5;
 const bins = new Float64Array(layers).map((_, i) => 0 + offset + binWidth * i);
-const volumes = new Float64Array(layers).map((_, i) => 4/3 * math.pi * i);
+const volumes = new Float64Array(layers).map((_, i) => preFactor * i);
 
 export const GeoDensityPlot = () => {
     const data = [
@@ -72,7 +73,7 @@ export const GeoDensityPlot = () => {
 export const GeoMassPlot = () => {
     const data = [
       {
-        y: bins.map(bin => rho(bin)),
+        y: volumes,
         x: bins,
         name: "Mass",
         type: "scatter",
