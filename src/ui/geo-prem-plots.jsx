@@ -49,7 +49,7 @@ export const GeoDensityPlot = () => {
     };
     var config = {
       toImageButtonOptions: {
-        filename: 'mantle_desity'
+        filename: 'PREM_density'
       }
     };
     return (
