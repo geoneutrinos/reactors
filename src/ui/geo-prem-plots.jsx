@@ -3,7 +3,8 @@ import { Card } from "react-bootstrap";
 import Plot from "react-plotly.js";
 
 const layers = 6371;
-export const binWidth = 6371 / layers;
+const maxRadius = 6371;
+export const binWidth = maxRadius / layers;
 const offset = binWidth * 0.5
 const bins = new Float64Array(layers).map((_, i) => 0 + offset + binWidth * i)
 console.log(bins)
