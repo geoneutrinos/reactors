@@ -7,8 +7,7 @@ const maxRadius = 6371;
 export const binWidth = maxRadius / layers;
 const offset = binWidth * 0.5
 const bins = new Float64Array(layers).map((_, i) => 0 + offset + binWidth * i)
-const volumes = new Float64Array(layers).map((_, i) => 0 + 4/3 * math.pi * ((i+1)**3 - i**3))
-console.log(bins)
+const volumes = new Float64Array(layers).map((_, i) => 4/3 * math.pi * i*i*i)
 
 export const GeoDensityPlot = () => {
     const data = [
