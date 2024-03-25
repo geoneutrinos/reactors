@@ -134,9 +134,9 @@ export const GeoIntegralPlot = () => {
       },
     ]
     const layout = {
-      title: "PREM Geo Integral",
+      title: "Geo Signal Factor",
       yaxis: {
-        title: { text: `Length (km)` },
+        title: { text: ` ` },
         autorange: true
       },
       xaxis: {
@@ -166,7 +166,7 @@ export const GeoIntegralPlot = () => {
     };
     return (
       <Card>
-        <Card.Header>PREM Geo Integral</Card.Header>
+        <Card.Header>Geo Signal Factor</Card.Header>
         <Card.Body>
           <Plot
             useResizeHandler={true}
