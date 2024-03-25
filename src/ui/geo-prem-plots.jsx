@@ -189,13 +189,13 @@ export const GeophysicalResponsePlot = () => {
         type: "scatter",
         mode: "lines",
         fill: "none",
-        marker: { color: "blue" },
+        marker: { color: "red" },
       },
     ]
     const layout = {
       title: "Geophysical Response",
       yaxis: {
-        title: { text: `(g/km<sup>2</sup>` },
+        title: { text: `(g/km<sup>2</sup>)` },
         autorange: true
       },
       xaxis: {
