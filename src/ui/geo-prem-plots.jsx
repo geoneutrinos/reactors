@@ -195,7 +195,7 @@ export const GeophysicalResponsePlot = () => {
     const layout = {
       title: "Geophysical Response",
       yaxis: {
-        title: { text: `(g/km<sup>2</sup>)` },
+        title: { text: `(kg/cm<sup>2</sup>)` },
         autorange: true
       },
       xaxis: {
@@ -234,7 +234,7 @@ export const GeophysicalResponsePlot = () => {
             layout={layout}
             config={config}
           />
-        <p>Initial results for PREM mantle geophysical response { mantleGeophysicalResponse }.</p>
+        <p>Initial results for PREM mantle geophysical response { mantleGeophysicalResponse } kg/cm<sup>2</sup>.</p>
         </Card.Body>
       </Card>
     );
