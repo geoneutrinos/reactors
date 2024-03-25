@@ -1,4 +1,4 @@
-import {rho,geoIntegrate,layers,maxRadius,binWidth,offset,bins,preFactor,innerCoreMass,outerCoreMass,mantleMass,lowerCrustMass,upperCrustMass,earthMass} from "../mantle/PREM";
+import {rho,geoIntegrate,volumeRatio,layers,maxRadius,binWidth,offset,bins,preFactor,innerCoreMass,outerCoreMass,mantleMass,lowerCrustMass,upperCrustMass,earthMass} from "../mantle/PREM";
 import { Card } from "react-bootstrap";
 import Plot from "react-plotly.js";
 
@@ -124,7 +124,7 @@ export const GeoMassPlot = () => {
 export const GeoIntegralPlot = () => {
     const data = [
       {
-        y: bins.map(bin => geoIntegrate(bin)),
+        y: bins.map(bin => geoIntegrate(bin) * 1.5 / volumeRatio(bin)),
         x: bins,
         name: "Geo Integral",
         type: "scatter",
