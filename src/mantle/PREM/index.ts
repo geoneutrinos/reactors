@@ -56,16 +56,16 @@ const layerMasses = bins.map(radius => rho(radius) * preFactor * ((radius + offs
 const coreStartIndex = 1;
 const coreEndIndex = 34800;
 export const coreMass = layerMasses
-    .slice(coreStartIndex, coreEndIndex)
+    .slice(coreStartIndex, coreEndIndex + 1)
     .reduce((coreAccumulator, coreCurrentValue) => coreAccumulator + coreCurrentValue);
 const mantleStartIndex = 34800;
 const mantleEndIndex = 63466;
 export const mantleMass = layerMasses
-    .slice(mantleStartIndex, mantleEndIndex)
+    .slice(mantleStartIndex, mantleEndIndex + 1)
     .reduce((mantleAccumulator, mantleCurrentValue) => mantleAccumulator + mantleCurrentValue);
 const crustStartIndex = 63466;
 const crustEndIndex = 63680;
 export const crustMass = layerMasses
-    .slice(crustStartIndex, crustEndIndex)
+    .slice(crustStartIndex, crustEndIndex + 1)
     .reduce((crustAccumulator, crustCurrentValue) => crustAccumulator + crustCurrentValue);
 export const earthMass = coreMass + mantleMass + crustMass;
