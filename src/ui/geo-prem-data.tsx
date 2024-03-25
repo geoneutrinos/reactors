@@ -2,6 +2,7 @@ import { Card, Table } from 'react-bootstrap';
 
 import {Num} from "."
 
+import { innerCoreMass,outerCoreMass,mantleMass,lowerCrustMass,upperCrustMass } from "../mantle/PREM";
 export const GeoDataPREM = () => {
   return (
     <Card>
@@ -14,7 +15,7 @@ export const GeoDataPREM = () => {
                 <th>Inner Radius (km)</th>
                 <th>Outer Radius (km)</th>
                 <th>Mass (kg)</th>
-                <th>Geophysical Response (kg/cm<sup>2</sup></th>
+                <th>Geophysical Response (kg/cm<sup>2</sup>)</th>
               </tr>
             </thead>
             <tbody>
@@ -27,7 +28,7 @@ export const GeoDataPREM = () => {
                   
                 </td>
                 <td>
-                  
+                  <Num v={innerCoreMass} p={2} />
                 </td>
                 <td>
                   
@@ -42,7 +43,7 @@ export const GeoDataPREM = () => {
                   
                 </td>
                 <td>
-                  
+                  <Num v={outerCoreMass} p={2} />
                 </td>
                 <td>
                   
@@ -57,7 +58,7 @@ export const GeoDataPREM = () => {
                   
                 </td>
                 <td>
-                  
+                  <Num v={mantleMass} p={2} />
                 </td>
                 <td>
                   
@@ -72,7 +73,7 @@ export const GeoDataPREM = () => {
                   
                 </td>
                 <td>
-                  
+                  <Num v={lowerCrustMass} p={2} />
                 </td>
                 <td>
                   
@@ -87,7 +88,7 @@ export const GeoDataPREM = () => {
                   
                 </td>
                 <td>
-                  
+                  <Num v={upperCrustMass} p={2} />
                 </td>
                 <td>
                   
