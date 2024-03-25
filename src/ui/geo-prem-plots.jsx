@@ -1,4 +1,4 @@
-import {rho,layers,maxRadius,binWidth,offset,bins,preFactor,innerCoreMass,outerCoreMass,mantleMass,crustMass,earthMass} from "../mantle/PREM";
+import {rho,layers,maxRadius,binWidth,offset,bins,preFactor,innerCoreMass,outerCoreMass,mantleMass,lowerCrustMass,upperCrustMass,earthMass} from "../mantle/PREM";
 import { Card } from "react-bootstrap";
 import Plot from "react-plotly.js";
 
@@ -115,7 +115,7 @@ export const GeoMassPlot = () => {
             layout={layout}
             config={config}
           />
-          <p>Initial results for PREM inner core mass { innerCoreMass }, outer core mass { outerCoreMass }, mantle mass { mantleMass }, crust mass { crustMass }, earth mass { earthMass }.</p>
+          <p>Initial results for PREM inner core mass { innerCoreMass }, outer core mass { outerCoreMass }, mantle mass { mantleMass }, lower crust mass { lowerCrustMass }, upper crust mass { upperCrustMass }, earth mass { earthMass }.</p>
         </Card.Body>
       </Card>
     );
