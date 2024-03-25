@@ -8,6 +8,7 @@ import {innerCoreMass,
         lowerCrustMass,
         upperCrustMass,
         oceanMass,
+        earthMass,
         innerCoreGeophysicalResponse,
         outerCoreGeophysicalResponse,
         mantleGeophysicalResponse,
@@ -124,7 +125,7 @@ export const GeoDataPREM = () => {
          </tbody>
           </Table>
         <p><small>
-          • <br />
+          • PREM earth mass is <Num v={earthMass} p={4} func={(v) => v * 1e-25} /> x 10<sup>22</sup> kg. <br />
           • <br />
         </small></p>
       </Card.Body>
