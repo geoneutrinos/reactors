@@ -7,9 +7,13 @@ import {innerCoreMass,
         mantleMass,
         lowerCrustMass,
         upperCrustMass,
+        oceanMass,
         innerCoreGeophysicalResponse,
         outerCoreGeophysicalResponse,
         mantleGeophysicalResponse,
+        lowerCrustGeophysicalResponse,
+        upperCrustGeophysicalResponse,
+        oceanGeophysicalResponse,
        } from "../mantle/PREM";
 export const GeoDataPREM = () => {
   return (
@@ -23,7 +27,7 @@ export const GeoDataPREM = () => {
                 <th>Inner Radius (km)</th>
                 <th>Outer Radius (km)</th>
                 <th>Mass (10<sup>22</sup>kg)</th>
-                <th>Geophysical Response (10<sup>6</sup>kg/cm<sup>2</sup>)</th>
+                <th>Geophysical Response (10<sup>3</sup>kg/cm<sup>2</sup>)</th>
               </tr>
             </thead>
             <tbody>
@@ -39,7 +43,7 @@ export const GeoDataPREM = () => {
                   <Num v={innerCoreMass} p={4} func={(v) => v * 1e-25} />
                 </td>
                 <td>
-                  <Num v={innerCoreGeophysicalResponse} p={4} />
+                  <Num v={innerCoreGeophysicalResponse} p={4} func={(v) => v * 1e-3} />
                 </td>
               </tr>
                <tr>
@@ -54,7 +58,7 @@ export const GeoDataPREM = () => {
                   <Num v={outerCoreMass} p={4} func={(v) => v * 1e-25} />
                 </td>
                 <td>
-                   <Num v={outerCoreGeophysicalResponse} p={4} />
+                   <Num v={outerCoreGeophysicalResponse} p={4} func={(v) => v * 1e-3} />
                 </td>
               </tr>
                <tr>
@@ -69,7 +73,7 @@ export const GeoDataPREM = () => {
                   <Num v={mantleMass} p={4} func={(v) => v * 1e-25} />
                 </td>
                 <td>
-                   <Num v={mantleGeophysicalResponse} p={4} />
+                   <Num v={mantleGeophysicalResponse} p={4} func={(v) => v * 1e-3} />
                 </td>
               </tr>
                 <tr>
@@ -84,7 +88,7 @@ export const GeoDataPREM = () => {
                   <Num v={lowerCrustMass} p={4} func={(v) => v * 1e-25} />
                 </td>
                 <td>
-                  
+                  <Num v={lowerCrustGeophysicalResponse} p={4} func={(v) => v * 1e-3} />
                 </td>
               </tr>
                <tr>
@@ -99,7 +103,22 @@ export const GeoDataPREM = () => {
                   <Num v={upperCrustMass} p={4} func={(v) => v * 1e-25} />
                 </td>
                 <td>
-                  
+                  <Num v={upperCrustGeophysicalResponse} p={4} func={(v) => v * 1e-3} />
+                </td>
+              </tr>
+               <tr>
+                <td>Ocean</td>
+                <td>
+                  6368.0
+                </td>
+                <td>
+                  6371.0
+                </td>
+                <td>
+                  <Num v={oceanMass} p={4} func={(v) => v * 1e-25} />
+                </td>
+                <td>
+                  <Num v={oceanGeophysicalResponse} p={4} func={(v) => v * 1e-3} />
                 </td>
               </tr>
          </tbody>
