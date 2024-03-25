@@ -53,3 +53,18 @@ export function rho(r:number): number {
 }
 
 const layerMasses = bins.map(radius => rho(radius) * preFactor * ((radius + offset)**3 - (radius - offset)**3));
+const coreStartIndex = 1;
+const coreEndIndex = 34800;
+export const coreMass = layerMasses
+    .slice(coreStartIndex, coreEndIndex)
+    .reduce((coreAccumulator, coreCurrentValue) => coreAccumulator + coreCurrentValue);
+const mantleStartIndex = 34800;
+const mantleEndIndex = 63466;
+export const mantleMass = layerMasses
+    .slice(mantleStartIndex, mantleEndIndex)
+    .reduce((mantleAccumulator, mantleCurrentValue) => mantleAccumulator + mantleCurrentValue);
+const crustStartIndex = 63466;
+const crustEndIndex = 63680;
+export const crustMass = layerMasses
+    .slice(crustStartIndex, crustEndIndex)
+    .reduce((crustAccumulator, crustCurrentValue) => crustAccumulator + crustCurrentValue);
