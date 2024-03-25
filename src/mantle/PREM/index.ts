@@ -52,6 +52,24 @@ export function rho(r:number): number {
     return poly(r/6371)
 }
 
+export function geoIntegrate(x: number): number {
+    const volumeRatio = ((x+offset)**3 - (x-offset)**3) / maxRadius**3
+    const topPlus = 1 + (x+offset) / maxRadius
+    const bottomPlus = 1 + (x-offset) / maxRadius
+    const topMinus = 1 - (x+offset) / maxRadius
+    const bottomMinus = 1 - (x-offset) / maxRadius
+    const termPlus1 = (Math.log(topPlus) / 2 - 0.25) * topPlus**2
+    const termPlus2 = (Math.log(bottomPlus) / 2 - 0.25) * bottomPlus**2
+    const termPlus3 = topPlus * Math.log(topPlus) - topPlus
+    const termPlus4 = bottomPlus * Math.log(bottomPlus) - bottomPlus
+    const termMinus1 = (Math.log(topMinus) / 2 - 0.25) * topMinus**2
+    const termMinus2 = (Math.log(bottomMinus) / 2 - 0.25) * bottomMinus**2
+    const termMinus3 = topMinus * Math.log(topMinus) - topMinus
+    const termMinus4 = bottomMinus * Math.log(bottomMinus) - bottomMinus
+    return (termPlus1 - termPlus2 - termPlus3 + termPlus4 - termMinus1 + termMinus2 + termMinus3 - termMinus4) * 1.5 / volumeRatio
+}
+
+export const layerGeoIntegral = bins.map(geoRadius => geoIntegrate(geoRadius));
 const layerMasses = bins.map(radius => rho(radius) * preFactor * ((radius + offset)**3 - (radius - offset)**3));
 const innerCoreStartIndex = 1;
 const innerCoreEndIndex = 12215;
