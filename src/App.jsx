@@ -29,6 +29,7 @@ import {
   GeoMassPlot,
   GeoIntegralPlot,
   GeophysicalResponsePlot,
+  GeoDataPREM,
   GeoFluxUncertainties,
   GeoRateFluxYields,
   GeoNuSpectrumSource,
@@ -303,6 +304,7 @@ function App(props) {
                   <GeoMassPlot />
                   <GeoIntegralPlot />
                   <GeophysicalResponsePlot />
+                  <GeoDataPREM />
                   <GeoFluxUncertainties />
                   <GeoRateFluxYields />
                   <GeoNuSpectrumSource />
