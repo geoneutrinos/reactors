@@ -53,7 +53,6 @@ export function rho(r:number): number {
 }
 
 export function geoIntegrate(x: number): number {
-    const volumeRatio = ((x+offset)**3 - (x-offset)**3) / maxRadius**3
     const topPlus = 1 + (x+offset) / maxRadius
     const bottomPlus = 1 + (x-offset) / maxRadius
     const topMinus = 1 - (x+offset) / maxRadius
@@ -66,7 +65,11 @@ export function geoIntegrate(x: number): number {
     const termMinus2 = (Math.log(bottomMinus) / 2 - 0.25) * bottomMinus**2
     const termMinus3 = topMinus * Math.log(topMinus) - topMinus
     const termMinus4 = bottomMinus * Math.log(bottomMinus) - bottomMinus
-    return (termPlus1 - termPlus2 - termPlus3 + termPlus4 - termMinus1 + termMinus2 + termMinus3 - termMinus4) * 1.5 / volumeRatio
+    return (termPlus1 - termPlus2 - termPlus3 + termPlus4 - termMinus1 + termMinus2 + termMinus3 - termMinus4)
+}
+
+export function volumeRatio(x: number): number {
+    return ((x+offset)**3 - (x-offset)**3) / maxRadius**3
 }
 
 export const layerGeoIntegral = bins.map(geoRadius => geoIntegrate(geoRadius));
