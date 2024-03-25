@@ -27,6 +27,7 @@ import {
   MantleFlux,
   GeoDensityPlot,
   GeoMassPlot,
+  GeoIntegralPlot,
   GeoFluxUncertainties,
   GeoRateFluxYields,
   GeoNuSpectrumSource,
@@ -299,6 +300,7 @@ function App(props) {
                   />
                   <GeoDensityPlot />
                   <GeoMassPlot />
+                  <GeoIntegralPlot />
                   <GeoFluxUncertainties />
                   <GeoRateFluxYields />
                   <GeoNuSpectrumSource />
