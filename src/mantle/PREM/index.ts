@@ -66,11 +66,16 @@ export const outerCoreMass = layerMasses
 const mantleStartIndex = 34800;
 const mantleEndIndex = 63466;
 export const mantleMass = layerMasses
-    .slice(mantleStartIndex, mantleEndIndex + 1)
+    .slice(mantleStartIndex, mantleEndIndex)
     .reduce((mantleAccumulator, mantleCurrentValue) => mantleAccumulator + mantleCurrentValue);
-const crustStartIndex = 63466;
-const crustEndIndex = 63680;
-export const crustMass = layerMasses
-    .slice(crustStartIndex, crustEndIndex + 1)
-    .reduce((crustAccumulator, crustCurrentValue) => crustAccumulator + crustCurrentValue);
-export const earthMass = innerCoreMass + outerCoreMass + mantleMass + crustMass;
+const lowerCrustStartIndex = 63466;
+const lowerCrustEndIndex = 63560;
+export const lowerCrustMass = layerMasses
+    .slice(lowerCrustStartIndex, lowerCrustEndIndex)
+    .reduce((lowerCrustAccumulator, lowerCrustCurrentValue) => lowerCrustAccumulator + lowerCrustCurrentValue);
+const upperCrustStartIndex = 63560;
+const upperCrustEndIndex = 63680;
+export const upperCrustMass = layerMasses
+    .slice(upperCrustStartIndex, upperCrustEndIndex)
+    .reduce((upperCrustAccumulator, upperCrustCurrentValue) => upperCrustAccumulator + upperCrustCurrentValue);
+export const earthMass = innerCoreMass + outerCoreMass + mantleMass + lowerCrustMass + upperCrustMass;
