@@ -52,6 +52,7 @@ export {
   GeoDensityPlot,
   GeoMassPlot,
   GeoIntegralPlot,
+  GeophysicalResponsePlot,
 } from "./geo-prem-plots";
 
 interface VisibleProps {
