@@ -1,4 +1,4 @@
-import {rho,layers,maxRadius,binWidth,offset,bins,preFactor,innerCoreMass,outerCoreMass,mantleMass,lowerCrustMass,upperCrustMass,earthMass} from "../mantle/PREM";
+import {rho,geoIntegrate,layers,maxRadius,binWidth,offset,bins,preFactor,innerCoreMass,outerCoreMass,mantleMass,lowerCrustMass,upperCrustMass,earthMass} from "../mantle/PREM";
 import { Card } from "react-bootstrap";
 import Plot from "react-plotly.js";
 
@@ -116,6 +116,65 @@ export const GeoMassPlot = () => {
             config={config}
           />
           <p>Initial results for PREM inner core mass { innerCoreMass }, outer core mass { outerCoreMass }, mantle mass { mantleMass }, lower crust mass { lowerCrustMass }, upper crust mass { upperCrustMass }, earth mass { earthMass }.</p>
+        </Card.Body>
+      </Card>
+    );
+  }
+
+export const GeoIntegralPlot = () => {
+    const data = [
+      {
+        y: bins.map(bin => geoIntegrate(bin)),
+        x: bins,
+        name: "Geo Integral",
+        type: "scatter",
+        mode: "lines",
+        fill: "none",
+        marker: { color: "blue" },
+      },
+    ]
+    const layout = {
+      title: "PREM Geo Integral",
+      yaxis: {
+        title: { text: `Length (km)` },
+        autorange: true
+      },
+      xaxis: {
+        title: { text: `Radius (km)` },
+      },
+      autosize: true,
+      legend: {
+        x: 1,
+        xanchor: "left",
+        y: 1,
+      },
+      annotations: [
+        {
+          showarrow: false,
+          text: "geoneutrinos.org",
+          x: 1.1,
+          xref: "paper",
+          y: -0.15,
+          yref: "paper",
+        },
+      ],
+    };
+    var config = {
+      toImageButtonOptions: {
+        filename: 'PREM_geo_integral'
+      }
+    };
+    return (
+      <Card>
+        <Card.Header>PREM Geo Integral</Card.Header>
+        <Card.Body>
+          <Plot
+            useResizeHandler={true}
+            style={{ width: "100%" }}
+            data={data} 
+            layout={layout}
+            config={config}
+          />
         </Card.Body>
       </Card>
     );
