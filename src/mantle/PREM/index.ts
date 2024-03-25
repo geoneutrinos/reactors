@@ -51,3 +51,5 @@ export function rho(r:number): number {
     const poly = polynomial(...coefs)
     return poly(r/6371)
 }
+
+const layerMasses = bins.map(radius => rho(radius) * preFactor * ((radius + offset)**3 - (radius - offset)**3));
