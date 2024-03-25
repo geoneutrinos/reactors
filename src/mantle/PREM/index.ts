@@ -17,6 +17,14 @@ const PREM = [
 [6368.0,1.020,0.0,0.0,0.0],
 [6371.0,0.0,0.0,0.0,0.0],
 ]
+
+export const layers = 63710;
+export const maxRadius = 6371;
+export const binWidth = maxRadius / layers;
+export const offset = binWidth * 0.5;
+export const bins = new Float64Array(layers).map((_, i) => 0 + offset + binWidth * i);
+export const preFactor = 4 * Math.PI * 1e15 / 3;
+
 /**
  * polynomial(a0, a1, ... , an) generates a function f(x) that will compute the power series in the form:
  * 
