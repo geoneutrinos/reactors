@@ -1,4 +1,4 @@
-import {rho,layers,maxRadius,binWidth,offset,bins,preFactor} from "../mantle/PREM";
+import {rho,layers,maxRadius,binWidth,offset,bins,preFactor,coreMass,mantleMass,crustMass} from "../mantle/PREM";
 import { Card } from "react-bootstrap";
 import Plot from "react-plotly.js";
 
@@ -56,8 +56,7 @@ export const GeoDensityPlot = () => {
             layout={layout}
             config={config}
           />
-          <p>This is work in progress with the goal of calculating both the mass and geophysical response of each PREM layer.</p>
-        </Card.Body>
+         </Card.Body>
       </Card>
     );
   }
@@ -116,7 +115,7 @@ export const GeoMassPlot = () => {
             layout={layout}
             config={config}
           />
-          <p>This is work in progress with the goal of calculating both the mass and geophysical response of each PREM layer.</p>
+          <p>Initial results for PREM core mass { coreMass }, mantle mass { mantleMass }, crust mass { crustMass }.</p>
         </Card.Body>
       </Card>
     );
