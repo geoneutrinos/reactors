@@ -78,4 +78,9 @@ const upperCrustEndIndex = 63680;
 export const upperCrustMass = layerMasses
     .slice(upperCrustStartIndex, upperCrustEndIndex)
     .reduce((upperCrustAccumulator, upperCrustCurrentValue) => upperCrustAccumulator + upperCrustCurrentValue);
-export const earthMass = innerCoreMass + outerCoreMass + mantleMass + lowerCrustMass + upperCrustMass;
+const oceanStartIndex = 63680;
+const oceanEndIndex = 63710;
+export const oceanMass = layerMasses
+    .slice(oceanStartIndex, oceanEndIndex)
+    .reduce((oceanAccumulator, oceanCurrentValue) => oceanAccumulator + oceanCurrentValue);
+export const earthMass = innerCoreMass + outerCoreMass + mantleMass + lowerCrustMass + upperCrustMass + oceanMass;
