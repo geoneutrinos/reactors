@@ -77,32 +77,32 @@ const innerCoreStartIndex = 1;
 const innerCoreEndIndex = 12215;
 export const innerCoreMass = layerMasses
     .slice(innerCoreStartIndex, innerCoreEndIndex)
-    .reduce((innerCoreAccumulator, innerCoreCurrentValue) => innerCoreAccumulator + innerCoreCurrentValue);
+    .reduce((Accumulator, CurrentValue) => Accumulator + CurrentValue);
 const outerCoreStartIndex = 12215;
 const outerCoreEndIndex = 34800;
 export const outerCoreMass = layerMasses
     .slice(outerCoreStartIndex, outerCoreEndIndex)
-    .reduce((outerCoreAccumulator, outerCoreCurrentValue) => outerCoreAccumulator + outerCoreCurrentValue);
+    .reduce((Accumulator, CurrentValue) => Accumulator + CurrentValue);
 const mantleStartIndex = 34800;
 const mantleEndIndex = 63466;
 export const mantleMass = layerMasses
     .slice(mantleStartIndex, mantleEndIndex)
-    .reduce((mantleAccumulator, mantleCurrentValue) => mantleAccumulator + mantleCurrentValue);
+    .reduce((Accumulator, CurrentValue) => Accumulator + CurrentValue);
 const lowerCrustStartIndex = 63466;
 const lowerCrustEndIndex = 63560;
 export const lowerCrustMass = layerMasses
     .slice(lowerCrustStartIndex, lowerCrustEndIndex)
-    .reduce((lowerCrustAccumulator, lowerCrustCurrentValue) => lowerCrustAccumulator + lowerCrustCurrentValue);
+    .reduce((Accumulator, CurrentValue) => Accumulator + CurrentValue);
 const upperCrustStartIndex = 63560;
 const upperCrustEndIndex = 63680;
 export const upperCrustMass = layerMasses
     .slice(upperCrustStartIndex, upperCrustEndIndex)
-    .reduce((upperCrustAccumulator, upperCrustCurrentValue) => upperCrustAccumulator + upperCrustCurrentValue);
+    .reduce((Accumulator, CurrentValue) => Accumulator + CurrentValue);
 const oceanStartIndex = 63680;
 const oceanEndIndex = 63710;
 export const oceanMass = layerMasses
     .slice(oceanStartIndex, oceanEndIndex)
-    .reduce((oceanAccumulator, oceanCurrentValue) => oceanAccumulator + oceanCurrentValue);
+    .reduce((Accumulator, CurrentValue) => Accumulator + CurrentValue);
 export const earthMass = innerCoreMass + outerCoreMass + mantleMass + lowerCrustMass + upperCrustMass + oceanMass;
 const layerGeoResponse = bins.map(bin => geoIntegrate(bin) * rho(bin) * maxRadius * 100 / 2);
 export const innerCoreGeophysicalResponse = layerGeoResponse
@@ -113,4 +113,13 @@ export const outerCoreGeophysicalResponse = layerGeoResponse
     .reduce((Accumulator, CurrentValue) => Accumulator + CurrentValue);
 export const mantleGeophysicalResponse = layerGeoResponse
     .slice(mantleStartIndex, mantleEndIndex)
-    .reduce((mantleGeoAccumulator, mantleGeoCurrentValue) => mantleGeoAccumulator + mantleGeoCurrentValue);
+    .reduce((Accumulator, CurrentValue) => Accumulator + CurrentValue);
+export const lowerCrustGeophysicalResponse = layerGeoResponse
+    .slice(lowerCrustStartIndex, lowerCrustEndIndex)
+    .reduce((Accumulator, CurrentValue) => Accumulator + CurrentValue);
+export const upperCrustGeophysicalResponse = layerGeoResponse
+    .slice(upperCrustStartIndex, upperCrustEndIndex)
+    .reduce((Accumulator, CurrentValue) => Accumulator + CurrentValue);
+export const oceanGeophysicalResponse = layerGeoResponse
+    .slice(oceanStartIndex, oceanEndIndex)
+    .reduce((Accumulator, CurrentValue) => Accumulator + CurrentValue);
