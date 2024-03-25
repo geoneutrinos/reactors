@@ -183,7 +183,7 @@ export const GeoIntegralPlot = () => {
 export const GeophysicalResponsePlot = () => {
     const data = [
       {
-        y: bins.map(bin => geoIntegrate(bin) * rho(bin) * maxRadius / 2),
+        y: bins.map(bin => geoIntegrate(bin) * rho(bin) * maxRadius * 100 / 2),
         x: bins,
         name: "Geo Integral",
         type: "scatter",
