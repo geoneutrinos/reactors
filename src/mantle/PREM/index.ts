@@ -53,11 +53,16 @@ export function rho(r:number): number {
 }
 
 const layerMasses = bins.map(radius => rho(radius) * preFactor * ((radius + offset)**3 - (radius - offset)**3));
-const coreStartIndex = 1;
-const coreEndIndex = 34800;
-export const coreMass = layerMasses
-    .slice(coreStartIndex, coreEndIndex + 1)
-    .reduce((coreAccumulator, coreCurrentValue) => coreAccumulator + coreCurrentValue);
+const innerCoreStartIndex = 1;
+const innerCoreEndIndex = 12215;
+export const innerCoreMass = layerMasses
+    .slice(innerCoreStartIndex, innerCoreEndIndex + 1)
+    .reduce((innerCoreAccumulator, innerCoreCurrentValue) => innerCoreAccumulator + innerCoreCurrentValue);
+const outerCoreStartIndex = 12215;
+const outerCoreEndIndex = 34800;
+export const outerCoreMass = layerMasses
+    .slice(outerCoreStartIndex, outerCoreEndIndex + 1)
+    .reduce((outerCoreAccumulator, outerCoreCurrentValue) => outerCoreAccumulator + outerCoreCurrentValue);
 const mantleStartIndex = 34800;
 const mantleEndIndex = 63466;
 export const mantleMass = layerMasses
@@ -68,4 +73,4 @@ const crustEndIndex = 63680;
 export const crustMass = layerMasses
     .slice(crustStartIndex, crustEndIndex + 1)
     .reduce((crustAccumulator, crustCurrentValue) => crustAccumulator + crustCurrentValue);
-export const earthMass = coreMass + mantleMass + crustMass;
+export const earthMass = innerCoreMass + outerCoreMass + mantleMass + crustMass;
