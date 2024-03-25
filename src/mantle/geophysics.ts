@@ -22,8 +22,8 @@ import Elements from "../elements";
 
 const {K40, Th232, U235, U238} = Elements
 
-export const MANTLE_MASS = 4.0023618e24; // kg (PREM- A. M. Dziewonski and D. L. Anderson, Phys. Earth Planet. Inter. 25, 297 (1981).
-export const MANTLE_GEOPHYSICAL_RESPONSE = 1.1770628e6; // kg/cm2
+export const MANTLE_MASS = mantleMass * 1e3; // kg (PREM- A. M. Dziewonski and D. L. Anderson, Phys. Earth Planet. Inter. 25, 297 (1981).
+export const MANTLE_GEOPHYSICAL_RESPONSE = mantleGeophysicalResponse; // kg/cm2
 
 export const ISOTOPIC_DECAY_HEATING = {
   // J kg-1 s-1
