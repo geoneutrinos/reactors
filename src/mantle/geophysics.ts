@@ -16,6 +16,8 @@ import {
   averageNeutrinoEnergy40KEC, 
 } from "../antineutrino-spectrum";
 
+import { mantleMass,mantleGeophysicalResponse } from "./PREM";
+
 import Elements from "../elements";
 
 const {K40, Th232, U235, U238} = Elements
