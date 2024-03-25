@@ -104,7 +104,7 @@ export const oceanMass = layerMasses
     .slice(oceanStartIndex, oceanEndIndex)
     .reduce((oceanAccumulator, oceanCurrentValue) => oceanAccumulator + oceanCurrentValue);
 export const earthMass = innerCoreMass + outerCoreMass + mantleMass + lowerCrustMass + upperCrustMass + oceanMass;
-const layerGeoResponse = bins.map(bin => geoIntegrate(bin) * rho(bin) * maxRadius / 2);
+const layerGeoResponse = bins.map(bin => geoIntegrate(bin) * rho(bin) * maxRadius * 100 / 2);
 export const mantleGeophysicalResponse = layerGeoResponse
     .slice(mantleStartIndex, mantleEndIndex)
     .reduce((mantleGeoAccumulator, mantleGeoCurrentValue) => mantleGeoAccumulator + mantleGeoCurrentValue);
