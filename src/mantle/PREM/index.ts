@@ -68,3 +68,4 @@ const crustEndIndex = 63680;
 export const crustMass = layerMasses
     .slice(crustStartIndex, crustEndIndex)
     .reduce((crustAccumulator, crustCurrentValue) => crustAccumulator + crustCurrentValue);
+export const earthMass = coreMass + mantleMass + crustMass;
