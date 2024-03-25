@@ -179,3 +179,62 @@ export const GeoIntegralPlot = () => {
       </Card>
     );
   }
+
+export const GeophysicalResponsePlot = () => {
+    const data = [
+      {
+        y: bins.map(bin => geoIntegrate(bin) * rho(bin) * maxRadius / 2),
+        x: bins,
+        name: "Geo Integral",
+        type: "scatter",
+        mode: "lines",
+        fill: "none",
+        marker: { color: "blue" },
+      },
+    ]
+    const layout = {
+      title: "Geophysical Response",
+      yaxis: {
+        title: { text: `(g/km<sup>2</sup>` },
+        autorange: true
+      },
+      xaxis: {
+        title: { text: `Radius (km)` },
+      },
+      autosize: true,
+      legend: {
+        x: 1,
+        xanchor: "left",
+        y: 1,
+      },
+      annotations: [
+        {
+          showarrow: false,
+          text: "geoneutrinos.org",
+          x: 1.1,
+          xref: "paper",
+          y: -0.15,
+          yref: "paper",
+        },
+      ],
+    };
+    var config = {
+      toImageButtonOptions: {
+        filename: 'PREM_geophysical_response'
+      }
+    };
+    return (
+      <Card>
+        <Card.Header>PREM Geophysical Response</Card.Header>
+        <Card.Body>
+          <Plot
+            useResizeHandler={true}
+            style={{ width: "100%" }}
+            data={data} 
+            layout={layout}
+            config={config}
+          />
+        </Card.Body>
+      </Card>
+    );
+  }
