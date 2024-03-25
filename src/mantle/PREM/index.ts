@@ -72,7 +72,6 @@ export function volumeRatio(x: number): number {
     return ((x+offset)**3 - (x-offset)**3) / maxRadius**3
 }
 
-export const layerGeoIntegral = bins.map(geoRadius => geoIntegrate(geoRadius));
 const layerMasses = bins.map(radius => rho(radius) * preFactor * ((radius + offset)**3 - (radius - offset)**3));
 const innerCoreStartIndex = 1;
 const innerCoreEndIndex = 12215;
@@ -105,3 +104,7 @@ export const oceanMass = layerMasses
     .slice(oceanStartIndex, oceanEndIndex)
     .reduce((oceanAccumulator, oceanCurrentValue) => oceanAccumulator + oceanCurrentValue);
 export const earthMass = innerCoreMass + outerCoreMass + mantleMass + lowerCrustMass + upperCrustMass + oceanMass;
+const layerGeoResponse = bins.map(bin => geoIntegrate(bin) * rho(bin) * maxRadius / 2);
+export const mantleGeophysicalResponse = layerGeoResponse
+    .slice(mantleStartIndex, mantleEndIndex)
+    .reduce((mantleGeoAccumulator, mantleGeoCurrentValue) => mantleGeoAccumulator + mantleGeoCurrentValue);
