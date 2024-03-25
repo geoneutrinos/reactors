@@ -56,12 +56,12 @@ const layerMasses = bins.map(radius => rho(radius) * preFactor * ((radius + offs
 const innerCoreStartIndex = 1;
 const innerCoreEndIndex = 12215;
 export const innerCoreMass = layerMasses
-    .slice(innerCoreStartIndex, innerCoreEndIndex + 1)
+    .slice(innerCoreStartIndex, innerCoreEndIndex)
     .reduce((innerCoreAccumulator, innerCoreCurrentValue) => innerCoreAccumulator + innerCoreCurrentValue);
 const outerCoreStartIndex = 12215;
 const outerCoreEndIndex = 34800;
 export const outerCoreMass = layerMasses
-    .slice(outerCoreStartIndex, outerCoreEndIndex + 1)
+    .slice(outerCoreStartIndex, outerCoreEndIndex)
     .reduce((outerCoreAccumulator, outerCoreCurrentValue) => outerCoreAccumulator + outerCoreCurrentValue);
 const mantleStartIndex = 34800;
 const mantleEndIndex = 63466;
