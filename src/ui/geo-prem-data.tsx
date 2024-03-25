@@ -14,8 +14,8 @@ export const GeoDataPREM = () => {
                 <th>Region</th>
                 <th>Inner Radius (km)</th>
                 <th>Outer Radius (km)</th>
-                <th>Mass (kg)</th>
-                <th>Geophysical Response (kg/cm<sup>2</sup>)</th>
+                <th>Mass (10<sup>22</sup>kg)</th>
+                <th>Geophysical Response (10<sup>6</sup>kg/cm<sup>2</sup>)</th>
               </tr>
             </thead>
             <tbody>
@@ -28,7 +28,7 @@ export const GeoDataPREM = () => {
                   
                 </td>
                 <td>
-                  <Num v={innerCoreMass} p={2} />
+                  <Num v={innerCoreMass} p={4} func={(v) => v * 1e-25} />
                 </td>
                 <td>
                   
@@ -43,7 +43,7 @@ export const GeoDataPREM = () => {
                   
                 </td>
                 <td>
-                  <Num v={outerCoreMass} p={2} />
+                  <Num v={outerCoreMass} p={4} func={(v) => v * 1e-25} />
                 </td>
                 <td>
                   
@@ -58,7 +58,7 @@ export const GeoDataPREM = () => {
                   
                 </td>
                 <td>
-                  <Num v={mantleMass} p={2} />
+                  <Num v={mantleMass} p={4} func={(v) => v * 1e-25} />
                 </td>
                 <td>
                   
@@ -73,7 +73,7 @@ export const GeoDataPREM = () => {
                   
                 </td>
                 <td>
-                  <Num v={lowerCrustMass} p={2} />
+                  <Num v={lowerCrustMass} p={4} func={(v) => v * 1e-25} />
                 </td>
                 <td>
                   
@@ -88,7 +88,7 @@ export const GeoDataPREM = () => {
                   
                 </td>
                 <td>
-                  <Num v={upperCrustMass} p={2} />
+                  <Num v={upperCrustMass} p={4} func={(v) => v * 1e-25} />
                 </td>
                 <td>
                   
