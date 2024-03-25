@@ -1,4 +1,13 @@
-import {rho,geoIntegrate,volumeRatio,layers,maxRadius,binWidth,offset,bins,preFactor,innerCoreMass,outerCoreMass,mantleMass,lowerCrustMass,upperCrustMass,earthMass,mantleGeophysicalResponse} from "../mantle/PREM";
+import {rho,
+        geoIntegrate,
+        volumeRatio,
+        layers,
+        maxRadius,
+        binWidth,
+        offset,
+        bins,
+        preFactor,
+        } from "../mantle/PREM";
 import { Card } from "react-bootstrap";
 import Plot from "react-plotly.js";
 
@@ -115,7 +124,6 @@ export const GeoMassPlot = () => {
             layout={layout}
             config={config}
           />
-          <p>Initial results for PREM inner core mass { innerCoreMass }, outer core mass { outerCoreMass }, mantle mass { mantleMass }, lower crust mass { lowerCrustMass }, upper crust mass { upperCrustMass }, earth mass { earthMass }.</p>
         </Card.Body>
       </Card>
     );
@@ -234,7 +242,6 @@ export const GeophysicalResponsePlot = () => {
             layout={layout}
             config={config}
           />
-        <p>Initial results for PREM mantle geophysical response { mantleGeophysicalResponse } kg/cm<sup>2</sup>.</p>
         </Card.Body>
       </Card>
     );
