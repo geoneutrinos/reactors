@@ -22,10 +22,10 @@ export const GeoDataPREM = () => {
               <tr>
                 <td>Inner Core</td>
                 <td>
-                  
+                  0.0
                 </td>
                 <td>
-                  
+                  1221.5
                 </td>
                 <td>
                   <Num v={innerCoreMass} p={4} func={(v) => v * 1e-25} />
@@ -37,10 +37,10 @@ export const GeoDataPREM = () => {
                <tr>
                 <td>Outer Core</td>
                 <td>
-                  
+                  1221.5
                 </td>
                 <td>
-                  
+                  3480.0
                 </td>
                 <td>
                   <Num v={outerCoreMass} p={4} func={(v) => v * 1e-25} />
@@ -52,10 +52,10 @@ export const GeoDataPREM = () => {
                <tr>
                 <td>Mantle</td>
                 <td>
-                  
+                  3480.0
                 </td>
                 <td>
-                  
+                  6346.6
                 </td>
                 <td>
                   <Num v={mantleMass} p={4} func={(v) => v * 1e-25} />
@@ -67,10 +67,10 @@ export const GeoDataPREM = () => {
                 <tr>
                 <td>Lower Crust</td>
                 <td>
-                  
+                  6346.6
                 </td>
                 <td>
-                  
+                  6356.0
                 </td>
                 <td>
                   <Num v={lowerCrustMass} p={4} func={(v) => v * 1e-25} />
@@ -82,10 +82,10 @@ export const GeoDataPREM = () => {
                <tr>
                 <td>Upper Crust</td>
                 <td>
-                  
+                  6356.0
                 </td>
                 <td>
-                  
+                  6368.0
                 </td>
                 <td>
                   <Num v={upperCrustMass} p={4} func={(v) => v * 1e-25} />
