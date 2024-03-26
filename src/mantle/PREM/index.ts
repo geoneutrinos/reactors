@@ -99,7 +99,7 @@ export const upperCrustMass = layerMasses
     .slice(upperCrustStartIndex, upperCrustEndIndex)
     .reduce((Accumulator, CurrentValue) => Accumulator + CurrentValue);
 const oceanStartIndex = 63680;
-const oceanEndIndex = 63710;
+const oceanEndIndex = 63709;
 export const oceanMass = layerMasses
     .slice(oceanStartIndex, oceanEndIndex)
     .reduce((Accumulator, CurrentValue) => Accumulator + CurrentValue);
