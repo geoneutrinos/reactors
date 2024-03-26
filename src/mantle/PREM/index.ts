@@ -99,7 +99,7 @@ export const upperCrustMass = layerMasses
     .slice(upperCrustStartIndex, upperCrustEndIndex)
     .reduce((Accumulator, CurrentValue) => Accumulator + CurrentValue);
 const oceanStartIndex = 63680;
-const oceanEndIndex = 63709;
+const oceanEndIndex = 63710;
 export const oceanMass = layerMasses
     .slice(oceanStartIndex, oceanEndIndex)
     .reduce((Accumulator, CurrentValue) => Accumulator + CurrentValue);
@@ -121,5 +121,5 @@ export const upperCrustGeophysicalResponse = layerGeoResponse
     .slice(upperCrustStartIndex, upperCrustEndIndex)
     .reduce((Accumulator, CurrentValue) => Accumulator + CurrentValue);
 export const oceanGeophysicalResponse = layerGeoResponse
-    .slice(oceanStartIndex, oceanEndIndex)
+    .slice(oceanStartIndex, oceanEndIndex - 1)
     .reduce((Accumulator, CurrentValue) => Accumulator + CurrentValue);
