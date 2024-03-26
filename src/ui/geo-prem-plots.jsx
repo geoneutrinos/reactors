@@ -183,6 +183,7 @@ export const GeoIntegralPlot = () => {
             layout={layout}
             config={config}
           />
+        <p><small>Following L.M. Krauss, S.L. Glashow, and D.N. Schramm (1984) Nature 310, 191-198. </small></p>
         </Card.Body>
       </Card>
     );
