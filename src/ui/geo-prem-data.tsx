@@ -125,8 +125,8 @@ export const GeoDataPREM = () => {
          </tbody>
           </Table>
         <p><small>
-          • PREM earth mass is <Num v={earthMass} p={4} func={(v) => v * 1e-25} /> x 10<sup>22</sup> kg. <br />
-          • <br />
+          • PREM earth mass is <Num v={earthMass} p={4} func={(v) => v * 1e-27} /> x 10<sup>24</sup> kg. <br />
+          • A.M. Dziewonski and D.L. Anderson (1981), <i>Preliminary Reference Earth Model (PREM)</i>, Phys. Earth Planet. Inter. 25, 297-356. <br />
         </small></p>
       </Card.Body>
     </Card>
