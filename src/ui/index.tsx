@@ -21,11 +21,12 @@ export { PhysicsConstants } from "./physics-constants";
 export { ParticleMasses } from "./physics-masses";
 export { EesCouplingFactors, PesCouplingFactors } from "./physics-coupling-factors";
 export { GeoFluxUncertainties } from "./geo-uncertainties";
+export { GeoDataPREM } from "./geo-prem-data";
 export { IsotopeData } from "./isotope-data";
 export { GeoRateFluxYields } from "./geo-ratefluxyields";
 export { SupernovaNus } from "./supernova-nus";
 export { Muons } from "./muon-backgrounds";
-export {DetectorOverburdens} from "./detector-overburden";
+export { DetectorOverburdens } from "./detector-overburden";
 export {
   CrossSectionPlots,
   SV03PercentDifference,
@@ -48,6 +49,12 @@ export {
 export { Boron8SpectraPlot, AnalemmaPlot, Boron8KEPlot } from "./solar-plots";
 export { FissionFractionPane } from "./reactors-fission";
 export { RASwitcher } from "./reactors-ra-switcher";
+export { 
+  GeoDensityPlot,
+  GeoMassPlot,
+  GeoIntegralPlot,
+  GeophysicalResponsePlot,
+} from "./geo-prem-plots";
 
 interface VisibleProps {
   children: React.ReactNode
