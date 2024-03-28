@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import {
-  Map,
   Popup,
   TileLayer,
   LayerGroup,

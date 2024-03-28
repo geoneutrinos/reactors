@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 
 import { Card } from "react-bootstrap";
-import { Node } from "@nteract/mathjax";
+import { MathJax } from "better-react-mathjax";
 import Plot from "react-plotly.js";
 
 import { XSAbrev, XSNames, XSNamesNormal } from '../physics/neutrino-cross-section';
@@ -1113,73 +1113,73 @@ export const CrossSectionPlots = () => {
       <Card.Body>
         <p>
           Two versions of the cross section for free proton inverse beta decay (pIBD- {" "}
-          <Node inline>{String.raw`\overline{\nu}_\mathrm{e} + \mathrm{p} \rightarrow \mathrm{n} + \mathrm{e}^+`}</Node> {" "}) are available for selection. 
+          <MathJax inline>{String.raw`\overline{\nu}_\mathrm{e} + \mathrm{p} \rightarrow \mathrm{n} + \mathrm{e}^+`}</MathJax> {" "}) are available for selection. 
           Both versions are functions of the scattered positron energy and momentum,{" "}
-          <Node
+          <MathJax
             inline
-          >{String.raw`E_\mathrm{e}`}</Node>{" "} 
+          >{String.raw`E_\mathrm{e}`}</MathJax>{" "} 
           and{" "}
-          <Node inline>{String.raw`p_\mathrm{e}= \sqrt{E^2_\mathrm{e}-m^2_\mathrm{e}}`}</Node>,{" "}
+          <MathJax inline>{String.raw`p_\mathrm{e}= \sqrt{E^2_\mathrm{e}-m^2_\mathrm{e}}`}</MathJax>,{" "}
           respectively, where{" "}
-          <Node inline>{String.raw`m_\mathrm{e}`}</Node>{" "}
+          <MathJax inline>{String.raw`m_\mathrm{e}`}</MathJax>{" "}
           is the electron (positron) rest mass.
           Assuming the antineutrino is massless, then the energy of the incident electron antineutrino{" "} 
-          <Node inline>{String.raw`E_{\overline{\nu}_\mathrm{e}} = E_\mathrm{e}+E_\mathrm{thr}-m_\mathrm{e},`}</Node>{" "}
+          <MathJax inline>{String.raw`E_{\overline{\nu}_\mathrm{e}} = E_\mathrm{e}+E_\mathrm{thr}-m_\mathrm{e},`}</MathJax>{" "}
           where{" "}
-          <Node inline>{String.raw`E_\mathrm{thr}`}</Node>{" "} 
+          <MathJax inline>{String.raw`E_\mathrm{thr}`}</MathJax>{" "} 
           is the threshold energy.{" "}
         </p>
         <p>
           The default version of the pIBD cross section is from 
           A. Strumia and F. Vissani (2003), <i>Precise quasielastic neutrino/nucleon cross-section</i>, Phys. Lett. B 564, 42.
           The implemented parameterized equation, estimating the precise cross section, is
-        <Node>{String.raw`
-            \sigma^\mathrm{pIBD}(E_\mathrm{e}) = (10.0 \times10^{-44} \mathrm{cm}^2 \mathrm{MeV}^{-2} )p_\mathrm{e} E_\mathrm{e} E_{\overline{\nu}_\mathrm{e}}^{\alpha\mathstrut},`}</Node>{" "}
+        <MathJax>{String.raw`
+            \sigma^\mathrm{pIBD}(E_\mathrm{e}) = (10.0 \times10^{-44} \mathrm{cm}^2 \mathrm{MeV}^{-2} )p_\mathrm{e} E_\mathrm{e} E_{\overline{\nu}_\mathrm{e}}^{\alpha\mathstrut},`}</MathJax>{" "}
             with the exponent{" "}
-            <Node inline>{String.raw`\alpha = -0.07056+0.02018\,\mathrm{ln}E_{\overline{\nu}_\mathrm{e}}-0.001953\,\mathrm{ln}^3E_{\overline{\nu}_\mathrm{e}}.`}</Node>{" "}
+            <MathJax inline>{String.raw`\alpha = -0.07056+0.02018\,\mathrm{ln}E_{\overline{\nu}_\mathrm{e}}-0.001953\,\mathrm{ln}^3E_{\overline{\nu}_\mathrm{e}}.`}</MathJax>{" "}
             The percent differences at selected energies between the precise cross section and the parameterized estimate are show in the plot below. Based on these differences
             the use of the parameterized cross section conservatively contributes an uncertainty of{" "}
-            <Node inline>{String.raw`1 \%`}</Node>{" "} to the calculated pIBD reaction rates.
+            <MathJax inline>{String.raw`1 \%`}</MathJax>{" "} to the calculated pIBD reaction rates.
         </p>
         <p>
           The optional version of the pIBD cross section is from 
           P. Vogel and J. F. Beacom (1999), <i>Angular distribution of inverse neutron decay, ν̅<sub>𝑒</sub> + 𝑝 ⭢ 𝑒<sup>+</sup> + 𝑛</i>, Phys. Rev. D 60, 053003.
           This version, which tends to over-predict the cross section at high energy, is
-        <Node>{String.raw`
-            \sigma^\mathrm{pIBD}(E_\mathrm{e}) = (9.52 \times10^{-44} \mathrm{cm}^2 \mathrm{MeV}^{-2} )p_\mathrm{e} E_\mathrm{e}.`}</Node>{" "}
+        <MathJax>{String.raw`
+            \sigma^\mathrm{pIBD}(E_\mathrm{e}) = (9.52 \times10^{-44} \mathrm{cm}^2 \mathrm{MeV}^{-2} )p_\mathrm{e} E_\mathrm{e}.`}</MathJax>{" "}
         </p>
         <p>
           The neutrino-electon elastic scattering (eES) cross section is from
           M. Fukugita and T. Yanagida, <i>Physics of Neutrinos</i> (Springer-Verlag, Berlin Heidelberg, 2003). {" "}
-        <Node>{String.raw`
+        <MathJax>{String.raw`
           \begin{split}
           \sigma_{T_\mathrm{min} \le T \le T_\mathrm{max}}^\mathrm{eES}(E_{\nu}) = \frac{G_F^2m_\mathrm{e}E_\nu}{2\pi} \\
           \bigg[\Big(c_\mathrm{L}^2 y_{\mathrm{max}} + c_\mathrm{R}^2\frac{1}{3}\big(1-(1- y_{\mathrm{max}})^3\big) - c_\mathrm{L}c_\mathrm{R}\frac{m_\mathrm{e}}{2E_\nu}y_{\mathrm{max}}^2\Big) - \\
           \Big(c_\mathrm{L}^2 y_{\mathrm{min}} + c_\mathrm{R}^2\frac{1}{3}\big(1-(1- y_{\mathrm{min}})^3\big) - c_\mathrm{L}c_\mathrm{R}\frac{m_\mathrm{e}}{2E_\nu}y_{\mathrm{min}}^2\Big)\bigg],
           \end{split}
-        `}</Node>{" "}
+        `}</MathJax>{" "}
           where{" "}
-          <Node inline>{String.raw`y_{\mathrm{max}}=T_\mathrm{max}/E_\nu,`}</Node>{" "} 
-          <Node inline>{String.raw`y_\mathrm{min} = T_\mathrm{min}/E_\nu,`}</Node>{" "}
+          <MathJax inline>{String.raw`y_{\mathrm{max}}=T_\mathrm{max}/E_\nu,`}</MathJax>{" "} 
+          <MathJax inline>{String.raw`y_\mathrm{min} = T_\mathrm{min}/E_\nu,`}</MathJax>{" "}
           and the coefficients{" "}
-          <Node inline>{String.raw`c_\mathrm{L},`}</Node>{" "}
-          <Node inline>{String.raw`c_\mathrm{R},`}</Node>{" "}
+          <MathJax inline>{String.raw`c_\mathrm{L},`}</MathJax>{" "}
+          <MathJax inline>{String.raw`c_\mathrm{R},`}</MathJax>{" "}
           are functions of the vector and axial vector coupling factors{" "}
-          <Node inline>{String.raw`c_V`}</Node>{" "} 
+          <MathJax inline>{String.raw`c_V`}</MathJax>{" "} 
           and{" "}
-          <Node inline>{String.raw`c_A,`}</Node>{" "}
+          <MathJax inline>{String.raw`c_A,`}</MathJax>{" "}
           respectively. Specifically,{" "}
-          <Node inline>{String.raw`c_\mathrm{L} = c_V + c_A`}</Node>{" "}
+          <MathJax inline>{String.raw`c_\mathrm{L} = c_V + c_A`}</MathJax>{" "}
           and{" "}
-          <Node inline>{String.raw`c_\mathrm{R} = c_V - c_A.`}</Node>{" "}
+          <MathJax inline>{String.raw`c_\mathrm{R} = c_V - c_A.`}</MathJax>{" "}
           Radiative corrections are currently ignored.
         </p>
         <p>
           The eES cross section equation given above applies to any two-body elastic scattering process. 
           For neutrino-proton elastic scattering pES simply replace the electron rest mass{" "}
-          <Node inline>{String.raw`m_\mathrm{e}`}</Node>{" "} 
+          <MathJax inline>{String.raw`m_\mathrm{e}`}</MathJax>{" "} 
           with the proton rest mass{" "}
-          <Node inline>{String.raw`m_\mathrm{p}`}</Node>{" "} 
+          <MathJax inline>{String.raw`m_\mathrm{p}`}</MathJax>{" "} 
           to account for the heavier target and use the vector and axial vector coupling factors given for pES in the table below. 
           The pES reaction is an important detection channel for supernova burst neutrinos (see the SnNu tab).
         </p>

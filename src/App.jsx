@@ -1,12 +1,12 @@
 import React, { useState, useMemo, useReducer } from "react";
-import {Provider as MathJaxProvider} from "@nteract/mathjax"
+import { MathJaxContext } from "better-react-mathjax";
 
 import { project } from "ecef-projector";
 import { Container, Row, Col, Tab, Tabs } from "react-bootstrap";
 
 import {
   // Left pane
-  NuMap,
+  // NuMap,
 
   // Right Pane
   NuSpectrumPlot,
@@ -107,6 +107,22 @@ import iconRetinaUrl from "leaflet/dist/images/marker-icon-2x.png";
 import shadowUrl from "leaflet/dist/images/marker-shadow.png";
 
 delete L.Icon.Default.prototype._getIconUrl;
+
+const mathJaxConfig = {
+  loader: { load: ["[tex]/html"] },
+  tex: {
+    packages: { "[+]": ["html"] },
+    inlineMath: [
+      ["$", "$"],
+      ["\\(", "\\)"]
+    ],
+    displayMath: [
+      ["$$", "$$"],
+      ["\\[", "\\]"]
+    ]
+  }
+};
+
 
 L.Icon.Default.mergeOptions({
   iconRetinaUrl: iconRetinaUrl,
@@ -218,18 +234,20 @@ function App(props) {
   };
   return (
     <PhysicsContext.Provider value={physicsContextValue}>
-      <MathJaxProvider>
+      <MathJaxContext config={mathJaxConfig}>
       <Container fluid={true}>
         <Row style={{ minHeight: "100vh" }}>
           <Col style={{ minHeight: "50vh" }}>
-            <NuMap
-              cores={defaultCores}
-              customCores={customCores}
-              detectorList={presets}
-              detector={detector}
-              setDetector={setDetector}
-              setCore={addCustomModelWithLoc}
-            />
+            {
+//            <NuMap
+//              cores={defaultCores}
+//              customCores={customCores}
+//              detectorList={presets}
+//              detector={detector}
+//              setDetector={setDetector}
+//              setCore={addCustomModelWithLoc}
+//            />
+}
           </Col>
           <Col lg={6} style={{ maxHeight: "100vh", overflow: "scroll" }}>
             <NuSpectrumPlot
@@ -381,7 +399,7 @@ function App(props) {
           </Col>
         </Row>
       </Container>
-      </MathJaxProvider>
+      </MathJaxContext>
     </PhysicsContext.Provider>
   );
 }

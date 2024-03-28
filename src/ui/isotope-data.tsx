@@ -29,7 +29,7 @@ import {Elements} from './elements'
 
 import { Card, Table } from 'react-bootstrap';
 import { Num } from '.';
-import { Node } from "@nteract/mathjax";
+import { MathJax } from "better-react-mathjax";
 
 const {K40, Th232, U235, U238, Ar40, Ca40, Pb206, Pb207, Pb208} = Elements
 
@@ -247,40 +247,39 @@ export const IsotopeData = () => {
           <p>
             The neutrino luminosity and decay heat for each nuclide are calculated using the tabulated constants. 
             The neutrino luminosity is given by {" "} 
-            <Node>{String.raw`
-               l = \frac {\mathrm{ln}(2)} {t_{1/2}} \frac {n_\nu} {M_A},`}</Node>{" "}
-            where <Node inline>{String.raw`t_{1/2}`}</Node>{" "} 
-            is the half life, <Node inline>{String.raw`n_\nu`}</Node>{" "}
-            is the number of neutrinos, and <Node inline>{String.raw`M_A`}</Node>{" "}
+            <MathJax>{String.raw`$$l = \frac {\mathrm{ln}(2)} {t_{1/2}} \frac {n_\nu} {M_A},$$`}</MathJax>{" "}
+            where <MathJax inline>{String.raw`$t_{1/2}$`}</MathJax>{" "} 
+            is the half life, <MathJax inline>{String.raw`$n_\nu$`}</MathJax>{" "}
+            is the number of neutrinos, and <MathJax inline>{String.raw`$M_A$`}</MathJax>{" "}
             is the atomic mass. The decay heating is given by {" "}
-            <Node>{String.raw`
-               h = \frac {\mathrm{ln}(2)} {t_{1/2}} \frac {Q_h} {M_A},`}</Node>{" "}
-            where <Node inline>{String.raw`Q_h = Q_\mathrm{dk} - \langle Q_\nu \rangle`}</Node>{" "} 
-            with <Node inline>{String.raw`Q_\mathrm{dk}`}</Node>{" "}
-            the decay energy and <Node inline>{String.raw`\langle Q_\nu \rangle`}</Node>{" "}
+            <MathJax>{String.raw`$$
+               h = \frac {\mathrm{ln}(2)} {t_{1/2}} \frac {Q_h} {M_A},$$`}</MathJax>{" "}
+            where <MathJax inline>{String.raw`$Q_h = Q_\mathrm{dk} - \langle Q_\nu \rangle$`}</MathJax>{" "} 
+            with <MathJax inline>{String.raw`$Q_\mathrm{dk}$`}</MathJax>{" "}
+            the decay energy and <MathJax inline>{String.raw`$\langle Q_\nu \rangle$`}</MathJax>{" "}
             the average neutrino energy. The average neutrino energy depends on the decay 
-            spectrum <Node inline>{String.raw`dn(E_{\overline{\nu}_\mathrm{e}}) \text{.}`}</Node>{" "}
+            spectrum <MathJax inline>{String.raw`$dn(E_{\overline{\nu}_\mathrm{e}}) \text{.}$`}</MathJax>{" "}
             Specifically
-            <Node>{String.raw`
+            <MathJax>{String.raw`$$
             \langle Q_\nu \rangle = \frac {\int E_{\overline{\nu}_\mathrm{e}} \big(dn(E_{\overline{\nu}_\mathrm{e}}) 
-            / dE \big) \, dE} {\int \big(dn(E_{\overline{\nu}_\mathrm{e}}) / dE \big)\, dE} \text{.}`}</Node>
+            / dE \big) \, dE} {\int \big(dn(E_{\overline{\nu}_\mathrm{e}}) / dE \big)\, dE} \text{.}$$`}</MathJax>
             Calculation of the decay energy uses established values 
-            for the electron and alpha particle masses, <Node inline>{String.raw`m_\mathrm{e}`}</Node>{" "} 
-            and <Node inline>{String.raw`m_\alpha,`}</Node>{" "} respectively, 
-            along with the tabulated number of alpha paticls <Node inline>{String.raw`N_\alpha`}</Node>{" "}
-            as well as the parent and daughter atomic masses <Node inline>{String.raw`M_A`}</Node>{" "}
-            and <Node inline>{String.raw`M_{A'},`}</Node>{" "} respectively, according to
-            <Node>{String.raw`
-               Q_\mathrm{dk} = M_A - M_{A'} - N_\alpha(m_\alpha + 2m_\mathrm{e}) \text{.}`}</Node>
+            for the electron and alpha particle masses, <MathJax inline>{String.raw`$m_\mathrm{e}$`}</MathJax>{" "} 
+            and <MathJax inline>{String.raw`$m_\alpha,$`}</MathJax>{" "} respectively, 
+            along with the tabulated number of alpha paticls <MathJax inline>{String.raw`$N_\alpha$`}</MathJax>{" "}
+            as well as the parent and daughter atomic masses <MathJax inline>{String.raw`$M_A$`}</MathJax>{" "}
+            and <MathJax inline>{String.raw`$M_{A'},$`}</MathJax>{" "} respectively, according to
+            <MathJax>{String.raw`
+               $$Q_\mathrm{dk} = M_A - M_{A'} - N_\alpha(m_\alpha + 2m_\mathrm{e}) \text{.}$$`}</MathJax>
           </p>
           <p>The radiogenic heating in the mantle from a nuclide with uniform concentration is given by {" "}
-          <Node>{String.raw`
-            H = \frac{\Phi M_m}{G_m} \frac{h}{l},`}</Node>{" "}
-          where <Node inline>{String.raw`\Phi`}</Node>{" "}
-          is the flux, <Node inline>{String.raw`M_m`}</Node>{" "}
-          is the mantle mass, <Node inline>{String.raw`G_m`}</Node>{" "}
-          is the mantle geophysical response, <Node inline>{String.raw`h`}</Node>{" "}
-          is the decay heating, and <Node inline>{String.raw`l`}</Node>{" "}
+          <MathJax>{String.raw`
+            $$H = \frac{\Phi M_m}{G_m} \frac{h}{l},$$`}</MathJax>{" "}
+          where <MathJax inline>{String.raw`$\Phi$`}</MathJax>{" "}
+          is the flux, <MathJax inline>{String.raw`$M_m$`}</MathJax>{" "}
+          is the mantle mass, <MathJax inline>{String.raw`$G_m$`}</MathJax>{" "}
+          is the mantle geophysical response, <MathJax inline>{String.raw`$h$`}</MathJax>{" "}
+          is the decay heating, and <MathJax inline>{String.raw`$l$`}</MathJax>{" "}
           is the neutrino luminosity. 
           </p>
       </Card.Body>
