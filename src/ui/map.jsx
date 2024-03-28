@@ -7,6 +7,8 @@ import {
   LayersControl,
   Marker,
   AttributionControl,
+  MapContainer,
+  useMapEvent,
 } from "react-leaflet";
 import "leaflet-contextmenu";
 
@@ -123,6 +125,23 @@ const lngRange = (lng) => {
     return lng
 }
 
+const MouseMove = ({detector, setDetector}) => {
+  const _ = useMapEvent("mousemove", (event) => {
+    if (detector.current !== 'follow') {
+      return null;
+    }
+    let { lat, lng } = event.latlng;
+    lat = parseFloat(lat.toFixed(6))
+    lng = parseFloat(lngRange(lng).toFixed(6))
+    setDetector({ ...detector, lat: lat, lon: lng })
+  })
+}
+const ZoomManager = ({zoom, setZoom}) => {
+  const _ = useMapEvent("zoom", (event) => {
+    setZoom(event.target._zoom)
+  })
+}
+
 export function NuMap({
   detector,
   setDetector,
@@ -132,15 +151,6 @@ export function NuMap({
   detectorList,
 }) {
   const [zoom, setZoom] = useState(2)
-  const mapMouseMove = (event) => {
-    if (detector.current !== 'follow') {
-      return null;
-    }
-    let { lat, lng } = event.latlng;
-    lat = parseFloat(lat.toFixed(6))
-    lng = parseFloat(lngRange(lng).toFixed(6))
-    setDetector({ ...detector, lat: lat, lon: lng })
-  }
   const mapStyle = {
     height: "100%",
     cursor: "crosshair",
@@ -179,8 +189,7 @@ export function NuMap({
     ],
   };
   return (
-    <Map
-      onMousemove={mapMouseMove}
+    <MapContainer
       style={mapStyle}
       center={[0, 0]}
       maxBounds={[[-90, -200],[90,200]]}
@@ -189,14 +198,15 @@ export function NuMap({
       minZoom={1}
       maxZoom={19}
       {...contextMenu}
-      onZoom={(e) => setZoom(e.target._zoom)}
       attributionControl={false}
     >
+      <MouseMove detector={detector} setDetector={setDetector}/>
+      <ZoomManager zoom={zoom} setZoom={setZoom} />
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
       />
-
+      
       <Marker position={{ lat: detector.lat, lng: detector.lon }} />
 
       <LayersControl position="topright">
@@ -221,6 +231,6 @@ export function NuMap({
         </LayersControl.Overlay>
       </LayersControl>
       <AttributionControl position="bottomright" prefix="<a href='https://leafletjs.com/'>Leaflet</a>" />
-    </Map>
+    </MapContainer>
   );
 }

@@ -6,7 +6,7 @@ import { Container, Row, Col, Tab, Tabs } from "react-bootstrap";
 
 import {
   // Left pane
-  // NuMap,
+  NuMap,
 
   // Right Pane
   NuSpectrumPlot,
@@ -239,14 +239,14 @@ function App(props) {
         <Row style={{ minHeight: "100vh" }}>
           <Col style={{ minHeight: "50vh" }}>
             {
-//            <NuMap
-//              cores={defaultCores}
-//              customCores={customCores}
-//              detectorList={presets}
-//              detector={detector}
-//              setDetector={setDetector}
-//              setCore={addCustomModelWithLoc}
-//            />
+            <NuMap
+              cores={defaultCores}
+              customCores={customCores}
+              detectorList={presets}
+              detector={detector}
+              setDetector={setDetector}
+              setCore={addCustomModelWithLoc}
+            />
 }
           </Col>
           <Col lg={6} style={{ maxHeight: "100vh", overflow: "scroll" }}>
