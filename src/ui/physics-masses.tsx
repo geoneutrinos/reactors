@@ -40,12 +40,12 @@ export const ParticleMasses = () => {
           </Table>
           <div> 
             <p> Electron antineutrinos with energy greater than the threshold energy
-            <MathJax>{String.raw`E_\mathrm{thr} = \frac{(m_\mathrm{n}+m_\mathrm{e})^2 - m_\mathrm{p}^2} {2m_\mathrm{p}},`}</MathJax> where {" "}
-            <MathJax inline>{String.raw`m_\mathrm{n},`}</MathJax> {" "}
-            <MathJax inline>{String.raw`m_\mathrm{p},`}</MathJax> and {" "}
-            <MathJax inline>{String.raw`m_\mathrm{e},`}</MathJax> are the rest masses
+            <MathJax>{String.raw`$$E_\mathrm{thr} = \frac{(m_\mathrm{n}+m_\mathrm{e})^2 - m_\mathrm{p}^2} {2m_\mathrm{p}},$$`}</MathJax> where {" "}
+            <MathJax inline>{String.raw`$m_\mathrm{n},$`}</MathJax> {" "}
+            <MathJax inline>{String.raw`$m_\mathrm{p},$`}</MathJax> and {" "}
+            <MathJax inline>{String.raw`$m_\mathrm{e},$`}</MathJax> are the rest masses
             of the neutron, proton, and electron, respectively, initiate free proton inverse beta decay (pIBD - {" "}
-            <MathJax inline>{String.raw`\overline{\nu}_\mathrm{e} + \mathrm{p} \rightarrow \mathrm{n} + \mathrm{e}^+`}</MathJax> {" "}
+            <MathJax inline>{String.raw`$\overline{\nu}_\mathrm{e} + \mathrm{p} \rightarrow \mathrm{n} + \mathrm{e}^+$`}</MathJax> {" "}
             ).
             </p>
           </div>

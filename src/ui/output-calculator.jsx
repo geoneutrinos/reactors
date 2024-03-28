@@ -850,29 +850,29 @@ export const CalculatorPanel = ({ cores, geo, active}) => {
             <br />
             <b> Significance Calculations</b><br />
             <p> The optional significance statistics are expressed in terms of{" "}
-            <MathJax inline>{String.raw`\xi`}</MathJax> the detector exposure,{" "}
-            <MathJax inline>{String.raw`s\; (= S / \xi)`}</MathJax> the signal rate,{" "}
-            <MathJax inline>{String.raw`b\; (= B / \xi)`}</MathJax> the background rate, and{" "}
-            <MathJax inline>{String.raw`\delta b`}</MathJax> the systematic uncertainty of the background rate. 
+            <MathJax inline>{String.raw`$\xi$`}</MathJax> the detector exposure,{" "}
+            <MathJax inline>{String.raw`$s\; (= S / \xi)$`}</MathJax> the signal rate,{" "}
+            <MathJax inline>{String.raw`$b\; (= B / \xi)$`}</MathJax> the background rate, and{" "}
+            <MathJax inline>{String.raw`$\delta b$`}</MathJax> the systematic uncertainty of the background rate. 
             Reactor antineutrinos and geoneutrinos have systematic uncertainties that depend on the selected input data.
             The nuisance background has a fixed fractional uncertainty of 0.5 and a flat energy spectrum.
             </p>
             <br /> 
             <i> Null Hypothesis- H<sub>0</sub></i><br />
-            <MathJax>{String.raw`N_{\sigma} = \frac{ s * \xi }{\sqrt{b * \xi + (\delta b * \xi )^2}}`}</MathJax>{" "}
+            <MathJax>{String.raw`$$N_{\sigma} = \frac{ s * \xi }{\sqrt{b * \xi + (\delta b * \xi )^2}}$$`}</MathJax>{" "}
             <br />
             <i> Alternative Hypothesis- H<sub>1</sub></i><br />  
-            <MathJax>{String.raw`N_{\sigma} = \frac{ s * \xi }{\sqrt{(s + b) * \xi + (\delta b * \xi )^2}}`}</MathJax>{" "}
+            <MathJax>{String.raw`$$N_{\sigma} = \frac{ s * \xi }{\sqrt{(s + b) * \xi + (\delta b * \xi )^2}}$$`}</MathJax>{" "}
             <br />
             <b> pIBD Detection Efficiency</b><br />
             <p> When expressed as a function of antineutrino energy <i>E</i>, the detection efficiency is
             valid for pIBD only. Here it is approximated by a sigmoid curve{" "}
-            <MathJax>{String.raw`\varepsilon (E) = \frac {\varepsilon_\mathrm{max}} {1 + \exp\big(-\rho * (E - E_\mathrm{HM})\big)},`}</MathJax>{" "}
-            where <MathJax inline>{String.raw`\varepsilon_\mathrm{max}`}</MathJax> is the asymptote at infinite energy 
+            <MathJax>{String.raw`$$\varepsilon (E) = \frac {\varepsilon_\mathrm{max}} {1 + \exp\big(-\rho * (E - E_\mathrm{HM})\big)},$$`}</MathJax>{" "}
+            where <MathJax inline>{String.raw`$\varepsilon_\mathrm{max}$`}</MathJax> is the asymptote at infinite energy 
             (maximum detection efficiency),{" "}
-            <MathJax inline>{String.raw`E_\mathrm{HM}`}</MathJax> is the inflection point energy 
+            <MathJax inline>{String.raw`$E_\mathrm{HM}$`}</MathJax> is the inflection point energy 
             (energy at one-half of the maximum efficiency), and{" "}
-            <MathJax inline>{String.raw`\rho`}</MathJax> is the slope 
+            <MathJax inline>{String.raw`$\rho$`}</MathJax> is the slope 
             (efficiency ramp-up rate).
             Conversion of the detection efficiency from a function of antineutrino energy to a function of scattered charged particle kinetic energy is a planned upgrade.
             </p>
