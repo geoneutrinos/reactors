@@ -245,42 +245,46 @@ export const IsotopeData = () => {
               &nbsp;&nbsp; {U238}: E. Browne and J.K. Tuli, Nuclear Data Sheets A=238 127 (2015)<br />
           </small></p>
           <p>
-            The neutrino luminosity and decay heat for each nuclide are calculated using the tabulated constants. 
-            The neutrino luminosity is given by {" "} 
-            <MathJax>{String.raw`$$l = \frac {\mathrm{ln}(2)} {t_{1/2}} \frac {n_\nu} {M_A},$$`}</MathJax>{" "}
-            where <MathJax inline>{String.raw`$t_{1/2}$`}</MathJax>{" "} 
-            is the half life, <MathJax inline>{String.raw`$n_\nu$`}</MathJax>{" "}
-            is the number of neutrinos, and <MathJax inline>{String.raw`$M_A$`}</MathJax>{" "}
-            is the atomic mass. The decay heating is given by {" "}
-            <MathJax>{String.raw`$$
-               h = \frac {\mathrm{ln}(2)} {t_{1/2}} \frac {Q_h} {M_A},$$`}</MathJax>{" "}
-            where <MathJax inline>{String.raw`$Q_h = Q_\mathrm{dk} - \langle Q_\nu \rangle$`}</MathJax>{" "} 
-            with <MathJax inline>{String.raw`$Q_\mathrm{dk}$`}</MathJax>{" "}
-            the decay energy and <MathJax inline>{String.raw`$\langle Q_\nu \rangle$`}</MathJax>{" "}
-            the average neutrino energy. The average neutrino energy depends on the decay 
-            spectrum <MathJax inline>{String.raw`$dn(E_{\overline{\nu}_\mathrm{e}}) \text{.}$`}</MathJax>{" "}
-            Specifically
-            <MathJax>{String.raw`$$
-            \langle Q_\nu \rangle = \frac {\int E_{\overline{\nu}_\mathrm{e}} \big(dn(E_{\overline{\nu}_\mathrm{e}}) 
-            / dE \big) \, dE} {\int \big(dn(E_{\overline{\nu}_\mathrm{e}}) / dE \big)\, dE} \text{.}$$`}</MathJax>
-            Calculation of the decay energy uses established values 
-            for the electron and alpha particle masses, <MathJax inline>{String.raw`$m_\mathrm{e}$`}</MathJax>{" "} 
-            and <MathJax inline>{String.raw`$m_\alpha,$`}</MathJax>{" "} respectively, 
-            along with the tabulated number of alpha paticls <MathJax inline>{String.raw`$N_\alpha$`}</MathJax>{" "}
-            as well as the parent and daughter atomic masses <MathJax inline>{String.raw`$M_A$`}</MathJax>{" "}
-            and <MathJax inline>{String.raw`$M_{A'},$`}</MathJax>{" "} respectively, according to
             <MathJax>{String.raw`
-               $$Q_\mathrm{dk} = M_A - M_{A'} - N_\alpha(m_\alpha + 2m_\mathrm{e}) \text{.}$$`}</MathJax>
+            The neutrino luminosity and decay heat for each nuclide are calculated using the tabulated constants. 
+            The neutrino luminosity is given by 
+            $$
+              l = \frac {\mathrm{ln}(2)} {t_{1/2}} \frac {n_\nu} {M_A},
+            $$
+            where $t_{1/2}$ is the half life, $n_\nu$ is the number of neutrinos, and $M_A$ is the atomic mass.
+            The decay heating is given by 
+            $$
+               h = \frac {\mathrm{ln}(2)} {t_{1/2}} \frac {Q_h} {M_A},
+            $$
+            wherex $Q_h = Q_\mathrm{dk} - \langle Q_\nu \rangle$ with $Q_\mathrm{dk}$ the decay energy and $\langle Q_\nu \rangle$ the average neutrino energy.
+            The average neutrino energy depends on the decay 
+            spectrum $dn(E_{\overline{\nu}_\mathrm{e}}) \text{.}$
+            Specifically
+            $$
+            \langle Q_\nu \rangle = \frac {\int E_{\overline{\nu}_\mathrm{e}} \big(dn(E_{\overline{\nu}_\mathrm{e}}) 
+            / dE \big) \, dE} {\int \big(dn(E_{\overline{\nu}_\mathrm{e}}) / dE \big)\, dE} \text{.}
+            $$
+            Calculation of the decay energy uses established values for the electron and alpha particle masses, $m_\mathrm{e}$ and $m_\alpha,$ respectively, 
+            along with the tabulated number of alpha paticls $N_\alpha$
+            as well as the parent and daughter atomic masses $M_A$
+            and $M_{A'},$ respectively, according to
+            
+               $$Q_\mathrm{dk} = M_A - M_{A'} - N_\alpha(m_\alpha + 2m_\mathrm{e}) \text{.}$$
+               `}</MathJax>
           </p>
-          <p>The radiogenic heating in the mantle from a nuclide with uniform concentration is given by {" "}
-          <MathJax>{String.raw`
-            $$H = \frac{\Phi M_m}{G_m} \frac{h}{l},$$`}</MathJax>{" "}
-          where <MathJax inline>{String.raw`$\Phi$`}</MathJax>{" "}
-          is the flux, <MathJax inline>{String.raw`$M_m$`}</MathJax>{" "}
-          is the mantle mass, <MathJax inline>{String.raw`$G_m$`}</MathJax>{" "}
-          is the mantle geophysical response, <MathJax inline>{String.raw`$h$`}</MathJax>{" "}
-          is the decay heating, and <MathJax inline>{String.raw`$l$`}</MathJax>{" "}
+          <p>
+            <MathJax>{String.raw`
+            The radiogenic heating in the mantle from a nuclide with uniform concentration is given by
+            $$
+              H = \frac{\Phi M_m}{G_m} \frac{h}{l},
+            $$
+          where $\Phi$
+          is the flux, $M_m$
+          is the mantle mass, $G_m$
+          is the mantle geophysical response, $h$
+          is the decay heating, and $l$
           is the neutrino luminosity. 
+          `}</MathJax>
           </p>
       </Card.Body>
     </Card>
