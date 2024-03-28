@@ -1,5 +1,3 @@
-import { removeEmitHelper } from "typescript"
-
 // I think it's easier just to include the data here since it has basically been fixed since 1981
 const PREM = [
 [0.0,13.0885,0.0,-8.8381,0.0],
