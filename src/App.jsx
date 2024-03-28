@@ -96,7 +96,6 @@ import { reactorAntineutrinoModelReducer } from "./physics/reactor-antineutrinos
 import { defaultBoron8 } from "./solar";
 
 import { PhysicsContext } from "./state";
-import "./mantle/PREM";
 
 
 import "leaflet/dist/leaflet.css";
