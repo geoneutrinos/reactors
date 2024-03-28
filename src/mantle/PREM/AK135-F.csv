@@ -1,4 +1,12 @@
-Depth (km),Radius (km),Density (g/cm3)
+// AK135-F is a 1D radial density earth model
+// https://ds.iris.edu/spud/earthmodel/1568955
+// data published without middle radius column
+// calculate volume of each layer, starting at second row of data
+// e.g. volume = 4/3 * pi * ((row 1 radius)^3 - (row 2 radius)^3)
+// calculate mass of each layer, starting at second row
+// mass = volume * average density
+// e.g. average density = (row 1 density + row 2 density) / 2
+// Depth (km),Radius (km),Density (g/cm3)
 0.00,6371.00,1.0200
 3.00,6368.00,1.0200
 3.00,6368.00,2.0000
