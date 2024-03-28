@@ -3,7 +3,7 @@ import { Card, Form, InputGroup, Table } from "react-bootstrap";
 
 import { Num } from ".";
 
-import { Node } from "@nteract/mathjax";
+import { MathJax } from "better-react-mathjax";
 
 import {
   CEvNSEventsElemental,
@@ -472,34 +472,34 @@ const SupernovaNusPane = () => {
           <div>
             <p>
               The non-oscillated fluence spectrum of neutrinos of a given species{" "}
-              <Node
+              <MathJax
                 inline
-              >{String.raw`(\nu_\mathrm{e}, \overline{\nu}_\mathrm{e}, \nu_x)`}</Node>{" "}
+              >{String.raw`$(\nu_\mathrm{e}, \overline{\nu}_\mathrm{e}, \nu_x)$`}</MathJax>{" "}
               arriving at Earth from a core-collapse supernova is estimated by (M.T. Keil, G.G. Raffelt, and H.T. Janka (2003), <i>Monte Carlo Study of Supernova Neutrino Spectra Formation</i>, Astrophys. J. 590, 971){" "}
-              <Node>{String.raw`
-                \Phi^0_{\nu_{\alpha}}(E)=\frac1{4 \pi D^2} \frac{E_{\nu_{\alpha}}^\mathrm{tot}}{\langle E_{\nu_\alpha} \rangle^2} \frac{\beta^\beta}{\Gamma(\beta)}\bigg[\frac{E}{\langle E_{\nu_\alpha} \rangle}\bigg]^{\beta-1} \mathrm{exp}\bigg[-\beta \frac{E}{\langle E_{\nu_\alpha} \rangle}\bigg]
-                ,`}</Node>{" "}
-              where <Node inline>{String.raw`D`}</Node> is the distance to the
+              <MathJax>{String.raw`
+                $$\Phi^0_{\nu_{\alpha}}(E)=\frac1{4 \pi D^2} \frac{E_{\nu_{\alpha}}^\mathrm{tot}}{\langle E_{\nu_\alpha} \rangle^2} \frac{\beta^\beta}{\Gamma(\beta)}\bigg[\frac{E}{\langle E_{\nu_\alpha} \rangle}\bigg]^{\beta-1} \mathrm{exp}\bigg[-\beta \frac{E}{\langle E_{\nu_\alpha} \rangle}\bigg]
+                ,$$`}</MathJax>{" "}
+              where <MathJax inline>{"$D$"}</MathJax> is the distance to the
               SN,{" "}
-              <Node inline>{String.raw`E_{\nu_{\alpha}}^\mathrm{tot}`}</Node> is
+              <MathJax inline>{String.raw`$E_{\nu_{\alpha}}^\mathrm{tot}$`}</MathJax> is
               the total energy of the neutrino species,{" "}
-              <Node inline>{String.raw`\langle E_{\nu_\alpha} \rangle`}</Node>{" "}
+              <MathJax inline>{String.raw`$\langle E_{\nu_\alpha} \rangle$`}</MathJax>{" "}
               is the average energy of the neutrino species,{" "}
-              <Node inline>{String.raw`\beta`}</Node> is a spectrum shape
-              parameter, and <Node inline>{String.raw`\Gamma`}</Node> is the
+              <MathJax inline>{String.raw`$\beta$`}</MathJax> is a spectrum shape
+              parameter, and <MathJax inline>{String.raw`$\Gamma$`}</MathJax> is the
               gamma function.
             </p>
             <p>
-              While distance <Node inline>{String.raw`D = 10`}</Node>{" "}
+              While distance <MathJax inline>{String.raw`D = 10`}</MathJax>{" "}
               kpc is fixed, the default values for{" "}
-              <Node 
+              <MathJax 
                 inline
-              >{String.raw`\beta`}</Node>,{" "} 
-              <Node
+              >{String.raw`$\beta$`}</MathJax>,{" "} 
+              <MathJax
                 inline
-              >{String.raw`E_{\nu_{\alpha}}^\mathrm{tot}`}</Node>,{" "}
+              >{String.raw`$E_{\nu_{\alpha}}^\mathrm{tot}$`}</MathJax>,{" "}
               and{" "}
-              <Node inline>{String.raw`\langle E_{\nu_{\alpha}} \rangle`}</Node>,{" "}
+              <MathJax inline>{String.raw`$\langle E_{\nu_{\alpha}} \rangle$`}</MathJax>,{" "}
               are user-settable for exploring signals from different models.
             </p>
             <p>
@@ -507,23 +507,23 @@ const SupernovaNusPane = () => {
               <i>Identifying the neutrino mass spectrum from a supernova neutrino burst</i>, Phys. Rev. D 62, 033007). 
               <br />
               For normal ordering (NO) with{" "}
-              <Node inline>{String.raw`m_3 > m_2 > m_1`}</Node>{" "}
-              <Node>{String.raw`\begin{aligned}
+              <MathJax inline>{"$m_3 > m_2 > m_1$"}</MathJax>{" "}
+              <MathJax>{String.raw`$$\begin{aligned}
                 & \Phi_{\nu_{\mathrm{e}}} = \Phi^0_{\nu_{e}}\sin^2\theta_{13} + \Phi^0_{\nu_{x}}(1-\sin^2\theta_{13})\\
                 & \Phi_{\overline{\nu}_{\mathrm{e}}} = \Phi^0_{\overline{\nu}_{\mathrm{e}}}\cos^2\theta_{12}\cos^2\theta_{13} + \Phi^0_{\nu_{x}}(1-\cos^2\theta_{12}\cos^2\theta_{13}) \\
                 & \Phi_{\nu_{x}} = \frac1{2}\big(\Phi^0_{\nu_{\mathrm{e}}}(1-\sin^2\theta_{13}) + \Phi^0_{\nu_{x}}(1+\sin^2\theta_{13}) \big) \\
                 & \Phi_{\overline{\nu}_{x}} = \frac1{2}\big(\Phi^0_{\overline{\nu}_{\mathrm{e}}}(1-\cos^2\theta_{12}\cos^2\theta_{13}) + \Phi^0_{\nu_{x}}(1+\cos^2\theta_{12}\cos^2\theta_{13})\big)
-                \end{aligned}`}</Node>
+                \end{aligned}$$`}</MathJax>
             </p>
             <p>
               For inverted ordering (IO) with{" "}
-              <Node inline>{String.raw`m_2 > m_1 > m_3`}</Node>{" "}
-              <Node>{String.raw`\begin{aligned}
+              <MathJax inline>{"$m_2 > m_1 > m_3$"}</MathJax>{" "}
+              <MathJax>{String.raw`$$\begin{aligned}
                 & \Phi_{\nu_{\mathrm{e}}} = \Phi^0_{\nu_{e}}\sin^2\theta_{12}\cos^2\theta_{13} + \Phi^0_{\nu_{x}}(1-\sin^2\theta_{12}\cos^2\theta_{13})\\
                 & \Phi_{\overline{\nu}_{\mathrm{e}}} = \Phi^0_{\overline{\nu}_{\mathrm{e}}}\sin^2\theta_{13} + \Phi^0_{\nu_{x}}(1-\sin^2\theta_{13}) \\
                 & \Phi_{\nu_{x}} = \frac1{2}\big(\Phi^0_{\nu_{\mathrm{e}}}(1-\sin^2\theta_{12}\cos^2\theta_{13}) + \Phi^0_{\nu_{x}}(1+\sin^2\theta_{12}\cos^2\theta_{13}) \big) \\
                 & \Phi_{\overline{\nu}_{x}} = \frac1{2}\big(\Phi^0_{\overline{\nu}_{\mathrm{e}}}(1-\sin^2\theta_{13}) + \Phi^0_{\nu_{x}}(1+\sin^2\theta_{13})\big)
-                \end{aligned}`}</Node>
+                \end{aligned}$$`}</MathJax>
             </p>
             <p>
               The relatively high energy, large fluence, and short duration of the CCSN neutrinos allows consideration of 
