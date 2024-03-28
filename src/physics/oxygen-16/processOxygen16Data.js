@@ -1,8 +1,10 @@
-const lodash = require('lodash');
-const fs = require('fs')
-const path = require('path')
+import lodash from 'lodash';
+import fs from 'fs';
+import path from 'path';
 
 const {zip, unzip} = lodash;
+
+const __dirname = import.meta.dirname;
 
 const processOxygen16nuebar = () => {
     let extra = path.join(__dirname, "nuebarIBD_o16xsec.dat")

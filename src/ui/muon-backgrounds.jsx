@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Card, Form, InputGroup,Table } from "react-bootstrap";
 
 import Plot from "react-plotly.js";
-import { Provider } from "@nteract/mathjax";
 
 import { 
   depthValues,
@@ -86,7 +85,6 @@ const MuonsPane = () => {
     <Card>
       <Card.Header>Cosmic Ray Muons</Card.Header>
       <Card.Body>
-        <Provider>
           <div>
             <p>
               Parameterized depth spectra of the total cosmic-ray muon flux and the associated
@@ -97,7 +95,6 @@ const MuonsPane = () => {
               a function of the equivalent flat overburden. 
             </p>
           </div>
-        </Provider>
       </Card.Body>
     </Card>
   );

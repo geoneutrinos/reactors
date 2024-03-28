@@ -1,6 +1,11 @@
-const fs = require('fs')
-const path = require('path')
-const papaparse = require("papaparse")
+import lodash from 'lodash';
+import fs from 'fs';
+import path from 'path';
+import papaparse from 'papaparse'
+
+const {zip, unzip} = lodash;
+
+const __dirname = import.meta.dirname;
 
 const {parse} = papaparse
 
