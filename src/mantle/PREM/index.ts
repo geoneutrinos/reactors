@@ -183,9 +183,9 @@ export function polynomial(...coefficients:number[]) {
  */
 export function rho(r:number): number {
     // The layer we want will be the first layer with a boundry lower than our target when searched from the top
-    const [depth, ...coefs] = [...AK135F].reverse().find(((elm) => elm[0] < r))!
+    const [depth, ...coefs] = [...PREM].reverse().find(((elm) => elm[0] < r))!
     const poly = polynomial(...coefs)
-    return poly(r/6371)
+    return poly(r/maxRadius)
 }
 
 export function geoIntegrate(x: number): number {
