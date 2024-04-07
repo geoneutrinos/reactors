@@ -213,6 +213,10 @@ export function volumeRatio(x: number): number {
 }
 
 const layerMasses = bins.map(radius => rho(radius) * preFactor * ((radius + offset)**3 - (radius - offset)**3));
+const layerMassesAK135F = bins.map(radius => linearFit(radius) * preFactor * ((radius + offset)**3 - (radius - offset)**3));
+export const earthMassAK135F = layerMassesAK135F
+    .slice(1, 63710)
+    .reduce((Accumulator, CurrentValue) => Accumulator + CurrentValue);
 const innerCoreStartIndex = 1;
 const innerCoreEndIndex = 12215;
 export const innerCoreMass = layerMasses
