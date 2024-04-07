@@ -132,7 +132,7 @@ export const GeoDataPREM = () => {
                   <Num v={innerCoreGeophysicalResponse} p={4} func={(v) => v * 1e-3} />
                 </td>
               </tr>
-               <tr>
+              <tr>
                 <td>Outer Core</td>
                 <td>
                   1217.5 - 3479.5
@@ -144,7 +144,7 @@ export const GeoDataPREM = () => {
                    <Num v={outerCoreGeophysicalResponse} p={4} func={(v) => v * 1e-3} />
                 </td>
               </tr>
-               <tr>
+              <tr>
                 <td>Lower Mantle</td>
                 <td>
                   3479.5 - 5711.0
@@ -168,7 +168,7 @@ export const GeoDataPREM = () => {
                    <Num v={mantleGeophysicalResponse} p={4} func={(v) => v * 1e-3} />
                 </td>
               </tr>
-                <tr>
+              <tr>
                 <td>Lower Crust</td>
                 <td>
                   6353.0 - 6361.0
@@ -180,7 +180,7 @@ export const GeoDataPREM = () => {
                   <Num v={lowerCrustGeophysicalResponse} p={4} func={(v) => v * 1e-3} />
                 </td>
               </tr>
-               <tr>
+              <tr>
                 <td>Upper Crust</td>
                 <td>
                   6361.0 - 6367.7
@@ -192,6 +192,7 @@ export const GeoDataPREM = () => {
                   <Num v={upperCrustGeophysicalResponse} p={4} func={(v) => v * 1e-3} />
                 </td>
               </tr>
+              <tr>
                 <td>Sediment</td>
                 <td>
                   6367.7 - 6368.0
@@ -203,7 +204,7 @@ export const GeoDataPREM = () => {
                   <Num v={upperCrustGeophysicalResponse} p={4} func={(v) => v * 1e-3} />
                 </td>
               </tr>
-               <tr>
+              <tr>
                 <td>Ocean</td>
                  <td>
                   6368.0 - 6371.0
