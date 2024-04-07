@@ -187,6 +187,11 @@ export function rho(r:number): number {
     return poly(r/maxRadius)
 }
 
+export function linearFit(r:number): number {
+    const [radius,intercept,slope] = [...AK135F].reverse().find(((elm) => elm[0] < r))!
+    return intercept + slope * (r - radius) / maxRadius
+}
+
 export function geoIntegrate(x: number): number {
     const topPlus = 1 + (x+offset) / maxRadius
     const bottomPlus = 1 + (x-offset) / maxRadius
