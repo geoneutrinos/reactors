@@ -123,7 +123,7 @@ export const GeoDataPREM = () => {
               <tr>
                 <td>Inner Core</td>
                 <td>
-                  0.0 - 1221.5
+                  0.0 - 1217.5
                 </td>
                 <td>
                   <Num v={innerCoreMass} p={4} func={(v) => v * 1e-25} />
@@ -135,7 +135,7 @@ export const GeoDataPREM = () => {
                <tr>
                 <td>Outer Core</td>
                 <td>
-                  1221.5 - 3480.0
+                  1217.5 - 3479.5
                 </td>
                 <td>
                   <Num v={outerCoreMass} p={4} func={(v) => v * 1e-25} />
@@ -145,9 +145,21 @@ export const GeoDataPREM = () => {
                 </td>
               </tr>
                <tr>
-                <td>Mantle</td>
+                <td>Lower Mantle</td>
                 <td>
-                  3480.0 - 6346.6
+                  3479.5 - 5711.0
+                </td>
+                <td>
+                  <Num v={mantleMass} p={4} func={(v) => v * 1e-25} />
+                </td>
+                <td>
+                   <Num v={mantleGeophysicalResponse} p={4} func={(v) => v * 1e-3} />
+                </td>
+              </tr>
+              <tr>
+                <td>Upper Mantle</td>
+                <td>
+                  5711.0 - 6353.0
                 </td>
                 <td>
                   <Num v={mantleMass} p={4} func={(v) => v * 1e-25} />
@@ -159,7 +171,7 @@ export const GeoDataPREM = () => {
                 <tr>
                 <td>Lower Crust</td>
                 <td>
-                  6346.6 - 6356.0
+                  6353.0 - 6361.0
                 </td>
                 <td>
                   <Num v={lowerCrustMass} p={4} func={(v) => v * 1e-25} />
@@ -171,7 +183,18 @@ export const GeoDataPREM = () => {
                <tr>
                 <td>Upper Crust</td>
                 <td>
-                  6356.0 - 6368.0
+                  6361.0 - 6367.7
+                </td>
+                <td>
+                  <Num v={upperCrustMass} p={4} func={(v) => v * 1e-25} />
+                </td>
+                <td>
+                  <Num v={upperCrustGeophysicalResponse} p={4} func={(v) => v * 1e-3} />
+                </td>
+              </tr>
+                <td>Sediment</td>
+                <td>
+                  6367.7 - 6368.0
                 </td>
                 <td>
                   <Num v={upperCrustMass} p={4} func={(v) => v * 1e-25} />
@@ -196,8 +219,8 @@ export const GeoDataPREM = () => {
           </Table>
         <p><small>
           • AK135F earth mass is <Num v={earthMassAK135F} p={4} func={(v) => v * 1e-27} /> x 10<sup>24</sup> kg. <br />
-          • Kennett B.L.N., Engdahl E.R. and Buland R. (1995) <i>Constraints on seismic velocities in the earth from travel times</i> Geophys. J. Int. 122:108-124. <br />
-          • Montagner J.P. and Kennett B.L.N. (1995) <i>How to reconcile body-wave and normal-mode reference Earth models?</i> Geophys. J. Int. 125:229-248. <br />
+          • B.L.N. Kennett, E.R. Engdahl and R. Buland (1995) <i>Constraints on seismic velocities in the earth from travel times</i> Geophys. J. Int. 122:108-124. <br />
+          • J.P. Montagner and B.L.N. Kennett (1995) <i>How to reconcile body-wave and normal-mode reference Earth models?</i> Geophys. J. Int. 125:229-248. <br />
         </small></p>
       </Card.Body>
     </Card>
