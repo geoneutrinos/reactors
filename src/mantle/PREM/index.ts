@@ -220,8 +220,11 @@ export const innerCoreMass = layerMasses
 export const outerCoreMass = layerMasses
     .slice(12215, 34800)
     .reduce((Accumulator, CurrentValue) => Accumulator + CurrentValue);
-export const mantleMass = layerMasses
-    .slice(34800, 63466)
+export const lowerMantleMass = layerMasses
+    .slice(34800, 57010)
+    .reduce((Accumulator, CurrentValue) => Accumulator + CurrentValue);
+export const upperMantleMass = layerMasses
+    .slice(57010, 63466)
     .reduce((Accumulator, CurrentValue) => Accumulator + CurrentValue);
 export const lowerCrustMass = layerMasses
     .slice(63466, 63560)
@@ -240,8 +243,11 @@ export const innerCoreGeophysicalResponse = layerGeoResponse
 export const outerCoreGeophysicalResponse = layerGeoResponse
     .slice(12215, 34800)
     .reduce((Accumulator, CurrentValue) => Accumulator + CurrentValue);
-export const mantleGeophysicalResponse = layerGeoResponse
-    .slice(34800, 63466)
+export const lowerMantleGeophysicalResponse = layerGeoResponse
+    .slice(34800, 57010)
+    .reduce((Accumulator, CurrentValue) => Accumulator + CurrentValue);
+export const upperMantleGeophysicalResponse = layerGeoResponse
+    .slice(57010, 63466)
     .reduce((Accumulator, CurrentValue) => Accumulator + CurrentValue);
 export const lowerCrustGeophysicalResponse = layerGeoResponse
     .slice(63466, 63560)
