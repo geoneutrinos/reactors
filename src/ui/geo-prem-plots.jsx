@@ -217,7 +217,7 @@ export const GeophysicalResponsePlot = () => {
         type: "scatter",
         mode: "lines",
         fill: "none",
-        marker: { color: "black" },
+        marker: { color: "grey" },
       },
       {
         y: bins.map(bin => geoIntegrate(bin) * linearFit(bin) * maxRadius * 100 / 2),
@@ -226,7 +226,7 @@ export const GeophysicalResponsePlot = () => {
         type: "scatter",
         mode: "lines",
         fill: "none",
-        marker: { color: "red" },
+        marker: { color: "turquoise" },
       },
     ]
     const layout = {
