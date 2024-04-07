@@ -21,7 +21,7 @@ export const GeoDensityPlot = () => {
         type: "scatter",
         mode: "lines",
         fill: "none",
-        marker: { color: "orange" },
+        marker: { color: "purple" },
       },
       {
         y: bins.map(bin => linearFit(bin)),
@@ -30,7 +30,7 @@ export const GeoDensityPlot = () => {
         type: "scatter",
         mode: "lines",
         fill: "none",
-        marker: { color: "purple" },
+        marker: { color: "orange" },
       },
     ]
     const layout = {
@@ -217,7 +217,7 @@ export const GeophysicalResponsePlot = () => {
         type: "scatter",
         mode: "lines",
         fill: "none",
-        marker: { color: "red" },
+        marker: { color: "black" },
       },
       {
         y: bins.map(bin => geoIntegrate(bin) * linearFit(bin) * maxRadius * 100 / 2),
@@ -226,7 +226,7 @@ export const GeophysicalResponsePlot = () => {
         type: "scatter",
         mode: "lines",
         fill: "none",
-        marker: { color: "black" },
+        marker: { color: "red" },
       },
     ]
     const layout = {
