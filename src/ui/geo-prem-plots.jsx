@@ -34,7 +34,7 @@ export const GeoDensityPlot = () => {
       },
     ]
     const layout = {
-      title: "Density",
+      title: "Density by Model",
       yaxis: {
         title: { text: `Density (g/cm<sup>3</sup>)` },
         autorange: true
@@ -66,7 +66,7 @@ export const GeoDensityPlot = () => {
     };
     return (
       <Card>
-        <Card.Header>Model Density</Card.Header>
+        <Card.Header>Density Models</Card.Header>
         <Card.Body>
           <Plot
             useResizeHandler={true}
@@ -85,15 +85,24 @@ export const GeoMassPlot = () => {
       {
         y: bins.map(bin => rho(bin) * preFactor * ((bin + offset)**3 - (bin - offset)**3)),
         x: bins,
-        name: "Mass",
+        name: "PREM",
         type: "scatter",
         mode: "lines",
         fill: "none",
         marker: { color: "green" },
       },
+      {
+        y: bins.map(bin => linearFit(bin) * preFactor * ((bin + offset)**3 - (bin - offset)**3)),
+        x: bins,
+        name: "AK135F",
+        type: "scatter",
+        mode: "lines",
+        fill: "none",
+        marker: { color: "yellow" },
+      },
     ]
     const layout = {
-      title: "PREM Mass",
+      title: "Mass by Model",
       yaxis: {
         title: { text: `Mass (g)` },
         autorange: true
@@ -120,12 +129,12 @@ export const GeoMassPlot = () => {
     };
     var config = {
       toImageButtonOptions: {
-        filename: 'PREM_mass'
+        filename: 'Model_mass'
       }
     };
     return (
       <Card>
-        <Card.Header>PREM Mass</Card.Header>
+        <Card.Header>Model Mass</Card.Header>
         <Card.Body>
           <Plot
             useResizeHandler={true}
