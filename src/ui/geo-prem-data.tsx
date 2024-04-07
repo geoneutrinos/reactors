@@ -15,6 +15,18 @@ import {innerCoreMass,
         lowerCrustGeophysicalResponse,
         upperCrustGeophysicalResponse,
         oceanGeophysicalResponse,
+        innerCoreMassAK135F,
+        outerCoreMassAK135F,
+        lowerMantleMassAK135F,
+        upperMantleMassAK135F,
+        lowerCrustMassAK135F,
+        upperCrustMassAK135F,
+        innerCoreGeophysicalResponseAK135F,
+        outerCoreGeophysicalResponseAK135F,
+        lowerMantleGeophysicalResponseAK135F,
+        upperMantleGeophysicalResponseAK135F,
+        lowerCrustGeophysicalResponseAK135F,
+        upperCrustGeophysicalResponseAK135F,
         earthMassAK135F,
        } from "../mantle/PREM";
 export const GeoDataPREM = () => {
@@ -126,10 +138,10 @@ export const GeoDataPREM = () => {
                   0.0 - 1217.5
                 </td>
                 <td>
-                  <Num v={innerCoreMass} p={4} func={(v) => v * 1e-25} />
+                  <Num v={innerCoreMassAK135F} p={4} func={(v) => v * 1e-25} />
                 </td>
                 <td>
-                  <Num v={innerCoreGeophysicalResponse} p={4} func={(v) => v * 1e-3} />
+                  <Num v={innerCoreGeophysicalResponseAK135F} p={4} func={(v) => v * 1e-3} />
                 </td>
               </tr>
               <tr>
@@ -138,10 +150,10 @@ export const GeoDataPREM = () => {
                   1217.5 - 3479.5
                 </td>
                 <td>
-                  <Num v={outerCoreMass} p={4} func={(v) => v * 1e-25} />
+                  <Num v={outerCoreMassAK135F} p={4} func={(v) => v * 1e-25} />
                 </td>
                 <td>
-                   <Num v={outerCoreGeophysicalResponse} p={4} func={(v) => v * 1e-3} />
+                   <Num v={outerCoreGeophysicalResponseAK135F} p={4} func={(v) => v * 1e-3} />
                 </td>
               </tr>
               <tr>
@@ -150,10 +162,10 @@ export const GeoDataPREM = () => {
                   3479.5 - 5711.0
                 </td>
                 <td>
-                  <Num v={mantleMass} p={4} func={(v) => v * 1e-25} />
+                  <Num v={lowerMantleMassAK135F} p={4} func={(v) => v * 1e-25} />
                 </td>
                 <td>
-                   <Num v={mantleGeophysicalResponse} p={4} func={(v) => v * 1e-3} />
+                   <Num v={lowerMantleGeophysicalResponseAK135F} p={4} func={(v) => v * 1e-3} />
                 </td>
               </tr>
               <tr>
@@ -162,10 +174,10 @@ export const GeoDataPREM = () => {
                   5711.0 - 6353.0
                 </td>
                 <td>
-                  <Num v={mantleMass} p={4} func={(v) => v * 1e-25} />
+                  <Num v={upperMantleMassAK135F} p={4} func={(v) => v * 1e-25} />
                 </td>
                 <td>
-                   <Num v={mantleGeophysicalResponse} p={4} func={(v) => v * 1e-3} />
+                   <Num v={upperMantleGeophysicalResponseAK135F} p={4} func={(v) => v * 1e-3} />
                 </td>
               </tr>
               <tr>
@@ -174,34 +186,22 @@ export const GeoDataPREM = () => {
                   6353.0 - 6361.0
                 </td>
                 <td>
-                  <Num v={lowerCrustMass} p={4} func={(v) => v * 1e-25} />
+                  <Num v={lowerCrustMassAK135F} p={4} func={(v) => v * 1e-25} />
                 </td>
                 <td>
-                  <Num v={lowerCrustGeophysicalResponse} p={4} func={(v) => v * 1e-3} />
+                  <Num v={lowerCrustGeophysicalResponseAK135F} p={4} func={(v) => v * 1e-3} />
                 </td>
               </tr>
               <tr>
                 <td>Upper Crust</td>
                 <td>
-                  6361.0 - 6367.7
+                  6361.0 - 6368.0
                 </td>
                 <td>
-                  <Num v={upperCrustMass} p={4} func={(v) => v * 1e-25} />
+                  <Num v={upperCrustMassAK135F} p={4} func={(v) => v * 1e-25} />
                 </td>
                 <td>
-                  <Num v={upperCrustGeophysicalResponse} p={4} func={(v) => v * 1e-3} />
-                </td>
-              </tr>
-              <tr>
-                <td>Sediment</td>
-                <td>
-                  6367.7 - 6368.0
-                </td>
-                <td>
-                  <Num v={upperCrustMass} p={4} func={(v) => v * 1e-25} />
-                </td>
-                <td>
-                  <Num v={upperCrustGeophysicalResponse} p={4} func={(v) => v * 1e-3} />
+                  <Num v={upperCrustGeophysicalResponseAK135F} p={4} func={(v) => v * 1e-3} />
                 </td>
               </tr>
               <tr>
