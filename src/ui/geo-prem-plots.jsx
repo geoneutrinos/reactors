@@ -66,7 +66,7 @@ export const GeoDensityPlot = () => {
     };
     return (
       <Card>
-        <Card.Header>Density Models</Card.Header>
+        <Card.Header>Model Density</Card.Header>
         <Card.Body>
           <Plot
             useResizeHandler={true}
@@ -163,7 +163,7 @@ export const GeoIntegralPlot = () => {
     const layout = {
       title: "Geo Signal Factor",
       yaxis: {
-        title: { text: ` ` },
+        title: { text: `Signal Factor` },
         autorange: true
       },
       xaxis: {
@@ -188,7 +188,7 @@ export const GeoIntegralPlot = () => {
     };
     var config = {
       toImageButtonOptions: {
-        filename: 'PREM_geo_integral'
+        filename: 'Geo_integral'
       }
     };
     return (
@@ -213,17 +213,26 @@ export const GeophysicalResponsePlot = () => {
       {
         y: bins.map(bin => geoIntegrate(bin) * rho(bin) * maxRadius * 100 / 2),
         x: bins,
-        name: "Geo Integral",
+        name: "PREM",
         type: "scatter",
         mode: "lines",
         fill: "none",
         marker: { color: "red" },
       },
+      {
+        y: bins.map(bin => geoIntegrate(bin) * linearFit(bin) * maxRadius * 100 / 2),
+        x: bins,
+        name: "AK135F",
+        type: "scatter",
+        mode: "lines",
+        fill: "none",
+        marker: { color: "black" },
+      },
     ]
     const layout = {
-      title: "Geophysical Response",
+      title: "Geophysical Response by Model",
       yaxis: {
-        title: { text: `(kg/cm<sup>2</sup>)` },
+        title: { text: `Response (kg/cm<sup>2</sup>)` },
         autorange: true
       },
       xaxis: {
@@ -248,12 +257,12 @@ export const GeophysicalResponsePlot = () => {
     };
     var config = {
       toImageButtonOptions: {
-        filename: 'PREM_geophysical_response'
+        filename: 'Geophysical_response'
       }
     };
     return (
       <Card>
-        <Card.Header>PREM Geophysical Response</Card.Header>
+        <Card.Header>Model Geophysical Response</Card.Header>
         <Card.Body>
           <Plot
             useResizeHandler={true}
