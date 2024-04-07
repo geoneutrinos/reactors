@@ -4,14 +4,16 @@ import {Num} from "."
 
 import {innerCoreMass,
         outerCoreMass,
-        mantleMass,
+        lowerMantleMass,
+        upperMantleMass,
         lowerCrustMass,
         upperCrustMass,
         oceanMass,
         earthMass,
         innerCoreGeophysicalResponse,
         outerCoreGeophysicalResponse,
-        mantleGeophysicalResponse,
+        lowerMantleGeophysicalResponse,
+        upperMantleGeophysicalResponse,
         lowerCrustGeophysicalResponse,
         upperCrustGeophysicalResponse,
         oceanGeophysicalResponse,
@@ -69,15 +71,27 @@ export const GeoDataPREM = () => {
                 </td>
               </tr>
                <tr>
-                <td>Mantle</td>
+                <td>Lower Mantle</td>
                 <td>
-                  3480.0 - 6346.6
+                  3480.0 - 5771.0
                 </td>
                 <td>
-                  <Num v={mantleMass} p={4} func={(v) => v * 1e-25} />
+                  <Num v={lowerMantleMass} p={4} func={(v) => v * 1e-25} />
                 </td>
                 <td>
-                   <Num v={mantleGeophysicalResponse} p={4} func={(v) => v * 1e-3} />
+                   <Num v={lowerMantleGeophysicalResponse} p={4} func={(v) => v * 1e-3} />
+                </td>
+              </tr>
+               <tr>
+                <td>Upper Mantle</td>
+                <td>
+                  5711.0 - 6346.6
+                </td>
+                <td>
+                  <Num v={upperMantleMass} p={4} func={(v) => v * 1e-25} />
+                </td>
+                <td>
+                   <Num v={upperMantleGeophysicalResponse} p={4} func={(v) => v * 1e-3} />
                 </td>
               </tr>
                 <tr>
@@ -120,7 +134,7 @@ export const GeoDataPREM = () => {
           </Table>
         <p><small>
           • PREM earth mass is <Num v={earthMass} p={4} func={(v) => v * 1e-27} /> x 10<sup>24</sup> kg. <br />
-          • A.M. Dziewonski and D.L. Anderson (1981), <i>Preliminary Reference Earth Model (PREM)</i>, Phys. Earth Planet. Inter. 25, 297-356. <br />
+          • A.M. Dziewonski and D.L. Anderson (1981) <i>Preliminary Reference Earth Model (PREM)</i>, Phys. Earth Planet. Inter. 25, 297-356. <br />
         </small></p>
         <Table>
             <thead>
