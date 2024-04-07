@@ -212,58 +212,85 @@ export function volumeRatio(x: number): number {
     return ((x+offset)**3 - (x-offset)**3) / maxRadius**3
 }
 
+// PREM
 const layerMasses = bins.map(radius => rho(radius) * preFactor * ((radius + offset)**3 - (radius - offset)**3));
-const layerMassesAK135F = bins.map(radius => linearFit(radius) * preFactor * ((radius + offset)**3 - (radius - offset)**3));
-export const earthMassAK135F = layerMassesAK135F
-    .slice(1, 63710)
-    .reduce((Accumulator, CurrentValue) => Accumulator + CurrentValue);
-const innerCoreStartIndex = 1;
-const innerCoreEndIndex = 12215;
 export const innerCoreMass = layerMasses
-    .slice(innerCoreStartIndex, innerCoreEndIndex)
+    .slice(1, 12215)
     .reduce((Accumulator, CurrentValue) => Accumulator + CurrentValue);
-const outerCoreStartIndex = 12215;
-const outerCoreEndIndex = 34800;
 export const outerCoreMass = layerMasses
-    .slice(outerCoreStartIndex, outerCoreEndIndex)
+    .slice(12215, 34800)
     .reduce((Accumulator, CurrentValue) => Accumulator + CurrentValue);
-const mantleStartIndex = 34800;
-const mantleEndIndex = 63466;
 export const mantleMass = layerMasses
-    .slice(mantleStartIndex, mantleEndIndex)
+    .slice(34800, 63466)
     .reduce((Accumulator, CurrentValue) => Accumulator + CurrentValue);
-const lowerCrustStartIndex = 63466;
-const lowerCrustEndIndex = 63560;
 export const lowerCrustMass = layerMasses
-    .slice(lowerCrustStartIndex, lowerCrustEndIndex)
+    .slice(63466, 63560)
     .reduce((Accumulator, CurrentValue) => Accumulator + CurrentValue);
-const upperCrustStartIndex = 63560;
-const upperCrustEndIndex = 63680;
 export const upperCrustMass = layerMasses
-    .slice(upperCrustStartIndex, upperCrustEndIndex)
+    .slice(63560, 63680)
     .reduce((Accumulator, CurrentValue) => Accumulator + CurrentValue);
-const oceanStartIndex = 63680;
-const oceanEndIndex = 63710;
 export const oceanMass = layerMasses
-    .slice(oceanStartIndex, oceanEndIndex)
+    .slice(63680, 63710)
     .reduce((Accumulator, CurrentValue) => Accumulator + CurrentValue);
 export const earthMass = innerCoreMass + outerCoreMass + mantleMass + lowerCrustMass + upperCrustMass + oceanMass;
 const layerGeoResponse = bins.map(bin => geoIntegrate(bin) * rho(bin) * maxRadius * 100 / 2);
 export const innerCoreGeophysicalResponse = layerGeoResponse
-    .slice(innerCoreStartIndex, innerCoreEndIndex)
+    .slice(1, 12215)
     .reduce((Accumulator, CurrentValue) => Accumulator + CurrentValue);
 export const outerCoreGeophysicalResponse = layerGeoResponse
-    .slice(outerCoreStartIndex, outerCoreEndIndex)
+    .slice(12215, 34800)
     .reduce((Accumulator, CurrentValue) => Accumulator + CurrentValue);
 export const mantleGeophysicalResponse = layerGeoResponse
-    .slice(mantleStartIndex, mantleEndIndex)
+    .slice(34800, 63466)
     .reduce((Accumulator, CurrentValue) => Accumulator + CurrentValue);
 export const lowerCrustGeophysicalResponse = layerGeoResponse
-    .slice(lowerCrustStartIndex, lowerCrustEndIndex)
+    .slice(63466, 63560)
     .reduce((Accumulator, CurrentValue) => Accumulator + CurrentValue);
 export const upperCrustGeophysicalResponse = layerGeoResponse
-    .slice(upperCrustStartIndex, upperCrustEndIndex)
+    .slice(63560, 63680)
     .reduce((Accumulator, CurrentValue) => Accumulator + CurrentValue);
 export const oceanGeophysicalResponse = layerGeoResponse
-    .slice(oceanStartIndex, oceanEndIndex - 1)
+    .slice(63680, 63709)
+    .reduce((Accumulator, CurrentValue) => Accumulator + CurrentValue);
+// AK135F Model
+const layerMassesAK135F = bins.map(radius => linearFit(radius) * preFactor * ((radius + offset)**3 - (radius - offset)**3));
+export const earthMassAK135F = layerMassesAK135F
+    .slice(1, 63710)
+    .reduce((Accumulator, CurrentValue) => Accumulator + CurrentValue);
+export const innerCoreMassAK135F = layerMassesAK135F
+    .slice(1, 12175)
+    .reduce((Accumulator, CurrentValue) => Accumulator + CurrentValue);
+export const outerCoreMassAK135F = layerMassesAK135F
+    .slice(12175, 34795)
+    .reduce((Accumulator, CurrentValue) => Accumulator + CurrentValue);
+export const lowerMantleMassAK135F = layerMassesAK135F
+    .slice(34795, 57110)
+    .reduce((Accumulator, CurrentValue) => Accumulator + CurrentValue);
+export const upperMantleMassAK135F = layerMassesAK135F
+    .slice(57110, 63530)
+    .reduce((Accumulator, CurrentValue) => Accumulator + CurrentValue);
+export const lowerCrustMassAK135F = layerMassesAK135F
+    .slice(63530, 63610)
+    .reduce((Accumulator, CurrentValue) => Accumulator + CurrentValue);
+export const upperCrustMassAK135F = layerMassesAK135F
+    .slice(63610, 63680)
+    .reduce((Accumulator, CurrentValue) => Accumulator + CurrentValue);
+const layerGeoResponseAK135F = bins.map(bin => geoIntegrate(bin) * linearFit(bin) * maxRadius * 100 / 2);
+export const innerCoreGeophysicalResponseAK135F = layerGeoResponseAK135F
+    .slice(1, 12175)
+    .reduce((Accumulator, CurrentValue) => Accumulator + CurrentValue);
+export const outerCoreGeophysicalResponseAK135F = layerGeoResponseAK135F
+    .slice(12175, 34795)
+    .reduce((Accumulator, CurrentValue) => Accumulator + CurrentValue);
+export const lowerMantleGeophysicalResponseAK135F = layerGeoResponseAK135F
+    .slice(34795, 57110)
+    .reduce((Accumulator, CurrentValue) => Accumulator + CurrentValue);
+export const upperMantleGeophysicalResponseAK135F = layerGeoResponseAK135F
+    .slice(57110, 63530)
+    .reduce((Accumulator, CurrentValue) => Accumulator + CurrentValue);
+export const lowerCrustGeophysicalResponseAK135F = layerGeoResponseAK135F
+    .slice(63530, 63610)
+    .reduce((Accumulator, CurrentValue) => Accumulator + CurrentValue);
+export const upperCrustGeophysicalResponseAK135F = layerGeoResponseAK135F
+    .slice(63610, 63680)
     .reduce((Accumulator, CurrentValue) => Accumulator + CurrentValue);
