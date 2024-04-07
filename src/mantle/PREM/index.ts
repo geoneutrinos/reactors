@@ -235,7 +235,7 @@ export const upperCrustMass = layerMasses
 export const oceanMass = layerMasses
     .slice(63680, 63710)
     .reduce((Accumulator, CurrentValue) => Accumulator + CurrentValue);
-export const earthMass = innerCoreMass + outerCoreMass + mantleMass + lowerCrustMass + upperCrustMass + oceanMass;
+export const earthMass = innerCoreMass + outerCoreMass + lowermantleMass + upperMantleMass + lowerCrustMass + upperCrustMass + oceanMass;
 const layerGeoResponse = bins.map(bin => geoIntegrate(bin) * rho(bin) * maxRadius * 100 / 2);
 export const innerCoreGeophysicalResponse = layerGeoResponse
     .slice(1, 12215)
