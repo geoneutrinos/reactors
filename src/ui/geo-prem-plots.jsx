@@ -1,4 +1,5 @@
 import {rho,
+        linearFit,
         geoIntegrate,
         volumeRatio,
         layers,
@@ -16,7 +17,16 @@ export const GeoDensityPlot = () => {
       {
         y: bins.map(bin => rho(bin)),
         x: bins,
-        name: "Density",
+        name: "PREM",
+        type: "scatter",
+        mode: "lines",
+        fill: "none",
+        marker: { color: "purple" },
+      },
+      {
+        y: bins.map(bin => linearFit(bin)),
+        x: bins,
+        name: "AK135F",
         type: "scatter",
         mode: "lines",
         fill: "none",
@@ -24,7 +34,7 @@ export const GeoDensityPlot = () => {
       },
     ]
     const layout = {
-      title: "PREM Density",
+      title: "Density by Model",
       yaxis: {
         title: { text: `Density (g/cm<sup>3</sup>)` },
         autorange: true
@@ -51,12 +61,12 @@ export const GeoDensityPlot = () => {
     };
     var config = {
       toImageButtonOptions: {
-        filename: 'PREM_density'
+        filename: 'Model_density'
       }
     };
     return (
       <Card>
-        <Card.Header>PREM Density</Card.Header>
+        <Card.Header>Model Density</Card.Header>
         <Card.Body>
           <Plot
             useResizeHandler={true}
@@ -75,15 +85,24 @@ export const GeoMassPlot = () => {
       {
         y: bins.map(bin => rho(bin) * preFactor * ((bin + offset)**3 - (bin - offset)**3)),
         x: bins,
-        name: "Mass",
+        name: "PREM",
         type: "scatter",
         mode: "lines",
         fill: "none",
         marker: { color: "green" },
       },
+      {
+        y: bins.map(bin => linearFit(bin) * preFactor * ((bin + offset)**3 - (bin - offset)**3)),
+        x: bins,
+        name: "AK135F",
+        type: "scatter",
+        mode: "lines",
+        fill: "none",
+        marker: { color: "yellow" },
+      },
     ]
     const layout = {
-      title: "PREM Mass",
+      title: "Mass by Model",
       yaxis: {
         title: { text: `Mass (g)` },
         autorange: true
@@ -110,12 +129,12 @@ export const GeoMassPlot = () => {
     };
     var config = {
       toImageButtonOptions: {
-        filename: 'PREM_mass'
+        filename: 'Model_mass'
       }
     };
     return (
       <Card>
-        <Card.Header>PREM Mass</Card.Header>
+        <Card.Header>Model Mass</Card.Header>
         <Card.Body>
           <Plot
             useResizeHandler={true}
@@ -144,7 +163,7 @@ export const GeoIntegralPlot = () => {
     const layout = {
       title: "Geo Signal Factor",
       yaxis: {
-        title: { text: ` ` },
+        title: { text: `Signal Factor` },
         autorange: true
       },
       xaxis: {
@@ -169,7 +188,7 @@ export const GeoIntegralPlot = () => {
     };
     var config = {
       toImageButtonOptions: {
-        filename: 'PREM_geo_integral'
+        filename: 'Geo_integral'
       }
     };
     return (
@@ -194,17 +213,26 @@ export const GeophysicalResponsePlot = () => {
       {
         y: bins.map(bin => geoIntegrate(bin) * rho(bin) * maxRadius * 100 / 2),
         x: bins,
-        name: "Geo Integral",
+        name: "PREM",
         type: "scatter",
         mode: "lines",
         fill: "none",
-        marker: { color: "red" },
+        marker: { color: "grey" },
+      },
+      {
+        y: bins.map(bin => geoIntegrate(bin) * linearFit(bin) * maxRadius * 100 / 2),
+        x: bins,
+        name: "AK135F",
+        type: "scatter",
+        mode: "lines",
+        fill: "none",
+        marker: { color: "turquoise" },
       },
     ]
     const layout = {
-      title: "Geophysical Response",
+      title: "Geophysical Response by Model",
       yaxis: {
-        title: { text: `(kg/cm<sup>2</sup>)` },
+        title: { text: `Response (kg/cm<sup>2</sup>)` },
         autorange: true
       },
       xaxis: {
@@ -229,12 +257,12 @@ export const GeophysicalResponsePlot = () => {
     };
     var config = {
       toImageButtonOptions: {
-        filename: 'PREM_geophysical_response'
+        filename: 'Geophysical_response'
       }
     };
     return (
       <Card>
-        <Card.Header>PREM Geophysical Response</Card.Header>
+        <Card.Header>Model Geophysical Response</Card.Header>
         <Card.Body>
           <Plot
             useResizeHandler={true}

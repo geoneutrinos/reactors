@@ -16,14 +16,19 @@ import {
   averageNeutrinoEnergy40KEC, 
 } from "../antineutrino-spectrum";
 
-import { mantleMass,mantleGeophysicalResponse } from "./PREM";
+import { 
+  lowerMantleMass,
+  upperMantleMass,
+  lowerMantleGeophysicalResponse,
+  upperMantleGeophysicalResponse, 
+} from "./PREM";
 
 import Elements from "../elements";
 
 const {K40, Th232, U235, U238} = Elements
 
-export const MANTLE_MASS = mantleMass / 1e3; // kg (PREM- A. M. Dziewonski and D. L. Anderson, Phys. Earth Planet. Inter. 25, 297 (1981).
-export const MANTLE_GEOPHYSICAL_RESPONSE = mantleGeophysicalResponse; // kg/cm2
+export const MANTLE_MASS = (upperMantleMass + lowerMantleMass) / 1e3; // kg (PREM- A. M. Dziewonski and D. L. Anderson (1981) Phys. Earth Planet. Inter. 25, 297.
+export const MANTLE_GEOPHYSICAL_RESPONSE = lowerMantleGeophysicalResponse + upperMantleGeophysicalResponse; // kg/cm2
 
 export const ISOTOPIC_DECAY_HEATING = {
   // J kg-1 s-1
