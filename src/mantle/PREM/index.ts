@@ -170,8 +170,8 @@ export const preFactor = 4 * Math.PI * 1e15 / 3;
  */
 export function polynomial(...coefficients:number[]) {
     return (x:number):number => {
-        return coefficients.reduce((previous, currernt, index) =>{
-            return previous + currernt * x ** index
+        return coefficients.reduce((previous, current, index) =>{
+            return previous + current * x ** index
         })
     }
 }
