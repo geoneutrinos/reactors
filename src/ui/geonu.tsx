@@ -1,4 +1,4 @@
-import {useState, memo} from "react";
+import { useState } from "react";
 import { sum } from "lodash";
 import { rawAntineutrinoSpectrum } from "../antineutrino-spectrum";
 
