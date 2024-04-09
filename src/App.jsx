@@ -225,8 +225,7 @@ function App(props) {
       geoSpectrum({crossSectionFunction: (_) => 1}, {averageSurvivalProbability: 1e-32}, geoFluxRatios, crustFlux),
     [crossSection, oscillation, geoFluxRatios, crustFlux]
   );
-  console.log(geoCEvNS)
-
+  
   const boron8 = useMemo(() => defaultBoron8.updateRate(crossSection, reactorLF), [
     crossSection, reactorLF
   ]);
