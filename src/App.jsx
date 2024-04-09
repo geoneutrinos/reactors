@@ -96,7 +96,7 @@ import { reactorAntineutrinoModelReducer } from "./physics/reactor-antineutrinos
 import { defaultBoron8 } from "./solar";
 
 import { PhysicsContext } from "./state";
-
+import {GeoCEvNS} from "./ui/geonu";
 
 import "leaflet/dist/leaflet.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -220,6 +220,13 @@ function App(props) {
     [crossSection, oscillation, geoFluxRatios, crustFlux]
   );
 
+  const geoCEvNS = useMemo(
+    () =>
+      geoSpectrum({crossSectionFunction: (_) => 1}, {averageSurvivalProbability: 1e-32}, geoFluxRatios, crustFlux),
+    [crossSection, oscillation, geoFluxRatios, crustFlux]
+  );
+  console.log(geoCEvNS)
+
   const boron8 = useMemo(() => defaultBoron8.updateRate(crossSection, reactorLF), [
     crossSection, reactorLF
   ]);
@@ -317,6 +324,7 @@ function App(props) {
                     setGeoFluxRatios={setGeoFluxRatios}
                     geo={geo}
                   />
+                  <GeoCEvNS GeoCEvNSFlux={geoCEvNS} />
                   <GeoDensityPlot />
                   <GeoMassPlot />
                   <GeoIntegralPlot />

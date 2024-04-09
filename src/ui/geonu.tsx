@@ -1,12 +1,18 @@
-import React from "react";
+import {useState, memo} from "react";
+import { sum } from "lodash";
 import { rawAntineutrinoSpectrum } from "../antineutrino-spectrum";
 
-import { Card, Form, InputGroup } from "react-bootstrap";
+import { Card, Form, InputGroup, Table } from "react-bootstrap";
 import { Num } from ".";
+import { NeutrinoType } from "../physics/neutrino-cross-section";
+import { getTargetParamsCEvNS } from "../supernova";
+import { crossSectionElasticScattering, NeutrinoTarget } from "../physics/neutrino-cross-section";
+import bins, {binWidth} from "../physics/bins"
 
-import {Elements} from './elements'
+import {Elements as ElementsUI} from './elements'
 
 import Plot from "react-plotly.js";
+import elements, {Element} from '../elements';
 
 import {
   ISOTOPIC_NEUTRINOS_PER_DECAY,
@@ -17,7 +23,198 @@ import { averageSurvivalProbabilityNormal } from "../physics/neutrino-oscillatio
 
 import { MANTLE_GEOPHYSICAL_RESPONSE, MANTLE_MASS } from "../mantle/geophysics";
 
-const {K40, Th232, U235, U238} = Elements
+const {K40, Th232, U235, U238} = ElementsUI
+
+
+interface GeoElements {
+  K40: number;
+  Th232: number;
+  U235: number;
+  U238: number;
+}
+
+type ElementalRecord = Record<keyof typeof elements, GeoElements>
+
+export const CEvNSEventsElemental = (element: Element, TMin:number, fluxSpectrums:any): ElementalRecord => {
+  const isotopes = Object.values(elements).filter(isotope => isotope.atomic_number === element.atomic_number)
+  const totals: GeoElements = {
+    K40: 0,
+    Th232: 0, 
+    U235:0,
+    U238:0,
+  }
+  const enteries = isotopes.map(isotope => {
+    const events = CEvNSEvents(isotope, TMin, fluxSpectrums)
+
+    totals.K40 += events.K40
+    totals.Th232 += events.Th232
+    totals.U235 += events.U235
+    totals.U238 += events.U238
+
+    return [isotope.key, events]
+  })
+  const records: ElementalRecord = Object.fromEntries(enteries)
+  records["total"] = totals
+  return records
+}
+
+export const CEvNSEvents = (element: Element, TMin:number, fluxSpectrums:any): GeoElements => {
+  let targetParams = {tMin: TMin, ...getTargetParamsCEvNS(element)};
+  let xsectionCEvNS = bins.map((ev) => crossSectionElasticScattering(ev, NeutrinoType.electronNeutrino, targetParams.tMin, undefined, NeutrinoTarget.nucleus, targetParams.targetMass, targetParams.protonTargets, targetParams.neutronTargets));
+  let eventSpectrumCEvNSK40 = fluxSpectrums.K40.map(
+    (v, i) => v * xsectionCEvNS[i] * targetParams.nuclearTargets
+  );
+  let eventSpectrumCEvNSTh232 = fluxSpectrums.Th232.map(
+    (v, i) => v * xsectionCEvNS[i] * targetParams.nuclearTargets
+  );
+  let eventSpectrumCEvNSU235 = fluxSpectrums.U235.map(
+    (v, i) => v * xsectionCEvNS[i] * targetParams.nuclearTargets
+  );
+  let eventSpectrumCEvNSU238 = fluxSpectrums.U238.map(
+    (v, i) => v * xsectionCEvNS[i] * targetParams.nuclearTargets
+  );
+  return {
+    K40: sum(eventSpectrumCEvNSK40) * binWidth,
+    Th232: sum(eventSpectrumCEvNSTh232) * binWidth,
+    U235: sum(eventSpectrumCEvNSU235) * binWidth,
+    U238: sum(eventSpectrumCEvNSU238) * binWidth,
+  };
+};
+
+const GeoNusCEvNS = ({ nucleus, setNucleus, tESnMin, setTESnMin, fluxSpectrums }) => {
+
+  const events = (CEvNSEventsElemental(elements[nucleus], tESnMin/1000, fluxSpectrums))
+
+  const isotopicContributions = Object.entries(events).filter(([key, _value]) => key !== "total").map(([isotope, value]) => {
+    return (
+      <tr key={isotope}>
+      <td>{ElementsUI[isotope]}</td>
+      <td>
+        <Num v={value.K40} p={2} />
+      </td>
+      <td>
+        <Num v={value.Th232} p={2} />
+      </td>
+      <td>
+        <Num v={value.U235} p={2} />
+      </td>
+      <td>
+        <Num v={value.U238} p={2} />
+      </td>
+      <td>
+        <Num v={value.K40+ value.Th232 + value.U235 + value.U238} p={2} />
+      </td>
+    </tr> 
+    )
+  })
+
+  return (
+    <Card>
+      <Card.Header>
+        CEvNS Events (/1000 kg/year)
+      </Card.Header>
+      <Card.Body>
+          <div>
+            <Table>
+              <tbody>
+                <tr>
+                  <th></th>
+                  <th>{K40}</th>
+                  <th>{Th232}</th>
+                  <th>{U235}</th>
+                  <th>{U238}</th>
+                  <th>Total</th>
+                </tr>
+                <tr>
+                  <td>{elements[nucleus].atomic_symbol} Events</td>
+                  <td>
+                    <Num v={events.total.K40} p={2} />
+                  </td>
+                  <td>
+                    <Num v={events.total.Th232} p={2} />
+                  </td>
+                  <td>
+                    <Num v={events.total.U235} p={2} />
+                  </td>
+                  <td>
+                    <Num v={events.total.U238} p={2} />
+                  </td>
+                  <td>
+                    <Num v={events.total.K40+ events.total.Th232 + events.total.U235 + events.total.U238} p={2} />
+                  </td>
+                </tr>
+              </tbody>
+            </Table>
+          <details>
+            <summary>Events by Isotope</summary>
+            <Table>
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>{K40}</th>
+                  <th>{Th232}</th>
+                  <th>{U235}</th>
+                  <th>{U238}</th>
+                  <th>Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                {isotopicContributions}
+                </tbody>
+                </Table>
+                </details>
+              <br />
+          </div>
+          <Form noValidate>
+            <Form.Group controlId="set_nucleus">
+              <Form.Label>Target Element</Form.Label>
+              <Form.Control as="select" onChange={(event) => setNucleus(event.target.value)} value={nucleus}>
+                <option value={elements.Ar40.key}>Argon</option>
+                <option value={elements.Ge76.key}>Germanium</option>
+                <option value={elements.I127.key}>Iodine</option>
+                <option value={elements.Xe132.key}>Xenon</option>
+                <option value={elements.Cs133.key}>Cesium</option>
+              </Form.Control>
+            </Form.Group>
+            <Form.Group controlId="tn_min">
+              <Form.Label>
+                Nucleus T<sub>min</sub> = {tESnMin * 1000} eV
+              </Form.Label>
+              <InputGroup>
+                <Form.Control
+                  value={tESnMin}
+                  type="range"
+                  step={.001}
+                  min={0}
+                  max={0.1}
+                  onChange={(event) => setTESnMin(parseFloat(event.target.value))}
+                />
+              </InputGroup>
+            </Form.Group>
+          </Form>
+      </Card.Body>
+    </Card>
+  );
+};
+
+export const GeoCEvNS = ({GeoCEvNSFlux}) =>{
+  const [nucleus, setNucleus] = useState(elements.Xe132.key);
+  const [tESnMin, setTESnMin] = useState(0.0);
+  const fluxSpectrums = {
+    K40: GeoCEvNSFlux.total.K40Beta.spectrum,
+    Th232: GeoCEvNSFlux.total.Th232.spectrum,
+    U235: GeoCEvNSFlux.total.U235.spectrum, 
+    U238: GeoCEvNSFlux.total.U238.spectrum,
+  }
+
+  return <GeoNusCEvNS 
+        nucleus={nucleus}
+        setNucleus={setNucleus}
+        tESnMin={tESnMin}
+        setTESnMin={setTESnMin}
+        fluxSpectrums={fluxSpectrums}
+  />
+}
 
 export const CrustFlux = ({ includeCrust, setIncludeCrust }) => {
   return (
@@ -122,8 +319,8 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo}) => {
   );
 };
 
-export const GeoNuSpectrumSource = ({ includeCrust, setIncludeCrust }) => {
-  const x_values = new Float32Array(4500).map((v, i) => i / 1000);
+export const GeoNuSpectrumSource = () => {
+  const x_values = new Float32Array(4500).map((_v, i) => i / 1000);
   const data = [
     {
       y: [...rawAntineutrinoSpectrum["238U"], 0].map((x) => x * 1000 * ISOTOPIC_NEUTRINOS_PER_DECAY.U238),
