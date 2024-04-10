@@ -4,8 +4,7 @@ import {rho,
         layerMassesAK135F,
         layerGeoResponse,
         layerGeoResponseAK135F,
-        geoIntegrate,
-        volumeRatio,
+        geoIntegral,
         bins,
         } from "../mantle/PREM";
 import { Card } from "react-bootstrap";
@@ -150,7 +149,7 @@ export const GeoMassPlot = () => {
 export const GeoIntegralPlot = () => {
     const data = [
       {
-        y: bins.map(bin => geoIntegrate(bin) * 1.5 / volumeRatio(bin)),
+        y: geoIntegral,
         x: bins,
         name: "Geo Integral",
         type: "scatter",
