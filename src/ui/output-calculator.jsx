@@ -82,9 +82,10 @@ export const CalculatorPanel = ({ cores, geo, active}) => {
 
   // plot config
 
+  const efficiencyCurve = bins.map((eV) => effFunc(eV, effMax, rampUp, enerStart));
   const plotData = [
     {
-      y: bins.map((eV) => effFunc(eV, effMax, rampUp, enerStart)),
+      y: efficiencyCurve,
       x: bins,
       name: "Eff Curve",
       type: "scatter",
