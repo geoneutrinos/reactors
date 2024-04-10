@@ -153,13 +153,14 @@ const AK135F = [
 [6368.00, 1.0200,  0.0000],
 ]
 
-export const layers = 63710;
-export const maxRadius = 6371;
+const layers = 63710;
+const maxRadius = 6371;
 const maxRadiusCubed = maxRadius**3;
-export const binWidth = maxRadius / layers;
-export const offset = binWidth * 0.5;
+const binWidth = maxRadius / layers;
+const offset = binWidth * 0.5;
+const preFactor = 4 * Math.PI * 1e15 / 3; //1e5 cm/km
+
 export const bins = new Float64Array(layers).map((_, i) => 0 + offset + binWidth * i);
-export const preFactor = 4 * Math.PI * 1e15 / 3; //1e5 cm/km
 
 /**
  * polynomial(a0, a1, ... , an) generates a function f(x) that will compute the power series in the form:
@@ -193,15 +194,15 @@ export function linearFit(r:number): number {
     return intercept + slope * (r - radius) / maxRadius
 }
 
-export function shellVolume(r:number): number {
+function shellVolume(r:number): number {
     return preFactor * ((r + offset)**3 - (r - offset)**3)
 }
 
-export function volumeRatio(x: number): number {
+function volumeRatio(x: number): number {
     return shellVolume(x) / maxRadiusCubed / preFactor
 }
 
-export function geoIntegrate(x: number): number {
+function geoIntegrate(x: number): number {
     const topPlus = 1 + (x+offset) / maxRadius
     const bottomPlus = 1 + (x-offset) / maxRadius
     const topMinus = 1 - (x+offset) / maxRadius
@@ -216,6 +217,8 @@ export function geoIntegrate(x: number): number {
     const termMinus4 = bottomMinus * Math.log(bottomMinus) - bottomMinus
     return (termPlus1 - termPlus2 - termPlus3 + termPlus4 - termMinus1 + termMinus2 + termMinus3 - termMinus4)
 }
+
+export const geoIntegral = bins.map(bin => geoIntegrate(bin) * 1.5 / volumeRatio(bin));
 
 // PREM
 export const layerMasses = bins.map(radius => rho(radius) * shellVolume(radius));
