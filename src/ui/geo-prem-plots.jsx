@@ -1,5 +1,6 @@
 import {rho,
         linearFit,
+        shellVolume,
         geoIntegrate,
         volumeRatio,
         layers,
@@ -7,7 +8,6 @@ import {rho,
         binWidth,
         offset,
         bins,
-        preFactor,
         } from "../mantle/PREM";
 import { Card } from "react-bootstrap";
 import Plot from "react-plotly.js";
@@ -83,7 +83,7 @@ export const GeoDensityPlot = () => {
 export const GeoMassPlot = () => {
     const data = [
       {
-        y: bins.map(bin => rho(bin) * preFactor * ((bin + offset)**3 - (bin - offset)**3)),
+        y: bins.map(bin => rho(bin) * shellVolume(bin)),
         x: bins,
         name: "PREM",
         type: "scatter",
@@ -92,7 +92,7 @@ export const GeoMassPlot = () => {
         marker: { color: "green" },
       },
       {
-        y: bins.map(bin => linearFit(bin) * preFactor * ((bin + offset)**3 - (bin - offset)**3)),
+        y: bins.map(bin => linearFit(bin) * shellVolume(bin)),
         x: bins,
         name: "AK135F",
         type: "scatter",
