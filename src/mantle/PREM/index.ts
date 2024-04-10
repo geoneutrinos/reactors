@@ -182,14 +182,14 @@ export function polynomial(...coefficients:number[]) {
  * 
  * @param r {number} radius of the layer
  */
-export function rho(r:number): number {
+function rho(r:number): number {
     // The layer we want will be the first layer with a boundry lower than our target when searched from the top
     const [depth, ...coefs] = [...PREM].reverse().find(((elm) => elm[0] < r))!
     const poly = polynomial(...coefs)
     return poly(r/maxRadius)
 }
 
-export function linearFit(r:number): number {
+function linearFit(r:number): number {
     const [radius,intercept,slope] = [...AK135F].reverse().find(((elm) => elm[0] < r))!
     return intercept + slope * (r - radius) / maxRadius
 }
@@ -221,6 +221,7 @@ function geoIntegrate(x: number): number {
 export const geoIntegral = bins.map(bin => geoIntegrate(bin) * 1.5 / volumeRatio(bin));
 
 // PREM
+export const layerDensity = bins.map(radius => rho(radius));
 export const layerMasses = bins.map(radius => rho(radius) * shellVolume(radius));
 export const innerCoreMass = layerMasses
     .slice(1, 12215)
@@ -267,6 +268,7 @@ export const oceanGeophysicalResponse = layerGeoResponse
     .slice(63680, 63709)
     .reduce((Accumulator, CurrentValue) => Accumulator + CurrentValue);
 // AK135F Model
+export const layerDensityAK135F = bins.map(radius => linearFit(radius));
 export const layerMassesAK135F = bins.map(radius => linearFit(radius) * shellVolume(radius));
 export const earthMassAK135F = layerMassesAK135F
     .slice(1, 63710)
