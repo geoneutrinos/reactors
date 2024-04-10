@@ -155,6 +155,7 @@ const AK135F = [
 
 export const layers = 63710;
 export const maxRadius = 6371;
+const maxRadiusCubed = maxRadius**3;
 export const binWidth = maxRadius / layers;
 export const offset = binWidth * 0.5;
 export const bins = new Float64Array(layers).map((_, i) => 0 + offset + binWidth * i);
@@ -192,6 +193,14 @@ export function linearFit(r:number): number {
     return intercept + slope * (r - radius) / maxRadius
 }
 
+export function volume(r:number): number {
+    return preFactor * ((r + offset)**3 - (r - offset)**3)
+}
+
+export function volumeRatio(x: number): number {
+    return volume(x) / maxRadiusCubed / preFactor
+}
+
 export function geoIntegrate(x: number): number {
     const topPlus = 1 + (x+offset) / maxRadius
     const bottomPlus = 1 + (x-offset) / maxRadius
@@ -208,12 +217,8 @@ export function geoIntegrate(x: number): number {
     return (termPlus1 - termPlus2 - termPlus3 + termPlus4 - termMinus1 + termMinus2 + termMinus3 - termMinus4)
 }
 
-export function volumeRatio(x: number): number {
-    return ((x+offset)**3 - (x-offset)**3) / maxRadius**3
-}
-
 // PREM
-const layerMasses = bins.map(radius => rho(radius) * preFactor * ((radius + offset)**3 - (radius - offset)**3));
+const layerMasses = bins.map(radius => rho(radius) * volume(radius));
 export const innerCoreMass = layerMasses
     .slice(1, 12215)
     .reduce((Accumulator, CurrentValue) => Accumulator + CurrentValue);
@@ -259,7 +264,7 @@ export const oceanGeophysicalResponse = layerGeoResponse
     .slice(63680, 63709)
     .reduce((Accumulator, CurrentValue) => Accumulator + CurrentValue);
 // AK135F Model
-const layerMassesAK135F = bins.map(radius => linearFit(radius) * preFactor * ((radius + offset)**3 - (radius - offset)**3));
+const layerMassesAK135F = bins.map(radius => linearFit(radius) * volume(radius));
 export const earthMassAK135F = layerMassesAK135F
     .slice(1, 63710)
     .reduce((Accumulator, CurrentValue) => Accumulator + CurrentValue);
