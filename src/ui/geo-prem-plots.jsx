@@ -1,12 +1,11 @@
 import {rho,
         linearFit,
-        shellVolume,
+        layerMasses,
+        layerMassesAK135F,
+        layerGeophysicalResponse,
+        layerGeophysicalResponseAK135F,
         geoIntegrate,
         volumeRatio,
-        layers,
-        maxRadius,
-        binWidth,
-        offset,
         bins,
         } from "../mantle/PREM";
 import { Card } from "react-bootstrap";
@@ -83,7 +82,7 @@ export const GeoDensityPlot = () => {
 export const GeoMassPlot = () => {
     const data = [
       {
-        y: bins.map(bin => rho(bin) * shellVolume(bin)),
+        y: layerMasses,
         x: bins,
         name: "PREM",
         type: "scatter",
@@ -92,7 +91,7 @@ export const GeoMassPlot = () => {
         marker: { color: "green" },
       },
       {
-        y: bins.map(bin => linearFit(bin) * shellVolume(bin)),
+        y: layerMassesAK135F,
         x: bins,
         name: "AK135F",
         type: "scatter",
@@ -211,7 +210,7 @@ export const GeoIntegralPlot = () => {
 export const GeophysicalResponsePlot = () => {
     const data = [
       {
-        y: bins.map(bin => geoIntegrate(bin) * rho(bin) * maxRadius * 100 / 2),
+        y: layerGeophysicalResponse,
         x: bins,
         name: "PREM",
         type: "scatter",
@@ -220,7 +219,7 @@ export const GeophysicalResponsePlot = () => {
         marker: { color: "grey" },
       },
       {
-        y: bins.map(bin => geoIntegrate(bin) * linearFit(bin) * maxRadius * 100 / 2),
+        y: layerGeophysicalResponseAK135F,
         x: bins,
         name: "AK135F",
         type: "scatter",
