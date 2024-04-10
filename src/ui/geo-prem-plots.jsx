@@ -1,5 +1,5 @@
-import {rho,
-        linearFit,
+import {layerDensity,
+        layerDensityAK135F,
         layerMasses,
         layerMassesAK135F,
         layerGeoResponse,
@@ -13,7 +13,7 @@ import Plot from "react-plotly.js";
 export const GeoDensityPlot = () => {
     const data = [
       {
-        y: bins.map(bin => rho(bin)),
+        y: layerDensity,
         x: bins,
         name: "PREM",
         type: "scatter",
@@ -22,7 +22,7 @@ export const GeoDensityPlot = () => {
         marker: { color: "purple" },
       },
       {
-        y: bins.map(bin => linearFit(bin)),
+        y: layerDensityAK135F,
         x: bins,
         name: "AK135F",
         type: "scatter",
