@@ -1,13 +1,11 @@
-import {rho,
-        linearFit,
-        geoIntegrate,
-        volumeRatio,
-        layers,
-        maxRadius,
-        binWidth,
-        offset,
+import {layerDensity,
+        layerDensityAK135F,
+        layerMasses,
+        layerMassesAK135F,
+        layerGeoResponse,
+        layerGeoResponseAK135F,
+        geoIntegral,
         bins,
-        preFactor,
         } from "../mantle/PREM";
 import { Card } from "react-bootstrap";
 import Plot from "react-plotly.js";
@@ -15,7 +13,7 @@ import Plot from "react-plotly.js";
 export const GeoDensityPlot = () => {
     const data = [
       {
-        y: bins.map(bin => rho(bin)),
+        y: layerDensity,
         x: bins,
         name: "PREM",
         type: "scatter",
@@ -24,7 +22,7 @@ export const GeoDensityPlot = () => {
         marker: { color: "purple" },
       },
       {
-        y: bins.map(bin => linearFit(bin)),
+        y: layerDensityAK135F,
         x: bins,
         name: "AK135F",
         type: "scatter",
@@ -83,7 +81,7 @@ export const GeoDensityPlot = () => {
 export const GeoMassPlot = () => {
     const data = [
       {
-        y: bins.map(bin => rho(bin) * preFactor * ((bin + offset)**3 - (bin - offset)**3)),
+        y: layerMasses,
         x: bins,
         name: "PREM",
         type: "scatter",
@@ -92,7 +90,7 @@ export const GeoMassPlot = () => {
         marker: { color: "green" },
       },
       {
-        y: bins.map(bin => linearFit(bin) * preFactor * ((bin + offset)**3 - (bin - offset)**3)),
+        y: layerMassesAK135F,
         x: bins,
         name: "AK135F",
         type: "scatter",
@@ -151,7 +149,7 @@ export const GeoMassPlot = () => {
 export const GeoIntegralPlot = () => {
     const data = [
       {
-        y: bins.map(bin => geoIntegrate(bin) * 1.5 / volumeRatio(bin)),
+        y: geoIntegral,
         x: bins,
         name: "Geo Integral",
         type: "scatter",
@@ -211,7 +209,7 @@ export const GeoIntegralPlot = () => {
 export const GeophysicalResponsePlot = () => {
     const data = [
       {
-        y: bins.map(bin => geoIntegrate(bin) * rho(bin) * maxRadius * 100 / 2),
+        y: layerGeoResponse,
         x: bins,
         name: "PREM",
         type: "scatter",
@@ -220,7 +218,7 @@ export const GeophysicalResponsePlot = () => {
         marker: { color: "grey" },
       },
       {
-        y: bins.map(bin => geoIntegrate(bin) * linearFit(bin) * maxRadius * 100 / 2),
+        y: layerGeoResponseAK135F,
         x: bins,
         name: "AK135F",
         type: "scatter",

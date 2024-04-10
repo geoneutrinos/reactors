@@ -153,12 +153,14 @@ const AK135F = [
 [6368.00, 1.0200,  0.0000],
 ]
 
-export const layers = 63710;
-export const maxRadius = 6371;
-export const binWidth = maxRadius / layers;
-export const offset = binWidth * 0.5;
+const layers = 63710;
+const maxRadius = 6371;
+const maxRadiusCubed = maxRadius**3;
+const binWidth = maxRadius / layers;
+const offset = binWidth * 0.5;
+const preFactor = 4 * Math.PI * 1e15 / 3; //1e5 cm/km
+
 export const bins = new Float64Array(layers).map((_, i) => 0 + offset + binWidth * i);
-export const preFactor = 4 * Math.PI * 1e15 / 3;
 
 /**
  * polynomial(a0, a1, ... , an) generates a function f(x) that will compute the power series in the form:
@@ -180,19 +182,27 @@ export function polynomial(...coefficients:number[]) {
  * 
  * @param r {number} radius of the layer
  */
-export function rho(r:number): number {
+function rho(r:number): number {
     // The layer we want will be the first layer with a boundry lower than our target when searched from the top
     const [depth, ...coefs] = [...PREM].reverse().find(((elm) => elm[0] < r))!
     const poly = polynomial(...coefs)
     return poly(r/maxRadius)
 }
 
-export function linearFit(r:number): number {
+function linearFit(r:number): number {
     const [radius,intercept,slope] = [...AK135F].reverse().find(((elm) => elm[0] < r))!
     return intercept + slope * (r - radius) / maxRadius
 }
 
-export function geoIntegrate(x: number): number {
+function shellVolume(r:number): number {
+    return preFactor * ((r + offset)**3 - (r - offset)**3)
+}
+
+function volumeRatio(x: number): number {
+    return shellVolume(x) / maxRadiusCubed / preFactor
+}
+
+function geoIntegrate(x: number): number {
     const topPlus = 1 + (x+offset) / maxRadius
     const bottomPlus = 1 + (x-offset) / maxRadius
     const topMinus = 1 - (x+offset) / maxRadius
@@ -208,12 +218,11 @@ export function geoIntegrate(x: number): number {
     return (termPlus1 - termPlus2 - termPlus3 + termPlus4 - termMinus1 + termMinus2 + termMinus3 - termMinus4)
 }
 
-export function volumeRatio(x: number): number {
-    return ((x+offset)**3 - (x-offset)**3) / maxRadius**3
-}
+export const geoIntegral = bins.map(bin => geoIntegrate(bin) * 1.5 / volumeRatio(bin));
 
 // PREM
-const layerMasses = bins.map(radius => rho(radius) * preFactor * ((radius + offset)**3 - (radius - offset)**3));
+export const layerDensity = bins.map(radius => rho(radius));
+export const layerMasses = bins.map(radius => rho(radius) * shellVolume(radius));
 export const innerCoreMass = layerMasses
     .slice(1, 12215)
     .reduce((Accumulator, CurrentValue) => Accumulator + CurrentValue);
@@ -236,7 +245,7 @@ export const oceanMass = layerMasses
     .slice(63680, 63710)
     .reduce((Accumulator, CurrentValue) => Accumulator + CurrentValue);
 export const earthMass = innerCoreMass + outerCoreMass + lowerMantleMass + upperMantleMass + lowerCrustMass + upperCrustMass + oceanMass;
-const layerGeoResponse = bins.map(bin => geoIntegrate(bin) * rho(bin) * maxRadius * 100 / 2);
+export const layerGeoResponse = bins.map(bin => geoIntegrate(bin) * rho(bin) * maxRadius * 100 / 2);
 export const innerCoreGeophysicalResponse = layerGeoResponse
     .slice(1, 12215)
     .reduce((Accumulator, CurrentValue) => Accumulator + CurrentValue);
@@ -259,7 +268,8 @@ export const oceanGeophysicalResponse = layerGeoResponse
     .slice(63680, 63709)
     .reduce((Accumulator, CurrentValue) => Accumulator + CurrentValue);
 // AK135F Model
-const layerMassesAK135F = bins.map(radius => linearFit(radius) * preFactor * ((radius + offset)**3 - (radius - offset)**3));
+export const layerDensityAK135F = bins.map(radius => linearFit(radius));
+export const layerMassesAK135F = bins.map(radius => linearFit(radius) * shellVolume(radius));
 export const earthMassAK135F = layerMassesAK135F
     .slice(1, 63710)
     .reduce((Accumulator, CurrentValue) => Accumulator + CurrentValue);
@@ -281,7 +291,7 @@ export const lowerCrustMassAK135F = layerMassesAK135F
 export const upperCrustMassAK135F = layerMassesAK135F
     .slice(63610, 63680)
     .reduce((Accumulator, CurrentValue) => Accumulator + CurrentValue);
-const layerGeoResponseAK135F = bins.map(bin => geoIntegrate(bin) * linearFit(bin) * maxRadius * 100 / 2);
+export const layerGeoResponseAK135F = bins.map(bin => geoIntegrate(bin) * linearFit(bin) * maxRadius * 100 / 2);
 export const innerCoreGeophysicalResponseAK135F = layerGeoResponseAK135F
     .slice(1, 12175)
     .reduce((Accumulator, CurrentValue) => Accumulator + CurrentValue);
