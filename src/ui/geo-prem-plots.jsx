@@ -210,7 +210,7 @@ export const GeoIntegralPlot = () => {
 export const GeophysicalResponsePlot = () => {
     const data = [
       {
-        y: layerGeophysicalResponse,
+        y: layerGeoResponse,
         x: bins,
         name: "PREM",
         type: "scatter",
@@ -219,7 +219,7 @@ export const GeophysicalResponsePlot = () => {
         marker: { color: "grey" },
       },
       {
-        y: layerGeophysicalResponseAK135F,
+        y: layerGeoResponseAK135F,
         x: bins,
         name: "AK135F",
         type: "scatter",
