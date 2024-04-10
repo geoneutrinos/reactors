@@ -218,7 +218,7 @@ export function geoIntegrate(x: number): number {
 }
 
 // PREM
-const layerMasses = bins.map(radius => rho(radius) * shellVolume(radius));
+export const layerMasses = bins.map(radius => rho(radius) * shellVolume(radius));
 export const innerCoreMass = layerMasses
     .slice(1, 12215)
     .reduce((Accumulator, CurrentValue) => Accumulator + CurrentValue);
@@ -241,7 +241,7 @@ export const oceanMass = layerMasses
     .slice(63680, 63710)
     .reduce((Accumulator, CurrentValue) => Accumulator + CurrentValue);
 export const earthMass = innerCoreMass + outerCoreMass + lowerMantleMass + upperMantleMass + lowerCrustMass + upperCrustMass + oceanMass;
-const layerGeoResponse = bins.map(bin => geoIntegrate(bin) * rho(bin) * maxRadius * 100 / 2);
+export const layerGeoResponse = bins.map(bin => geoIntegrate(bin) * rho(bin) * maxRadius * 100 / 2);
 export const innerCoreGeophysicalResponse = layerGeoResponse
     .slice(1, 12215)
     .reduce((Accumulator, CurrentValue) => Accumulator + CurrentValue);
@@ -264,7 +264,7 @@ export const oceanGeophysicalResponse = layerGeoResponse
     .slice(63680, 63709)
     .reduce((Accumulator, CurrentValue) => Accumulator + CurrentValue);
 // AK135F Model
-const layerMassesAK135F = bins.map(radius => linearFit(radius) * shellVolume(radius));
+export const layerMassesAK135F = bins.map(radius => linearFit(radius) * shellVolume(radius));
 export const earthMassAK135F = layerMassesAK135F
     .slice(1, 63710)
     .reduce((Accumulator, CurrentValue) => Accumulator + CurrentValue);
@@ -286,7 +286,7 @@ export const lowerCrustMassAK135F = layerMassesAK135F
 export const upperCrustMassAK135F = layerMassesAK135F
     .slice(63610, 63680)
     .reduce((Accumulator, CurrentValue) => Accumulator + CurrentValue);
-const layerGeoResponseAK135F = bins.map(bin => geoIntegrate(bin) * linearFit(bin) * maxRadius * 100 / 2);
+export const layerGeoResponseAK135F = bins.map(bin => geoIntegrate(bin) * linearFit(bin) * maxRadius * 100 / 2);
 export const innerCoreGeophysicalResponseAK135F = layerGeoResponseAK135F
     .slice(1, 12175)
     .reduce((Accumulator, CurrentValue) => Accumulator + CurrentValue);
