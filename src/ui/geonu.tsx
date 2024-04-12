@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { sum } from "lodash";
-import { rawAntineutrinoSpectrum } from "../antineutrino-spectrum";
+import { rawAntineutrinoSpectrum, plotAntineutrinoSpectrum40K } from "../antineutrino-spectrum";
 
 import { Card, Form, InputGroup, Table } from "react-bootstrap";
 import { Num } from ".";
@@ -350,7 +350,7 @@ export const GeoNuSpectrumSource = () => {
       marker: { color: "red" },
     },
     {
-      y: [...rawAntineutrinoSpectrum["40K"], 0].map((x) => x * 1000 * K40_BRANCH_RATIO.beta),
+      y: plotAntineutrinoSpectrum40K,
       x: x_values,
       name: "<sup>40</sup>K<sub>β</sub>",
       type: "scatter",
