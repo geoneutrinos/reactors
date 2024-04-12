@@ -46,6 +46,8 @@ function resample(
   });
 }
 
+const plotAntineutrinoSpectrum40K = antineutrinoSpectrum40KData.map((x) => x * 1000 * K40_BRANCH_RATIO.beta);
+
 export const rawAntineutrinoSpectrum = {
   "40K": antineutrinoSpectrum40KData,
   "238U": antineutrinoSpectrum238UData,
