@@ -46,13 +46,16 @@ function resample(
   });
 }
 
-export const plotAntineutrinoSpectrum40K = [...antineutrinoSpectrum40KData, 0].map((x) => x * 1000 * K40_BRANCH_RATIO.beta);
+const plotAntineutrinoSpectrum40K = [...antineutrinoSpectrum40KData, 0].map((x) => x * 1000 * K40_BRANCH_RATIO.beta);
+const plotAntineutrinoSpectrum238U = [...antineutrinoSpectrum238UData, 0].map((x) => x * 1000 * ISOTOPIC_NEUTRINOS_PER_DECAY.U238);
+const plotAntineutrinoSpectrum235U = [...antineutrinoSpectrum235UData, 0].map((x) => x * 1000 * ISOTOPIC_NEUTRINOS_PER_DECAY.U235);
+const plotAntineutrinoSpectrum232Th = [...antineutrinoSpectrum232ThData, 0].map((x) => x * 1000 * ISOTOPIC_NEUTRINOS_PER_DECAY.TH232);
 
 export const rawAntineutrinoSpectrum = {
-  "40K": antineutrinoSpectrum40KData,
-  "238U": antineutrinoSpectrum238UData,
-  "235U": antineutrinoSpectrum235UData,
-  "232Th": antineutrinoSpectrum232ThData,
+  "40K": plotAntineutrinoSpectrum40K,
+  "238U": plotAntineutrinoSpectrum238U,
+  "235U": plotAntineutrinoSpectrum235U,
+  "232Th": plotAntineutrinoSpectrum232Th,
 }
 
 export const antineutrinoSpectrum40K = resample(
