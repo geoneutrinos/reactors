@@ -3,7 +3,12 @@ import antineutrinoSpectrum232ThData from "./data/AntineutrinoSpectrum_232Th.knt
 import antineutrinoSpectrum235UData from "./data/AntineutrinoSpectrum_235U.knt.json";
 import antineutrinoSpectrum238UData from "./data/AntineutrinoSpectrum_238U.knt.json";
 
-import { SECONDS_PER_YEAR } from "../physics/constants";
+import {
+  SECONDS_PER_YEAR,
+  ISOTOPIC_NEUTRINOS_PER_DECAY,
+  K40_BRANCH_RATIO,
+} from '../physics/constants';
+
 
 import { CrossSectionFunc, XSNames, CrossSection, crossSection } from "../physics/neutrino-cross-section";
 
@@ -41,12 +46,11 @@ function resample(
   });
 }
 
-export const rawAntineutrinoSpectrum = {
-  "40K": antineutrinoSpectrum40KData,
-  "238U": antineutrinoSpectrum238UData,
-  "235U": antineutrinoSpectrum235UData,
-  "232Th": antineutrinoSpectrum232ThData,
-}
+export const plotAntineutrinoSpectrum40K = [...antineutrinoSpectrum40KData, 0].map((x) => x * 1000 * K40_BRANCH_RATIO.beta);
+export const plotAntineutrinoSpectrum238U = [...antineutrinoSpectrum238UData, 0].map((x) => x * 1000 * ISOTOPIC_NEUTRINOS_PER_DECAY.U238);
+export const plotAntineutrinoSpectrum235U = [...antineutrinoSpectrum235UData, 0].map((x) => x * 1000 * ISOTOPIC_NEUTRINOS_PER_DECAY.U235);
+export const plotAntineutrinoSpectrum232Th = [...antineutrinoSpectrum232ThData, 0].map((x) => x * 1000 * ISOTOPIC_NEUTRINOS_PER_DECAY.TH232);
+export const plotAntineutrinoSpectrumEnergyValues = new Float32Array(4500).map((_v, i) => i / 1000);
 
 export const antineutrinoSpectrum40K = resample(
   antineutrinoSpectrum40KData,
