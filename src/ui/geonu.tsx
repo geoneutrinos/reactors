@@ -5,6 +5,7 @@ import {
   plotAntineutrinoSpectrum238U,
   plotAntineutrinoSpectrum235U,
   plotAntineutrinoSpectrum232Th,
+  plotAntineutrinoSpectrumEnergyValues,
 } from "../antineutrino-spectrum";
 
 import { Card, Form, InputGroup, Table } from "react-bootstrap";
@@ -319,11 +320,10 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo}) => {
 };
 
 export const GeoNuSpectrumSource = () => {
-  const x_values = new Float32Array(4500).map((_v, i) => i / 1000);
   const data = [
     {
       y: plotAntineutrinoSpectrum238U,
-      x: x_values,
+      x: plotAntineutrinoEnergyValues,
       name: "<sup>238</sup>U",
       type: "scatter",
       mode: "lines",
@@ -332,7 +332,7 @@ export const GeoNuSpectrumSource = () => {
     },
     {
       y: plotAntineutrinoSpectrum235U,
-      x: x_values,
+      x: plotAntineutrinoEnergyValues,
       name: "<sup>235</sup>U",
       type: "scatter",
       mode: "lines",
@@ -341,7 +341,7 @@ export const GeoNuSpectrumSource = () => {
     },
     {
       y: plotAntineutrinoSpectrum232Th,
-      x: x_values,
+      x: plotAntineutrinoEnergyValues,
       name: "<sup>232</sup>Th",
       type: "scatter",
       mode: "lines",
@@ -350,7 +350,7 @@ export const GeoNuSpectrumSource = () => {
     },
     {
       y: plotAntineutrinoSpectrum40K,
-      x: x_values,
+      x: plotAntineutrinoEnergyValues,
       name: "<sup>40</sup>K<sub>β</sub>",
       type: "scatter",
       mode: "lines",
