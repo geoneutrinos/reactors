@@ -3,7 +3,12 @@ import antineutrinoSpectrum232ThData from "./data/AntineutrinoSpectrum_232Th.knt
 import antineutrinoSpectrum235UData from "./data/AntineutrinoSpectrum_235U.knt.json";
 import antineutrinoSpectrum238UData from "./data/AntineutrinoSpectrum_238U.knt.json";
 
-import { SECONDS_PER_YEAR } from "../physics/constants";
+import {
+  SECONDS_PER_YEAR,
+  ISOTOPIC_NEUTRINOS_PER_DECAY,
+  K40_BRANCH_RATIO,
+} from '../physics/constants';
+
 
 import { CrossSectionFunc, XSNames, CrossSection, crossSection } from "../physics/neutrino-cross-section";
 
