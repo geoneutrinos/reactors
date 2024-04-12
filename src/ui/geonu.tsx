@@ -323,7 +323,7 @@ export const GeoNuSpectrumSource = () => {
   const data = [
     {
       y: plotAntineutrinoSpectrum238U,
-      x: plotAntineutrinoEnergyValues,
+      x: plotAntineutrinoSpectrumEnergyValues,
       name: "<sup>238</sup>U",
       type: "scatter",
       mode: "lines",
@@ -332,7 +332,7 @@ export const GeoNuSpectrumSource = () => {
     },
     {
       y: plotAntineutrinoSpectrum235U,
-      x: plotAntineutrinoEnergyValues,
+      x: plotAntineutrinoSpectrumEnergyValues,
       name: "<sup>235</sup>U",
       type: "scatter",
       mode: "lines",
@@ -341,7 +341,7 @@ export const GeoNuSpectrumSource = () => {
     },
     {
       y: plotAntineutrinoSpectrum232Th,
-      x: plotAntineutrinoEnergyValues,
+      x: plotAntineutrinoSpectrumEnergyValues,
       name: "<sup>232</sup>Th",
       type: "scatter",
       mode: "lines",
@@ -350,7 +350,7 @@ export const GeoNuSpectrumSource = () => {
     },
     {
       y: plotAntineutrinoSpectrum40K,
-      x: plotAntineutrinoEnergyValues,
+      x: plotAntineutrinoSpectrumEnergyValues,
       name: "<sup>40</sup>K<sub>β</sub>",
       type: "scatter",
       mode: "lines",
