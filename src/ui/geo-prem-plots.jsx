@@ -1,3 +1,4 @@
+import { memo } from "react";
 import {layerDensity,
         layerDensityAK135F,
         layerMasses,
@@ -10,7 +11,7 @@ import {layerDensity,
 import { Card } from "react-bootstrap";
 import Plot from "react-plotly.js";
 
-export const GeoDensityPlot = () => {
+export const GeoDensityPlot = memo(() => {
     const data = [
       {
         y: layerDensity,
@@ -76,9 +77,9 @@ export const GeoDensityPlot = () => {
          </Card.Body>
       </Card>
     );
-  }
+  })
 
-export const GeoMassPlot = () => {
+export const GeoMassPlot = memo(() => {
     const data = [
       {
         y: layerMasses,
@@ -144,9 +145,9 @@ export const GeoMassPlot = () => {
         </Card.Body>
       </Card>
     );
-  }
+  })
 
-export const GeoIntegralPlot = () => {
+export const GeoIntegralPlot = memo(() => {
     const data = [
       {
         y: geoIntegral,
@@ -204,9 +205,9 @@ export const GeoIntegralPlot = () => {
         </Card.Body>
       </Card>
     );
-  }
+  })
 
-export const GeophysicalResponsePlot = () => {
+export const GeophysicalResponsePlot = memo(() => {
     const data = [
       {
         y: layerGeoResponse,
@@ -272,4 +273,4 @@ export const GeophysicalResponsePlot = () => {
         </Card.Body>
       </Card>
     );
-  }
+  })

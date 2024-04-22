@@ -1,3 +1,4 @@
+import {memo} from 'react';
 import { Card, Table } from 'react-bootstrap';
 
 import {Elements} from './elements'
@@ -14,7 +15,7 @@ import { XSNames } from "../physics/neutrino-cross-section";
 
 const {K40, Th232, U235, U238} = Elements
 
-export const GeoRateFluxYields = () => {
+export const GeoRateFluxYields = memo(() => {
   return (
     <Card>
       <Card.Header>Geo-neutrino Nuclide Rate to Flux (NIU<sup>-1</sup> cm<sup>-2</sup>s<sup>-1</sup>) </Card.Header>
@@ -98,4 +99,4 @@ export const GeoRateFluxYields = () => {
       </Card.Body>
     </Card>
   );
-}
+})

@@ -1,3 +1,4 @@
+import { memo } from "react";
 import {
   averageNeutrinoEnergy232Th,
   averageNeutrinoEnergy238U,
@@ -33,7 +34,7 @@ import { MathJax } from "better-react-mathjax";
 
 const {K40, Th232, U235, U238, Ar40, Ca40, Pb206, Pb207, Pb208} = Elements
 
-export const IsotopeData = () => {
+export const IsotopeData = memo(() => {
   return (
     <Card>
       <Card.Header>Nuclide Data</Card.Header>
@@ -289,4 +290,4 @@ export const IsotopeData = () => {
       </Card.Body>
     </Card>
   );
-}
+})

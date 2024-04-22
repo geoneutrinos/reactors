@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, memo } from "react";
 import { sum } from "lodash";
 import { rawAntineutrinoSpectrum } from "../antineutrino-spectrum";
 
@@ -319,7 +319,7 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo}) => {
   );
 };
 
-export const GeoNuSpectrumSource = () => {
+export const GeoNuSpectrumSource = memo(() => {
   const x_values = new Float32Array(4500).map((_v, i) => i / 1000);
   const data = [
     {
@@ -407,9 +407,9 @@ export const GeoNuSpectrumSource = () => {
       </Card.Body>
     </Card>
   );
-};
+});
 
-export const GeoNusPane = () => {
+export const GeoNusPane = memo(() => {
   return (
     <Card>
       <Card.Header>Antineutrinos from the Earth</Card.Header>
@@ -435,5 +435,5 @@ export const GeoNusPane = () => {
       </Card.Body>
     </Card>
   );
-};
+});
 

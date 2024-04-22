@@ -1,3 +1,4 @@
+import {memo} from 'react';
 import { Card, Table } from 'react-bootstrap';
 
 import {Num} from "."
@@ -31,7 +32,7 @@ import {innerCoreMass,
         upperCrustGeophysicalResponseAK135F,
         earthMassAK135F,
        } from "../mantle/PREM";
-export const GeoDataPREM = () => {
+export const GeoDataPREM = memo(() => {
   return (
     <Card>
       <Card.Header>Model Data</Card.Header>
@@ -240,4 +241,4 @@ export const GeoDataPREM = () => {
       </Card.Body>
     </Card>
   );
-}
+})
