@@ -1,8 +1,8 @@
 import React, { useState, useMemo, useReducer } from "react";
 import { MathJaxContext } from "better-react-mathjax";
 
-import { project } from "ecef-projector";
 import { Container, Row, Col, Tab, Tabs } from "react-bootstrap";
+import { project } from "./lla-to-xyz";
 
 import {
   // Left pane

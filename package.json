@@ -15,7 +15,6 @@
     "@types/suncalc": "^1.8.0",
     "bootstrap": "^4.5.3",
     "d3": "^7.0.0",
-    "ecef-projector": "^1.0.1",
     "file-saver": "^2.0.2",
     "leaflet": "^1.8.0",
     "leaflet-contextmenu": "^1.4.0",
