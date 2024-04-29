@@ -11,7 +11,7 @@ import {
   IsotopeKeys,
 } from "../physics/constants";
 import { zip, sum } from "lodash";
-import { project } from "ecef-projector";
+import { project } from "../lla-to-xyz";
 import { Oscillation } from "../physics/neutrino-oscillation";
 import bins, {binWidth, binCount} from "../physics/bins";
 
