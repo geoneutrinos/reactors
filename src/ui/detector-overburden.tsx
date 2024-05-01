@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {memo} from 'react';
 
 import { Card, Table } from 'react-bootstrap';
 
-export const DetectorOverburdens = () => {
+export const DetectorOverburdens = memo(() => {
   return (
     <Card>
       <Card.Header>Detector Sites</Card.Header>
@@ -130,4 +130,4 @@ export const DetectorOverburdens = () => {
       </Card.Body>
     </Card>
   );
-}
+})
