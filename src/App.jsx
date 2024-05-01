@@ -8,6 +8,8 @@ import {
   // Left pane
   NuMap,
 
+  CelestialBodySwitcher,
+
   // Right Pane
   NuSpectrumPlot,
   // Detector Tab
@@ -133,6 +135,9 @@ L.Icon.Default.mergeOptions({
 const defaultDetector = presets.find((detector) => detector.name === "Kamioka");
 
 function App(props) {
+  // Where is this?
+  const [celestialBody, setCelestialBody] = useState("earth")
+
   const [oscillation, oscillationDispatch] = useReducer(
     oscillationReducer,
     initalOscillation
@@ -182,7 +187,7 @@ function App(props) {
   const cores = useMemo(() => {
     const enuProject = detectorENUProjector(detector);
     const { lat, lon, elevation } = detector;
-    const [x, y, z] = project(lat, lon, elevation).map((n) => n / 1000);
+    const [x, y, z] = project(lat, lon, elevation, celestialBody).map((n) => n / 1000);
 
     const tmpCores = { ...defaultCores, ...customCores };
 
@@ -204,7 +209,7 @@ function App(props) {
         ];
       })
     );
-  }, [coreMods, reactorLF, crossSection, oscillation, detector, customCores, reactorAntineutrinoModel]);
+  }, [coreMods, reactorLF, crossSection, oscillation, detector, customCores, reactorAntineutrinoModel, celestialBody]);
 
   const crustFlux = useMemo(() => {
     return {
@@ -231,6 +236,7 @@ function App(props) {
   ]);
 
   const physicsContextValue = {
+    celestialBody,
     oscillation: oscillation,
     oscillationDispatch: oscillationDispatch,
     crossSection: crossSection,
@@ -244,7 +250,6 @@ function App(props) {
       <Container fluid={true}>
         <Row style={{ minHeight: "100vh" }}>
           <Col style={{ minHeight: "50vh" }}>
-            {
             <NuMap
               cores={defaultCores}
               customCores={customCores}
@@ -252,8 +257,9 @@ function App(props) {
               detector={detector}
               setDetector={setDetector}
               setCore={addCustomModelWithLoc}
+              celestialBody={celestialBody}
+              key={celestialBody} // this is needed to force the entire component to remount
             />
-}
           </Col>
           <Col lg={6} style={{ maxHeight: "100vh", overflow: "scroll" }}>
             <NuSpectrumPlot
@@ -265,6 +271,7 @@ function App(props) {
             <Tabs unmountOnExit={false} activeKey={activeTab} onSelect={(k) => setActiveTab(k)}>
               <Tab eventKey="detector" title="Detector">
                 <Visible>
+                  <CelestialBodySwitcher celestialBody={celestialBody} setCelestialBody={setCelestialBody} />
                   <StatsPanel cores={cores} geo={geo} reactorLF={reactorLF} />
                   <DetectorLocationPane
                     detector={detector}
