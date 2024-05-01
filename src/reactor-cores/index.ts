@@ -484,6 +484,7 @@ const defaultCoreList = Object.keys(cores).map((core) => {
     power: power,
     loads: LFs,
     shutdown: shutdown,
+    celestialBody: "earth",
   });
 });
 
