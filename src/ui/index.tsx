@@ -55,6 +55,7 @@ export {
   GeoIntegralPlot,
   GeophysicalResponsePlot,
 } from "./geo-prem-plots";
+export { CelestialBodySwitcher } from "./celestial-body-switcher";
 
 interface VisibleProps {
   children: React.ReactNode

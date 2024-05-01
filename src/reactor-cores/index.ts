@@ -274,6 +274,7 @@ export function ReactorCore({
   custom = false,
   loads = [],
   shutdown = "2100-01",
+  celestialBody = "earth",
 }: {
   name: string;
   lat: number;
@@ -287,8 +288,20 @@ export function ReactorCore({
   loads: LoadFactor[];
   powerFractions: PowerFractions;
   shutdown: string;
+  celestialBody: "earth" | "moon";
 }): ReactorCore {
-  const [x, y, z] = project(lat, lon, elevation).map((n) => n / 1000);
+  const [x, y, z] = project(lat, lon, elevation, celestialBody).map((n) => n / 1000);
+
+  function setCelestialBody(this: ReactorCore, celestialBody: "earth" | "moon"){
+    const [x, y, z] = project(lat, lon, elevation, celestialBody).map((n) => n / 1000);
+    return {
+      ...this,
+      celestialBody,
+      x,
+      y,
+      z,
+    }
+  }
 
   function loadFactor(
     this: ReactorCore,
