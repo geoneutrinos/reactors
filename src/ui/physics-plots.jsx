@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, memo} from 'react';
 
 import { Card } from "react-bootstrap";
 import { MathJax } from "better-react-mathjax";
@@ -1195,7 +1195,7 @@ export const CrossSectionPlots = () => {
   );
 };
 
-export const SV03PercentDifference = () => {
+export const SV03PercentDifference = memo(() => {
   const data = [
     {
       x: [2.01, 2.25, 2.51, 2.80, 3.12, 3.48, 3.89, 4.33, 4.84, 5.40, 6.02, 6.72, 7.49, 8.36, 8.83, 9.85, 11.0, 12.3],
@@ -1265,7 +1265,7 @@ export const SV03PercentDifference = () => {
       </Card.Body>
     </Card>
   );
-};
+});
 
 export const CrossSectionPlotsNormal = () => {
   const {crossSection} = useContext(PhysicsContext)
