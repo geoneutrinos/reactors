@@ -21,6 +21,7 @@ export const AddCustomCoreModal = ({
   customCores,
   setCustomCores,
   close,
+  celestialBody,
 }) => {
   let defaultName;
   let c = 1;
@@ -78,6 +79,7 @@ export const AddCustomCoreModal = ({
         PU239: fissionFractions[Isotopes.PU239],
         PU241: fissionFractions[Isotopes.PU241],
       },
+      celestialBody: celestialBody,
     });
     setCustomCores({ ...customCores, [newCore.name]: newCore });
     setName(defaultName);
@@ -145,7 +147,7 @@ export const AddCustomCoreModal = ({
   return (
     <Modal show={show} onHide={close}>
       <Modal.Header closeButton>
-        <Modal.Title>Add Custom Core</Modal.Title>
+        <Modal.Title>Add Custom Core on the {celestialBody}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form.Group as={Row} controlId="presets">

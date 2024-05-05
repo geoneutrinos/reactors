@@ -68,8 +68,8 @@ function coreCircleColor(type) {
   }
 }
 
-const CoreCircles = React.memo(function CoreCircles({ cores, customCores, zoom, shutdownCores }) {
-  let coreList = Object.values({...cores, ...customCores});
+const CoreCircles = React.memo(function CoreCircles({ cores, zoom, shutdownCores }) {
+  let coreList = Object.values({...cores,});
   const radius = zoom > 6? zoom > 8? zoom > 10? zoom > 12? zoom > 14? zoom > 18? 25 : 50 : 500 : 1000 : 2000 : 5000 : 10000
 
   if (shutdownCores === true){
@@ -153,7 +153,6 @@ export function NuMap({
   setDetector,
   setCore,
   cores,
-  customCores,
   detectorList,
   celestialBody,
 }) {
@@ -232,12 +231,12 @@ export function NuMap({
       <LayersControl position="topright">
         <LayersControl.Overlay checked name="Shutdown Reactor Cores">
           <LayerGroup>
-            <CoreCircles cores={cores} customCores={customCores} zoom={zoom} shutdownCores={true}/>
+            <CoreCircles cores={cores} zoom={zoom} shutdownCores={true}/>
           </LayerGroup>
         </LayersControl.Overlay>
         <LayersControl.Overlay checked name="Active Reactor Cores">
           <LayerGroup>
-            <CoreCircles cores={cores} customCores={customCores} zoom={zoom} shutdownCores={false}/>
+            <CoreCircles cores={cores} zoom={zoom} shutdownCores={false}/>
           </LayerGroup>
         </LayersControl.Overlay>
         <LayersControl.Overlay checked name="Detector Locations">
