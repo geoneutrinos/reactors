@@ -13,13 +13,22 @@ import {
 import { CRS } from "leaflet";
 import "leaflet-contextmenu";
 
+import {EARTH_REGIONS, LUNAR_REGIONS} from "../detectors"
+
 import "leaflet-contextmenu/dist/leaflet.contextmenu.css";
+
+const REGIONS = {
+  "earth": new Set(EARTH_REGIONS),
+  "moon": new Set(LUNAR_REGIONS)
+}
 
 const DetectorCircles = React.memo(function DetectorCircles({
   detectors,
   setDetector,
   zoom,
+  celestialBody,
 }) {
+  detectors = detectors.filter(detector => REGIONS[celestialBody].has(detector.region))
   const color = "#9d00ff";
   const radius = zoom > 6? zoom > 8? zoom > 10? zoom > 12? zoom > 14? zoom > 18? 25 : 50 : 500 : 1000 : 2000 : 5000 : 10000
   return detectors.map((detector) => {
@@ -245,6 +254,7 @@ export function NuMap({
               detectors={detectorList}
               setDetector={setDetector}
               zoom={zoom}
+              celestialBody={celestialBody}
             />
           </LayerGroup>
         </LayersControl.Overlay>
