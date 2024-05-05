@@ -247,6 +247,7 @@ interface ReactorCore {
   powerFractions: PowerFractions;
   outputSignal: boolean;
   shutdown: Date;
+  celestialBody: "earth" | "moon";
 
   setSignal: (
     dist: number,
@@ -258,6 +259,7 @@ interface ReactorCore {
   ) => ReactorCore;
   loadFactor: (start?: Date, stop?: Date) => number;
   cos: (other: ReactorCore) => number;
+  setCelestialBody: (celestialBody: "earth"|"moon") => ReactorCore
 }
 
 // eslint-disable-next-line
@@ -436,7 +438,9 @@ export function ReactorCore({
     direction: { phi: 0, elev: 0 },
     cos: cos,
     outputSignal: false,
-    shutdown: new Date(shutdown + "-01T00:00:00Z")
+    shutdown: new Date(shutdown + "-01T00:00:00Z"),
+    celestialBody: celestialBody,
+    setCelestialBody: setCelestialBody
   };
 }
 

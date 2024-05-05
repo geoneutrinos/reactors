@@ -192,14 +192,14 @@ function App(props) {
     const tmpCores = { ...defaultCores, ...customCores };
 
     return Object.fromEntries(
-      Object.entries(tmpCores).map(([name, core]) => {
+      Object.entries(tmpCores).filter(([name, core]) => core.celestialBody === celestialBody ).map(([name, core]) => {
         const modCore = { ...core, ...coreMods[name] };
         const dist = Math.hypot(x - modCore.x, y - modCore.y, z - modCore.z);
         const lf = modCore.loadFactor(reactorLF.start, reactorLF.end);
 
         const direction = enuProject([
           modCore.x - x,
-          modCore.y - y,
+          modCore.y - y,  
           modCore.z - z,
         ]);
 
@@ -251,8 +251,7 @@ function App(props) {
         <Row style={{ minHeight: "100vh" }}>
           <Col style={{ minHeight: "50vh" }}>
             <NuMap
-              cores={defaultCores}
-              customCores={customCores}
+              cores={cores}
               detectorList={presets}
               detector={detector}
               setDetector={setDetector}
@@ -290,6 +289,7 @@ function App(props) {
                     setAddCustomModalXY({});
                     setAddCustomModal(false);
                   }}
+                  celestialBody={celestialBody}
                 />
                 <ManageCustomCoreModal
                   show={manCustomModal}
