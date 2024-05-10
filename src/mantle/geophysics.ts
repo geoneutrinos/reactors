@@ -23,12 +23,22 @@ import {
   upperMantleGeophysicalResponse, 
 } from "./PREM";
 
+import {
+  lvzMass,
+  mantleMass as lunarMantleMass,
+  lvzGeophysicalResponse,
+  mantleGeophysicalResponse as lunarMantleGeophysicalResponse,
+} from "./lunar"
+
 import Elements from "../elements";
 
 const {K40, Th232, U235, U238} = Elements
 
 export const MANTLE_MASS = (upperMantleMass + lowerMantleMass) / 1e3; // kg (PREM- A. M. Dziewonski and D. L. Anderson (1981) Phys. Earth Planet. Inter. 25, 297.
 export const MANTLE_GEOPHYSICAL_RESPONSE = lowerMantleGeophysicalResponse + upperMantleGeophysicalResponse; // kg/cm2
+
+export const LUNAR_MANTLE_MASS = (lvzMass + lunarMantleMass) / 1e3;
+export const LUNAR_MANTLE_GEOPHYSICAL_RESPONSE = lvzGeophysicalResponse + lunarMantleGeophysicalResponse;
 
 export const ISOTOPIC_DECAY_HEATING = {
   // J kg-1 s-1

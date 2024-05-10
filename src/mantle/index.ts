@@ -13,6 +13,8 @@ import {
 import {
   MANTLE_GEOPHYSICAL_RESPONSE,
   MANTLE_MASS,
+  LUNAR_MANTLE_GEOPHYSICAL_RESPONSE,
+  LUNAR_MANTLE_MASS,
   ISOTOPIC_DECAY_HEATING,
 } from "./geophysics";
 import { ISOTOPIC_NEUTRINO_LUMINOSITY } from "../physics/derived";
@@ -210,13 +212,22 @@ export function geoSpectrum(
   crossSection: CrossSection,
   oscillation: Oscillation,
   geoFluxRatios: GeoNuFluxRatio,
-  crustFlux: CrustFlux
+  crustFlux: CrustFlux,
+  celestialBody: "earth" | "moon",
 ): GeoInterface {
   let survivalProbability = oscillation.averageSurvivalProbability;
 
   if (crossSection.crossSection === XSNames.ESMUTAU) {
     survivalProbability = 1 - survivalProbability;
   }
+
+  let mantleGeophysicalResponse = MANTLE_GEOPHYSICAL_RESPONSE
+  let mantleMass = MANTLE_MASS
+  if (celestialBody === "moon"){
+    mantleGeophysicalResponse = LUNAR_MANTLE_GEOPHYSICAL_RESPONSE
+    mantleMass = LUNAR_MANTLE_MASS
+  }
+  console.log(celestialBody, mantleMass, mantleGeophysicalResponse)
 
   const { U238flux, ThURatio, KURatio } = geoFluxRatios;
 
@@ -231,7 +242,7 @@ export function geoSpectrum(
     crossSection
   );
 
-  const mantleHeatingU238 = (U238flux / ISOTOPIC_NEUTRINO_LUMINOSITY.U238 / MANTLE_GEOPHYSICAL_RESPONSE) * ISOTOPIC_DECAY_HEATING.U238 * MANTLE_MASS
+  const mantleHeatingU238 = (U238flux / ISOTOPIC_NEUTRINO_LUMINOSITY.U238 / mantleGeophysicalResponse) * ISOTOPIC_DECAY_HEATING.U238 * mantleMass
 
   const U235FluxIsotopicScale =
     (ISOTOPIC_NEUTRINO_LUMINOSITY.U235 / ISOTOPIC_NEUTRINO_LUMINOSITY.U238) *
@@ -239,7 +250,7 @@ export function geoSpectrum(
 
   const U235MantleFlux = U238flux * U235FluxIsotopicScale;
 
-  const mantleHeatingU235 = (U235MantleFlux / ISOTOPIC_NEUTRINO_LUMINOSITY.U235 / MANTLE_GEOPHYSICAL_RESPONSE) * ISOTOPIC_DECAY_HEATING.U235 * MANTLE_MASS
+  const mantleHeatingU235 = (U235MantleFlux / ISOTOPIC_NEUTRINO_LUMINOSITY.U235 / mantleGeophysicalResponse) * ISOTOPIC_DECAY_HEATING.U235 * mantleMass
 
   const {
     crustSpectrum: crustU235Spectrum,
@@ -258,7 +269,7 @@ export function geoSpectrum(
 
   const ThMantleFlux = U238flux * ThURatio * ThMantleFluxIsotopicScale;
 
-  const mantleHeatingTh232 = (ThMantleFlux / ISOTOPIC_NEUTRINO_LUMINOSITY.TH232 / MANTLE_GEOPHYSICAL_RESPONSE) * ISOTOPIC_DECAY_HEATING.TH232 * MANTLE_MASS
+  const mantleHeatingTh232 = (ThMantleFlux / ISOTOPIC_NEUTRINO_LUMINOSITY.TH232 / mantleGeophysicalResponse) * ISOTOPIC_DECAY_HEATING.TH232 * mantleMass
 
 
   const {
@@ -278,7 +289,7 @@ export function geoSpectrum(
 
   const KMantleFlux = U238flux * KURatio * KMantleFluxIsotopicScale;
 
-  const mantleHeatingK40 = (KMantleFlux / ISOTOPIC_NEUTRINO_LUMINOSITY.K40 / MANTLE_GEOPHYSICAL_RESPONSE) * ISOTOPIC_DECAY_HEATING.K40beta * MANTLE_MASS
+  const mantleHeatingK40 = (KMantleFlux / ISOTOPIC_NEUTRINO_LUMINOSITY.K40 / mantleGeophysicalResponse) * ISOTOPIC_DECAY_HEATING.K40beta * mantleMass
 
   const KecMantleFluxIsotopicScale =
     (ISOTOPIC_NEUTRINO_LUMINOSITY.K40EC / ISOTOPIC_NEUTRINO_LUMINOSITY.U238) *
@@ -286,7 +297,7 @@ export function geoSpectrum(
 
   const KecMantleFlux = U238flux * KURatio * KecMantleFluxIsotopicScale;
 
-  const mantleHeatingK40ec = (KecMantleFlux / ISOTOPIC_NEUTRINO_LUMINOSITY.K40EC / MANTLE_GEOPHYSICAL_RESPONSE) * ISOTOPIC_DECAY_HEATING.K40ec * MANTLE_MASS
+  const mantleHeatingK40ec = (KecMantleFlux / ISOTOPIC_NEUTRINO_LUMINOSITY.K40EC / mantleGeophysicalResponse) * ISOTOPIC_DECAY_HEATING.K40ec * mantleMass
   
   const {
     crustSpectrum: crustK40BetaSpectrum,
