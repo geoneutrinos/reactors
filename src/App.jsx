@@ -221,14 +221,14 @@ function App(props) {
   }, [includeCrust, detector]);
   const geo = useMemo(
     () =>
-      geoSpectrum(crossSection, oscillation, geoFluxRatios, crustFlux),
-    [crossSection, oscillation, geoFluxRatios, crustFlux]
+      geoSpectrum(crossSection, oscillation, geoFluxRatios, crustFlux, celestialBody),
+    [crossSection, oscillation, geoFluxRatios, crustFlux, celestialBody]
   );
 
   const geoCEvNS = useMemo(
     () =>
-      geoSpectrum({crossSectionFunction: (_) => 1}, {averageSurvivalProbability: 1e-32}, geoFluxRatios, crustFlux),
-    [crossSection, oscillation, geoFluxRatios, crustFlux]
+      geoSpectrum({crossSectionFunction: (_) => 1}, {averageSurvivalProbability: 1e-32}, geoFluxRatios, crustFlux, celestialBody),
+    [crossSection, oscillation, geoFluxRatios, crustFlux, celestialBody]
   );
   
   const boron8 = useMemo(() => defaultBoron8.updateRate(crossSection, reactorLF), [
