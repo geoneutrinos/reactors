@@ -239,8 +239,29 @@ export const CrustFlux = ({ includeCrust, setIncludeCrust }) => {
   );
 };
 
-export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo}) => {
+export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody}) => {
   const {heating} = geo;
+
+  const uRangeParams = {
+    step: 20000,
+    min: 0,
+    max: 3000000,
+  }
+  const thRangeParams = {
+    step:0.1,
+    min:0.1,
+    max:8,
+  }
+  const kRangeParams = {
+    step:1e3,
+    min:1e3,
+    max:3e4,
+  }
+  if (celestialBody === "moon"){
+    kRangeParams.step = 1e2
+    kRangeParams.min = 0
+    kRangeParams.max = 6e3
+  }
   return (
     <Card>
       <Card.Header>Mantle Fluxes <small>(Radiogenic Heating)</small></Card.Header>
@@ -255,9 +276,7 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo}) => {
           <Form.Control
             value={geoFluxRatios.U238flux}
             type="range"
-            step={20000}
-            min={0}
-            max={3000000}
+            {...uRangeParams}
             onChange={(event) =>
               setGeoFluxRatios({
                 ...geoFluxRatios,
@@ -276,9 +295,7 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo}) => {
             <Form.Control
               value={geoFluxRatios.ThURatio}
               type="range"
-              step={0.1}
-              min={0.1}
-              max={8}
+              {...thRangeParams}
               onChange={(event) =>
                 setGeoFluxRatios({
                   ...geoFluxRatios,
@@ -298,9 +315,7 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo}) => {
             <Form.Control
               value={geoFluxRatios.KURatio}
               type="range"
-              step={1e3}
-              min={1e3}
-              max={3e4}
+              {...kRangeParams}
               onChange={(event) =>
                 setGeoFluxRatios({
                   ...geoFluxRatios,
