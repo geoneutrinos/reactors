@@ -166,10 +166,16 @@ function App(props) {
 
   //geonu state
   const [includeCrust, setIncludeCrust] = useState(true);
-  const [geoFluxRatios, setGeoFluxRatios] = useState({
+  const [earthGeoFluxRatios, setEarthGeoFluxRatios] = useState({
     U238flux: 1e6, // cm-2 s-1
     ThURatio: 3.9, // no units
     KURatio: 1e4, // no units
+  });
+
+  const [lunarGeoFluxRatios, setLunarGeoFluxRatios] = useState({
+    U238flux: 2.6e5, // cm-2 s-1
+    ThURatio: 3.7, // no units
+    KURatio: 2e3, // no units
   });
 
 
@@ -178,6 +184,14 @@ function App(props) {
   const [addCustomModalXY, setAddCustomModalXY] = useState({});
   const [manCustomModal, setManCustomModal] = useState(false);
   const [activeTab, setActiveTab] = useState("detector")
+
+  let geoFluxRatios = earthGeoFluxRatios;
+  let setGeoFluxRatios = setEarthGeoFluxRatios;
+
+  if (celestialBody === "moon"){
+    geoFluxRatios = lunarGeoFluxRatios;
+    setGeoFluxRatios = setLunarGeoFluxRatios;
+  }
 
   const addCustomModelWithLoc = ({ lon, lat }) => {
     setAddCustomModal(true);
@@ -329,6 +343,7 @@ function App(props) {
                     geoFluxRatios={geoFluxRatios}
                     setGeoFluxRatios={setGeoFluxRatios}
                     geo={geo}
+                    celestialBody={celestialBody}
                   />
                   <GeoCEvNS GeoCEvNSFlux={geoCEvNS} />
                   <GeoDensityPlot />
