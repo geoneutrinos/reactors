@@ -230,9 +230,9 @@ function App(props) {
       u: 0,
       th: 0,
       k: 0,
-      ...(includeCrust ? getCrustFlux(detector.lon, detector.lat) : {}),
+      ...(includeCrust ? getCrustFlux(detector.lon, detector.lat, celestialBody) : {}),
     };
-  }, [includeCrust, detector]);
+  }, [includeCrust, detector, celestialBody]);
   const geo = useMemo(
     () =>
       geoSpectrum(crossSection, oscillation, geoFluxRatios, crustFlux, celestialBody),
