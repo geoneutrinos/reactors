@@ -80,6 +80,7 @@ import {
   //Helpers
   Visible,
 } from "./ui";
+import {FluxPlot} from "./ui/flux-canvas";
 
 import { defaultCores } from "./reactor-cores";
 import { presets, detectorENUProjector } from "./detectors";
@@ -285,6 +286,7 @@ function App(props) {
               <Tab eventKey="detector" title="Detector">
                 <Visible>
                   <CelestialBodySwitcher celestialBody={celestialBody} setCelestialBody={setCelestialBody} />
+                  <FluxPlot />
                   <StatsPanel cores={cores} geo={geo} reactorLF={reactorLF} />
                   <DetectorLocationPane
                     detector={detector}
