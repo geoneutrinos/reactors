@@ -4,9 +4,9 @@ import numpy as np
 import logging
 logging.basicConfig(level=logging.INFO)
 
-k40 = np.loadtxt("k40bflux_map_496.txt")
-th232 = np.loadtxt("th232flux_map_496.txt")
-u238 = np.loadtxt("u238flux_map_496.txt")
+k40 = np.loadtxt("k40bflux_GRavg+KG.txt")
+th232 = np.loadtxt("th232flux_GRavg+KG.txt")
+u238 = np.loadtxt("u238flux_GRavg+KG.txt")
 
 
 data = {
