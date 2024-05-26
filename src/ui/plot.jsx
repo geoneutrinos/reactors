@@ -9,7 +9,7 @@ import bins, {binCount, shiftByIBD} from "../physics/bins"
 import {XSNames} from "../physics/neutrino-cross-section"
 
 
-export function NuSpectrumPlot({ cores, geo, detector, reactorLF, xaxisExtra={}, yaxisExtra={}, layoutExtra={}, func=(v) => v}) {
+export function NuSpectrumPlot({ cores, geo, detector, reactorLF, xaxisExtra={}, yaxisExtra={}, layoutExtra={}, func=(v) => v, celestialBody}) {
   const { crossSection, oscillation, reactorAntineutrinoModel} = useContext(PhysicsContext)
   const isIBD = +[XSNames.IBDSV2003, XSNames.IBDVB1999].includes(
     crossSection.crossSection
@@ -129,7 +129,10 @@ export function NuSpectrumPlot({ cores, geo, detector, reactorLF, xaxisExtra={},
     },
   ];
 
-  const ymax = Math.max(...data.map((series) => Math.max(...series.y)));
+  let ymax = Math.max(...data.map((series) => Math.max(...series.y)));
+  if (celestialBody === "moon"){
+    ymax = Math.max(ymax, 20)
+  }
 
   const layout = {
     title: `Antineutrino Spectrum: ${

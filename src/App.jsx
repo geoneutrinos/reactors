@@ -281,12 +281,12 @@ function App(props) {
               cores={cores}
               geo={geo}
               reactorLF={reactorLF}
+              celestialBody={celestialBody}
             />
             <Tabs unmountOnExit={false} activeKey={activeTab} onSelect={(k) => setActiveTab(k)}>
               <Tab eventKey="detector" title="Detector">
                 <Visible>
                   <CelestialBodySwitcher celestialBody={celestialBody} setCelestialBody={setCelestialBody} />
-                  <FluxPlot />
                   <StatsPanel cores={cores} geo={geo} reactorLF={reactorLF} />
                   <DetectorLocationPane
                     detector={detector}
@@ -409,6 +409,9 @@ function App(props) {
               <Tab eventKey="muon" title="Muon">
                   <Muons />
                   <DetectorOverburdens />
+              </Tab>
+              <Tab eventKey="moon" title="Lunar">
+                  <FluxPlot />
               </Tab>
               <Tab eventKey="output" title="Output">
                 <Visible>
