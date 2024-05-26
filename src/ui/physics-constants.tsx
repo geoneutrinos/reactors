@@ -1,8 +1,10 @@
+import {memo} from 'react';
+
 import {FERMI_COUPLING_CONSTANT, HBAR_C, WEAK_MIXING_ANGLE} from '../physics/constants'
 
 import { Card, Table } from 'react-bootstrap';
 
-export const PhysicsConstants = () => {
+export const PhysicsConstants = memo(() => {
   return (
     <Card>
       <Card.Header>Physical Constants</Card.Header>
@@ -37,4 +39,4 @@ export const PhysicsConstants = () => {
       </Card.Body>
     </Card>
   );
-}
+})

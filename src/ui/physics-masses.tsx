@@ -1,3 +1,5 @@
+import {memo} from 'react';
+
 import {NEUTRON_REST_MASS, PROTON_REST_MASS, ELECTRON_REST_MASS} from '../physics/constants'
 
 import {IBD_THRESHOLD} from '../physics/derived'
@@ -6,7 +8,7 @@ import { MathJax } from "better-react-mathjax";
 
 import { Card, Table } from 'react-bootstrap';
 
-export const ParticleMasses = () => {
+export const ParticleMasses = memo(() => {
   return (
     <Card>
       <Card.Header>Particle Rest Masses / pIBD Energy Threshold</Card.Header>
@@ -52,4 +54,4 @@ export const ParticleMasses = () => {
       </Card.Body>
     </Card>
   );
-}
+})

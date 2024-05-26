@@ -1,4 +1,4 @@
-import React from "react";
+import React, {memo} from "react";
 
 import { Card } from "react-bootstrap";
 import Plot from "react-plotly.js";
@@ -9,7 +9,7 @@ import { neutrinoEnergyFor as neutrinoEnergyForES } from "../physics/reactor-ant
 import { neutrinoEnergyFor as neutrinoEnergyForKO } from "../physics/reactor-antineutrinos/kopeikin";
 import bins from "../physics/bins";
 
-export const FissionIsotopeSpectraPlotsHK = () => {
+export const FissionIsotopeSpectraPlotsHK = memo(() => {
   const data = [
     {
       y: bins.map(neutrinoEnergyForKO(Isotopes.U235)).slice(200,801),
@@ -252,9 +252,9 @@ export const FissionIsotopeSpectraPlotsHK = () => {
       </Card.Body>
     </Card>
   );
-};
+});
 
-export const FissionIsotopeSpectraPlotsHM = () => {
+export const FissionIsotopeSpectraPlotsHM = memo(() => {
   const data = [
     {
       y: bins.map(neutrinoEnergyForHM(Isotopes.U235)).slice(199,801),
@@ -497,9 +497,9 @@ export const FissionIsotopeSpectraPlotsHM = () => {
       </Card.Body>
     </Card>
   );
-};
+});
 
-export const FissionIsotopeSpectraPlotsES = () => {
+export const FissionIsotopeSpectraPlotsES = memo(() => {
   const data = [
     {
       y: bins.map(neutrinoEnergyForES(Isotopes.U235)),
@@ -603,7 +603,7 @@ export const FissionIsotopeSpectraPlotsES = () => {
       </Card.Body>
     </Card>
   );
-};
+});
 
 export const CoreDirectionSignalPlots = ({ cores, detector, reactorLF }) => {
   const sortedCores = Object.values(cores)

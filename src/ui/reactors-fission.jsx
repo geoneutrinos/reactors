@@ -1,10 +1,10 @@
-import React from "react";
+import React, {memo} from "react";
 import { Card, Table } from "react-bootstrap";
 
 import {FISSION_FRACTIONS, POWER_FRACTIONS} from '../reactor-cores';
 import {FISSION_ENERGIES} from '../physics/constants'
 
-export const FissionFractionPane = () => {
+export const FissionFractionPane = memo(() => {
     const tableProps = { style: { width: "auto" }, borderless: true, size: "sm" };
   
     return (
@@ -88,4 +88,4 @@ export const FissionFractionPane = () => {
         </Card.Body>
       </Card>
     );
-  };
+  });

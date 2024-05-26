@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { Card, Table } from 'react-bootstrap';
 
 import {Elements} from './elements'
@@ -7,7 +8,7 @@ import {mantleUncertainty, crustUncertainty} from "../mantle"
 
 const {K40, Th232, U235, U238} = Elements
 
-export const GeoFluxUncertainties = () => {
+export const GeoFluxUncertainties = memo(() => {
   return (
     <Card>
       <Card.Header>Geo-neutrino Nuclide Flux Uncertainties</Card.Header>
@@ -62,4 +63,4 @@ export const GeoFluxUncertainties = () => {
       </Card.Body>
     </Card>
   );
-}
+})

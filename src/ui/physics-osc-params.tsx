@@ -1,3 +1,5 @@
+import {memo} from 'react';
+
 import { Card, Table } from "react-bootstrap";
 
 import {
@@ -13,7 +15,7 @@ import {
   averageSurvivalProbabilityInverted,
 } from "../physics/neutrino-oscillation";
 
-export const PhysicsOscillationPane = () => {
+export const PhysicsOscillationPane = memo(() => {
   const tableProps = { size: "sm" };
 
   return (
@@ -70,9 +72,9 @@ export const PhysicsOscillationPane = () => {
       </Card.Body>
     </Card>
   );
-};
+});
 
-export const AverageSurvivalPane = () => {
+export const AverageSurvivalPane = memo(() => {
   const tableProps = { size: "sm" };
 
   return (
@@ -126,4 +128,4 @@ export const AverageSurvivalPane = () => {
       </Card.Body>
     </Card>
   );
-};
+});

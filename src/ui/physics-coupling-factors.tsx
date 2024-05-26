@@ -1,6 +1,8 @@
+import {memo} from 'react';
+
 import { Card, Table } from 'react-bootstrap';
 
-export const EesCouplingFactors = () => {
+export const EesCouplingFactors = memo(() => {
   return (
     <Card>
       <Card.Header>eES Coupling Factors</Card.Header>
@@ -51,9 +53,9 @@ export const EesCouplingFactors = () => {
       </Card.Body>
     </Card>
   );
-}
+})
 
-export const PesCouplingFactors = () => {
+export const PesCouplingFactors = memo(() => {
   return (
     <Card>
       <Card.Header>pES Coupling Factors</Card.Header>
@@ -104,4 +106,4 @@ export const PesCouplingFactors = () => {
       </Card.Body>
     </Card>
   );
-}
+})
