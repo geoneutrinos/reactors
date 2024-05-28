@@ -75,6 +75,8 @@ import {
   Lunar238UFlux,
   Lunar232ThFlux,
   Lunar40KFlux,
+  LunarThickness,
+  LunarHeatFLux,
   // Muon tab
   Muons,
   DetectorOverburdens,
@@ -414,6 +416,8 @@ function App(props) {
                   <DetectorOverburdens />
               </Tab>
               <Tab eventKey="moon" title="Lunar">
+                  <LunarHeatFLux />
+                  <LunarThickness />
                   <Lunar238UFlux />
                   <Lunar232ThFlux />
                   <Lunar40KFlux />

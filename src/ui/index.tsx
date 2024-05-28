@@ -60,6 +60,8 @@ export {
   Lunar238UFlux,
   Lunar232ThFlux,
   Lunar40KFlux,
+  LunarThickness,
+  LunarHeatFLux,
 } from "./lunar-input-plots"
 
 interface VisibleProps {
