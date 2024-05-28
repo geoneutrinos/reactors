@@ -2,9 +2,9 @@ import earthCrustU from './huang/crust_u.json';
 import earthCrustTh from './huang/crust_th.json';
 import earthCrustK from './huang/crust_k.json';
 
-import moonCrustU from "./lunar/crust_u.json"
-import moonCrustTh from "./lunar/crust_th.json"
-import moonCrustK from "./lunar/crust_k.json"
+import moonCrustU from "./lunar/u238flux_GRavg+KG.json"
+import moonCrustTh from "./lunar/th232flux_GRavg+KG.json"
+import moonCrustK from "./lunar/k40bflux_GRavg+KG.json"
 
 import {ISOTOPIC_HALF_LIFE} from '../physics/constants'
 

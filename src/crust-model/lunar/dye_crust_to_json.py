@@ -1,26 +1,25 @@
 import json
 import numpy as np
+from pathlib import Path
 
 import logging
 logging.basicConfig(level=logging.INFO)
 
-k40 = np.loadtxt("k40bflux_map_496.txt")
-th232 = np.loadtxt("th232flux_map_496.txt")
-u238 = np.loadtxt("u238flux_map_496.txt")
+flux_convert = 1e6
 
-
-data = {
-    "u": (u238 / 1e6).tolist(),
-    "th": (th232 / 1e6).tolist(),
-    "k": (k40 / 1e6).tolist(),
-}
+path = Path(".")
 
 class RoundingFloat(float):
     __repr__ = staticmethod(lambda x: format(x, '.3f'))
 
 json.encoder.c_make_encoder = None
 
-json.encoder.float = RoundingFloat
-for element, flux in data.items():
-    with open(f"crust_{element}.json", "w") as f:
-        json.dump(flux, f, separators=(',', ':'))
+for file in path.glob("*.txt"):
+    data = np.loadtxt(file)
+    json.encoder.float = float
+    if "flux_" in str(file):
+        data = data / flux_convert
+        json.encoder.float = RoundingFloat
+        
+    with open(file.with_suffix(".json"), "w") as f:
+        json.dump(data.tolist(), f, separators=(',', ':'))
