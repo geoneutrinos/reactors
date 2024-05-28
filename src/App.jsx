@@ -71,6 +71,10 @@ import {
   SupernovaNus,
   //About tab
   AboutPane,
+  // Lunar Tab
+  Lunar238UFlux,
+  Lunar232ThFlux,
+  Lunar40KFlux,
   // Muon tab
   Muons,
   DetectorOverburdens,
@@ -80,7 +84,6 @@ import {
   //Helpers
   Visible,
 } from "./ui";
-import {FluxPlot} from "./ui/flux-canvas";
 
 import { defaultCores } from "./reactor-cores";
 import { presets, detectorENUProjector } from "./detectors";
@@ -411,7 +414,9 @@ function App(props) {
                   <DetectorOverburdens />
               </Tab>
               <Tab eventKey="moon" title="Lunar">
-                  <FluxPlot />
+                  <Lunar238UFlux />
+                  <Lunar232ThFlux />
+                  <Lunar40KFlux />
               </Tab>
               <Tab eventKey="output" title="Output">
                 <Visible>
