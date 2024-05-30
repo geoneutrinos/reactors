@@ -248,7 +248,7 @@ export const GeoDataPREM = memo(() => {
        <Table>
             <thead>
               <tr>
-                <th>Briaud et al. 2023 Region</th>
+                <th>Lunar Region</th>
                 <th>Radii (km)</th>
                 <th>Mass (10<sup>22</sup>kg)</th>
                 <th>Geophysical Response (10<sup>3</sup>kg/cm<sup>2</sup>)</th>
