@@ -40,7 +40,7 @@ import {innerCoreMass as lunarInnerCoreMass,
         innerCoreGeophysicalResponse as lunarInnerCoreGeophysicalResponse,
         outerCoreGeophysicalResponse as lunarOuterCoreGeophysicalResponse,
         lvzGeophysicalResponse,
-        mantleGeophysicalResponse as lunarManlteGeophysicalResponse,
+        mantleGeophysicalResponse as lunarMantleGeophysicalResponse,
         crustGeophysicalResponse as lunarCrustGeophysicalResponse,
        } from "../mantle/lunar";
         
