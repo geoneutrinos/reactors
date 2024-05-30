@@ -32,6 +32,13 @@ import {innerCoreMass,
         upperCrustGeophysicalResponseAK135F,
         earthMassAK135F,
        } from "../mantle/PREM";
+import {innerCoreMass as lunarInnerCoreMass,
+        outerCoreMass as lunarOuterCoreMass,
+        lvzMass,
+        mantleMass as lunarMantleMass,
+        crustMass as lunarCrustMass,
+       } from "../mantle/lunar";
+        
 export const GeoDataPREM = memo(() => {
   return (
     <Card>
@@ -249,7 +256,7 @@ export const GeoDataPREM = memo(() => {
                   0.0 - 258
                 </td>
                 <td>
-                  <Num v={innerCoreMassAK135F} p={4} func={(v) => v * 1e-25} />
+                  <Num v={lunarInnerCoreMass} p={4} func={(v) => v * 1e-25} />
                 </td>
                 <td>
                   <Num v={innerCoreGeophysicalResponseAK135F} p={4} func={(v) => v * 1e-3} />
@@ -261,7 +268,7 @@ export const GeoDataPREM = memo(() => {
                   258 - 362
                 </td>
                 <td>
-                  <Num v={outerCoreMassAK135F} p={4} func={(v) => v * 1e-25} />
+                  <Num v={lunarOuterCoreMass} p={4} func={(v) => v * 1e-25} />
                 </td>
                 <td>
                    <Num v={outerCoreGeophysicalResponseAK135F} p={4} func={(v) => v * 1e-3} />
@@ -273,7 +280,7 @@ export const GeoDataPREM = memo(() => {
                   362 - 560
                 </td>
                 <td>
-                  <Num v={lowerMantleMassAK135F} p={4} func={(v) => v * 1e-25} />
+                  <Num v={lvzMass} p={4} func={(v) => v * 1e-25} />
                 </td>
                 <td>
                    <Num v={lowerMantleGeophysicalResponseAK135F} p={4} func={(v) => v * 1e-3} />
@@ -285,7 +292,7 @@ export const GeoDataPREM = memo(() => {
                   560 - 1698.6
                 </td>
                 <td>
-                  <Num v={upperMantleMassAK135F} p={4} func={(v) => v * 1e-25} />
+                  <Num v={lunarMantleMass} p={4} func={(v) => v * 1e-25} />
                 </td>
                 <td>
                    <Num v={upperMantleGeophysicalResponseAK135F} p={4} func={(v) => v * 1e-3} />
@@ -297,7 +304,7 @@ export const GeoDataPREM = memo(() => {
                   1698.6 - 1737.1
                 </td>
                 <td>
-                  <Num v={lowerCrustMassAK135F} p={4} func={(v) => v * 1e-25} />
+                  <Num v={lunarCrustMass} p={4} func={(v) => v * 1e-25} />
                 </td>
                 <td>
                   <Num v={lowerCrustGeophysicalResponseAK135F} p={4} func={(v) => v * 1e-3} />
