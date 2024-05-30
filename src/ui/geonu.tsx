@@ -427,24 +427,25 @@ export const GeoNuSpectrumSource = memo(() => {
 export const GeoNusPane = memo(() => {
   return (
     <Card>
-      <Card.Header>Antineutrinos from the Earth</Card.Header>
+      <Card.Header>Antineutrinos from the Earth and the Moon</Card.Header>
       <Card.Body>
         <div>
           <p>
-            Antineutrinos from long-lived natural radioactivity within the rocky layers of the Earth are commonly known as geo-neutrinos. 
+            Antineutrinos from long-lived natural radioactivity within the rocky layers of planetary bodies are commonly known as geo-neutrinos. 
             Geo-neutrinos from uranium, thorium, and potassium nuclides have energy spectra extending above 1 MeV, facilitating their detection.
             Through a series of decays leading to stable isotopes of lead, <sup>238</sup>U, <sup>235</sup>U, and <sup>232</sup>Th, each
             emit 6, 4, and 4 antineutrinos, respectively. The potassium nuclide <sup>40</sup>K emits either a single antineutrino 
             through beta decay to calcium (<sup>40</sup>Ca, ~89%) or a single neutrino through electron capture to argon (<sup>40</sup>Ar, ~11%). 
-            All of the parent nuclides have lifetimes comparable to the age of the Earth, allowing ample abundances for producing observable geo-neutrino 
-            fluxes. Significant spatial variation of the geo-neutrino fluxes at the surface of the Earth is mandated by a correlation between crust 
-            thickness and isotope concentrations, forecasting higher fluxes on continental crust and lower fluxes on oceanic crust.
+            All of the parent nuclides have lifetimes comparable to the age of the solar system, allowing ample abundances for producing observable geo-neutrino 
+            fluxes. Surface variation of the geo-neutrino fluxes is predicted for both the Earth and the Moon. On the Earth continental crust is both thicker 
+            and more radioactive than oceanic crust. On the Moon gamma ray measurements by orbiting spacecraft find higher surface nuclide concentrations 
+            for the Procellarum KREEP Terrane and the South Pole-Aitken Terrane than for the Felspathic Highlands Terrane.
           </p>
           <p>
-            The geo-neutrino model herein uses pre-computed crust fluxes, spatially resolved on a grid of 1° 
+            The geo-neutrino model presented here uses pre-computed crust fluxes, spatially resolved on a grid of 1° 
             latitude x 1° longitude, and user-defined mantle fluxes from uniform nuclide concentrations in concentric isodensity shells. Fluxes 
-            from the metallic outer and inner core of the Earth are assumed to be negligible. Model outputs are the reaction rates on free proton 
-            (pIBD) or atomic electron (eES) targets and the radiogenic power of the user-defined mantle.
+            from the metallic outer and inner core of the Earth and Moon are assumed to be negligible. Model outputs are the neutrino reaction rates 
+            and the radiogenic power of the user-defined mantle.
           </p>
         </div>
       </Card.Body>
