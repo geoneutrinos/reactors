@@ -42,6 +42,7 @@ import {innerCoreMass as lunarInnerCoreMass,
         lvzGeophysicalResponse,
         mantleGeophysicalResponse as lunarMantleGeophysicalResponse,
         crustGeophysicalResponse as lunarCrustGeophysicalResponse,
+        lunarMass,
        } from "../mantle/lunar";
         
 export const GeoDataPREM = memo(() => {
@@ -318,7 +319,7 @@ export const GeoDataPREM = memo(() => {
          </tbody>
         </Table>
          <p><small>
-          • Briaud et al. lunar mass is <Num v={earthMassAK135F} p={4} func={(v) => v * 1e-27} /> x 10<sup>24</sup> kg. <br />
+          • Briaud et al. (2023) lunar mass is <Num v={lunarMass} p={4} func={(v) => v * 1e-27} /> x 10<sup>24</sup> kg. <br />
         </small></p>
       </Card.Body>
     </Card>
