@@ -179,7 +179,7 @@ function App(props) {
   });
 
   const [lunarGeoFluxRatios, setLunarGeoFluxRatios] = useState({
-    U238flux: 2.6e5, // cm-2 s-1
+    U238flux: 2.54e5, // cm-2 s-1
     ThURatio: 3.7, // no units
     KURatio: 2e3, // no units
   });
