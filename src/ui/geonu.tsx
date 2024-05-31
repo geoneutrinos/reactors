@@ -237,8 +237,8 @@ export const CrustFlux = ({ includeCrust, setIncludeCrust }) => {
           Uses pre-computed (1°x1°) models of the crust fluxes from <sup>238</sup>U, <sup>232</sup>Th, and <sup>40</sup>K. The Earth crust flux model, kindly provided by W.F.
           McDonough, is described in Y. Huang <i>et al.</i> (2013), <i>A reference Earth model
           for the heat producing elements and associated geoneutrino flux</i>,
-          Geochem., Geophys., Geosyst. 14, 2003-2029. The Moon crust flux model is described in S.T. Dye and A.M. Barna (2024), 
-          <i>Lunar antineutrinos and heat: Fluxes from primordial radioactivity</i> (unpublished).
+          Geochem., Geophys., Geosyst. 14, 2003-2029. The Moon crust flux model is described in S.T. Dye and A.M. Barna (2024), <i>Lunar 
+          antineutrinos and heat: Fluxes from primordial radioactivity</i> (unpublished).
         </small>
       </Card.Body>
     </Card>
@@ -334,7 +334,7 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
         Total Mantle Radiogenic Heating: <Num v={heating.U238 + heating.U235 + heating.Th232 + heating.K40Beta + heating.K40Ec} p={2} func={(v) => v / 1e12}/> TW assumes homogeneous element concentrations
         <br /> •<small>Earth mantle mass (<Num v={MANTLE_MASS} p={4} func={(v) => v * 1e-24} /> x10<sup>24</sup> kg) and geophysical response (<Num v={MANTLE_GEOPHYSICAL_RESPONSE} p={4} func={(v) => v * 1e-3} /> x10<sup>3</sup> kg cm<sup>-2</sup>)</small>
         <br /> <small>A. M. Dziewonski and D. L. Anderson (1981), <i>Preliminary Reference Earth Model (PREM)</i>, Phys. Earth Planet. Inter. 25, 297-356</small>
-        <br /> •<small>Moon mantle mass (<Num v={LUNAR_MANTLE_MASS} p={4} func={(v) => v * 1e-24} /> x10<sup>24</sup> kg) and geophysical response (<Num v={LUNAR_MANTLE_GEOPHYSICAL_RESPONSE} p={4} func={(v) => v * 1e-3} /> x10<sup>3</sup> kg cm<sup>-2</sup>)</small>
+        <br /> •<small>Moon mantle mass (<Num v={LUNAR_MANTLE_MASS} p={4} func={(v) => v * 1e-22} /> x10<sup>22</sup> kg) and geophysical response (<Num v={LUNAR_MANTLE_GEOPHYSICAL_RESPONSE} p={4} func={(v) => v * 1e-3} /> x10<sup>3</sup> kg cm<sup>-2</sup>)</small>
         <br /> <small>A. Briaud <i>et al.</i> (2023), <i>The lunar solid inner core and the mantle overturn</i>, Nature 617, 743-746</small>
         <br /> •<small>The settable <sup>238</sup>U mantle flux does not include the average oscillation survival probability ({averageSurvivalProbabilityNormal.toFixed(3)}) </small>
       </Card.Body>
