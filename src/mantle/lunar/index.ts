@@ -4,7 +4,7 @@ export const briaudEtAl2023 = [
 [362,5.025], // Outer Core
 [560,3.559], // LVZ
 [1698.6,3.362], // Mantle
-[1731.1,2.649], // Crust
+[1737.1,2.649], // Crust
 ]
 
 
@@ -43,6 +43,6 @@ export const lvzMass = briaudEtAl2023[2][1] * shellVolume(362, 560)
 export const lvzGeophysicalResponse = geoIntegrate(362, 560) * briaudEtAl2023[2][1] * maxRadius * 100 / 2
 export const mantleMass = briaudEtAl2023[3][1] * shellVolume(560, 1698.6)
 export const mantleGeophysicalResponse = geoIntegrate(560, 1698.6) * briaudEtAl2023[3][1] * maxRadius * 100 / 2
-export const crustMass = briaudEtAl2023[4][1] * shellVolume(1698.6, 1731.1)
-export const crustGeophysicalResponse = geoIntegrate(1698.6, 1731.1) * briaudEtAl2023[4][1] * maxRadius * 100 / 2
+export const crustMass = briaudEtAl2023[4][1] * shellVolume(1698.6, 1737.1)
+export const crustGeophysicalResponse = geoIntegrate(1698.6, 1737.1) * briaudEtAl2023[4][1] * maxRadius * 100 / 2
 export const lunarMass = innerCoreMass + outerCoreMass + lvzMass + mantleMass + crustMass
