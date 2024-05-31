@@ -4,11 +4,11 @@ export const briaudEtAl2023 = [
 [362,5.025], // Outer Core
 [560,3.559], // LVZ
 [1698.6,3.362], // Mantle
-[1731.1,2.649], // Crust
+[1737.1,2.649], // Crust
 ]
 
 
-const maxRadius = 1737.1;
+const maxRadius = 1737.151;
 const preFactor = 4 * Math.PI * 1e15 / 3; //1e5 cm/km
 
 
@@ -33,8 +33,16 @@ function geoIntegrate(inner: number, outer: number): number {
 }
 
 // it looks like we only need two layers from this model, the LVZ and the mantle
-// The core(s) are assumed to not contribute and the cruse we will get from the seperately modeled crust flux
-export const lvzMass = briaudEtAl2023[3][1] * shellVolume(362, 560)
+// The core(s) are assumed to not contribute and the crust we will get from the seperately modeled crust flux
+// ah, but we need the others for the tabulated data
+export const innerCoreMass = briaudEtAl2023[0][1] * shellVolume(0, 258)
+export const innerCoreGeophysicalResponse = geoIntegrate(0, 258) * briaudEtAl2023[0][1] * maxRadius * 100 / 2
+export const outerCoreMass = briaudEtAl2023[1][1] * shellVolume(258, 362)
+export const outerCoreGeophysicalResponse = geoIntegrate(258, 362) * briaudEtAl2023[1][1] * maxRadius * 100 / 2
+export const lvzMass = briaudEtAl2023[2][1] * shellVolume(362, 560)
 export const lvzGeophysicalResponse = geoIntegrate(362, 560) * briaudEtAl2023[2][1] * maxRadius * 100 / 2
 export const mantleMass = briaudEtAl2023[3][1] * shellVolume(560, 1698.6)
 export const mantleGeophysicalResponse = geoIntegrate(560, 1698.6) * briaudEtAl2023[3][1] * maxRadius * 100 / 2
+export const crustMass = briaudEtAl2023[4][1] * shellVolume(1698.6, 1737.1)
+export const crustGeophysicalResponse = geoIntegrate(1698.6, 1737.1) * briaudEtAl2023[4][1] * maxRadius * 100 / 2
+export const lunarMass = innerCoreMass + outerCoreMass + lvzMass + mantleMass + crustMass

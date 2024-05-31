@@ -32,6 +32,19 @@ import {innerCoreMass,
         upperCrustGeophysicalResponseAK135F,
         earthMassAK135F,
        } from "../mantle/PREM";
+import {innerCoreMass as lunarInnerCoreMass,
+        outerCoreMass as lunarOuterCoreMass,
+        lvzMass,
+        mantleMass as lunarMantleMass,
+        crustMass as lunarCrustMass,
+        innerCoreGeophysicalResponse as lunarInnerCoreGeophysicalResponse,
+        outerCoreGeophysicalResponse as lunarOuterCoreGeophysicalResponse,
+        lvzGeophysicalResponse,
+        mantleGeophysicalResponse as lunarMantleGeophysicalResponse,
+        crustGeophysicalResponse as lunarCrustGeophysicalResponse,
+        lunarMass,
+       } from "../mantle/lunar";
+        
 export const GeoDataPREM = memo(() => {
   return (
     <Card>
@@ -232,11 +245,81 @@ export const GeoDataPREM = memo(() => {
                 </td>
               </tr>
          </tbody>
-          </Table>
-        <p><small>
-          • AK135F earth mass is <Num v={earthMassAK135F} p={4} func={(v) => v * 1e-27} /> x 10<sup>24</sup> kg. <br />
-          • B.L.N. Kennett, E.R. Engdahl and R. Buland (1995) <i>Constraints on seismic velocities in the earth from travel times</i> Geophys. J. Int. 122:108-124. <br />
-          • J.P. Montagner and B.L.N. Kennett (1995) <i>How to reconcile body-wave and normal-mode reference Earth models?</i> Geophys. J. Int. 125:229-248. <br />
+       </Table>
+       <Table>
+            <thead>
+              <tr>
+                <th>Lunar Region</th>
+                <th>Radii (km)</th>
+                <th>Mass (10<sup>22</sup>kg)</th>
+                <th>Geophysical Response (10<sup>3</sup>kg/cm<sup>2</sup>)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Inner Core</td>
+                <td>
+                  0.0 - 258
+                </td>
+                <td>
+                  <Num v={lunarInnerCoreMass} p={4} func={(v) => v * 1e-25} />
+                </td>
+                <td>
+                  <Num v={lunarInnerCoreGeophysicalResponse} p={4} func={(v) => v * 1e-3} />
+                </td>
+              </tr>
+              <tr>
+                <td>Outer Core</td>
+                <td>
+                  258 - 362
+                </td>
+                <td>
+                  <Num v={lunarOuterCoreMass} p={4} func={(v) => v * 1e-25} />
+                </td>
+                <td>
+                   <Num v={lunarOuterCoreGeophysicalResponse} p={4} func={(v) => v * 1e-3} />
+                </td>
+              </tr>
+              <tr>
+                <td>LVZ</td>
+                <td>
+                  362 - 560
+                </td>
+                <td>
+                  <Num v={lvzMass} p={4} func={(v) => v * 1e-25} />
+                </td>
+                <td>
+                   <Num v={lvzGeophysicalResponse} p={4} func={(v) => v * 1e-3} />
+                </td>
+              </tr>
+              <tr>
+                <td>Mantle</td>
+                <td>
+                  560 - 1698.6
+                </td>
+                <td>
+                  <Num v={lunarMantleMass} p={4} func={(v) => v * 1e-25} />
+                </td>
+                <td>
+                   <Num v={lunarMantleGeophysicalResponse} p={4} func={(v) => v * 1e-3} />
+                </td>
+              </tr>
+              <tr>
+                <td>Crust</td>
+                <td>
+                  1698.6 - 1737.1
+                </td>
+                <td>
+                  <Num v={lunarCrustMass} p={4} func={(v) => v * 1e-25} />
+                </td>
+                <td>
+                  <Num v={lunarCrustGeophysicalResponse} p={4} func={(v) => v * 1e-3} />
+                </td>
+              </tr>
+         </tbody>
+        </Table>
+         <p><small>
+          • Briaud et al. (2023) lunar mass is <Num v={lunarMass} p={4} func={(v) => v * 1e-25} /> x 10<sup>22</sup> kg. <br />
         </small></p>
       </Card.Body>
     </Card>
