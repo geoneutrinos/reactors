@@ -49,7 +49,7 @@ export const LunarHeatFLux = memo(() => {
   };
   var config = {
     toImageButtonOptions: {
-      filename: "lunar_heatflux",
+      filename: "lunar_crust_heatflux",
     },
   };
   return (
@@ -106,7 +106,7 @@ export const LunarThickness = memo(() => {
   };
   var config = {
     toImageButtonOptions: {
-      filename: "lunar_thickness",
+      filename: "lunar_crust_thickness",
     },
   };
   return (
@@ -165,7 +165,7 @@ export const Lunar238UFlux = memo(() => {
   };
   var config = {
     toImageButtonOptions: {
-      filename: "lunar_238u_flux",
+      filename: "lunar_crust_238u_flux",
     },
   };
   return (
@@ -224,7 +224,7 @@ export const Lunar232ThFlux = memo(() => {
   };
   var config = {
     toImageButtonOptions: {
-      filename: "lunar_232th_flux",
+      filename: "lunar_crust_232th_flux",
     },
   };
   return (
@@ -283,7 +283,7 @@ export const Lunar40KFlux = memo(() => {
   };
   var config = {
     toImageButtonOptions: {
-      filename: "lunar_40k_flux",
+      filename: "lunar_crust_40k_flux",
     },
   };
   return (
