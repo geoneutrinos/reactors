@@ -416,7 +416,7 @@ function App(props) {
                   <DetectorOverburdens />
               </Tab>
               <Tab eventKey="moon" title="Lunar">
-                <div><p>We are still polishing this tab (and other lunar references in the app), but we feel the results are sound and ready for use. Note on known bug: Plot download fails on the first try on some browsers but succeeds on the second try.</p></div>
+                <div><p>The lunar crust flux model is described in S.T. Dye and A.M. Barna (2024), <i>Lunar antineutrinos and heat: Fluxes from primordial radioactivity</i> (to appear on arXiv). Note on known bug: Plot download fails on the first try on some browsers but succeeds on the second try.</p></div>
                   <LunarHeatFLux />
                   <LunarThickness />
                   <Lunar238UFlux />
