@@ -18,7 +18,7 @@ export const LunarHeatFLux = memo(() => {
       y: lats,
       z: crustU,
       name: "thickness",
-      type: "heatmap",
+      type: "natural earth",
     },
   ];
   const layout = {
