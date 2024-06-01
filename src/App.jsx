@@ -416,7 +416,7 @@ function App(props) {
                   <DetectorOverburdens />
               </Tab>
               <Tab eventKey="moon" title="Lunar">
-                <div><p>We are still polishing this tab (and other lunar references in the app), but we feel the results are sound and ready for use.</p></div>
+                <div><p>We are still polishing this tab (and other lunar references in the app), but we feel the results are sound and ready for use. Plot download fails on the first try on some browsers but succeeds on the second try.</p></div>
                   <LunarHeatFLux />
                   <LunarThickness />
                   <Lunar238UFlux />
