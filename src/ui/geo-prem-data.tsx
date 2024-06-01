@@ -246,6 +246,9 @@ export const GeoDataPREM = memo(() => {
               </tr>
          </tbody>
        </Table>
+       <p><small>
+         • AK135F earth mass is <Num v={earthMassAK135F} p={4} func={(v) => v * 1e-27} /> x 10<sup>24</sup> kg. <br />
+       </small></p>
        <Table>
             <thead>
               <tr>
