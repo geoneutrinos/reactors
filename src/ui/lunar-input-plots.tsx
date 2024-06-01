@@ -22,7 +22,7 @@ export const LunarHeatFLux = memo(() => {
     },
   ];
   const layout = {
-    title: "Lunar Crust Heat FLux (W/m^2)",
+    title: "Lunar Crust Heat FLux (W/m<sup>2</sup>)",
     yaxis: {
       title: { text: `Latitude` },
       autorange: true,
@@ -138,7 +138,7 @@ export const Lunar238UFlux = memo(() => {
     },
   ];
   const layout = {
-    title: "Lunar 238U Flux (/cm^2/us)",
+    title: "Lunar 238U Flux (/cm<sup>2</sup>/us)",
     yaxis: {
       title: { text: `Latitude` },
       autorange: true,
@@ -197,7 +197,7 @@ export const Lunar232ThFlux = memo(() => {
     },
   ];
   const layout = {
-    title: "Lunar 232Th Flux (/cm^2/us)",
+    title: "Lunar 232Th Flux (/cm<sup>2</sup>/us)",
     yaxis: {
       title: { text: `Latitude` },
       autorange: true,
@@ -256,7 +256,7 @@ export const Lunar40KFlux = memo(() => {
     },
   ];
   const layout = {
-    title: "Lunar 40K Flux (/cm^2/us)",
+    title: "Lunar 40K Flux (/cm<sup>2</sup>/us)",
     yaxis: {
       title: { text: `Latitude` },
       autorange: true,
