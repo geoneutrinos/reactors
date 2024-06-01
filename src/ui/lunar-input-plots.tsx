@@ -22,7 +22,7 @@ export const LunarHeatFLux = memo(() => {
     },
   ];
   const layout = {
-    title: "Lunar Crust Heat FLux (W/m<sup>2</sup>)",
+    title: "Lunar Crust Heat Flux (W/m<sup>2</sup>)",
     yaxis: {
       title: { text: `Latitude` },
       autorange: true,
@@ -49,7 +49,7 @@ export const LunarHeatFLux = memo(() => {
   };
   var config = {
     toImageButtonOptions: {
-      filename: "lunar_heatflux",
+      filename: "lunar_crust_heatflux",
     },
   };
   return (
@@ -106,7 +106,7 @@ export const LunarThickness = memo(() => {
   };
   var config = {
     toImageButtonOptions: {
-      filename: "lunar_thickness",
+      filename: "lunar_crust_thickness",
     },
   };
   return (
@@ -138,7 +138,7 @@ export const Lunar238UFlux = memo(() => {
     },
   ];
   const layout = {
-    title: "Lunar 238U Flux (/cm<sup>2</sup>/us)",
+    title: "Lunar Crust <sup>238</sup>U ν̅ Flux (/cm<sup>2</sup>/us)",
     yaxis: {
       title: { text: `Latitude` },
       autorange: true,
@@ -165,7 +165,7 @@ export const Lunar238UFlux = memo(() => {
   };
   var config = {
     toImageButtonOptions: {
-      filename: "lunar_238u_flux",
+      filename: "lunar_crust_238u_flux",
     },
   };
   return (
@@ -197,7 +197,7 @@ export const Lunar232ThFlux = memo(() => {
     },
   ];
   const layout = {
-    title: "Lunar 232Th Flux (/cm<sup>2</sup>/us)",
+    title: "Lunar Crust <sup>232</sup>Th ν̅ Flux (/cm<sup>2</sup>/us)",
     yaxis: {
       title: { text: `Latitude` },
       autorange: true,
@@ -224,7 +224,7 @@ export const Lunar232ThFlux = memo(() => {
   };
   var config = {
     toImageButtonOptions: {
-      filename: "lunar_232th_flux",
+      filename: "lunar_crust_232th_flux",
     },
   };
   return (
@@ -256,7 +256,7 @@ export const Lunar40KFlux = memo(() => {
     },
   ];
   const layout = {
-    title: "Lunar 40K Flux (/cm<sup>2</sup>/us)",
+    title: "Lunar Crust <sup>40</sup>K<sub>β</sub> ν̅ Flux (/cm<sup>2</sup>/us)",
     yaxis: {
       title: { text: `Latitude` },
       autorange: true,
@@ -283,7 +283,7 @@ export const Lunar40KFlux = memo(() => {
   };
   var config = {
     toImageButtonOptions: {
-      filename: "lunar_40k_flux",
+      filename: "lunar_crust_40k_flux",
     },
   };
   return (
