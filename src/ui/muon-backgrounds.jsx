@@ -83,12 +83,12 @@ const MuonFluxCalculator = () => {
 const MuonsPane = () => {
   return (
     <Card>
-      <Card.Header>Terrestrial Cosmic Ray Muons</Card.Header>
+      <Card.Header>Cosmic Ray Muons on the Earth</Card.Header>
       <Card.Body>
           <div>
             <p>
-              Parameterized depth spectra of the total terrestrial cosmic-ray muon flux and the associated
-              neutron flux are presented following equations given in D.-M. Mei and A. Hime (2006),  
+              Parameterized depth spectra of the total cosmic-ray muon flux and the associated
+              neutron flux on the Earth are presented following equations given in D.-M. Mei and A. Hime (2006),  
               <i> Muon-induced background study for underground laboratories</i>, Phys. Rev. D 73, 
               053004. The calculator and the plot below give the total muon flux (Eq. 4) and 
               the neutron flux emerging from the rock into the underground cavern (Eq. 13) as 
