@@ -21,7 +21,12 @@ import {
 
 import { averageSurvivalProbabilityNormal } from "../physics/neutrino-oscillation";
 
-import { MANTLE_GEOPHYSICAL_RESPONSE, MANTLE_MASS } from "../mantle/geophysics";
+import { 
+  MANTLE_GEOPHYSICAL_RESPONSE, 
+  MANTLE_MASS,
+  LUNAR_MANTLE_GEOPHYSICAL_RESPONSE, 
+  LUNAR_MANTLE_MASS,
+} from "../mantle/geophysics";
 
 const {K40, Th232, U235, U238} = ElementsUI
 
@@ -229,18 +234,40 @@ export const CrustFlux = ({ includeCrust, setIncludeCrust }) => {
           onChange={(event) => setIncludeCrust(event.target.checked)}
         />
         <small>
-          A pre-computed (1°x1°) model of the crust fluxes from <sup>238</sup>U, <sup>232</sup>Th, and <sup>40</sup>K, kindly provided by W.F.
+          Uses pre-computed (1°x1°) models of the crust fluxes from <sup>238</sup>U, <sup>232</sup>Th, and <sup>40</sup>K. The Earth crust flux model, kindly provided by W.F.
           McDonough, is described in Y. Huang <i>et al.</i> (2013), <i>A reference Earth model
           for the heat producing elements and associated geoneutrino flux</i>,
-          Geochem., Geophys., Geosyst. 14, 2003-2029.
+          Geochem., Geophys., Geosyst. 14, 2003-2029. The Moon crust flux model is described in S.T. Dye and A.M. Barna (2024), <i>Lunar 
+          antineutrinos and heat: Fluxes from primordial radioactivity</i> (unpublished).
         </small>
       </Card.Body>
     </Card>
   );
 };
 
-export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo}) => {
+export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody}) => {
   const {heating} = geo;
+
+  const uRangeParams = {
+    step: 2000,
+    min: 0,
+    max: 3000000,
+  }
+  const thRangeParams = {
+    step:0.1,
+    min:0.1,
+    max:8,
+  }
+  const kRangeParams = {
+    step:1e3,
+    min:1e3,
+    max:3e4,
+  }
+  if (celestialBody === "moon"){
+    kRangeParams.step = 1e2
+    kRangeParams.min = 0
+    kRangeParams.max = 6e3
+  }
   return (
     <Card>
       <Card.Header>Mantle Fluxes <small>(Radiogenic Heating)</small></Card.Header>
@@ -255,9 +282,7 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo}) => {
           <Form.Control
             value={geoFluxRatios.U238flux}
             type="range"
-            step={20000}
-            min={0}
-            max={3000000}
+            {...uRangeParams}
             onChange={(event) =>
               setGeoFluxRatios({
                 ...geoFluxRatios,
@@ -276,9 +301,7 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo}) => {
             <Form.Control
               value={geoFluxRatios.ThURatio}
               type="range"
-              step={0.1}
-              min={0.1}
-              max={8}
+              {...thRangeParams}
               onChange={(event) =>
                 setGeoFluxRatios({
                   ...geoFluxRatios,
@@ -298,9 +321,7 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo}) => {
             <Form.Control
               value={geoFluxRatios.KURatio}
               type="range"
-              step={1e3}
-              min={1e3}
-              max={3e4}
+              {...kRangeParams}
               onChange={(event) =>
                 setGeoFluxRatios({
                   ...geoFluxRatios,
@@ -310,9 +331,11 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo}) => {
             />
           </InputGroup>
         </Form.Group>
-        Total Mantle Radiogenic Heating: <Num v={heating.U238 + heating.U235 + heating.Th232 + heating.K40Beta + heating.K40Ec} p={2} func={(v) => v / 1e12}/> TW
-        <br /> •<small>Assumes homogeneous element concentrations, PREM mantle mass (<Num v={MANTLE_MASS} p={4} func={(v) => v * 1e-24} /> x10<sup>24</sup> kg) and geophysical response (<Num v={MANTLE_GEOPHYSICAL_RESPONSE} p={4} func={(v) => v * 1e-3} /> x10<sup>3</sup> kg cm<sup>-2</sup>)</small>
-        <br /> •<small>A. M. Dziewonski and D. L. Anderson (1981), <i>Preliminary Reference Earth Model (PREM)</i>, Phys. Earth Planet. Inter. 25, 297-356</small>
+        Total Mantle Radiogenic Heating: <Num v={heating.U238 + heating.U235 + heating.Th232 + heating.K40Beta + heating.K40Ec} p={2} func={(v) => v / 1e12}/> TW assumes homogeneous element concentrations
+        <br /> •<small>Earth mantle mass (<Num v={MANTLE_MASS} p={4} func={(v) => v * 1e-24} /> x10<sup>24</sup> kg) and geophysical response (<Num v={MANTLE_GEOPHYSICAL_RESPONSE} p={4} func={(v) => v * 1e-3} /> x10<sup>3</sup> kg cm<sup>-2</sup>)</small>
+        <br /> <small>A. M. Dziewonski and D. L. Anderson (1981), <i>Preliminary Reference Earth Model (PREM)</i>, Phys. Earth Planet. Inter. 25, 297-356</small>
+        <br /> •<small>Moon mantle mass (<Num v={LUNAR_MANTLE_MASS} p={4} func={(v) => v * 1e-22} /> x10<sup>22</sup> kg) and geophysical response (<Num v={LUNAR_MANTLE_GEOPHYSICAL_RESPONSE} p={4} func={(v) => v * 1e-3} /> x10<sup>3</sup> kg cm<sup>-2</sup>)</small>
+        <br /> <small>A. Briaud <i>et al.</i> (2023), <i>The lunar solid inner core and the mantle overturn</i>, Nature 617, 743-746</small>
         <br /> •<small>The settable <sup>238</sup>U mantle flux does not include the average oscillation survival probability ({averageSurvivalProbabilityNormal.toFixed(3)}) </small>
       </Card.Body>
     </Card>
@@ -412,24 +435,25 @@ export const GeoNuSpectrumSource = memo(() => {
 export const GeoNusPane = memo(() => {
   return (
     <Card>
-      <Card.Header>Antineutrinos from the Earth</Card.Header>
+      <Card.Header>Antineutrinos from the Earth and the Moon</Card.Header>
       <Card.Body>
         <div>
           <p>
-            Antineutrinos from long-lived natural radioactivity within the rocky layers of the Earth are commonly known as geo-neutrinos. 
+            Antineutrinos from long-lived natural radioactivity within the rocky layers of planetary bodies are commonly known as geo-neutrinos. 
             Geo-neutrinos from uranium, thorium, and potassium nuclides have energy spectra extending above 1 MeV, facilitating their detection.
             Through a series of decays leading to stable isotopes of lead, <sup>238</sup>U, <sup>235</sup>U, and <sup>232</sup>Th, each
             emit 6, 4, and 4 antineutrinos, respectively. The potassium nuclide <sup>40</sup>K emits either a single antineutrino 
             through beta decay to calcium (<sup>40</sup>Ca, ~89%) or a single neutrino through electron capture to argon (<sup>40</sup>Ar, ~11%). 
-            All of the parent nuclides have lifetimes comparable to the age of the Earth, allowing ample abundances for producing observable geo-neutrino 
-            fluxes. Significant spatial variation of the geo-neutrino fluxes at the surface of the Earth is mandated by a correlation between crust 
-            thickness and isotope concentrations, forecasting higher fluxes on continental crust and lower fluxes on oceanic crust.
+            All of the parent nuclides have lifetimes comparable to the age of the solar system, allowing ample abundances for producing observable geo-neutrino 
+            fluxes. Surface variation of the geo-neutrino fluxes is predicted for both the Earth and the Moon. On the Earth continental crust is both thicker 
+            and more radioactive than oceanic crust. On the Moon gamma ray measurements by orbiting spacecraft find higher surface nuclide concentrations 
+            for the Procellarum KREEP Terrane and the South Pole-Aitken Terrane than for the Felspathic Highlands Terrane.
           </p>
           <p>
-            The geo-neutrino model herein uses pre-computed crust fluxes, spatially resolved on a grid of 1° 
+            The geo-neutrino model presented here uses pre-computed crust fluxes, spatially resolved on a grid of 1° 
             latitude x 1° longitude, and user-defined mantle fluxes from uniform nuclide concentrations in concentric isodensity shells. Fluxes 
-            from the metallic outer and inner core of the Earth are assumed to be negligible. Model outputs are the reaction rates on free proton 
-            (pIBD) or atomic electron (eES) targets and the radiogenic power of the user-defined mantle.
+            from the metallic outer and inner core of the Earth and Moon are assumed to be negligible. Model outputs are the neutrino reaction rates 
+            and the radiogenic power of the user-defined mantle.
           </p>
         </div>
       </Card.Body>

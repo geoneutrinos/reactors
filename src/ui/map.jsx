@@ -10,15 +10,25 @@ import {
   MapContainer,
   useMapEvent,
 } from "react-leaflet";
+import { CRS } from "leaflet";
 import "leaflet-contextmenu";
 
+import {EARTH_REGIONS, LUNAR_REGIONS} from "../detectors"
+
 import "leaflet-contextmenu/dist/leaflet.contextmenu.css";
+
+const REGIONS = {
+  "earth": new Set(EARTH_REGIONS),
+  "moon": new Set(LUNAR_REGIONS)
+}
 
 const DetectorCircles = React.memo(function DetectorCircles({
   detectors,
   setDetector,
   zoom,
+  celestialBody,
 }) {
+  detectors = detectors.filter(detector => REGIONS[celestialBody].has(detector.region))
   const color = "#9d00ff";
   const radius = zoom > 6? zoom > 8? zoom > 10? zoom > 12? zoom > 14? zoom > 18? 25 : 50 : 500 : 1000 : 2000 : 5000 : 10000
   return detectors.map((detector) => {
@@ -67,8 +77,8 @@ function coreCircleColor(type) {
   }
 }
 
-const CoreCircles = React.memo(function CoreCircles({ cores, customCores, zoom, shutdownCores }) {
-  let coreList = Object.values({...cores, ...customCores});
+const CoreCircles = React.memo(function CoreCircles({ cores, zoom, shutdownCores }) {
+  let coreList = Object.values({...cores,});
   const radius = zoom > 6? zoom > 8? zoom > 10? zoom > 12? zoom > 14? zoom > 18? 25 : 50 : 500 : 1000 : 2000 : 5000 : 10000
 
   if (shutdownCores === true){
@@ -124,6 +134,11 @@ const lngRange = (lng) => {
     }
     return lng
 }
+const latRange = (lat) => {
+  if (lat > 90) return 90
+  if (lat < -90) return -90
+  return lat
+}
 
 const MouseMove = ({detector, setDetector}) => {
   const _ = useMapEvent("mousemove", (event) => {
@@ -131,7 +146,7 @@ const MouseMove = ({detector, setDetector}) => {
       return null;
     }
     let { lat, lng } = event.latlng;
-    lat = parseFloat(lat.toFixed(6))
+    lat = parseFloat(latRange(lat).toFixed(6))
     lng = parseFloat(lngRange(lng).toFixed(6))
     setDetector({ ...detector, lat: lat, lon: lng })
   })
@@ -147,10 +162,11 @@ export function NuMap({
   setDetector,
   setCore,
   cores,
-  customCores,
   detectorList,
+  celestialBody,
 }) {
   const [zoom, setZoom] = useState(2)
+  const crs = {earth: CRS.EPSG3857, moon: CRS.EPSG4326}[celestialBody]
   const mapStyle = {
     height: "100%",
     cursor: "crosshair",
@@ -188,6 +204,19 @@ export function NuMap({
       },
     ],
   };
+  const tiles = {
+    earth: (<TileLayer
+      url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+      attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+    />),
+    moon: (<TileLayer
+      url="https://maptiles.geoneutrinos.org/Lunar_LRO_LOLA_Shade_Global_128ppd_v04/{z}/{x}/{-y}.png"
+      attribution='NASA LRO'
+      maxNativeZoom={6}
+      zoomOffset={1}
+      maxZoom={19}
+    />)
+  }[celestialBody]
   return (
     <MapContainer
       style={mapStyle}
@@ -199,25 +228,24 @@ export function NuMap({
       maxZoom={19}
       {...contextMenu}
       attributionControl={false}
+      crs={crs}
     >
       <MouseMove detector={detector} setDetector={setDetector}/>
       <ZoomManager zoom={zoom} setZoom={setZoom} />
-      <TileLayer
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-      />
       
+      {tiles}
+
       <Marker position={{ lat: detector.lat, lng: detector.lon }} />
 
       <LayersControl position="topright">
         <LayersControl.Overlay checked name="Shutdown Reactor Cores">
           <LayerGroup>
-            <CoreCircles cores={cores} customCores={customCores} zoom={zoom} shutdownCores={true}/>
+            <CoreCircles cores={cores} zoom={zoom} shutdownCores={true}/>
           </LayerGroup>
         </LayersControl.Overlay>
         <LayersControl.Overlay checked name="Active Reactor Cores">
           <LayerGroup>
-            <CoreCircles cores={cores} customCores={customCores} zoom={zoom} shutdownCores={false}/>
+            <CoreCircles cores={cores} zoom={zoom} shutdownCores={false}/>
           </LayerGroup>
         </LayersControl.Overlay>
         <LayersControl.Overlay checked name="Detector Locations">
@@ -226,6 +254,7 @@ export function NuMap({
               detectors={detectorList}
               setDetector={setDetector}
               zoom={zoom}
+              celestialBody={celestialBody}
             />
           </LayerGroup>
         </LayersControl.Overlay>

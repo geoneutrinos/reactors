@@ -1,15 +1,22 @@
 import {zip} from 'lodash';
 import SunCalc from 'suncalc';
 
+export const EARTH_REGIONS = ["Africa", "Asia", "Europe","Mediterranean Sea", "North America", "Oceania", "Pacific Ocean", "South America"] as const;
+export const LUNAR_REGIONS = ["moon"] as const
+type RegionsType = typeof EARTH_REGIONS[number] | typeof LUNAR_REGIONS[number]
+
 type DetecorPreset = {
     name: string,
     lat: number,
     lon: number,
     elevation: number,
     overburden: number,
-    region: string,
+    region: RegionsType,
 }
+
 export const presets: DetecorPreset[] = [
+    // Moon
+    {name: "Apollo 11", lat:0.67416, lon:23.47314, elevation:0, overburden:0, region:"moon"},
     //Africa
     //East Rand Proprietary Mines 3585 m below surface
     {name: "Witwatersrand", lat:-26.213205, lon:28.249712, elevation:0, overburden:9000, region:"Africa"},

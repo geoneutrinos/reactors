@@ -33,7 +33,7 @@ export const GeoDensityPlot = memo(() => {
       },
     ]
     const layout = {
-      title: "Density by Model",
+      title: "Density Profiles",
       yaxis: {
         title: { text: `Density (g/cm<sup>3</sup>)` },
         autorange: true
@@ -101,7 +101,7 @@ export const GeoMassPlot = memo(() => {
       },
     ]
     const layout = {
-      title: "Mass by Model",
+      title: "Mass Profiles",
       yaxis: {
         title: { text: `Mass (g)` },
         autorange: true
@@ -229,7 +229,7 @@ export const GeophysicalResponsePlot = memo(() => {
       },
     ]
     const layout = {
-      title: "Geophysical Response by Model",
+      title: "Geophysical Response Profiles",
       yaxis: {
         title: { text: `Response (kg/cm<sup>2</sup>)` },
         autorange: true

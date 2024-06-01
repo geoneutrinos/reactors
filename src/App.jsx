@@ -1,12 +1,14 @@
 import React, { useState, useMemo, useReducer } from "react";
 import { MathJaxContext } from "better-react-mathjax";
 
-import { project } from "ecef-projector";
 import { Container, Row, Col, Tab, Tabs } from "react-bootstrap";
+import { project } from "./lla-to-xyz";
 
 import {
   // Left pane
   NuMap,
+
+  CelestialBodySwitcher,
 
   // Right Pane
   NuSpectrumPlot,
@@ -69,6 +71,12 @@ import {
   SupernovaNus,
   //About tab
   AboutPane,
+  // Lunar Tab
+  Lunar238UFlux,
+  Lunar232ThFlux,
+  Lunar40KFlux,
+  LunarThickness,
+  LunarHeatFLux,
   // Muon tab
   Muons,
   DetectorOverburdens,
@@ -133,6 +141,9 @@ L.Icon.Default.mergeOptions({
 const defaultDetector = presets.find((detector) => detector.name === "Kamioka");
 
 function App(props) {
+  // Where is this?
+  const [celestialBody, setCelestialBody] = useState("earth")
+
   const [oscillation, oscillationDispatch] = useReducer(
     oscillationReducer,
     initalOscillation
@@ -161,10 +172,16 @@ function App(props) {
 
   //geonu state
   const [includeCrust, setIncludeCrust] = useState(true);
-  const [geoFluxRatios, setGeoFluxRatios] = useState({
+  const [earthGeoFluxRatios, setEarthGeoFluxRatios] = useState({
     U238flux: 1e6, // cm-2 s-1
     ThURatio: 3.9, // no units
     KURatio: 1e4, // no units
+  });
+
+  const [lunarGeoFluxRatios, setLunarGeoFluxRatios] = useState({
+    U238flux: 2.52e5, // cm-2 s-1
+    ThURatio: 3.7, // no units
+    KURatio: 2e3, // no units
   });
 
 
@@ -174,6 +191,14 @@ function App(props) {
   const [manCustomModal, setManCustomModal] = useState(false);
   const [activeTab, setActiveTab] = useState("detector")
 
+  let geoFluxRatios = earthGeoFluxRatios;
+  let setGeoFluxRatios = setEarthGeoFluxRatios;
+
+  if (celestialBody === "moon"){
+    geoFluxRatios = lunarGeoFluxRatios;
+    setGeoFluxRatios = setLunarGeoFluxRatios;
+  }
+
   const addCustomModelWithLoc = ({ lon, lat }) => {
     setAddCustomModal(true);
     setAddCustomModalXY({ lon: lon, lat: lat });
@@ -182,19 +207,19 @@ function App(props) {
   const cores = useMemo(() => {
     const enuProject = detectorENUProjector(detector);
     const { lat, lon, elevation } = detector;
-    const [x, y, z] = project(lat, lon, elevation).map((n) => n / 1000);
+    const [x, y, z] = project(lat, lon, elevation, celestialBody).map((n) => n / 1000);
 
     const tmpCores = { ...defaultCores, ...customCores };
 
     return Object.fromEntries(
-      Object.entries(tmpCores).map(([name, core]) => {
+      Object.entries(tmpCores).filter(([name, core]) => core.celestialBody === celestialBody ).map(([name, core]) => {
         const modCore = { ...core, ...coreMods[name] };
         const dist = Math.hypot(x - modCore.x, y - modCore.y, z - modCore.z);
         const lf = modCore.loadFactor(reactorLF.start, reactorLF.end);
 
         const direction = enuProject([
           modCore.x - x,
-          modCore.y - y,
+          modCore.y - y,  
           modCore.z - z,
         ]);
 
@@ -204,26 +229,26 @@ function App(props) {
         ];
       })
     );
-  }, [coreMods, reactorLF, crossSection, oscillation, detector, customCores, reactorAntineutrinoModel]);
+  }, [coreMods, reactorLF, crossSection, oscillation, detector, customCores, reactorAntineutrinoModel, celestialBody]);
 
   const crustFlux = useMemo(() => {
     return {
       u: 0,
       th: 0,
       k: 0,
-      ...(includeCrust ? getCrustFlux(detector.lon, detector.lat) : {}),
+      ...(includeCrust ? getCrustFlux(detector.lon, detector.lat, celestialBody) : {}),
     };
-  }, [includeCrust, detector]);
+  }, [includeCrust, detector, celestialBody]);
   const geo = useMemo(
     () =>
-      geoSpectrum(crossSection, oscillation, geoFluxRatios, crustFlux),
-    [crossSection, oscillation, geoFluxRatios, crustFlux]
+      geoSpectrum(crossSection, oscillation, geoFluxRatios, crustFlux, celestialBody),
+    [crossSection, oscillation, geoFluxRatios, crustFlux, celestialBody]
   );
 
   const geoCEvNS = useMemo(
     () =>
-      geoSpectrum({crossSectionFunction: (_) => 1}, {averageSurvivalProbability: 1e-32}, geoFluxRatios, crustFlux),
-    [crossSection, oscillation, geoFluxRatios, crustFlux]
+      geoSpectrum({crossSectionFunction: (_) => 1}, {averageSurvivalProbability: 1e-32}, geoFluxRatios, crustFlux, celestialBody),
+    [crossSection, oscillation, geoFluxRatios, crustFlux, celestialBody]
   );
   
   const boron8 = useMemo(() => defaultBoron8.updateRate(crossSection, reactorLF), [
@@ -231,6 +256,7 @@ function App(props) {
   ]);
 
   const physicsContextValue = {
+    celestialBody,
     oscillation: oscillation,
     oscillationDispatch: oscillationDispatch,
     crossSection: crossSection,
@@ -244,16 +270,15 @@ function App(props) {
       <Container fluid={true}>
         <Row style={{ minHeight: "100vh" }}>
           <Col style={{ minHeight: "50vh" }}>
-            {
             <NuMap
-              cores={defaultCores}
-              customCores={customCores}
+              cores={cores}
               detectorList={presets}
               detector={detector}
               setDetector={setDetector}
               setCore={addCustomModelWithLoc}
+              celestialBody={celestialBody}
+              key={celestialBody} // this is needed to force the entire component to remount
             />
-}
           </Col>
           <Col lg={6} style={{ maxHeight: "100vh", overflow: "scroll" }}>
             <NuSpectrumPlot
@@ -261,10 +286,12 @@ function App(props) {
               cores={cores}
               geo={geo}
               reactorLF={reactorLF}
+              celestialBody={celestialBody}
             />
             <Tabs unmountOnExit={false} activeKey={activeTab} onSelect={(k) => setActiveTab(k)}>
               <Tab eventKey="detector" title="Detector">
                 <Visible>
+                  <CelestialBodySwitcher celestialBody={celestialBody} setCelestialBody={setCelestialBody} />
                   <StatsPanel cores={cores} geo={geo} reactorLF={reactorLF} />
                   <DetectorLocationPane
                     detector={detector}
@@ -283,6 +310,7 @@ function App(props) {
                     setAddCustomModalXY({});
                     setAddCustomModal(false);
                   }}
+                  celestialBody={celestialBody}
                 />
                 <ManageCustomCoreModal
                   show={manCustomModal}
@@ -322,6 +350,7 @@ function App(props) {
                     geoFluxRatios={geoFluxRatios}
                     setGeoFluxRatios={setGeoFluxRatios}
                     geo={geo}
+                    celestialBody={celestialBody}
                   />
                   <GeoCEvNS GeoCEvNSFlux={geoCEvNS} />
                   <GeoDensityPlot />
@@ -385,6 +414,14 @@ function App(props) {
               <Tab eventKey="muon" title="Muon">
                   <Muons />
                   <DetectorOverburdens />
+              </Tab>
+              <Tab eventKey="moon" title="Lunar">
+                <div><p>We are still polishing this tab (and other lunar references in the app), but we feel the results are sound and ready for use.</p></div>
+                  <LunarHeatFLux />
+                  <LunarThickness />
+                  <Lunar238UFlux />
+                  <Lunar232ThFlux />
+                  <Lunar40KFlux />
               </Tab>
               <Tab eventKey="output" title="Output">
                 <Visible>

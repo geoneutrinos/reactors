@@ -11,7 +11,7 @@ import {
   IsotopeKeys,
 } from "../physics/constants";
 import { zip, sum } from "lodash";
-import { project } from "ecef-projector";
+import { project } from "../lla-to-xyz";
 import { Oscillation } from "../physics/neutrino-oscillation";
 import bins, {binWidth, binCount} from "../physics/bins";
 
@@ -247,6 +247,7 @@ interface ReactorCore {
   powerFractions: PowerFractions;
   outputSignal: boolean;
   shutdown: Date;
+  celestialBody: "earth" | "moon";
 
   setSignal: (
     dist: number,
@@ -258,6 +259,7 @@ interface ReactorCore {
   ) => ReactorCore;
   loadFactor: (start?: Date, stop?: Date) => number;
   cos: (other: ReactorCore) => number;
+  setCelestialBody: (celestialBody: "earth"|"moon") => ReactorCore
 }
 
 // eslint-disable-next-line
@@ -274,6 +276,7 @@ export function ReactorCore({
   custom = false,
   loads = [],
   shutdown = "2100-01",
+  celestialBody = "earth",
 }: {
   name: string;
   lat: number;
@@ -287,8 +290,20 @@ export function ReactorCore({
   loads: LoadFactor[];
   powerFractions: PowerFractions;
   shutdown: string;
+  celestialBody: "earth" | "moon";
 }): ReactorCore {
-  const [x, y, z] = project(lat, lon, elevation).map((n) => n / 1000);
+  const [x, y, z] = project(lat, lon, elevation, celestialBody).map((n) => n / 1000);
+
+  function setCelestialBody(this: ReactorCore, celestialBody: "earth" | "moon"){
+    const [x, y, z] = project(lat, lon, elevation, celestialBody).map((n) => n / 1000);
+    return {
+      ...this,
+      celestialBody,
+      x,
+      y,
+      z,
+    }
+  }
 
   function loadFactor(
     this: ReactorCore,
@@ -423,7 +438,9 @@ export function ReactorCore({
     direction: { phi: 0, elev: 0 },
     cos: cos,
     outputSignal: false,
-    shutdown: new Date(shutdown + "-01T00:00:00Z")
+    shutdown: new Date(shutdown + "-01T00:00:00Z"),
+    celestialBody: celestialBody,
+    setCelestialBody: setCelestialBody
   };
 }
 
@@ -471,6 +488,7 @@ const defaultCoreList = Object.keys(cores).map((core) => {
     power: power,
     loads: LFs,
     shutdown: shutdown,
+    celestialBody: "earth",
   });
 });
 

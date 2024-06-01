@@ -1,6 +1,10 @@
-import crustU from './crust_u.json';
-import crustTh from './crust_th.json';
-import crustK from './crust_k.json';
+import earthCrustU from './huang/crust_u.json';
+import earthCrustTh from './huang/crust_th.json';
+import earthCrustK from './huang/crust_k.json';
+
+import moonCrustU from "./lunar/u238flux_GRavg+KG.json"
+import moonCrustTh from "./lunar/th232flux_GRavg+KG.json"
+import moonCrustK from "./lunar/k40bflux_GRavg+KG.json"
 
 import {ISOTOPIC_HALF_LIFE} from '../physics/constants'
 
@@ -23,11 +27,20 @@ interface CrustFlux {
  * @param lon - longitude (-180 to 180) inside the cell that will be returned
  * @param lat  - latitude (-90 to 90) inside the cell that will be returned
  */
-export function getCrustFlux(lon: number, lat: number): CrustFlux{
+export function getCrustFlux(lon: number, lat: number, celestialBody: "earth" | "moon" = "earth"): CrustFlux{
 // Scale for isotope half lives in 10^9 y used in Huang et a. 2013 crust fluxes
     const scaleHalfLife238U = 4.468 / ISOTOPIC_HALF_LIFE.U238e9y
     const scaleHalfLife232Th = 14.05 / ISOTOPIC_HALF_LIFE.TH232e9y
     const scaleHalfLife40K = 1.277 / ISOTOPIC_HALF_LIFE.K40e9y
+
+    let crustU = earthCrustU;
+    let crustTh = earthCrustTh;
+    let crustK = earthCrustK;
+    if (celestialBody === "moon"){
+        crustU = moonCrustU;
+        crustTh = moonCrustTh;
+        crustK = moonCrustK;
+    }
     
     if (lon < -180 || lon > 180){
         throw new RangeError("lon out of range")
