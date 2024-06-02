@@ -7,7 +7,7 @@ export const briaudEtAl2023 = [
 [1737.1,2.649], // Crust
 ]
 
-const layers = 17371;
+const layers = 17373;
 const maxRadius = 1737.1;
 const preFactor = 4 * Math.PI * 1e15 / 3; //1e5 cm/km
 
