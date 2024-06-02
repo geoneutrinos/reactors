@@ -16,13 +16,17 @@ const preFactor = 4 * Math.PI * 1e15 / 3; //1e5 cm/km
 export const lunarBins = new Float64Array(layers).map((_, i) => 0 + offset + binWidth * i);
 
 const innerCoreLayers = briaudEtAl2023[0][0] * 10;
-const outerCoreLayers = (briaudEtAl2023[1][0] - briaudEtAl2023[0][0]) * 10;
-const LVZLayers = (briaudEtAl2023[2][0] - briaudEtAl2023[1][0]) * 10;
-const mantleLayers = (briaudEtAl2023[3][0] - briaudEtAl2023[2][0]) * 10;
-const crustLayers = (briaudEtAl2023[4][0] - briaudEtAl2023[3][0]) * 10;
+const outerCoreLayers = briaudEtAl2023[1][0] * 10;
+const LVZLayers = briaudEtAl2023[2][0] * 10;
+const mantleLayers = briaudEtAl2023[3][0] * 10;
+const crustLayers = briaudEtAl2023[4][0] * 10;
 
 const lunarDensity = new Float64Array(layers);
 lunarDensity.fill(briaudEtAl2023[0][1], 0, innerCoreLayers);
+lunarDensity.fill(briaudEtAl2023[1][1], innerCoreLayers, outerCoreLayers);
+lunarDensity.fill(briaudEtAl2023[2][1], outerCoreLayers, LVZLayers);
+lunarDensity.fill(briaudEtAl2023[3][1], LVZLayers, mantleLayers);
+lunarDensity.fill(briaudEtAl2023[4][1], mantleLayers, crustLayers);
 
 function shellVolume(inner:number, outer:number): number {
     return preFactor * ((outer)**3 - (inner)**3)
