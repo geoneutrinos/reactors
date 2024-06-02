@@ -35,7 +35,7 @@ export const GeoDensityPlot = memo(() => {
       {
         y: lunarDensity,
         x: bins,
-        name: "lunar",
+        name: "Briaud et al.",
         type: "scatter",
         mode: "lines",
         fill: "none",
