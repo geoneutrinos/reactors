@@ -21,13 +21,8 @@ const LVZLayers = (briaudEtAl2023[2][0] - briaudEtAl2023[1][0]) * 10;
 const mantleLayers = (briaudEtAl2023[3][0] - briaudEtAl2023[2][0]) * 10;
 const crustLayers = (briaudEtAl2023[4][0] - briaudEtAl2023[3][0]) * 10;
 
-const densityInnerCore = new Float64Array(innerCoreLayers).fill(briaudEtAl2023[0][1]);
-const densityOuterCore = new Float64Array(outerCoreLayers).fill(briaudEtAl2023[1][1]);
-const densityLVZ = new Float64Array(LVZLayers).fill(briaudEtAl2023[2][1]);
-const densityMantle = new Float64Array(mantleLayers).fill(briaudEtAl2023[3][1]);
-const densityCrust = new Float64Array(crustLayers).fill(briaudEtAl2023[4][1]);
-
-const lunarDensity = densityInnerCore.concat( densityOuterCore, densityLVZ, densityMantle, densityCrust );
+const lunarDensity = new Float64Array(layers);
+lunarDensity.fill(briaudEtAl2023[0][1]),0,innerCoreLayers);
 
 function shellVolume(inner:number, outer:number): number {
     return preFactor * ((outer)**3 - (inner)**3)
