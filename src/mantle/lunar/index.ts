@@ -22,7 +22,7 @@ const mantleLayers = (briaudEtAl2023[3][0] - briaudEtAl2023[2][0]) * 10;
 const crustLayers = (briaudEtAl2023[4][0] - briaudEtAl2023[3][0]) * 10;
 
 const lunarDensity = new Float64Array(layers);
-lunarDensity.fill(briaudEtAl2023[0][1]),0,innerCoreLayers);
+lunarDensity.fill(briaudEtAl2023[0][1], 0, innerCoreLayers);
 
 function shellVolume(inner:number, outer:number): number {
     return preFactor * ((outer)**3 - (inner)**3)
