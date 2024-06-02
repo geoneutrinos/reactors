@@ -10,6 +10,7 @@ import {layerDensity,
         } from "../mantle/PREM";
 import {lunarDensity,
         lunarMasses,
+        lunarIntegral,
         } from "../mantle/lunar";
 import { Card } from "react-bootstrap";
 import Plot from "react-plotly.js";
@@ -23,7 +24,7 @@ export const GeoDensityPlot = memo(() => {
         type: "scatter",
         mode: "lines",
         fill: "none",
-        marker: { color: "purple" },
+        marker: { color: "green" },
       },
       {
         y: layerDensityAK135F,
@@ -32,7 +33,7 @@ export const GeoDensityPlot = memo(() => {
         type: "scatter",
         mode: "lines",
         fill: "none",
-        marker: { color: "orange" },
+        marker: { color: "yellow" },
       },
       {
         y: lunarDensity,
@@ -174,6 +175,15 @@ export const GeoIntegralPlot = memo(() => {
         y: geoIntegral,
         x: bins,
         name: "Geo Integral",
+        type: "scatter",
+        mode: "lines",
+        fill: "none",
+        marker: { color: "green" },
+      },
+      {
+        y: lunarIntegral,
+        x: bins,
+        name: "Briaud et al.",
         type: "scatter",
         mode: "lines",
         fill: "none",
