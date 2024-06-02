@@ -21,7 +21,7 @@ const LVZLayers = briaudEtAl2023[2][0] * 10;
 const mantleLayers = briaudEtAl2023[3][0] * 10;
 const crustLayers = briaudEtAl2023[4][0] * 10;
 
-const lunarDensity = new Float64Array(layers);
+export const lunarDensity = new Float64Array(layers);
 lunarDensity.fill(briaudEtAl2023[0][1], 0, innerCoreLayers);
 lunarDensity.fill(briaudEtAl2023[1][1], innerCoreLayers, outerCoreLayers);
 lunarDensity.fill(briaudEtAl2023[2][1], outerCoreLayers, LVZLayers);
