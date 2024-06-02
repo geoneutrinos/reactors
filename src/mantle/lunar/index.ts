@@ -15,7 +15,7 @@ const innerCoreLayers = briaudEtAl2023[0][0] * 10;
 const outerCoreLayers = briaudEtAl2023[1][0] * 10;
 const LVZLayers = briaudEtAl2023[2][0] * 10;
 const mantleLayers = briaudEtAl2023[3][0] * 10;
-const crustLayers = briaudEtAl2023[4][0] * 10;
+const crustLayers = (briaudEtAl2023[4][0] * 10) + 1;
 
 export const lunarDensity = new Float64Array(layers);
 lunarDensity.fill(briaudEtAl2023[0][1], 0, innerCoreLayers);
