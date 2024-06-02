@@ -33,6 +33,8 @@ export const lunarMasses = lunarDensity.map((den, i) => den * shellVolume(i/10, 
 
 export const lunarIntegral = lunarDensity.map((_, i) => geoIntegrate(i/10, (i+1)/10) * 1.5 / volumeRatio(i/10, (i+1)/10));
 
+export const lunarGeoResponse = lunarDensity.map((den, i) => den * geoIntegrate(i/10, (i+1)/10) * maxRadius * 100 / 2);
+
 function volumeRatio(x: number, y: number): number {
     return shellVolume(x,y) / maxRadiusCubed / preFactor
 }
