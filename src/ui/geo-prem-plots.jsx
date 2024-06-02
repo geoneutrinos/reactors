@@ -8,6 +8,11 @@ import {layerDensity,
         geoIntegral,
         bins,
         } from "../mantle/PREM";
+import {lunarDensity,
+        lunarMasses,
+        lunarIntegral,
+        lunarGeoResponse,
+        } from "../mantle/lunar";
 import { Card } from "react-bootstrap";
 import Plot from "react-plotly.js";
 
@@ -20,7 +25,7 @@ export const GeoDensityPlot = memo(() => {
         type: "scatter",
         mode: "lines",
         fill: "none",
-        marker: { color: "purple" },
+        marker: { color: "green" },
       },
       {
         y: layerDensityAK135F,
@@ -29,7 +34,16 @@ export const GeoDensityPlot = memo(() => {
         type: "scatter",
         mode: "lines",
         fill: "none",
-        marker: { color: "orange" },
+        marker: { color: "yellow" },
+      },
+      {
+        y: lunarDensity,
+        x: bins,
+        name: "Briaud et al.",
+        type: "scatter",
+        mode: "lines",
+        fill: "none",
+        marker: { color: "blue" },
       },
     ]
     const layout = {
@@ -99,6 +113,15 @@ export const GeoMassPlot = memo(() => {
         fill: "none",
         marker: { color: "yellow" },
       },
+      {
+        y: lunarMasses,
+        x: bins,
+        name: "Briaud et al.",
+        type: "scatter",
+        mode: "lines",
+        fill: "none",
+        marker: { color: "blue" },
+      },
     ]
     const layout = {
       title: "Mass Profiles",
@@ -152,7 +175,16 @@ export const GeoIntegralPlot = memo(() => {
       {
         y: geoIntegral,
         x: bins,
-        name: "Geo Integral",
+        name: "Earth",
+        type: "scatter",
+        mode: "lines",
+        fill: "none",
+        marker: { color: "green" },
+      },
+      {
+        y: lunarIntegral,
+        x: bins,
+        name: "Moon",
         type: "scatter",
         mode: "lines",
         fill: "none",
@@ -216,7 +248,7 @@ export const GeophysicalResponsePlot = memo(() => {
         type: "scatter",
         mode: "lines",
         fill: "none",
-        marker: { color: "grey" },
+        marker: { color: "green" },
       },
       {
         y: layerGeoResponseAK135F,
@@ -225,7 +257,16 @@ export const GeophysicalResponsePlot = memo(() => {
         type: "scatter",
         mode: "lines",
         fill: "none",
-        marker: { color: "turquoise" },
+        marker: { color: "yellow" },
+      },
+      {
+        y: lunarGeoResponse,
+        x: bins,
+        name: "Briaud et al.",
+        type: "scatter",
+        mode: "lines",
+        fill: "none",
+        marker: { color: "blue" },
       },
     ]
     const layout = {
