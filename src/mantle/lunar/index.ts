@@ -28,6 +28,8 @@ function shellVolume(inner:number, outer:number): number {
     return preFactor * ((outer)**3 - (inner)**3)
 }
 
+export const lunarMasses = lunarDensity.map((den, i) => den * shellVolume(i+1, i));
+
 function geoIntegrate(inner: number, outer: number): number {
     const topPlus = 1 + outer / maxRadius
     const bottomPlus = 1 + inner / maxRadius
