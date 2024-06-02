@@ -39,7 +39,7 @@ export const GeoDensityPlot = memo(() => {
         type: "scatter",
         mode: "lines",
         fill: "none",
-        marker: "blue",
+        marker: { color: "blue" },
       },
     ]
     const layout = {
