@@ -9,6 +9,7 @@ export const briaudEtAl2023 = [
 
 const layers = 17373;
 const maxRadius = 1737.1;
+const maxRadiusCubed = maxRadius * maxRadius * maxRadius;
 const preFactor = 4 * Math.PI * 1e15 / 3; //1e5 cm/km
 
 const innerCoreLayers = briaudEtAl2023[0][0] * 10;
@@ -29,6 +30,12 @@ function shellVolume(inner:number, outer:number): number {
 }
 
 export const lunarMasses = lunarDensity.map((den, i) => den * shellVolume(i/10, (i+1)/10));
+
+export const lunarIntegral = lunarDensity.map((_, i) => geoIntegrate(i/10, (i+1)/10) * 1.5 / volumeRatio(i/10, (i+1)/10));
+
+function volumeRatio(x: number, y: number): number {
+    return shellVolume(x,y) / maxRadiusCubed / preFactor
+}
 
 function geoIntegrate(inner: number, outer: number): number {
     const topPlus = 1 + outer / maxRadius
