@@ -7,13 +7,9 @@ export const briaudEtAl2023 = [
 [1737.1,2.649], // Crust
 ]
 
-const layers = 17371;
+const layers = 63710;
 const maxRadius = 1737.1;
-const binWidth = maxRadius / layers;
-const offset = binWidth * 0.5;
 const preFactor = 4 * Math.PI * 1e15 / 3; //1e5 cm/km
-
-export const lunarBins = new Float64Array(layers).map((_, i) => 0 + offset + binWidth * i);
 
 const innerCoreLayers = briaudEtAl2023[0][0] * 10;
 const outerCoreLayers = briaudEtAl2023[1][0] * 10;
