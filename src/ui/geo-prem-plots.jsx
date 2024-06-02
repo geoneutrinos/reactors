@@ -174,7 +174,7 @@ export const GeoIntegralPlot = memo(() => {
       {
         y: geoIntegral,
         x: bins,
-        name: "Geo Integral",
+        name: "Earth",
         type: "scatter",
         mode: "lines",
         fill: "none",
@@ -183,7 +183,7 @@ export const GeoIntegralPlot = memo(() => {
       {
         y: lunarIntegral,
         x: bins,
-        name: "Briaud et al.",
+        name: "Moon",
         type: "scatter",
         mode: "lines",
         fill: "none",
