@@ -8,7 +8,7 @@ import {layerDensity,
         geoIntegral,
         bins,
         } from "../mantle/PREM";
-import { briaudEtAl2023 } from "../mantle/lunar";
+import { lunarBins, briaudEtAl2023 } from "../mantle/lunar";
 import { Card } from "react-bootstrap";
 import Plot from "react-plotly.js";
 
@@ -33,8 +33,8 @@ export const GeoDensityPlot = memo(() => {
         marker: { color: "orange" },
       },
       {
-        y: [ briaudEtAl2023[0][1], briaudEtAl2023[0][1], briaudEtAl2023[1][1], briaudEtAl2023[1][1] ],
-        x: [ 0., briaudEtAl2023[0][0], briaudEtAl2023[1][0], briaudEtAl2023[2][0] ],
+        y: layerDensity,
+        x: lunarBins,
         name: "lunar",
         type: "scatter",
         mode: "lines",
