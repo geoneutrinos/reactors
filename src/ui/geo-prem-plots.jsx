@@ -11,6 +11,7 @@ import {layerDensity,
 import {lunarDensity,
         lunarMasses,
         lunarIntegral,
+        lunarGeoResponse,
         } from "../mantle/lunar";
 import { Card } from "react-bootstrap";
 import Plot from "react-plotly.js";
@@ -247,7 +248,7 @@ export const GeophysicalResponsePlot = memo(() => {
         type: "scatter",
         mode: "lines",
         fill: "none",
-        marker: { color: "grey" },
+        marker: { color: "green" },
       },
       {
         y: layerGeoResponseAK135F,
@@ -256,7 +257,16 @@ export const GeophysicalResponsePlot = memo(() => {
         type: "scatter",
         mode: "lines",
         fill: "none",
-        marker: { color: "turquoise" },
+        marker: { color: "yellow" },
+      },
+      {
+        y: lunarGeoResponse,
+        x: bins,
+        name: "Briaud et al.",
+        type: "scatter",
+        mode: "lines",
+        fill: "none",
+        marker: { color: "blue" },
       },
     ]
     const layout = {
