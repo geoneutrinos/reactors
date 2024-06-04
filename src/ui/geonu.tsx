@@ -240,7 +240,7 @@ export const CrustFlux = ({ includeCrust, setIncludeCrust }) => {
           for the heat producing elements and associated geoneutrino flux</i>,
           Geochem., Geophys., Geosyst. 14, 2003-2029. 
           <br /> • The Moon crust flux model is described in S.T. Dye and A.M. Barna (2024), <i>Lunar 
-          antineutrinos and heat: Fluxes from primordial radioactivity</i> (to appear on arXiv).
+          antineutrinos and heat: Fluxes from primordial radioactivity</i> arXiv:2406.00882.
         </small>
       </Card.Body>
     </Card>
