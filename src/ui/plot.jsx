@@ -141,7 +141,7 @@ export function NuSpectrumPlot({ cores, geo, detector, reactorLF, xaxisExtra={},
         : detector.current
     } (${detector.lat.toFixed(1)}N, ${detector.lon.toFixed(
       1
-    )}E, ${detector.elevation.toFixed(0)}m)<br /><sub>NuFit v5.2 ${oscillation.massOrdering}; ${reactorAntineutrinoModel.modelName}; Avg LF ${reactorLF.start.toISOString().slice(0, 7)} thru ${reactorLF.end.toISOString().slice(0, 7)}</sub>`,
+    )}E, ${detector.elevation.toFixed(0)}m)<br /><sub>NuFit v5.3 ${oscillation.massOrdering}; ${reactorAntineutrinoModel.modelName}; Avg LF ${reactorLF.start.toISOString().slice(0, 7)} thru ${reactorLF.end.toISOString().slice(0, 7)}</sub>`,
     showlegend: true,
     legend: {
       x: 1,
