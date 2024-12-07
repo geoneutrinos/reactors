@@ -5,14 +5,14 @@
   "private": true,
   "homepage": ".",
   "dependencies": {
-    "better-react-mathjax": "^2.0.3",
     "@types/d3": "^7.4.3",
     "@types/jest": "^29.5.12",
     "@types/lodash": "^4.14.165",
-    "@types/node": "^20.11.30",
+    "@types/node": "^22.10.1",
     "@types/react": "^18.2.73",
     "@types/react-dom": "^18.2.22",
     "@types/suncalc": "^1.8.0",
+    "better-react-mathjax": "^2.0.3",
     "bootstrap": "^4.5.3",
     "d3": "^7.0.0",
     "file-saver": "^2.0.2",
@@ -56,9 +56,9 @@
   "devDependencies": {
     "@vitejs/plugin-react": "^4.0.0",
     "prettier": "^3.2.5",
-    "vite": "^5.2.6",
-    "vite-plugin-svgr": "^4.2.0",
-    "vite-tsconfig-paths": "^4.3.2"
+    "vite": "^6.0.3",
+    "vite-plugin-svgr": "^4.3.0",
+    "vite-tsconfig-paths": "^5.1.4"
   },
   "resolutions": {
     "rollup": "npm:@rollup/wasm-node"
