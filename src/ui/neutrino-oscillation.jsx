@@ -51,7 +51,7 @@ export const NeutrinoOscillationPane = () => {
               $$<\!\!{P}_\mathrm{ee}\!\!> = 1- \frac{1} {2} \big(\cos^4 \theta_{13} \sin^2(2\theta_{12}) + \sin^2(2\theta_{13}) \big),$$ 
               approximates the effect of oscillations on geo-neutrinos. The
               $\pm 1\sigma$ uncertainties on the average survival probability
-              $(\sim \pm1.8 \%)$ conservatively estimate the errors on the calculated antineutrino reaction rates 
+              $(\sim \pm0.9 \%)$ conservatively estimate the errors on the calculated antineutrino reaction rates 
               introduced by the imprecise knowledge of the oscillation parameters.
               `}
               </MathJax>
