@@ -22,7 +22,7 @@ export const PhysicsOscillationPane = memo(() => {
     <Card>
       <Card.Header>Neutrino Oscillation Parameters</Card.Header>
       <Card.Body>
-        <p>Values are from NuFit v5.3 w/o SK atmnu: JHEP 09 (2020) 178, <a href="https://arxiv.org/abs/2007.14792"> arXiv:2007.14792 </a>, NuFIT 5.3 (2024) <a href="http://www.nu-fit.org"> www.nu-fit.org </a> </p>
+        <p>Values are from NuFit v6.0 IC24 w/ SK atmos, <a href="https://arxiv.org/abs/2410.05380"> arXiv:2410.05380 </a>, NuFIT 6.0 (2024) <a href="http://www.nu-fit.org"> www.nu-fit.org </a> </p>
         <Table {...tableProps} className="text-right">
           <thead>
             <tr>
@@ -81,7 +81,7 @@ export const AverageSurvivalPane = memo(() => {
     <Card>
       <Card.Header>Average Survival Probability</Card.Header>
       <Card.Body>
-        <p>Derived from mixing angles given by NuFit v5.3 w/o SK atmnu: JHEP 09 (2020) 178, <a href="https://arxiv.org/abs/2007.14792"> arXiv:2007.14792 </a>, NuFIT 5.3 (2024) <a href="http://www.nu-fit.org"> www.nu-fit.org </a> </p>
+        <p>Derived from mixing angles given by NuFit v6.0 IC24 w/ SK atmos, <a href="https://arxiv.org/abs/2410.05380"> arXiv:2410.05380 </a>, NuFIT 6.0 (2024) <a href="http://www.nu-fit.org"> www.nu-fit.org </a> </p>
         <Table {...tableProps} className="text-right">
           <thead>
             <tr>
@@ -107,18 +107,18 @@ export const AverageSurvivalPane = memo(() => {
             <tr>
               <td>NO</td>
               <td>{averageSurvivalProbabilityNormal.toFixed(4)}</td>
-              <td>0.5620</td>
-              <td>1.771</td>
-              <td>05419</td>
-              <td>-1.872</td>
+              <td>0.5580</td>
+              <td>0.8945</td>
+              <td>0.5400</td>
+              <td>-0.9130</td>
             </tr>
             <tr>
               <td>IO</td>
               <td>{averageSurvivalProbabilityInverted.toFixed(4)}</td>
-              <td>0.5617</td>
-              <td>-1.766</td>
-              <td>0.5417</td>
-              <td>-1.864</td>
+              <td>0.5578</td>
+              <td>0.8920</td>
+              <td>0.5398</td>
+              <td>-0.9127</td>
             </tr>
           </tbody>
         </Table>
