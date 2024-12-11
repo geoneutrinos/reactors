@@ -107,18 +107,18 @@ export const AverageSurvivalPane = memo(() => {
             <tr>
               <td>NO</td>
               <td>{averageSurvivalProbabilityNormal.toFixed(4)}</td>
-              <td>0.5620</td>
-              <td>1.771</td>
-              <td>05419</td>
-              <td>-1.872</td>
+              <td>0.5580</td>
+              <td>0.8945</td>
+              <td>0.5400</td>
+              <td>-0.9130</td>
             </tr>
             <tr>
               <td>IO</td>
               <td>{averageSurvivalProbabilityInverted.toFixed(4)}</td>
-              <td>0.5617</td>
-              <td>-1.766</td>
-              <td>0.5417</td>
-              <td>-1.864</td>
+              <td>0.5578</td>
+              <td>0.8920</td>
+              <td>0.5398</td>
+              <td>-0.9127</td>
             </tr>
           </tbody>
         </Table>
