@@ -86,8 +86,8 @@ export let oscillation: Oscillation = {
   s22t12: 0,
   c2t12: 0,
 
-  s22t13Normal:0,
-  s22t13Inverted:0,
+  s22t13Normal: 0,
+  s22t13Inverted: 0,
 
   averageSurvivalProbabilityNormal: 0,
   averageSurvivalProbabilityInverted: 0,
@@ -104,8 +104,8 @@ export let oscillation: Oscillation = {
   massOrdering: MassOrdering.Normal
 }
 
-// Parameter values from nu-fit.org NuFit 6.0 IC24 with SK atmospheric data
 const defaultOscillationParams: VariableOscillationParams = {
+  // Parameter values from nu-fit.org NuFit 6.0 IC24 with SK atmospheric data  
   s2t12: 0.308,
   dmsq21: 7.49e-5,
   s2t12Normal: 0.308,
@@ -164,7 +164,7 @@ export const oscillationReducer = (state:Oscillation, action:OscillationParamsAc
 
     case "s2t13Normal":
       {
-        let s2t13Normal = action.value  as number;
+        let s2t13Normal = action.value as number;
         oscillation.s2t13Normal = s2t13Normal;
         oscillation.c4t13Normal = (1 - s2t13Normal) ** 2;
         oscillation.s22t13Normal = 4 * s2t13Normal * (1 - s2t13Normal);
