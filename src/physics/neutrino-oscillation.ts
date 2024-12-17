@@ -13,12 +13,12 @@ interface VariableOscillationParams {
   s2t12Normal: number
   s2t12NormalSigmaPlus: number
   s2t12NormalSigmaMinus: number
-  dmsq21Normal: number
-  dmsq21NormalSigmaPlus: number
-  dmsq21NormalSigmaMinus: number
   s2t12Inverted: number
   s2t12InvertedSigmaPlus: number
   s2t12InvertedSigmaMinus: number
+  dmsq21Normal: number
+  dmsq21NormalSigmaPlus: number
+  dmsq21NormalSigmaMinus: number
   dmsq21Inverted: number
   dmsq21InvertedSigmaPlus: number
   dmsq21InvertedSigmaMinus: number
@@ -107,13 +107,13 @@ export let oscillation: Oscillation = {
 // Parameter values from nu-fit.org NuFit 6.0 IC24 with SK atmospheric data
 const defaultOscillationParams: VariableOscillationParams = {
   s2t12: 0.308,
+  dmsq21: 7.49e-5,
   s2t12Normal: 0.308,
   s2t12NormalSigmaPlus: 0.012,
   s2t12NormalSigmaMinus: -0.011,
   s2t12Inverted: 0.308,
   s2t12InvertedSigmaPlus: 0.012,
   s2t12InvertedSigmaMinus: -0.011,
-  dmsq21: 7.49e-5,
   dmsq21Normal: 7.49e-5,
   dmsq21NormalSigmaPlus: 0.19e-5,
   dmsq21NormalSigmaMinus: -0.19e-5,
