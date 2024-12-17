@@ -42,18 +42,10 @@ interface DerivedOscillationParams {
   c4t13Inverted: number
   s22t12: number
   c2t12: number
-  s22t12Normal: number
-  c2t12Normal: number
-  s22t12Inverted: number
-  c2t12Inverted: number
-  s22t13Normal:number
-  s22t13Inverted:number
+  s22t13Normal: number
+  s22t13Inverted: number
   averageSurvivalProbabilityNormal: number
-  averageSurvivalProbabilityNormalMaximum: number
-  averageSurvivalProbabilityNormalMinimum: number
   averageSurvivalProbabilityInverted: number
-  averageSurvivalProbabilityInvertedMaximum: number
-  averageSurvivalProbabilityInvertedMinimum: number
   averageSurvivalProbability: number
 }
 interface OscillationFunctions {
