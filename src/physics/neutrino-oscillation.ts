@@ -9,17 +9,17 @@ export enum MassOrdering {
 
 interface VariableOscillationParams {
   s2t12: number
-  dmsq21: number
+  // dmsq21: number
   // s2t12Normal: number
   // s2t12NormalSigmaPlus: number
   // s2t12NormalSigmaMinus: number
   // s2t12Inverted: number
   // s2t12InvertedSigmaPlus: number
   // s2t12InvertedSigmaMinus: number
-  // dmsq21Normal: number
+  dmsq21Normal: number
   // dmsq21NormalSigmaPlus: number
   // dmsq21NormalSigmaMinus: number
-  // dmsq21Inverted: number
+  dmsq21Inverted: number
   // dmsq21InvertedSigmaPlus: number
   // dmsq21InvertedSigmaMinus: number
   s2t13Normal: number
@@ -63,7 +63,9 @@ export type Oscillation = OscillationParams & OscillationFunctions & Oscillation
 
 export let oscillation: Oscillation = {
   s2t12: 0,
-  dmsq21: 0,
+  // dmsq21: 0,
+  dmsq21Normal: 0,
+  dmsq21Inverted: 0,
   s2t13Normal: 0,
   s2t13Inverted: 0,
   dmsq32Normal: 0,
@@ -99,17 +101,17 @@ export let oscillation: Oscillation = {
 const defaultOscillationParams: VariableOscillationParams = {
   // Parameter values from nu-fit.org NuFit 6.0 IC24 with SK atmospheric data  
   s2t12: 0.308,
-  dmsq21: 7.49e-5,
+  // dmsq21: 7.49e-5,
   // s2t12Normal: 0.308,
   // s2t12NormalSigmaPlus: 0.012,
   // s2t12NormalSigmaMinus: -0.011,
   // s2t12Inverted: 0.308,
   // s2t12InvertedSigmaPlus: 0.012,
   // s2t12InvertedSigmaMinus: -0.011,
-  // dmsq21Normal: 7.49e-5,
+  dmsq21Normal: 7.49e-5,
   // dmsq21NormalSigmaPlus: 0.19e-5,
   // dmsq21NormalSigmaMinus: -0.19e-5,
-  // dmsq21Inverted: 7.49e-5,
+  dmsq21Inverted: 7.49e-5,
   // dmsq21InvertedSigmaPlus: 0.19e-5,
   // dmsq21InvertedSigmaMinus: -0.19e-5,
   s2t13Normal:  0.02215,
@@ -143,14 +145,23 @@ export const oscillationReducer = (state:Oscillation, action:OscillationParamsAc
       }
       break;
 
-    case "dmsq21":
+    case "dmsq21Normal":
       {
-        let dmsq21 = action.value as number;
-        let { dmsq31Normal, dmsq32Inverted } = oscillation;
+        let dmsq21Normal = action.value as number;
+        let { dmsq31Normal } = oscillation;
 
-        oscillation.dmsq21 = dmsq21;
-        oscillation.dmsq32Normal = dmsq31Normal - dmsq21;
-        oscillation.dmsq31Inverted = dmsq32Inverted + dmsq21;
+        oscillation.dmsq21Normal = dmsq21Normal;
+        oscillation.dmsq32Normal = dmsq31Normal - dmsq21Normal;
+      }
+      break;
+
+      case "dmsq21Inverted":
+      {
+        let dmsq21Inverted = action.value as number;
+        let { dmsq32Inverted } = oscillation;
+
+        oscillation.dmsq21Inverted = dmsq21Inverted;
+        oscillation.dmsq31Inverted = dmsq32Inverted + dmsq21Inverted;
       }
       break;
 
@@ -174,18 +185,18 @@ export const oscillationReducer = (state:Oscillation, action:OscillationParamsAc
     case "dmsq31Normal":
       {
         let dmsq31Normal = action.value as number;
-        let { dmsq21 } = oscillation;
+        let { dmsq21Normal } = oscillation;
         oscillation.dmsq31Normal = dmsq31Normal;
-        oscillation.dmsq32Normal = dmsq31Normal - dmsq21;
+        oscillation.dmsq32Normal = dmsq31Normal - dmsq21Normal;
       }
       break;
 
     case "dmsq32Inverted":
       {
         let dmsq32Inverted = action.value as number;
-        let { dmsq21 } = oscillation;
+        let { dmsq21Inverted } = oscillation;
         oscillation.dmsq32Inverted = dmsq32Inverted;
-        oscillation.dmsq31Inverted = dmsq32Inverted + dmsq21;
+        oscillation.dmsq31Inverted = dmsq32Inverted + dmsq21Inverted;
       }
       break;
     case "massOrdering":{
@@ -201,12 +212,13 @@ export const oscillationReducer = (state:Oscillation, action:OscillationParamsAc
     s2t13Normal,
     c4t13Inverted,
     s2t13Inverted,
-    dmsq21,
+    dmsq21Normal,
     dmsq31Normal,
     dmsq32Normal,
     s22t13Normal,
     c2t12,
     s2t12,
+    dmsq21Inverted,
     dmsq31Inverted,
     dmsq32Inverted,
     s22t13Inverted,
@@ -223,7 +235,7 @@ export const oscillationReducer = (state:Oscillation, action:OscillationParamsAc
 
   // reinit functions
   oscillation.normalNeutrinoFlavor = (Ev: number, dist: number): number => {
-    const oscarg21 = 1.27 * dmsq21 * dist * 1000;
+    const oscarg21 = 1.27 * dmsq21Normal * dist * 1000;
     const oscarg31 = 1.27 * dmsq31Normal * dist * 1000;
     const oscarg32 = 1.27 * dmsq32Normal * dist * 1000;
 
@@ -242,7 +254,7 @@ export const oscillationReducer = (state:Oscillation, action:OscillationParamsAc
   );
 
   oscillation.invertedNeutrinoFlavor = (Ev: number, dist: number): number => {
-    const oscarg21 = 1.27 * dmsq21 * dist * 1000;
+    const oscarg21 = 1.27 * dmsq21Inverted * dist * 1000;
     const oscarg31 = 1.27 * dmsq31Inverted * dist * 1000;
     const oscarg32 = 1.27 * dmsq32Inverted * dist * 1000;
 
@@ -275,7 +287,8 @@ for (arg in defaultOscillationParams){
 
 export const {
   s2t12,
-  dmsq21,
+  dmsq21Normal,
+  dmsq21Inverted,
   s2t13Normal,
   s2t13Inverted,
   dmsq32Normal,
