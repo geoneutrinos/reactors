@@ -10,30 +10,30 @@ export enum MassOrdering {
 interface VariableOscillationParams {
   s2t12: number
   dmsq21: number
-  s2t12Normal: number
-  s2t12NormalSigmaPlus: number
-  s2t12NormalSigmaMinus: number
-  s2t12Inverted: number
-  s2t12InvertedSigmaPlus: number
-  s2t12InvertedSigmaMinus: number
-  dmsq21Normal: number
-  dmsq21NormalSigmaPlus: number
-  dmsq21NormalSigmaMinus: number
-  dmsq21Inverted: number
-  dmsq21InvertedSigmaPlus: number
-  dmsq21InvertedSigmaMinus: number
+  // s2t12Normal: number
+  // s2t12NormalSigmaPlus: number
+  // s2t12NormalSigmaMinus: number
+  // s2t12Inverted: number
+  // s2t12InvertedSigmaPlus: number
+  // s2t12InvertedSigmaMinus: number
+  // dmsq21Normal: number
+  // dmsq21NormalSigmaPlus: number
+  // dmsq21NormalSigmaMinus: number
+  // dmsq21Inverted: number
+  // dmsq21InvertedSigmaPlus: number
+  // dmsq21InvertedSigmaMinus: number
   s2t13Normal: number
-  s2t13NormalSigmaPlus: number
-  s2t13NormalSigmaMinus: number
+  // s2t13NormalSigmaPlus: number
+  // s2t13NormalSigmaMinus: number
   s2t13Inverted: number
-  s2t13InvertedSigmaPlus: number
-  s2t13InvertedSigmaMinus: number
+  // s2t13InvertedSigmaPlus: number
+  // s2t13InvertedSigmaMinus: number
   dmsq31Normal: number
-  dmsq31NormalSigmaPlus: number
-  dmsq31NormalSigmaMinus: number
+  // dmsq31NormalSigmaPlus: number
+  // dmsq31NormalSigmaMinus: number
   dmsq32Inverted: number
-  dmsq32InvertedSigmaPlus: number
-  dmsq32InvertedSigmaMinus: number
+  // dmsq32InvertedSigmaPlus: number
+  // dmsq32InvertedSigmaMinus: number
 }
 interface DerivedOscillationParams {
   dmsq32Normal: number
@@ -100,30 +100,30 @@ const defaultOscillationParams: VariableOscillationParams = {
   // Parameter values from nu-fit.org NuFit 6.0 IC24 with SK atmospheric data  
   s2t12: 0.308,
   dmsq21: 7.49e-5,
-  s2t12Normal: 0.308,
-  s2t12NormalSigmaPlus: 0.012,
-  s2t12NormalSigmaMinus: -0.011,
-  s2t12Inverted: 0.308,
-  s2t12InvertedSigmaPlus: 0.012,
-  s2t12InvertedSigmaMinus: -0.011,
-  dmsq21Normal: 7.49e-5,
-  dmsq21NormalSigmaPlus: 0.19e-5,
-  dmsq21NormalSigmaMinus: -0.19e-5,
-  dmsq21Inverted: 7.49e-5,
-  dmsq21InvertedSigmaPlus: 0.19e-5,
-  dmsq21InvertedSigmaMinus: -0.19e-5,
+  // s2t12Normal: 0.308,
+  // s2t12NormalSigmaPlus: 0.012,
+  // s2t12NormalSigmaMinus: -0.011,
+  // s2t12Inverted: 0.308,
+  // s2t12InvertedSigmaPlus: 0.012,
+  // s2t12InvertedSigmaMinus: -0.011,
+  // dmsq21Normal: 7.49e-5,
+  // dmsq21NormalSigmaPlus: 0.19e-5,
+  // dmsq21NormalSigmaMinus: -0.19e-5,
+  // dmsq21Inverted: 7.49e-5,
+  // dmsq21InvertedSigmaPlus: 0.19e-5,
+  // dmsq21InvertedSigmaMinus: -0.19e-5,
   s2t13Normal:  0.02215,
-  s2t13NormalSigmaPlus:  0.00056,
-  s2t13NormalSigmaMinus:  -0.00058,
+  // s2t13NormalSigmaPlus:  0.00056,
+  // s2t13NormalSigmaMinus:  -0.00058,
   s2t13Inverted: 0.02231,
-  s2t13InvertedSigmaPlus: 0.00056,
-  s2t13InvertedSigmaMinus: -0.00056,
+  // s2t13InvertedSigmaPlus: 0.00056,
+  // s2t13InvertedSigmaMinus: -0.00056,
   dmsq31Normal: 2.513e-3,
-  dmsq31NormalSigmaPlus: 0.021e-3,
-  dmsq31NormalSigmaMinus: -0.019e-3,
+  // dmsq31NormalSigmaPlus: 0.021e-3,
+  // dmsq31NormalSigmaMinus: -0.019e-3,
   dmsq32Inverted: -2.484e-3,
-  dmsq32InvertedSigmaPlus: 0.020e-3,
-  dmsq32InvertedSigmaMinus: -0.020e-3,
+  // dmsq32InvertedSigmaPlus: 0.020e-3,
+  // dmsq32InvertedSigmaMinus: -0.020e-3,
 }
 
 interface OscillationParamsAction{
