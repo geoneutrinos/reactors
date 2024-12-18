@@ -39,10 +39,8 @@ interface DerivedOscillationParams {
   dmsq31Inverted: number
   c4t13Normal: number
   c4t13Inverted: number
-// s22t12: number
   s22t12Normal: number
   s22t12Inverted: number
-// c2t12: number
   c2t12Normal: number
   c2t12Inverted: number
   s22t13Normal: number
@@ -65,7 +63,6 @@ type OscillationParams = VariableOscillationParams & DerivedOscillationParams;
 export type Oscillation = OscillationParams & OscillationFunctions & OscillationConfig;
 
 export let oscillation: Oscillation = {
-// s2t12: 0,
   s2t12Normal: 0,
   s2t12Inverted: 0,
   dmsq21Normal: 0,
@@ -81,10 +78,9 @@ export let oscillation: Oscillation = {
   c4t13Normal: 0,
   c4t13Inverted: 0,
 
-// s22t12: 0,
   s22t12Normal: 0,
   s22t12Inverted: 0,
-// c2t12: 0,
+
   c2t12Normal: 0,
   c2t12Inverted: 0,
 
@@ -106,9 +102,8 @@ export let oscillation: Oscillation = {
   massOrdering: MassOrdering.Normal
 }
 
+// Parameter values from nu-fit.org NuFit 6.0 IC24 with SK atmospheric data  
 const defaultOscillationParams: VariableOscillationParams = {
-  // Parameter values from nu-fit.org NuFit 6.0 IC24 with SK atmospheric data  
-  // s2t12: 0.308,
   s2t12Normal: 0.308,
   // s2t12NormalSigmaPlus: 0.012,
   // s2t12NormalSigmaMinus: -0.011,
@@ -223,27 +218,24 @@ export const oscillationReducer = (state:Oscillation, action:OscillationParamsAc
 
   // recalculate average survival probabilities
   let {
-    c4t13Normal,
-   // s22t12,
-    s22t12Normal,
-    s22t12Inverted,
-    s2t13Normal,
-    c4t13Inverted,
-    s2t13Inverted,
-    dmsq21Normal,
-    dmsq31Normal,
-    dmsq32Normal,
-    s22t13Normal,
-   // c2t12,
-    c2t12Normal,
-    c2t12Inverted,
-   // s2t12,
     s2t12Normal,
     s2t12Inverted,
-    dmsq21Inverted,
-    dmsq31Inverted,
-    dmsq32Inverted,
+    s22t12Normal,
+    s22t12Inverted,
+    c2t12Normal,
+    c2t12Inverted,
+    s2t13Normal,
+    s2t13Inverted,
+    s22t13Normal,
     s22t13Inverted,
+    c4t13Normal,
+    c4t13Inverted,
+    dmsq21Normal,
+    dmsq21Inverted,
+    dmsq31Normal,
+    dmsq31Inverted,
+    dmsq32Normal,
+    dmsq32Inverted,
   } = oscillation;
 
   oscillation.averageSurvivalProbabilityNormal =
@@ -308,7 +300,6 @@ for (arg in defaultOscillationParams){
 }
 
 export const {
- // s2t12,
   s2t12Normal,
   s2t12Inverted,
   dmsq21Normal,
@@ -321,10 +312,8 @@ export const {
   dmsq31Inverted,
   c4t13Normal,
   c4t13Inverted,
- // s22t12,
   s22t12Normal,
   s22t12Inverted,
- // c2t12,
   c2t12Normal,
   c2t12Inverted,
   s22t13Normal, 
