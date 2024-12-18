@@ -4,7 +4,8 @@ import { Card, Table } from "react-bootstrap";
 
 import {
   s2t12,
-  dmsq21,
+  dmsq21Normal,
+  dmsq21Inverted,
   s2t13Normal,
   s2t13Inverted,
   dmsq31Inverted,
@@ -50,7 +51,7 @@ export const PhysicsOscillationPane = memo(() => {
           <tbody>
             <tr>
               <td>NO</td>
-              <td>{dmsq21.toExponential(2)}</td>
+              <td>{dmsq21Normal.toExponential(2)}</td>
               <td>{dmsq31Normal.toExponential(4)}</td>
               <td>{dmsq32Normal.toExponential(4)}</td>
               <td>{s2t12.toFixed(3)}</td>
@@ -58,7 +59,7 @@ export const PhysicsOscillationPane = memo(() => {
             </tr>
             <tr>
               <td>IO</td>
-              <td>{dmsq21.toExponential(2)}</td>
+              <td>{dmsq21Inverted.toExponential(2)}</td>
               <td>{dmsq31Inverted.toExponential(4)}</td>
               <td>{dmsq32Inverted.toExponential(4)}</td>
               <td>{s2t12.toFixed(3)}</td>
