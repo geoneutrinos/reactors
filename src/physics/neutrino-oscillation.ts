@@ -9,29 +9,29 @@ export enum MassOrdering {
 
 interface VariableOscillationParams {
   s2t12Normal: number
-  // s2t12NormalSigmaPlus: number
-  // s2t12NormalSigmaMinus: number
+  // s2t12Normal3SigmaMinimum: number
+  // s2t12Normal3SigmaMaximum: number
   s2t12Inverted: number
-  // s2t12InvertedSigmaPlus: number
-  // s2t12InvertedSigmaMinus: number
+  // s2t12Inverted3SigmaMinimum: number
+  // s2t12Inverted3SigmaMaximum: number
   dmsq21Normal: number
-  // dmsq21NormalSigmaPlus: number
-  // dmsq21NormalSigmaMinus: number
+  // dmsq21Normal3SigmaMinimum: number
+  // dmsq21Normal3SigmaMaximum: number
   dmsq21Inverted: number
-  // dmsq21InvertedSigmaPlus: number
-  // dmsq21InvertedSigmaMinus: number
+  // dmsq21Inverted3SigmaMinimum: number
+  // dmsq21Inverted3SigmaMaximum: number
   s2t13Normal: number
-  // s2t13NormalSigmaPlus: number
-  // s2t13NormalSigmaMinus: number
+  // s2t13Normal3SigmaMinimum: number
+  // s2t13Normal3SigmaMaximum: number
   s2t13Inverted: number
-  // s2t13InvertedSigmaPlus: number
-  // s2t13InvertedSigmaMinus: number
+  // s2t13Inverted3SigmaMinimum: number
+  // s2t13Inverted3SigmaMaximum: number
   dmsq31Normal: number
-  // dmsq31NormalSigmaPlus: number
-  // dmsq31NormalSigmaMinus: number
+  // dmsq31Normal3SigmaMinimum: number
+  // dmsq31Normal3SigmaMaximum: number
   dmsq32Inverted: number
-  // dmsq32InvertedSigmaPlus: number
-  // dmsq32InvertedSigmaMinus: number
+  // dmsq32Inverted3SigmaMinimum: number
+  // dmsq32Inverted3SigmaMaximum: number
 }
 interface DerivedOscillationParams {
   dmsq32Normal: number
@@ -45,7 +45,11 @@ interface DerivedOscillationParams {
   s22t13Normal: number
   s22t13Inverted: number
   averageSurvivalProbabilityNormal: number
+  // averageSurvivalProbabilityNormalMaximum: number
+  // averageSurvivalProbabilityNormalMinimum: number
   averageSurvivalProbabilityInverted: number
+  // averageSurvivalProbabilityInvertedMaximum: number
+  // averageSurvivalProbabilityInvertedMinimum: number
   averageSurvivalProbability: number
 }
 interface OscillationFunctions {
@@ -87,7 +91,11 @@ export let oscillation: Oscillation = {
   s22t13Inverted: 0,
 
   averageSurvivalProbabilityNormal: 0,
+  // averageSurvivalProbabilityNormalMaximum: 0,
+  // averageSurvivalProbabilityNormalMinimum: 0,
   averageSurvivalProbabilityInverted: 0,
+  // averageSurvivalProbabilityInvertedMaximum: 0,
+  // averageSurvivalProbabilityInvertedMinimum: 0,
   averageSurvivalProbability: 0,
 
   // empty functions
@@ -104,29 +112,29 @@ export let oscillation: Oscillation = {
 // Parameter values from nu-fit.org NuFit 6.0 IC24 with SK atmospheric data  
 const defaultOscillationParams: VariableOscillationParams = {
   s2t12Normal: 0.308,
-  // s2t12NormalSigmaPlus: 0.012,
-  // s2t12NormalSigmaMinus: -0.011,
+  // s2t12Normal3SigmaMinimum: 0.275,
+  // s2t12Normal3SigmaMaximum: 0.345,
   s2t12Inverted: 0.308,
-  // s2t12InvertedSigmaPlus: 0.012,
-  // s2t12InvertedSigmaMinus: -0.011,
+  // s2t12Inverted3SigmaMinimum: 0.275,
+  // s2t12Inverted3SigmaMaximum: 0.345,
   dmsq21Normal: 7.49e-5,
-  // dmsq21NormalSigmaPlus: 0.19e-5,
-  // dmsq21NormalSigmaMinus: -0.19e-5,
+  // dmsq21Normal3SigmaMinimum: 6.92e-5,
+  // dmsq21Normal3SigmaMaximum: 8.05e-5,
   dmsq21Inverted: 7.49e-5,
-  // dmsq21InvertedSigmaPlus: 0.19e-5,
-  // dmsq21InvertedSigmaMinus: -0.19e-5,
+  // dmsq21Inverted3SigmaMaximum: 6.92e-5,
+  // dmsq21Inverted3SigmaMinimum: 8.05e-5,
   s2t13Normal:  0.02215,
-  // s2t13NormalSigmaPlus:  0.00056,
-  // s2t13NormalSigmaMinus:  -0.00058,
+  // s2t13Normal3SigmaMinimum:  0.02030,
+  // s2t13Normal3SigmaMaximum:  0.02388,
   s2t13Inverted: 0.02231,
-  // s2t13InvertedSigmaPlus: 0.00056,
-  // s2t13InvertedSigmaMinus: -0.00056,
+  // s2t13Inverted3SigmaMinimum: 0.02060,
+  // s2t13Inverted3SigmaMaximum: 0.02409,
   dmsq31Normal: 2.513e-3,
-  // dmsq31NormalSigmaPlus: 0.021e-3,
-  // dmsq31NormalSigmaMinus: -0.019e-3,
+  // dmsq31Normal3SigmaMinimum: 2.451e-3,
+  // dmsq31Normal3SigmaMaximum: 2.578e-3,
   dmsq32Inverted: -2.484e-3,
-  // dmsq32InvertedSigmaPlus: 0.020e-3,
-  // dmsq32InvertedSigmaMinus: -0.020e-3,
+  // dmsq32Inverted3SigmaMinimum: -2.547e-3,
+  // dmsq32Inverted3SigmaMaximum: -2.421e-3,
 }
 
 interface OscillationParamsAction{
