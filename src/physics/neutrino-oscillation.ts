@@ -319,7 +319,7 @@ for (arg in defaultOscillationParams){
 
 export const {
   s2t12Normal,
-  s2t12Normal3SigmaMinimum,
+  // s2t12Normal3SigmaMinimum,
   s2t12Inverted,
   dmsq21Normal,
   dmsq21Inverted,
@@ -332,7 +332,7 @@ export const {
   c4t13Normal,
   c4t13Inverted,
   s22t12Normal,
-  s22t12Normal3SigmaMinimum,
+  // s22t12Normal3SigmaMinimum,
   s22t12Inverted,
   c2t12Normal,
   c2t12Inverted,
