@@ -45,7 +45,7 @@ interface DerivedOscillationParams {
   s22t13Normal: number
   s22t13Inverted: number
   averageSurvivalProbabilityNormal: number
-  // averageSurvivalProbabilityNormalMaximum: number
+  averageSurvivalProbabilityNormalMaximum: number
   // averageSurvivalProbabilityNormalMinimum: number
   averageSurvivalProbabilityInverted: number
   // averageSurvivalProbabilityInvertedMaximum: number
@@ -91,7 +91,7 @@ export let oscillation: Oscillation = {
   s22t13Inverted: 0,
 
   averageSurvivalProbabilityNormal: 0,
-  // averageSurvivalProbabilityNormalMaximum: 0,
+  averageSurvivalProbabilityNormalMaximum: 0,
   // averageSurvivalProbabilityNormalMinimum: 0,
   averageSurvivalProbabilityInverted: 0,
   // averageSurvivalProbabilityInvertedMaximum: 0,
@@ -247,8 +247,13 @@ export const oscillationReducer = (state:Oscillation, action:OscillationParamsAc
 
   oscillation.averageSurvivalProbabilityNormal =
     c4t13Normal * (1 - s22t12Normal * 0.5) + s2t13Normal * s2t13Normal;
+
+  oscillation.averageSurvivalProbabilityNormalMaximum =
+    c4t13Normal * (1 - s22t12Normal * 0.5) + s2t13Normal * s2t13Normal;
+
   oscillation.averageSurvivalProbabilityInverted =
     c4t13Inverted * (1 - s22t12Inverted * 0.5) + s2t13Inverted * s2t13Inverted;
+  
   oscillation.averageSurvivalProbability = 
     oscillation.massOrdering === MassOrdering.Normal
       ? oscillation.averageSurvivalProbabilityNormal
@@ -326,6 +331,7 @@ export const {
   s22t13Normal, 
   s22t13Inverted,
   averageSurvivalProbabilityNormal,
+  averageSurvivalProbabilityNormalMaximum,
   averageSurvivalProbabilityInverted,
   normalNeutrinoOscillationSpectrum,
   invertedNeutrinoOscillationSpectrum
