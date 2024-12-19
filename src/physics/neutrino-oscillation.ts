@@ -8,7 +8,6 @@ export enum MassOrdering {
 
 
 interface VariableOscillationParams {
-  // s2t12: number
   s2t12Normal: number
   // s2t12NormalSigmaPlus: number
   // s2t12NormalSigmaMinus: number
