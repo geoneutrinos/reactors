@@ -14,6 +14,7 @@ import {
   dmsq32Normal,
   dmsq32Inverted,
   averageSurvivalProbabilityNormal,
+  averageSurvivalProbabilityNormalMaximum,
   averageSurvivalProbabilityInverted,
 } from "../physics/neutrino-oscillation";
 
@@ -109,7 +110,7 @@ export const AverageSurvivalPane = memo(() => {
             <tr>
               <td>NO</td>
               <td>{averageSurvivalProbabilityNormal.toFixed(4)}</td>
-              <td>0.5580</td>
+              <td>{averageSurvivalProbabilityNormalMaximum.toFixed(4)}</td>
               <td>1.603</td>
               <td>0.5400</td>
               <td>-1.691</td>
