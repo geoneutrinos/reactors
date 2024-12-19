@@ -230,7 +230,6 @@ export const oscillationReducer = (state:Oscillation, action:OscillationParamsAc
   // recalculate average survival probabilities
   let {
     s2t12Normal,
-    s2t12Normal3SigmaMinimum,
     s2t12Inverted,
     s22t12Normal,
     s22t12Normal3SigmaMinimum,
