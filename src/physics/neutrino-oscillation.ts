@@ -9,7 +9,7 @@ export enum MassOrdering {
 
 interface VariableOscillationParams {
   s2t12Normal: number
-  // s2t12Normal3SigmaMinimum: number
+  s2t12Normal3SigmaMinimum: number
   // s2t12Normal3SigmaMaximum: number
   s2t12Inverted: number
   // s2t12Inverted3SigmaMinimum: number
@@ -39,6 +39,7 @@ interface DerivedOscillationParams {
   c4t13Normal: number
   c4t13Inverted: number
   s22t12Normal: number
+  s22t12Normal3SigmaMinimum: number
   s22t12Inverted: number
   c2t12Normal: number
   c2t12Inverted: number
@@ -67,6 +68,7 @@ export type Oscillation = OscillationParams & OscillationFunctions & Oscillation
 
 export let oscillation: Oscillation = {
   s2t12Normal: 0,
+  s2t12Normal3SigmaMinimum: 0,
   s2t12Inverted: 0,
   dmsq21Normal: 0,
   dmsq21Inverted: 0,
@@ -82,6 +84,7 @@ export let oscillation: Oscillation = {
   c4t13Inverted: 0,
 
   s22t12Normal: 0,
+  s22t12Normal3SigmaMinimum: 0,
   s22t12Inverted: 0,
 
   c2t12Normal: 0,
@@ -112,7 +115,7 @@ export let oscillation: Oscillation = {
 // Parameter values from nu-fit.org NuFit 6.0 IC24 with SK atmospheric data  
 const defaultOscillationParams: VariableOscillationParams = {
   s2t12Normal: 0.308,
-  // s2t12Normal3SigmaMinimum: 0.275,
+  s2t12Normal3SigmaMinimum: 0.275,
   // s2t12Normal3SigmaMaximum: 0.345,
   s2t12Inverted: 0.308,
   // s2t12Inverted3SigmaMinimum: 0.275,
@@ -150,6 +153,7 @@ export const oscillationReducer = (state:Oscillation, action:OscillationParamsAc
         let s2t12Normal = action.value as number;
         oscillation.s2t12Normal = s2t12Normal;
         oscillation.s22t12Normal = 4 * s2t12Normal * (1 - s2t12Normal);
+        oscillation.s22t12Normal3SigmaMinimum = 4 * s2t12Normal3SigmaMinimum * (1 - s2t12Normal3SigmaMinimum);
         oscillation.c2t12Normal = 1 - s2t12Normal;
       }
       break;
@@ -226,8 +230,10 @@ export const oscillationReducer = (state:Oscillation, action:OscillationParamsAc
   // recalculate average survival probabilities
   let {
     s2t12Normal,
+    s2t12Normal3SigmaMinimum,
     s2t12Inverted,
     s22t12Normal,
+    s22t12Normal3SigmaMinimum,
     s22t12Inverted,
     c2t12Normal,
     c2t12Inverted,
@@ -249,7 +255,7 @@ export const oscillationReducer = (state:Oscillation, action:OscillationParamsAc
     c4t13Normal * (1 - s22t12Normal * 0.5) + s2t13Normal * s2t13Normal;
 
   oscillation.averageSurvivalProbabilityNormalMaximum =
-    c4t13Normal * (1 - s22t12Normal * 0.5) + s2t13Normal * s2t13Normal;
+    c4t13Normal * (1 - s22t12Normal3SigmaMinimum * 0.5) + s2t13Normal * s2t13Normal;
 
   oscillation.averageSurvivalProbabilityInverted =
     c4t13Inverted * (1 - s22t12Inverted * 0.5) + s2t13Inverted * s2t13Inverted;
@@ -313,6 +319,7 @@ for (arg in defaultOscillationParams){
 
 export const {
   s2t12Normal,
+  s2t12Normal3SigmaMinimum,
   s2t12Inverted,
   dmsq21Normal,
   dmsq21Inverted,
@@ -325,6 +332,7 @@ export const {
   c4t13Normal,
   c4t13Inverted,
   s22t12Normal,
+  s22t12Normal3SigmaMinimum,
   s22t12Inverted,
   c2t12Normal,
   c2t12Inverted,
