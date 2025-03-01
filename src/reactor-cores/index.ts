@@ -111,6 +111,12 @@ export const FISSION_FRACTIONS: { [type: string]: FissionFractions } = {
     PU239: 0.37,
     PU241: 0.08,
   },
+  GeoReactor: {
+    U235: 0.746,
+    U238: 0.249,
+    PU239: 0.00017,
+    PU241: 0.0,
+  },
 };
 
 function fissionFractionToPowerFraction(
