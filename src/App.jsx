@@ -138,7 +138,7 @@ L.Icon.Default.mergeOptions({
   shadowUrl: shadowUrl,
 });
 
-const defaultDetector = presets.find((detector) => detector.name === "Kamioka");
+const defaultDetector = presets.find((detector) => detector.name === "Jiangmen");
 
 function App(props) {
   // Where is this?
