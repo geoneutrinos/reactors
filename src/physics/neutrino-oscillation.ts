@@ -226,7 +226,7 @@ export const oscillationReducer = (state:Oscillation, action:OscillationParamsAc
 
   // reinit functions
   oscillation.normalNeutrinoFlavor = (Ev: number, dist: number): number => {
-    const oscarg21 = 1.27 * dmsq21 * dist * 1000;
+    const oscarg21 = 1.27 * dmsq21Normal * dist * 1000;
     const oscarg31 = 1.27 * dmsq31Normal * dist * 1000;
     const oscarg32 = 1.27 * dmsq32Normal * dist * 1000;
 
@@ -245,7 +245,7 @@ export const oscillationReducer = (state:Oscillation, action:OscillationParamsAc
   );
 
   oscillation.invertedNeutrinoFlavor = (Ev: number, dist: number): number => {
-    const oscarg21 = 1.27 * dmsq21 * dist * 1000;
+    const oscarg21 = 1.27 * dmsq21Inverted * dist * 1000;
     const oscarg31 = 1.27 * dmsq31Inverted * dist * 1000;
     const oscarg32 = 1.27 * dmsq32Inverted * dist * 1000;
 
