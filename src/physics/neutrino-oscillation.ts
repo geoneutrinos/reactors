@@ -114,6 +114,13 @@ export const oscillationReducer = (state:Oscillation, action:OscillationParamsAc
       }
       break;
 
+    case "s2t12Normal":
+      {
+        let s2t12Normal = action.value as number;
+        oscillation.s2t12Normal = s2t12Normal;
+      }
+      break;
+
     case "dmsq21":
       {
         let dmsq21 = action.value as number;
