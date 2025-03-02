@@ -6,7 +6,6 @@ export enum MassOrdering {
     Normal = "NO",
 }
 
-
 interface VariableOscillationParams {
   s2t12Normal: number
   s2t12Inverted: number
@@ -17,6 +16,7 @@ interface VariableOscillationParams {
   dmsq31Normal: number
   dmsq32Inverted: number
 }
+
 interface DerivedOscillationParams {
   dmsq32Normal: number
   dmsq31Inverted: number
@@ -28,6 +28,7 @@ interface DerivedOscillationParams {
   averageSurvivalProbabilityInverted: number
   averageSurvivalProbability: number
 }
+
 interface OscillationFunctions {
   normalNeutrinoFlavor: (Ev: number, dist: number) => number;
   normalNeutrinoOscillationSpectrum: (dist: number) => Float64Array;
@@ -35,9 +36,11 @@ interface OscillationFunctions {
   invertedNeutrinoOscillationSpectrum: (dist: number) => Float64Array;
   neutrinoOscillationSpectrum: (dist: number) => Float64Array;
 }
+
 interface OscillationConfig {
   massOrdering: MassOrdering
 }
+
 type OscillationParams = VariableOscillationParams & DerivedOscillationParams;
 export type Oscillation = OscillationParams & OscillationFunctions & OscillationConfig;
 
@@ -263,5 +266,5 @@ export const {
   averageSurvivalProbabilityNormal,
   averageSurvivalProbabilityInverted,
   normalNeutrinoOscillationSpectrum,
-  invertedNeutrinoOscillationSpectrum
+  invertedNeutrinoOscillationSpectrum,
 } = oscillation;
