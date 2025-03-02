@@ -17,7 +17,13 @@ import {
 // from the Physics Context
 // I thnk fine as is (at least until the mass ordering is determined experimentally)
 // tabulated rates are given for both normal and inverted mass ordering
-import { s2t12, c2t12, s2t13Normal, s2t13Inverted, MassOrdering } from "../physics/neutrino-oscillation";
+import {
+  s2t12Normal,
+  s2t12Inverted,
+  s2t13Normal,
+  s2t13Inverted,
+  MassOrdering,
+} from "../physics/neutrino-oscillation";
 
 import { sum, memoize } from "lodash";
 
@@ -101,14 +107,14 @@ export const oscillatedFluxSpectrum = ({fluxSpectrums}:{fluxSpectrums: SNFluxSpe
   return {
     [MassOrdering.Normal]: {
       [NeutrinoType.electronNeutrino]: electronNeutrinoNeutrinoFluxSpectrum.map((v,i) => v * s2t13Normal + muTauNeutrinoFluxSpectrum[i] * (1 - s2t13Normal)),
-      [NeutrinoType.electronAntineutrino]: electronAntineutrinoNeutrinoFluxSpectrum.map((v,i) => v * c2t12 * (1 - s2t13Normal) + muTauNeutrinoFluxSpectrum[i] * (1 - c2t12 * (1 - s2t13Normal))),
+      [NeutrinoType.electronAntineutrino]: electronAntineutrinoNeutrinoFluxSpectrum.map((v,i) => v * (1 - s2t12Normal) * (1 - s2t13Normal) + muTauNeutrinoFluxSpectrum[i] * (1 - (1 - s2t12Normal) * (1 - s2t13Normal))),
       [NeutrinoType.muTauNeutrino]: electronNeutrinoNeutrinoFluxSpectrum.map((v,i) => (v * (1 - s2t13Normal) + muTauNeutrinoFluxSpectrum[i] * (1 + s2t13Normal))/2),
-      [NeutrinoType.muTauAntineutrino]: electronAntineutrinoNeutrinoFluxSpectrum.map((v,i) => (v * (1 - c2t12 * (1 - s2t13Normal)) + muTauNeutrinoFluxSpectrum[i] * (1 + c2t12 * (1 - s2t13Normal)))/2),
+      [NeutrinoType.muTauAntineutrino]: electronAntineutrinoNeutrinoFluxSpectrum.map((v,i) => (v * (1 - (1 - s2t12Normal) * (1 - s2t13Normal)) + muTauNeutrinoFluxSpectrum[i] * (1 + (1 - s2t12Normal) * (1 - s2t13Normal)))/2),
     },
     [MassOrdering.Inverted]: {
-      [NeutrinoType.electronNeutrino]: electronNeutrinoNeutrinoFluxSpectrum.map((v,i) => v * s2t12 * (1 - s2t13Inverted) + muTauNeutrinoFluxSpectrum[i] * (1 - s2t12 * (1 - s2t13Inverted))),
+      [NeutrinoType.electronNeutrino]: electronNeutrinoNeutrinoFluxSpectrum.map((v,i) => v * s2t12Inverted * (1 - s2t13Inverted) + muTauNeutrinoFluxSpectrum[i] * (1 - s2t12Inverted * (1 - s2t13Inverted))),
       [NeutrinoType.electronAntineutrino]: electronAntineutrinoNeutrinoFluxSpectrum.map((v,i) => v * s2t13Inverted + muTauNeutrinoFluxSpectrum[i] * (1 - s2t13Inverted)),
-      [NeutrinoType.muTauNeutrino]: electronNeutrinoNeutrinoFluxSpectrum.map((v,i) => (v * (1 - s2t12 * (1 - s2t13Inverted)) + muTauNeutrinoFluxSpectrum[i] * (1 + s2t12 * (1 - s2t13Inverted)))/2),
+      [NeutrinoType.muTauNeutrino]: electronNeutrinoNeutrinoFluxSpectrum.map((v,i) => (v * (1 - s2t12Inverted * (1 - s2t13Inverted)) + muTauNeutrinoFluxSpectrum[i] * (1 + s2t12Inverted * (1 - s2t13Inverted)))/2),
       [NeutrinoType.muTauAntineutrino]: electronAntineutrinoNeutrinoFluxSpectrum.map((v,i) => (v * (1 - s2t13Inverted) + muTauNeutrinoFluxSpectrum[i] * (1 + s2t13Inverted))/2),
     }
   }
