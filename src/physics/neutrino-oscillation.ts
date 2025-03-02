@@ -230,7 +230,7 @@ export const oscillationReducer = (state:Oscillation, action:OscillationParamsAc
     const oscarg31 = 1.27 * dmsq31Normal * dist * 1000;
     const oscarg32 = 1.27 * dmsq32Normal * dist * 1000;
 
-    const supr21 = c4t13Normal * s22t12 * Math.sin(oscarg21 / Ev) ** 2;
+    const supr21 = c4t13Normal * s2t12Normal * (1 - s2t12Normal) * 4 * Math.sin(oscarg21 / Ev) ** 2;
     const supr31 = s22t13Normal * (1 - s2t12Normal) * Math.sin(oscarg31 / Ev) ** 2;
     const supr32 = s22t13Normal * s2t12Normal * Math.sin(oscarg32 / Ev) ** 2;
 
@@ -249,7 +249,7 @@ export const oscillationReducer = (state:Oscillation, action:OscillationParamsAc
     const oscarg31 = 1.27 * dmsq31Inverted * dist * 1000;
     const oscarg32 = 1.27 * dmsq32Inverted * dist * 1000;
 
-    const supr21 = c4t13Inverted * s22t12 * Math.sin(oscarg21 / Ev) ** 2;
+    const supr21 = c4t13Inverted * s2t12Inverted * (1 - s2t12Inverted) * 4 * Math.sin(oscarg21 / Ev) ** 2;
     const supr31 = s22t13Inverted * (1 - s2t12Inverted) * Math.sin(oscarg31 / Ev) ** 2;
     const supr32 = s22t13Inverted * s2t12Inverted * Math.sin(oscarg32 / Ev) ** 2;
 
