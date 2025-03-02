@@ -173,18 +173,18 @@ export const oscillationReducer = (state:Oscillation, action:OscillationParamsAc
     case "dmsq31Normal":
       {
         let dmsq31Normal = action.value as number;
-        let { dmsq21 } = oscillation;
+        let { dmsq21Normal } = oscillation;
         oscillation.dmsq31Normal = dmsq31Normal;
-        oscillation.dmsq32Normal = dmsq31Normal - dmsq21;
+        oscillation.dmsq32Normal = dmsq31Normal - dmsq21Normal;
       }
       break;
 
     case "dmsq32Inverted":
       {
         let dmsq32Inverted = action.value as number;
-        let { dmsq21 } = oscillation;
+        let { dmsq21Inverted } = oscillation;
         oscillation.dmsq32Inverted = dmsq32Inverted;
-        oscillation.dmsq31Inverted = dmsq32Inverted + dmsq21;
+        oscillation.dmsq31Inverted = dmsq32Inverted + dmsq21Inverted;
       }
       break;
     case "massOrdering":{
