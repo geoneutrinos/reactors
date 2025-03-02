@@ -216,9 +216,9 @@ export const oscillationReducer = (state:Oscillation, action:OscillationParamsAc
   } = oscillation;
 
   oscillation.averageSurvivalProbabilityNormal =
-    c4t13Normal * (1 - s22t12 * 0.5) + s2t13Normal * s2t13Normal;
+    c4t13Normal * (1 - s2t12Normal * (1 - s2t12Normal) * 2) + s2t13Normal * s2t13Normal;
   oscillation.averageSurvivalProbabilityInverted =
-    c4t13Inverted * (1 - s22t12 * 0.5) + s2t13Inverted * s2t13Inverted;
+    c4t13Inverted * (1 - s2t12Inverted * (1 - s2t12Inverted) * 2) + s2t13Inverted * s2t13Inverted;
   oscillation.averageSurvivalProbability = 
     oscillation.massOrdering === MassOrdering.Normal
       ? oscillation.averageSurvivalProbabilityNormal
