@@ -10,7 +10,8 @@ export enum MassOrdering {
 interface VariableOscillationParams {
   s2t12Normal: number
   s2t12Inverted: number
-  dmsq21: number
+  dmsq21Normal: number
+  dmsq21Inverted: number
   s2t13Normal: number
   s2t13Inverted: number
   dmsq31Normal: number
@@ -43,21 +44,18 @@ export type Oscillation = OscillationParams & OscillationFunctions & Oscillation
 export let oscillation: Oscillation = {
   s2t12Normal: 0,
   s2t12Inverted: 0,
-  dmsq21: 0,
+  dmsq21Normal: 0,
+  dmsq21Inverted: 0,
   s2t13Normal: 0,
   s2t13Inverted: 0,
   dmsq32Normal: 0,
   dmsq32Inverted: 0,
-
   dmsq31Normal: 0,
   dmsq31Inverted: 0,
-
   c4t13Normal: 0,
   c4t13Inverted: 0,
-
   c2t12Normal: 0,
   c2t12Inverted: 0,
-
   averageSurvivalProbabilityNormal: 0,
   averageSurvivalProbabilityInverted: 0,
   averageSurvivalProbability: 0,
@@ -76,7 +74,8 @@ export let oscillation: Oscillation = {
 const defaultOscillationParams: VariableOscillationParams = {
   s2t12Normal: 0.308,
   s2t12Inverted: 0.308,
-  dmsq21: 7.49e-5,
+  dmsq21Normal: 7.49e-5,
+  dmsq21Inverted: 7.49e-5,
   s2t13Normal:  0.02215,
   s2t13Inverted: 0.02231,
   dmsq31Normal: 2.513e-3,
@@ -107,14 +106,23 @@ export const oscillationReducer = (state:Oscillation, action:OscillationParamsAc
       }
       break;
 
-    case "dmsq21":
+    case "dmsq21Normal":
       {
-        let dmsq21 = action.value as number;
-        let { dmsq31Normal, dmsq32Inverted } = oscillation;
+        let dmsq21Normal = action.value as number;
+        let { dmsq31Normal } = oscillation;
 
-        oscillation.dmsq21 = dmsq21;
-        oscillation.dmsq32Normal = dmsq31Normal - dmsq21;
-        oscillation.dmsq31Inverted = dmsq32Inverted + dmsq21;
+        oscillation.dmsq21Normal = dmsq21Normal;
+        oscillation.dmsq32Normal = dmsq31Normal - dmsq21Normal;
+      }
+      break;
+
+    case "dmsq21Inverted":
+      {
+        let dmsq21Inverted = action.value as number;
+        let { dmsq32Inverted } = oscillation;
+
+        oscillation.dmsq21Inverted = dmsq21Inverted;
+        oscillation.dmsq31Inverted = dmsq32Inverted + dmsq21Inverted;
       }
       break;
 
@@ -125,6 +133,7 @@ export const oscillationReducer = (state:Oscillation, action:OscillationParamsAc
         oscillation.c4t13Normal = (1 - s2t13Normal) ** 2;
       }
       break;
+    
     case "s2t13Inverted":
       {
         let s2t13Inverted = action.value as number;
@@ -138,7 +147,7 @@ export const oscillationReducer = (state:Oscillation, action:OscillationParamsAc
         let dmsq31Normal = action.value as number;
         let { dmsq21 } = oscillation;
         oscillation.dmsq31Normal = dmsq31Normal;
-        oscillation.dmsq32Normal = dmsq31Normal - dmsq21;
+        oscillation.dmsq32Normal = dmsq31Normal - dmsq21Normal;
       }
       break;
 
@@ -147,9 +156,10 @@ export const oscillationReducer = (state:Oscillation, action:OscillationParamsAc
         let dmsq32Inverted = action.value as number;
         let { dmsq21 } = oscillation;
         oscillation.dmsq32Inverted = dmsq32Inverted;
-        oscillation.dmsq31Inverted = dmsq32Inverted + dmsq21;
+        oscillation.dmsq31Inverted = dmsq32Inverted + dmsq21Inverted;
       }
       break;
+
     case "massOrdering":{
       let massOrdering = action.value as MassOrdering;
       oscillation.massOrdering = massOrdering;
@@ -162,13 +172,14 @@ export const oscillationReducer = (state:Oscillation, action:OscillationParamsAc
     s2t13Normal,
     c4t13Inverted,
     s2t13Inverted,
-    dmsq21,
+    dmsq21Normal,
     dmsq31Normal,
     dmsq32Normal,
     c2t12Normal,
     c2t12Inverted,
     s2t12Normal,
     s2t12Inverted,
+    dmsq21Inverted,
     dmsq31Inverted,
     dmsq32Inverted,
   } = oscillation;
@@ -184,7 +195,7 @@ export const oscillationReducer = (state:Oscillation, action:OscillationParamsAc
 
   // reinit functions
   oscillation.normalNeutrinoFlavor = (Ev: number, dist: number): number => {
-    const oscarg21 = 1.27 * dmsq21 * dist * 1000;
+    const oscarg21 = 1.27 * dmsq21Normal * dist * 1000;
     const oscarg31 = 1.27 * dmsq31Normal * dist * 1000;
     const oscarg32 = 1.27 * dmsq32Normal * dist * 1000;
 
@@ -203,7 +214,7 @@ export const oscillationReducer = (state:Oscillation, action:OscillationParamsAc
   );
 
   oscillation.invertedNeutrinoFlavor = (Ev: number, dist: number): number => {
-    const oscarg21 = 1.27 * dmsq21 * dist * 1000;
+    const oscarg21 = 1.27 * dmsq21Inverted * dist * 1000;
     const oscarg31 = 1.27 * dmsq31Inverted * dist * 1000;
     const oscarg32 = 1.27 * dmsq32Inverted * dist * 1000;
 
@@ -237,7 +248,8 @@ for (arg in defaultOscillationParams){
 export const {
   s2t12Normal,
   s2t12Inverted,
-  dmsq21,
+  dmsq21Normal,
+  dmsq21Inverted,
   s2t13Normal,
   s2t13Inverted,
   dmsq32Normal,
