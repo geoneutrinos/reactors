@@ -11,7 +11,6 @@ interface VariableOscillationParams {
   s2t12: number
   s2t12Normal: number
   s2t12Inverted: number
-  dmsq21: number
   dmsq21Normal: number
   dmsq21Inverted: number
   s2t13Normal: number
@@ -49,7 +48,6 @@ export let oscillation: Oscillation = {
   s2t12: 0,
   s2t12Normal: 0,
   s2t12Inverted: 0,
-  dmsq21: 0,
   dmsq21Normal: 0,
   dmsq21Inverted: 0,
   s2t13Normal: 0,
@@ -88,7 +86,6 @@ const defaultOscillationParams: VariableOscillationParams = {
   s2t12: 0.308,
   s2t12Normal: 0.308,
   s2t12Inverted: 0.308,
-  dmsq21: 7.49e-5,
   dmsq21Normal: 7.49e-5,
   dmsq21Inverted: 7.49e-5,
   s2t13Normal:  0.02215,
@@ -125,13 +122,6 @@ export const oscillationReducer = (state:Oscillation, action:OscillationParamsAc
       {
         let s2t12Inverted = action.value as number;
         oscillation.s2t12Inverted = s2t12Inverted;
-      }
-      break;
-
-    case "dmsq21":
-      {
-        let dmsq21 = action.value as number;
-        oscillation.dmsq21 = dmsq21;
       }
       break;
 
@@ -200,7 +190,6 @@ export const oscillationReducer = (state:Oscillation, action:OscillationParamsAc
     s2t13Normal,
     c4t13Inverted,
     s2t13Inverted,
-    dmsq21,
     dmsq21Normal,
     dmsq21Inverted,
     dmsq31Normal,
@@ -280,7 +269,6 @@ export const {
   s2t12,
   s2t12Normal,
   s2t12Inverted,
-  dmsq21,
   dmsq21Normal,
   dmsq21Inverted,
   s2t13Normal,
