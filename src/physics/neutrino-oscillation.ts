@@ -24,7 +24,6 @@ interface DerivedOscillationParams {
   c4t13Normal: number
   c4t13Inverted: number
   s22t12: number
-  c2t12: number
   s22t13Normal:number
   s22t13Inverted:number
   averageSurvivalProbabilityNormal: number
@@ -62,7 +61,6 @@ export let oscillation: Oscillation = {
   c4t13Inverted: 0,
 
   s22t12: 0,
-  c2t12: 0,
 
   s22t13Normal:0,
   s22t13Inverted:0,
@@ -107,7 +105,6 @@ export const oscillationReducer = (state:Oscillation, action:OscillationParamsAc
         let s2t12 = action.value as number;
         oscillation.s2t12 = s2t12;
         oscillation.s22t12 = 4 * s2t12 * (1 - s2t12);
-        oscillation.c2t12 = 1 - s2t12;
       }
       break;
 
@@ -195,7 +192,6 @@ export const oscillationReducer = (state:Oscillation, action:OscillationParamsAc
     dmsq31Normal,
     dmsq32Normal,
     s22t13Normal,
-    c2t12,
     s2t12,
     s2t12Normal,
     s2t12Inverted,
@@ -280,7 +276,6 @@ export const {
   c4t13Normal,
   c4t13Inverted,
   s22t12,
-  c2t12,
   s22t13Normal, 
   s22t13Inverted,
   averageSurvivalProbabilityNormal,
