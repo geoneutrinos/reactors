@@ -3,10 +3,8 @@ import {memo} from 'react';
 import { Card, Table } from "react-bootstrap";
 
 import {
-  s2t12,
   s2t12Normal,
   s2t12Inverted,
-  dmsq21,
   dmsq21Normal,
   dmsq21Inverted,
   s2t13Normal,
