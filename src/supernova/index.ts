@@ -18,13 +18,12 @@ import {
 // I thnk fine as is (at least until the mass ordering is determined experimentally)
 // tabulated rates are given for both normal and inverted mass ordering
 import { 
-  s2t12Normal, 
-  s2t12Inverted, 
-  c2t12Normal, 
-  c2t12Inverted, 
-  s2t13Normal, 
-  s2t13Inverted, 
-  MassOrdering } from "../physics/neutrino-oscillation";
+  s2t12Inverted,
+  c2t12Normal,
+  s2t13Normal,
+  s2t13Inverted,
+  MassOrdering,
+} from "../physics/neutrino-oscillation";
 
 import { sum, memoize } from "lodash";
 
