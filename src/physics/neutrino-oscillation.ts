@@ -8,7 +8,6 @@ export enum MassOrdering {
 
 
 interface VariableOscillationParams {
-  s2t12: number
   s2t12Normal: number
   s2t12Inverted: number
   dmsq21Normal: number
@@ -23,7 +22,6 @@ interface DerivedOscillationParams {
   dmsq31Inverted: number
   c4t13Normal: number
   c4t13Inverted: number
-  s22t12: number
   s22t13Normal:number
   s22t13Inverted:number
   averageSurvivalProbabilityNormal: number
@@ -44,7 +42,6 @@ type OscillationParams = VariableOscillationParams & DerivedOscillationParams;
 export type Oscillation = OscillationParams & OscillationFunctions & OscillationConfig;
 
 export let oscillation: Oscillation = {
-  s2t12: 0,
   s2t12Normal: 0,
   s2t12Inverted: 0,
   dmsq21Normal: 0,
@@ -59,8 +56,6 @@ export let oscillation: Oscillation = {
 
   c4t13Normal: 0,
   c4t13Inverted: 0,
-
-  s22t12: 0,
 
   s22t13Normal:0,
   s22t13Inverted:0,
@@ -81,7 +76,6 @@ export let oscillation: Oscillation = {
 }
 
 const defaultOscillationParams: VariableOscillationParams = {
-  s2t12: 0.308,
   s2t12Normal: 0.308,
   s2t12Inverted: 0.308,
   dmsq21Normal: 7.49e-5,
@@ -100,14 +94,6 @@ interface OscillationParamsAction{
 export const oscillationReducer = (state:Oscillation, action:OscillationParamsAction): Oscillation => {
   const oscillation = { ...state };
   switch (action.arg) {
-    case "s2t12":
-      {
-        let s2t12 = action.value as number;
-        oscillation.s2t12 = s2t12;
-        oscillation.s22t12 = 4 * s2t12 * (1 - s2t12);
-      }
-      break;
-
     case "s2t12Normal":
       {
         let s2t12Normal = action.value as number;
@@ -183,7 +169,6 @@ export const oscillationReducer = (state:Oscillation, action:OscillationParamsAc
   // recalc average survival probabilites
   let {
     c4t13Normal,
-    s22t12,
     s2t13Normal,
     c4t13Inverted,
     s2t13Inverted,
@@ -192,7 +177,6 @@ export const oscillationReducer = (state:Oscillation, action:OscillationParamsAc
     dmsq31Normal,
     dmsq32Normal,
     s22t13Normal,
-    s2t12,
     s2t12Normal,
     s2t12Inverted,
     dmsq31Inverted,
@@ -262,7 +246,6 @@ for (arg in defaultOscillationParams){
 }
 
 export const {
-  s2t12,
   s2t12Normal,
   s2t12Inverted,
   dmsq21Normal,
@@ -275,7 +258,6 @@ export const {
   dmsq31Inverted,
   c4t13Normal,
   c4t13Inverted,
-  s22t12,
   s22t13Normal, 
   s22t13Inverted,
   averageSurvivalProbabilityNormal,
