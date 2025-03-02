@@ -3,8 +3,10 @@ import {memo} from 'react';
 import { Card, Table } from "react-bootstrap";
 
 import {
-  s2t12,
-  dmsq21,
+  s2t12Normal,
+  s2t12Inverted,
+  dmsq21Normal,
+  dmsq21Inverted,
   s2t13Normal,
   s2t13Inverted,
   dmsq31Inverted,
@@ -50,18 +52,18 @@ export const PhysicsOscillationPane = memo(() => {
           <tbody>
             <tr>
               <td>NO</td>
-              <td>{dmsq21.toExponential(2)}</td>
+              <td>{dmsq21Normal.toExponential(2)}</td>
               <td>{dmsq31Normal.toExponential(4)}</td>
               <td>{dmsq32Normal.toExponential(4)}</td>
-              <td>{s2t12.toFixed(3)}</td>
+              <td>{s2t12Normal.toFixed(3)}</td>
               <td>{s2t13Normal.toFixed(5)}</td>
             </tr>
             <tr>
               <td>IO</td>
-              <td>{dmsq21.toExponential(2)}</td>
+              <td>{dmsq21Inverted.toExponential(2)}</td>
               <td>{dmsq31Inverted.toExponential(4)}</td>
               <td>{dmsq32Inverted.toExponential(4)}</td>
-              <td>{s2t12.toFixed(3)}</td>
+              <td>{s2t12Inverted.toFixed(3)}</td>
               <td>{s2t13Inverted.toFixed(5)}</td>
             </tr>
           </tbody>

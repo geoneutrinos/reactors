@@ -8,8 +8,10 @@ export enum MassOrdering {
 
 
 interface VariableOscillationParams {
-  s2t12: number
-  dmsq21: number
+  s2t12Normal: number
+  s2t12Inverted: number
+  dmsq21Normal: number
+  dmsq21Inverted: number
   s2t13Normal: number
   s2t13Inverted: number
   dmsq31Normal: number
@@ -20,8 +22,6 @@ interface DerivedOscillationParams {
   dmsq31Inverted: number
   c4t13Normal: number
   c4t13Inverted: number
-  s22t12: number
-  c2t12: number
   s22t13Normal:number
   s22t13Inverted:number
   averageSurvivalProbabilityNormal: number
@@ -42,8 +42,10 @@ type OscillationParams = VariableOscillationParams & DerivedOscillationParams;
 export type Oscillation = OscillationParams & OscillationFunctions & OscillationConfig;
 
 export let oscillation: Oscillation = {
-  s2t12: 0,
-  dmsq21: 0,
+  s2t12Normal: 0,
+  s2t12Inverted: 0,
+  dmsq21Normal: 0,
+  dmsq21Inverted: 0,
   s2t13Normal: 0,
   s2t13Inverted: 0,
   dmsq32Normal: 0,
@@ -54,9 +56,6 @@ export let oscillation: Oscillation = {
 
   c4t13Normal: 0,
   c4t13Inverted: 0,
-
-  s22t12: 0,
-  c2t12: 0,
 
   s22t13Normal:0,
   s22t13Inverted:0,
@@ -77,8 +76,10 @@ export let oscillation: Oscillation = {
 }
 
 const defaultOscillationParams: VariableOscillationParams = {
-  s2t12: 0.308,
-  dmsq21: 7.49e-5,
+  s2t12Normal: 0.308,
+  s2t12Inverted: 0.308,
+  dmsq21Normal: 7.49e-5,
+  dmsq21Inverted: 7.49e-5,
   s2t13Normal:  0.02215,
   s2t13Inverted: 0.02231,
   dmsq31Normal: 2.513e-3,
@@ -93,23 +94,35 @@ interface OscillationParamsAction{
 export const oscillationReducer = (state:Oscillation, action:OscillationParamsAction): Oscillation => {
   const oscillation = { ...state };
   switch (action.arg) {
-    case "s2t12":
+    case "s2t12Normal":
       {
-        let s2t12 = action.value as number;
-        oscillation.s2t12 = s2t12;
-        oscillation.s22t12 = 4 * s2t12 * (1 - s2t12);
-        oscillation.c2t12 = 1 - s2t12;
+        let s2t12Normal = action.value as number;
+        oscillation.s2t12Normal = s2t12Normal;
       }
       break;
 
-    case "dmsq21":
+    case "s2t12Inverted":
       {
-        let dmsq21 = action.value as number;
-        let { dmsq31Normal, dmsq32Inverted } = oscillation;
+        let s2t12Inverted = action.value as number;
+        oscillation.s2t12Inverted = s2t12Inverted;
+      }
+      break;
 
-        oscillation.dmsq21 = dmsq21;
-        oscillation.dmsq32Normal = dmsq31Normal - dmsq21;
-        oscillation.dmsq31Inverted = dmsq32Inverted + dmsq21;
+    case "dmsq21Normal":
+      {
+        let dmsq21Normal = action.value as number;
+        let { dmsq31Normal } = oscillation;
+        oscillation.dmsq21Normal = dmsq21Normal;
+        oscillation.dmsq32Normal = dmsq31Normal - dmsq21Normal;
+      }
+      break;
+
+    case "dmsq21Inverted":
+      {
+        let dmsq21Inverted = action.value as number;
+        let { dmsq32Inverted } = oscillation;
+        oscillation.dmsq21Inverted = dmsq21Inverted;
+        oscillation.dmsq31Inverted = dmsq32Inverted + dmsq21Inverted;
       }
       break;
 
@@ -133,18 +146,18 @@ export const oscillationReducer = (state:Oscillation, action:OscillationParamsAc
     case "dmsq31Normal":
       {
         let dmsq31Normal = action.value as number;
-        let { dmsq21 } = oscillation;
+        let { dmsq21Normal } = oscillation;
         oscillation.dmsq31Normal = dmsq31Normal;
-        oscillation.dmsq32Normal = dmsq31Normal - dmsq21;
+        oscillation.dmsq32Normal = dmsq31Normal - dmsq21Normal;
       }
       break;
 
     case "dmsq32Inverted":
       {
         let dmsq32Inverted = action.value as number;
-        let { dmsq21 } = oscillation;
+        let { dmsq21Inverted } = oscillation;
         oscillation.dmsq32Inverted = dmsq32Inverted;
-        oscillation.dmsq31Inverted = dmsq32Inverted + dmsq21;
+        oscillation.dmsq31Inverted = dmsq32Inverted + dmsq21Inverted;
       }
       break;
     case "massOrdering":{
@@ -156,25 +169,25 @@ export const oscillationReducer = (state:Oscillation, action:OscillationParamsAc
   // recalc average survival probabilites
   let {
     c4t13Normal,
-    s22t12,
     s2t13Normal,
     c4t13Inverted,
     s2t13Inverted,
-    dmsq21,
+    dmsq21Normal,
+    dmsq21Inverted,
     dmsq31Normal,
     dmsq32Normal,
     s22t13Normal,
-    c2t12,
-    s2t12,
+    s2t12Normal,
+    s2t12Inverted,
     dmsq31Inverted,
     dmsq32Inverted,
     s22t13Inverted,
   } = oscillation;
 
   oscillation.averageSurvivalProbabilityNormal =
-    c4t13Normal * (1 - s22t12 * 0.5) + s2t13Normal * s2t13Normal;
+    c4t13Normal * (1 - s2t12Normal * (1 - s2t12Normal) * 2) + s2t13Normal * s2t13Normal;
   oscillation.averageSurvivalProbabilityInverted =
-    c4t13Inverted * (1 - s22t12 * 0.5) + s2t13Inverted * s2t13Inverted;
+    c4t13Inverted * (1 - s2t12Inverted * (1 - s2t12Inverted) * 2) + s2t13Inverted * s2t13Inverted;
   oscillation.averageSurvivalProbability = 
     oscillation.massOrdering === MassOrdering.Normal
       ? oscillation.averageSurvivalProbabilityNormal
@@ -182,13 +195,13 @@ export const oscillationReducer = (state:Oscillation, action:OscillationParamsAc
 
   // reinit functions
   oscillation.normalNeutrinoFlavor = (Ev: number, dist: number): number => {
-    const oscarg21 = 1.27 * dmsq21 * dist * 1000;
+    const oscarg21 = 1.27 * dmsq21Normal * dist * 1000;
     const oscarg31 = 1.27 * dmsq31Normal * dist * 1000;
     const oscarg32 = 1.27 * dmsq32Normal * dist * 1000;
 
-    const supr21 = c4t13Normal * s22t12 * Math.sin(oscarg21 / Ev) ** 2;
-    const supr31 = s22t13Normal * c2t12 * Math.sin(oscarg31 / Ev) ** 2;
-    const supr32 = s22t13Normal * s2t12 * Math.sin(oscarg32 / Ev) ** 2;
+    const supr21 = c4t13Normal * s2t12Normal * (1 - s2t12Normal) * 4 * Math.sin(oscarg21 / Ev) ** 2;
+    const supr31 = s22t13Normal * (1 - s2t12Normal) * Math.sin(oscarg31 / Ev) ** 2;
+    const supr32 = s22t13Normal * s2t12Normal * Math.sin(oscarg32 / Ev) ** 2;
 
     return 1 - supr21 - supr31 - supr32;
   };
@@ -201,13 +214,13 @@ export const oscillationReducer = (state:Oscillation, action:OscillationParamsAc
   );
 
   oscillation.invertedNeutrinoFlavor = (Ev: number, dist: number): number => {
-    const oscarg21 = 1.27 * dmsq21 * dist * 1000;
+    const oscarg21 = 1.27 * dmsq21Inverted * dist * 1000;
     const oscarg31 = 1.27 * dmsq31Inverted * dist * 1000;
     const oscarg32 = 1.27 * dmsq32Inverted * dist * 1000;
 
-    const supr21 = c4t13Inverted * s22t12 * Math.sin(oscarg21 / Ev) ** 2;
-    const supr31 = s22t13Inverted * c2t12 * Math.sin(oscarg31 / Ev) ** 2;
-    const supr32 = s22t13Inverted * s2t12 * Math.sin(oscarg32 / Ev) ** 2;
+    const supr21 = c4t13Inverted * s2t12Inverted * (1 - s2t12Inverted) * 4 * Math.sin(oscarg21 / Ev) ** 2;
+    const supr31 = s22t13Inverted * (1 - s2t12Inverted) * Math.sin(oscarg31 / Ev) ** 2;
+    const supr32 = s22t13Inverted * s2t12Inverted * Math.sin(oscarg32 / Ev) ** 2;
 
     return 1 - supr21 - supr31 - supr32;
   };
@@ -233,8 +246,10 @@ for (arg in defaultOscillationParams){
 }
 
 export const {
-  s2t12,
-  dmsq21,
+  s2t12Normal,
+  s2t12Inverted,
+  dmsq21Normal,
+  dmsq21Inverted,
   s2t13Normal,
   s2t13Inverted,
   dmsq32Normal,
@@ -243,8 +258,6 @@ export const {
   dmsq31Inverted,
   c4t13Normal,
   c4t13Inverted,
-  s22t12,
-  c2t12,
   s22t13Normal, 
   s22t13Inverted,
   averageSurvivalProbabilityNormal,
