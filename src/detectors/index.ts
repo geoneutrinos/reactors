@@ -70,6 +70,8 @@ export const presets: DetecorPreset[] = [
     {name: "Antares", lat:42.80, lon: 6.17, elevation:-2500, overburden:2500, region:"Mediterranean Sea"},
     {name: "Nestor", lat:36.63, lon: 21.58, elevation:-4000, overburden:4000, region:"Mediterranean Sea"},
     {name: "NEMO Test", lat:37.551, lon: 15.384, elevation:-2080, overburden:2080, region:"Mediterranean Sea"},
+    {name: "KM3NeT ARCA", lat:36.26667, lon: 16.10, elevation:-3500, overburden:3500, region:"Mediterranean Sea"},
+    {name: "KM3NeT ORCA", lat:42.80, lon: 6.0333, elevation:-2450, overburden:2450, region:"Mediterranean Sea"},
     //North America
     //Fairport- detector height -580 m, surface height 180 m, geoid height -33.24 m
     {name: "Fairport", lat:41.756, lon: -81.286, elevation:-433, overburden:1570, region:"North America"},
