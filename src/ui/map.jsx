@@ -248,7 +248,7 @@ export function NuMap({
             <CoreCircles cores={cores} zoom={zoom} shutdownCores={false}/>
           </LayerGroup>
         </LayersControl.Overlay>
-        <LayersControl.Overlay checked name="Detector Locations">
+        <LayersControl.Overlay checked name="Detector Sites">
           <LayerGroup>
             <DetectorCircles
               detectors={detectorList}
