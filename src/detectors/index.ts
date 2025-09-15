@@ -84,7 +84,7 @@ export const presets: DetecorPreset[] = [
     {name: "Palo Verde", lat:33.390616, lon: -112.872296, elevation:251, overburden:32, region:"North America", status:"shutdown"},
     {name: "Resolution", lat:33.301336, lon:-111.103363, elevation:0, overburden:5000, region:"North America", status:"proposed"},
     //Mt San Jacinto water tunnel in southern California- http://www.sns.ias.edu/~jnb/Laboratory/SanJacinto/visit.pdf
-    {name: "San Jacinto", lat:33.81471, lon:-116.67944, elevation:0, overburden:5000, region:"North America", status""proposed"},
+    {name: "San Jacinto", lat:33.81471, lon:-116.67944, elevation:0, overburden:5000, region:"North America", status:"proposed"},
     {name: "Soudan", lat:47.82, lon: -92.24, elevation:-210, overburden:1950, region:"North America", status:"shutdown"},
     //SNOLab- detector height -2092 m, surface height 309 m.s.l., Geoid height -36 m, Ellipsoid height -1819 m arXiv:0902.2776
     {name: "SNOLAB", lat:46.475, lon: -81.20111, elevation:-1819, overburden:6010, region:"North America", status:"operational"},
