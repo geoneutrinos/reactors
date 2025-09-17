@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { range } from "lodash";
 import { Form, Card } from "react-bootstrap";
 
-const years = range(2003, 2024);
+const years = range(2003, 2025);
 const months = range(1, 13);
 
 export const CoreIAEARange = ({
