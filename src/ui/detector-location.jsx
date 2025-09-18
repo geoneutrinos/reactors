@@ -9,7 +9,7 @@ const presetOptions = Object.keys(presetGroups).map((key) => {
   const group = presetGroups[key];
   const options = group.map((detector) => (
     <option key={detector.name} value={detector.name}>
-      {detector.name} ({detector.overburden} mwe)
+      {detector.name} ({detector.overburden} mwe) {detector.status}
     </option>
   ));
   return (
