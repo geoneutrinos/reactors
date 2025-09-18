@@ -38,6 +38,8 @@ const DetectorCircles = React.memo(function DetectorCircles({
         <br />
         <b>Overburden:</b> {detector.overburden} mwe
         <br />
+        <b>Status:</b> {detector.status}
+        <br />
         <button
           onClick={() =>
             setDetector({current: detector.name, ...detector})
@@ -238,17 +240,17 @@ export function NuMap({
       <Marker position={{ lat: detector.lat, lng: detector.lon }} />
 
       <LayersControl position="topright">
-        <LayersControl.Overlay checked name="Shutdown Reactor Cores">
-          <LayerGroup>
-            <CoreCircles cores={cores} zoom={zoom} shutdownCores={true}/>
-          </LayerGroup>
-        </LayersControl.Overlay>
         <LayersControl.Overlay checked name="Active Reactor Cores">
           <LayerGroup>
             <CoreCircles cores={cores} zoom={zoom} shutdownCores={false}/>
           </LayerGroup>
         </LayersControl.Overlay>
-        <LayersControl.Overlay checked name="Detector Locations">
+        <LayersControl.Overlay checked name="Shutdown Reactor Cores">
+          <LayerGroup>
+            <CoreCircles cores={cores} zoom={zoom} shutdownCores={true}/>
+          </LayerGroup>
+        </LayersControl.Overlay>
+        <LayersControl.Overlay checked name="Operating Detector Sites">
           <LayerGroup>
             <DetectorCircles
               detectors={detectorList}
@@ -257,6 +259,8 @@ export function NuMap({
               celestialBody={celestialBody}
             />
           </LayerGroup>
+        </LayersControl.Overlay>
+        <LayersControl.Overlay checked name="Shutdown Detector Sites">
         </LayersControl.Overlay>
       </LayersControl>
       <AttributionControl position="bottomright" prefix="<a href='https://leafletjs.com/'>Leaflet</a>" />
