@@ -38,6 +38,8 @@ const DetectorCircles = React.memo(function DetectorCircles({
         <br />
         <b>Overburden:</b> {detector.overburden} mwe
         <br />
+        <b>Status:</b> {detector.status}
+        <br />
         <button
           onClick={() =>
             setDetector({current: detector.name, ...detector})
