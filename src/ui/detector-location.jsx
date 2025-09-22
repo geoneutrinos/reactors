@@ -86,16 +86,16 @@ export const DetectorLocationPane = ({ detector, setDetector }) => {
   return (
     <Card>
       <Card.Body>
-        <Card.Title>Detector Location</Card.Title>
+        <Card.Title>Detection Site</Card.Title>
         <Form.Group controlId="presetMode">
-          <Form.Label>Detector Presets/Modes</Form.Label>
+          <Form.Label>Modes / Preset Sites</Form.Label>
           <Form.Control
             as="select"
             onChange={setDetectorMode}
             value={detector.current}
           >
             <option value="follow">Follow Cursor on Map</option>
-            <option value="custom">Custom Detector Location</option>
+            <option value="custom">Custom Detection Site</option>
             <option value="My Location">
               Use My Current Location (can take a few seconds)
             </option>
