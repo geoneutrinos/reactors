@@ -34,7 +34,7 @@ const DetectorCircles = React.memo(function DetectorCircles({
   return detectors.map((detector) => {
     const DetectorPopup = (
       <Popup>
-        <b>Detector Site:</b> {detector.name}
+        <b>Detection Site:</b> {detector.name}
         <br />
         <b>Overburden:</b> {detector.overburden} mwe
         <br />
