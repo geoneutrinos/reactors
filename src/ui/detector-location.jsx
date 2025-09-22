@@ -95,7 +95,7 @@ export const DetectorLocationPane = ({ detector, setDetector }) => {
             value={detector.current}
           >
             <option value="follow">Follow Cursor on Map</option>
-            <option value="custom">Custom Detection Site</option>
+            <option value="custom">Custom Location</option>
             <option value="My Location">
               Use My Current Location (can take a few seconds)
             </option>
