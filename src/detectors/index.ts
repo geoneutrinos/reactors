@@ -17,7 +17,7 @@ type DetecorPreset = {
 
 export const presets: DetecorPreset[] = [
     // Moon
-    {name: "Apollo 11", lat:0.67416, lon:23.47314, elevation:0, overburden:0, region:"moon", status:"proposed"},
+    {name: "Apollo 11", lat:0.67416, lon:23.47314, elevation:0, overburden:0, region:"moon", status:"Proposed"},
     //Africa
     //East Rand Proprietary Mines 3585 m below surface
     {name: "Witwatersrand", lat:-26.213205, lon:28.249712, elevation:0, overburden:9000, region:"Africa", status:"Shutdown"},
