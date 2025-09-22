@@ -250,7 +250,7 @@ export function NuMap({
             <CoreCircles cores={cores} zoom={zoom} shutdownCores={true}/>
           </LayerGroup>
         </LayersControl.Overlay>
-        <LayersControl.Overlay checked name="Operating Detector Sites">
+        <LayersControl.Overlay checked name="Preset Detection Sites">
           <LayerGroup>
             <DetectorCircles
               detectors={detectorList}
@@ -259,8 +259,6 @@ export function NuMap({
               celestialBody={celestialBody}
             />
           </LayerGroup>
-        </LayersControl.Overlay>
-        <LayersControl.Overlay checked name="Shutdown Detector Sites">
         </LayersControl.Overlay>
       </LayersControl>
       <AttributionControl position="bottomright" prefix="<a href='https://leafletjs.com/'>Leaflet</a>" />
