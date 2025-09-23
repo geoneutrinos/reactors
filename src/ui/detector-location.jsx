@@ -65,6 +65,9 @@ export const DetectorLocationPane = ({ detector, setDetector }) => {
       newDetector.lon = preset.lon;
       newDetector.elevation = preset.elevation;
     }
+    if (value === "follow") {
+      newDetector.elevation = 0;
+    }
     if (value === "My Location") {
       navigator.geolocation.getCurrentPosition(
         (position) => {
