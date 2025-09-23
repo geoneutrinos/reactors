@@ -149,7 +149,7 @@ const MouseMove = ({detector, setDetector}) => {
     lat = parseFloat(latRange(lat).toFixed(6))
     lng = parseFloat(lngRange(lng).toFixed(6))
     elevation = 0
-    setDetector({ ...detector, lat: lat, lon: lng, elevation; elevation })
+    setDetector({ ...detector, lat: lat, lon: lng, elevation: elevation })
   })
 }
 const ZoomManager = ({zoom, setZoom}) => {
