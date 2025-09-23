@@ -3,7 +3,9 @@ import SunCalc from 'suncalc';
 
 export const EARTH_REGIONS = ["Africa", "Antarctica", "Asia", "Europe","Mediterranean Sea", "North America", "Oceania", "Pacific Ocean", "South America"] as const;
 export const LUNAR_REGIONS = ["moon"] as const
+const DETECTOR_STATUS = ["Proposed", "Shutdown", "Operational", "Under construction"] as const
 type RegionsType = typeof EARTH_REGIONS[number] | typeof LUNAR_REGIONS[number]
+type DetectorStatus = typeof DETECTOR_STATUS[number]
 
 type DetecorPreset = {
     name: string,
@@ -12,7 +14,7 @@ type DetecorPreset = {
     elevation: number,
     overburden: number,
     region: RegionsType,
-    status: string,
+    status: DetectorStatus,
 }
 
 export const presets: DetecorPreset[] = [
