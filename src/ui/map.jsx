@@ -34,9 +34,11 @@ const DetectorCircles = React.memo(function DetectorCircles({
   return detectors.map((detector) => {
     const DetectorPopup = (
       <Popup>
-        <b>Detector Site:</b> {detector.name}
+        <b>Detection Site:</b> {detector.name}
         <br />
         <b>Overburden:</b> {detector.overburden} mwe
+        <br />
+        <b>Status:</b> {detector.status}
         <br />
         <button
           onClick={() =>
@@ -238,17 +240,17 @@ export function NuMap({
       <Marker position={{ lat: detector.lat, lng: detector.lon }} />
 
       <LayersControl position="topright">
-        <LayersControl.Overlay checked name="Shutdown Reactor Cores">
-          <LayerGroup>
-            <CoreCircles cores={cores} zoom={zoom} shutdownCores={true}/>
-          </LayerGroup>
-        </LayersControl.Overlay>
         <LayersControl.Overlay checked name="Active Reactor Cores">
           <LayerGroup>
             <CoreCircles cores={cores} zoom={zoom} shutdownCores={false}/>
           </LayerGroup>
         </LayersControl.Overlay>
-        <LayersControl.Overlay checked name="Detector Locations">
+        <LayersControl.Overlay checked name="Shutdown Reactor Cores">
+          <LayerGroup>
+            <CoreCircles cores={cores} zoom={zoom} shutdownCores={true}/>
+          </LayerGroup>
+        </LayersControl.Overlay>
+        <LayersControl.Overlay checked name="Preset Detection Sites">
           <LayerGroup>
             <DetectorCircles
               detectors={detectorList}
