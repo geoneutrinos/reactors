@@ -116,7 +116,7 @@ export const DetectorOverburdens = memo(() => {
           </tbody>
           </Table>
         <p><small>
-          • Measured total muon flux at detector site as referenced; Calculated equivalent flat overburden 
+          • Measured total muon flux at underground site as referenced; Calculated equivalent flat overburden 
           and neutron flux after Mei and Hime (2006) Phys. Rev. D73, 053004; arXiv:astro-ph/0512125<br />
           1. E.-I Esch <i>et al.</i> (2005) NIM A538, 516; arXiv:astro-ph/0408486<br />
           2. W.H. Trzaska <i>et al.</i> (2019) Eur. Phys. J. C79, 721; arXiv:1902.00868<br />
