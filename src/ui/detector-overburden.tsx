@@ -5,7 +5,7 @@ import { Card, Table } from 'react-bootstrap';
 export const DetectorOverburdens = memo(() => {
   return (
     <Card>
-      <Card.Header>Detector Sites</Card.Header>
+      <Card.Header>Selected Underground Detection Sites</Card.Header>
       <Card.Body>
         <Table>
             <thead>
