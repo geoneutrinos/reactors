@@ -441,7 +441,7 @@ export const GeoNusPane = memo(() => {
       <Card.Body>
         <div>
           <p>
-            Antineutrinos from long-lived natural radioactivity within the rocky layers of planetary bodies are commonly known as geo-neutrinos. 
+            Antineutrinos from long-lived natural radioactivity within the rocky layers of planetary bodies are commonly called geo-neutrinos. 
             Geo-neutrinos from uranium, thorium, and potassium nuclides have energy spectra extending above 1 MeV, facilitating their detection.
             Through a series of decays leading to stable isotopes of lead, <sup>238</sup>U, <sup>235</sup>U, and <sup>232</sup>Th, each
             emit 6, 4, and 4 antineutrinos, respectively. The potassium nuclide <sup>40</sup>K emits either a single antineutrino 
