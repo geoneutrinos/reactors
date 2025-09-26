@@ -16,13 +16,13 @@ import {
   StatsPanel,
   DetectorLocationPane,
   //Reactors Tab
+  CoreIAEARange,
+  CoreList,
   RASwitcher,
   FissionIsotopeSpectraPlotsHK,
   FissionIsotopeSpectraPlotsHM,
   FissionIsotopeSpectraPlotsES,
   FissionFractionPane,
-  CoreIAEARange,
-  CoreList,
   //GeuNu Tab
   GeoNusPane,
   CrustFlux,
@@ -318,12 +318,6 @@ function App(props) {
                   setCustomCores={setCustomCores}
                   close={() => setManCustomModal(false)}
                 />
-                <Visible>
-                  <FissionIsotopeSpectraPlotsHK />
-                  <FissionIsotopeSpectraPlotsHM />
-                  <FissionIsotopeSpectraPlotsES />
-                  <FissionFractionPane />
-                </Visible>
                 <CoreIAEARange
                   reactorLF={reactorLF}
                   setReactorLF={setReactorLF}
@@ -338,6 +332,12 @@ function App(props) {
                   // The following is for the download filename...
                   detector={detector}
                 />
+                <Visible>
+                  <FissionFractionPane />
+                  <FissionIsotopeSpectraPlotsHK />
+                  <FissionIsotopeSpectraPlotsHM />
+                  <FissionIsotopeSpectraPlotsES />
+                </Visible>
               </Tab>
               <Tab eventKey="geonu" title="GeoNu">
                 <Visible>
