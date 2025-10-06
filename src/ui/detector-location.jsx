@@ -112,6 +112,8 @@ export const DetectorLocationPane = ({ detector, setDetector }) => {
               value={internalDetector.lat}
               onChange={(event) => checkAndSet("lat", event.target.value)}
               type="number"
+              min="-90"
+              max="90"
               placeholder="0"
               step="0.1"
             />
@@ -127,6 +129,8 @@ export const DetectorLocationPane = ({ detector, setDetector }) => {
               value={internalDetector.lon}
               onChange={(event) => checkAndSet("lon", event.target.value)}
               type="number"
+              min="-180"
+              max="180"
               placeholder="0"
               step="0.1"
             />
