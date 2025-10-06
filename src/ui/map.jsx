@@ -191,7 +191,7 @@ export function NuMap({
         text: "Place Custom Core Here",
         callback: (e) =>
         setCore({
-            lat: e.latlng.lat,
+            lat: latRange(e.latlng.lat),
             lon: lngRange(e.latlng.lng),
           }),
       },
