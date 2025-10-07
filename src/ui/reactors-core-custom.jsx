@@ -183,6 +183,8 @@ export const AddCustomCoreModal = ({
                   isInvalid={isNaN(parseFloat(coreLat))}
                   onChange={(e) => setCoreLat(e.target.value)}
                   type="number"
+                  min="-90"
+                  max="90"
                   value={coreLat}
                 />
                 <InputGroup.Append>
@@ -204,6 +206,8 @@ export const AddCustomCoreModal = ({
                   isInvalid={isNaN(parseFloat(coreLon))}
                   onChange={(e) => setCoreLon(e.target.value)}
                   type="number"
+                  min="-180"
+                  max="180"
                   value={coreLon}
                 />
                 <InputGroup.Append>
