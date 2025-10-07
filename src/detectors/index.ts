@@ -20,6 +20,7 @@ type DetecorPreset = {
 export const presets: DetecorPreset[] = [
     // Moon
     {name: "Apollo 11", lat:0.67416, lon:23.47314, elevation:0, overburden:0, region:"Procellarum KREEP", status:"Proposed"},
+    {name: "Apollo 16", lat:-8.973, lon:15.50, elevation:0, overburden:0, region:"Feldspathic Highland", status:"Proposed"},
     // Sverdrup-Henson crater: A candidate location for the first lunar South Pole settlement, iScience (2023) v26, 107853   
     {name: "Sverdrup", lat:-88.5, lon:-152.0, elevation:0, overburden:0, region:"South Pole-Aitken", status:"Proposed"},
     //Africa
