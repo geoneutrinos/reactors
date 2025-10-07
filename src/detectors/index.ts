@@ -2,7 +2,7 @@ import {zip} from 'lodash';
 import SunCalc from 'suncalc';
 
 export const EARTH_REGIONS = ["Africa", "Antarctica", "Asia", "Europe","Mediterranean Sea", "North America", "Oceania", "Pacific Ocean", "South America"] as const;
-export const LUNAR_REGIONS = ["moon"] as const
+export const LUNAR_REGIONS = ["Feldspathic Highland", "Procellarum KREEP", "South Pole-Aitken" ] as const
 const DETECTOR_STATUS = ["Proposed", "Shutdown", "Operational", "Under construction"] as const
 type RegionsType = typeof EARTH_REGIONS[number] | typeof LUNAR_REGIONS[number]
 type DetectorStatus = typeof DETECTOR_STATUS[number]
@@ -19,9 +19,14 @@ type DetecorPreset = {
 
 export const presets: DetecorPreset[] = [
     // Moon
-    // {name: "Apollo 11", lat:0.67416, lon:23.47314, elevation:0, overburden:0, region:"moon", status:"Proposed"},
+    // Apollo landing site coordinates from https://www.nasa.gov/history/alsj/alsjcoords.html
+    // Apollo 15 and Apollo 17 deployed heatflow instruments
+    {name: "Apollo 11", lat:0.67416, lon:23.47314, elevation:0, overburden:0, region:"Procellarum KREEP", status:"Shutdown"},
+    {name: "Apollo 15", lat:26.132, lon:3.634, elevation:0, overburden:0, region:"Procellarum KREEP", status:"Shutdown"},
+    {name: "Apollo 16", lat:-8.973, lon:15.50, elevation:0, overburden:0, region:"Feldspathic Highland", status:"Shutdown"},
+    {name: "Apollo 17", lat:20.188, lon:30.775, elevation:0, overburden:0, region:"Feldspathic Highland", status:"Shutdown"},
     // Sverdrup-Henson crater: A candidate location for the first lunar South Pole settlement, iScience (2023) v26, 107853   
-    {name: "Sverdrup", lat:-88.5, lon:-152.0, elevation:0, overburden:0, region:"moon", status:"Proposed"},
+    {name: "Sverdrup", lat:-88.5, lon:-152.0, elevation:0, overburden:0, region:"South Pole-Aitken", status:"Proposed"},
     //Africa
     //East Rand Proprietary Mines 3585 m below surface
     {name: "Witwatersrand", lat:-26.213205, lon:28.249712, elevation:0, overburden:9000, region:"Africa", status:"Shutdown"},

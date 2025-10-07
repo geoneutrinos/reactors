@@ -156,9 +156,14 @@ export const DetectorLocationPane = ({ detector, setDetector }) => {
         </Form.Group>
         <div>
           • <small>
-            Elevation is height above the WGS84 reference ellipsoid
+            On the earth elevation is the height above the WGS84 reference ellipsoid
             </small>
           <br />
+          • <small>
+            On the moon elevation is the height above a 1737.1 km radius
+            </small>
+          <br />
+
          </div>
       </Card.Body>
     </Card>
