@@ -215,7 +215,7 @@ export function NuMap({
       url="https://maptiles.geoneutrinos.org/Lunar_LRO_LOLA_Shade_Global_128ppd_v04/{z}/{x}/{-y}.png"
       attribution='NASA LRO'
       maxNativeZoom={6}
-      zoomOffset={1}
+      zoomOffset={0}
       maxZoom={19}
     />)
   }[celestialBody]
