@@ -30,7 +30,7 @@ const DetectorCircles = React.memo(function DetectorCircles({
 }) {
   detectors = detectors.filter(detector => REGIONS[celestialBody].has(detector.region))
 //  const color = "#9d00ff";
-  const color = "#ffff00";
+  const color = "#ff00ff";
   const radius = zoom > 6? zoom > 8? zoom > 10? zoom > 12? zoom > 14? zoom > 18? 25 : 50 : 500 : 1000 : 2000 : 5000 : 10000
   return detectors.map((detector) => {
     const DetectorPopup = (
