@@ -32,7 +32,7 @@ export const presets: DetecorPreset[] = [
     {name: "Chang'e 5", lat:43.06, lon:-51.92, elevation:-2570, overburden:0, region:"Procellarum KREEP", status:"Shutdown"},
     {name: "Chang'e 6", lat:-41.6385, lon:-153.9852, elevation:-5273, overburden:0, region:"South Pole-Aitken", status:"Shutdown"},
     // Sverdrup-Henson crater: A candidate location for the first lunar South Pole settlement, iScience (2023) v26, 107853   
-    {name: "Sverdrup", lat:-88.5, lon:-152.0, elevation:0, overburden:0, region:"South Pole-Aitken", status:"Proposed"},
+    {name: "Sverdrup-Henson", lat:-88.5, lon:-129.6, elevation:-2250, overburden:0, region:"South Pole-Aitken", status:"Proposed"},
     //Africa
     //East Rand Proprietary Mines 3585 m below surface
     {name: "Witwatersrand", lat:-26.213205, lon:28.249712, elevation:0, overburden:9000, region:"Africa", status:"Shutdown"},
