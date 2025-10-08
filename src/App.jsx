@@ -159,8 +159,9 @@ function App(props) {
   );
 
   const [detector, setDetector] = useState({
-    current: defaultDetector.name,
-    ...defaultDetector,
+    current: "follow",
+//    current: defaultDetector.name,
+//    ...defaultDetector,
   });
   const [reactorLF, setReactorLF] = useState({
     start: new Date("2024-01-01T00:00:00Z"),
