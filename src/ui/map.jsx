@@ -223,7 +223,7 @@ export function NuMap({
     <MapContainer
       style={mapStyle}
       center={[0, 0]}
-      maxBounds={[[-90, -200],[90,200]]}
+      maxBounds={[[-90, -270],[90,270]]}
       maxBoundsViscosity={1}
       zoom={1}
       minZoom={1}
