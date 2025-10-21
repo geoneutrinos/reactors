@@ -128,10 +128,11 @@ export const SupernovaNusCEvNS = memo(({ nucleus, setNucleus, tESnMin, setTESnMi
           </div>
           <Form noValidate>
             <Form.Group controlId="set_nucleus">
-              <Form.Label>Target Element</Form.Label>
+              <Form.Label>Target Element (increasing atomic number)</Form.Label>
               <Form.Control as="select" onChange={(event) => setNucleus(event.target.value)} value={nucleus}>
                 <option value={Elements.Ar40.key}>Argon</option>
                 <option value={Elements.Ge76.key}>Germanium</option>
+                <option value={Elements.Te130.key}>Tellurium</option>
                 <option value={Elements.I127.key}>Iodine</option>
                 <option value={Elements.Xe132.key}>Xenon</option>
                 <option value={Elements.Cs133.key}>Cesium</option>
