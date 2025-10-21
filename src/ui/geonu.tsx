@@ -172,14 +172,14 @@ const GeoNusCEvNS = ({ nucleus, setNucleus, tESnMin, setTESnMin, fluxSpectrums }
           </div>
           <Form noValidate>
             <Form.Group controlId="set_nucleus">
-              <Form.Label>Target Element</Form.Label>
+              <Form.Label>Target Element (increasing atomic number)</Form.Label>
               <Form.Control as="select" onChange={(event) => setNucleus(event.target.value)} value={nucleus}>
                 <option value={elements.Ar40.key}>Argon</option>
-                <option value={elements.Cs133.key}>Cesium</option>
                 <option value={elements.Ge76.key}>Germanium</option>
-                <option value={elements.I127.key}>Iodine</option>
                 <option value={elements.Te130.key}>Tellurium</option>
+                <option value={elements.I127.key}>Iodine</option>
                 <option value={elements.Xe132.key}>Xenon</option>
+                <option value={elements.Cs133.key}>Cesium</option>
               </Form.Control>
             </Form.Group>
             <Form.Group controlId="tn_min">
