@@ -116,7 +116,7 @@ const GeoNusCEvNS = ({ nucleus, setNucleus, tESnMin, setTESnMin, fluxSpectrums }
   return (
     <Card>
       <Card.Header>
-        CEvNS Events (/1000 kg/year)
+        Geo-neutrino CEvNS Events (/1000 kg/year)
       </Card.Header>
       <Card.Body>
           <div>

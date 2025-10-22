@@ -404,6 +404,11 @@ function App(props) {
                   <CDFAngularDifferentialCrossSectionPlots />
                 </Visible>
               </Tab>
+              <Tab eventKey="ceVns" title="CEvNS">
+                <Visible>
+                   <GeoCEvNS GeoCEvNSFlux={geoCEvNS} />
+                </Visible>
+              </Tab>
               <Tab eventKey="nuosc" title="NuOsc">
                 <Visible>
                   <NeutrinoOscillationPane />
