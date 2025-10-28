@@ -7,8 +7,16 @@ import Plot from "react-plotly.js";
 export const GeoneutrinoResults = memo(() => {
   const data = [
     {
+      name: ``,
+      type: "scatter",
+      mode: "markers",
       x: [0.2, 1.29, 6.39],
       y: [73, 47.0, 28.6],
+      marker: {
+        symbol: ["square", "cross", "circle"],
+        color: ["red", "green", "blue"],
+        size: 6
+      },
       error_y: {
         type: "data",
         symmetric: false,
@@ -21,14 +29,6 @@ export const GeoneutrinoResults = memo(() => {
         array: [0.2, 0.05, 0.14],
         color: ["red", "green", "blue"]
      },
-      name: ``,
-      type: "scatter",
-      mode: "markers",
-      marker: {
-        symbol: ["square", "cross", "circle"],
-        color: ["red", "green", "blue"],
-        size: 6
-      },
     },
   ];
   var layout = {
