@@ -27,8 +27,7 @@ export const GeoneutrinoResults = memo(() => {
       marker: {
         symbol: ["square", "cross", "circle"],
         color: ["red", "green", "blue"],
-        size: 6,
-      }
+        size: 6
       },
     },
   ];
