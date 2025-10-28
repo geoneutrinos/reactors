@@ -35,7 +35,7 @@ export const GeoneutrinoResults = memo(() => {
     title: `Geo-neutrino Results 2025`,
     yaxis: {
       title: { text: `Rate (TNU)` },
-      autorange: true,
+      rangemode: "tozero",
     },
     xaxis: {
       title: { text: `Exposure (1/TNU)` },
