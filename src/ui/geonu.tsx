@@ -450,7 +450,7 @@ export const GeoNusPane = memo(() => {
             All of the parent nuclides have lifetimes comparable to the age of the solar system, allowing ample abundances for producing observable geo-neutrino 
             fluxes. Surface variation of the geo-neutrino fluxes is predicted for both the Earth and the Moon. On the Earth continental crust is both thicker 
             and more radioactive than oceanic crust. On the Moon gamma ray measurements by orbiting spacecraft find higher surface nuclide concentrations 
-            for the Procellarum KREEP Terrane and the South Pole-Aitken Terrane than for the Felspathic Highlands Terrane.
+            for the Procellarum KREEP Terrane and the South Pole-Aitken Terrane than for the Feldspathic Highlands Terrane.
           </p>
           <p>
             The geo-neutrino model presented here uses pre-computed crust fluxes, spatially resolved on a grid of 1° 
