@@ -9,6 +9,16 @@ export const GeoneutrinoResults = memo(() => {
     {
       x: [0.2, 1.29, 6.39],
       y: [73, 47.0, 28.6],
+      error_y: {
+        type: "data",
+        symmetric: false,
+        array: [45.0, 8.6, 5.1],
+        arrayminus: [45.0, 8.1, 4.8]
+      },
+      error_x: {
+        type: "data",
+        array: [0.2, 0.05, 0.14]
+      },
       name: ``,
       type: "scatter",
       mode: "markers",
