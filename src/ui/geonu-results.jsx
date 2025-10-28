@@ -13,23 +13,22 @@ export const GeoneutrinoResults = memo(() => {
         type: "data",
         symmetric: false,
         array: [45.0, 8.6, 5.1],
-        arrayminus: [45.0, 8.1, 4.8]
+        arrayminus: [45.0, 8.1, 4.8],
+        color: ["red", "green", "blue"]
       },
       error_x: {
         type: "data",
-        array: [0.2, 0.05, 0.14]
-      },
+        array: [0.2, 0.05, 0.14],
+        color: ["red", "green", "blue"]
+     },
       name: ``,
       type: "scatter",
       mode: "markers",
       marker: {
         symbol: ["square", "cross", "circle"],
         color: ["red", "green", "blue"],
-        size: 4,
-        line: {
-          color: ["red", "green", "blue"],
-          width: 2,
-          }
+        size: 6,
+      }
       },
     },
   ];
