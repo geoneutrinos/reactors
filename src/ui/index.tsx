@@ -20,6 +20,7 @@ export { PhysicsOscillationPane, AverageSurvivalPane } from "./physics-osc-param
 export { PhysicsConstants } from "./physics-constants";
 export { ParticleMasses } from "./physics-masses";
 export { EesCouplingFactors, PesCouplingFactors } from "./physics-coupling-factors";
+export { GeoneutrinoResults } from "./geonu-results";
 export { GeoFluxUncertainties } from "./geo-uncertainties";
 export { GeoDataPREM } from "./geo-prem-data";
 export { IsotopeData } from "./isotope-data";
