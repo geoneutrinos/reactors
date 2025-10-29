@@ -22,11 +22,13 @@ export const GeoneutrinoResults = memo(() => {
         symmetric: false,
         array: [45.0, 8.6, 5.1],
         arrayminus: [45.0, 8.1, 4.8],
+        visible: true,
         color: ["red", "green", "blue"]
       },
       error_x: {
         type: "data",
         array: [0.2, 0.05, 0.14],
+        visible: true,
         color: ["red", "green", "blue"]
      },
     },
