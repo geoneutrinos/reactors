@@ -239,7 +239,7 @@ export const FissionIsotopeSpectraPlotsHK = memo(() => {
         <p>
           <sup>235</sup>U, <sup>238</sup>U, <sup>239</sup>Pu, <sup>241</sup>Pu summation spectra (dot-dash 0-2, 8-10 MeV):
           <br />
-          M. Estienne <i>et al.</i> (2019), <a href="https://doi.org/10.1103/PhysRevLett.123.022502"><i>Updated Summation Model: An Improved Agreement with the Daya Bay Antineutrino Fluxes</i>,</a>
+          M. Estienne <i>et al.</i> (2019), <a href="https://doi.org/10.1103/PhysRevLett.123.022502"><i>Updated Summation Model: An Improved Agreement with the Daya Bay Antineutrino Fluxes</i>, </a>
           Phys. Rev. Lett. 123, 022502.
         </p>
         <Plot
@@ -484,7 +484,7 @@ export const FissionIsotopeSpectraPlotsHM = memo(() => {
         <p>
           <sup>235</sup>U, <sup>238</sup>U, <sup>239</sup>Pu, <sup>241</sup>Pu summation spectra (dot-dash 0-2, 8-10 MeV):
           <br />
-          M. Estienne <i>et al.</i> (2019), <a href="https://doi.org/10.1103/PhysRevLett.123.022502"><i>Updated Summation Model: An Improved Agreement with the Daya Bay Antineutrino Fluxes</i>,</a>
+          M. Estienne <i>et al.</i> (2019), <a href="https://doi.org/10.1103/PhysRevLett.123.022502"><i>Updated Summation Model: An Improved Agreement with the Daya Bay Antineutrino Fluxes</i>, </a>
           Phys. Rev. Lett. 123, 022502.
         </p>
         <Plot
@@ -590,7 +590,7 @@ export const FissionIsotopeSpectraPlotsES = memo(() => {
         <p>
           <sup>235</sup>U, <sup>238</sup>U, <sup>239</sup>Pu, <sup>241</sup>Pu summation spectra (solid 0-10 MeV):
           <br />
-          M. Estienne <i>et al.</i> (2019), <i>Updated Summation Model: An Improved Agreement with the Daya Bay Antineutrino Fluxes</i>,
+          M. Estienne <i>et al.</i> (2019), <a href="https://doi.org/10.1103/PhysRevLett.123.022502"><i>Updated Summation Model: An Improved Agreement with the Daya Bay Antineutrino Fluxes</i>, </a>
           Phys. Rev. Lett. 123, 022502.
         </p>
         <Plot
