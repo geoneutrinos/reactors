@@ -68,7 +68,7 @@ export const GeoneutrinoResults = memo(() => {
       <Card.Header>Geo-neutrino Results 2025</Card.Header>
       <Card.Body>
         <p>
-          Plot shows the results of geo-neutrino observations as of 2025.The red square marks the measurment at SNOLab,the green cross marks the measurement at Gran Sasso,and the blue circle marks the measurement at Kamioka.
+          Plot shows the results of geo-neutrino observations as of 2025. The red square marks the measurment at SNOLab, the green cross marks the measurement at Gran Sasso, and the blue circle marks the measurement at Kamioka.
        </p>
         <Plot
           useResizeHandler={true}
