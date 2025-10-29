@@ -20,8 +20,8 @@ export const GeoneutrinoResults = memo(() => {
       error_y: {
         type: "data",
         symmetric: false,
-        array: [45.0],
-        arrayminus: [45.0],
+        array: [47.0],
+        arrayminus: [43.0],
         visible: true,
         color: "red"
       },
@@ -123,7 +123,7 @@ export const GeoneutrinoResults = memo(() => {
       <Card.Header>Geo-neutrino Results 2025</Card.Header>
       <Card.Body>
         <p>
-          Plot shows the results of geo-neutrino observations as of 2025. Red marks the measurement by <a href="https://indico.global/event/14476/">SNO+</a> at SNOLAB, 
+          Plot shows the results of geo-neutrino observations as of 2025. Red marks the measurement by <a href="https://doi.org/10.1103/gypt-lc9v">SNO+</a> at SNOLAB, 
           green marks the measurement by <a href="https://doi.org/10.1103/PhysRevD.101.012009">Borexino</a> at Gran Sasso (LNGS), 
           and blue marks the measurement by <a href="https://doi.org/10.1029/2022GL099566">KamLAND</a> at Kamioka.
        </p>
