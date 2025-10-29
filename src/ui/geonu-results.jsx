@@ -13,7 +13,7 @@ export const GeoneutrinoResults = memo(() => {
       x: [0.2, 1.29, 6.39],
       y: [73, 47.0, 28.6],
       marker: {
-        symbol: ["square", "cross", "circle"],
+        symbol: ["x", "x", "x"],
         color: ["red", "green", "blue"],
         size: 6
       },
@@ -68,9 +68,9 @@ export const GeoneutrinoResults = memo(() => {
       <Card.Header>Geo-neutrino Results 2025</Card.Header>
       <Card.Body>
         <p>
-          Plot shows the results of geo-neutrino observations as of 2025. The red square marks the measurement by <a href="https://indico.global/event/14476/">SNO+</a> at SNOLAB, 
-          the green cross marks the measurement by <a href="https://doi.org/10.1103/PhysRevD.101.012009">Borexino</a> at Gran Sasso (LNGS), 
-          and the blue circle marks the measurement by <a href="https://doi.org/10.1029/2022GL099566">KamLAND</a> at Kamioka.
+          Plot shows the results of geo-neutrino observations as of 2025. Red marks the measurement by <a href="https://indico.global/event/14476/">SNO+</a> at SNOLAB, 
+          green marks the measurement by <a href="https://doi.org/10.1103/PhysRevD.101.012009">Borexino</a> at Gran Sasso (LNGS), 
+          and blue marks the measurement by <a href="https://doi.org/10.1029/2022GL099566">KamLAND</a> at Kamioka.
        </p>
         <Plot
           useResizeHandler={true}
