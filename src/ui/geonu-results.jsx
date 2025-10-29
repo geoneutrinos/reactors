@@ -5,34 +5,87 @@ import { MathJax } from "better-react-mathjax";
 import Plot from "react-plotly.js";
 
 export const GeoneutrinoResults = memo(() => {
-  const data = [
+  const data= [
     {
-      name: ``,
+      name: `SNO+`,
       type: "scatter",
       mode: "markers",
-      x: [0.2, 1.29, 6.39],
-      y: [73, 47.0, 28.6],
+      x: [0.2],
+      y: [73],
       marker: {
-        symbol: ["x", "x", "x"],
-        color: ["red", "green", "blue"],
+        symbol: ["x"],
+        color: "red",
         size: 6
       },
       error_y: {
         type: "data",
         symmetric: false,
-        array: [45.0, 8.6, 5.1],
-        arrayminus: [45.0, 8.1, 4.8],
+        array: [45.0],
+        arrayminus: [45.0],
         visible: true,
-        color: ["red", "green", "blue"]
+        color: "red"
       },
       error_x: {
         type: "data",
-        array: [0.2, 0.05, 0.14],
+        array: [0.2],
         visible: true,
-        color: ["red", "green", "blue"]
+        color: "red"
+     },
+    },
+    {
+      name: `Borexino`,
+      type: "scatter",
+      mode: "markers",
+      x: [1.29],
+      y: [47.0],
+      marker: {
+        symbol: ["x"],
+        color: "green",
+        size: 6
+      },
+      error_y: {
+        type: "data",
+        symmetric: false,
+        array: [8.6],
+        arrayminus: [8.1],
+        visible: true,
+        color: "green"
+      },
+      error_x: {
+        type: "data",
+        array: [0.05],
+        visible: true,
+        color: "green"
+     },
+    },
+    {
+      name: `KamLAND`,
+      type: "scatter",
+      mode: "markers",
+      x: [6.39],
+      y: [28.6],
+      marker: {
+        symbol: ["x"],
+        color: "blue",
+        size: 6
+      },
+      error_y: {
+        type: "data",
+        symmetric: false,
+        array: [5.1],
+        arrayminus: [4.8],
+        visible: true,
+        color: "blue"
+      },
+      error_x: {
+        type: "data",
+        array: [0.14],
+        visible: true,
+        color: "blue"
      },
     },
   ];
+  
   var layout = {
     title: `Geo-neutrino Results 2025`,
     yaxis: {
