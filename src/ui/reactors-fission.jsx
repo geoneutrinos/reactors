@@ -13,11 +13,11 @@ export const FissionFractionPane = memo(() => {
         <Card.Body>
             <p> Fission energies- <i>Q</i>
             <br />
-            X. B. Ma <i>et al.</i> (2013), <i>Improved calculation of the energy release in neutron-induced fission</i>, Phys. Rev. C. 88, 014605.
+            X. B. Ma <i>et al.</i> (2013), <a href="https://doi.org/10.1103/PhysRevC.88.014605"> <i>Improved calculation of the energy release in neutron-induced fission</i>, </a>Phys. Rev. C. 88, 014605.
             </p>          
             <p> Mid-cycle fractional fission rates- <i>ffr</i>
             <br />
-            PWR, BWR: K. Eguchi <i>et al.</i> (2003), <i>First Results from KamLAND: Evidence for Reactor Anti-Neutrino Disappearance</i>, Phys. Rev. Lett. 90, 021802.
+            PWR, BWR: K. Eguchi <i>et al.</i> (2003), <a href="https://doi.org/10.1103/PhysRevLett.90.021802"> <i>First Results from KamLAND: Evidence for Reactor Anti-Neutrino Disappearance</i>, </a> Phys. Rev. Lett. 90, 021802.
             <br />
             GCR: R. Mills, private communication, Dec. 12, 2018.
             <br />
@@ -25,7 +25,7 @@ export const FissionFractionPane = memo(() => {
             </p>
             <p> Mid-cycle power fractions- <i>p</i>
             <br />
-            M. Baldoncini <i>et al.</i> (2015), <i>Reference worldwide model for antineutrinos from reactors</i>, Phys.  Rev. D91, 065002.
+            M. Baldoncini <i>et al.</i> (2015), <a href="https://doi.org/10.1103/PhysRevD.91.065002"> <i>Reference worldwide model for antineutrinos from reactors</i>, </a> Phys.  Rev. D91, 065002.
             </p>
           <Table {...tableProps}>
             <thead>
