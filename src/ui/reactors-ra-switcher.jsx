@@ -104,8 +104,9 @@ export const RASwitcher = ({active}) => {
         {RASelector}
         <p>
           <small>
-            Reactor isotope emission spectra are constructed following the methods presented by C. Giunti, Y.F. Li, C.A. Ternes, Z. Xin (2021),{" "} 
-            <i>Reactor antineutrino anomaly in light of recent flux model refinements</i>, arXiv:2110.06820v2.
+            Reactor isotope emission spectra are constructed following the methods presented by C. Giunti, Y.F. Li, C.A. Ternes, Z. Xin (2022),{" "} 
+            <a href="https://doi.org/10.1016/j.physletb.2022.137054"><i>Reactor antineutrino anomaly in light of recent flux model refinements</i>, </a>
+            Phys. Lett. B 829, 137054.
           </small>
         </p>
         {InteractionYield}
