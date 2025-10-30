@@ -322,8 +322,8 @@ export const Boron8SpectraPlot = ({ boron8, reactorLF }) => {
         <p>
           <sup>8</sup>B decay spectrum is from:
           <br />
-          W. T. Winter <i>et al.</i> (2006), <i>The <sup>8</sup>B neutrino spectrum</i>, Phys. Rev.
-          C 73, 025503.
+          W. T. Winter <i>et al.</i> (2006), <a href="https://doi.org/10.1103/PhysRevC.73.025503"> <i>The <sup>8</sup>B neutrino spectrum</i>, </a> 
+          Phys. Rev. C 73, 025503.
         </p>
 
         <p>
@@ -331,7 +331,7 @@ export const Boron8SpectraPlot = ({ boron8, reactorLF }) => {
           0.036(syst)) x 10<sup>6</sup> cm
           <sup>-2</sup>s<sup>-1</sup>- is from:
           <br />
-          K. Abe <i>et al.</i> (2016), <i>Solar neutrino measurements in Super-Kamiokande-IV</i>,
+          K. Abe <i>et al.</i> (2016), <a href="https://doi.org/10.1103/PhysRevD.94.052010"> <i>Solar neutrino measurements in Super-Kamiokande-IV</i>, </a> 
           Phys. Rev. D 94, 052010.
         </p>
 
