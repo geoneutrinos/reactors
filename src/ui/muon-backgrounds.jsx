@@ -89,8 +89,8 @@ const MuonsPane = () => {
             <p>
               Parameterized depth spectra of the total cosmic-ray muon flux and the associated
               neutron flux on the Earth are presented following equations given in D.-M. Mei and A. Hime (2006),  
-              <i> Muon-induced background study for underground laboratories</i>, Phys. Rev. D 73, 
-              053004. The calculator and the plot below give the total muon flux (Eq. 4) and 
+              <a href=" https://doi.org/10.1103/PhysRevD.73.053004"> <i> Muon-induced background study for underground laboratories</i>, </a> 
+              Phys. Rev. D 73, 053004. The calculator and the plot below give the total muon flux (Eq. 4) and 
               the neutron flux emerging from the rock into the underground cavern (Eq. 13) as 
               a function of the equivalent flat overburden. 
             </p>
