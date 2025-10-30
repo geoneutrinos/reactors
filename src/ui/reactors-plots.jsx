@@ -227,14 +227,14 @@ export const FissionIsotopeSpectraPlotsHK = memo(() => {
         <p>
           <sup>239</sup>Pu, <sup>241</sup>Pu conversion spectra (solid 2-8 MeV):
           <br />
-          P. Huber (2011), <i>Determination of antineutrino spectra from nuclear
-          reactors</i>, Phys. Rev. C 84, 024617.
+          P. Huber (2011), <a href="https://doi.org/10.1103/PhysRevC.84.024617"><i>Determination of antineutrino spectra from nuclear reactors</i>, </a>
+          Phys. Rev. C 84, 024617.
         </p>
         <p>
           <sup>235</sup>U, <sup>238</sup>U conversion spectra (solid 2-8 MeV):
           <br />
-          V. Kopeikin, M. Skorokhvatov, O. Titov (2021), <i>Reevaluating reactor antineutrino spectra with new measurements of the ratio
-          between <sup>235</sup>U and <sup>239</sup>Pu β spectra</i>, Phys. Rev. D 104, L071301.
+          V. Kopeikin, M. Skorokhvatov, O. Titov (2021), <a href="https://doi.org/10.1103/PhysRevD.104.L071301"><i>Reevaluating reactor antineutrino spectra with new measurements of the ratio between <sup>235</sup>U and <sup>239</sup>Pu β spectra</i>, </a>
+          Phys. Rev. D 104, L071301.
         </p>
         <p>
           <sup>235</sup>U, <sup>238</sup>U, <sup>239</sup>Pu, <sup>241</sup>Pu summation spectra (dot-dash 0-2, 8-10 MeV):
@@ -472,14 +472,14 @@ export const FissionIsotopeSpectraPlotsHM = memo(() => {
         <p>
           <sup>235</sup>U, <sup>239</sup>Pu, <sup>241</sup>Pu conversion spectra (solid 2-8 MeV):
           <br />
-          P. Huber (2011), <i>Determination of antineutrino spectra from nuclear
-          reactors</i>, Phys. Rev. C 84, 024617.
+          P. Huber (2011), <a href="https://doi.org/10.1103/PhysRevC.84.024617"> <i>Determination of antineutrino spectra from nuclear reactors</i>, </a>
+          Phys. Rev. C 84, 024617.
         </p>
         <p>
           <sup>238</sup>U <i>ab initio</i> spectrum (solid 2-8 MeV):
           <br />
-          Th. A. Mueller <i>et al.</i> (2011), <i>Improved predictions of reactor antineutrino
-          spectra</i>, Phys. Rev. C 83, 054615.
+          Th. A. Mueller <i>et al.</i> (2011), <a href="https://doi.org/10.1103/PhysRevC.83.054615"> <i>Improved predictions of reactor antineutrino spectra</i>, </a>
+          Phys. Rev. C 83, 054615.
         </p>
         <p>
           <sup>235</sup>U, <sup>238</sup>U, <sup>239</sup>Pu, <sup>241</sup>Pu summation spectra (dot-dash 0-2, 8-10 MeV):
