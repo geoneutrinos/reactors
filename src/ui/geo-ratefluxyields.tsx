@@ -104,7 +104,7 @@ export const GeoRateFluxYields = memo(() => {
               <td> </td>
               <td> </td>
             </tr>
-          </tbody
+          </tbody>
         </Table>
         <p><small>
           These factors convert geo-neutrino nuclide pIBD and eES rates in NIU to fluxes in cm<sup>-2</sup>s<sup>-1</sup><br />
