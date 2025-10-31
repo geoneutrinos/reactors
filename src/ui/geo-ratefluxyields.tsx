@@ -129,7 +129,6 @@ export const GeoRateFluxYields = memo(() => {
               </td>
             </tr>
             <tr>
-            <tr>
               <td>eES: electron antineutrino</td>
               <td>
                 ---                 
@@ -147,7 +146,7 @@ export const GeoRateFluxYields = memo(() => {
             <tr>
               <td>eES: mu/tau antineutrino</td>
               <td>
-               ---
+                ---
               </td>
               <td>
                 <Num v={rateToFlux232ThLX[XSNames.ESMUTAU] as number} p={0} />                
