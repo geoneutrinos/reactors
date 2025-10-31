@@ -42,6 +42,14 @@ export const MANTLE_GEOPHYSICAL_RESPONSE = lowerMantleGeophysicalResponse + uppe
 export const LUNAR_MANTLE_MASS = (lvzMass + lunarMantleMass) / 1e3;
 export const LUNAR_MANTLE_GEOPHYSICAL_RESPONSE = lvzGeophysicalResponse + lunarMantleGeophysicalResponse;
 
+export const ISOTOPIC_DECAY_HEATING_TH232LX = (Math.log(2) / ISOTOPIC_HALF_LIFE.TH232) *
+    ((ISOTOPIC_DECAY_ENERGIES.TH232 - (averageNeutrinoEnergy232ThLX * ISOTOPIC_NEUTRINOS_PER_DECAY.TH232)) * ELEMENTARY_CHARGE * 1e6 / 
+     (Th232.relative_atomic_mass * AU));
+
+export const ISOTOPIC_DECAY_HEATING_U232LX = (Math.log(2) / ISOTOPIC_HALF_LIFE.TH232) *
+    ((ISOTOPIC_DECAY_ENERGIES.TH232 - (averageNeutrinoEnergy238ULX * ISOTOPIC_NEUTRINOS_PER_DECAY.TH232)) * ELEMENTARY_CHARGE * 1e6 / 
+     (Th232.relative_atomic_mass * AU));
+
 export const ISOTOPIC_DECAY_HEATING = {
   // J kg-1 s-1
   K40beta:
@@ -64,12 +72,4 @@ export const ISOTOPIC_DECAY_HEATING = {
     (Math.log(2) / ISOTOPIC_HALF_LIFE.U238) *
     ((ISOTOPIC_DECAY_ENERGIES.U238 - (averageNeutrinoEnergy238U * ISOTOPIC_NEUTRINOS_PER_DECAY.U238)) * ELEMENTARY_CHARGE * 1e6 / 
      (U238.relative_atomic_mass * AU)),
-  U238LX:
-    (Math.log(2) / ISOTOPIC_HALF_LIFE.U238) *
-    ((ISOTOPIC_DECAY_ENERGIES.U238 - (averageNeutrinoEnergy238ULX * ISOTOPIC_NEUTRINOS_PER_DECAY.U238)) * ELEMENTARY_CHARGE * 1e6 / 
-     (U238.relative_atomic_mass * AU)),
-  TH232LX:
-    (Math.log(2) / ISOTOPIC_HALF_LIFE.TH232) *
-    ((ISOTOPIC_DECAY_ENERGIES.TH232 - (averageNeutrinoEnergy232ThLX * ISOTOPIC_NEUTRINOS_PER_DECAY.TH232)) * ELEMENTARY_CHARGE * 1e6 / 
-     (Th232.relative_atomic_mass * AU)),
 };
