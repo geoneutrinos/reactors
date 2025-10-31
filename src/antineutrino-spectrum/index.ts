@@ -110,19 +110,19 @@ export const rateToFluxReducer = (r2f:RateToFlux, crossSection:CrossSection): Ra
   return newr2f
 }
 
-const defaulTrateToFlux238U:RateToFlux = {
+const defaultRateToFlux238U:RateToFlux = {
   spectrum: antineutrinoSpectrum238UData
 }
-const defaulTrateToFlux235U:RateToFlux = {
+const defaultRateToFlux235U:RateToFlux = {
   spectrum: antineutrinoSpectrum235UData
 }
-const defaulTrateToFlux232Th:RateToFlux = {
+const defaultRateToFlux232Th:RateToFlux = {
   spectrum: antineutrinoSpectrum232ThData
 }
-const defaulTrateToFlux40K:RateToFlux = {
+const defaultRateToFlux40K:RateToFlux = {
   spectrum: antineutrinoSpectrum40KData
 }
-export const rateToFlux238U = rateToFluxReducer(defaulTrateToFlux238U, crossSection)
-export const rateToFlux235U = rateToFluxReducer(defaulTrateToFlux235U, crossSection)
-export const rateToFlux232Th = rateToFluxReducer(defaulTrateToFlux232Th, crossSection)
-export const rateToFlux40K = rateToFluxReducer(defaulTrateToFlux40K, crossSection);
+export const rateToFlux238U = rateToFluxReducer(defaultRateToFlux238U, crossSection)
+export const rateToFlux235U = rateToFluxReducer(defaultRateToFlux235U, crossSection)
+export const rateToFlux232Th = rateToFluxReducer(defaultRateToFlux232Th, crossSection)
+export const rateToFlux40K = rateToFluxReducer(defaultRateToFlux40K, crossSection);
