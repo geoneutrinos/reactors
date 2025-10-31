@@ -2,8 +2,8 @@ import { CrossSection, XSNames } from "../physics/neutrino-cross-section";
 import { Oscillation } from "../physics/neutrino-oscillation";
 import {
   antineutrinoSpectrum235U,
-  antineutrinoSpectrum238ULX,
-  antineutrinoSpectrum232ThLX,
+  antineutrinoSpectrum238U,
+  antineutrinoSpectrum232Th,
   antineutrinoSpectrum40K,
 } from "../antineutrino-spectrum";
 import {
@@ -235,7 +235,7 @@ export function geoSpectrum(
     crustSpectrum: crustU238Spectrum,
     mantleSpectrum: mantleU238Spectrum,
   } = getGeoRates(
-    antineutrinoSpectrum238ULX,
+    antineutrinoSpectrum238U,
     crustFlux.u,
     U238flux,
     survivalProbability,
@@ -276,7 +276,7 @@ export function geoSpectrum(
     crustSpectrum: crustTh232Spectrum,
     mantleSpectrum: mantleTh232Spectrum,
   } = getGeoRates(
-    antineutrinoSpectrum232ThLX,
+    antineutrinoSpectrum232Th,
     crustFlux.th,
     ThMantleFlux,
     survivalProbability,
