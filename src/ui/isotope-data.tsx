@@ -26,6 +26,8 @@ import {
 
 import {
 ISOTOPIC_DECAY_HEATING,
+ISOTOPIC_DECAY_HEATING_U238LX,
+ISOTOPIC_DECAY_HEATING_TH232LX,
 } from "../mantle/geophysics";
 
 import {Elements} from './elements'
@@ -254,13 +256,13 @@ export const IsotopeData = memo(() => {
                   ---
                 </td>
                 <td>
-                  <Num v={ISOTOPIC_DECAY_HEATING.TH232} p={1} func={(v) => v * 1e6} />
+                  <Num v={ISOTOPIC_DECAY_HEATING_TH232LX} p={1} func={(v) => v * 1e6} />
                 </td>
                 <td>
                   ---
                 </td>
                 <td>
-                  <Num v={ISOTOPIC_DECAY_HEATING.U238} p={1} func={(v) => v * 1e6} />
+                  <Num v={ISOTOPIC_DECAY_HEATING_U238LX} p={1} func={(v) => v * 1e6} />
                 </td>
               </tr>
             </tbody>
