@@ -170,12 +170,12 @@ export const IsotopeData = memo(() => {
             </tbody>
             <thead>
               <tr>
-                <th>Sanshiro spectra</th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
+                <th>Enomoto Sanshiro spectra</th>
+                <th>{K40}<sub>ec</sub></th>
+                <th>{K40}<sub>β</sub></th>
+                <th>{Th232}</th>
+                <th>{U235}</th>
+                <th>{U238}</th>
               </tr>
             </thead>
             <tbody>
@@ -221,9 +221,9 @@ export const IsotopeData = memo(() => {
                 <th>Li and Xin spectra</th>
                 <th></th>
                 <th></th>
+                <th>{Th232}</th>
                 <th></th>
-                <th></th>
-                <th></th>
+                <th>{U238}</th>
               </tr>
             </thead>
             <tbody>
