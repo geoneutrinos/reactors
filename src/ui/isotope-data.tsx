@@ -42,7 +42,7 @@ export const IsotopeData = memo(() => {
       <Card.Header>Nuclide Data</Card.Header>
       <Card.Body>
         <Table>
-            <tbody>
+            <thead>
               <tr>
                 <th>Decay Parent</th>
                 <th>{K40}<sub>ec</sub></th>
@@ -51,6 +51,8 @@ export const IsotopeData = memo(() => {
                 <th>{U235}</th>
                 <th>{U238}</th>
               </tr>
+            </thead>
+            <tbody>
               <tr>
                 <td> Atomic mass (10<sup>-26</sup> kg) </td>
                 <td colSpan={2} style={{ textAlign: 'center' }}>
@@ -165,6 +167,8 @@ export const IsotopeData = memo(() => {
                   <Num v={ISOTOPIC_NEUTRINO_LUMINOSITY.U238} p={1} func={(v) => v / 1e6}  />
                 </td>
               </tr>
+            </tbody>
+            <thead>
               <tr>
                 <th>Sanshiro spectra</th>
                 <th></th>
@@ -173,6 +177,8 @@ export const IsotopeData = memo(() => {
                 <th></th>
                 <th></th>
               </tr>
+            </thead>
+            <tbody>
               <tr>
                 <td> Average ν energy (MeV) </td>
                 <td>
@@ -209,6 +215,8 @@ export const IsotopeData = memo(() => {
                   <Num v={ISOTOPIC_DECAY_HEATING.U238} p={1} func={(v) => v * 1e6} />
                 </td>
               </tr>
+            </tbody>
+            <thead>
               <tr>
                 <th>Li and Xin spectra</th>
                 <th></th>
@@ -217,6 +225,8 @@ export const IsotopeData = memo(() => {
                 <th></th>
                 <th></th>
               </tr>
+            </thead>
+            <tbody>
               <tr>
                 <td> Average ν energy (MeV) </td>
                 <td>
