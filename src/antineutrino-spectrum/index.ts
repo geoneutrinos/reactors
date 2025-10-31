@@ -1,7 +1,7 @@
 import antineutrinoSpectrum40KData from "./data/AntineutrinoSpectrum_40K.knt.json";
-import antineutrinoSpectrum232ThData from "./data/AntineutrinoSpectrum_232Th.knt.json";
+import antineutrinoSpectrum232ThData from "./data/new_flux_232Th.txt.knt.json";
 import antineutrinoSpectrum235UData from "./data/AntineutrinoSpectrum_235U.knt.json";
-import antineutrinoSpectrum238UData from "./data/AntineutrinoSpectrum_238U.knt.json";
+import antineutrinoSpectrum238UData from "./data/new_flux_238U.txt.knt.json";
 import antineutrinoSpectrum232ThDataLX from "./data/new_flux_232Th.txt.knt.json";
 import antineutrinoSpectrum238UDataLX from "./data/new_flux_238U.txt.knt.json";
 
