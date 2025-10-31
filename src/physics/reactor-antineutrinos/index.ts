@@ -4,13 +4,13 @@ import HM2011, {model_uncertanties as HM2011_uncertanties} from './huber-muller'
 import KO2021, {model_uncertanties as KO_uncertanties} from './kopeikin';
 
 /**
- * Returns an intermediate value for the interaction rate, which does not account for the
- * thermal power or a reactor core, the inverse square of the distance to a reactor core,
- * or the spectral distortion from neutrino oscillations
+ * Returns an intermediate value for the interaction rate, which accounts for neither the
+ * thermal power of a reactor core, nor the inverse square of the distance to a reactor core,
+ * nor the spectral distortion due to neutrino oscillations
  * 
  * @param Ev - Energy of the neutrino in MeV
- * @param Q - Energy per fission of some nuclei
- * @param crossSection - Function which takes the neutrino energy in MeV and returns the cross section in cm^2
+ * @param Q - Energy per fission of the fissionable nuclei in the reactor fuel
+ * @param crossSection - Function which returns the interaction cross section in cm^2 for the given neutrino energy in MeV
  * @param energySpectrum - function which takes the neutrino energy in MeV and returns the differential neutrino energy
  */
 export function partialInteractionRate(Ev: number, Q: number, crossSection:(Ev:number)=>number, neutrinoEnergyFunction:(Ev: number) => number): number{
