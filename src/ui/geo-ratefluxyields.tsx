@@ -20,7 +20,7 @@ const {K40, Th232, U235, U238} = Elements
 export const GeoRateFluxYields = memo(() => {
   return (
     <Card>
-      <Card.Header>Geo-neutrino Nuclide Rate to Flux (NIU<sup>-1</sup> cm<sup>-2</sup>s<sup>-1</sup>) </Card.Header>
+      <Card.Header>Geo-neutrino Nuclide Flux per NIU (cm<sup>-2</sup>s<sup>-1</sup> NIU<sup>-1</sup>) </Card.Header>
       <Card.Body>
         <Table>
           <thead>
@@ -167,7 +167,7 @@ export const GeoRateFluxYields = memo(() => {
           </tbody>
         </Table>
         <p><small>
-          These factors convert geo-neutrino nuclide pIBD and eES rates in NIU to fluxes in cm<sup>-2</sup>s<sup>-1</sup><br />
+          These geo-neutrino nuclide fluxes in cm<sup>-2</sup>s<sup>-1</sup> produce 1 interaction during a detector exposure of 10<sup>32</sup> target-years <br />
         </small></p>
       </Card.Body>
     </Card>
