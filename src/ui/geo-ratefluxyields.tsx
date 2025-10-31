@@ -110,7 +110,7 @@ export const GeoRateFluxYields = memo(() => {
                 ---
               </td>
               <td>
-                <Num v={rateToFlux238ULX[XSNames.IBDSV2003] as number} p={0} />                  
+                <Num v={rateToFlux238ULX[XSNames.IBDSV2003] as number} p={0} />
               </td>
             </tr>
             <tr>
@@ -125,7 +125,7 @@ export const GeoRateFluxYields = memo(() => {
                 ---
               </td>
               <td>
-                <Num v={rateToFlux238ULX[XSNames.IBDVB1999] as number} p={0} />                  
+                <Num v={rateToFlux238ULX[XSNames.IBDVB1999] as number} p={0} />
               </td>
             </tr>
             <tr>
@@ -134,13 +134,13 @@ export const GeoRateFluxYields = memo(() => {
                 ---                 
               </td>
               <td>
-                <Num v={rateToFlux232ThLX[XSNames.ESANTI] as number} p={0} />                
+                <Num v={rateToFlux232ThLX[XSNames.ESANTI] as number} p={0} />
               </td>
               <td>
                 ---
               </td>
               <td>
-                <Num v={rateToFlux238ULX[XSNames.ESANTI] as number} p={0} />                                  
+                <Num v={rateToFlux238ULX[XSNames.ESANTI] as number} p={0} />         
               </td>
             </tr>
             <tr>
@@ -149,13 +149,13 @@ export const GeoRateFluxYields = memo(() => {
                 ---
               </td>
               <td>
-                <Num v={rateToFlux232ThLX[XSNames.ESMUTAU] as number} p={0} />                
+                <Num v={rateToFlux232ThLX[XSNames.ESMUTAU] as number} p={0} />
               </td>
               <td>
                 ---
               </td>
               <td>
-                <Num v={rateToFlux238ULX[XSNames.ESMUTAU] as number} p={0} />                                  
+                <Num v={rateToFlux238ULX[XSNames.ESMUTAU] as number} p={0} />           
               </td>
             </tr>
           </tbody>
