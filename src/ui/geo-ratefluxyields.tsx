@@ -97,9 +97,9 @@ export const GeoRateFluxYields = memo(() => {
           <thead>
             <tr>
               <th>Li and Xin spectra</th>
-              <th>---</th>
+              <th></th>
               <th>{Th232}</th>
-              <th>---</th>
+              <th></th>
               <th>{U238}</th>
             </tr>
           </thead>
