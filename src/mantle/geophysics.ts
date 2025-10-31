@@ -9,11 +9,13 @@ import {
 import { ISOTOPIC_DECAY_ENERGIES } from "../physics/derived";
 
 import { 
-  averageNeutrinoEnergy238U, 
-  averageNeutrinoEnergy235U, 
-  averageNeutrinoEnergy232Th, 
-  averageNeutrinoEnergy40K, 
-  averageNeutrinoEnergy40KEC, 
+  averageNeutrinoEnergy238ULX,
+  averageNeutrinoEnergy232ThLX,
+  averageNeutrinoEnergy238U,
+  averageNeutrinoEnergy235U,
+  averageNeutrinoEnergy232Th,
+  averageNeutrinoEnergy40K,
+  averageNeutrinoEnergy40KEC,
 } from "../antineutrino-spectrum";
 
 import { 
@@ -62,4 +64,12 @@ export const ISOTOPIC_DECAY_HEATING = {
     (Math.log(2) / ISOTOPIC_HALF_LIFE.U238) *
     ((ISOTOPIC_DECAY_ENERGIES.U238 - (averageNeutrinoEnergy238U * ISOTOPIC_NEUTRINOS_PER_DECAY.U238)) * ELEMENTARY_CHARGE * 1e6 / 
      (U238.relative_atomic_mass * AU)),
+  U238LX:
+    (Math.log(2) / ISOTOPIC_HALF_LIFE.U238) *
+    ((ISOTOPIC_DECAY_ENERGIES.U238 - (averageNeutrinoEnergy238ULX * ISOTOPIC_NEUTRINOS_PER_DECAY.U238)) * ELEMENTARY_CHARGE * 1e6 / 
+     (U238.relative_atomic_mass * AU)),
+  TH232LX:
+    (Math.log(2) / ISOTOPIC_HALF_LIFE.TH232) *
+    ((ISOTOPIC_DECAY_ENERGIES.TH232 - (averageNeutrinoEnergy232ThLX * ISOTOPIC_NEUTRINOS_PER_DECAY.TH232)) * ELEMENTARY_CHARGE * 1e6 / 
+     (Th232.relative_atomic_mass * AU)),
 };
