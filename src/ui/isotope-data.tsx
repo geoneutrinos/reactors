@@ -1,5 +1,7 @@
 import { memo } from "react";
 import {
+  averageNeutrinoEnergy232ThLX,
+  averageNeutrinoEnergy238ULX,
   averageNeutrinoEnergy232Th,
   averageNeutrinoEnergy238U,
   averageNeutrinoEnergy235U,
@@ -40,7 +42,7 @@ export const IsotopeData = memo(() => {
       <Card.Header>Nuclide Data</Card.Header>
       <Card.Body>
         <Table>
-            <thead>
+            <tbody>
               <tr>
                 <th>Decay Parent</th>
                 <th>{K40}<sub>ec</sub></th>
@@ -49,8 +51,6 @@ export const IsotopeData = memo(() => {
                 <th>{U235}</th>
                 <th>{U238}</th>
               </tr>
-            </thead>
-            <tbody>
               <tr>
                 <td> Atomic mass (10<sup>-26</sup> kg) </td>
                 <td colSpan={2} style={{ textAlign: 'center' }}>
@@ -82,24 +82,6 @@ export const IsotopeData = memo(() => {
                 </td>
                 <td>
                   <Num v={ISOTOPIC_DECAY_ENERGIES.U238} p={3} />
-                </td>
-              </tr>
-              <tr>
-                <td> Average ν energy (MeV) </td>
-                <td>
-                  <Num v={averageNeutrinoEnergy40KEC} p={3} />
-                </td>
-                <td>
-                  <Num v={averageNeutrinoEnergy40K} p={3} />
-                </td>
-                <td>
-                  <Num v={averageNeutrinoEnergy232Th} p={3} />
-                </td>
-                <td>
-                  <Num v={averageNeutrinoEnergy235U} p={3} />
-                </td>
-                <td>
-                  <Num v={averageNeutrinoEnergy238U} p={3} />
                 </td>
               </tr>
               <tr>
@@ -181,6 +163,76 @@ export const IsotopeData = memo(() => {
                 </td>
                 <td>
                   <Num v={ISOTOPIC_NEUTRINO_LUMINOSITY.U238} p={1} func={(v) => v / 1e6}  />
+                </td>
+              </tr>
+              <tr>
+                <th>Sanshiro spectra</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+              </tr>
+              <tr>
+                <td> Average ν energy (MeV) </td>
+                <td>
+                  <Num v={averageNeutrinoEnergy40KEC} p={3} />
+                </td>
+                <td>
+                  <Num v={averageNeutrinoEnergy40K} p={3} />
+                </td>
+                <td>
+                  <Num v={averageNeutrinoEnergy232Th} p={3} />
+                </td>
+                <td>
+                  <Num v={averageNeutrinoEnergy235U} p={3} />
+                </td>
+                <td>
+                  <Num v={averageNeutrinoEnergy238U} p={3} />
+                </td>
+              </tr>
+              <tr>
+                <td> Decay heating (µW kg<sup>-1</sup>) </td>
+                <td>
+                  <Num v={ISOTOPIC_DECAY_HEATING.K40ec} p={1} func={(v) => v * 1e6}  />
+                </td>
+                <td>
+                  <Num v={ISOTOPIC_DECAY_HEATING.K40beta} p={1} func={(v) => v * 1e6}  />
+                </td>
+                <td>
+                  <Num v={ISOTOPIC_DECAY_HEATING.TH232} p={1} func={(v) => v * 1e6} />
+                </td>
+                <td>
+                  <Num v={ISOTOPIC_DECAY_HEATING.U235} p={1} func={(v) => v * 1e6} />
+                </td>
+                <td>
+                  <Num v={ISOTOPIC_DECAY_HEATING.U238} p={1} func={(v) => v * 1e6} />
+                </td>
+              </tr>
+              <tr>
+                <th>Li and Xin spectra</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+              </tr>
+              <tr>
+                <td> Average ν energy (MeV) </td>
+                <td>
+                  ---
+                </td>
+                <td>
+                  ---
+                </td>
+                <td>
+                  <Num v={averageNeutrinoEnergy232ThLX} p={3} />
+                </td>
+                <td>
+                  ---
+                </td>
+                <td>
+                  <Num v={averageNeutrinoEnergy238ULX} p={3} />
                 </td>
               </tr>
               <tr>
