@@ -254,13 +254,13 @@ export const IsotopeData = memo(() => {
                   ---
                 </td>
                 <td>
-                  <Num v={ISOTOPIC_DECAY_HEATING.TH232LX} p={1} func={(v) => v * 1e6} />
+                  <Num v={ISOTOPIC_DECAY_HEATING.TH232} p={1} func={(v) => v * 1e6} />
                 </td>
                 <td>
                   ---
                 </td>
                 <td>
-                  <Num v={ISOTOPIC_DECAY_HEATING.U238LX} p={1} func={(v) => v * 1e6} />
+                  <Num v={ISOTOPIC_DECAY_HEATING.U238} p={1} func={(v) => v * 1e6} />
                 </td>
               </tr>
             </tbody>
