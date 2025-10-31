@@ -23,7 +23,7 @@ export const GeoRateFluxYields = memo(() => {
       <Card.Header>Geo-neutrino Nuclide Rate to Flux (NIU<sup>-1</sup> cm<sup>-2</sup>s<sup>-1</sup>) </Card.Header>
       <Card.Body>
         <Table>
-          <tbody>
+          <thead>
             <tr>
               <th>Enomoto Sanshiro spectra</th>
               <th>{K40}<sub>β</sub></th>
@@ -31,6 +31,8 @@ export const GeoRateFluxYields = memo(() => {
               <th>{U235}</th>
               <th>{U238}</th>
             </tr>
+          </thead>
+          <tbody>
             <tr>
               <td>pIBD: Strumia and Vissani (2003)</td>
               <td>
@@ -91,6 +93,8 @@ export const GeoRateFluxYields = memo(() => {
                 <Num v={rateToFlux238U[XSNames.ESMUTAU] as number} p={0} />                                  
               </td>
             </tr>
+          </tbody>
+          <thead>
             <tr>
               <th>Li and Xin spectra</th>
               <th>---</th>
@@ -98,6 +102,8 @@ export const GeoRateFluxYields = memo(() => {
               <th>---</th>
               <th>{U238}</th>
             </tr>
+          </thead>
+          <tbody>
             <tr>
               <td>pIBD: Strumia and Vissani (2003)</td>
               <td>
