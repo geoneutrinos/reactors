@@ -5,6 +5,8 @@ import {
   antineutrinoSpectrum238U,
   antineutrinoSpectrum232Th,
   antineutrinoSpectrum40K,
+  antineutrinoSpectrum238ULX,
+  antineutrinoSpectrum232ThLX,
 } from "../antineutrino-spectrum";
 import {
   SECONDS_PER_YEAR,
