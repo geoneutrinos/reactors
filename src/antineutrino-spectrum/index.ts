@@ -1,7 +1,9 @@
 import antineutrinoSpectrum40KData from "./data/AntineutrinoSpectrum_40K.knt.json";
-import antineutrinoSpectrum232ThData from "./data/new_flux_232Th.txt.knt.json";
+import antineutrinoSpectrum232ThData from "./data/AntineutrinoSpectrum_232Th.knt.json";
 import antineutrinoSpectrum235UData from "./data/AntineutrinoSpectrum_235U.knt.json";
-import antineutrinoSpectrum238UData from "./data/new_flux_238U.txt.knt.json";
+import antineutrinoSpectrum238UData from "./data/AntineutrinoSpectrum_238U.knt.json";
+import antineutrinoSpectrum232ThDataLX from "./data/new_flux_232Th.txt.knt.json";
+import antineutrinoSpectrum238UDataLX from "./data/new_flux_238U.txt.knt.json";
 
 import { SECONDS_PER_YEAR } from "../physics/constants";
 
@@ -72,6 +74,18 @@ export const antineutrinoSpectrum238U = resample(
   10,
   binCount
 );
+export const antineutrinoSpectrum232ThLX = resample(
+  antineutrinoSpectrum232ThDataLX,
+  0,
+  10,
+  binCount
+);
+export const antineutrinoSpectrum238ULX = resample(
+  antineutrinoSpectrum238UDataLX,
+  0,
+  10,
+  binCount
+);
 
 const averageNeutrinoEnergy = (spectrum: number[]):number => {
   const num = spectrum.reduce((p, v, i) => ((0.0005 + i /1000) * v) + p)
@@ -84,6 +98,8 @@ export const averageNeutrinoEnergy235U = averageNeutrinoEnergy(antineutrinoSpect
 export const averageNeutrinoEnergy232Th = averageNeutrinoEnergy(antineutrinoSpectrum232ThData)
 export const averageNeutrinoEnergy40K = averageNeutrinoEnergy(antineutrinoSpectrum40KData)
 export const averageNeutrinoEnergy40KEC = 0.051
+export const averageNeutrinoEnergy238ULX = averageNeutrinoEnergy(antineutrinoSpectrum238UDataLX)
+export const averageNeutrinoEnergy232ThLX = averageNeutrinoEnergy(antineutrinoSpectrum232ThDataLX)
 
 function rateToFluxCalc(spectrum: number[], crossSection: CrossSectionFunc): number {
   const targets = 1e32;
@@ -122,7 +138,15 @@ const defaultRateToFlux232Th:RateToFlux = {
 const defaultRateToFlux40K:RateToFlux = {
   spectrum: antineutrinoSpectrum40KData
 }
+const defaultRateToFlux238ULX:RateToFlux = {
+  spectrum: antineutrinoSpectrum238UDataLX
+}
+const defaultRateToFlux232ThLX:RateToFlux = {
+  spectrum: antineutrinoSpectrum232ThDataLX
+}
 export const rateToFlux238U = rateToFluxReducer(defaultRateToFlux238U, crossSection)
 export const rateToFlux235U = rateToFluxReducer(defaultRateToFlux235U, crossSection)
 export const rateToFlux232Th = rateToFluxReducer(defaultRateToFlux232Th, crossSection)
 export const rateToFlux40K = rateToFluxReducer(defaultRateToFlux40K, crossSection);
+export const rateToFlux238ULX = rateToFluxReducer(defaultRateToFlux238ULX, crossSection)
+export const rateToFlux232ThLX = rateToFluxReducer(defaultRateToFlux232ThLX, crossSection)
