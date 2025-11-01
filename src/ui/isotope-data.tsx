@@ -301,6 +301,9 @@ export const IsotopeData = memo(() => {
             <b>Double click on, or hover pointer over, calculated values to display more decimal places</b>
           </small></p>
           <p><small>
+            <b> Spectra references:</b> <br />
+              &nbsp;&nbsp; Enomoto Sanshiro spectra from <a href="https://www.awa.tohoku.ac.jp/~sanshiro/research/geoneutrino/spectrum/"> Enomoto Sanshiro </a> <br />
+              &nbsp;&nbsp; Li and Xin spectra from arXiv:<a href="https://doi.org/10.48550/arXiv.2412.07711"> 2412.07711 </a> <br />
             <b>Atomic mass reference:</b> <br />
               &nbsp;&nbsp; https://physics.nist.gov/cgi-bin/Compositions/stand_alone.pl <br />
             <b>Half life references:</b> <br />
