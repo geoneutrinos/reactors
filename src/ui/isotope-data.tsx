@@ -1,5 +1,7 @@
 import { memo } from "react";
 import {
+  averageNeutrinoEnergy232ThLX,
+  averageNeutrinoEnergy238ULX,
   averageNeutrinoEnergy232Th,
   averageNeutrinoEnergy238U,
   averageNeutrinoEnergy235U,
@@ -24,6 +26,8 @@ import {
 
 import {
 ISOTOPIC_DECAY_HEATING,
+ISOTOPIC_DECAY_HEATING_U238LX,
+ISOTOPIC_DECAY_HEATING_TH232LX,
 } from "../mantle/geophysics";
 
 import {Elements} from './elements'
@@ -82,24 +86,6 @@ export const IsotopeData = memo(() => {
                 </td>
                 <td>
                   <Num v={ISOTOPIC_DECAY_ENERGIES.U238} p={3} />
-                </td>
-              </tr>
-              <tr>
-                <td> Average ν energy (MeV) </td>
-                <td>
-                  <Num v={averageNeutrinoEnergy40KEC} p={3} />
-                </td>
-                <td>
-                  <Num v={averageNeutrinoEnergy40K} p={3} />
-                </td>
-                <td>
-                  <Num v={averageNeutrinoEnergy232Th} p={3} />
-                </td>
-                <td>
-                  <Num v={averageNeutrinoEnergy235U} p={3} />
-                </td>
-                <td>
-                  <Num v={averageNeutrinoEnergy238U} p={3} />
                 </td>
               </tr>
               <tr>
@@ -183,6 +169,36 @@ export const IsotopeData = memo(() => {
                   <Num v={ISOTOPIC_NEUTRINO_LUMINOSITY.U238} p={1} func={(v) => v / 1e6}  />
                 </td>
               </tr>
+            </tbody>
+            <thead>
+              <tr>
+                <th>Enomoto Sanshiro spectra</th>
+                <th>{K40}<sub>ec</sub></th>
+                <th>{K40}<sub>β</sub></th>
+                <th>{Th232}</th>
+                <th>{U235}</th>
+                <th>{U238}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td> Average ν energy (MeV) </td>
+                <td>
+                  <Num v={averageNeutrinoEnergy40KEC} p={3} />
+                </td>
+                <td>
+                  <Num v={averageNeutrinoEnergy40K} p={3} />
+                </td>
+                <td>
+                  <Num v={averageNeutrinoEnergy232Th} p={3} />
+                </td>
+                <td>
+                  <Num v={averageNeutrinoEnergy235U} p={3} />
+                </td>
+                <td>
+                  <Num v={averageNeutrinoEnergy238U} p={3} />
+                </td>
+              </tr>
               <tr>
                 <td> Decay heating (µW kg<sup>-1</sup>) </td>
                 <td>
@@ -199,6 +215,54 @@ export const IsotopeData = memo(() => {
                 </td>
                 <td>
                   <Num v={ISOTOPIC_DECAY_HEATING.U238} p={1} func={(v) => v * 1e6} />
+                </td>
+              </tr>
+            </tbody>
+            <thead>
+              <tr>
+                <th>Li and Xin spectra</th>
+                <th></th>
+                <th></th>
+                <th>{Th232}</th>
+                <th></th>
+                <th>{U238}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td> Average ν energy (MeV) </td>
+                <td>
+                  ---
+                </td>
+                <td>
+                  ---
+                </td>
+                <td>
+                  <Num v={averageNeutrinoEnergy232ThLX} p={3} />
+                </td>
+                <td>
+                  ---
+                </td>
+                <td>
+                  <Num v={averageNeutrinoEnergy238ULX} p={3} />
+                </td>
+              </tr>
+              <tr>
+                <td> Decay heating (µW kg<sup>-1</sup>) </td>
+                <td>
+                  ---
+                </td>
+                <td>
+                  ---
+                </td>
+                <td>
+                  <Num v={ISOTOPIC_DECAY_HEATING_TH232LX} p={1} func={(v) => v * 1e6} />
+                </td>
+                <td>
+                  ---
+                </td>
+                <td>
+                  <Num v={ISOTOPIC_DECAY_HEATING_U238LX} p={1} func={(v) => v * 1e6} />
                 </td>
               </tr>
             </tbody>
@@ -237,6 +301,9 @@ export const IsotopeData = memo(() => {
             <b>Double click on, or hover pointer over, calculated values to display more decimal places</b>
           </small></p>
           <p><small>
+            <b> Spectra references:</b> <br />
+              &nbsp;&nbsp; Enomoto Sanshiro spectra from <a href="https://www.awa.tohoku.ac.jp/~sanshiro/research/geoneutrino/spectrum/"> Enomoto Sanshiro </a> <br />
+              &nbsp;&nbsp; Li and Xin spectra from arXiv:<a href="https://doi.org/10.48550/arXiv.2412.07711"> 2412.07711 </a> <br />
             <b>Atomic mass reference:</b> <br />
               &nbsp;&nbsp; https://physics.nist.gov/cgi-bin/Compositions/stand_alone.pl <br />
             <b>Half life references:</b> <br />
