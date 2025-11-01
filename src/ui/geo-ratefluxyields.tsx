@@ -168,6 +168,8 @@ export const GeoRateFluxYields = memo(() => {
         </Table>
         <p><small>
           These geo-neutrino nuclide fluxes in cm<sup>-2</sup>s<sup>-1</sup> produce 1 interaction during a detector exposure of 10<sup>32</sup> target-years <br />
+          Enomoto Sanshiro spectra from <a href="https://www.awa.tohoku.ac.jp/~sanshiro/research/geoneutrino/spectrum/"> Enomoto Sanshiro </a> <br />
+          Li and Xin spectra from arXiv:<a href="https://doi.org/10.48550/arXiv.2412.07711"> 2412.07711 </a> <br />
         </small></p>
       </Card.Body>
     </Card>
