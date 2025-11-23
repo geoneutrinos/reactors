@@ -236,7 +236,7 @@ export const lowerMantleMass = layerMasses
 export const upperMantleMass = layerMasses
     .slice(57010, 62910)
     .reduce((Accumulator, CurrentValue) => Accumulator + CurrentValue);
-export const LIDMass = layerMasses
+export const lidMass = layerMasses
     .slice(62910, 63466)
     .reduce((Accumulator, CurrentValue) => Accumulator + CurrentValue);
 export const lowerCrustMass = layerMasses
@@ -248,7 +248,7 @@ export const upperCrustMass = layerMasses
 export const oceanMass = layerMasses
     .slice(63680, 63710)
     .reduce((Accumulator, CurrentValue) => Accumulator + CurrentValue);
-export const earthMass = innerCoreMass + outerCoreMass + lowerMantleMass + upperMantleMass + LIDMass+ lowerCrustMass + upperCrustMass + oceanMass;
+export const earthMass = innerCoreMass + outerCoreMass + lowerMantleMass + upperMantleMass + lidMass + lowerCrustMass + upperCrustMass + oceanMass;
 export const layerGeoResponse = bins.map(bin => geoIntegrate(bin) * rho(bin) * maxRadius * 100 / 2);
 export const innerCoreGeophysicalResponse = layerGeoResponse
     .slice(1, 12215)
@@ -262,7 +262,7 @@ export const lowerMantleGeophysicalResponse = layerGeoResponse
 export const upperMantleGeophysicalResponse = layerGeoResponse
     .slice(57010, 62910)
     .reduce((Accumulator, CurrentValue) => Accumulator + CurrentValue);
-export const LIDGeophysicalResponse = layerGeoResponse
+export const lidGeophysicalResponse = layerGeoResponse
     .slice(62910, 63466)
     .reduce((Accumulator, CurrentValue) => Accumulator + CurrentValue);
 export const lowerCrustGeophysicalResponse = layerGeoResponse
