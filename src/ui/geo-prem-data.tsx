@@ -7,7 +7,7 @@ import {innerCoreMass,
         outerCoreMass,
         lowerMantleMass,
         upperMantleMass,
-        LIDMass,
+        lidMass,
         lowerCrustMass,
         upperCrustMass,
         oceanMass,
@@ -16,7 +16,7 @@ import {innerCoreMass,
         outerCoreGeophysicalResponse,
         lowerMantleGeophysicalResponse,
         upperMantleGeophysicalResponse,
-        LIDGeophysicalResponse,
+        lidGeophysicalResponse,
         lowerCrustGeophysicalResponse,
         upperCrustGeophysicalResponse,
         oceanGeophysicalResponse,
@@ -116,10 +116,10 @@ export const GeoDataPREM = memo(() => {
                   6291.0 - 6346.6
                 </td>
                 <td>
-                  <Num v={LIDMass} p={4} func={(v) => v * 1e-25} />
+                  <Num v={lidMass} p={4} func={(v) => v * 1e-25} />
                 </td>
                 <td>
-                   <Num v={LIDGeophysicalResponse} p={4} func={(v) => v * 1e-3} />
+                   <Num v={lidGeophysicalResponse} p={4} func={(v) => v * 1e-3} />
                 </td>
               </tr>
                 <tr>
