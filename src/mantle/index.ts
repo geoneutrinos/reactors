@@ -44,6 +44,7 @@ interface GeoUncertainty {
 interface GeoAbundance {
   U238: number;
   Th232: number;
+  Potassium: number;
 }
 
 interface GeoHeating {
@@ -298,6 +299,8 @@ export function geoSpectrum(
 
   const KMantleFlux = U238flux * KURatio * KMantleFluxIsotopicScale;
 
+  const mantleAbundanceK40 = KMantleFlux / ISOTOPIC_NEUTRINO_LUMINOSITY.K40 / mantleGeophysicalResponse
+
   const mantleHeatingK40 = (KMantleFlux / ISOTOPIC_NEUTRINO_LUMINOSITY.K40 / mantleGeophysicalResponse) * ISOTOPIC_DECAY_HEATING.K40beta * mantleMass
 
   const KecMantleFluxIsotopicScale =
@@ -350,6 +353,7 @@ export function geoSpectrum(
     abundance: {
       U238: mantleAbundanceU238,
       Th232: mantleAbundanceTh232,
+      K40: mantleAbundanceK40,
     },
     heating: {
       U238: mantleHeatingU238,
