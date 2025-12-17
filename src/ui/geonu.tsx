@@ -274,7 +274,7 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
   }
   return (
     <Card>
-      <Card.Header>Mantle Fluxes <small>(Radiogenic Heating)</small></Card.Header>
+      <Card.Header>Mantle Fluxes <small>(Nuclide Abundance; Radiogenic Heating)</small></Card.Header>
       <Card.Body>
         <Form.Group controlId="U238flux">
           <Form.Label>
