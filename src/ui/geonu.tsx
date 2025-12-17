@@ -281,7 +281,7 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
             {U238} Mantle Flux: {geoFluxRatios.U238flux.toExponential(2)} cm
             <sup>-2</sup>s<sup>-1</sup>
             {" "}
-            <small>({U238}: <Num v={abundance.U238} p={3}> ppb; {U238} plus {U235}: <Num v={heating.U238 + heating.U235} p={3} func={(v) => v / 1e12}/> TW)</small>
+            <small>({U238}: <Num v={abundance.U238} p={3} /> ppb; {U238} plus {U235}: <Num v={heating.U238 + heating.U235} p={3} func={(v) => v / 1e12} /> TW)</small>
           </Form.Label>
           <Form.Control
             value={geoFluxRatios.U238flux}
@@ -300,7 +300,7 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
             <Form.Label>
               Th/U Ratio {geoFluxRatios.ThURatio.toFixed(1)}
             {" "}
-            <small>({Th232}: <Num v={heating.Th232} p={3} func={(v) => v / 1e12}/> TW)</small>
+            <small>({Th232}: <Num v={heating.Th232} p={3} func={(v) => v / 1e12} /> TW)</small>
             </Form.Label>
             <Form.Control
               value={geoFluxRatios.ThURatio}
@@ -320,7 +320,7 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
             <Form.Label>
               K/U Ratio {geoFluxRatios.KURatio.toExponential(1)}
             {" "}
-            <small>({K40}<sub>β</sub> plus {K40}<sub>ec</sub>: <Num v={heating.K40Beta + heating.K40Ec} p={3} func={(v) => v / 1e12}/> TW)</small>
+            <small>({K40}<sub>β</sub> plus {K40}<sub>ec</sub>: <Num v={heating.K40Beta + heating.K40Ec} p={3} func={(v) => v / 1e12} /> TW)</small>
             </Form.Label>
             <Form.Control
               value={geoFluxRatios.KURatio}
