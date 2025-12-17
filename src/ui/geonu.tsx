@@ -281,7 +281,7 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
             {U238} Mantle Flux: {geoFluxRatios.U238flux.toExponential(2)} cm
             <sup>-2</sup>s<sup>-1</sup>
             {" "}
-            <small>({U238}: <Num v={abundance.U238} p={3} /> ppb; {U238} plus {U235}: <Num v={heating.U238 + heating.U235} p={3} func={(v) => v / 1e12} /> TW)</small>
+            <small>({U238}: <Num v={abundance.U238} p={3} func={(v) => v * 1e9} /> ppb; {U238} plus {U235}: <Num v={heating.U238 + heating.U235} p={3} func={(v) => v / 1e12} /> TW)</small>
           </Form.Label>
           <Form.Control
             value={geoFluxRatios.U238flux}
