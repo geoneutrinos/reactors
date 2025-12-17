@@ -44,7 +44,7 @@ interface GeoUncertainty {
 interface GeoAbundance {
   U238: number;
   Th232: number;
-  Potassium: number;
+  K40: number;
 }
 
 interface GeoHeating {
