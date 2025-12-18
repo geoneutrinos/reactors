@@ -69,10 +69,10 @@ export const IsotopeData = memo(() => {
               <tr>
                 <td> Decay energy (MeV) </td>
                 <td>
-                  <Num v={ISOTOPIC_DECAY_ENERGIES.K40EC} p={3} />
+                  <Num v={ISOTOPIC_DECAY_ENERGIES.K40ec} p={3} />
                 </td>
                 <td>
-                  <Num v={ISOTOPIC_DECAY_ENERGIES.K40} p={3} />
+                  <Num v={ISOTOPIC_DECAY_ENERGIES.K40beta} p={3} />
                 </td>
                 <td>
                   <Num v={ISOTOPIC_DECAY_ENERGIES.TH232} p={3} />
@@ -168,10 +168,10 @@ export const IsotopeData = memo(() => {
               <tr>
                 <td> ν luminosity (kg<sup>-1</sup> µs<sup>-1</sup>) </td>
                 <td>
-                  <Num v={ISOTOPIC_NEUTRINO_LUMINOSITY.K40EC} p={1} func={(v) => v / 1e6} />
+                  <Num v={ISOTOPIC_NEUTRINO_LUMINOSITY.K40ec} p={1} func={(v) => v / 1e6} />
                 </td>
                 <td>
-                  <Num v={ISOTOPIC_NEUTRINO_LUMINOSITY.K40} p={1} func={(v) => v / 1e6} />
+                  <Num v={ISOTOPIC_NEUTRINO_LUMINOSITY.K40beta} p={1} func={(v) => v / 1e6} />
                 </td>
                 <td>
                   <Num v={ISOTOPIC_NEUTRINO_LUMINOSITY.TH232} p={1} func={(v) => v / 1e6} />
