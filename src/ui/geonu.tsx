@@ -253,17 +253,17 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
   const {heating} = geo;
 
   const uRangeParams = {
-    step: 2000,
+    step: 1000,
     min: 0,
     max: 3000000,
   }
   const thRangeParams = {
-    step:0.1,
+    step:0.05,
     min:0.1,
     max:8,
   }
   const kRangeParams = {
-    step:0.25e3,
+    step:0.05e3,
     min:1e3,
     max:3e4,
   }
