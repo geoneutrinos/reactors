@@ -253,18 +253,18 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
   const {heating} = geo;
 
   const uRangeParams = {
-    step: 1000,
+    step: 1e4,
     min: 0,
-    max: 3000000,
+    max: 3e6,
   }
   const thRangeParams = {
-    step:0.02,
-    min:0.1,
-    max:8,
+    step:0.01,
+    min:0,
+    max:6,
   }
   const kRangeParams = {
-    step:0.1e3,
-    min:1e3,
+    step:1e2,
+    min:0,
     max:3e4,
   }
   if (celestialBody === "moon"){
