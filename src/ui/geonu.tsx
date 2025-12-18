@@ -281,7 +281,6 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
             {U238} Mantle Flux: {geoFluxRatios.U238flux.toExponential(2)} cm
             <sup>-2</sup>s<sup>-1</sup>
             {" "}
-            <small>({U238}: <Num v={abundance.U238} p={1} func={(v) => v * 1e9} /> ppb, {U235}: <Num v={abundance.U235} p={1} func={(v) => v * 1e9} /> ppb; {U238}: <Num v={heating.U238} p={3} func={(v) => v / 1e12} /> TW, {U235}: <Num v={heating.U235} p={3} func={(v) => v / 1e12} /> TW)</small>
           </Form.Label>
           <Form.Control
             value={geoFluxRatios.U238flux}
@@ -299,8 +298,6 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
           <InputGroup>
             <Form.Label>
               Th/U Ratio {geoFluxRatios.ThURatio.toFixed(1)}
-            {" "}
-            <small>({Th232}: <Num v={abundance.Th232} p={1} func={(v) => v * 1e9} /> ppb; {Th232}: <Num v={heating.Th232} p={3} func={(v) => v / 1e12} /> TW)</small>
             </Form.Label>
             <Form.Control
               value={geoFluxRatios.ThURatio}
@@ -319,8 +316,6 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
           <InputGroup>
             <Form.Label>
               K/U Ratio {geoFluxRatios.KURatio.toExponential(1)}
-            {" "}
-            <small>({K40}<sub>β</sub>: <Num v={abundance.K40beta} p={1} func={(v) => v * 1e9} /> ppb, {K40}<sub>ec</sub>: <Num v={abundance.K40ec} p={1} func={(v) => v * 1e9} /> ppb; {K40}<sub>β</sub>: <Num v={heating.K40Beta} p={3} func={(v) => v / 1e12} /> TW, {K40}<sub>ec</sub> <Num v={heating.K40Ec} p={3} func={(v) => v / 1e12} /> TW)</small>
             </Form.Label>
             <Form.Control
               value={geoFluxRatios.KURatio}
@@ -335,6 +330,60 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
             />
           </InputGroup>
         </Form.Group>
+          <Table>
+              <tbody>
+                <tr>
+                  <th>Nucleotide</th>
+                  <th>Abundance</th>
+                  <th>Radiogenic Heating</th>
+                </tr>
+                <tr>
+                  <td>{U238}</td>
+                  <td>
+                    <Num v={abundance.U238} p={1} func={(v) => v * 1e9} /> ppb
+                  </td>
+                  <td>
+                    <Num v={heating.U238} p={3} func={(v) => v / 1e12} /> TW
+                  </td>
+                </tr>
+                <tr>
+                  <td>{U235}</td>
+                  <td>
+                    <Num v={abundance.U235} p={1} func={(v) => v * 1e9} /> ppb
+                  </td>
+                  <td>
+                    <Num v={heating.U235} p={3} func={(v) => v / 1e12} /> TW
+                  </td>
+                </tr>
+                <tr>
+                  <td>{Th232}</td>
+                  <td>
+                    <Num v={abundance.Th232} p={1} func={(v) => v * 1e9} /> ppb
+                  </td>
+                  <td>
+                    <Num v={heating.Th232} p={3} func={(v) => v / 1e12} /> TW
+                  </td>
+                </tr>
+                <tr>
+                  <td>{K40}<sub>β</sub></td>
+                  <td>
+                    <Num v={abundance.K40beta} p={1} func={(v) => v * 1e9} /> ppb
+                  </td>
+                  <td>
+                    <Num v={heating.K40Beta} p={3} func={(v) => v / 1e12} /> TW
+                  </td>
+                </tr>
+                <tr>
+                  <td>{K40}<sub>ec</sub></td>
+                  <td>
+                    <Num v={abundance.K40ec} p={1} func={(v) => v * 1e9} /> ppb
+                  </td>
+                  <td>
+                    <Num v={heating.K40Ec} p={3} func={(v) => v / 1e12} /> TW
+                  </td>
+                </tr>
+              </tbody>
+            </Table>
         Total Mantle Radiogenic Heating: <Num v={heating.U238 + heating.U235 + heating.Th232 + heating.K40Beta + heating.K40Ec} p={3} func={(v) => v / 1e12}/> TW assumes homogeneous element concentrations
         <br /> •<small>Earth mantle mass (<Num v={MANTLE_MASS} p={4} func={(v) => v * 1e-24} /> x10<sup>24</sup> kg) and geophysical response (<Num v={MANTLE_GEOPHYSICAL_RESPONSE} p={4} func={(v) => v * 1e-3} /> x10<sup>3</sup> kg cm<sup>-2</sup>)</small>
         <br /> <small>A. M. Dziewonski and D. L. Anderson (1981), <i>Preliminary Reference Earth Model (PREM)</i>, Phys. Earth Planet. Inter. 25, 297-356</small>
