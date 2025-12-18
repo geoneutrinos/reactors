@@ -21,7 +21,7 @@ const {K40, Th232, U235, U238, Ca40, Ar40, Pb208, Pb207, Pb206} = Elements
 
 export const ISOTOPIC_DECAY_ENERGIES = {
    // MeV
-   K40:
+   K40BETA:
      (K40.relative_atomic_mass - Ca40.relative_atomic_mass) * ATOMIC_MASS_UNIT - ISOTOPIC_ALPHAS_PER_DECAY.K40 * 
       (ALPHA_REST_MASS + 2 * ELECTRON_REST_MASS),
    K40EC:
@@ -42,7 +42,7 @@ export const ISOTOPIC_DECAY_ENERGIES = {
   
 export const ISOTOPIC_NEUTRINO_LUMINOSITY = {
   // kg-1 s-1
-  K40:
+  K40BETA:
     (Math.log(2) / ISOTOPIC_HALF_LIFE.K40) *
     ((ISOTOPIC_NEUTRINOS_PER_DECAY.K40 * K40_BRANCH_RATIO.beta) /
       (K40.relative_atomic_mass * AU)),
