@@ -297,7 +297,7 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
         <Form.Group controlId="ThURatio">
           <InputGroup>
             <Form.Label>
-              Th/U Ratio {geoFluxRatios.ThURatio.toFixed(1)}
+              Th/U Ratio {geoFluxRatios.ThURatio.toFixed(2)}
             </Form.Label>
             <Form.Control
               value={geoFluxRatios.ThURatio}
