@@ -3,8 +3,8 @@ import {
   averageNeutrinoEnergy232Th,
   averageNeutrinoEnergy238U,
   averageNeutrinoEnergy235U,
-  averageNeutrinoEnergy40K,
-  averageNeutrinoEnergy40KEC,
+  averageNeutrinoEnergy40Kbeta,
+  averageNeutrinoEnergy40Kec,
 } from "../antineutrino-spectrum";
 
 import {
@@ -87,10 +87,10 @@ export const IsotopeData = memo(() => {
               <tr>
                 <td> Average ν energy (MeV) </td>
                 <td>
-                  <Num v={averageNeutrinoEnergy40KEC} p={3} />
+                  <Num v={averageNeutrinoEnergy40Kec} p={3} />
                 </td>
                 <td>
-                  <Num v={averageNeutrinoEnergy40K} p={3} />
+                  <Num v={averageNeutrinoEnergy40Kbeta} p={3} />
                 </td>
                 <td>
                   <Num v={averageNeutrinoEnergy232Th} p={3} />
