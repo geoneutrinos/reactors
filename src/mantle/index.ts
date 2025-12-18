@@ -293,15 +293,15 @@ export function geoSpectrum(
     crossSection
   );
 
-  const KMantleFluxIsotopicScale =
+  const KbetaMantleFluxIsotopicScale =
     (ISOTOPIC_NEUTRINO_LUMINOSITY.K40beta / ISOTOPIC_NEUTRINO_LUMINOSITY.U238) *
     (ISOTOPIC_NATURAL_ABUNDANCE.K40 / ISOTOPIC_NATURAL_ABUNDANCE.U238);
 
-  const KMantleFlux = U238flux * KURatio * KMantleFluxIsotopicScale;
+  const KMantleFlux = U238flux * KURatio * KbetaMantleFluxIsotopicScale;
 
   const mantleAbundanceK40 = KMantleFlux / ISOTOPIC_NEUTRINO_LUMINOSITY.K40beta / mantleGeophysicalResponse
 
-  const mantleHeatingK40 = mantleAbundanceK40 * ISOTOPIC_DECAY_HEATING.K40beta * mantleMass
+  const mantleHeatingK40beta = mantleAbundanceK40 * ISOTOPIC_DECAY_HEATING.K40beta * mantleMass
 
   const KecMantleFluxIsotopicScale =
     (ISOTOPIC_NEUTRINO_LUMINOSITY.K40ec / ISOTOPIC_NEUTRINO_LUMINOSITY.U238) *
@@ -359,7 +359,7 @@ export function geoSpectrum(
       U238: mantleHeatingU238,
       U235: mantleHeatingU235,
       Th232: mantleHeatingTh232,
-      K40Beta: mantleHeatingK40,
+      K40Beta: mantleHeatingK40beta,
       K40Ec: mantleHeatingK40ec,
     }
   };
