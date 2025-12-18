@@ -43,6 +43,7 @@ interface GeoUncertainty {
 
 interface GeoAbundance {
   U238: number;
+  U235: number;
   Th232: number;
   K40: number;
 }
@@ -259,7 +260,9 @@ export function geoSpectrum(
 
   const U235MantleFlux = U238flux * U235FluxIsotopicScale;
 
-  const mantleHeatingU235 = (U235MantleFlux / ISOTOPIC_NEUTRINO_LUMINOSITY.U235 / mantleGeophysicalResponse) * ISOTOPIC_DECAY_HEATING.U235 * mantleMass
+  const mantleAbundanceU235 = U235MantleFlux / ISOTOPIC_NEUTRINO_LUMINOSITY.U235 / mantleGeophysicalResponse
+
+  const mantleHeatingU235 = mantleAbundanceU235 * ISOTOPIC_DECAY_HEATING.U235 * mantleMass
 
   const {
     crustSpectrum: crustU235Spectrum,
@@ -352,6 +355,7 @@ export function geoSpectrum(
     total: total,
     abundance: {
       U238: mantleAbundanceU238,
+      U235: mantleAbundanceU235,
       Th232: mantleAbundanceTh232,
       K40: mantleAbundanceK40,
     },
