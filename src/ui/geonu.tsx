@@ -281,7 +281,7 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
             {U238} Mantle Flux: {geoFluxRatios.U238flux.toExponential(2)} cm
             <sup>-2</sup>s<sup>-1</sup>
             {" "}
-            <small>({U238}: <Num v={abundance.U238} p={1} func={(v) => v * 1e9} /> ppb, {U235}: <Num v={abundance.U235} p={1} func={(v) => v * 1e9} /> ppb; {U238} plus {U235}: <Num v={heating.U238 + heating.U235} p={3} func={(v) => v / 1e12} /> TW)</small>
+            <small>({U238}: <Num v={abundance.U238} p={1} func={(v) => v * 1e9} /> ppb, {U235}: <Num v={abundance.U235} p={1} func={(v) => v * 1e9} /> ppb; {U238}: <Num v={heating.U238} p={3} func={(v) => v / 1e12} /> TW, {U235}: <Num v={heating.U235} p={3} func={(v) => v / 1e12} /> TW)</small>
           </Form.Label>
           <Form.Control
             value={geoFluxRatios.U238flux}
@@ -320,7 +320,7 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
             <Form.Label>
               K/U Ratio {geoFluxRatios.KURatio.toExponential(1)}
             {" "}
-            <small>({K40}: <Num v={abundance.K40} p={1} func={(v) => v * 1e9} /> ppb; {K40}<sub>β</sub> plus {K40}<sub>ec</sub>: <Num v={heating.K40Beta + heating.K40Ec} p={3} func={(v) => v / 1e12} /> TW)</small>
+            <small>({K40}: <Num v={abundance.K40} p={1} func={(v) => v * 1e9} /> ppb; {K40}<sub>β</sub>: <Num v={heating.K40Beta} p={3} func={(v) => v / 1e12} /> TW, {K40}<sub>ec</sub> <Num v={heating.K40Ec} p={3} func={(v) => v / 1e12} /> TW)</small>
             </Form.Label>
             <Form.Control
               value={geoFluxRatios.KURatio}
