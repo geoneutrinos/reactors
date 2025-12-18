@@ -263,7 +263,7 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
     max:8,
   }
   const kRangeParams = {
-    step:1e3,
+    step:0.25e3,
     min:1e3,
     max:3e4,
   }
