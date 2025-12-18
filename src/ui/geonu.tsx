@@ -343,7 +343,7 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
               <tr>
                 <td>Uranium</td>
                 <td>
-                  <Num v={abundance.U238 / ISOTOPIC_NATURAL_ABUNDANCE.U238} p={1} func={(v) => v * 1e11} />
+                  <Num v={abundance.U238 / ISOTOPIC_NATURAL_ABUNDANCE.U238} p={2} func={(v) => v * 1e11} />
                 </td>
                 <td>
                   <Num v={heating.U238 + heating.U235} p={3} func={(v) => v / 1e12} />
@@ -352,7 +352,7 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
               <tr>
                 <td>Thorium</td>
                 <td>
-                  <Num v={abundance.Th232 / ISOTOPIC_NATURAL_ABUNDANCE.TH232} p={1} func={(v) => v * 1e11} />
+                  <Num v={abundance.Th232 / ISOTOPIC_NATURAL_ABUNDANCE.TH232} p={2} func={(v) => v * 1e11} />
                 </td>
                 <td>
                   <Num v={heating.Th232} p={3} func={(v) => v / 1e12} />
@@ -361,7 +361,7 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
               <tr>
                 <td>Potassium</td>
                 <td>
-                  <Num v={abundance.K40beta / ISOTOPIC_NATURAL_ABUNDANCE.K40} p={1} func={(v) => v * 1e11} />
+                  <Num v={abundance.K40beta / ISOTOPIC_NATURAL_ABUNDANCE.K40} p={0} func={(v) => v * 1e11} />
                 </td>
                 <td>
                   <Num v={heating.K40Beta + heating.K40Ec} p={3} func={(v) => v / 1e12} />
@@ -381,7 +381,7 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
               <tr>
                 <td>{U238}</td>
                 <td>
-                  <Num v={abundance.U238} p={1} func={(v) => v * 1e9} />
+                  <Num v={abundance.U238} p={2} func={(v) => v * 1e9} />
                 </td>
                 <td>
                   <Num v={heating.U238} p={3} func={(v) => v / 1e12} />
@@ -399,7 +399,7 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
               <tr>
                 <td>{Th232}</td>
                 <td>
-                  <Num v={abundance.Th232} p={1} func={(v) => v * 1e9} />
+                  <Num v={abundance.Th232} p={2} func={(v) => v * 1e9} />
                 </td>
                 <td>
                   <Num v={heating.Th232} p={3} func={(v) => v / 1e12} />
@@ -408,7 +408,7 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
               <tr>
                 <td>{K40}<sub>β</sub></td>
                 <td>
-                  <Num v={abundance.K40beta} p={1} func={(v) => v * 1e9} />
+                  <Num v={abundance.K40beta} p={2} func={(v) => v * 1e9} />
                 </td>
                 <td>
                   <Num v={heating.K40Beta} p={3} func={(v) => v / 1e12} />
@@ -417,7 +417,7 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
               <tr>
                 <td>{K40}<sub>ec</sub></td>
                 <td>
-                  <Num v={abundance.K40ec} p={1} func={(v) => v * 1e9} />
+                  <Num v={abundance.K40ec} p={2} func={(v) => v * 1e9} />
                 </td>
                 <td>
                   <Num v={heating.K40Ec} p={3} func={(v) => v / 1e12} />
