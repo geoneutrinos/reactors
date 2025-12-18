@@ -341,7 +341,7 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
                 <tr>
                   <td>{U}</td>
                   <td>
-                    <Num v={abundance.U238 / ISOTOPIC_NATURAL_ABUNDANCE.U238} p={1} func={(v) => v * 1e9} />
+                    <Num v={abundance.U238 / ISOTOPIC_NATURAL_ABUNDANCE.U238} p={1} func={(v) => v * 1e11} />
                   </td>
                   <td>
                     <Num v={heating.U238 + heating.U235} p={3} func={(v) => v / 1e12} />
@@ -350,7 +350,7 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
                 <tr>
                   <td>{Th}</td>
                   <td>
-                    <Num v={abundance.Th232 / ISOTOPIC_NATURAL_ABUNDANCE.TH232} p={1} func={(v) => v * 1e9} />
+                    <Num v={abundance.Th232 / ISOTOPIC_NATURAL_ABUNDANCE.TH232} p={1} func={(v) => v * 1e11} />
                   </td>
                   <td>
                     <Num v={heating.Th232} p={3} func={(v) => v / 1e12} />
@@ -359,13 +359,15 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
                 <tr>
                   <td>{K}</td>
                   <td>
-                    <Num v={abundance.K40beta / ISOTOPIC_NATURAL_ABUNDANCE.K40} p={1} func={(v) => v * 1e9} />
+                    <Num v={abundance.K40beta / ISOTOPIC_NATURAL_ABUNDANCE.K40} p={1} func={(v) => v * 1e11} />
                   </td>
                   <td>
                     <Num v={heating.K40Beta + heating.K40Ec} p={3} func={(v) => v / 1e12} />
                   </td>
                 </tr>
               </tbody>
+          </Table>
+          <Table>
               <tbody>
                 <tr>
                   <th>Nuclide</th>
@@ -418,7 +420,7 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
                   </td>
                 </tr>
               </tbody>
-            </Table>
+          </Table>
         Total Mantle Radiogenic Heating: <Num v={heating.U238 + heating.U235 + heating.Th232 + heating.K40Beta + heating.K40Ec} p={3} func={(v) => v / 1e12}/> TW assumes homogeneous element concentrations
         <br /> •<small>Earth mantle mass (<Num v={MANTLE_MASS} p={4} func={(v) => v * 1e-24} /> x10<sup>24</sup> kg) and geophysical response (<Num v={MANTLE_GEOPHYSICAL_RESPONSE} p={4} func={(v) => v * 1e-3} /> x10<sup>3</sup> kg cm<sup>-2</sup>)</small>
         <br /> <small>A. M. Dziewonski and D. L. Anderson (1981), <i>Preliminary Reference Earth Model (PREM)</i>, Phys. Earth Planet. Inter. 25, 297-356</small>
