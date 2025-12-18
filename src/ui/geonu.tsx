@@ -333,7 +333,7 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
           <Table>
               <tbody>
                 <tr>
-                  <th>Nucleide</th>
+                  <th>Nuclide</th>
                   <th>Abundance (ppb)</th>
                   <th>Radiogenic Heating (TW)</th>
                 </tr>
@@ -349,7 +349,7 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
                 <tr>
                   <td>{U235}</td>
                   <td>
-                    <Num v={abundance.U235} p={1} func={(v) => v * 1e9} />
+                    <Num v={abundance.U235} p={3} func={(v) => v * 1e9} />
                   </td>
                   <td>
                     <Num v={heating.U235} p={3} func={(v) => v / 1e12} />
