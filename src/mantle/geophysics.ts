@@ -48,7 +48,7 @@ export const ISOTOPIC_DECAY_HEATING = {
       (K40.relative_atomic_mass * AU)),
   K40ec:
     (Math.log(2) / ISOTOPIC_HALF_LIFE.K40) *
-    (((ISOTOPIC_DECAY_ENERGIES.K40ec - averageNeutrinoEnergy40KEC) * ELEMENTARY_CHARGE * 1e6 * K40_BRANCH_RATIO.ec) /
+    (((ISOTOPIC_DECAY_ENERGIES.K40ec - averageNeutrinoEnergy40Kec) * ELEMENTARY_CHARGE * 1e6 * K40_BRANCH_RATIO.ec) /
       (K40.relative_atomic_mass * AU)),
   TH232:
     (Math.log(2) / ISOTOPIC_HALF_LIFE.TH232) *
