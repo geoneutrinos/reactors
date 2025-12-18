@@ -333,53 +333,53 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
           <Table>
               <tbody>
                 <tr>
-                  <th>Nucleotide</th>
-                  <th>Abundance</th>
-                  <th>Radiogenic Heating</th>
+                  <th>Nucleide</th>
+                  <th>Abundance (ppb)</th>
+                  <th>Radiogenic Heating (TW)</th>
                 </tr>
                 <tr>
                   <td>{U238}</td>
                   <td>
-                    <Num v={abundance.U238} p={1} func={(v) => v * 1e9} /> ppb
+                    <Num v={abundance.U238} p={1} func={(v) => v * 1e9} />
                   </td>
                   <td>
-                    <Num v={heating.U238} p={3} func={(v) => v / 1e12} /> TW
+                    <Num v={heating.U238} p={3} func={(v) => v / 1e12} />
                   </td>
                 </tr>
                 <tr>
                   <td>{U235}</td>
                   <td>
-                    <Num v={abundance.U235} p={1} func={(v) => v * 1e9} /> ppb
+                    <Num v={abundance.U235} p={1} func={(v) => v * 1e9} />
                   </td>
                   <td>
-                    <Num v={heating.U235} p={3} func={(v) => v / 1e12} /> TW
+                    <Num v={heating.U235} p={3} func={(v) => v / 1e12} />
                   </td>
                 </tr>
                 <tr>
                   <td>{Th232}</td>
                   <td>
-                    <Num v={abundance.Th232} p={1} func={(v) => v * 1e9} /> ppb
+                    <Num v={abundance.Th232} p={1} func={(v) => v * 1e9} />
                   </td>
                   <td>
-                    <Num v={heating.Th232} p={3} func={(v) => v / 1e12} /> TW
+                    <Num v={heating.Th232} p={3} func={(v) => v / 1e12} />
                   </td>
                 </tr>
                 <tr>
                   <td>{K40}<sub>β</sub></td>
                   <td>
-                    <Num v={abundance.K40beta} p={1} func={(v) => v * 1e9} /> ppb
+                    <Num v={abundance.K40beta} p={1} func={(v) => v * 1e9} />
                   </td>
                   <td>
-                    <Num v={heating.K40Beta} p={3} func={(v) => v / 1e12} /> TW
+                    <Num v={heating.K40Beta} p={3} func={(v) => v / 1e12} />
                   </td>
                 </tr>
                 <tr>
                   <td>{K40}<sub>ec</sub></td>
                   <td>
-                    <Num v={abundance.K40ec} p={1} func={(v) => v * 1e9} /> ppb
+                    <Num v={abundance.K40ec} p={1} func={(v) => v * 1e9} />
                   </td>
                   <td>
-                    <Num v={heating.K40Ec} p={3} func={(v) => v / 1e12} /> TW
+                    <Num v={heating.K40Ec} p={3} func={(v) => v / 1e12} />
                   </td>
                 </tr>
               </tbody>
