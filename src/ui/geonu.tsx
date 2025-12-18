@@ -15,6 +15,7 @@ import Plot from "react-plotly.js";
 import elements, {Element} from '../elements';
 
 import {
+  ISOTOPIC_NATURAL_ABUNDANCE,
   ISOTOPIC_NEUTRINOS_PER_DECAY,
   K40_BRANCH_RATIO,
 } from '../physics/constants';
@@ -333,8 +334,42 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
           <Table>
               <tbody>
                 <tr>
+                  <th>Element</th>
+                  <th>Abundance (ng/g)</th>
+                  <th>Radiogenic Heating (TW)</th>
+                </tr>
+                <tr>
+                  <td>{U}</td>
+                  <td>
+                    <Num v={abundance.U238 / ISOTOPIC_NATURAL_ABUNDANCE.U238} p={1} func={(v) => v * 1e9} />
+                  </td>
+                  <td>
+                    <Num v={heating.U238 + heating.U235} p={3} func={(v) => v / 1e12} />
+                  </td>
+                </tr>
+                <tr>
+                  <td>{Th}</td>
+                  <td>
+                    <Num v={abundance.Th232 / ISOTOPIC_NATURAL_ABUNDANCE.TH232} p={1} func={(v) => v * 1e9} />
+                  </td>
+                  <td>
+                    <Num v={heating.Th232} p={3} func={(v) => v / 1e12} />
+                  </td>
+                </tr>
+                <tr>
+                  <td>{K}</td>
+                  <td>
+                    <Num v={abundance.K40beta / ISOTOPIC_NATURAL_ABUNDANCE.K40} p={1} func={(v) => v * 1e9} />
+                  </td>
+                  <td>
+                    <Num v={heating.K40Beta + heating.K40Ec} p={3} func={(v) => v / 1e12} />
+                  </td>
+                </tr>
+              </tbody>
+              <tbody>
+                <tr>
                   <th>Nuclide</th>
-                  <th>Abundance (ppb)</th>
+                  <th>Abundance (ng/g)</th>
                   <th>Radiogenic Heating (TW)</th>
                 </tr>
                 <tr>
