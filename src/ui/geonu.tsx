@@ -332,94 +332,98 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
           </InputGroup>
         </Form.Group>
           <Table>
-              <tbody>
-                <tr>
-                  <th>Element</th>
-                  <th>Abundance (ng/g)</th>
-                  <th>Radiogenic Heating (TW)</th>
-                </tr>
-                <tr>
-                  <td>{U}</td>
-                  <td>
-                    <Num v={abundance.U238 / ISOTOPIC_NATURAL_ABUNDANCE.U238} p={1} func={(v) => v * 1e11} />
-                  </td>
-                  <td>
-                    <Num v={heating.U238 + heating.U235} p={3} func={(v) => v / 1e12} />
-                  </td>
-                </tr>
-                <tr>
-                  <td>{Th}</td>
-                  <td>
-                    <Num v={abundance.Th232 / ISOTOPIC_NATURAL_ABUNDANCE.TH232} p={1} func={(v) => v * 1e11} />
-                  </td>
-                  <td>
-                    <Num v={heating.Th232} p={3} func={(v) => v / 1e12} />
-                  </td>
-                </tr>
-                <tr>
-                  <td>{K}</td>
-                  <td>
-                    <Num v={abundance.K40beta / ISOTOPIC_NATURAL_ABUNDANCE.K40} p={1} func={(v) => v * 1e11} />
-                  </td>
-                  <td>
-                    <Num v={heating.K40Beta + heating.K40Ec} p={3} func={(v) => v / 1e12} />
-                  </td>
-                </tr>
-              </tbody>
+            <thead>
+              <tr>
+                <th>Element</th>
+                <th>Abundance (ng/g)</th>
+                <th>Radiogenic Heating (TW)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{U}</td>
+                <td>
+                  <Num v={abundance.U238 / ISOTOPIC_NATURAL_ABUNDANCE.U238} p={1} func={(v) => v * 1e11} />
+                </td>
+                <td>
+                  <Num v={heating.U238 + heating.U235} p={3} func={(v) => v / 1e12} />
+                </td>
+              </tr>
+              <tr>
+                <td>{Th}</td>
+                <td>
+                  <Num v={abundance.Th232 / ISOTOPIC_NATURAL_ABUNDANCE.TH232} p={1} func={(v) => v * 1e11} />
+                </td>
+                <td>
+                  <Num v={heating.Th232} p={3} func={(v) => v / 1e12} />
+                </td>
+              </tr>
+              <tr>
+                <td>{K}</td>
+                <td>
+                  <Num v={abundance.K40beta / ISOTOPIC_NATURAL_ABUNDANCE.K40} p={1} func={(v) => v * 1e11} />
+                </td>
+                <td>
+                  <Num v={heating.K40Beta + heating.K40Ec} p={3} func={(v) => v / 1e12} />
+                </td>
+              </tr>
+            </tbody>
           </Table>
           <Table>
-              <tbody>
-                <tr>
-                  <th>Nuclide</th>
-                  <th>Abundance (ng/g)</th>
-                  <th>Radiogenic Heating (TW)</th>
-                </tr>
-                <tr>
-                  <td>{U238}</td>
-                  <td>
-                    <Num v={abundance.U238} p={1} func={(v) => v * 1e9} />
-                  </td>
-                  <td>
-                    <Num v={heating.U238} p={3} func={(v) => v / 1e12} />
-                  </td>
-                </tr>
-                <tr>
-                  <td>{U235}</td>
-                  <td>
-                    <Num v={abundance.U235} p={3} func={(v) => v * 1e9} />
-                  </td>
-                  <td>
-                    <Num v={heating.U235} p={3} func={(v) => v / 1e12} />
-                  </td>
-                </tr>
-                <tr>
-                  <td>{Th232}</td>
-                  <td>
-                    <Num v={abundance.Th232} p={1} func={(v) => v * 1e9} />
-                  </td>
-                  <td>
-                    <Num v={heating.Th232} p={3} func={(v) => v / 1e12} />
-                  </td>
-                </tr>
-                <tr>
-                  <td>{K40}<sub>β</sub></td>
-                  <td>
-                    <Num v={abundance.K40beta} p={1} func={(v) => v * 1e9} />
-                  </td>
-                  <td>
-                    <Num v={heating.K40Beta} p={3} func={(v) => v / 1e12} />
-                  </td>
-                </tr>
-                <tr>
-                  <td>{K40}<sub>ec</sub></td>
-                  <td>
-                    <Num v={abundance.K40ec} p={1} func={(v) => v * 1e9} />
-                  </td>
-                  <td>
-                    <Num v={heating.K40Ec} p={3} func={(v) => v / 1e12} />
-                  </td>
-                </tr>
-              </tbody>
+            <thead>
+              <tr>
+                <th>Nuclide</th>
+                <th>Abundance (ng/g)</th>
+                <th>Radiogenic Heating (TW)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{U238}</td>
+                <td>
+                  <Num v={abundance.U238} p={1} func={(v) => v * 1e9} />
+                </td>
+                <td>
+                  <Num v={heating.U238} p={3} func={(v) => v / 1e12} />
+                </td>
+              </tr>
+              <tr>
+                <td>{U235}</td>
+                <td>
+                  <Num v={abundance.U235} p={3} func={(v) => v * 1e9} />
+                </td>
+                <td>
+                  <Num v={heating.U235} p={3} func={(v) => v / 1e12} />
+                </td>
+              </tr>
+              <tr>
+                <td>{Th232}</td>
+                <td>
+                  <Num v={abundance.Th232} p={1} func={(v) => v * 1e9} />
+                </td>
+                <td>
+                  <Num v={heating.Th232} p={3} func={(v) => v / 1e12} />
+                </td>
+              </tr>
+              <tr>
+                <td>{K40}<sub>β</sub></td>
+                <td>
+                  <Num v={abundance.K40beta} p={1} func={(v) => v * 1e9} />
+                </td>
+                <td>
+                  <Num v={heating.K40Beta} p={3} func={(v) => v / 1e12} />
+                </td>
+              </tr>
+              <tr>
+                <td>{K40}<sub>ec</sub></td>
+                <td>
+                  <Num v={abundance.K40ec} p={1} func={(v) => v * 1e9} />
+                </td>
+                <td>
+                  <Num v={heating.K40Ec} p={3} func={(v) => v / 1e12} />
+                </td>
+              </tr>
+            </tbody>
           </Table>
         Total Mantle Radiogenic Heating: <Num v={heating.U238 + heating.U235 + heating.Th232 + heating.K40Beta + heating.K40Ec} p={3} func={(v) => v / 1e12}/> TW assumes homogeneous element concentrations
         <br /> •<small>Earth mantle mass (<Num v={MANTLE_MASS} p={4} func={(v) => v * 1e-24} /> x10<sup>24</sup> kg) and geophysical response (<Num v={MANTLE_GEOPHYSICAL_RESPONSE} p={4} func={(v) => v * 1e-3} /> x10<sup>3</sup> kg cm<sup>-2</sup>)</small>
