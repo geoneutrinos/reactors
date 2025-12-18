@@ -45,7 +45,8 @@ interface GeoAbundance {
   U238: number;
   U235: number;
   Th232: number;
-  K40: number;
+  K40beta: number;
+  K40ec: number;
 }
 
 interface GeoHeating {
@@ -302,9 +303,9 @@ export function geoSpectrum(
 
   const KMantleFlux = U238flux * KURatio * KbetaMantleFluxIsotopicScale;
 
-  const mantleAbundanceK40 = KMantleFlux / ISOTOPIC_NEUTRINO_LUMINOSITY.K40beta / mantleGeophysicalResponse
+  const mantleAbundanceK40beta = KMantleFlux / ISOTOPIC_NEUTRINO_LUMINOSITY.K40beta / mantleGeophysicalResponse
 
-  const mantleHeatingK40beta = mantleAbundanceK40 * ISOTOPIC_DECAY_HEATING.K40beta * mantleMass
+  const mantleHeatingK40beta = mantleAbundanceK40beta * ISOTOPIC_DECAY_HEATING.K40beta * mantleMass
 
   const KecMantleFluxIsotopicScale =
     (ISOTOPIC_NEUTRINO_LUMINOSITY.K40ec / ISOTOPIC_NEUTRINO_LUMINOSITY.U238) *
@@ -312,7 +313,9 @@ export function geoSpectrum(
 
   const KecMantleFlux = U238flux * KURatio * KecMantleFluxIsotopicScale;
 
-  const mantleHeatingK40ec = (KecMantleFlux / ISOTOPIC_NEUTRINO_LUMINOSITY.K40ec / mantleGeophysicalResponse) * ISOTOPIC_DECAY_HEATING.K40ec * mantleMass
+  const mantleAbundanceK40ec = KecMantleFlux / ISOTOPIC_NEUTRINO_LUMINOSITY.K40ec / mantleGeophysicalResponse
+
+  const mantleHeatingK40ec = mantleAbundanceK40ec * ISOTOPIC_DECAY_HEATING.K40ec * mantleMass
   
   const {
     crustSpectrum: crustK40BetaSpectrum,
@@ -357,7 +360,8 @@ export function geoSpectrum(
       U238: mantleAbundanceU238,
       U235: mantleAbundanceU235,
       Th232: mantleAbundanceTh232,
-      K40: mantleAbundanceK40,
+      K40beta: mantleAbundanceK40beta,
+      K40ec: mantleAbundanceK40ec,
     },
     heating: {
       U238: mantleHeatingU238,
