@@ -315,7 +315,7 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
         <Form.Group controlId="KURatio">
           <InputGroup>
             <Form.Label>
-              K/U Ratio {geoFluxRatios.KURatio.toExponential(1)}
+              K/U Ratio {geoFluxRatios.KURatio.toExponential(2)}
             </Form.Label>
             <Form.Control
               value={geoFluxRatios.KURatio}
