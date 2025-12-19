@@ -41,6 +41,14 @@ interface GeoUncertainty {
   K40Beta: number;
 }
 
+interface GeoAbundance {
+  U238: number;
+  U235: number;
+  Th232: number;
+  K40beta: number;
+  K40ec: number;
+}
+
 interface GeoHeating {
   U238: number;
   U235: number;
@@ -73,6 +81,7 @@ interface GeoInterface {
   crust: GeoCrustMantle;
   mantle: GeoCrustMantle;
   total: GeoCrustMantle;
+  abundance: GeoAbundance;
   heating: GeoHeating;
 }
 
@@ -242,7 +251,9 @@ export function geoSpectrum(
     crossSection
   );
 
-  const mantleHeatingU238 = (U238flux / ISOTOPIC_NEUTRINO_LUMINOSITY.U238 / mantleGeophysicalResponse) * ISOTOPIC_DECAY_HEATING.U238 * mantleMass
+  const mantleAbundanceU238 = U238flux / ISOTOPIC_NEUTRINO_LUMINOSITY.U238 / mantleGeophysicalResponse
+
+  const mantleHeatingU238 = mantleAbundanceU238 * ISOTOPIC_DECAY_HEATING.U238 * mantleMass
 
   const U235FluxIsotopicScale =
     (ISOTOPIC_NEUTRINO_LUMINOSITY.U235 / ISOTOPIC_NEUTRINO_LUMINOSITY.U238) *
@@ -250,7 +261,9 @@ export function geoSpectrum(
 
   const U235MantleFlux = U238flux * U235FluxIsotopicScale;
 
-  const mantleHeatingU235 = (U235MantleFlux / ISOTOPIC_NEUTRINO_LUMINOSITY.U235 / mantleGeophysicalResponse) * ISOTOPIC_DECAY_HEATING.U235 * mantleMass
+  const mantleAbundanceU235 = U235MantleFlux / ISOTOPIC_NEUTRINO_LUMINOSITY.U235 / mantleGeophysicalResponse
+
+  const mantleHeatingU235 = mantleAbundanceU235 * ISOTOPIC_DECAY_HEATING.U235 * mantleMass
 
   const {
     crustSpectrum: crustU235Spectrum,
@@ -269,8 +282,9 @@ export function geoSpectrum(
 
   const ThMantleFlux = U238flux * ThURatio * ThMantleFluxIsotopicScale;
 
-  const mantleHeatingTh232 = (ThMantleFlux / ISOTOPIC_NEUTRINO_LUMINOSITY.TH232 / mantleGeophysicalResponse) * ISOTOPIC_DECAY_HEATING.TH232 * mantleMass
+  const mantleAbundanceTh232 = ThMantleFlux / ISOTOPIC_NEUTRINO_LUMINOSITY.TH232 / mantleGeophysicalResponse
 
+  const mantleHeatingTh232 = mantleAbundanceTh232 * ISOTOPIC_DECAY_HEATING.TH232 * mantleMass
 
   const {
     crustSpectrum: crustTh232Spectrum,
@@ -283,21 +297,25 @@ export function geoSpectrum(
     crossSection
   );
 
-  const KMantleFluxIsotopicScale =
-    (ISOTOPIC_NEUTRINO_LUMINOSITY.K40 / ISOTOPIC_NEUTRINO_LUMINOSITY.U238) *
+  const KbetaMantleFluxIsotopicScale =
+    (ISOTOPIC_NEUTRINO_LUMINOSITY.K40beta / ISOTOPIC_NEUTRINO_LUMINOSITY.U238) *
     (ISOTOPIC_NATURAL_ABUNDANCE.K40 / ISOTOPIC_NATURAL_ABUNDANCE.U238);
 
-  const KMantleFlux = U238flux * KURatio * KMantleFluxIsotopicScale;
+  const KMantleFlux = U238flux * KURatio * KbetaMantleFluxIsotopicScale;
 
-  const mantleHeatingK40 = (KMantleFlux / ISOTOPIC_NEUTRINO_LUMINOSITY.K40 / mantleGeophysicalResponse) * ISOTOPIC_DECAY_HEATING.K40beta * mantleMass
+  const mantleAbundanceK40beta = KMantleFlux / ISOTOPIC_NEUTRINO_LUMINOSITY.K40beta / mantleGeophysicalResponse
+
+  const mantleHeatingK40beta = mantleAbundanceK40beta * ISOTOPIC_DECAY_HEATING.K40beta * mantleMass
 
   const KecMantleFluxIsotopicScale =
-    (ISOTOPIC_NEUTRINO_LUMINOSITY.K40EC / ISOTOPIC_NEUTRINO_LUMINOSITY.U238) *
+    (ISOTOPIC_NEUTRINO_LUMINOSITY.K40ec / ISOTOPIC_NEUTRINO_LUMINOSITY.U238) *
     (ISOTOPIC_NATURAL_ABUNDANCE.K40 / ISOTOPIC_NATURAL_ABUNDANCE.U238);
 
   const KecMantleFlux = U238flux * KURatio * KecMantleFluxIsotopicScale;
 
-  const mantleHeatingK40ec = (KecMantleFlux / ISOTOPIC_NEUTRINO_LUMINOSITY.K40EC / mantleGeophysicalResponse) * ISOTOPIC_DECAY_HEATING.K40ec * mantleMass
+  const mantleAbundanceK40ec = KecMantleFlux / ISOTOPIC_NEUTRINO_LUMINOSITY.K40ec / mantleGeophysicalResponse
+
+  const mantleHeatingK40ec = mantleAbundanceK40ec * ISOTOPIC_DECAY_HEATING.K40ec * mantleMass
   
   const {
     crustSpectrum: crustK40BetaSpectrum,
@@ -338,11 +356,18 @@ export function geoSpectrum(
     mantle: mantle,
     crust: crust,
     total: total,
+    abundance: {
+      U238: mantleAbundanceU238,
+      U235: mantleAbundanceU235,
+      Th232: mantleAbundanceTh232,
+      K40beta: mantleAbundanceK40beta,
+      K40ec: mantleAbundanceK40ec,
+    },
     heating: {
       U238: mantleHeatingU238,
       U235: mantleHeatingU235,
       Th232: mantleHeatingTh232,
-      K40Beta: mantleHeatingK40,
+      K40Beta: mantleHeatingK40beta,
       K40Ec: mantleHeatingK40ec,
     }
   };

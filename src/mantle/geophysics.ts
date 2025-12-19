@@ -12,8 +12,8 @@ import {
   averageNeutrinoEnergy238U, 
   averageNeutrinoEnergy235U, 
   averageNeutrinoEnergy232Th, 
-  averageNeutrinoEnergy40K, 
-  averageNeutrinoEnergy40KEC, 
+  averageNeutrinoEnergy40Kbeta, 
+  averageNeutrinoEnergy40Kec, 
 } from "../antineutrino-spectrum";
 
 import { 
@@ -44,11 +44,11 @@ export const ISOTOPIC_DECAY_HEATING = {
   // J kg-1 s-1
   K40beta:
     (Math.log(2) / ISOTOPIC_HALF_LIFE.K40) *
-    (((ISOTOPIC_DECAY_ENERGIES.K40 - averageNeutrinoEnergy40K) * ELEMENTARY_CHARGE * 1e6 * K40_BRANCH_RATIO.beta) /
+    (((ISOTOPIC_DECAY_ENERGIES.K40beta - averageNeutrinoEnergy40Kbeta) * ELEMENTARY_CHARGE * 1e6 * K40_BRANCH_RATIO.beta) /
       (K40.relative_atomic_mass * AU)),
   K40ec:
     (Math.log(2) / ISOTOPIC_HALF_LIFE.K40) *
-    (((ISOTOPIC_DECAY_ENERGIES.K40EC - averageNeutrinoEnergy40KEC) * ELEMENTARY_CHARGE * 1e6 * K40_BRANCH_RATIO.ec) /
+    (((ISOTOPIC_DECAY_ENERGIES.K40ec - averageNeutrinoEnergy40Kec) * ELEMENTARY_CHARGE * 1e6 * K40_BRANCH_RATIO.ec) /
       (K40.relative_atomic_mass * AU)),
   TH232:
     (Math.log(2) / ISOTOPIC_HALF_LIFE.TH232) *

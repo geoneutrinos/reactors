@@ -331,7 +331,11 @@ export function StatsPanel({ cores, geo, reactorLF}) {
           </small>
           <br />
           • <small> 
-            Uncertainty shown for <i>R</i><sub>geo</sub> obtains from the crust and mantle signal uncertainties added in quadrature
+            Uncertainty shown for <i>R</i><sub>geo</sub> obtains from the crust and mantle signal uncertainties (see GeoNu tab) added in quadrature
+          </small>
+          <br />
+          • <small> 
+            Mantle signal is computed from user-settable values (see Mantle Fluxes card on GeoNu tab)
           </small>
         </div>
       <hr />
