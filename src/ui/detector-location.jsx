@@ -45,6 +45,8 @@ export const DetectorLocationPane = ({ detector, setDetector }) => {
       return;
     }
     if (key === "lon" && (parsed < -180 || parsed > 180)) {
+      if (parsed < -180) {parsed = parsed + 360};
+      if (parsed > 180) {parsed = parsed - 360};
       return;
     }
     if (key === "elevation" && (parsed < -12000 || parsed > 12000)) {
