@@ -56,6 +56,22 @@ export const DetectorLocationPane = ({ detector, setDetector }) => {
     }
   };
 
+  const UIsetLon = (event) => {
+    const value = event.target.value;
+    let detectorLon = parseFloat(value);
+    if (isNaN(detectorLon)) {
+      setDetectorLon(value);
+    } else {
+      if (detectorLon > 180) {
+        detectorLon = detectorLon - 360;
+      }
+      if (detLon < -180) {
+        detectorLon = detectorLon + 360;
+      }
+      setDetectorLon(detectorLon);
+    }
+  };
+  
   const setDetectorMode = (event) => {
     const value = event.currentTarget.value;
     let newDetector = { current: value };
@@ -127,7 +143,7 @@ export const DetectorLocationPane = ({ detector, setDetector }) => {
           <InputGroup>
             <Form.Control
               value={internalDetector.lon}
-              onChange={(event) => checkAndSet("lon", event.target.value)}
+              onChange={UIsetLon}
               type="number"
               min="-180"
               max="180"
