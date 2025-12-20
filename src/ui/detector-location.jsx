@@ -106,7 +106,7 @@ export const DetectorLocationPane = ({ detector, setDetector }) => {
           </Form.Control>
         </Form.Group>
         <Form.Group controlId="detectorLat">
-          <Form.Label>Latitude</Form.Label>
+          <Form.Label>Latitude <small> (-90 to 90) </small> </Form.Label>
           <InputGroup>
             <Form.Control
               value={internalDetector.lat}
@@ -123,7 +123,7 @@ export const DetectorLocationPane = ({ detector, setDetector }) => {
           </InputGroup>
         </Form.Group>
         <Form.Group controlId="detectorLon">
-          <Form.Label>Longitude</Form.Label>
+          <Form.Label>Longitude <small> (-180 to 180) </small> </Form.Label>
           <InputGroup>
             <Form.Control
               value={internalDetector.lon}
@@ -140,7 +140,7 @@ export const DetectorLocationPane = ({ detector, setDetector }) => {
           </InputGroup>
         </Form.Group>
         <Form.Group controlId="detectorElevation">
-          <Form.Label>Elevation</Form.Label>
+          <Form.Label>Elevation <small> (-12000 to 12000) </small> </Form.Label>
           <InputGroup>
             <Form.Control
               value={internalDetector.elevation}
