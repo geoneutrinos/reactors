@@ -277,6 +277,7 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
     kRangeParams.min = 0
     kRangeParams.max = 6e3
   }
+
   return (
     <Card>
       <Card.Header>Mantle Fluxes <small>(Nuclide Abundance; Radiogenic Heating)</small></Card.Header>
@@ -435,7 +436,8 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
         <br /> •<small>Moon mantle mass (<Num v={LUNAR_MANTLE_MASS} p={4} func={(v) => v * 1e-22} /> x10<sup>22</sup> kg) and geophysical response (<Num v={LUNAR_MANTLE_GEOPHYSICAL_RESPONSE} p={4} func={(v) => v * 1e-3} /> x10<sup>3</sup> kg cm<sup>-2</sup>)</small>
         <br /> <small>A. Briaud <i>et al.</i> (2023), <i>The lunar solid inner core and the mantle overturn</i>, Nature 617, 743-746</small>
         <br /> •<small>The settable <sup>238</sup>U mantle flux does not include the average oscillation survival probability ({averageSurvivalProbabilityNormal.toFixed(3)}) </small>
-          <Table>
+        <br />
+        <Table>
             <thead>
               <tr>
                 <th>Reservoir</th>
@@ -447,10 +449,10 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
               <tr>
                 <td>Mantle</td>
                 <td>
-                  Value calculated with layerMasses
+                  <Num v={MANTLE_MASS} p={4} func={(v) => v * 1e-24} />
                 </td>
                 <td>
-                  Value calculated with layerGeoResponse
+                  <Num v={MANTLE_GEOPHYSICAL_RESPONSE} p={4} func={(v) => v * 1e-3} />
                 </td>
               </tr>
               <tr>
