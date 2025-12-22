@@ -278,6 +278,12 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
     kRangeParams.max = 6e3
   }
 
+  const enrichedMantleThickness = 300;
+  const bottomMantleRadius = 3480;
+  const topMantleRadius = 6291;
+  const enrichedMantleMass = layerMasses.slice( bottomMantleRadius * 10, (bottomMantleRadius + enrichedMantleThickness) * 10 ).reduce((massSum, currentMass)=>massSum + currentMass); 
+  const depletedMantleMass = layerMasses.slice( (bottomMantleRadius + enrichedMantleThickness) * 10, topMantleRadius * 10 ).reduce((massSum, currentMass)=>massSum + currentMass); 
+
   return (
     <Card>
       <Card.Header>Mantle Fluxes <small>(Nuclide Abundance; Radiogenic Heating)</small></Card.Header>
@@ -458,7 +464,7 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
               <tr>
                 <td>Depleted Mantle</td>
                 <td>
-                  Value calculated with layerMasses
+                  <Num v={depletedMantleMass} p={4} func={(v) => v * 1e-24} />
                 </td>
                 <td>
                   Value calculated with layerGeoResponse
@@ -467,7 +473,7 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
               <tr>
                 <td>Enriched Mantle</td>
                 <td>
-                  Value calculated with layerMasses
+                  <Num v={enrichedMantleMass} p={4} func={(v) => v * 1e-24} />
                 </td>
                 <td>
                   Value calculated with layerGeoResponse
