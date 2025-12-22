@@ -29,8 +29,12 @@ import {
   LUNAR_MANTLE_MASS,
 } from "../mantle/geophysics";
 
-const {K40, Th232, U235, U238} = ElementsUI
+import {
+  layerMasses,
+  layerGeoResponse,
+} from "../mantle/PREM";
 
+const {K40, Th232, U235, U238} = ElementsUI
 
 interface GeoElements {
   K40: number;
@@ -431,6 +435,45 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
         <br /> •<small>Moon mantle mass (<Num v={LUNAR_MANTLE_MASS} p={4} func={(v) => v * 1e-22} /> x10<sup>22</sup> kg) and geophysical response (<Num v={LUNAR_MANTLE_GEOPHYSICAL_RESPONSE} p={4} func={(v) => v * 1e-3} /> x10<sup>3</sup> kg cm<sup>-2</sup>)</small>
         <br /> <small>A. Briaud <i>et al.</i> (2023), <i>The lunar solid inner core and the mantle overturn</i>, Nature 617, 743-746</small>
         <br /> •<small>The settable <sup>238</sup>U mantle flux does not include the average oscillation survival probability ({averageSurvivalProbabilityNormal.toFixed(3)}) </small>
+          </Table>
+          <Table>
+            <thead>
+              <tr>
+                <th>Reservoir</th>
+                <th>Mass (10<sup>24</sup>kg)</th>
+                <th>Geological Response (10<sup>3</sup>kg cm<sup>-2</sup>)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Mantle</td>
+                <td>
+                  Value calculated with layerMasses
+                </td>
+                <td>
+                  Value calculated with layerGeoResponse
+                </td>
+              </tr>
+              <tr>
+                <td>Depleted Mantle</td>
+                <td>
+                  Value calculated with layerMasses
+                </td>
+                <td>
+                  Value calculated with layerGeoResponse
+                </td>
+              </tr>
+              <tr>
+                <td>Enriched Mantle</td>
+                <td>
+                  Value calculated with layerMasses
+                </td>
+                <td>
+                  Value calculated with layerGeoResponse
+                </td>
+              </tr>
+            </tbody>
+          </Table>
       </Card.Body>
     </Card>
   );
