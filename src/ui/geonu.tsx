@@ -281,8 +281,12 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
   const enrichedMantleThickness = 300;
   const bottomMantleRadius = 3480;
   const topMantleRadius = 6291;
+  const totalMantleMass = layerMasses.slice( bottomMantleRadius * 10, topMantleRadius * 10 ).reduce((massSum, currentMass)=>massSum + currentMass); 
   const enrichedMantleMass = layerMasses.slice( bottomMantleRadius * 10, (bottomMantleRadius + enrichedMantleThickness) * 10 ).reduce((massSum, currentMass)=>massSum + currentMass); 
   const depletedMantleMass = layerMasses.slice( (bottomMantleRadius + enrichedMantleThickness) * 10, topMantleRadius * 10 ).reduce((massSum, currentMass)=>massSum + currentMass); 
+  const totalMantleGeoResponse = layerGeoResponse.slice( bottomMantleRadius * 10, topMantleRadius * 10 ).reduce((massSum, currentMass)=>massSum + currentMass); 
+  const enrichedMantleGeoResponse = layerGeoResponse.slice( bottomMantleRadius * 10, (bottomMantleRadius + enrichedMantleThickness) * 10 ).reduce((massSum, currentMass)=>massSum + currentMass); 
+  const depletedMantleGeoResponse = layerGeoResponse.slice( (bottomMantleRadius + enrichedMantleThickness) * 10, topMantleRadius * 10 ).reduce((massSum, currentMass)=>massSum + currentMass); 
 
   return (
     <Card>
@@ -455,28 +459,28 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
               <tr>
                 <td>Mantle</td>
                 <td>
-                  <Num v={MANTLE_MASS} p={4} func={(v) => v * 1e-24} />
+                  <Num v={totalMantleMass} p={4} func={(v) => v * 1e-27} />
                 </td>
                 <td>
-                  <Num v={MANTLE_GEOPHYSICAL_RESPONSE} p={4} func={(v) => v * 1e-3} />
+                  <Num v={totalMantleGeoResponse} p={4} func={(v) => v * 1e-3} />
                 </td>
               </tr>
               <tr>
                 <td>Depleted Mantle</td>
                 <td>
-                  <Num v={depletedMantleMass} p={4} func={(v) => v * 1e-24} />
+                  <Num v={depletedMantleMass} p={4} func={(v) => v * 1e-27} />
                 </td>
                 <td>
-                  Value calculated with layerGeoResponse
+                  <Num v={depletedMantleGeoResponse} p={4} func={(v) => v * 1e-3} />
                 </td>
               </tr>
               <tr>
                 <td>Enriched Mantle</td>
                 <td>
-                  <Num v={enrichedMantleMass} p={4} func={(v) => v * 1e-24} />
+                  <Num v={enrichedMantleMass} p={4} func={(v) => v * 1e-27} />
                 </td>
                 <td>
-                  Value calculated with layerGeoResponse
+                  <Num v={enrichedMantleGeoResponse} p={4} func={(v) => v * 1e-3} />
                 </td>
               </tr>
             </tbody>
