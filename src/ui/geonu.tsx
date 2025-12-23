@@ -254,6 +254,8 @@ export const CrustFlux = ({ includeCrust, setIncludeCrust }) => {
 };
 
 export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody}) => {
+  const [thickness, setThickness] = useState(300.0);
+
   const {abundance} = geo;
   const {heating} = geo;
 
@@ -278,6 +280,35 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
     kRangeParams.max = 6e3
   }
 
+  const UIsetThickness = (event) => {
+    const value = event.target.value;
+    let thickness = parseFloat(value);
+    if (isNaN(thickness)) {
+      setThickness(value);
+    } else {
+      if (thickness < 0) {
+        thickness = 0;
+      }
+      setThickness(thickness);
+    }
+  };
+
+  const UIsetDepletion = (event) => {
+    const value = event.target.value;
+    let depletion = parseFloat(value);
+    if (isNaN(depletion)) {
+      setDepletion(value);
+    } else {
+      if (depletion < 0) {
+        depletion = 0;
+      }
+      setDepletion(depletion);
+    }
+  };
+  
+  let UIThickness = thickness;
+  let UIDepletion = depletion;
+  
   const enrichedMantleThickness = 300;
   const depletionFactor = 0.7;
 
@@ -454,7 +485,40 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
         <br /> <small>A. Briaud <i>et al.</i> (2023), <i>The lunar solid inner core and the mantle overturn</i>, Nature 617, 743-746</small>
         <br /> •<small>The settable <sup>238</sup>U mantle flux does not include the average oscillation survival probability ({averageSurvivalProbabilityNormal.toFixed(3)}) </small>
         <br />
-          <Table>
+        <Row>
+          <Col>
+            <Form.Group controlId="thickness">
+              <Form.Label>
+                Enriched Mantle Thickness (km)
+              </Form.Label>
+              <InputGroup>
+                <Form.Control
+                  onChange={UIsetThickness}
+                  type="number"
+                  step="10"
+                  value={UIThickness}
+                />
+              </InputGroup>
+            </Form.Group>
+          </Col>
+          <Col>
+            <Form.Group controlId="depletion">
+              <Form.Label>
+                Depletion Factor
+              </Form.Label>
+              <InputGroup>
+                <Form.Control
+                  onChange={UIsetDepletion}
+                  type="number"
+                  step="0.1"
+                  value={UIDepletion}
+                />
+              </InputGroup>
+            </Form.Group>
+          </Col>
+        </Row>
+
+        <Table>
             <thead>
               <tr>
                 <th>Reservoir</th>
