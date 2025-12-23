@@ -45,8 +45,8 @@ const geoResponseFunc = (radBot, radTop) => {
   return layerGeoResponse.slice( radBot * 10, radTop * 10 ).reduce((responseSum, currentResponse)=>responseSum + currentResponse)
 }
 
-const uniformMantleMass = layerMasses.slice( bottomMantleRadius * 10, topMantleRadius * 10 ).reduce((massSum, currentMass)=>massSum + currentMass); 
-const uniformMantleGeoResponse = layerGeoResponse.slice( bottomMantleRadius * 10, topMantleRadius * 10 ).reduce((massSum, currentMass)=>massSum + currentMass);
+const uniformMantleMass = massFunc(bottomMantleRadius, topMantleRadius);
+const uniformMantleGeoResponse = geoResponseFunc(bottomMantleRadius, topMantleRadius);
 
 const {K40, Th232, U235, U238} = ElementsUI
 
