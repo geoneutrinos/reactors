@@ -315,7 +315,7 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
   const UIsetDepletion = (event) => {
     const value = event.target.value;
     let depletion_factor = parseFloat(value);
-    if (isNaN(depletion)) {
+    if (isNaN(depletion_factor)) {
       setDepletion(value);
     } else {
       if (depletion_factor < 0) {
