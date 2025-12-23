@@ -254,8 +254,8 @@ export const CrustFlux = ({ includeCrust, setIncludeCrust }) => {
 };
 
 export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody}) => {
-  const [thickness, setThickness] = useState(0);
-  const [depletion, setDepletion] = useState(0);
+  const [thickness, setThickness] = useState(0.0);
+  const [depletion, setDepletion] = useState(0.0);
 
   const {abundance} = geo;
   const {heating} = geo;
@@ -306,24 +306,26 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
       setDepletion(depletion);
     }
   };
-  
-  let UIThickness = thickness;
-  let UIDepletion = depletion;
-  
+    
   const bottomMantleRadius = 3480;
   const topMantleRadius = 6291;
   const uniformMantleMass = layerMasses.slice( bottomMantleRadius * 10, topMantleRadius * 10 ).reduce((massSum, currentMass)=>massSum + currentMass); 
-  const uniformMantleGeoResponse = layerGeoResponse.slice( bottomMantleRadius * 10, topMantleRadius * 10 ).reduce((massSum, currentMass)=>massSum + currentMass); 
+  const uniformMantleGeoResponse = layerGeoResponse.slice( bottomMantleRadius * 10, topMantleRadius * 10 ).reduce((massSum, currentMass)=>massSum + currentMass);
+  const enrichedMantleThickness = 300;
+  const depletionFactor = 0.8;
+  
+  const enrichedMantleMass = layerMasses.slice( bottomMantleRadius * 10, (bottomMantleRadius + enrichedMantleThickness) * 10 ).reduce((massSum, currentMass)=>massSum + currentMass); 
+  const depletedMantleMass = layerMasses.slice( (bottomMantleRadius + enrichedMantleThickness) * 10, topMantleRadius * 10 ).reduce((massSum, currentMass)=>massSum + currentMass); 
+  const enrichedMantleGeoResponse = layerGeoResponse.slice( bottomMantleRadius * 10, (bottomMantleRadius + enrichedMantleThickness) * 10 ).reduce((massSum, currentMass)=>massSum + currentMass); 
+  const depletedMantleGeoResponse = layerGeoResponse.slice( (bottomMantleRadius + enrichedMantleThickness) * 10, topMantleRadius * 10 ).reduce((massSum, currentMass)=>massSum + currentMass);
 
-  let enrichedMantleMass = layerMasses.slice( bottomMantleRadius * 10, (bottomMantleRadius + UIThickness) * 10 ).reduce((massSum, currentMass)=>massSum + currentMass); 
-  let depletedMantleMass = layerMasses.slice( (bottomMantleRadius + UIThickness) * 10, topMantleRadius * 10 ).reduce((massSum, currentMass)=>massSum + currentMass); 
-  let enrichedMantleGeoResponse = layerGeoResponse.slice( bottomMantleRadius * 10, (bottomMantleRadius + UIThickness) * 10 ).reduce((massSum, currentMass)=>massSum + currentMass); 
-  let depletedMantleGeoResponse = layerGeoResponse.slice( (bottomMantleRadius + UIThickness) * 10, topMantleRadius * 10 ).reduce((massSum, currentMass)=>massSum + currentMass);
+  const enrichedMantleMassFraction = enrichedMantleMass / uniformMantleMass;
+  const enrichedMantleGeoResponseFraction = enrichedMantleGeoResponse / uniformMantleGeoResponse;
+  const enrichmentFactor = (1 - (1 - enrichedMantleMassFraction) * depletionFactor) / enrichedMantleMassFraction;
+  const relativeSignal = enrichmentFactor * enrichedMantleGeoResponseFraction + depletionFactor * (1 - enrichedMantleGeoResponseFraction);
 
-  let enrichedMantleMassFraction = enrichedMantleMass / uniformMantleMass;
-  let enrichedMantleGeoResponseFraction = enrichedMantleGeoResponse / uniformMantleGeoResponse;
-  let enrichmentFactor = (1 - (1 - enrichedMantleMassFraction) * UIDepletion) / enrichedMantleMassFraction;
-  let relativeSignal = enrichmentFactor * enrichedMantleGeoResponseFraction + UIDepletion * (1 - enrichedMantleGeoResponseFraction);
+  let UIThickness = thickness;
+  let UIDepletion = depletion;
 
   return (
     <Card>
