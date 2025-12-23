@@ -2,7 +2,7 @@ import { useState, memo } from "react";
 import { sum } from "lodash";
 import { rawAntineutrinoSpectrum } from "../antineutrino-spectrum";
 
-import { Card, Form, InputGroup, Table } from "react-bootstrap";
+import { Card, Form, InputGroup, Table, Row, Col } from "react-bootstrap";
 import { Num } from ".";
 import { NeutrinoType } from "../physics/neutrino-cross-section";
 import { getTargetParamsCEvNS } from "../supernova";
