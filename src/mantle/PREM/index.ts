@@ -154,10 +154,10 @@ const AK135F = [
 [6371.00, 0.0000,  0.0000],
 ]
 
-const layers = 63713;
+const layers = 63710;
 const maxRadius = 6371;
 const maxRadiusCubed = maxRadius**3;
-const binWidth = maxRadius / (layers - 3);
+const binWidth = maxRadius / (layers);
 const offset = binWidth * 0.5;
 const preFactor = 4 * Math.PI * 1e15 / 3; //1e5 cm/km
 
