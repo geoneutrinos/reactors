@@ -458,36 +458,36 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
             <thead>
               <tr>
                 <th>Reservoir</th>
-                <th>Mass (10<sup>24</sup>kg)</th>
-                <th>Geological Response (10<sup>3</sup>kg cm<sup>-2</sup>)</th>
+                <th>Mass (10<sup>24</sup> kg)</th>
+                <th>Geological Response (10<sup>3</sup> kg cm<sup>-2</sup>)</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td>Uniform Mantle</td>
                 <td>
-                  <Num v={uniformMantleMass} p={4} func={(v) => v * 1e-27} />
+                  <Num v={uniformMantleMass} p={3} func={(v) => v * 1e-27} />
                 </td>
                 <td>
-                  <Num v={uniformMantleGeoResponse} p={4} func={(v) => v * 1e-3} />
-                </td>
-              </tr>
-              <tr>
-                <td>Depleted Mantle</td>
-                <td>
-                  <Num v={depletedMantleMass} p={4} func={(v) => v * 1e-27} />
-                </td>
-                <td>
-                  <Num v={depletedMantleGeoResponse} p={4} func={(v) => v * 1e-3} />
+                  <Num v={uniformMantleGeoResponse} p={1} func={(v) => v * 1e-3} />
                 </td>
               </tr>
               <tr>
-                <td>Enriched Mantle</td>
+                <td>Depleted Mantle (DM)</td>
                 <td>
-                  <Num v={enrichedMantleMass} p={4} func={(v) => v * 1e-27} />
+                  <Num v={depletedMantleMass} p={3} func={(v) => v * 1e-27} />
                 </td>
                 <td>
-                  <Num v={enrichedMantleGeoResponse} p={4} func={(v) => v * 1e-3} />
+                  <Num v={depletedMantleGeoResponse} p={1} func={(v) => v * 1e-3} />
+                </td>
+              </tr>
+              <tr>
+                <td>Enriched Mantle (EM)</td>
+                <td>
+                  <Num v={enrichedMantleMass} p={3} func={(v) => v * 1e-27} />
+                </td>
+                <td>
+                  <Num v={enrichedMantleGeoResponse} p={1} func={(v) => v * 1e-3} />
                 </td>
               </tr>
             </tbody>
