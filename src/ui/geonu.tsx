@@ -279,14 +279,21 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
   }
 
   const enrichedMantleThickness = 300;
+  const depletionFactor = 0.7;
+
   const bottomMantleRadius = 3480;
   const topMantleRadius = 6291;
-  const totalMantleMass = layerMasses.slice( bottomMantleRadius * 10, topMantleRadius * 10 ).reduce((massSum, currentMass)=>massSum + currentMass); 
+  const uniformMantleMass = layerMasses.slice( bottomMantleRadius * 10, topMantleRadius * 10 ).reduce((massSum, currentMass)=>massSum + currentMass); 
   const enrichedMantleMass = layerMasses.slice( bottomMantleRadius * 10, (bottomMantleRadius + enrichedMantleThickness) * 10 ).reduce((massSum, currentMass)=>massSum + currentMass); 
   const depletedMantleMass = layerMasses.slice( (bottomMantleRadius + enrichedMantleThickness) * 10, topMantleRadius * 10 ).reduce((massSum, currentMass)=>massSum + currentMass); 
-  const totalMantleGeoResponse = layerGeoResponse.slice( bottomMantleRadius * 10, topMantleRadius * 10 ).reduce((massSum, currentMass)=>massSum + currentMass); 
+  const uniformMantleGeoResponse = layerGeoResponse.slice( bottomMantleRadius * 10, topMantleRadius * 10 ).reduce((massSum, currentMass)=>massSum + currentMass); 
   const enrichedMantleGeoResponse = layerGeoResponse.slice( bottomMantleRadius * 10, (bottomMantleRadius + enrichedMantleThickness) * 10 ).reduce((massSum, currentMass)=>massSum + currentMass); 
-  const depletedMantleGeoResponse = layerGeoResponse.slice( (bottomMantleRadius + enrichedMantleThickness) * 10, topMantleRadius * 10 ).reduce((massSum, currentMass)=>massSum + currentMass); 
+  const depletedMantleGeoResponse = layerGeoResponse.slice( (bottomMantleRadius + enrichedMantleThickness) * 10, topMantleRadius * 10 ).reduce((massSum, currentMass)=>massSum + currentMass);
+
+  const enrichedMantleMassFraction = enrichedMantleMass / uniformMantleMass;
+  const enrichedMantleGeoResponseFraction = enrichedMantleGeoResponse / uniformMantleGeoResponse;
+  const enrichmentFactor = (1 - (1 - enrichedMantleMassFraction) * depletionFactor) / enrichedMantleMassFraction;
+  const relativeSignal = enrichmentFactor * enrichedMantleGeoResponseFraction + depletionFactor * (1 - enrichedMantleGeoResponseFraction);
 
   return (
     <Card>
@@ -440,14 +447,14 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
               </tr>
             </tbody>
           </Table>
-        Total Mantle Radiogenic Heating: <Num v={heating.U238 + heating.U235 + heating.Th232 + heating.K40Beta + heating.K40Ec} p={3} func={(v) => v / 1e12}/> TW assumes homogeneous element concentrations
+        Mantle Radiogenic Heating: <Num v={heating.U238 + heating.U235 + heating.Th232 + heating.K40Beta + heating.K40Ec} p={3} func={(v) => v / 1e12}/> TW assumes homogeneous element concentrations
         <br /> •<small>Earth mantle mass (<Num v={MANTLE_MASS} p={4} func={(v) => v * 1e-24} /> x10<sup>24</sup> kg) and geophysical response (<Num v={MANTLE_GEOPHYSICAL_RESPONSE} p={4} func={(v) => v * 1e-3} /> x10<sup>3</sup> kg cm<sup>-2</sup>)</small>
         <br /> <small>A. M. Dziewonski and D. L. Anderson (1981), <i>Preliminary Reference Earth Model (PREM)</i>, Phys. Earth Planet. Inter. 25, 297-356</small>
         <br /> •<small>Moon mantle mass (<Num v={LUNAR_MANTLE_MASS} p={4} func={(v) => v * 1e-22} /> x10<sup>22</sup> kg) and geophysical response (<Num v={LUNAR_MANTLE_GEOPHYSICAL_RESPONSE} p={4} func={(v) => v * 1e-3} /> x10<sup>3</sup> kg cm<sup>-2</sup>)</small>
         <br /> <small>A. Briaud <i>et al.</i> (2023), <i>The lunar solid inner core and the mantle overturn</i>, Nature 617, 743-746</small>
         <br /> •<small>The settable <sup>238</sup>U mantle flux does not include the average oscillation survival probability ({averageSurvivalProbabilityNormal.toFixed(3)}) </small>
         <br />
-        <Table>
+          <Table>
             <thead>
               <tr>
                 <th>Reservoir</th>
@@ -457,12 +464,12 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
             </thead>
             <tbody>
               <tr>
-                <td>Mantle</td>
+                <td>Uniform Mantle</td>
                 <td>
-                  <Num v={totalMantleMass} p={4} func={(v) => v * 1e-27} />
+                  <Num v={uniformMantleMass} p={4} func={(v) => v * 1e-27} />
                 </td>
                 <td>
-                  <Num v={totalMantleGeoResponse} p={4} func={(v) => v * 1e-3} />
+                  <Num v={uniformMantleGeoResponse} p={4} func={(v) => v * 1e-3} />
                 </td>
               </tr>
               <tr>
@@ -481,6 +488,29 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
                 </td>
                 <td>
                   <Num v={enrichedMantleGeoResponse} p={4} func={(v) => v * 1e-3} />
+                </td>
+              </tr>
+            </tbody>
+          </Table>
+          <Table>
+            <caption>Layered Mantle</caption>
+            <thead>
+              <tr>
+                <th>EM Mass Fraction</th>
+                <th>Enrichment Factor</th>
+                <th>Relative Signal</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <Num v={enrichedMantleMassFraction} p={3} />
+                </td>
+                <td>
+                  <Num v={enrichmentFactor} p={3} />
+                </td>
+                <td>
+                  <Num v={relativeSignal} p={3} />
                 </td>
               </tr>
             </tbody>
