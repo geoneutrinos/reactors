@@ -330,7 +330,7 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
   const enrichedMantleThickness = 300;
   const depletionFactor = 0.8;
   
-  const enrichedMantleMass = layerMasses.slice( bottomMantleRadius * 10, (bottomMantleRadius + enrichedMantleThickness) * 10 ).reduce((massSum, currentMass)=>massSum + currentMass); 
+  let enrichedMantleMass = massFunc(bottomMantleRadius, bottomMantleRadius + enrichedMantleThickness);
   const depletedMantleMass = layerMasses.slice( (bottomMantleRadius + enrichedMantleThickness) * 10, topMantleRadius * 10 ).reduce((massSum, currentMass)=>massSum + currentMass); 
   const enrichedMantleGeoResponse = layerGeoResponse.slice( bottomMantleRadius * 10, (bottomMantleRadius + enrichedMantleThickness) * 10 ).reduce((massSum, currentMass)=>massSum + currentMass); 
   const depletedMantleGeoResponse = layerGeoResponse.slice( (bottomMantleRadius + enrichedMantleThickness) * 10, topMantleRadius * 10 ).reduce((massSum, currentMass)=>massSum + currentMass);
