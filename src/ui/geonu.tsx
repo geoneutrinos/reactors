@@ -298,17 +298,17 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
 
   const UIsetThickness = (event) => {
     const value = event.target.value;
-    let thickness = parseFloat(value);
-    if (isNaN(thickness)) {
+    let layer_Thickness = parseFloat(value);
+    if (isNaN(layer_Thickness)) {
       setThickness(value);
     } else {
-      if (thickness < 0) {
-        thickness = 0;
+      if (layer_Thickness < 0) {
+        layer_Thickness = 0;
       }
-      if (thickness > (topMantleRadius - bottomMantleRadius)) {
-        thickness = (topMantleRadius - bottomMantleRadius);
+      if (layer_Thickness > (topMantleRadius - bottomMantleRadius)) {
+        layer_Thickness = (topMantleRadius - bottomMantleRadius);
       }
-      setThickness(thickness);
+      setThickness(layer_Thickness);
     }
   };
 
@@ -330,7 +330,7 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
   const enrichedMantleThickness = 300;
   const depletionFactor = 0.8;
   
-  let enrichedMantleMass = massFunc(bottomMantleRadius, bottomMantleRadius + enrichedMantleThickness);
+  let enrichedMantleMass = massFunc(bottomMantleRadius, (bottomMantleRadius + thickness));
   const depletedMantleMass = layerMasses.slice( (bottomMantleRadius + enrichedMantleThickness) * 10, topMantleRadius * 10 ).reduce((massSum, currentMass)=>massSum + currentMass); 
   const enrichedMantleGeoResponse = layerGeoResponse.slice( bottomMantleRadius * 10, (bottomMantleRadius + enrichedMantleThickness) * 10 ).reduce((massSum, currentMass)=>massSum + currentMass); 
   const depletedMantleGeoResponse = layerGeoResponse.slice( (bottomMantleRadius + enrichedMantleThickness) * 10, topMantleRadius * 10 ).reduce((massSum, currentMass)=>massSum + currentMass);
