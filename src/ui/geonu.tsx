@@ -254,6 +254,9 @@ export const CrustFlux = ({ includeCrust, setIncludeCrust }) => {
 };
 
 export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody}) => {
+  const bottomMantleRadius = 3480;
+  const topMantleRadius = 6291;
+  
   const [thickness, setThickness] = useState(0.0);
   const [depletion, setDepletion] = useState(0.0);
 
@@ -290,6 +293,9 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
       if (thickness < 0) {
         thickness = 0;
       }
+      if (thickness > (topMantleRadius - bottomMantleRadius)) {
+        thickness = (topMantleRadius - bottomMantleRadius);
+      }
       setThickness(thickness);
     }
   };
@@ -303,12 +309,13 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
       if (depletion < 0) {
         depletion = 0;
       }
+      if (depletion > 1) {
+        depletion = 1;
+      }
       setDepletion(depletion);
     }
   };
     
-  const bottomMantleRadius = 3480;
-  const topMantleRadius = 6291;
   const uniformMantleMass = layerMasses.slice( bottomMantleRadius * 10, topMantleRadius * 10 ).reduce((massSum, currentMass)=>massSum + currentMass); 
   const uniformMantleGeoResponse = layerGeoResponse.slice( bottomMantleRadius * 10, topMantleRadius * 10 ).reduce((massSum, currentMass)=>massSum + currentMass);
   const enrichedMantleThickness = 300;
