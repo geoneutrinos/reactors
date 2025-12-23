@@ -334,16 +334,15 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
   const enrichedMantleThickness = 300;
   const mantleDepletionFactor = 0.8;
   
-  const enrichedMantleMass = massFunc(bottomMantleRadius, (bottomMantleRadius + enrichedMantleThickness));
+  let enrichedMantleMass = massFunc(bottomMantleRadius, (bottomMantleRadius + layerThickness));
+  let depletedMantleMass = massFunc((bottomMantleRadius + layerThickness), topMantleRadius);
+  let enrichedMantleGeoResponse = geoResponseFunc(bottomMantleRadius, (bottomMantleRadius + layerThickness));
+  let depletedMantleGeoResponse = geoResponseFunc((bottomMantleRadius + layerThickness), topMantleRadius);
 
-  const depletedMantleMass = layerMasses.slice( (bottomMantleRadius + enrichedMantleThickness) * 10, topMantleRadius * 10 ).reduce((massSum, currentMass)=>massSum + currentMass); 
-  const enrichedMantleGeoResponse = layerGeoResponse.slice( bottomMantleRadius * 10, (bottomMantleRadius + enrichedMantleThickness) * 10 ).reduce((massSum, currentMass)=>massSum + currentMass); 
-  const depletedMantleGeoResponse = layerGeoResponse.slice( (bottomMantleRadius + enrichedMantleThickness) * 10, topMantleRadius * 10 ).reduce((massSum, currentMass)=>massSum + currentMass);
-
-  const enrichedMantleMassFraction = enrichedMantleMass / uniformMantleMass;
-  const enrichedMantleGeoResponseFraction = enrichedMantleGeoResponse / uniformMantleGeoResponse;
-  const enrichmentFactor = (1 - (1 - enrichedMantleMassFraction) * mantleDepletionFactor) / enrichedMantleMassFraction;
-  const relativeSignal = enrichmentFactor * enrichedMantleGeoResponseFraction + mantleDepletionFactor * (1 - enrichedMantleGeoResponseFraction);
+  let enrichedMantleMassFraction = enrichedMantleMass / uniformMantleMass;
+  let enrichedMantleGeoResponseFraction = enrichedMantleGeoResponse / uniformMantleGeoResponse;
+  let enrichmentFactor = (1 - (1 - enrichedMantleMassFraction) * depletionFactor) / enrichedMantleMassFraction;
+  let relativeSignal = enrichmentFactor * enrichedMantleGeoResponseFraction + depletionFactor * (1 - enrichedMantleGeoResponseFraction);
 
   return (
     <Card>
