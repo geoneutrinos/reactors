@@ -270,7 +270,7 @@ export const CrustFlux = ({ includeCrust, setIncludeCrust }) => {
 export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody}) => {
   
   const [layerThickness, setThickness] = useState(0.0);
-  const [depletion, setDepletion] = useState(0.0);
+  const [depletionFactor, setDepletion] = useState(0.0);
 
   const {abundance} = geo;
   const {heating} = geo;
@@ -314,25 +314,25 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
 
   const UIsetDepletion = (event) => {
     const value = event.target.value;
-    let depletion = parseFloat(value);
+    let depletion_factor = parseFloat(value);
     if (isNaN(depletion)) {
       setDepletion(value);
     } else {
-      if (depletion < 0) {
-        depletion = 0;
+      if (depletion_factor < 0) {
+        depletion_factor = 0;
       }
-      if (depletion > 1) {
-        depletion = 1;
+      if (depletion_factor > 1) {
+        depletion_factor = 1;
       }
-      setDepletion(depletion);
+      setDepletion(depletion_factor);
     }
   };
 
   let UIThickness = layerThickness;
-  let UIDepletion = depletion;
+  let UIDepletion = depletionFactor;
 
   const enrichedMantleThickness = 300;
-  const depletionFactor = 0.8;
+  const mantleDepletionFactor = 0.8;
   
   const enrichedMantleMass = massFunc(bottomMantleRadius, (bottomMantleRadius + enrichedMantleThickness));
 
@@ -342,8 +342,8 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
 
   const enrichedMantleMassFraction = enrichedMantleMass / uniformMantleMass;
   const enrichedMantleGeoResponseFraction = enrichedMantleGeoResponse / uniformMantleGeoResponse;
-  const enrichmentFactor = (1 - (1 - enrichedMantleMassFraction) * depletionFactor) / enrichedMantleMassFraction;
-  const relativeSignal = enrichmentFactor * enrichedMantleGeoResponseFraction + depletionFactor * (1 - enrichedMantleGeoResponseFraction);
+  const enrichmentFactor = (1 - (1 - enrichedMantleMassFraction) * mantleDepletionFactor) / enrichedMantleMassFraction;
+  const relativeSignal = enrichmentFactor * enrichedMantleGeoResponseFraction + mantleDepletionFactor * (1 - enrichedMantleGeoResponseFraction);
 
   return (
     <Card>
@@ -521,7 +521,7 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
             </Form.Group>
           </Col>
           <Col>
-            <Form.Group controlId="depletion">
+            <Form.Group controlId="depletion_factor">
               <Form.Label>
                 Depletion Factor
               </Form.Label>
@@ -530,7 +530,7 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
                   onChange={UIsetDepletion}
                   type="number"
                   step="0.1"
-                  value={UIDepletion}
+                  value={depletionFactor}
                 />
               </InputGroup>
             </Form.Group>
