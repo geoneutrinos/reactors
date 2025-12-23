@@ -269,7 +269,7 @@ export const CrustFlux = ({ includeCrust, setIncludeCrust }) => {
 
 export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody}) => {
   
-  const [thickness, setThickness] = useState(0.0);
+  const [layerThickness, setThickness] = useState(0.0);
   const [depletion, setDepletion] = useState(0.0);
 
   const {abundance} = geo;
@@ -298,17 +298,17 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
 
   const UIsetThickness = (event) => {
     const value = event.target.value;
-    let layer_Thickness = parseFloat(value);
-    if (isNaN(layer_Thickness)) {
+    let layer_thickness = parseFloat(value);
+    if (isNaN(layer_thickness)) {
       setThickness(value);
     } else {
-      if (layer_Thickness < 0) {
-        layer_Thickness = 0;
+      if (layer_thickness < 0) {
+        layer_thickness = 0;
       }
-      if (layer_Thickness > (topMantleRadius - bottomMantleRadius)) {
-        layer_Thickness = (topMantleRadius - bottomMantleRadius);
+      if (layer_thickness > (topMantleRadius - bottomMantleRadius)) {
+        layer_thickness = (topMantleRadius - bottomMantleRadius);
       }
-      setThickness(layer_Thickness);
+      setThickness(layer_thickness);
     }
   };
 
@@ -328,13 +328,13 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
     }
   };
 
-  let UIThickness = thickness;
+  let UIThickness = layerThickness;
   let UIDepletion = depletion;
 
   const enrichedMantleThickness = 300;
   const depletionFactor = 0.8;
   
-  const enrichedMantleMass = massFunc(bottomMantleRadius, (bottomMantleRadius + UIThickness));
+  const enrichedMantleMass = massFunc(bottomMantleRadius, (bottomMantleRadius + layerThickness));
 
   const depletedMantleMass = layerMasses.slice( (bottomMantleRadius + enrichedMantleThickness) * 10, topMantleRadius * 10 ).reduce((massSum, currentMass)=>massSum + currentMass); 
   const enrichedMantleGeoResponse = layerGeoResponse.slice( bottomMantleRadius * 10, (bottomMantleRadius + enrichedMantleThickness) * 10 ).reduce((massSum, currentMass)=>massSum + currentMass); 
@@ -506,7 +506,7 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
         <br />
         <Row>
           <Col>
-            <Form.Group controlId="thickness">
+            <Form.Group controlId="layer_thickness">
               <Form.Label>
                 Enriched Mantle Thickness (km)
               </Form.Label>
@@ -515,7 +515,7 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
                   onChange={UIsetThickness}
                   type="number"
                   step="10"
-                  value={UIThickness}
+                  value={layerThickness}
                 />
               </InputGroup>
             </Form.Group>
