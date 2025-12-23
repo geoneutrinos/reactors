@@ -555,7 +555,7 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
             </tbody>
           </Table>
           <Table>
-            <caption>Layered Mantle with {enrichedMantleThickness} km thick enriched basement layer and depletion factor {depletionFactor}</caption>
+            <caption>Layered Mantle with {UIThickness} km thick enriched basement layer and depletion factor {UIDepletion}</caption>
             <thead>
               <tr>
                 <th>EM Mass Fraction</th>
