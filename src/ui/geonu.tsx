@@ -34,6 +34,20 @@ import {
   layerGeoResponse,
 } from "../mantle/PREM";
 
+const bottomMantleRadius = 3480;
+const topMantleRadius = 6291;
+
+const massFunc = (radBot, radTop) => {
+  return layerMasses.slice( radBot * 10, radTop * 10 ).reduce((massSum, currentMass)=>massSum + currentMass)
+}
+
+const geoResponseFunc = (radBot, radTop) => {
+  return layerGeoResponse.slice( radBot * 10, radTop * 10 ).reduce((responseSum, currentResponse)=>responseSum + currentResponse)
+}
+
+const uniformMantleMass = layerMasses.slice( bottomMantleRadius * 10, topMantleRadius * 10 ).reduce((massSum, currentMass)=>massSum + currentMass); 
+const uniformMantleGeoResponse = layerGeoResponse.slice( bottomMantleRadius * 10, topMantleRadius * 10 ).reduce((massSum, currentMass)=>massSum + currentMass);
+
 const {K40, Th232, U235, U238} = ElementsUI
 
 interface GeoElements {
@@ -254,8 +268,6 @@ export const CrustFlux = ({ includeCrust, setIncludeCrust }) => {
 };
 
 export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody}) => {
-  const bottomMantleRadius = 3480;
-  const topMantleRadius = 6291;
   
   const [thickness, setThickness] = useState(0.0);
   const [depletion, setDepletion] = useState(0.0);
@@ -315,9 +327,6 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
       setDepletion(depletion);
     }
   };
-    
-  const uniformMantleMass = layerMasses.slice( bottomMantleRadius * 10, topMantleRadius * 10 ).reduce((massSum, currentMass)=>massSum + currentMass); 
-  const uniformMantleGeoResponse = layerGeoResponse.slice( bottomMantleRadius * 10, topMantleRadius * 10 ).reduce((massSum, currentMass)=>massSum + currentMass);
   const enrichedMantleThickness = 300;
   const depletionFactor = 0.8;
   
