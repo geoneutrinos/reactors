@@ -254,7 +254,8 @@ export const CrustFlux = ({ includeCrust, setIncludeCrust }) => {
 };
 
 export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody}) => {
-  const [thickness, setThickness] = useState(300.0);
+  const [thickness, setThickness] = useState(300);
+  const [depletion, setDepletion] = useState(0);
 
   const {abundance} = geo;
   const {heating} = geo;
