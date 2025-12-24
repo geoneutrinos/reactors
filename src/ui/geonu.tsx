@@ -34,9 +34,6 @@ import {
   layerGeoResponse,
 } from "../mantle/PREM";
 
-const bottomMantleRadius = 3480;
-const topMantleRadius = 6291;
-
 const massFunc = (radBot, radTop) => {
   return layerMasses.slice( radBot * 10, radTop * 10 ).reduce((massSum, currentMass)=>massSum + currentMass)
 }
@@ -44,9 +41,6 @@ const massFunc = (radBot, radTop) => {
 const geoResponseFunc = (radBot, radTop) => {
   return layerGeoResponse.slice( radBot * 10, radTop * 10 ).reduce((responseSum, currentResponse)=>responseSum + currentResponse)
 }
-
-const uniformMantleMass = massFunc(bottomMantleRadius, topMantleRadius);
-const uniformMantleGeoResponse = geoResponseFunc(bottomMantleRadius, topMantleRadius);
 
 const {K40, Th232, U235, U238} = ElementsUI
 
@@ -327,22 +321,23 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
       setDepletion(depletion_factor);
     }
   };
+  
+  const bottomMantleRadius = 3480;
+  const topMantleRadius = 6291;
+  const uniformMantleMass = massFunc(bottomMantleRadius, topMantleRadius);
+  const uniformMantleGeoResponse = geoResponseFunc(bottomMantleRadius, topMantleRadius);
 
   let UIThickness = layerThickness;
   let UIDepletion = depletionFactor;
-
-  const enrichedMantleThickness = 300;
-  const mantleDepletionFactor = 0.8;
   
-  let enrichedMantleMass = massFunc(bottomMantleRadius, (bottomMantleRadius + layerThickness));
-  let depletedMantleMass = massFunc((bottomMantleRadius + layerThickness), topMantleRadius);
-  let enrichedMantleGeoResponse = geoResponseFunc(bottomMantleRadius, (bottomMantleRadius + layerThickness));
-  let depletedMantleGeoResponse = geoResponseFunc((bottomMantleRadius + layerThickness), topMantleRadius);
-
+  let enrichedMantleMass = massFunc(bottomMantleRadius, (bottomMantleRadius + UIThickness));
+  let depletedMantleMass = massFunc((bottomMantleRadius + UIThickness), topMantleRadius);
+  let enrichedMantleGeoResponse = geoResponseFunc(bottomMantleRadius, (bottomMantleRadius + UIThickness));
+  let depletedMantleGeoResponse = geoResponseFunc((bottomMantleRadius + UIThickness), topMantleRadius);
   let enrichedMantleMassFraction = enrichedMantleMass / uniformMantleMass;
   let enrichedMantleGeoResponseFraction = enrichedMantleGeoResponse / uniformMantleGeoResponse;
-  let enrichmentFactor = (1 - (1 - enrichedMantleMassFraction) * depletionFactor) / enrichedMantleMassFraction;
-  let relativeSignal = enrichmentFactor * enrichedMantleGeoResponseFraction + depletionFactor * (1 - enrichedMantleGeoResponseFraction);
+  let enrichmentFactor = (1 - (1 - enrichedMantleMassFraction) * UIDepletion) / enrichedMantleMassFraction;
+  let relativeSignal = enrichmentFactor * enrichedMantleGeoResponseFraction + UIDepletion * (1 - enrichedMantleGeoResponseFraction);
 
   return (
     <Card>
