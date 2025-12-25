@@ -263,9 +263,6 @@ export const CrustFlux = ({ includeCrust, setIncludeCrust }) => {
 
 export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody}) => {
   
-  const [layerThickness, setThickness] = useState(0.0);
-  const [depletionFactor, setDepletion] = useState(0.0);
-
   const {abundance} = geo;
   const {heating} = geo;
 
@@ -289,55 +286,6 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
     kRangeParams.min = 0
     kRangeParams.max = 6e3
   }
-
-  const UIsetThickness = (event) => {
-    const value = event.target.value;
-    let layer_thickness = parseFloat(value);
-    if (isNaN(layer_thickness)) {
-      setThickness(value);
-    } else {
-      if (layer_thickness < 0) {
-        layer_thickness = 0;
-      }
-      if (layer_thickness > (topMantleRadius - bottomMantleRadius)) {
-        layer_thickness = (topMantleRadius - bottomMantleRadius);
-      }
-      setThickness(layer_thickness);
-    }
-  };
-
-  const UIsetDepletion = (event) => {
-    const value = event.target.value;
-    let depletion_factor = parseFloat(value);
-    if (isNaN(depletion_factor)) {
-      setDepletion(value);
-    } else {
-      if (depletion_factor < 0) {
-        depletion_factor = 0;
-      }
-      if (depletion_factor > 1) {
-        depletion_factor = 1;
-      }
-      setDepletion(depletion_factor);
-    }
-  };
-  
-  const bottomMantleRadius = 3480;
-  const topMantleRadius = 6291;
-  const uniformMantleMass = massFunc(bottomMantleRadius, topMantleRadius);
-  const uniformMantleGeoResponse = geoResponseFunc(bottomMantleRadius, topMantleRadius);
-
-  let UIThickness = layerThickness;
-  let UIDepletion = depletionFactor;
-  
-  let enrichedMantleMass = massFunc(bottomMantleRadius, (bottomMantleRadius + UIThickness));
-  let depletedMantleMass = massFunc((bottomMantleRadius + UIThickness), topMantleRadius);
-  let enrichedMantleGeoResponse = geoResponseFunc(bottomMantleRadius, (bottomMantleRadius + UIThickness));
-  let depletedMantleGeoResponse = geoResponseFunc((bottomMantleRadius + UIThickness), topMantleRadius);
-  let enrichedMantleMassFraction = enrichedMantleMass / uniformMantleMass;
-  let enrichedMantleGeoResponseFraction = enrichedMantleGeoResponse / uniformMantleGeoResponse;
-  let enrichmentFactor = (1 - (1 - enrichedMantleMassFraction) * UIDepletion) / enrichedMantleMassFraction;
-  let relativeSignal = enrichmentFactor * enrichedMantleGeoResponseFraction + UIDepletion * (1 - enrichedMantleGeoResponseFraction);
 
   return (
     <Card>
@@ -498,6 +446,69 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
         <br /> <small>A. Briaud <i>et al.</i> (2023), <i>The lunar solid inner core and the mantle overturn</i>, Nature 617, 743-746</small>
         <br /> •<small>The settable <sup>238</sup>U mantle flux does not include the average oscillation survival probability ({averageSurvivalProbabilityNormal.toFixed(3)}) </small>
         <br />
+      </Card.Body>
+    </Card>
+  );
+};
+
+export const LayeredMantleFlux = () => {
+  
+  const [layerThickness, setThickness] = useState(0.0);
+  const [depletionFactor, setDepletion] = useState(0.0);
+
+  const UIsetThickness = (event) => {
+    const value = event.target.value;
+    let layer_thickness = parseFloat(value);
+    if (isNaN(layer_thickness)) {
+      setThickness(value);
+    } else {
+      if (layer_thickness < 0) {
+        layer_thickness = 0;
+      }
+      if (layer_thickness > (topMantleRadius - bottomMantleRadius)) {
+        layer_thickness = (topMantleRadius - bottomMantleRadius);
+      }
+      setThickness(layer_thickness);
+    }
+  };
+
+  const UIsetDepletion = (event) => {
+    const value = event.target.value;
+    let depletion_factor = parseFloat(value);
+    if (isNaN(depletion_factor)) {
+      setDepletion(value);
+    } else {
+      if (depletion_factor < 0) {
+        depletion_factor = 0;
+      }
+      if (depletion_factor > 1) {
+        depletion_factor = 1;
+      }
+      setDepletion(depletion_factor);
+    }
+  };
+  
+  const bottomMantleRadius = 3480;
+  const topMantleRadius = 6291;
+  const uniformMantleMass = massFunc(bottomMantleRadius, topMantleRadius);
+  const uniformMantleGeoResponse = geoResponseFunc(bottomMantleRadius, topMantleRadius);
+
+  let UIThickness = layerThickness;
+  let UIDepletion = depletionFactor;
+  
+  let enrichedMantleMass = massFunc(bottomMantleRadius, (bottomMantleRadius + UIThickness));
+  let depletedMantleMass = massFunc((bottomMantleRadius + UIThickness), topMantleRadius);
+  let enrichedMantleGeoResponse = geoResponseFunc(bottomMantleRadius, (bottomMantleRadius + UIThickness));
+  let depletedMantleGeoResponse = geoResponseFunc((bottomMantleRadius + UIThickness), topMantleRadius);
+  let enrichedMantleMassFraction = enrichedMantleMass / uniformMantleMass;
+  let enrichedMantleGeoResponseFraction = enrichedMantleGeoResponse / uniformMantleGeoResponse;
+  let enrichmentFactor = (1 - (1 - enrichedMantleMassFraction) * UIDepletion) / enrichedMantleMassFraction;
+  let relativeSignal = enrichmentFactor * enrichedMantleGeoResponseFraction + UIDepletion * (1 - enrichedMantleGeoResponseFraction);
+
+  return (
+    <Card>
+      <Card.Header>Layered Mantle Fluxes <small>(Enriched Basement Layer)</small></Card.Header>
+      <Card.Body>
         <Row>
           <Col>
             <Form.Group controlId="layer_thickness">
@@ -530,7 +541,6 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
             </Form.Group>
           </Col>
         </Row>
-
         <Table>
             <thead>
               <tr>
