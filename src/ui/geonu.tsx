@@ -513,7 +513,7 @@ export const LayeredMantleFlux = () => {
           <Col>
             <Form.Group controlId="layer_thickness">
               <Form.Label>
-                Enriched Mantle Thickness (km)
+                Enriched Mantle Thickness
               </Form.Label>
               <InputGroup>
                 <Form.Control
@@ -522,6 +522,9 @@ export const LayeredMantleFlux = () => {
                   step="10"
                   value={layerThickness}
                 />
+                <InputGroup.Append>
+                  <InputGroup.Text>km</InputGroup.Text>
+                </InputGroup.Append>
               </InputGroup>
             </Form.Group>
           </Col>
@@ -580,7 +583,7 @@ export const LayeredMantleFlux = () => {
             </tbody>
           </Table>
           <Table>
-            <caption>Layered Mantle with {UIThickness} km thick enriched basement layer and depletion factor {UIDepletion}</caption>
+            <caption>Vary the thickness of a layer enriched in U, Th, K at the base of the mantle and the depletion factor of the abundance of a given nuclide in the depleted mantle relative to the uniform mantle to calculate the surface signal from the nuclide relative to the uniform mantle</caption>
             <thead>
               <tr>
                 <th>EM Mass Fraction</th>
