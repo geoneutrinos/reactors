@@ -462,8 +462,8 @@ export const LayeredMantleFlux = () => {
     if (isNaN(layer_thickness)) {
       setThickness(value);
     } else {
-      if (layer_thickness < 0) {
-        layer_thickness = 0;
+      if (layer_thickness < 0.1) {
+        layer_thickness = 0.1;
       }
       if (layer_thickness > (topMantleRadius - bottomMantleRadius)) {
         layer_thickness = (topMantleRadius - bottomMantleRadius);
