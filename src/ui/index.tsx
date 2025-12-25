@@ -7,7 +7,7 @@ export { DetectorPhysicsPane } from "./detector-physics";
 export { NeutrinoOscillationPane } from "./neutrino-oscillation";
 export { DetectorLocationPane } from "./detector-location";
 export { CoreList } from "./reactors-corelist";
-export { MantleFlux, CrustFlux, GeoNuSpectrumSource, GeoNusPane } from "./geonu";
+export { LayeredMantleFlux, MantleFlux, CrustFlux, GeoNuSpectrumSource, GeoNusPane } from "./geonu";
 export { CalculatorPanel } from "./output-calculator";
 export { AboutPane } from "./about";
 export {
