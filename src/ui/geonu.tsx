@@ -35,11 +35,11 @@ import {
 } from "../mantle/PREM";
 
 const massFunc = (radBot, radTop) => {
-  return layerMasses.slice( radBot * 10, radTop * 10 ).reduce((massSum, currentMass)=>massSum + currentMass)
+  return layerMasses.slice( radBot * 10, radTop * 10 ).reduce((massSum, currentMass)=>massSum + currentMass, 0)
 }
 
 const geoResponseFunc = (radBot, radTop) => {
-  return layerGeoResponse.slice( radBot * 10, radTop * 10 ).reduce((responseSum, currentResponse)=>responseSum + currentResponse)
+  return layerGeoResponse.slice( radBot * 10, radTop * 10 ).reduce((responseSum, currentResponse)=>responseSum + currentResponse, 0)
 }
 
 const {K40, Th232, U235, U238} = ElementsUI
