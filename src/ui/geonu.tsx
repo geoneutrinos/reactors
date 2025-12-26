@@ -468,7 +468,9 @@ export const LayeredMantleFlux = () => {
       if (layer_thickness > (topMantleRadius - bottomMantleRadius)) {
         layer_thickness = (topMantleRadius - bottomMantleRadius);
       }
+      if (depletionFactor > 0) {
       setThickness(layer_thickness);
+      }
     }
   };
 
