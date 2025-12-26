@@ -471,7 +471,7 @@ export const LayeredMantleFlux = () => {
       if (depletionFactor > 0) {
       setThickness(layer_thickness);
       } else {
-        setThickness(layer_thickness - 1);
+        setThickness(layer_thickness - 10);
       }
     }
   };
@@ -543,7 +543,7 @@ export const LayeredMantleFlux = () => {
                   onChange={UIsetEnrichment}
                   type="number"
                   step="0.1"
-                  value={enrichmentFactor}
+                  value={enrichmentFactor.toFixed(2)}
                 />
               </InputGroup>
             </Form.Group>
