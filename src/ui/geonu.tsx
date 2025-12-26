@@ -560,7 +560,7 @@ export const LayeredMantleFlux = () => {
                 </td>
               </tr>
               <tr>
-                <td>Depleted Mantle (DM)</td>
+                <td>Depleted Mantle</td>
                 <td>
                   <Num v={depletedMantleMass} p={3} func={(v) => v * 1e-27} />
                 </td>
@@ -569,7 +569,7 @@ export const LayeredMantleFlux = () => {
                 </td>
               </tr>
               <tr>
-                <td>Enriched Mantle (EM)</td>
+                <td>Enriched Mantle</td>
                 <td>
                   <Num v={enrichedMantleMass} p={3} func={(v) => v * 1e-27} />
                 </td>
@@ -580,7 +580,7 @@ export const LayeredMantleFlux = () => {
             </tbody>
           </Table>
           <Table>
-            <caption>Vary the thickness of a layer enriched in a given nuclide (i.e. {U238}, {Th232}, or {K40}) at the base of the mantle, and the enrichment factor of the abundance of that nuclide relative to the uniform mantle, to calculate the signal at the surface relative to the uniform mantle. The resulting depletion factor of the nuclide abundance in the overlying depleted mantle is relative to the abundance in the uniform mantle, according to mass balance. By enriching the abundance of a nuclide in a basement layer, the surface signal of the layered mantle relative to the uniform mantle always decreases.</caption>
+            <caption>Vary the thickness of a spherical shell at the base of the mantle, and vary the enrichment of a given nuclide (i.e. {U238}, {Th232}, or {K40}), to calculate the surface signal of the layered mantle relative to the uniform mantle. The reduction of the nuclide in the overlying depleted mantle follows mass balance. Enriching a basement layer always decreases the surface signal relative to a uniform mantle.</caption>
             <thead>
               <tr>
                 <th>EM Mass Fraction</th>
