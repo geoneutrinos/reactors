@@ -501,7 +501,7 @@ export const LayeredMantleFlux = () => {
   let enrichedMantleGeoResponse = geoResponseFunc(bottomMantleRadius, (bottomMantleRadius + UIThickness));
   let depletedMantleGeoResponse = geoResponseFunc((bottomMantleRadius + UIThickness), topMantleRadius);
   let enrichedMantleMassFraction = enrichedMantleMass / uniformMantleMass;
-  let maxEnrichment = 1 / enrichedMantleMassfraction;
+  let maxEnrichment = 1 / enrichedMantleMassFraction;
   let enrichedMantleGeoResponseFraction = enrichedMantleGeoResponse / uniformMantleGeoResponse;
   let depletionFactor = (uniformMantleMass - (enrichedMantleMass * UIEnrichment)) / depletedMantleMass;
   let relativeSignal = (enrichedMantleGeoResponse * UIEnrichment + depletedMantleGeoResponse * depletionFactor) / uniformMantleGeoResponse;
