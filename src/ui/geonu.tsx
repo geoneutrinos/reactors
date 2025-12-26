@@ -454,7 +454,7 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
 export const LayeredMantleFlux = () => {
   
   const [layerThickness, setThickness] = useState(0.1);
-  const [depletionFactor, setDepletion] = useState(1.0);
+  const [enrichmentFactor, setEnrichment] = useState(1.0);
 
   const UIsetThickness = (event) => {
     const value = event.target.value;
@@ -472,19 +472,16 @@ export const LayeredMantleFlux = () => {
     }
   };
 
-  const UIsetDepletion = (event) => {
+  const UIsetEnrichment = (event) => {
     const value = event.target.value;
-    let depletion_factor = parseFloat(value);
-    if (isNaN(depletion_factor)) {
-      setDepletion(value);
+    let enrichment_factor = parseFloat(value);
+    if (isNaN(enrichment_factor)) {
+      setEnrichment(value);
     } else {
-      if (depletion_factor < 0) {
-        depletion_factor = 0;
+      if (enrichment_factor < 1) {
+        enrichment_factor = 1;
       }
-      if (depletion_factor > 1) {
-        depletion_factor = 1;
-      }
-      setDepletion(depletion_factor);
+      setEnrichment(enrichment_factor);
     }
   };
   
@@ -494,7 +491,7 @@ export const LayeredMantleFlux = () => {
   const uniformMantleGeoResponse = geoResponseFunc(bottomMantleRadius, topMantleRadius);
 
   let UIThickness = layerThickness;
-  let UIDepletion = depletionFactor;
+  let UIEnrichment = enrichmentFactor;
   
   let enrichedMantleMass = massFunc(bottomMantleRadius, (bottomMantleRadius + UIThickness));
   let depletedMantleMass = massFunc((bottomMantleRadius + UIThickness), topMantleRadius);
@@ -502,8 +499,8 @@ export const LayeredMantleFlux = () => {
   let depletedMantleGeoResponse = geoResponseFunc((bottomMantleRadius + UIThickness), topMantleRadius);
   let enrichedMantleMassFraction = enrichedMantleMass / uniformMantleMass;
   let enrichedMantleGeoResponseFraction = enrichedMantleGeoResponse / uniformMantleGeoResponse;
-  let enrichmentFactor = (1 - (1 - enrichedMantleMassFraction) * UIDepletion) / enrichedMantleMassFraction;
-  let relativeSignal = enrichmentFactor * enrichedMantleGeoResponseFraction + UIDepletion * (1 - enrichedMantleGeoResponseFraction);
+  let depletionFactor = (uniformMantleMass - (enrichedMantleMass * UIEnrichment)) / depletedMantleMass;
+  let relativeSignal = (enrichedMantleGeoResponse * UIEnrichment + depletedMantleGeoResponse * depletionFactor) / uniformMantleGeoResponse;
 
   return (
     <Card>
@@ -529,16 +526,16 @@ export const LayeredMantleFlux = () => {
             </Form.Group>
           </Col>
           <Col>
-            <Form.Group controlId="depletion_factor">
+            <Form.Group controlId="enrichment_factor">
               <Form.Label>
-                Depletion Factor
+                Enrichment Factor
               </Form.Label>
               <InputGroup>
                 <Form.Control
-                  onChange={UIsetDepletion}
+                  onChange={UIsetEnrichment}
                   type="number"
                   step="0.1"
-                  value={depletionFactor}
+                  value={enrichmentFactor}
                 />
               </InputGroup>
             </Form.Group>
@@ -583,11 +580,11 @@ export const LayeredMantleFlux = () => {
             </tbody>
           </Table>
           <Table>
-            <caption>Vary the thickness of a layer enriched in a given nuclide (i.e. {U238}, {Th232}, or {K40}) at the base of the mantle, and the depletion factor of the abundance of that nuclide in the depleted mantle relative to the uniform mantle, to calculate the enrichment factor and the relative signal at the surface. The enrichment factor of the nuclide abundance is relative to the abundance in the uniform mantle, according to mass balance. By enriching the abundance of a nuclide in a basement layer, the surface signal of the layered mantle relative to the uniform mantle always decreases.</caption>
+            <caption>Vary the thickness of a layer enriched in a given nuclide (i.e. {U238}, {Th232}, or {K40}) at the base of the mantle, and the enrichment factor of the abundance of that nuclide relative to the uniform mantle, to calculate the signal at the surface relative to the uniform mantle. The resulting depletion factor of the nuclide abundance in the overlying depleted mantle is relative to the abundance in the uniform mantle, according to mass balance. By enriching the abundance of a nuclide in a basement layer, the surface signal of the layered mantle relative to the uniform mantle always decreases.</caption>
             <thead>
               <tr>
                 <th>EM Mass Fraction</th>
-                <th>Enrichment Factor</th>
+                <th>Depletion Factor</th>
                 <th>Relative Signal</th>
               </tr>
             </thead>
@@ -597,7 +594,7 @@ export const LayeredMantleFlux = () => {
                   <Num v={enrichedMantleMassFraction} p={3} />
                 </td>
                 <td>
-                  <Num v={enrichmentFactor} p={3} />
+                  <Num v={depletionFactor} p={3} />
                 </td>
                 <td>
                   <Num v={relativeSignal} p={3} />
