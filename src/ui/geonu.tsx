@@ -583,7 +583,7 @@ export const LayeredMantleFlux = () => {
             </tbody>
           </Table>
           <Table>
-            <caption>Vary the thickness of a layer enriched in a given nuclide (i.e. U, Th, or K) at the base of the mantle and the depletion factor of the abundance of that nuclide in the depleted mantle relative to the uniform mantle to calculate the enrichment factor and the relative signal at the surface. The enrichment factor of the nuclide abundance is relative to the abundance in the uniform mantle, according to mass balance. By enriching the abundance of a nuclide in a basement layer, the surface signal of the layered mantle relative to the uniform mantle always decreases.</caption>
+            <caption>Vary the thickness of a layer enriched in a given nuclide (i.e. {U238}, {Th232}, or {K40}) at the base of the mantle and the depletion factor of the abundance of that nuclide in the depleted mantle relative to the uniform mantle to calculate the enrichment factor and the relative signal at the surface. The enrichment factor of the nuclide abundance is relative to the abundance in the uniform mantle, according to mass balance. By enriching the abundance of a nuclide in a basement layer, the surface signal of the layered mantle relative to the uniform mantle always decreases.</caption>
             <thead>
               <tr>
                 <th>EM Mass Fraction</th>
