@@ -470,6 +470,8 @@ export const LayeredMantleFlux = () => {
       }
       if (depletionFactor > 0) {
       setThickness(layer_thickness);
+      } else {
+        setThickness(layer_thickness - 1);
       }
     }
   };
