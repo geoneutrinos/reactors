@@ -511,102 +511,104 @@ export const LayeredMantleFlux = () => {
     <Card>
       <Card.Header>Layered Mantle Fluxes <small>(Enriched Basement Layer)</small></Card.Header>
       <Card.Body>
-        <Row>
-          <Col>
-            <Form.Group controlId="layer_thickness">
-              <Form.Label>
-                Enriched Layer Thickness
-              </Form.Label>
-              <InputGroup>
-                <Form.Control
-                  onChange={UIsetThickness}
-                  type="number"
-                  step="10"
-                  value={layerThickness.toFixed(2)}
-                />
-                <InputGroup.Append>
-                  <InputGroup.Text>km</InputGroup.Text>
-                </InputGroup.Append>
-              </InputGroup>
-            </Form.Group>
-          </Col>
-          <Col>
-            <Form.Group controlId="residual_fraction">
-              <Form.Label>
-                Residual Fraction
-              </Form.Label>
-              <InputGroup>
-                <Form.Control
-                  onChange={UIsetResidual}
-                  type="number"
-                  step="0.01"
-                  value={residualFraction.toFixed(3)}
-                />
-              </InputGroup>
-            </Form.Group>
-          </Col>
-        </Row>
+        <Form noValidate>
+          <Row>
+            <Col>
+              <Form.Group controlId="layer_thickness">
+                <Form.Label>
+                  Enriched Layer Thickness
+                </Form.Label>
+                <InputGroup>
+                  <Form.Control
+                    onChange={UIsetThickness}
+                    type="number"
+                    step="10"
+                    value={layerThickness.toFixed(2)}
+                  />
+                  <InputGroup.Append>
+                    <InputGroup.Text>km</InputGroup.Text>
+                  </InputGroup.Append>
+                </InputGroup>
+              </Form.Group>
+            </Col>
+            <Col>
+              <Form.Group controlId="residual_fraction">
+                <Form.Label>
+                  Residual Fraction
+                </Form.Label>
+                <InputGroup>
+                  <Form.Control
+                    onChange={UIsetResidual}
+                    type="number"
+                    step="0.01"
+                    value={residualFraction.toFixed(3)}
+                  />
+                </InputGroup>
+              </Form.Group>
+            </Col>
+          </Row>
+        </Form>
         <Table>
-            <thead>
-              <tr>
-                <th>Reservoir</th>
-                <th>Mass (10<sup>24</sup> kg)</th>
-                <th>Geological Response (10<sup>3</sup> kg cm<sup>-2</sup>)</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Uniform Mantle</td>
-                <td>
-                  <Num v={uniformMantleMass} p={3} func={(v) => v * 1e-27} />
-                </td>
-                <td>
-                  <Num v={uniformMantleGeoResponse} p={1} func={(v) => v * 1e-3} />
-                </td>
-              </tr>
-              <tr>
-                <td>Depleted Mantle (DM)</td>
-                <td>
-                  <Num v={depletedMantleMass} p={3} func={(v) => v * 1e-27} />
-                </td>
-                <td>
-                  <Num v={depletedMantleGeoResponse} p={1} func={(v) => v * 1e-3} />
-                </td>
-              </tr>
-              <tr>
-                <td>Enriched Mantle (EM)</td>
-                <td>
-                  <Num v={enrichedMantleMass} p={3} func={(v) => v * 1e-27} />
-                </td>
-                <td>
-                  <Num v={enrichedMantleGeoResponse} p={1} func={(v) => v * 1e-3} />
-                </td>
-              </tr>
-            </tbody>
-          </Table>
-          <Table>
-            <caption>Vary the thickness of a spherical shell (EM) at the base of the mantle, and vary the fraction of a given nuclide (i.e. {U238}, {Th232}, or {K40}) leftover in the overlying mantle (DM), to calculate the surface signal of the layered mantle (DM plus EM) relative to the uniform mantle. The enrichment of the nuclide in the basement layer follows mass balance. Enriching a basement layer always decreases the surface signal relative to a uniform mantle.</caption>
-            <thead>
-              <tr>
-                <th>EM Mass Fraction</th>
-                <th>Enrichment Factor</th>
-                <th>Relative Signal</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <Num v={enrichedMantleMassFraction} p={3} />
-                </td>
-                <td>
-                  <Num v={enrichmentFactor} p={3} />
-                </td>
-                <td>
-                  <Num v={relativeSignal} p={3} />
-                </td>
-              </tr>
-            </tbody>
-          </Table>
+          <thead>
+            <tr>
+              <th>Reservoir</th>
+              <th>Mass (10<sup>24</sup> kg)</th>
+              <th>Geological Response (10<sup>3</sup> kg cm<sup>-2</sup>)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Uniform Mantle</td>
+              <td>
+                <Num v={uniformMantleMass} p={3} func={(v) => v * 1e-27} />
+              </td>
+              <td>
+                <Num v={uniformMantleGeoResponse} p={1} func={(v) => v * 1e-3} />
+              </td>
+            </tr>
+            <tr>
+              <td>Depleted Mantle (DM)</td>
+              <td>
+                <Num v={depletedMantleMass} p={3} func={(v) => v * 1e-27} />
+              </td>
+              <td>
+                <Num v={depletedMantleGeoResponse} p={1} func={(v) => v * 1e-3} />
+              </td>
+            </tr>
+            <tr>
+              <td>Enriched Mantle (EM)</td>
+              <td>
+                <Num v={enrichedMantleMass} p={3} func={(v) => v * 1e-27} />
+              </td>
+              <td>
+                <Num v={enrichedMantleGeoResponse} p={1} func={(v) => v * 1e-3} />
+              </td>
+            </tr>
+          </tbody>
+        </Table>
+        <Table>
+          <caption>Vary the thickness of a spherical shell (EM) at the base of the mantle, and vary the fraction of a given nuclide (i.e. {U238}, {Th232}, or {K40}) leftover in the overlying mantle (DM), to calculate the surface signal of the layered mantle (DM plus EM) relative to the uniform mantle. The enrichment of the nuclide in the basement layer follows mass balance. Enriching a basement layer always decreases the surface signal relative to a uniform mantle.</caption>
+          <thead>
+            <tr>
+              <th>EM Mass Fraction</th>
+              <th>Enrichment Factor</th>
+              <th>Relative Signal</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <Num v={enrichedMantleMassFraction} p={3} />
+              </td>
+              <td>
+                <Num v={enrichmentFactor} p={3} />
+              </td>
+              <td>
+                <Num v={relativeSignal} p={3} />
+              </td>
+            </tr>
+          </tbody>
+        </Table>
       </Card.Body>
     </Card>
   );
