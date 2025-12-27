@@ -453,7 +453,7 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
 
 export const LayeredMantleFlux = () => {
   
-  const [layerThickness, setThickness] = useState(0.01);
+  const [layerThickness, setThickness] = useState(0.1);
   const [residualFraction, setResidual] = useState(1.0);
 
   const UIsetThickness = (event) => {
@@ -462,11 +462,12 @@ export const LayeredMantleFlux = () => {
     if (isNaN(layer_thickness)) {
       setThickness(value);
     } else {
-      if (layer_thickness < 0.01) {
-        layer_thickness = 0.01;
-      }
-      if (layer_thickness > (topMantleRadius - bottomMantleRadius)) {
-        layer_thickness = (topMantleRadius - bottomMantleRadius);
+      if (layer_thickness < 0.1) {
+        layer_thickness = 0.1;
+      } else {
+        if (layer_thickness > (topMantleRadius - bottomMantleRadius)) {
+          layer_thickness = (topMantleRadius - bottomMantleRadius);
+        }
       }
       setThickness(layer_thickness);
     }
@@ -480,9 +481,10 @@ export const LayeredMantleFlux = () => {
     } else {
       if (residual_fraction > 1) {
         residual_fraction = 1;
-      }
-      if (residual_fraction < 0) {
-        residual_fraction = 0;
+      } else {
+        if (residual_fraction < 0) {
+          residual_fraction = 0;
+        }
       }
       setResidual(residual_fraction);
     }
@@ -537,7 +539,7 @@ export const LayeredMantleFlux = () => {
                 <Form.Control
                   onChange={UIsetResidual}
                   type="number"
-                  step="0.1"
+                  step="0.01"
                   value={residualFraction.toFixed(2)}
                 />
               </InputGroup>
