@@ -464,10 +464,9 @@ export const LayeredMantleFlux = () => {
     } else {
       if (layer_thickness < 0.1) {
         layer_thickness = 0.1;
-      } else {
-        if (layer_thickness > (topMantleRadius - bottomMantleRadius)) {
-          layer_thickness = (topMantleRadius - bottomMantleRadius);
-        }
+      }
+      if (layer_thickness > (topMantleRadius - bottomMantleRadius)) {
+        layer_thickness = (topMantleRadius - bottomMantleRadius);
       }
       setThickness(layer_thickness);
     }
@@ -481,10 +480,9 @@ export const LayeredMantleFlux = () => {
     } else {
       if (residual_fraction > 1) {
         residual_fraction = 1;
-      } else {
-        if (residual_fraction < 0) {
-          residual_fraction = 0;
-        }
+      }
+      if (residual_fraction < 0) {
+        residual_fraction = 0;
       }
       setResidual(residual_fraction);
     }
