@@ -456,6 +456,12 @@ export const LayeredMantleFlux = () => {
   const [layerThickness, setThickness] = useState(0.1);
   const [residualFraction, setResidual] = useState(1.0);
 
+  const bottomMantleRadius = 3480;
+  const topMantleRadius = 6291;
+  const uniformMantleMass = massFunc(bottomMantleRadius, topMantleRadius);
+  const uniformMantleGeoResponse = geoResponseFunc(bottomMantleRadius, topMantleRadius);
+  const maxThickness = topMantleRadius - bottomMantleRadius;
+  
   const UIsetThickness = (event) => {
     const value = event.target.value;
     let layer_thickness = parseFloat(value);
@@ -465,8 +471,8 @@ export const LayeredMantleFlux = () => {
       if (layer_thickness < 0.1) {
         layer_thickness = 0.1;
       }
-      if (layer_thickness > (topMantleRadius - bottomMantleRadius)) {
-        layer_thickness = (topMantleRadius - bottomMantleRadius);
+      if (layer_thickness > maxThickness) {
+        layer_thickness = maxThickness;
       }
       setThickness(layer_thickness);
     }
@@ -488,11 +494,6 @@ export const LayeredMantleFlux = () => {
     }
   };
   
-  const bottomMantleRadius = 3480;
-  const topMantleRadius = 6291;
-  const uniformMantleMass = massFunc(bottomMantleRadius, topMantleRadius);
-  const uniformMantleGeoResponse = geoResponseFunc(bottomMantleRadius, topMantleRadius);
-
   let UIThickness = layerThickness;
   let UIResidual = residualFraction;
   
