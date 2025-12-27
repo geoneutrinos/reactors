@@ -453,7 +453,7 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
 
 export const LayeredMantleFlux = () => {
   
-  const [layerThickness, setThickness] = useState(0.1);
+  const [layerThickness, setThickness] = useState(0.01);
   const [enrichmentFactor, setEnrichment] = useState(1.0);
 
   const UIsetThickness = (event) => {
