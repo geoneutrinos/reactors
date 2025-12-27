@@ -521,7 +521,7 @@ export const LayeredMantleFlux = () => {
                     onChange={UIsetThickness}
                     type="number"
                     step="10"
-                    value={layerThickness.toFixed(2)}
+                    value={layerThickness}
                   />
                   <InputGroup.Append>
                     <InputGroup.Text>km</InputGroup.Text>
@@ -539,7 +539,7 @@ export const LayeredMantleFlux = () => {
                     onChange={UIsetResidual}
                     type="number"
                     step="0.01"
-                    value={residualFraction.toFixed(3)}
+                    value={residualFraction}
                   />
                 </InputGroup>
               </Form.Group>
