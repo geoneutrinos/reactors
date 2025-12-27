@@ -454,7 +454,7 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
 export const LayeredMantleFlux = () => {
   
   const [layerThickness, setThickness] = useState(0.01);
-  const [enrichmentFactor, setEnrichment] = useState(1.0);
+  const [residualFraction, setResidual] = useState(1.0);
 
   const UIsetThickness = (event) => {
     const value = event.target.value;
@@ -468,27 +468,23 @@ export const LayeredMantleFlux = () => {
       if (layer_thickness > (topMantleRadius - bottomMantleRadius)) {
         layer_thickness = (topMantleRadius - bottomMantleRadius);
       }
-      if (depletionFactor >= 0) {
       setThickness(layer_thickness);
-      } else {
-        setThickness(layer_thickness - 10);
-      }
     }
   };
 
-  const UIsetEnrichment = (event) => {
+  const UIsetResidual = (event) => {
     const value = event.target.value;
-    let enrichment_factor = parseFloat(value);
-    if (isNaN(enrichment_factor)) {
-      setEnrichment(value);
+    let residual_fraction = parseFloat(value);
+    if (isNaN(residual_fraction)) {
+      setResidual(value);
     } else {
-      if (enrichment_factor < 1) {
-        enrichment_factor = 1;
+      if (residual_fraction > 1) {
+        residual_fraction = 1;
       }
-      if (enrichment_factor >= maxEnrichment) {
-        enrichment_factor = maxEnrichment - 0.01;
+      if (residual_fraction < 0) {
+        residual_fraction = 0;
       }
-      setEnrichment(enrichment_factor);
+      setResidual(residual_fraction);
     }
   };
   
@@ -498,17 +494,16 @@ export const LayeredMantleFlux = () => {
   const uniformMantleGeoResponse = geoResponseFunc(bottomMantleRadius, topMantleRadius);
 
   let UIThickness = layerThickness;
-  let UIEnrichment = enrichmentFactor;
+  let UIResidual = residualFraction;
   
   let enrichedMantleMass = massFunc(bottomMantleRadius, (bottomMantleRadius + UIThickness));
   let depletedMantleMass = massFunc((bottomMantleRadius + UIThickness), topMantleRadius);
   let enrichedMantleGeoResponse = geoResponseFunc(bottomMantleRadius, (bottomMantleRadius + UIThickness));
   let depletedMantleGeoResponse = geoResponseFunc((bottomMantleRadius + UIThickness), topMantleRadius);
   let enrichedMantleMassFraction = enrichedMantleMass / uniformMantleMass;
-  let maxEnrichment = 1 / enrichedMantleMassFraction;
   let enrichedMantleGeoResponseFraction = enrichedMantleGeoResponse / uniformMantleGeoResponse;
-  let depletionFactor = (uniformMantleMass - (enrichedMantleMass * UIEnrichment)) / depletedMantleMass;
-  let relativeSignal = (enrichedMantleGeoResponse * UIEnrichment + depletedMantleGeoResponse * depletionFactor) / uniformMantleGeoResponse;
+  let enrichmentFactor = (uniformMantleMass - (depletedMantleMass * UIResidual)) / enrichedMantleMass;
+  let relativeSignal = (enrichedMantleGeoResponse * enrichmentFactor + depletedMantleGeoResponse * UIResidual) / uniformMantleGeoResponse;
 
   return (
     <Card>
@@ -518,7 +513,7 @@ export const LayeredMantleFlux = () => {
           <Col>
             <Form.Group controlId="layer_thickness">
               <Form.Label>
-                Enriched Mantle Thickness
+                Enriched Layer Thickness
               </Form.Label>
               <InputGroup>
                 <Form.Control
@@ -534,16 +529,16 @@ export const LayeredMantleFlux = () => {
             </Form.Group>
           </Col>
           <Col>
-            <Form.Group controlId="enrichment_factor">
+            <Form.Group controlId="residual_fraction">
               <Form.Label>
-                Enrichment Factor
+                Residual Fraction
               </Form.Label>
               <InputGroup>
                 <Form.Control
-                  onChange={UIsetEnrichment}
+                  onChange={UIsetResidual}
                   type="number"
                   step="0.1"
-                  value={enrichmentFactor.toFixed(2)}
+                  value={residualFraction.toFixed(2)}
                 />
               </InputGroup>
             </Form.Group>
@@ -568,7 +563,7 @@ export const LayeredMantleFlux = () => {
                 </td>
               </tr>
               <tr>
-                <td>Depleted Mantle</td>
+                <td>Depleted Mantle (DM)</td>
                 <td>
                   <Num v={depletedMantleMass} p={3} func={(v) => v * 1e-27} />
                 </td>
@@ -577,7 +572,7 @@ export const LayeredMantleFlux = () => {
                 </td>
               </tr>
               <tr>
-                <td>Enriched Mantle</td>
+                <td>Enriched Mantle (EM)</td>
                 <td>
                   <Num v={enrichedMantleMass} p={3} func={(v) => v * 1e-27} />
                 </td>
@@ -588,11 +583,11 @@ export const LayeredMantleFlux = () => {
             </tbody>
           </Table>
           <Table>
-            <caption>Vary the thickness of a spherical shell at the base of the mantle, and vary the enrichment of a given nuclide (i.e. {U238}, {Th232}, or {K40}), to calculate the surface signal of the layered mantle relative to the uniform mantle. The reduction of the nuclide in the overlying depleted mantle follows mass balance. Enriching a basement layer always decreases the surface signal relative to a uniform mantle.</caption>
+            <caption>Vary the thickness of a spherical shell (EM) at the base of the mantle, and vary the fraction of a given nuclide (i.e. {U238}, {Th232}, or {K40}) leftover in the overlying mantle (DM), to calculate the surface signal of the layered mantle (DM plus EM) relative to the uniform mantle. The enrichment of the nuclide in the basement layer follows mass balance. Enriching a basement layer always decreases the surface signal relative to a uniform mantle.</caption>
             <thead>
               <tr>
                 <th>EM Mass Fraction</th>
-                <th>Depletion Factor</th>
+                <th>Enrichment Factor</th>
                 <th>Relative Signal</th>
               </tr>
             </thead>
@@ -602,7 +597,7 @@ export const LayeredMantleFlux = () => {
                   <Num v={enrichedMantleMassFraction} p={3} />
                 </td>
                 <td>
-                  <Num v={depletionFactor} p={3} />
+                  <Num v={enrichmentFactor} p={3} />
                 </td>
                 <td>
                   <Num v={relativeSignal} p={3} />
