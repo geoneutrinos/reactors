@@ -468,7 +468,7 @@ export const LayeredMantleFlux = () => {
       if (layer_thickness > (topMantleRadius - bottomMantleRadius)) {
         layer_thickness = (topMantleRadius - bottomMantleRadius);
       }
-      if (depletionFactor > 0) {
+      if (depletionFactor >= 0) {
       setThickness(layer_thickness);
       } else {
         setThickness(layer_thickness - 10);
@@ -485,8 +485,8 @@ export const LayeredMantleFlux = () => {
       if (enrichment_factor < 1) {
         enrichment_factor = 1;
       }
-      if (enrichment_factor > maxEnrichment) {
-        enrichment_factor = maxEnrichment;
+      if (enrichment_factor >= maxEnrichment) {
+        enrichment_factor = maxEnrichment - 0.01;
       }
       setEnrichment(enrichment_factor);
     }
