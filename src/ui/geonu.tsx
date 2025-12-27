@@ -526,9 +526,6 @@ export const LayeredMantleFlux = () => {
                   <InputGroup.Append>
                     <InputGroup.Text>km</InputGroup.Text>
                   </InputGroup.Append>
-                  <Form.Control.Feedback type="invalid">
-                    Invalid entry
-                  </Form.Control.Feedback>
                 </InputGroup>
               </Form.Group>
             </Col>
@@ -544,9 +541,6 @@ export const LayeredMantleFlux = () => {
                     step="0.01"
                     value={residualFraction}
                   />
-                  <Form.Control.Feedback type="invalid">
-                    Invalid entry
-                  </Form.Control.Feedback>
                 </InputGroup>
               </Form.Group>
             </Col>
