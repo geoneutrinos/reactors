@@ -540,7 +540,7 @@ export const LayeredMantleFlux = () => {
                   onChange={UIsetResidual}
                   type="number"
                   step="0.01"
-                  value={residualFraction.toFixed(2)}
+                  value={residualFraction.toFixed(3)}
                 />
               </InputGroup>
             </Form.Group>
