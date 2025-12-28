@@ -479,17 +479,14 @@ export const LayeredMantleFlux = () => {
     }
   };
   
-  let UIThickness = layerThickness;
-  let UIResidual = residualFraction;
-  
-  let enrichedMantleMass = massFunc(bottomMantleRadius, (bottomMantleRadius + UIThickness));
-  let depletedMantleMass = massFunc((bottomMantleRadius + UIThickness), topMantleRadius);
-  let enrichedMantleGeoResponse = geoResponseFunc(bottomMantleRadius, (bottomMantleRadius + UIThickness));
-  let depletedMantleGeoResponse = geoResponseFunc((bottomMantleRadius + UIThickness), topMantleRadius);
+  let enrichedMantleMass = massFunc(bottomMantleRadius, (bottomMantleRadius + layerThickness));
+  let depletedMantleMass = massFunc((bottomMantleRadius + layerThickness), topMantleRadius);
+  let enrichedMantleGeoResponse = geoResponseFunc(bottomMantleRadius, (bottomMantleRadius + layerThickness));
+  let depletedMantleGeoResponse = geoResponseFunc((bottomMantleRadius + layerThickness), topMantleRadius);
   let enrichedMantleMassFraction = enrichedMantleMass / uniformMantleMass;
   let enrichedMantleGeoResponseFraction = enrichedMantleGeoResponse / uniformMantleGeoResponse;
-  let enrichmentFactor = (uniformMantleMass - (depletedMantleMass * UIResidual)) / enrichedMantleMass;
-  let relativeSignal = (enrichedMantleGeoResponse * enrichmentFactor + depletedMantleGeoResponse * UIResidual) / uniformMantleGeoResponse;
+  let enrichmentFactor = (uniformMantleMass - (depletedMantleMass * residualFraction)) / enrichedMantleMass;
+  let relativeSignal = (enrichedMantleGeoResponse * enrichmentFactor + depletedMantleGeoResponse * residualFraction) / uniformMantleGeoResponse;
 
   return (
     <Card>
