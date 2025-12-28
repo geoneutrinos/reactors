@@ -2,7 +2,7 @@ import { useState, memo } from "react";
 import { sum } from "lodash";
 import { rawAntineutrinoSpectrum } from "../antineutrino-spectrum";
 
-import { Card, Form, InputGroup, Table, Row, Col } from "react-bootstrap";
+import { Card, Form, InputGroup, Table } from "react-bootstrap";
 import { Num } from ".";
 import { NeutrinoType } from "../physics/neutrino-cross-section";
 import { getTargetParamsCEvNS } from "../supernova";
@@ -460,10 +460,14 @@ export const LayeredMantleFlux = () => {
   const topMantleRadius = 6291;
   const uniformMantleMass = massFunc(bottomMantleRadius, topMantleRadius);
   const uniformMantleGeoResponse = geoResponseFunc(bottomMantleRadius, topMantleRadius);
-  const maxThickness = topMantleRadius - bottomMantleRadius;
-  const minThickness = 1;
-  const stepThickness = 1;
+
   const regex = /[^0-9.]/g;
+  
+  const thicknessRangeParams = {
+    step: 1,
+    min: 1,
+    max: 2811,
+  }
   const fractionRangeParams = {
     step: 0.01,
     min: 0,
@@ -476,11 +480,11 @@ export const LayeredMantleFlux = () => {
     if (isNaN(layer_thickness)) {
       setThickness(value);
     } else {
-      if (layer_thickness > maxThickness) {
-        layer_thickness = maxThickness;
+      if (layer_thickness > thicknessRangeParams.max) {
+        layer_thickness = thicknessRangeParams.max;
       }
-      if (layer_thickness < minThickness) {
-        layer_thickness = minThickness;
+      if (layer_thickness < thicknessRangeParams.min) {
+        layer_thickness = thicknessRangeParams.min;
       }
       setThickness(layer_thickness);
     }
@@ -515,40 +519,32 @@ export const LayeredMantleFlux = () => {
       <Card.Header>Layered Mantle Fluxes <small>(Enriched Basement Layer)</small></Card.Header>
       <Card.Body>
         <Form noValidate>
-          <Row>
-            <Col>
-              <Form.Group controlId="layer_thickness">
-                <Form.Label>
-                  Enriched Layer Thickness {layerThickness} km
-                </Form.Label>
-                <InputGroup>
-                  <Form.Control
-                    type="range"
-                    value={layerThickness}
-                    onChange={UIsetThickness}
-                    min={minThickness}
-                    max={maxThickness}
-                    step={stepThickness}
-                  />
-                </InputGroup>
-              </Form.Group>
-            </Col>
-            <Col>
-              <Form.Group controlId="residual_fraction">
-                <Form.Label>
-                  Residual Fraction {residualFraction}
-                </Form.Label>
-                <InputGroup>
-                  <Form.Control
-                    type="range"
-                    value={residualFraction}
-                    {...fractionRangeParams}
-                    onChange={UIsetResidual}
-                  />
-                </InputGroup>
-              </Form.Group>
-            </Col>
-          </Row>
+          <Form.Group controlId="layer_thickness">
+            <Form.Label>
+              Enriched Layer Thickness {layerThickness} km
+            </Form.Label>
+            <InputGroup>
+              <Form.Control
+                type="range"
+                value={layerThickness}
+                {...thicknessRangeParams}
+                onChange={UIsetThickness}
+              />
+            </InputGroup>
+          </Form.Group>
+          <Form.Group controlId="residual_fraction">
+            <Form.Label>
+              Residual Fraction {residualFraction}
+            </Form.Label>
+            <InputGroup>
+              <Form.Control
+                type="range"
+                value={residualFraction}
+                {...fractionRangeParams}
+                onChange={UIsetResidual}
+              />
+            </InputGroup>
+          </Form.Group>
         </Form>
         <Table>
           <thead>
