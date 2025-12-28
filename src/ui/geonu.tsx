@@ -517,20 +517,17 @@ export const LayeredMantleFlux = () => {
             <Col>
               <Form.Group controlId="layer_thickness">
                 <Form.Label>
-                  Enriched Layer Thickness
+                  Enriched Layer Thickness {layerThickness} km
                 </Form.Label>
                 <InputGroup>
                   <Form.Control
-                    type="number"
+                    type="range"
                     value={layerThickness}
                     onChange={UIsetThickness}
                     min={minThickness}
                     max={maxThickness}
                     step={stepThickness}
                   />
-                  <InputGroup.Append>
-                    <InputGroup.Text>km</InputGroup.Text>
-                  </InputGroup.Append>
                 </InputGroup>
               </Form.Group>
             </Col>
