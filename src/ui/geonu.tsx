@@ -453,8 +453,8 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
 
 export const LayeredMantleFlux = () => {
   
-  const [layerThickness, setThickness] = useState(0.1);
-  const [residualFraction, setResidual] = useState(1.0);
+  const [layerThickness, setThickness] = useState(1);
+  const [residualFraction, setResidual] = useState(1);
 
   const bottomMantleRadius = 3480;
   const topMantleRadius = 6291;
