@@ -461,37 +461,20 @@ export const LayeredMantleFlux = () => {
   const uniformMantleMass = massFunc(bottomMantleRadius, topMantleRadius);
   const uniformMantleGeoResponse = geoResponseFunc(bottomMantleRadius, topMantleRadius);
   const maxThickness = topMantleRadius - bottomMantleRadius;
+  const minThickness = 0.1;
   
   const UIsetThickness = (event) => {
     const newValue = event.target.value;
-    const value = newValue.replace(/[^0-9.]/g, '');
-    let layer_thickness = parseFloat(value);
-    if (Number.isNaN(layer_thickness)) {
-      setThickness(value);
-    } else {
-      if (layer_thickness < 0.1) {
-        layer_thickness = 0.1;
-      }
-      if (layer_thickness > maxThickness) {
-        layer_thickness = maxThickness;
-      }
-      setThickness(layer_thickness);
+    const layer_thickness = newValue.replace(/[^0-9.]/g, '');
+    if (!isNaN(layer_thickness) && !isNaN(parseFloat(layer_thickness))) {
+      setResidual(layer_thickness);
     }
   };
 
   const UIsetResidual = (event) => {
     const newValue = event.target.value;
-    const value = newValue.replace(/[^0-9.]/g, '');
-    let residual_fraction = parseFloat(value);
-    if (Number.isNaN(residual_fraction)) {
-      setResidual(value);
-    } else {
-      if (residual_fraction > 1) {
-        residual_fraction = 1;
-      }
-      if (residual_fraction < 0) {
-        residual_fraction = 0;
-      }
+    const residual_fraction = newValue.replace(/[^0-9.]/g, '');
+    if (!isNaN(residual_fraction) && !isNaN(parseFloat(residual_fraction))) {
       setResidual(residual_fraction);
     }
   };
@@ -523,6 +506,8 @@ export const LayeredMantleFlux = () => {
                   <Form.Control
                     onChange={UIsetThickness}
                     type="number"
+                    max={maxThickness}
+                    min={minThickness}
                     step="10"
                     value={layerThickness}
                   />
@@ -541,6 +526,8 @@ export const LayeredMantleFlux = () => {
                   <Form.Control
                     onChange={UIsetResidual}
                     type="number"
+                    max="1"
+                    min="0"
                     step="0.01"
                     value={residualFraction}
                   />
