@@ -478,11 +478,12 @@ export const LayeredMantleFlux = () => {
       setResidual(residual_fraction);
     }
   };
-  
-  let enrichedMantleMass = massFunc(bottomMantleRadius, (bottomMantleRadius + layerThickness));
-  let depletedMantleMass = massFunc((bottomMantleRadius + layerThickness), topMantleRadius);
-  let enrichedMantleGeoResponse = geoResponseFunc(bottomMantleRadius, (bottomMantleRadius + layerThickness));
-  let depletedMantleGeoResponse = geoResponseFunc((bottomMantleRadius + layerThickness), topMantleRadius);
+
+  let boundaryRadius = bottomMantleRadius + layerThickness;
+  let enrichedMantleMass = massFunc(bottomMantleRadius, boundaryRadius);
+  let depletedMantleMass = massFunc(boundaryRadius, topMantleRadius);
+  let enrichedMantleGeoResponse = geoResponseFunc(bottomMantleRadius, boundaryRadius);
+  let depletedMantleGeoResponse = geoResponseFunc(boundaryRadius, topMantleRadius);
   let enrichedMantleMassFraction = enrichedMantleMass / uniformMantleMass;
   let enrichedMantleGeoResponseFraction = enrichedMantleGeoResponse / uniformMantleGeoResponse;
   let enrichmentFactor = (uniformMantleMass - (depletedMantleMass * residualFraction)) / enrichedMantleMass;
