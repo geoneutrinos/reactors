@@ -469,6 +469,12 @@ export const LayeredMantleFlux = () => {
     const newValue = event.target.value;
     let layer_thickness = newValue.replace(/[^0-9.]/g, '');
     if (!isNaN(layer_thickness) && !isNaN(parseFloat(layer_thickness))) {
+      if (layer_thickness > maxThickness) {
+        layer_thickness = maxThickness;
+      }
+      if (layer_thickness < minThickness) {
+        layer_thickness = minThickness;
+      }
       setThickness(layer_thickness);
     }
   };
