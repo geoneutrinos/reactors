@@ -465,7 +465,7 @@ export const LayeredMantleFlux = () => {
   const stepThickness = 1;
   const regex = /[^0-9.]/g;
   const fractionRangeParams = {
-    step: 1e-2,
+    step: 0.01,
     min: 0,
     max: 1,
   }
@@ -490,11 +490,11 @@ export const LayeredMantleFlux = () => {
     const value = event.target.value;
     let residual_fraction = value.replace( regex , '');
     if (!isNaN(residual_fraction) && !isNaN(parseFloat(residual_fraction))) {
-      if (residual_fraction > maxFraction) {
-        residual_fraction = maxFraction;
+      if (residual_fraction > fractionRangeParams.max) {
+        residual_fraction = fractionRangeParams.max;
       }
-      if (residual_fraction < minFraction) {
-        residual_fraction = minFraction;
+      if (residual_fraction < fractionRangeParams.min) {
+        residual_fraction = fractionRangeParams.min;
       }
       setResidual(residual_fraction);
     }
