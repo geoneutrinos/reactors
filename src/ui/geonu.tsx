@@ -541,7 +541,7 @@ export const LayeredMantleFlux = () => {
                 </Form.Label>
                 <InputGroup>
                   <Form.Control
-                    type="number"
+                    type="range"
                     value={residualFraction}
                     onChange={UIsetResidual}
                     min={minFraction}
