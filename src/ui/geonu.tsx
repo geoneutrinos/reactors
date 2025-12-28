@@ -465,7 +465,7 @@ export const LayeredMantleFlux = () => {
   
   const UIsetThickness = (event) => {
     const newValue = event.target.value;
-    const layer_thickness = newValue.replace(/[^0-9.]/g, '');
+    let layer_thickness = newValue.replace(/[^0-9.]/g, '');
     if (!isNaN(layer_thickness) && !isNaN(parseFloat(layer_thickness))) {
       setThickness(layer_thickness);
     }
@@ -473,7 +473,7 @@ export const LayeredMantleFlux = () => {
 
   const UIsetResidual = (event) => {
     const newValue = event.target.value;
-    const residual_fraction = newValue.replace(/[^0-9.]/g, '');
+    let residual_fraction = newValue.replace(/[^0-9.]/g, '');
     if (!isNaN(residual_fraction) && !isNaN(parseFloat(residual_fraction))) {
       setResidual(residual_fraction);
     }
