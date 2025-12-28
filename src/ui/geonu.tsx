@@ -464,10 +464,11 @@ export const LayeredMantleFlux = () => {
   const minThickness = 0.1;
   const maxFraction = 1;
   const minFraction = 0;
+  const regex = /[^0-9.]/g;
   
   const UIsetThickness = (event) => {
     const value = event.target.value;
-    const cleanValue = value.replace(/[^0-9.]/g, '');
+    const cleanValue = value.replace( regex , '');
     let layer_thickness = parseFloat(cleanValue);
     if (isNaN(layer_thickness)) {
       setThickness(value);
@@ -484,7 +485,7 @@ export const LayeredMantleFlux = () => {
 
   const UIsetResidual = (event) => {
     const value = event.target.value;
-    let residual_fraction = value.replace(/[^0-9.]/g, '');
+    let residual_fraction = value.replace( regex , '');
     if (!isNaN(residual_fraction) && !isNaN(parseFloat(residual_fraction))) {
       if (residual_fraction > maxFraction) {
         residual_fraction = maxFraction;
