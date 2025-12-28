@@ -467,7 +467,7 @@ export const LayeredMantleFlux = () => {
     const newValue = event.target.value;
     const layer_thickness = newValue.replace(/[^0-9.]/g, '');
     if (!isNaN(layer_thickness) && !isNaN(parseFloat(layer_thickness))) {
-      setResidual(layer_thickness);
+      setThickness(layer_thickness);
     }
   };
 
@@ -504,12 +504,12 @@ export const LayeredMantleFlux = () => {
                 </Form.Label>
                 <InputGroup>
                   <Form.Control
-                    onChange={UIsetThickness}
                     type="number"
-                    max={maxThickness}
-                    min={minThickness}
-                    step="10"
                     value={layerThickness}
+                    onChange={UIsetThickness}
+                    min={minThickness}
+                    max={maxThickness}
+                    step="10"
                   />
                   <InputGroup.Append>
                     <InputGroup.Text>km</InputGroup.Text>
@@ -524,12 +524,12 @@ export const LayeredMantleFlux = () => {
                 </Form.Label>
                 <InputGroup>
                   <Form.Control
-                    onChange={UIsetResidual}
                     type="number"
-                    max="1"
-                    min="0"
-                    step="0.01"
                     value={residualFraction}
+                    onChange={UIsetResidual}
+                    min="0"
+                    max="1"
+                    step="0.01"
                   />
                 </InputGroup>
               </Form.Group>
