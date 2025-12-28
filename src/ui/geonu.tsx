@@ -461,13 +461,15 @@ export const LayeredMantleFlux = () => {
   const uniformMantleMass = massFunc(bottomMantleRadius, topMantleRadius);
   const uniformMantleGeoResponse = geoResponseFunc(bottomMantleRadius, topMantleRadius);
   const maxThickness = topMantleRadius - bottomMantleRadius;
-  const minThickness = 0.1;
-  const stepThickness = 10;
-  const maxFraction = 1;
-  const minFraction = 0;
-  const stepFraction = 0.01;
+  const minThickness = 1;
+  const stepThickness = 1;
   const regex = /[^0-9.]/g;
-  
+  const fractionRangeParams = {
+    step: 1e-2,
+    min: 0,
+    max: 1,
+  }
+
   const UIsetThickness = (event) => {
     const value = event.target.value;
     let layer_thickness = parseFloat(value.replace( regex , ''));
@@ -540,10 +542,8 @@ export const LayeredMantleFlux = () => {
                   <Form.Control
                     type="range"
                     value={residualFraction}
+                    {...fractionRangeParams}
                     onChange={UIsetResidual}
-                    min={minFraction}
-                    max={maxFraction}
-                    step={stepFraction}
                   />
                 </InputGroup>
               </Form.Group>
