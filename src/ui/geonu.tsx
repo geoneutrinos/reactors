@@ -537,7 +537,7 @@ export const LayeredMantleFlux = () => {
             <Col>
               <Form.Group controlId="residual_fraction">
                 <Form.Label>
-                  Residual Fraction
+                  Residual Fraction {residualFraction.toFixed(2)}
                 </Form.Label>
                 <InputGroup>
                   <Form.Control
