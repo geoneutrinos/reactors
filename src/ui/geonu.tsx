@@ -466,8 +466,9 @@ export const LayeredMantleFlux = () => {
   const minFraction = 0;
   
   const UIsetThickness = (event) => {
-    const newValue = event.target.value;
-    let layer_thickness = newValue.replace(/[^0-9.]/g, '');
+    const value = event.target.value;
+    const cleanValue = value.replace(/[^0-9.]/g, '');
+    let layer_thickness = parseFloat(cleanValue);
     if (!isNaN(layer_thickness) && !isNaN(parseFloat(layer_thickness))) {
       if (layer_thickness > maxThickness) {
         layer_thickness = maxThickness;
