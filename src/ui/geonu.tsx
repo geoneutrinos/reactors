@@ -493,7 +493,7 @@ export const LayeredMantleFlux = () => {
   const UIsetResidual = (event) => {
     const value = event.target.value;
     let residual_fraction = parseFloat(value);
-    if (isNaN(residual_fraction) {
+    if (isNaN(residual_fraction)) {
       setResidual(value);
     } else {
       if (residual_fraction > fractionRangeParams.max) {
