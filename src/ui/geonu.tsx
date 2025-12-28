@@ -468,8 +468,7 @@ export const LayeredMantleFlux = () => {
   
   const UIsetThickness = (event) => {
     const value = event.target.value;
-    const cleanValue = value.replace( regex , '');
-    let layer_thickness = parseFloat(cleanValue);
+    let layer_thickness = parseFloat(value.replace( regex , ''));
     if (isNaN(layer_thickness)) {
       setThickness(value);
     } else {
