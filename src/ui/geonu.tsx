@@ -462,6 +462,8 @@ export const LayeredMantleFlux = () => {
   const uniformMantleGeoResponse = geoResponseFunc(bottomMantleRadius, topMantleRadius);
   const maxThickness = topMantleRadius - bottomMantleRadius;
   const minThickness = 0.1;
+  const maxFraction = 1;
+  const minFraction = 0;
   
   const UIsetThickness = (event) => {
     const newValue = event.target.value;
@@ -475,6 +477,12 @@ export const LayeredMantleFlux = () => {
     const newValue = event.target.value;
     let residual_fraction = newValue.replace(/[^0-9.]/g, '');
     if (!isNaN(residual_fraction) && !isNaN(parseFloat(residual_fraction))) {
+      if (residual_fraction > maxFraction) {
+        residual_fraction = maxFraction;
+      }
+      if (residual_fraction < minFraction) {
+        residual_fraction = minFraction;
+      }
       setResidual(residual_fraction);
     }
   };
