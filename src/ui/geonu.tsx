@@ -462,8 +462,10 @@ export const LayeredMantleFlux = () => {
   const uniformMantleGeoResponse = geoResponseFunc(bottomMantleRadius, topMantleRadius);
   const maxThickness = topMantleRadius - bottomMantleRadius;
   const minThickness = 0.1;
+  const stepThickness = 10;
   const maxFraction = 1;
   const minFraction = 0;
+  const stepFraction = 0.01;
   const regex = /[^0-9.]/g;
   
   const UIsetThickness = (event) => {
@@ -524,7 +526,7 @@ export const LayeredMantleFlux = () => {
                     onChange={UIsetThickness}
                     min={minThickness}
                     max={maxThickness}
-                    step="10"
+                    step={stepThickness}
                   />
                   <InputGroup.Append>
                     <InputGroup.Text>km</InputGroup.Text>
@@ -542,9 +544,9 @@ export const LayeredMantleFlux = () => {
                     type="number"
                     value={residualFraction}
                     onChange={UIsetResidual}
-                    min="0"
-                    max="1"
-                    step="0.01"
+                    min={minFraction}
+                    max={maxFraction}
+                    step={stepFraction}
                   />
                 </InputGroup>
               </Form.Group>
