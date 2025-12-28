@@ -469,7 +469,7 @@ export const LayeredMantleFlux = () => {
     max: 2811,
   }
   const fractionRangeParams = {
-    step: 0.005,
+    step: 0.001,
     min: 0,
     max: 1,
   }
