@@ -514,7 +514,7 @@ export const LayeredMantleFlux = () => {
   let enrichedMantleMassFraction = enrichedMantleMass / uniformMantleMass;
   let enrichedMantleGeoResponseFraction = enrichedMantleGeoResponse / uniformMantleGeoResponse;
   let enrichmentFactor = (uniformMantleMass - (depletedMantleMass * residualFraction)) / enrichedMantleMass;
-  let relativeSignal = (enrichedMantleGeoResponse * enrichmentFactor + depletedMantleGeoResponse * residualFraction) / uniformMantleGeoResponse;
+  let relativeFlux = (enrichedMantleGeoResponse * enrichmentFactor + depletedMantleGeoResponse * residualFraction) / uniformMantleGeoResponse;
 
   return (
     <Card>
@@ -587,12 +587,12 @@ export const LayeredMantleFlux = () => {
           </tbody>
         </Table>
         <Table>
-          <caption>Vary the thickness of a spherical shell (EM) at the base of the mantle, and vary the fraction of a given nuclide (i.e. {U238}, {Th232}, or {K40}) leftover in the overlying mantle (DM), to calculate the surface signal of the layered mantle (DM plus EM) relative to the uniform mantle. The enrichment of the nuclide in the basement layer follows mass balance. Enriching a basement layer always decreases the surface signal relative to a uniform mantle.</caption>
+          <caption>Vary the thickness of a spherical shell (EM) at the base of the mantle, and vary the fraction of a given nuclide (i.e. {U238}, {Th232}, or {K40}) that remains in the overlying mantle (DM), to calculate the surface flux of the layered mantle (DM plus EM) relative to the uniform mantle. The enrichment of the nuclide in the basement layer follows mass balance, keeping the radiogenic heating constant. Enriching a basement layer while depleting an overlying layer always decreases the surface flux relative to the uniform mantle.</caption>
           <thead>
             <tr>
               <th>EM Mass Fraction</th>
               <th>Enrichment Factor</th>
-              <th>Relative Signal</th>
+              <th>Relative Flux</th>
             </tr>
           </thead>
           <tbody>
@@ -604,7 +604,7 @@ export const LayeredMantleFlux = () => {
                 <Num v={enrichmentFactor} p={3} />
               </td>
               <td>
-                <Num v={relativeSignal} p={3} />
+                <Num v={relativeFlux} p={3} />
               </td>
             </tr>
           </tbody>
