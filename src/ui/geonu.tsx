@@ -591,7 +591,7 @@ export const LayeredMantleFlux = () => {
         <Table>
           <thead>
             <tr>
-              <th colspan="3">Constant Heating</th>
+              <th colSpan={3}>Constant Heating</th>
             </tr>
             <tr>
               <th>Mass Fraction</th>
@@ -617,7 +617,7 @@ export const LayeredMantleFlux = () => {
           <caption>Vary the thickness of a spherical shell, EM, at the base of the mantle, and vary the fraction of a given nuclide (i.e. {U238}, {Th232}, or {K40}) that remains in the overlying mantle, DM, to calculate the surface flux (top) or heating (bottom) of the layered mantle, DM plus EM, relative to the uniform mantle. The enrichment of the nuclide in the basement layer keeps the heating (top) or flux (bottom) constant. For constant heating (top) or flux (bottom), enriching a basement layer while depleting an overlying layer always decreases or increases the surface flux (top) or heating (bottom), respectively, relative to the uniform mantle.</caption>
           <thead>
             <tr>
-              <th colspan="3">Constant Flux</th>
+              <th colSpan={3}>Constant Flux</th>
             </tr>
             <tr>
               <th>Geological Response Fraction</th>
