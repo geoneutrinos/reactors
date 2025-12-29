@@ -513,8 +513,10 @@ export const LayeredMantleFlux = () => {
   let depletedMantleGeoResponse = geoResponseFunc(boundaryRadius, topMantleRadius);
   let enrichedMantleMassFraction = enrichedMantleMass / uniformMantleMass;
   let enrichedMantleGeoResponseFraction = enrichedMantleGeoResponse / uniformMantleGeoResponse;
-  let enrichmentFactor = (uniformMantleMass - (depletedMantleMass * residualFraction)) / enrichedMantleMass;
-  let relativeFlux = (enrichedMantleGeoResponse * enrichmentFactor + depletedMantleGeoResponse * residualFraction) / uniformMantleGeoResponse;
+  let enrichmentFactorConstantHeating = (uniformMantleMass - (depletedMantleMass * residualFraction)) / enrichedMantleMass;
+  let relativeFlux = (enrichedMantleGeoResponse * enrichmentFactorConstantHeating + depletedMantleGeoResponse * residualFraction) / uniformMantleGeoResponse;
+  let enrichmentFactorConstantFlux = (uniformMantleGeoResponse - (depletedMantleGeoResponse * residualFraction)) / enrichedMantleGeoResponse;
+  let relativeHeating = (enrichedMantleMass * enrichmentFactorConstantFlux + depletedMantleMass * residualFraction) / uniformMantleMass;
 
   return (
     <Card>
@@ -601,10 +603,33 @@ export const LayeredMantleFlux = () => {
                 <Num v={enrichedMantleMassFraction} p={3} />
               </td>
               <td>
-                <Num v={enrichmentFactor} p={3} />
+                <Num v={enrichmentFactorConstantHeating} p={3} />
               </td>
               <td>
                 <Num v={relativeFlux} p={3} />
+              </td>
+            </tr>
+          </tbody>
+        </Table>
+        <Table>
+          <caption>Vary the thickness of a spherical shell (EM) at the base of the mantle, and vary the fraction of a given nuclide (i.e. {U238}, {Th232}, or {K40}) that remains in the overlying mantle (DM), to calculate the surface flux of the layered mantle (DM plus EM) relative to the uniform mantle. The enrichment of the nuclide in the basement layer keeps the flux constant. Enriching a basement layer while depleting an overlying layer always decreases the surface flux relative to the uniform mantle.</caption>
+          <thead>
+            <tr>
+              <th>EM Geo Response Fraction</th>
+              <th>Enrichment Factor</th>
+              <th>Relative Heating</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <Num v={enrichedMantleGeoResponseFraction} p={3} />
+              </td>
+              <td>
+                <Num v={enrichmentFactorConstantFlux} p={3} />
+              </td>
+              <td>
+                <Num v={relativeHeating} p={3} />
               </td>
             </tr>
           </tbody>
