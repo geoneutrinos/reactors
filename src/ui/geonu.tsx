@@ -589,10 +589,9 @@ export const LayeredMantleFlux = () => {
           </tbody>
         </Table>
         <Table>
-          <caption>Vary the thickness of a spherical shell (EM) at the base of the mantle, and vary the fraction of a given nuclide (i.e. {U238}, {Th232}, or {K40}) that remains in the overlying mantle (DM), to calculate the surface flux of the layered mantle (DM plus EM) relative to the uniform mantle. The enrichment of the nuclide in the basement layer follows mass balance, keeping the radiogenic heating constant. Enriching a basement layer while depleting an overlying layer always decreases the surface flux relative to the uniform mantle.</caption>
           <thead>
             <tr>
-              <th>EM Mass Fraction</th>
+              <th>Mass Fraction</th>
               <th>Enrichment Factor</th>
               <th>Relative Flux</th>
             </tr>
@@ -612,10 +611,10 @@ export const LayeredMantleFlux = () => {
           </tbody>
         </Table>
         <Table>
-          <caption>Vary the thickness of a spherical shell (EM) at the base of the mantle, and vary the fraction of a given nuclide (i.e. {U238}, {Th232}, or {K40}) that remains in the overlying mantle (DM), to calculate the surface flux of the layered mantle (DM plus EM) relative to the uniform mantle. The enrichment of the nuclide in the basement layer keeps the flux constant. Enriching a basement layer while depleting an overlying layer always decreases the surface flux relative to the uniform mantle.</caption>
+          <caption>Vary the thickness of a spherical shell, EM, at the base of the mantle, and vary the fraction of a given nuclide (i.e. {U238}, {Th232}, or {K40}) that remains in the overlying mantle, DM, to calculate the surface flux (top) or heating (bottom) of the layered mantle, DM plus EM, relative to the uniform mantle. The enrichment of the nuclide in the basement layer keeps the heating (top) or flux (bottom) constant. For constant heating (top) or flux (bottom), enriching a basement layer while depleting an overlying layer always decreases or increases the surface flux (top) or heating (bottom), respectively, relative to the uniform mantle.</caption>
           <thead>
             <tr>
-              <th>EM Geo Response Fraction</th>
+              <th>Geological Response Fraction</th>
               <th>Enrichment Factor</th>
               <th>Relative Heating</th>
             </tr>
