@@ -331,7 +331,7 @@ export function CoreDirectionPlot({ cores, detector }) {
             type: "scatterpolar",
             r: PHWRcores.map((core) => core.direction.elev),
             theta: PHWRcores.map((core) => core.direction.phi),
-            text: PHWRcores.map((core) => `${core.name} (${core.type})<br>θ=${core.direction.elev}<br>${core.direction.phi}`),
+            text: PHWRcores.map((core) => `${core.name} (${core.type})<br>θ=${core.direction.elev}<br>&phi=${core.direction.phi}`),
             mode: "markers",
             hoverinfo: "text",
             marker: {
