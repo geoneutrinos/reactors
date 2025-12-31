@@ -283,7 +283,7 @@ export function CoreDirectionPlot({ cores, detector }) {
             type: "scatterpolar",
             r: AllOtherCores.map((core) => core.direction.elev),
             theta: AllOtherCores.map((core) => core.direction.phi),
-            text: AllOtherCores.map((core) => `${core.name} (${core.type})`),
+            text: AllOtherCores.map((core) => `${core.name} (${core.type})<br>θ=${core.direction.elev.toFixed(3)}<br>φ=${core.direction.phi.toFixed(3)}`),
             mode: "markers",
             hoverinfo: "text",
             marker: {
@@ -307,7 +307,7 @@ export function CoreDirectionPlot({ cores, detector }) {
             type: "scatterpolar",
             r: GCRcores.map((core) => core.direction.elev),
             theta: GCRcores.map((core) => core.direction.phi),
-            text: GCRcores.map((core) => `${core.name} (${core.type})`),
+            text: GCRcores.map((core) => `${core.name} (${core.type})<br>θ=${core.direction.elev.toFixed(3)}<br>φ=${core.direction.phi.toFixed(3)}`),
             mode: "markers",
             hoverinfo: "text",
             marker: {
@@ -319,7 +319,7 @@ export function CoreDirectionPlot({ cores, detector }) {
             type: "scatterpolar",
             r: LEUMoxCores.map((core) => core.direction.elev),
             theta: LEUMoxCores.map((core) => core.direction.phi),
-            text: LEUMoxCores.map((core) => `${core.name} (${core.type} MOX)`),
+            text: LEUMoxCores.map((core) => `${core.name} (${core.type} MOX)<br>θ=${core.direction.elev.toFixed(3)}<br>φ=${core.direction.phi.toFixed(3)}`),
             mode: "markers",
             hoverinfo: "text",
             marker: {
