@@ -217,7 +217,7 @@ export function KESpectrumPlot({ cores, spectrum, detector, reactorLF}) {
 />
 }
 
-export function CoreDirectionPlot({ cores, detector }) {
+export function CoreDirectionPlot({ cores, detector, reactorLF }) {
   const coreArr = Object.values(cores).filter(core => core.shutdown > new Date());
 
   const PHWRcores = coreArr.filter((core) => core.spectrumType === "PHWR");
@@ -238,7 +238,7 @@ export function CoreDirectionPlot({ cores, detector }) {
         : detector.current
     } (${detector.lat.toFixed(1)}N, ${detector.lon.toFixed(
       1
-    )}E, ${detector.elevation.toFixed(0)}m)`,
+    )}E, ${detector.elevation.toFixed(0)}m)<br /><sub>(${reactorLF.start.toISOString().slice(0, 7)} through ${reactorLF.end.toISOString().slice(0, 7)} avg Load Factor)</sub>`,
     showlegend: true,
     autosize: true,
     polar: {
@@ -283,11 +283,12 @@ export function CoreDirectionPlot({ cores, detector }) {
             type: "scatterpolar",
             r: AllOtherCores.map((core) => core.direction.elev),
             theta: AllOtherCores.map((core) => core.direction.phi),
-            text: AllOtherCores.map((core) => `${core.name} (${core.type})`),
+            text: AllOtherCores.map((core) => `${core.name} (${core.type})<br>θ=${core.direction.elev.toFixed(3)}<br>φ=${core.direction.phi.toFixed(3)}<br>signal=${core.detectorNIU.toExponential(2)}`),
             mode: "markers",
             hoverinfo: "text",
             marker: {
               color: "#009000",
+              size: 4,
             },
           },
           {
@@ -300,6 +301,7 @@ export function CoreDirectionPlot({ cores, detector }) {
             hoverinfo: "text",
             marker: {
               color: "#000",
+              size: 6,
             },
           },
           {
@@ -307,11 +309,12 @@ export function CoreDirectionPlot({ cores, detector }) {
             type: "scatterpolar",
             r: GCRcores.map((core) => core.direction.elev),
             theta: GCRcores.map((core) => core.direction.phi),
-            text: GCRcores.map((core) => `${core.name} (${core.type})`),
+            text: GCRcores.map((core) => `${core.name} (${core.type})<br>θ=${core.direction.elev.toFixed(3)}<br>φ=${core.direction.phi.toFixed(3)}<br>signal=${core.detectorNIU.toExponential(2)}`),
             mode: "markers",
             hoverinfo: "text",
             marker: {
               color: "#D69537",
+              size: 4,
             },
           },
           {
@@ -319,11 +322,12 @@ export function CoreDirectionPlot({ cores, detector }) {
             type: "scatterpolar",
             r: LEUMoxCores.map((core) => core.direction.elev),
             theta: LEUMoxCores.map((core) => core.direction.phi),
-            text: LEUMoxCores.map((core) => `${core.name} (${core.type} MOX)`),
+            text: LEUMoxCores.map((core) => `${core.name} (${core.type} MOX)<br>θ=${core.direction.elev.toFixed(3)}<br>φ=${core.direction.phi.toFixed(3)}<br>signal=${core.detectorNIU.toExponential(2)}`),
             mode: "markers",
             hoverinfo: "text",
             marker: {
               color: "#0000ff",
+              size: 4,
             },
           },
           {
@@ -331,11 +335,12 @@ export function CoreDirectionPlot({ cores, detector }) {
             type: "scatterpolar",
             r: PHWRcores.map((core) => core.direction.elev),
             theta: PHWRcores.map((core) => core.direction.phi),
-            text: PHWRcores.map((core) => `${core.name} (${core.type}) ${core.direction.elev} ${core.direction.phi}`),
+            text: PHWRcores.map((core) => `${core.name} (${core.type})<br>θ=${core.direction.elev.toFixed(3)}<br>φ=${core.direction.phi.toFixed(3)}<br>signal=${core.detectorNIU.toExponential(2)}`),
             mode: "markers",
             hoverinfo: "text",
             marker: {
               color: "#ff0000",
+              size: 4,
             },
           },
         ]}
