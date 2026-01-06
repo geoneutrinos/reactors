@@ -217,7 +217,7 @@ export function KESpectrumPlot({ cores, spectrum, detector, reactorLF}) {
 />
 }
 
-export function CoreDirectionPlot({ cores, detector }) {
+export function CoreDirectionPlot({ cores, detector, reactorLF }) {
   const coreArr = Object.values(cores).filter(core => core.shutdown > new Date());
 
   const PHWRcores = coreArr.filter((core) => core.spectrumType === "PHWR");
@@ -238,7 +238,7 @@ export function CoreDirectionPlot({ cores, detector }) {
         : detector.current
     } (${detector.lat.toFixed(1)}N, ${detector.lon.toFixed(
       1
-    )}E, ${detector.elevation.toFixed(0)}m)`,
+    )}E, ${detector.elevation.toFixed(0)}m)<br /><sub>(${reactorLF.start.toISOString().slice(0, 7)} through ${reactorLF.end.toISOString().slice(0, 7)} avg Load Factor)</sub>`,
     showlegend: true,
     autosize: true,
     polar: {
