@@ -288,7 +288,7 @@ export function CoreDirectionPlot({ cores, detector, reactorLF }) {
             hoverinfo: "text",
             marker: {
               color: "#009000",
-              size: 3,
+              size: 4,
             },
           },
           {
@@ -314,7 +314,7 @@ export function CoreDirectionPlot({ cores, detector, reactorLF }) {
             hoverinfo: "text",
             marker: {
               color: "#D69537",
-              size: 3,
+              size: 4,
             },
           },
           {
@@ -327,7 +327,7 @@ export function CoreDirectionPlot({ cores, detector, reactorLF }) {
             hoverinfo: "text",
             marker: {
               color: "#0000ff",
-              size: 3,
+              size: 4,
             },
           },
           {
@@ -340,7 +340,7 @@ export function CoreDirectionPlot({ cores, detector, reactorLF }) {
             hoverinfo: "text",
             marker: {
               color: "#ff0000",
-              size: 1,
+              size: 4,
             },
           },
         ]}
