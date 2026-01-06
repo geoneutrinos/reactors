@@ -28,6 +28,7 @@ import {
   GeoNusPane,
   CrustFlux,
   MantleFlux,
+  LayeredMantleFlux,
   GeoDensityPlot,
   GeoMassPlot,
   GeoIntegralPlot,
@@ -354,6 +355,7 @@ function App(props) {
                     geo={geo}
                     celestialBody={celestialBody}
                   />
+                  <LayeredMantleFlux />
                   <GeoCEvNS GeoCEvNSFlux={geoCEvNS} />
                   <GeoDensityPlot />
                   <GeoMassPlot />

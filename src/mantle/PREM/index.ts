@@ -154,14 +154,16 @@ const AK135F = [
 [6371.00, 0.0000,  0.0000],
 ]
 
-const layers = 63713;
+const layers = 63710;
+const mantleLayers = 62910 - 34800;
 const maxRadius = 6371;
 const maxRadiusCubed = maxRadius**3;
-const binWidth = maxRadius / (layers - 3);
+const binWidth = maxRadius / (layers);
 const offset = binWidth * 0.5;
 const preFactor = 4 * Math.PI * 1e15 / 3; //1e5 cm/km
 
 export const bins = new Float64Array(layers).map((_, i) => 0 + offset + binWidth * i);
+export const mantleBins = new Float64Array(mantleLayers).map((_, i) => 34800 + offset + binWidth * i);
 
 /**
  * polynomial(a0, a1, ... , an) generates a function f(x) that will compute the power series in the form:

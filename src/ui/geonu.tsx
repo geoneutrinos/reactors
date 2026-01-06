@@ -29,8 +29,20 @@ import {
   LUNAR_MANTLE_MASS,
 } from "../mantle/geophysics";
 
-const {K40, Th232, U235, U238} = ElementsUI
+import {
+  layerMasses,
+  layerGeoResponse,
+} from "../mantle/PREM";
 
+const massFunc = (radBot, radTop) => {
+  return layerMasses.slice( radBot * 10, radTop * 10 ).reduce((massSum, currentMass)=>massSum + currentMass, 0)
+}
+
+const geoResponseFunc = (radBot, radTop) => {
+  return layerGeoResponse.slice( radBot * 10, radTop * 10 ).reduce((responseSum, currentResponse)=>responseSum + currentResponse, 0)
+}
+
+const {K40, Th232, U235, U238} = ElementsUI
 
 interface GeoElements {
   K40: number;
@@ -250,6 +262,7 @@ export const CrustFlux = ({ includeCrust, setIncludeCrust }) => {
 };
 
 export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody}) => {
+  
   const {abundance} = geo;
   const {heating} = geo;
 
@@ -273,6 +286,7 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
     kRangeParams.min = 0
     kRangeParams.max = 6e3
   }
+
   return (
     <Card>
       <Card.Header>Mantle Fluxes <small>(Nuclide Abundance; Radiogenic Heating)</small></Card.Header>
@@ -425,12 +439,206 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
               </tr>
             </tbody>
           </Table>
-        Total Mantle Radiogenic Heating: <Num v={heating.U238 + heating.U235 + heating.Th232 + heating.K40Beta + heating.K40Ec} p={3} func={(v) => v / 1e12}/> TW assumes homogeneous element concentrations
+        Mantle Radiogenic Heating: <Num v={heating.U238 + heating.U235 + heating.Th232 + heating.K40Beta + heating.K40Ec} p={3} func={(v) => v / 1e12}/> TW assumes homogeneous element concentrations
         <br /> •<small>Earth mantle mass (<Num v={MANTLE_MASS} p={4} func={(v) => v * 1e-24} /> x10<sup>24</sup> kg) and geophysical response (<Num v={MANTLE_GEOPHYSICAL_RESPONSE} p={4} func={(v) => v * 1e-3} /> x10<sup>3</sup> kg cm<sup>-2</sup>)</small>
         <br /> <small>A. M. Dziewonski and D. L. Anderson (1981), <i>Preliminary Reference Earth Model (PREM)</i>, Phys. Earth Planet. Inter. 25, 297-356</small>
         <br /> •<small>Moon mantle mass (<Num v={LUNAR_MANTLE_MASS} p={4} func={(v) => v * 1e-22} /> x10<sup>22</sup> kg) and geophysical response (<Num v={LUNAR_MANTLE_GEOPHYSICAL_RESPONSE} p={4} func={(v) => v * 1e-3} /> x10<sup>3</sup> kg cm<sup>-2</sup>)</small>
         <br /> <small>A. Briaud <i>et al.</i> (2023), <i>The lunar solid inner core and the mantle overturn</i>, Nature 617, 743-746</small>
         <br /> •<small>The settable <sup>238</sup>U mantle flux does not include the average oscillation survival probability ({averageSurvivalProbabilityNormal.toFixed(3)}) </small>
+        <br />
+      </Card.Body>
+    </Card>
+  );
+};
+
+export const LayeredMantleFlux = () => {
+  
+  const [layerThickness, setThickness] = useState(1);
+  const [residualFraction, setResidual] = useState(1);
+
+  const bottomMantleRadius = 3480;
+  const topMantleRadius = 6291;
+  const uniformMantleMass = massFunc(bottomMantleRadius, topMantleRadius);
+  const uniformMantleGeoResponse = geoResponseFunc(bottomMantleRadius, topMantleRadius);
+
+  const regex = /[^0-9.]/g;
+  
+  const thicknessRangeParams = {
+    step: 1,
+    min: 1,
+    max: 2811,
+  }
+  const fractionRangeParams = {
+    step: 0.001,
+    min: 0,
+    max: 1,
+  }
+
+  const UIsetThickness = (event) => {
+    const value = event.target.value;
+    let layer_thickness = parseFloat(value.replace( regex , ''));
+    if (isNaN(layer_thickness)) {
+      setThickness(value);
+    } else {
+      if (layer_thickness > thicknessRangeParams.max) {
+        layer_thickness = thicknessRangeParams.max;
+      }
+      if (layer_thickness < thicknessRangeParams.min) {
+        layer_thickness = thicknessRangeParams.min;
+      }
+      setThickness(layer_thickness);
+    }
+  };
+
+  const UIsetResidual = (event) => {
+    const value = event.target.value;
+    let residual_fraction = parseFloat(value);
+    if (isNaN(residual_fraction)) {
+      setResidual(value);
+    } else {
+      if (residual_fraction > fractionRangeParams.max) {
+        residual_fraction = fractionRangeParams.max;
+      }
+      if (residual_fraction < fractionRangeParams.min) {
+        residual_fraction = fractionRangeParams.min;
+      }
+      setResidual(residual_fraction);
+    }
+  };
+
+  let boundaryRadius = bottomMantleRadius + layerThickness;
+  let enrichedMantleMass = massFunc(bottomMantleRadius, boundaryRadius);
+  let depletedMantleMass = massFunc(boundaryRadius, topMantleRadius);
+  let enrichedMantleGeoResponse = geoResponseFunc(bottomMantleRadius, boundaryRadius);
+  let depletedMantleGeoResponse = geoResponseFunc(boundaryRadius, topMantleRadius);
+  let enrichedMantleMassFraction = enrichedMantleMass / uniformMantleMass;
+  let enrichedMantleGeoResponseFraction = enrichedMantleGeoResponse / uniformMantleGeoResponse;
+  let enrichmentFactorConstantHeating = (uniformMantleMass - (depletedMantleMass * residualFraction)) / enrichedMantleMass;
+  let relativeFlux = (enrichedMantleGeoResponse * enrichmentFactorConstantHeating + depletedMantleGeoResponse * residualFraction) / uniformMantleGeoResponse;
+  let enrichmentFactorConstantFlux = (uniformMantleGeoResponse - (depletedMantleGeoResponse * residualFraction)) / enrichedMantleGeoResponse;
+  let relativeHeating = (enrichedMantleMass * enrichmentFactorConstantFlux + depletedMantleMass * residualFraction) / uniformMantleMass;
+
+  return (
+    <Card>
+      <Card.Header>Layered Mantle Fluxes <small>(Enriched Basement Layer)</small></Card.Header>
+      <Card.Body>
+        <Form noValidate>
+          <Form.Group controlId="layer_thickness">
+            <Form.Label>
+              Enriched Layer Thickness {layerThickness} km
+            </Form.Label>
+            <InputGroup>
+              <Form.Control
+                type="range"
+                value={layerThickness}
+                {...thicknessRangeParams}
+                onChange={UIsetThickness}
+              />
+            </InputGroup>
+          </Form.Group>
+          <Form.Group controlId="residual_fraction">
+            <Form.Label>
+              Residual Fraction {residualFraction}
+            </Form.Label>
+            <InputGroup>
+              <Form.Control
+                type="range"
+                value={residualFraction}
+                {...fractionRangeParams}
+                onChange={UIsetResidual}
+              />
+            </InputGroup>
+          </Form.Group>
+        </Form>
+        <Table>
+          <thead>
+            <tr>
+              <th>Reservoir</th>
+              <th>Mass (10<sup>24</sup> kg)</th>
+              <th>Geological Response (10<sup>3</sup> kg cm<sup>-2</sup>)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Uniform Mantle</td>
+              <td>
+                <Num v={uniformMantleMass} p={3} func={(v) => v * 1e-27} />
+              </td>
+              <td>
+                <Num v={uniformMantleGeoResponse} p={1} func={(v) => v * 1e-3} />
+              </td>
+            </tr>
+            <tr>
+              <td>Depleted Mantle (DM)</td>
+              <td>
+                <Num v={depletedMantleMass} p={3} func={(v) => v * 1e-27} />
+              </td>
+              <td>
+                <Num v={depletedMantleGeoResponse} p={1} func={(v) => v * 1e-3} />
+              </td>
+            </tr>
+            <tr>
+              <td>Enriched Mantle (EM)</td>
+              <td>
+                <Num v={enrichedMantleMass} p={3} func={(v) => v * 1e-27} />
+              </td>
+              <td>
+                <Num v={enrichedMantleGeoResponse} p={1} func={(v) => v * 1e-3} />
+              </td>
+            </tr>
+          </tbody>
+        </Table>
+        <Table>
+          <thead>
+            <tr>
+              <th colSpan={3} >Constant Heating</th>
+            </tr>
+            <tr>
+              <th>Mass Fraction</th>
+              <th>Enrichment Factor</th>
+              <th>Relative Flux</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <Num v={enrichedMantleMassFraction} p={3} />
+              </td>
+              <td>
+                <Num v={enrichmentFactorConstantHeating} p={3} />
+              </td>
+              <td>
+                <Num v={relativeFlux} p={3} />
+              </td>
+            </tr>
+          </tbody>
+        </Table>
+        <Table>
+          <caption>Vary the thickness of a spherical shell, EM, at the base of the mantle, and vary the fraction of a given nuclide (i.e. {U238}, {Th232}, or {K40}) that remains in the overlying mantle, DM, to calculate the surface flux or the heating of the layered mantle, DM plus EM, relative to the uniform mantle. The enrichment of the nuclide in the basement layer keeps either the heating or the flux constant. For constant heating (flux), enriching a basement layer while depleting an overlying layer always decreases the surface flux (increases the heating), relative to the uniform mantle.</caption>
+          <thead>
+            <tr>
+              <th colSpan={3} >Constant Flux</th>
+            </tr>
+            <tr>
+              <th>Geological Response Fraction</th>
+              <th>Enrichment Factor</th>
+              <th>Relative Heating</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <Num v={enrichedMantleGeoResponseFraction} p={3} />
+              </td>
+              <td>
+                <Num v={enrichmentFactorConstantFlux} p={3} />
+              </td>
+              <td>
+                <Num v={relativeHeating} p={3} />
+              </td>
+            </tr>
+          </tbody>
+        </Table>
       </Card.Body>
     </Card>
   );
