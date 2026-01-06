@@ -387,7 +387,7 @@ function App(props) {
                     detector={detector}
                     reactorLF={reactorLF}
                   />
-                  <CoreDirectionPlot cores={cores} detector={detector} />
+                  <CoreDirectionPlot cores={cores} detector={detector} reactorLF={reactorLF} />
                   <AnalemmaPlot boron8={boron8} detector={detector} cores={cores} reactorLF={reactorLF} />
                 </Visible>
               </Tab>
