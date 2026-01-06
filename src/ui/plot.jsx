@@ -288,6 +288,7 @@ export function CoreDirectionPlot({ cores, detector, reactorLF }) {
             hoverinfo: "text",
             marker: {
               color: "#009000",
+              size: 4,
             },
           },
           {
