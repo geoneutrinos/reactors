@@ -165,11 +165,11 @@ const calcSpectrum = (crossSection:CrossSection, powerFractions: PowerFractions,
       .map((v) => {
         const isotope: Isotopes = v as Isotopes;
         const powerFraction = powerFractions[isotope];
-        const fisionEnery = FISSION_ENERGIES[isotope];
+        const fissionEnergy = FISSION_ENERGIES[isotope];
         const neutrinoEnergy = reactorAntineutrinoModel.model[isotope];
         const rate = partialInteractionRate(
           Ev,
-          fisionEnery,
+          fissionEnergy,
           crossSection.crossSectionFunction,
           neutrinoEnergy
         );
@@ -185,11 +185,11 @@ const calcSpectrum = (crossSection:CrossSection, powerFractions: PowerFractions,
       .map((v) => {
         const isotope: Isotopes = v as Isotopes;
         const powerFraction = powerFractions[isotope];
-        const fisionEnery = FISSION_ENERGIES[isotope];
+        const fissionEnergy = FISSION_ENERGIES[isotope];
         const neutrinoUncertanty = reactorAntineutrinoModel.uncertanty[isotope];
         const rate = partialInteractionRate(
           Ev,
-          fisionEnery,
+          fissionEnergy,
           crossSection.crossSectionFunction,
           neutrinoUncertanty
         );
