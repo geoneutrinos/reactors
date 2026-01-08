@@ -14,9 +14,16 @@ export const DownloadButton = ({
   formatters = {},
   filename = "output.csv",
   buttonTitle = "Download",
+  cols= undefined,
 }) => {
   const onClick = () => {
-    const columns = Object.keys(data);
+    const columns = cols || Object.keys(data);
+
+    if (Array.isArray(data)){ // assume array of objs
+      let newData = Object.fromEntries(columns.map(key => [key, []]));
+      data.forEach(obj => columns.forEach(col => newData[col].push(obj[col] || "")));
+      data = newData;
+    }
 
     const defaultFormatters = Object.fromEntries(
       columns.map((col) => [col, (v) => v])
