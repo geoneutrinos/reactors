@@ -304,7 +304,7 @@ export const CoreList = ({
       </Card.Header>
       <Card.Body>
         <p> Filter Cores by Name or Type (PWR, BWR, PHWR, GCR, LWGR, FBR, LEU_MOX) </p>
-        <DownloadButton data={Object.values(cores)} cols={["name", "detectorDistance", "detectorSignal", "direction.phi", "direction.elev"]} buttonTitle="Download Data" filename="cores.csv"/>
+        <DownloadButton data={Object.values(cores)} cols={["name", "detectorDistance", "detectorSignal"]} buttonTitle="Download Data" filename="cores.csv"/>
       </Card.Body>
       <ListGroup variant="flush">
         <ListGroup.Item>
