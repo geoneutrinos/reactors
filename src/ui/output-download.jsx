@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { zip, sum } from "lodash";
+import { zip, sum, get } from "lodash";
 import { XSNames, XSAbrev } from "../physics/neutrino-cross-section";
 import { SECONDS_PER_YEAR } from "../physics/constants";
 import { PhysicsContext } from "../state";
@@ -21,7 +21,7 @@ export const DownloadButton = ({
 
     if (Array.isArray(data)){ // assume array of objs
       let newData = Object.fromEntries(columns.map(key => [key, []]));
-      data.forEach(obj => columns.forEach(col => newData[col].push(obj[col] || "")));
+      data.forEach(obj => columns.forEach(col => newData[col].push(get(obj, col,""))));
       data = newData;
     }
 
