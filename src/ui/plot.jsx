@@ -7,6 +7,7 @@ import {PhysicsContext} from '../state'
 
 import bins, {binCount, shiftByIBD} from "../physics/bins"
 import {XSNames} from "../physics/neutrino-cross-section"
+import {ENUtoNEU} from "./reactors-corelist"
 
 
 export function NuSpectrumPlot({ cores, geo, detector, reactorLF, xaxisExtra={}, yaxisExtra={}, layoutExtra={}, func=(v) => v, celestialBody}) {
@@ -309,7 +310,7 @@ export function CoreDirectionPlot({ cores, detector, reactorLF }) {
             type: "scatterpolar",
             r: GCRcores.map((core) => core.direction.elev),
             theta: GCRcores.map((core) => core.direction.phi),
-            text: GCRcores.map((core) => `${core.name} (${core.type})<br>θ=${core.direction.elev.toFixed(3)}<br>φ=${core.direction.phi.toFixed(3)}<br>signal=${core.detectorNIU.toExponential(2)}`),
+            text: GCRcores.map((core) => `${core.name} (${core.type})<br>θ=${core.direction.elev.toFixed(3)}<br>φ=${ENUtoNEU(core.direction.phi).toFixed(3)}<br>signal=${core.detectorNIU.toExponential(2)}`),
             mode: "markers",
             hoverinfo: "text",
             marker: {
