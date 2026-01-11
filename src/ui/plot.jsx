@@ -7,6 +7,7 @@ import {PhysicsContext} from '../state'
 
 import bins, {binCount, shiftByIBD} from "../physics/bins"
 import {XSNames} from "../physics/neutrino-cross-section"
+import {ENUtoNEU} from "./reactors-corelist"
 
 
 export function NuSpectrumPlot({ cores, geo, detector, reactorLF, xaxisExtra={}, yaxisExtra={}, layoutExtra={}, func=(v) => v, celestialBody}) {
@@ -245,9 +246,7 @@ export function CoreDirectionPlot({ cores, detector, reactorLF }) {
       angularaxis: {
         thetaunit: "degrees",
         dtick: 45,
-        tickmode: "array",
-        tickvals: [0, 45, 90, 135, 180, 225, 270, 315],
-        ticktext: ["90&deg;", "45&deg;", "0&deg;", "315&deg;", "270&deg;", "225&deg;", "180&deg;", "135&deg;"],
+        tickmode: "auto",
       },
     },
     legend: {
@@ -282,8 +281,8 @@ export function CoreDirectionPlot({ cores, detector, reactorLF }) {
             name: "PWR,BWR", //All other
             type: "scatterpolar",
             r: AllOtherCores.map((core) => core.direction.elev),
-            theta: AllOtherCores.map((core) => core.direction.phi),
-            text: AllOtherCores.map((core) => `${core.name} (${core.type})<br>θ=${core.direction.elev.toFixed(3)}<br>φ=${core.direction.phi.toFixed(3)}<br>signal=${core.detectorNIU.toExponential(2)}`),
+            theta: AllOtherCores.map((core) => ENUtoNEU(core.direction.phi)),
+            text: AllOtherCores.map((core) => `${core.name} (${core.type})<br>θ=${core.direction.elev.toFixed(3)}<br>φ=${ENUtoNEU(core.direction.phi).toFixed(3)}<br>signal=${core.detectorNIU.toExponential(2)}`),
             mode: "markers",
             hoverinfo: "text",
             marker: {
@@ -295,7 +294,7 @@ export function CoreDirectionPlot({ cores, detector, reactorLF }) {
             name: "Custom Cores",
             type: "scatterpolar",
             r: CustomCores.map((core) => core.direction.elev),
-            theta: CustomCores.map((core) => core.direction.phi),
+            theta: CustomCores.map((core) => ENUtoNEU(core.direction.phi)),
             text: CustomCores.map((core) => core.name),
             mode: "markers",
             hoverinfo: "text",
@@ -308,8 +307,8 @@ export function CoreDirectionPlot({ cores, detector, reactorLF }) {
             name: "GCR", //GCR Cores
             type: "scatterpolar",
             r: GCRcores.map((core) => core.direction.elev),
-            theta: GCRcores.map((core) => core.direction.phi),
-            text: GCRcores.map((core) => `${core.name} (${core.type})<br>θ=${core.direction.elev.toFixed(3)}<br>φ=${core.direction.phi.toFixed(3)}<br>signal=${core.detectorNIU.toExponential(2)}`),
+            theta: GCRcores.map((core) => ENUtoNEU(core.direction.phi)),
+            text: GCRcores.map((core) => `${core.name} (${core.type})<br>θ=${core.direction.elev.toFixed(3)}<br>φ=${ENUtoNEU(core.direction.phi).toFixed(3)}<br>signal=${core.detectorNIU.toExponential(2)}`),
             mode: "markers",
             hoverinfo: "text",
             marker: {
@@ -321,8 +320,8 @@ export function CoreDirectionPlot({ cores, detector, reactorLF }) {
             name: "PWR/MOX", //LEU MOX COres
             type: "scatterpolar",
             r: LEUMoxCores.map((core) => core.direction.elev),
-            theta: LEUMoxCores.map((core) => core.direction.phi),
-            text: LEUMoxCores.map((core) => `${core.name} (${core.type} MOX)<br>θ=${core.direction.elev.toFixed(3)}<br>φ=${core.direction.phi.toFixed(3)}<br>signal=${core.detectorNIU.toExponential(2)}`),
+            theta: LEUMoxCores.map((core) => ENUtoNEU(core.direction.phi)),
+            text: LEUMoxCores.map((core) => `${core.name} (${core.type} MOX)<br>θ=${core.direction.elev.toFixed(3)}<br>φ=${ENUtoNEU(core.direction.phi).toFixed(3)}<br>signal=${core.detectorNIU.toExponential(2)}`),
             mode: "markers",
             hoverinfo: "text",
             marker: {
@@ -334,8 +333,8 @@ export function CoreDirectionPlot({ cores, detector, reactorLF }) {
             name: "PHWR", //PHWR Cores
             type: "scatterpolar",
             r: PHWRcores.map((core) => core.direction.elev),
-            theta: PHWRcores.map((core) => core.direction.phi),
-            text: PHWRcores.map((core) => `${core.name} (${core.type})<br>θ=${core.direction.elev.toFixed(3)}<br>φ=${core.direction.phi.toFixed(3)}<br>signal=${core.detectorNIU.toExponential(2)}`),
+            theta: PHWRcores.map((core) => ENUtoNEU(core.direction.phi)),
+            text: PHWRcores.map((core) => `${core.name} (${core.type})<br>θ=${core.direction.elev.toFixed(3)}<br>φ=${ENUtoNEU(core.direction.phi).toFixed(3)}<br>signal=${core.detectorNIU.toExponential(2)}`),
             mode: "markers",
             hoverinfo: "text",
             marker: {
