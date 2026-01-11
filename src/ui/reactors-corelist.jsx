@@ -82,7 +82,7 @@ const CoreListItem = ({
     dist = core.detectorDistance.toFixed(2);
     } else {
       if (core.detectorDistance < 1000) {
-      dist = core.dtectorDistance.toFixed(1);
+      dist = core.detectorDistance.toFixed(1);
       }
     }
   };
