@@ -265,7 +265,7 @@ export function CoreDirectionPlot({ cores, detector, reactorLF }) {
         showarrow: false,
         align: "right",
         text:
-          "geoneutrinos.org <br />Angular Axis is Azimuth (deg): North is 90&deg;, East is 0&deg;, etc. <br />Radial Axis is Altitude (deg): Horizon 0&deg;, Nadir -90&deg; ",
+          "geoneutrinos.org <br />Angular Axis is Azimuth (deg): North is 0&deg;, East is 90&deg;, etc. <br />Radial Axis is Altitude (deg): Horizon 0&deg;, Nadir -90&deg; ",
         x: 1.1,
         xref: "paper",
         y: -0.075,
@@ -310,7 +310,7 @@ export function CoreDirectionPlot({ cores, detector, reactorLF }) {
             type: "scatterpolar",
             r: GCRcores.map((core) => core.direction.elev),
             theta: GCRcores.map((core) => ENUtoNEU(core.direction.phi)),
-            text: GCRcores.map((core) => `${core.name} (${core.type})<br>θ=${core.direction.elev.toFixed(3)}<br>φ=${core.direction.phi.toFixed(3)}<br>signal=${core.detectorNIU.toExponential(2)}`),
+            text: GCRcores.map((core) => `${core.name} (${core.type})<br>θ=${core.direction.elev.toFixed(3)}<br>φ=${ENUtoNEU(core.direction.phi).toFixed(3)}<br>signal=${core.detectorNIU.toExponential(2)}`),
             mode: "markers",
             hoverinfo: "text",
             marker: {
@@ -323,7 +323,7 @@ export function CoreDirectionPlot({ cores, detector, reactorLF }) {
             type: "scatterpolar",
             r: LEUMoxCores.map((core) => core.direction.elev),
             theta: LEUMoxCores.map((core) => ENUtoNEU(core.direction.phi)),
-            text: LEUMoxCores.map((core) => `${core.name} (${core.type} MOX)<br>θ=${core.direction.elev.toFixed(3)}<br>φ=${core.direction.phi.toFixed(3)}<br>signal=${core.detectorNIU.toExponential(2)}`),
+            text: LEUMoxCores.map((core) => `${core.name} (${core.type} MOX)<br>θ=${core.direction.elev.toFixed(3)}<br>φ=${ENUtoNEU(core.direction.phi).toFixed(3)}<br>signal=${core.detectorNIU.toExponential(2)}`),
             mode: "markers",
             hoverinfo: "text",
             marker: {
@@ -336,7 +336,7 @@ export function CoreDirectionPlot({ cores, detector, reactorLF }) {
             type: "scatterpolar",
             r: PHWRcores.map((core) => core.direction.elev),
             theta: PHWRcores.map((core) => ENUtoNEU(core.direction.phi)),
-            text: PHWRcores.map((core) => `${core.name} (${core.type})<br>θ=${core.direction.elev.toFixed(3)}<br>φ=${core.direction.phi.toFixed(3)}<br>signal=${core.detectorNIU.toExponential(2)}`),
+            text: PHWRcores.map((core) => `${core.name} (${core.type})<br>θ=${core.direction.elev.toFixed(3)}<br>φ=${ENUtoNEU(core.direction.phi).toFixed(3)}<br>signal=${core.detectorNIU.toExponential(2)}`),
             mode: "markers",
             hoverinfo: "text",
             marker: {
