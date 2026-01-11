@@ -309,8 +309,8 @@ export function CoreDirectionPlot({ cores, detector, reactorLF }) {
             name: "GCR", //GCR Cores
             type: "scatterpolar",
             r: GCRcores.map((core) => core.direction.elev),
-            theta: GCRcores.map((core) => core.direction.phi),
-            text: GCRcores.map((core) => `${core.name} (${core.type})<br>θ=${core.direction.elev.toFixed(3)}<br>φ=${ENUtoNEU(core.direction.phi).toFixed(3)}<br>signal=${core.detectorNIU.toExponential(2)}`),
+            theta: GCRcores.map((core) => ENUtoNEU(core.direction.phi)),
+            text: GCRcores.map((core) => `${core.name} (${core.type})<br>θ=${core.direction.elev.toFixed(3)}<br>φ=${core.direction.phi.toFixed(3)}<br>signal=${core.detectorNIU.toExponential(2)}`),
             mode: "markers",
             hoverinfo: "text",
             marker: {
