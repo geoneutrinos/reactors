@@ -284,7 +284,7 @@ export function CoreDirectionPlot({ cores, detector, reactorLF }) {
             type: "scatterpolar",
             r: AllOtherCores.map((core) => core.direction.elev),
             theta: AllOtherCores.map((core) => ENUtoNEU(core.direction.phi)),
-            text: AllOtherCores.map((core) => `${core.name} (${core.type})<br>θ=${core.direction.elev.toFixed(3)}<br>φ=${core.direction.phi.toFixed(3)}<br>signal=${core.detectorNIU.toExponential(2)}`),
+            text: AllOtherCores.map((core) => `${core.name} (${core.type})<br>θ=${core.direction.elev.toFixed(3)}<br>φ=${ENUtoNEU(core.direction.phi).toFixed(3)}<br>signal=${core.detectorNIU.toExponential(2)}`),
             mode: "markers",
             hoverinfo: "text",
             marker: {
