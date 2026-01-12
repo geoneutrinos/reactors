@@ -432,6 +432,7 @@ function App(props) {
                   <OutputDownload
                     geo={geo}
                     cores={cores}
+                    reactorLF={reactorLF}
                     detector={detector}
                     boron8={boron8}
                   />
