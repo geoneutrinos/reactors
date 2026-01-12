@@ -246,12 +246,7 @@ export const CoreList = ({
     setCoreMods(newCoreMods)
   };
 
-  const coreDataDownloadFilename = `Core_Data_${detector.current}_Avg_LF
-                                  _${reactorLF.start.toISOString().slice(0, 7)}_thru
-                                  _${reactorLF.end.toISOString().slice(0, 7)}
-                                  _${XSAbrev[crossSection.crossSection]}_Tmin
-                                  _${crossSection.elasticScatteringTMin.toFixed(1)}_to_Tmax
-                                  _${crossSection.elasticScatteringTMax.toFixed(1)}_MeV.csv`.replace(/\s/g, "_").replace(/\(|\)/g, '')
+  const coreDataDownloadFilename = `Core_Data_${detector.current}_Avg_LF_${reactorLF.start.toISOString().slice(0, 7)}_thru_${reactorLF.end.toISOString().slice(0, 7)}_${XSAbrev[crossSection.crossSection]}_Tmin_${crossSection.elasticScatteringTMin.toFixed(1)}_to_Tmax_${crossSection.elasticScatteringTMax.toFixed(1)}_MeV.csv`.replace(/\s/g, "_").replace(/\(|\)/g, '')
   
   return (
     <Card ref={cardRef}>
