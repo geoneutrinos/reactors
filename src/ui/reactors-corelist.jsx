@@ -251,7 +251,7 @@ export const CoreList = ({
                                   _${reactorLF.end.toISOString().slice(0, 7)}
                                   _${XSAbrev[crossSection.crossSection]}_Tmin
                                   _${crossSection.elasticScatteringTMin.toFixed(1)}_to_Tmax
-                                  _${crossSection.elasticScatteringTMax.toFixed(1)_MeV.csv`.replace(/\s/g, "_").replace(/\(|\)/g, '')
+                                  _${crossSection.elasticScatteringTMax.toFixed(1)}_MeV.csv`.replace(/\s/g, "_").replace(/\(|\)/g, '')
   
   return (
     <Card ref={cardRef}>
