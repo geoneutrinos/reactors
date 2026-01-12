@@ -311,7 +311,7 @@ export const CoreList = ({
       </Card.Header>
       <Card.Body>
         <p> Filter Cores by Name or Type (PWR, BWR, PHWR, GCR, LWGR, FBR, LEU_MOX) </p>
-        <DownloadButton data={Object.values(cores)} cols={["name", "detectorDistance", "power", "detectorNIU", "direction.phi", "direction.elev"]} buttonTitle="Download Data" filename={coreDataDownloadFilename}/>
+        <DownloadButton data={Object.values(cores)} cols={["name", "detectorDistance", "power", "detectorNIU", "direction.phi", "direction.elev"]} buttonTitle="Download Core Data" filename={coreDataDownloadFilename}/>
       </Card.Body>
       <ListGroup variant="flush">
         <ListGroup.Item>
