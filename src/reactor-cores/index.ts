@@ -186,7 +186,7 @@ const calcSpectrum = (crossSection:CrossSection, powerFractions: PowerFractions,
         const isotope: Isotopes = v as Isotopes;
         const powerFraction = powerFractions[isotope];
         const fissionEnergy = FISSION_ENERGIES[isotope];
-        const neutrinoUncertainty = reactorAntineutrinoModel.uncertainty[isotope];
+        const neutrinoUncertainty = reactorAntineutrinoModel.uncertanty[isotope];
         const rate = partialInteractionRate(
           Ev,
           fissionEnergy,
