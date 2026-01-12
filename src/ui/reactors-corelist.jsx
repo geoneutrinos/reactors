@@ -77,9 +77,15 @@ const CoreListItem = ({
   let dist = core.detectorDistance.toFixed(0);
   if (core.detectorDistance < 10) {
     dist = core.detectorDistance.toFixed(3);
-  } else if (core.detectorDistance < 200) {
+  } else {
+    if (core.detectorDistance < 100) {
     dist = core.detectorDistance.toFixed(2);
-  }
+    } else {
+      if (core.detectorDistance < 1000) {
+      dist = core.detectorDistance.toFixed(1);
+      }
+    }
+  };
 
   const downloadFilename = `Antinu_spec10keV_${core.name}_${detector.current}_${XSAbrev[crossSection.crossSection]}_Tmin${crossSection.elasticScatteringTMin.toFixed(1)}MeV.csv`.replace(/\s/g, "_").replace(/\(|\)/g, '')
   const downloadData = {
