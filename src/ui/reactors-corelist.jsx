@@ -240,6 +240,7 @@ export const CoreList = ({
     setCoreMods(newCoreMods)
   };
 
+  const coreDataDownloadFilename = `Core_Data_${detector.current}_${XSAbrev[crossSection.crossSection]}_Tmin${crossSection.elasticScatteringTMin.toFixed(1)}MeV.csv`.replace(/\s/g, "_").replace(/\(|\)/g, '')
   return (
     <Card ref={cardRef}>
       <Card.Header>
@@ -304,7 +305,7 @@ export const CoreList = ({
       </Card.Header>
       <Card.Body>
         <p> Filter Cores by Name or Type (PWR, BWR, PHWR, GCR, LWGR, FBR, LEU_MOX) </p>
-        <DownloadButton data={Object.values(cores)} cols={["name", "detectorDistance", "power", "detectorNIU", "direction.phi", "direction.elev"]} buttonTitle="Download Data" filename="cores.csv"/>
+        <DownloadButton data={Object.values(cores)} cols={["name", "detectorDistance", "power", "detectorNIU", "direction.phi", "direction.elev"]} buttonTitle="Download Data" filename={coreDataDownloadFilename}/>
       </Card.Body>
       <ListGroup variant="flush">
         <ListGroup.Item>
