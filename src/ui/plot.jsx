@@ -262,7 +262,7 @@ export function CoreDirectionPlot({ cores, detector, reactorLF }) {
         showarrow: false,
         align: "right",
         text:
-          "geoneutrinos.org <br />Angular Axis is Azimuth (deg): North is 0&deg;, East is 90&deg;, etc. <br />Radial Axis is Altitude (deg): Horizon 0&deg;, Nadir -90&deg; ",
+          "geoneutrinos.org <br />Angular Axis is Azimuth (deg): East is 0&deg;, North is 90&deg;, etc. <br />Radial Axis is Altitude (deg): Horizon 0&deg;, Nadir -90&deg; ",
         x: 1.1,
         xref: "paper",
         y: -0.075,
