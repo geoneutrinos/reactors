@@ -166,11 +166,11 @@ const extractESEandMuTau = (
     return [spec, 0];
   }
   const ESEratio = crossSection.crossSectionElectronAntineutrinoFractionES(Ev);
-  const ESMUTauContirbution =
+  const ESMuTauContribution =
     spec * (1 - ESEratio) * (1 - survivalProbability) * TargetYears;
 
   spec = spec * ESEratio; // convert spec to only be ESE contribution
-  return [spec, ESMUTauContirbution];
+  return [spec, ESMuTauContribution];
 };
 
 const getGeoRates = (
@@ -190,14 +190,14 @@ const getGeoRates = (
     const crust = v * CrustFlux * crossSectionArea;
     const mantle = v * mantleFlux * crossSectionArea;
 
-    const [crust_spec, crust_ESMUTauContirbution] = extractESEandMuTau(
+    const [crust_spec, crust_ESMuTauContribution] = extractESEandMuTau(
       crust,
       Ev,
       survivalProbability,
       crossSection
     );
 
-    const [mantle_spec, mantle_ESMUTauContirbution] = extractESEandMuTau(
+    const [mantle_spec, mantle_ESMuTauContribution] = extractESEandMuTau(
       mantle,
       Ev,
       survivalProbability,
@@ -206,10 +206,10 @@ const getGeoRates = (
 
     const crust_rate =
       crust_spec * TargetYears * survivalProbability +
-      crust_ESMUTauContirbution;
+      crust_ESMuTauContribution;
     const mantle_rate =
       mantle_spec * TargetYears * survivalProbability +
-      mantle_ESMUTauContirbution;
+      mantle_ESMuTauContribution;
 
     crustSpectrum[i] = crust_rate;
     mantleSpectrum[i] = mantle_rate;
