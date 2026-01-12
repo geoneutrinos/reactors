@@ -51,7 +51,7 @@ export const DownloadButton = ({
   );
 };
 
-export const OutputDownload = ({ cores, geo, detector, boron8 }) => {
+export const OutputDownload = ({ cores, reactorLF, geo, detector, boron8 }) => {
   const { crossSection } = useContext(PhysicsContext);
   const { boron8Rate, boron8Ke } = boron8;
 
@@ -136,7 +136,9 @@ export const OutputDownload = ({ cores, geo, detector, boron8 }) => {
     ? ""
     : `_Tmin${crossSection.elasticScatteringTMin.toFixed(1)}MeV`;
 
-  const downloadFilename = `AntiNu_spec10keV_${detector.current}_${
+  const downloadFilename = `ReactorNu_spec10keV_${detector.current}_Avg_LF_${
+    reactorLF.start.toISOString().slice(0, 7)}_thru_${
+    reactorLF.end.toISOString().slice(0, 7)}_${
     XSAbrev[crossSection.crossSection]
   }${tMinName}.csv`
     .replace(/\s/g, "_")
