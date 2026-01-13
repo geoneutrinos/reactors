@@ -153,7 +153,7 @@ const calcSpectrum = (crossSection:CrossSection, powerFractions: PowerFractions,
   const spectrumCacheKey = JSON.stringify({
     ...powerFractions,
     crossSectionFuncID:crossSection.crossSection,
-    esTMim:crossSection.elasticScatteringTMin,
+    esTMin:crossSection.elasticScatteringTMin,
     esTMax:crossSection.elasticScatteringTMax,
     reactorAntineutrinoModelName:reactorAntineutrinoModel.modelName
   })
@@ -165,11 +165,11 @@ const calcSpectrum = (crossSection:CrossSection, powerFractions: PowerFractions,
       .map((v) => {
         const isotope: Isotopes = v as Isotopes;
         const powerFraction = powerFractions[isotope];
-        const fisionEnery = FISSION_ENERGIES[isotope];
+        const fissionEnergy = FISSION_ENERGIES[isotope];
         const neutrinoEnergy = reactorAntineutrinoModel.model[isotope];
         const rate = partialInteractionRate(
           Ev,
-          fisionEnery,
+          fissionEnergy,
           crossSection.crossSectionFunction,
           neutrinoEnergy
         );
@@ -185,13 +185,13 @@ const calcSpectrum = (crossSection:CrossSection, powerFractions: PowerFractions,
       .map((v) => {
         const isotope: Isotopes = v as Isotopes;
         const powerFraction = powerFractions[isotope];
-        const fisionEnery = FISSION_ENERGIES[isotope];
-        const neutrinoUncertanty = reactorAntineutrinoModel.uncertanty[isotope];
+        const fissionEnergy = FISSION_ENERGIES[isotope];
+        const neutrinoUncertainty = reactorAntineutrinoModel.uncertanty[isotope];
         const rate = partialInteractionRate(
           Ev,
-          fisionEnery,
+          fissionEnergy,
           crossSection.crossSectionFunction,
-          neutrinoUncertanty
+          neutrinoUncertainty
         );
 
         return (
@@ -219,7 +219,7 @@ const LoadFactor = (date: string, load: number): LoadFactor => {
   return {
     date: dateObj,
     load: load / 100,
-    // This is finding the "zeroith" day of the next month, which will result
+    // This is finding the "zeroth" day of the next month, which will result
     // in the last day of the month we want being returned
     days: new Date(
       Date.UTC(dateObj.getUTCFullYear(), dateObj.getUTCMonth() + 1, 0)
@@ -349,7 +349,7 @@ export function ReactorCore({
     direction: Direction,
     reactorAntineutrinoModel: ReactorAntineutrinoModelApp
   ): ReactorCore {
-    let [spectrum, spectrumUncertanty] = calcSpectrum(crossSection, this.powerFractions, reactorAntineutrinoModel)
+    let [spectrum, spectrumUncertainty] = calcSpectrum(crossSection, this.powerFractions, reactorAntineutrinoModel)
     const power = this.power;
     const distsq = dist ** 2;
 
@@ -362,33 +362,33 @@ export function ReactorCore({
       oscillationFunc = oscillationFunc.map((v) => 1 - v);
     }
 
-    let ESMUTauContirbution = (new Float64Array(bins.length)).fill(0)
-    let ESMUTauContirbution_U = (new Float64Array(bins.length)).fill(0)
+    let ESMuTauContribution = (new Float64Array(bins.length)).fill(0)
+    let ESMuTauContribution_U = (new Float64Array(bins.length)).fill(0)
 
     if (crossSection.crossSection === XSNames.ESTOTAL) {
       let ESEratio = bins.map(crossSection.crossSectionElectronAntineutrinoFractionES);
       // we need the origional total specturm for this
-      ESMUTauContirbution = spectrum.map(
+      ESMuTauContribution = spectrum.map(
         (spec, idx) => spec * (1 - ESEratio[idx]) * (1 - oscillationFunc[idx])
       );
-      ESMUTauContirbution_U = spectrumUncertanty.map(
+      ESMuTauContribution_U = spectrumUncertainty.map(
         (spec, idx) => spec * (1 - ESEratio[idx]) * (1 - oscillationFunc[idx])
       );
 
       spectrum = spectrum.map((spec, idx) => spec * ESEratio[idx]);
-      spectrumUncertanty = spectrumUncertanty.map((spec, idx) => spec * ESEratio[idx]);
+      spectrumUncertainty = spectrumUncertainty.map((spec, idx) => spec * ESEratio[idx]);
     }
 
     const signal = spectrum.map((spec, idx) => {
       return (
-        ((spec * oscillationFunc[idx] + ESMUTauContirbution[idx]) * power * lf) /
+        ((spec * oscillationFunc[idx] + ESMuTauContribution[idx]) * power * lf) /
         distsq
       );
     });
 
-    const uncertainty = spectrumUncertanty.map((spec, idx) => {
+    const uncertainty = spectrumUncertainty.map((spec, idx) => {
       return (
-        ((spec * oscillationFunc[idx] + ESMUTauContirbution_U[idx]) * power * lf) /
+        ((spec * oscillationFunc[idx] + ESMuTauContribution_U[idx]) * power * lf) /
         distsq
       );
     });
