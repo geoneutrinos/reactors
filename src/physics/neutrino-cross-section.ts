@@ -125,9 +125,7 @@ export const crossSectionSV2003: CrossSectionFunc = memoize((Ev) => {
 export const crossSectionVB1999: CrossSectionFunc = memoize((Ev) => {
   const Ee = Math.max(ELECTRON_REST_MASS, Ev - IBD_THRESHOLD + ELECTRON_REST_MASS)
   //  const Ee = Math.max(ELECTRON_REST_MASS, Ev - (NEUTRON_REST_MASS - PROTON_REST_MASS));
-  if ( TMax < TMin ) {
-    return 0;
-  }
+
   return 9.52e-44 * Math.sqrt((Ee * Ee) - (ELECTRON_REST_MASS * ELECTRON_REST_MASS)) * Ee;
 })
 
