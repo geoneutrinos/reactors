@@ -114,7 +114,7 @@ export const crossSectionSV2003: CrossSectionFunc = memoize((Ev) => {
 
 /**
  * Calculates the neutrino cross section, sometimes called sigma
- * Implements P. Vogel, J.F. Beacom, Phys. Rev. D 60 (1999)
+ * Impliments P. Vogel, J.F. Beacom, Phys. Rev. D 60 (1999)
  * 
  * @param {number} Ev -  Energy of the antineutrino in MeV
  * @returns {number} - Cross section in cm^2
