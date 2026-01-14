@@ -133,7 +133,7 @@ export const AnalemmaPlot = ({ detector, cores, reactorLF, boron8 }) => {
     hovermode: "closest",
     autosize: true,
     xaxis: {
-      title: "Azimuth (deg)",
+      title: "Solar Azimuth (deg)",
       range: [0, 360],
       tickmode: "array",
       tickvals: range(0, 361, 45),
