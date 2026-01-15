@@ -245,9 +245,7 @@ export function CoreDirectionPlot({ cores, detector, reactorLF }) {
       angularaxis: {
         thetaunit: "degrees",
         dtick: 45,
-        tickmode: "array",
-        tickvals: [0, 45, 90, 135, 180, 225, 270, 315],
-        ticktext: ["90&deg;", "45&deg;", "0&deg;", "315&deg;", "270&deg;", "225&deg;", "180&deg;", "135&deg;"],
+        tickmode: "auto",
       },
     },
     legend: {
@@ -264,7 +262,7 @@ export function CoreDirectionPlot({ cores, detector, reactorLF }) {
         showarrow: false,
         align: "right",
         text:
-          "geoneutrinos.org <br />Angular Axis is Azimuth (deg): North is 0&deg;, East is 90&deg;, etc. <br />Radial Axis is Altitude (deg): Horizon 0&deg;, Nadir -90&deg; ",
+          "geoneutrinos.org <br />Angular Axis is ENU Azimuth (deg): East is 0&deg;, North is 90&deg;, etc. <br />Radial Axis is Altitude (deg): Horizon 0&deg;, Nadir -90&deg; ",
         x: 1.1,
         xref: "paper",
         y: -0.075,
