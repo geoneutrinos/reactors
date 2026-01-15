@@ -353,7 +353,7 @@ export function ReactorCore({
     const power = this.power;
     const distsq = dist ** 2;
 
-    if (dist > 200) {
+    if (dist > 1000) {
       dist = Math.round(dist);
     }
     let oscillationFunc = oscillation.neutrinoOscillationSpectrum(dist);
