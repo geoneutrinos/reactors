@@ -74,18 +74,8 @@ const CoreListItem = ({
     const newMods = {...coreMods, [core.name]: {...coreMods[core.name], outputSignal: e.target.checked}};
     setCoreMods(newMods)
   };
-  let dist = core.detectorDistance.toFixed(0);
-  if (core.detectorDistance < 10) {
-    dist = core.detectorDistance.toFixed(3);
-  } else {
-    if (core.detectorDistance < 100) {
-    dist = core.detectorDistance.toFixed(2);
-    } else {
-      if (core.detectorDistance < 1000) {
-        dist = core.detectorDistance.toFixed(1);
-      }
-    }
-  };
+  
+  let dist = Math.floor(Math.min(Math.max(4 - Math.log10(core.detectorDistance), 0), 3));
 
   const downloadFilename = `Antinu_spec10keV_${core.name}_${detector.current}_${XSAbrev[crossSection.crossSection]}_Tmin${crossSection.elasticScatteringTMin.toFixed(1)}MeV.csv`.replace(/\s/g, "_").replace(/\(|\)/g, '')
   const downloadData = {
