@@ -245,7 +245,9 @@ export function CoreDirectionPlot({ cores, detector, reactorLF }) {
       angularaxis: {
         thetaunit: "degrees",
         dtick: 45,
-        tickmode: "auto",
+        tickmode: "array",
+        tickvals: [0, 45, 90, 135, 180, 225, 270, 315],
+        ticktext: ["0&deg;", "45&deg;", "90&deg;", "135&deg;", "180&deg;", "-135&deg;", "-90&deg;", "-45&deg;"],
       },
     },
     legend: {
