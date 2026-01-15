@@ -75,7 +75,7 @@ const CoreListItem = ({
     setCoreMods(newMods)
   };
   
-  let dist = Math.floor(Math.min(Math.max(4 - Math.log10(core.detectorDistance), 0), 3));
+  let dist = core.detectorDistance.toFixed(Math.floor(Math.min(Math.max(4 - Math.log10(core.detectorDistance), 0), 3)));
 
   const downloadFilename = `Antinu_spec10keV_${core.name}_${detector.current}_${XSAbrev[crossSection.crossSection]}_Tmin${crossSection.elasticScatteringTMin.toFixed(1)}MeV.csv`.replace(/\s/g, "_").replace(/\(|\)/g, '')
   const downloadData = {
