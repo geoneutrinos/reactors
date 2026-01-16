@@ -23,7 +23,7 @@ const plotDef = (cores, color) => {
     type: "scattergl",
     mode: "markers",
     marker: {
-      size: 4
+      size: 3
     },
     fill: "none",
     marker: { color: color },
@@ -136,7 +136,7 @@ export const AnalemmaPlot = ({ detector, cores, reactorLF, boron8 }) => {
     hovermode: "closest",
     autosize: true,
     xaxis: {
-      title: "Solar Azimuth (deg)",
+      title: "Solar Azimuth <br /><sub>(0&deg; is North, 90&deg; is East, 180&deg; is South, 270&deg; is West)</sub>",
       range: [0, 360],
       tickmode: "array",
       tickvals: range(0, 361, 45),
@@ -151,7 +151,7 @@ export const AnalemmaPlot = ({ detector, cores, reactorLF, boron8 }) => {
     annotations: [
       {
         showarrow: false,
-        text: "geoneutrinos.org <br />Azimuth: North is 0&deg;, East is 90&deg;, etc.",
+        text: "geoneutrinos.org",
         x: 1.1,
         xref: "paper",
         y: -0.15,
