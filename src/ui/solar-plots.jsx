@@ -22,6 +22,9 @@ const plotDef = (cores, color) => {
     hoverinfo: "text+x+y",
     type: "scattergl",
     mode: "markers",
+    marker: {
+      size: 4
+    },
     fill: "none",
     marker: { color: color },
   };
@@ -148,7 +151,7 @@ export const AnalemmaPlot = ({ detector, cores, reactorLF, boron8 }) => {
     annotations: [
       {
         showarrow: false,
-        text: "geoneutrinos.org",
+        text: "geoneutrinos.org <br />Azimuth: North is 0&deg;, East is 90&deg;, etc.",
         x: 1.1,
         xref: "paper",
         y: -0.15,
