@@ -82,6 +82,8 @@ import {
   // Muon tab
   Muons,
   DetectorOverburdens,
+  // KE tab
+  KESpectrumPlot,
   // Custom Core UI
   AddCustomCoreModal,
   ManageCustomCoreModal,
@@ -419,6 +421,11 @@ function App(props) {
                   <Muons />
                   <DetectorOverburdens />
               </Tab>
+              <Tab eventKey="ke" title="KE">
+                <Visible>
+                  <KESpectrumPlot cores={cores} spectrum={spectrum} detector={detector} reactorLF={reactorLF} />
+                </Visible>
+                </Tab>
               <Tab eventKey="moon" title="Lunar">
                 <div><p>The lunar crust flux model is described in S.T. Dye and A.M. Barna (2024), <i>Lunar antineutrinos and heat: Fluxes from primordial radioactivity</i> <a href="https://doi.org/10.48550/arXiv.2406.00882">arXiv:2406.008822.</a> Known bug: Plot download on some browsers fails on the first try but succeeds on the second.</p></div>
                   <LunarHeatFLux />
