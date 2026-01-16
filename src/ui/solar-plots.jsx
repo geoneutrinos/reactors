@@ -19,7 +19,7 @@ const plotDef = (cores, color) => {
       .map((v) => (v < 0 ? v + 2 * Math.PI : v))
       .map((v) => (v * 180) / Math.PI),
     text: cores.map((core) => `${core.name} (${core.type})`),
-    hoverinfo: "text",
+    hoverinfo: "text+x+y",
     type: "scattergl",
     mode: "markers",
     fill: "none",
