@@ -23,7 +23,7 @@ const plotDef = (cores, color) => {
     type: "scattergl",
     mode: "markers",
     marker: {
-      size: 3
+      size: 3,
     },
     fill: "none",
     marker: { color: color },
@@ -136,7 +136,7 @@ export const AnalemmaPlot = ({ detector, cores, reactorLF, boron8 }) => {
     hovermode: "closest",
     autosize: true,
     xaxis: {
-      title: "Solar Azimuth <br /><sub>(0&deg; is North, 90&deg; is East, 180&deg; is South, 270&deg; is West)</sub>",
+      title: "Solar Azimuth (deg)<br /><sub>(0&deg; is North, 90&deg; is East, 180&deg; is South, 270&deg; is West)</sub>",
       range: [0, 360],
       tickmode: "array",
       tickvals: range(0, 361, 45),
