@@ -423,7 +423,7 @@ function App(props) {
               </Tab>
               <Tab eventKey="ke" title="KE">
                 <Visible>
-                  <KESpectrumPlot cores={cores} spectrum={spectrum} detector={detector} reactorLF={reactorLF} />
+                  <KESpectrumPlot cores={cores} detector={detector} reactorLF={reactorLF} />
                 </Visible>
                 </Tab>
               <Tab eventKey="moon" title="Lunar">
