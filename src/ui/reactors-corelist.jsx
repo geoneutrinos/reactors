@@ -19,7 +19,7 @@ import {Num} from '.'
 import {PhysicsContext} from "../state"
 import bins from "../physics/bins";
 
-const ENUtoNEU = (v) => {
+export const ENUtoNEU = (v) => {
   const v1 = -(v * (Math.PI / 180)) + Math.PI / 2
   const v2 = v1 < 0 ? v1 + 2 * Math.PI : v1
   return (v2 * 180) / Math.PI
