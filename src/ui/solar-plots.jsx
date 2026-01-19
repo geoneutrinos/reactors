@@ -19,9 +19,12 @@ const plotDef = (cores, color) => {
       .map((v) => (v < 0 ? v + 2 * Math.PI : v))
       .map((v) => (v * 180) / Math.PI),
     text: cores.map((core) => `${core.name} (${core.type})`),
-    hoverinfo: "text",
+    hoverinfo: "text+x+y",
     type: "scattergl",
     mode: "markers",
+    marker: {
+      size: 3,
+    },
     fill: "none",
     marker: { color: color },
   };
@@ -93,7 +96,7 @@ export const AnalemmaPlot = ({ detector, cores, reactorLF, boron8 }) => {
       text: z.map(
         (zv) => `${zv === undefined ? zv : zv.toFixed(5)} (1/au<sup>2</sup>)`
       ),
-      hoverinfo: "text",
+      hoverinfo: "text+x+y",
       name: "solar",
       type: "scattergl",
       mode: "markers",
@@ -133,7 +136,7 @@ export const AnalemmaPlot = ({ detector, cores, reactorLF, boron8 }) => {
     hovermode: "closest",
     autosize: true,
     xaxis: {
-      title: "Solar Azimuth (deg)",
+      title: "Solar Azimuth (deg)<br /><sub>(0&deg; is North, 90&deg; is East, 180&deg; is South, 270&deg; is West)</sub>",
       range: [0, 360],
       tickmode: "array",
       tickvals: range(0, 361, 45),
