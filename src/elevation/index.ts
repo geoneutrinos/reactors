@@ -64,8 +64,8 @@ export function getElevation(lon: number, lat: number, celestialBody: "earth" | 
     const gridIndex = rowIndexOffset + flooredLon;
 
     return {
-        ortho: elevationOrtho[gridIndex],
-        geoid: elevationGeoid[gridIndex],
-        ellip: elevationEllip[gridIndex]
+        ortho: earthElevationOrtho[gridIndex],
+        geoid: earthElevationGeoid[gridIndex],
+        ellip: earthElevationEllip[gridIndex]
     }
 }
