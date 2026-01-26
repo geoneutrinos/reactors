@@ -26,10 +26,11 @@ export function getElevation(lon: number, lat: number, celestialBody: "earth" | 
     let elevationOrtho = earthElevationOrtho;
     let elevationGeoid = earthElevationGeoid;
     let elevationEllip = earthElevationEllip;
+    // moonElevationXxxxx files don't exist so use placeholders
     if (celestialBody === "moon"){
-        elevationOrtho = moonElevationOrtho;
-        elevationGeoid = moonElevationGeoid;
-        elevationEllip = moonElevationEllip;
+        elevationOrtho = earthElevationOrtho;
+        elevationGeoid = earthElevationGeoid;
+        elevationEllip = earthElevationEllip;
     }
     
     if (lon < -180 || lon > 180){
@@ -64,8 +65,8 @@ export function getElevation(lon: number, lat: number, celestialBody: "earth" | 
     const gridIndex = rowIndexOffset + flooredLon;
 
     return {
-        ortho: earthElevationOrtho[gridIndex],
-        geoid: earthElevationGeoid[gridIndex],
-        ellip: earthElevationEllip[gridIndex]
+        ortho: elevationOrtho[gridIndex],
+        geoid: elevationGeoid[gridIndex],
+        ellip: elevationEllip[gridIndex]
     }
 }
