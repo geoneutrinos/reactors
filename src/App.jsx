@@ -24,6 +24,7 @@ import {
   FissionIsotopeSpectraPlotsES,
   FissionFractionPane,
   //GeuNu Tab
+  CrustModelFluxes,
   GeoneutrinoResults,
   GeoNusPane,
   CrustFlux,
@@ -34,7 +35,6 @@ import {
   GeoIntegralPlot,
   GeophysicalResponsePlot,
   GeoDataPREM,
-  CrustModelFluxes,
   GeoFluxUncertainties,
   GeoRateFluxYields,
   GeoNuSpectrumSource,
@@ -344,6 +344,7 @@ function App(props) {
               </Tab>
               <Tab eventKey="geonu" title="GeoNu">
                 <Visible>
+                  <CrustModelFluxes />
                   <GeoneutrinoResults />
                   <GeoNusPane />
                   <CrustFlux
@@ -363,7 +364,6 @@ function App(props) {
                   <GeoIntegralPlot />
                   <GeophysicalResponsePlot />
                   <GeoDataPREM />
-                  <CrustModelFluxes />
                   <GeoFluxUncertainties />
                   <GeoRateFluxYields />
                   <GeoNuSpectrumSource />
