@@ -11,7 +11,7 @@ export const EarthElevationOrtho = memo(() => {
   // The origin of a plotly plot is the lower left corner
   const lats = range(-89.5, 90.5, 1);
   const lons = range(-179.5, 180.5, 1);
-  const crustU = reverse(chunk(earthElevationOrtho, 360))
+  const crustU = chunk(earthElevationOrtho, 360)
 
   const data = [
     {
@@ -23,7 +23,7 @@ export const EarthElevationOrtho = memo(() => {
     },
   ];
   const layout = {
-    title: "Earth Orthometric Elevation (km)",
+    title: "Earth Orthometric Elevation (m)",
     yaxis: {
       title: { text: `Latitude` },
       autorange: true,
@@ -125,7 +125,7 @@ export const EarthElevationEllip = memo(() => {
   // The origin of a plotly plot is the lower left corner
   const lats = range(-89.5, 90.5, 1);
   const lons = range(-179.5, 180.5, 1);
-  const crustU = reverse(chunk(earthElevationEllip, 360))
+  const crustU = chunk(earthElevationEllip, 360)
 
   const data = [
     {
