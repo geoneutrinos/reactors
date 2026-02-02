@@ -73,6 +73,10 @@ import {
   SupernovaNus,
   //About tab
   AboutPane,
+  // Earth Tab
+  EarthElevationOrtho,
+  EarthElevationGeoid,
+  EarthElevationEllip,
   // Lunar Tab
   Lunar238UFlux,
   Lunar232ThFlux,
@@ -418,6 +422,12 @@ function App(props) {
               <Tab eventKey="muon" title="Muon">
                   <Muons />
                   <DetectorOverburdens />
+              </Tab>
+              <Tab eventKey="earth" title="Earth">
+                <div><p>Right now this just shows the elevation plots. Crust layer thicknesses and crustal heatflow plots can go here, too.</p></div>
+                  <EarthElevationOrtho />
+                  <EarthElevationGeoid />
+                  <EarthElevationEllip />
               </Tab>
               <Tab eventKey="moon" title="Lunar">
                 <div><p>The lunar crust flux model is described in S.T. Dye and A.M. Barna (2024), <i>Lunar antineutrinos and heat: Fluxes from primordial radioactivity</i> <a href="https://doi.org/10.48550/arXiv.2406.00882">arXiv:2406.008822.</a> Known bug: Plot download on some browsers fails on the first try but succeeds on the second.</p></div>
