@@ -58,6 +58,11 @@ export {
 } from "./geo-prem-plots";
 export { CelestialBodySwitcher } from "./celestial-body-switcher";
 export {
+  EarthElevationOrtho,
+  EarthElevationGeoid,
+  EarthElevationEllip,
+} from "./earth-elevation-plots"
+export {
   Lunar238UFlux,
   Lunar232ThFlux,
   Lunar40KFlux,
