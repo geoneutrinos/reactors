@@ -424,7 +424,7 @@ function App(props) {
                   <DetectorOverburdens />
               </Tab>
               <Tab eventKey="earth" title="Earth">
-                <div><p>Right now this just shows the elevation plots. Crust layer thicknesses and crustal heatflow plots can go here, too.</p></div>
+                <div><p>The orthometric elevations are the bottom-of-water data from <a href="https://igppweb.ucsd.edu/~gabi/crust1.html">CRUST1.0</a>. The geoid elevations use model GO CONS GCF 2 TIM R6e from <a href="https://icgem.gfz.de/calcgrid">ICGEM</a>. Crust layer thicknesses and crustal heatflow plots can go here, too.</p></div>
                   <EarthElevationOrtho />
                   <EarthElevationGeoid />
                   <EarthElevationEllip />
