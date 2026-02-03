@@ -232,6 +232,28 @@ export const IsotopeData = memo(() => {
                 </td>
               </tr>
             </tbody>
+            <thead>
+              <tr>
+                <th>Element</th>
+                <th>Potassium</th>
+                <th>Thorium</th>
+                <th>Uranium</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td> Decay heating (µW kg<sup>-1</sup>) </td>
+                <td>
+                  <Num v={ISOTOPIC_ATOMIC_MASS_KG.PB208} p={3} func={(v) => v * 1e26} />
+                </td>
+                <td>
+                  <Num v={ISOTOPIC_ATOMIC_MASS_KG.PB207} p={3} func={(v) => v * 1e26} />
+                </td>
+                <td>
+                  <Num v={ISOTOPIC_ATOMIC_MASS_KG.PB206} p={3} func={(v) => v * 1e26} />
+                </td>
+              </tr>
+            </tbody>
           </Table>
           <p><small>
             <b>Double click on, or hover pointer over, calculated values to display more decimal places</b>
