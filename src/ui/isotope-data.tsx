@@ -24,6 +24,7 @@ import {
 
 import {
 ISOTOPIC_DECAY_HEATING,
+ELEMENTAL_DECAY_HEATING,
 } from "../mantle/geophysics";
 
 import {Elements} from './elements'
@@ -244,13 +245,13 @@ export const IsotopeData = memo(() => {
               <tr>
                 <td> Decay heating (µW kg<sup>-1</sup>) </td>
                 <td>
-                  <Num v={ISOTOPIC_ATOMIC_MASS_KG.PB208} p={3} func={(v) => v * 1e26} />
+                  <Num v={ELEMENTAL_DECAY_HEATING.K} p={3} func={(v) => v * 1e6} />
                 </td>
                 <td>
-                  <Num v={ISOTOPIC_ATOMIC_MASS_KG.PB207} p={3} func={(v) => v * 1e26} />
+                  <Num v={ELEMENTAL_DECAY_HEATING.TH} p={3} func={(v) => v * 1e6} />
                 </td>
                 <td>
-                  <Num v={ISOTOPIC_ATOMIC_MASS_KG.PB206} p={3} func={(v) => v * 1e26} />
+                  <Num v={ELEMENTAL_DECAY_HEATING.U} p={3} func={(v) => v * 1e6} />
                 </td>
               </tr>
             </tbody>
