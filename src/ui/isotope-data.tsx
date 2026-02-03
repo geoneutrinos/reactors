@@ -250,7 +250,7 @@ export const IsotopeData = memo(() => {
               <tr>
                 <td> Neutrino luminosity (kg<sup>-1</sup> µs<sup>-1</sup>) </td>
                 <td colSpan={2} style={{ textAlign: 'center' }}>
-                  <Num v={ELEMENTAL_NEUTRINO_LUMINOSITY.K} p={1} func={(v) => v / 1e6} />
+                  <Num v={ELEMENTAL_NEUTRINO_LUMINOSITY.K} p={4} func={(v) => v / 1e6} />
                 </td>
                 <td>
                   <Num v={ELEMENTAL_NEUTRINO_LUMINOSITY.TH} p={1} func={(v) => v / 1e6} />
@@ -262,7 +262,7 @@ export const IsotopeData = memo(() => {
               <tr>
                 <td> Decay heating (µW kg<sup>-1</sup>) </td>
                 <td colSpan={2} style={{ textAlign: 'center' }}>
-                  <Num v={ELEMENTAL_DECAY_HEATING.K} p={3} func={(v) => v * 1e6} />
+                  <Num v={ELEMENTAL_DECAY_HEATING.K} p={4} func={(v) => v * 1e6} />
                 </td>
                 <td>
                   <Num v={ELEMENTAL_DECAY_HEATING.TH} p={3} func={(v) => v * 1e6} />
