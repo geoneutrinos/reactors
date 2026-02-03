@@ -19,6 +19,7 @@ import {
 import {
   ISOTOPIC_DECAY_ENERGIES,
   ISOTOPIC_NEUTRINO_LUMINOSITY,
+  ELEMENTAL_NEUTRINO_LUMINOSITY,
   ISOTOPIC_ATOMIC_MASS_KG,
 } from '../physics/derived';
 
@@ -246,6 +247,18 @@ export const IsotopeData = memo(() => {
               </tr>
             </thead>
             <tbody>
+              <tr>
+                <td> Neutrino luminosity (kg<sup>-1</sup> µs<sup>-1</sup>) </td>
+                <td colSpan={2} style={{ textAlign: 'center' }}>
+                  <Num v={ELEMENTAL_NEUTRINO_LUMINOSITY.K} p={3} func={(v) => v * 1e6} />
+                </td>
+                <td>
+                  <Num v={ELEMENTAL_NEUTRINO_LUMINOSITY.TH} p={3} func={(v) => v * 1e6} />
+                </td>
+                <td colSpan={2} style={{ textAlign: 'center' }}>
+                  <Num v={ELEMENTAL_NEUTRINO_LUMINOSITY.U} p={3} func={(v) => v * 1e6} />
+                </td>
+              </tr>
               <tr>
                 <td> Decay heating (µW kg<sup>-1</sup>) </td>
                 <td colSpan={2} style={{ textAlign: 'center' }}>
