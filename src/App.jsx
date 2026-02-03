@@ -24,7 +24,9 @@ import {
   FissionIsotopeSpectraPlotsES,
   FissionFractionPane,
   //GeuNu Tab
-  CrustModelFluxes,
+  EarthCrust238UFlux,
+  EarthCrust232ThFlux,
+  EarthCrust40KFlux,
   GeoneutrinoResults,
   GeoNusPane,
   CrustFlux,
@@ -344,7 +346,9 @@ function App(props) {
               </Tab>
               <Tab eventKey="geonu" title="GeoNu">
                 <Visible>
-                  <CrustModelFluxes />
+                  <EarthCrust238UFlux />
+                  <EarthCrust232ThFlux />
+                  <EarthCrust40KFlux />
                   <GeoneutrinoResults />
                   <GeoNusPane />
                   <CrustFlux
