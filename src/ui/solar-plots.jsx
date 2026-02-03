@@ -136,7 +136,7 @@ export const AnalemmaPlot = ({ detector, cores, reactorLF, boron8 }) => {
     hovermode: "closest",
     autosize: true,
     xaxis: {
-      title: "Solar Azimuth (deg)<br /><sub>0&deg; is North (12am), 90&deg; is East (6am), 180&deg; is South (12pm), 270&deg; is West(6pm)</sub>",
+      title: "Solar Azimuth (deg)",
       range: [0, 360],
       tickmode: "array",
       tickvals: range(0, 361, 45),
