@@ -1,4 +1,3 @@
-import { getCrustFlux } from "../crust-model";
 import { range, chunk, reverse } from "lodash";
 import Plot from "react-plotly.js";
 import { memo } from "react";
