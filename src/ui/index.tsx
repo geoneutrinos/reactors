@@ -21,7 +21,6 @@ export { PhysicsConstants } from "./physics-constants";
 export { ParticleMasses } from "./physics-masses";
 export { EesCouplingFactors, PesCouplingFactors } from "./physics-coupling-factors";
 export { GeoneutrinoResults } from "./geonu-results";
-export { CrustModelFluxes } from "./crust-model-flux-plots";
 export { GeoFluxUncertainties } from "./geo-uncertainties";
 export { GeoDataPREM } from "./geo-prem-data";
 export { IsotopeData } from "./isotope-data";
@@ -58,6 +57,11 @@ export {
   GeophysicalResponsePlot,
 } from "./geo-prem-plots";
 export { CelestialBodySwitcher } from "./celestial-body-switcher";
+export {
+  EarthCrust238UFlux,
+  EarthCrust232ThFlux,
+  EarthCrust40KFlux,
+} from "./crust-model-flux-plots"
 export {
   Lunar238UFlux,
   Lunar232ThFlux,
