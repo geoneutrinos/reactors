@@ -265,10 +265,10 @@ export const IsotopeData = memo(() => {
                   <Num v={ELEMENTAL_DECAY_HEATING.K} p={4} func={(v) => v * 1e6} />
                 </td>
                 <td>
-                  <Num v={ELEMENTAL_DECAY_HEATING.TH} p={3} func={(v) => v * 1e6} />
+                  <Num v={ELEMENTAL_DECAY_HEATING.TH} p={1} func={(v) => v * 1e6} />
                 </td>
                 <td colSpan={2} style={{ textAlign: 'center' }}>
-                  <Num v={ELEMENTAL_DECAY_HEATING.U} p={3} func={(v) => v * 1e6} />
+                  <Num v={ELEMENTAL_DECAY_HEATING.U} p={1} func={(v) => v * 1e6} />
                 </td>
               </tr>
             </tbody>
