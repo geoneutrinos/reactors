@@ -19,11 +19,13 @@ import {
 import {
   ISOTOPIC_DECAY_ENERGIES,
   ISOTOPIC_NEUTRINO_LUMINOSITY,
+  ELEMENTAL_NEUTRINO_LUMINOSITY,
   ISOTOPIC_ATOMIC_MASS_KG,
 } from '../physics/derived';
 
 import {
 ISOTOPIC_DECAY_HEATING,
+ELEMENTAL_DECAY_HEATING,
 } from "../mantle/geophysics";
 
 import {Elements} from './elements'
@@ -229,6 +231,44 @@ export const IsotopeData = memo(() => {
                 </td>
                 <td>
                   <Num v={ISOTOPIC_ATOMIC_MASS_KG.PB206} p={3} func={(v) => v * 1e26} />
+                </td>
+              </tr>
+            </tbody>
+            <thead>
+              <tr>
+                <th>Element</th>
+                <th colSpan={2} style={{ textAlign: 'center' }}>
+                  Potassium
+                </th>
+                <th>Thorium</th>
+                <th colSpan={2} style={{ textAlign: 'center' }}>
+                  Uranium
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td> Neutrino luminosity (kg<sup>-1</sup> µs<sup>-1</sup>) </td>
+                <td colSpan={2} style={{ textAlign: 'center' }}>
+                  <Num v={ELEMENTAL_NEUTRINO_LUMINOSITY.K} p={4} func={(v) => v / 1e6} />
+                </td>
+                <td>
+                  <Num v={ELEMENTAL_NEUTRINO_LUMINOSITY.TH} p={1} func={(v) => v / 1e6} />
+                </td>
+                <td colSpan={2} style={{ textAlign: 'center' }}>
+                  <Num v={ELEMENTAL_NEUTRINO_LUMINOSITY.U} p={1} func={(v) => v / 1e6} />
+                </td>
+              </tr>
+              <tr>
+                <td> Decay heating (µW kg<sup>-1</sup>) </td>
+                <td colSpan={2} style={{ textAlign: 'center' }}>
+                  <Num v={ELEMENTAL_DECAY_HEATING.K} p={4} func={(v) => v * 1e6} />
+                </td>
+                <td>
+                  <Num v={ELEMENTAL_DECAY_HEATING.TH} p={1} func={(v) => v * 1e6} />
+                </td>
+                <td colSpan={2} style={{ textAlign: 'center' }}>
+                  <Num v={ELEMENTAL_DECAY_HEATING.U} p={1} func={(v) => v * 1e6} />
                 </td>
               </tr>
             </tbody>
