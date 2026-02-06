@@ -75,6 +75,9 @@ import {
   AboutPane,
   // Earth Tab
   EarthHeatFlux,
+  EarthCrust238UFlux,
+  EarthCrust232ThFlux,
+  EarthCrust40KFlux,
   EarthElevationOrtho,
   EarthElevationGeoid,
   EarthElevationEllip,
@@ -425,8 +428,11 @@ function App(props) {
                   <DetectorOverburdens />
               </Tab>
               <Tab eventKey="earth" title="Earth">
-                <div><p>The map of radiogenic heat flux from the Earth's crust assumes that the heat transfers radially outward by conduction only. The orthometric elevations are the bottom-of-water data from <a href="https://igppweb.ucsd.edu/~gabi/crust1.html">CRUST1.0</a>. The geoid elevations use model GO CONS GCF 2 TIM R6e from <a href="https://icgem.gfz.de/calcgrid">ICGEM</a>. Crust layer thicknesses and crustal heatflow plots can go here, too.</p></div>
+                <div><p>The map of radiogenic heat flux from the Earth's crust assumes that the heat transfers radially outward by conduction only. The antineutrino fluxes are from Huang et al. (2013). The orthometric elevations are the bottom-of-water data from <a href="https://igppweb.ucsd.edu/~gabi/crust1.html">CRUST1.0</a>. The geoid elevations use model GO CONS GCF 2 TIM R6e from <a href="https://icgem.gfz.de/calcgrid">ICGEM</a>. Crust layer thicknesses and crustal heatflow plots can go here, too.</p></div>
                   <EarthHeatFlux />
+                  <EarthCrust238UFlux />
+                  <EarthCrust232ThFlux />
+                  <EarthCrust40KFlux />
                   <EarthElevationOrtho />
                   <EarthElevationGeoid />
                   <EarthElevationEllip />
