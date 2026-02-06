@@ -57,6 +57,7 @@ export {
   GeophysicalResponsePlot,
 } from "./geo-prem-plots";
 export { CelestialBodySwitcher } from "./celestial-body-switcher";
+export { EarthHeatFlux } from "./earth-plots";
 export {
   EarthElevationOrtho,
   EarthElevationGeoid,
