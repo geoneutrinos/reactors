@@ -4,7 +4,7 @@ import { memo } from "react";
 
 import earthHeatFlux from "../crust-model/earth/crust_heat_map.json";
 
-export const EarthHeatFLux = memo(() => {
+export const EarthHeatFlux = memo(() => {
   // The origin of a plotly plot is the lower left corner
   const lats = range(-89.5, 90.5, 1);
   const lons = range(-179.5, 180.5, 1);
