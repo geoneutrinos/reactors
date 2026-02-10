@@ -73,6 +73,14 @@ import {
   SupernovaNus,
   //About tab
   AboutPane,
+  // Earth Tab
+  EarthHeatFlux,
+  EarthCrust238UFlux,
+  EarthCrust232ThFlux,
+  EarthCrust40KFlux,
+  EarthElevationOrtho,
+  EarthElevationGeoid,
+  EarthElevationEllip,
   // Lunar Tab
   Lunar238UFlux,
   Lunar232ThFlux,
@@ -418,6 +426,16 @@ function App(props) {
               <Tab eventKey="muon" title="Muon">
                   <Muons />
                   <DetectorOverburdens />
+              </Tab>
+              <Tab eventKey="earth" title="Earth">
+                <div><p>The map of radiogenic heat flux from the Earth's crust assumes that the heat transfers radially outward by conduction only. The antineutrino fluxes are from Huang et al. (2013). The orthometric elevations are the bottom-of-water data from <a href="https://igppweb.ucsd.edu/~gabi/crust1.html">CRUST1.0</a>. The geoid elevations use model GO CONS GCF 2 TIM R6e from <a href="https://icgem.gfz.de/calcgrid">ICGEM</a>. Crust layer thicknesses and crustal heatflow plots can go here, too.</p></div>
+                  <EarthHeatFlux />
+                  <EarthCrust238UFlux />
+                  <EarthCrust232ThFlux />
+                  <EarthCrust40KFlux />
+                  <EarthElevationOrtho />
+                  <EarthElevationGeoid />
+                  <EarthElevationEllip />
               </Tab>
               <Tab eventKey="moon" title="Lunar">
                 <div><p>The lunar crust flux model is described in S.T. Dye and A.M. Barna (2024), <i>Lunar antineutrinos and heat: Fluxes from primordial radioactivity</i> <a href="https://doi.org/10.48550/arXiv.2406.00882">arXiv:2406.008822.</a> Known bug: Plot download on some browsers fails on the first try but succeeds on the second.</p></div>
