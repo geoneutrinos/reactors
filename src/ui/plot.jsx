@@ -157,7 +157,7 @@ export function NuSpectrumPlot({ cores, geo, detector, reactorLF, xaxisExtra={},
     },
     yaxis: {
       range: [0, ymax * 1.05],
-      title: { text: `Rate dR/dE (NIU/MeV)<br /><sub>${crossSection.crossSection} ${"(" + crossSection.elasticScatteringTMin.toFixed(1) + " < T < " + crossSection.elasticScatteringTMax.toFixed(1) + " MeV)"}</sub>` },
+      title: { text: `Rate dR/dE (NIU/MeV)<br /><sub>${crossSection.crossSection} ${"(" + crossSection.elasticScatteringTMin.toFixed(2) + " < T<sub>e</sub> < " + crossSection.elasticScatteringTMax.toFixed(2) + " MeV)"}</sub>` },
       ...yaxisExtra
     },
     annotations: [
