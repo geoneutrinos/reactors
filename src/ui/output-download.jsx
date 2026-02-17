@@ -44,7 +44,7 @@ export const DownloadButton = ({
   );
 };
 
-export const OutputDownload = ({ cores, geo, detector, boron8 }) => {
+export const OutputDownload = ({ cores, reactorLF, geo, detector, boron8 }) => {
   const { crossSection } = useContext(PhysicsContext);
   const { boron8Rate, boron8Ke } = boron8;
 
