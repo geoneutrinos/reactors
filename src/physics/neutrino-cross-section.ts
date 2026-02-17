@@ -78,6 +78,16 @@ export const PS_COEFFICIENTS_VECTOR = {
 }
 export const NEUTRON_COEFFICIENTS_VECTOR = -0.5
 
+const tRangeFilter = (xsFunc: CrossSectionFunc, tMin: number, tMax: number): CrossSectionFunc => {
+  return (Ev) => {
+    const Te =  Ev - IBD_THRESHOLD;
+    if ((Te < tMin) || (tMax < Te)){
+      return 0
+    }
+    return xsFunc(Ev)
+  }
+}
+
 
 /** 
  * Calculates the neutrino cross section, sometimes called sigma
@@ -311,6 +321,8 @@ export const crossSectionReducer = (state: CrossSection, action: CrossSectionAct
         let TMax = action.arg === "elasticScatteringTMax"? action.value as number : crossSection.elasticScatteringTMax;
         crossSection.elasticScatteringTMin = TMin;
         crossSection.elasticScatteringTMax = TMax;
+        crossSection[XSNames.IBDSV2003] = memoize((Ev) => tRangeFilter(crossSectionSV2003, TMin, TMax)(Ev));
+        crossSection[XSNames.IBDVB1999] = memoize((Ev) => tRangeFilter(crossSectionVB1999, TMin, TMax)(Ev));
         crossSection[XSNames.ESANTI] = memoize((Ev) => crossSectionElasticScattering(Ev, NeutrinoType.electronAntineutrino, TMin, TMax));
         crossSection[XSNames.ESMUTAU] = memoize((Ev) => crossSectionElasticScattering(Ev, NeutrinoType.muTauAntineutrino, TMin, TMax));
         crossSection[XSNames.ESTOTAL] = memoize((Ev) => crossSection[XSNames.ESANTI](Ev) + crossSection[XSNames.ESMUTAU](Ev))
