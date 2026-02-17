@@ -196,9 +196,9 @@ export const Boron8KEPlot = ({ boron8 }) => {
   var layout = {
     title: `<sup>8</sup>B- Scattered Electron Kinetic Energy Spectrum<br /><sub>${
       "(eES " +
-      crossSection.elasticScatteringTMin.toFixed(1) +
+      crossSection.elasticScatteringTMin.toFixed(2) +
       " < T < " +
-      crossSection.elasticScatteringTMax.toFixed(1) +
+      crossSection.elasticScatteringTMax.toFixed(2) +
       " MeV)"
     }</sub>`,
     yaxis: {
@@ -228,8 +228,8 @@ export const Boron8KEPlot = ({ boron8 }) => {
   var config = {
     toImageButtonOptions: {
       filename: `Solar-8B-ES-KE-Spectrum_Tmin${crossSection.elasticScatteringTMin.toFixed(
-        1
-      )}_to_Tmax${crossSection.elasticScatteringTMax.toFixed(1)}`,
+        2
+      )}_to_Tmax${crossSection.elasticScatteringTMax.toFixed(2)}`,
     },
   };
   return (
@@ -266,9 +266,9 @@ export const Boron8SpectraPlot = ({ boron8, reactorLF }) => {
   var layout = {
     title: `<sup>8</sup>B Solar ν<sub>e</sub>- Interaction Rate Spectrum<br /><sub>${
       "(eES " +
-      crossSection.elasticScatteringTMin.toFixed(1) +
+      crossSection.elasticScatteringTMin.toFixed(2) +
       " < T < " +
-      crossSection.elasticScatteringTMax.toFixed(1) +
+      crossSection.elasticScatteringTMax.toFixed(2) +
       " MeV)"
     }</sub>`,
     yaxis: {
@@ -298,8 +298,8 @@ export const Boron8SpectraPlot = ({ boron8, reactorLF }) => {
   var config = {
     toImageButtonOptions: {
       filename: `Solar-8B-ES-Rate-Spectrum_Tmin${crossSection.elasticScatteringTMin.toFixed(
-        1
-      )}_to_Tmax${crossSection.elasticScatteringTMax.toFixed(1)}`,
+        2
+      )}_to_Tmax${crossSection.elasticScatteringTMax.toFixed(2)}`,
     },
   };
   return (
