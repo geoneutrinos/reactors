@@ -102,7 +102,7 @@ export function StatsPanel({ cores, geo, reactorLF}) {
 
        <Card.Subtitle>
            <span>
-                <small>Scattered lepton kinetic energy range: {crossSection.elasticScatteringTMin.toFixed(2)} &lt; T &lt; {crossSection.elasticScatteringTMax.toFixed(2)} MeV</small>
+                <small>Kinetic energy range of the scattered charged lepton: {crossSection.elasticScatteringTMin.toFixed(2)} &lt; T<sub>e</sub> &lt; {crossSection.elasticScatteringTMax.toFixed(2)} MeV</small>
            </span>
        </Card.Subtitle>
     
