@@ -1,4 +1,4 @@
-import React, {memo} from "react";
+import React, {useContext, memo} from "react";
 
 import { Card } from "react-bootstrap";
 import Plot from "react-plotly.js";
