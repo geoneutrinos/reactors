@@ -1,4 +1,4 @@
-import React, {memo} from "react";
+import React, {useContext, memo} from "react";
 
 import { Card } from "react-bootstrap";
 import Plot from "react-plotly.js";
@@ -8,6 +8,7 @@ import { neutrinoEnergyFor as neutrinoEnergyForHM } from "../physics/reactor-ant
 import { neutrinoEnergyFor as neutrinoEnergyForES } from "../physics/reactor-antineutrinos/estienne";
 import { neutrinoEnergyFor as neutrinoEnergyForKO } from "../physics/reactor-antineutrinos/kopeikin";
 import bins from "../physics/bins";
+import { PhysicsContext } from "../state";
 
 export const FissionIsotopeSpectraPlotsHK = memo(() => {
   const data = [
@@ -606,6 +607,7 @@ export const FissionIsotopeSpectraPlotsES = memo(() => {
 });
 
 export const CoreDirectionSignalPlots = ({ cores, detector, reactorLF }) => {
+  const { crossSection } = useContext(PhysicsContext);
   const sortedCores = Object.values(cores)
     .filter(core => core.shutdown > new Date())
     .filter((a) => a.detectorNIU > 0)
@@ -639,7 +641,7 @@ export const CoreDirectionSignalPlots = ({ cores, detector, reactorLF }) => {
     {
       y: AllOtherCores.map((d) => d.y.detectorNIU),
       x: AllOtherCores.map((d) => d.x),
-      text: AllOtherCores.map((core) => `${core.y.name} (${core.y.type})<br>cosθ= ${core.x.toFixed(3)}<br>signal= ${core.y.detectorNIU.toExponential(2)}`),
+      text: AllOtherCores.map((core) => `${core.y.name} (${core.y.type})<br>cosθ= ${core.x.toFixed(3)}<br>rate= ${core.y.detectorNIU.toExponential(2)}`),
       name: `PWR,BWR`,
       type: "scatter",
       mode: "markers",
@@ -653,7 +655,7 @@ export const CoreDirectionSignalPlots = ({ cores, detector, reactorLF }) => {
       type: "scatter",
       y: CustomCores.map((d) => d.y.detectorNIU),
       x: CustomCores.map((d) => d.x),
-      text: CustomCores.map((core) => `${core.y.name} (${core.y.type})<br>cosθ= ${core.x.toFixed(3)}<br>signal= ${core.y.detectorNIU.toExponential(2)}`),
+      text: CustomCores.map((core) => `${core.y.name} (${core.y.type})<br>cosθ= ${core.x.toFixed(3)}<br>rate= ${core.y.detectorNIU.toExponential(2)}`),
       mode: "markers",
       hoverinfo: "text",
       marker: {
@@ -665,7 +667,7 @@ export const CoreDirectionSignalPlots = ({ cores, detector, reactorLF }) => {
       type: "scatter",
       y: GCRcores.map((d) => d.y.detectorNIU),
       x: GCRcores.map((d) => d.x),
-      text: GCRcores.map((core) => `${core.y.name} (${core.y.type})<br>cosθ= ${core.x.toFixed(3)}<br>signal= ${core.y.detectorNIU.toExponential(2)}`),
+      text: GCRcores.map((core) => `${core.y.name} (${core.y.type})<br>cosθ= ${core.x.toFixed(3)}<br>rate= ${core.y.detectorNIU.toExponential(2)}`),
       mode: "markers",
       hoverinfo: "text",
       marker: {
@@ -677,7 +679,7 @@ export const CoreDirectionSignalPlots = ({ cores, detector, reactorLF }) => {
       type: "scatter",
       y: LEUMoxCores.map((d) => d.y.detectorNIU),
       x: LEUMoxCores.map((d) => d.x),
-      text: LEUMoxCores.map((core) => `${core.y.name} (${core.y.type})<br>cosθ= ${core.x.toFixed(3)}<br>signal= ${core.y.detectorNIU.toExponential(2)}`),
+      text: LEUMoxCores.map((core) => `${core.y.name} (${core.y.type})<br>cosθ= ${core.x.toFixed(3)}<br>rate= ${core.y.detectorNIU.toExponential(2)}`),
       mode: "markers",
       hoverinfo: "text",
       marker: {
@@ -689,7 +691,7 @@ export const CoreDirectionSignalPlots = ({ cores, detector, reactorLF }) => {
       type: "scatter",
       y: PHWRcores.map((d) => d.y.detectorNIU),
       x: PHWRcores.map((d) => d.x),
-      text: PHWRcores.map((core) => `${core.y.name} (${core.y.type})<br>cosθ= ${core.x.toFixed(3)}<br>signal= ${core.y.detectorNIU.toExponential(2)}`),
+      text: PHWRcores.map((core) => `${core.y.name} (${core.y.type})<br>cosθ= ${core.x.toFixed(3)}<br>rate= ${core.y.detectorNIU.toExponential(2)}`),
       mode: "markers",
       hoverinfo: "text",
       marker: {
@@ -705,7 +707,7 @@ export const CoreDirectionSignalPlots = ({ cores, detector, reactorLF }) => {
         : detector.current
     } to ${first.name}<br /><sub>(${reactorLF.start.toISOString().slice(0, 7)} through ${reactorLF.end.toISOString().slice(0, 7)} avg Load Factor)</sub>`,
     yaxis: {
-      title: { text: `signal (NIU)` },
+      title: { text: `Reactor Rate (NIU)<br /><sub>${crossSection.crossSection} (${crossSection.elasticScatteringTMin.toFixed(2)} &lt; T<sub>e</sub> &lt; ${crossSection.elasticScatteringTMax.toFixed(2)} MeV)</sub>`},
       type: 'log',
       autorange: true
     },
@@ -739,7 +741,7 @@ export const CoreDirectionSignalPlots = ({ cores, detector, reactorLF }) => {
     <Card>
       <Card.Header>Core Directions Plot</Card.Header>
       <Card.Body>
-        <p> Reactor core signals in NIU versus the cosine of the angle &theta; w.r.t. the direction from the detector to the core with the highest signal (1 NIU = 1 interaction/10<sup>32</sup>{" "}
+        <p> Reactor core rates in NIU versus the cosine of the angle &theta; w.r.t. the direction from the detector to the core with the highest rate (1 NIU = 1 interaction/10<sup>32</sup>{" "}
             targets/year).
         </p>
         <Plot

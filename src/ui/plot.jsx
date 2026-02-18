@@ -51,7 +51,7 @@ export function NuSpectrumPlot({ cores, geo, detector, reactorLF, xaxisExtra={},
       name: "Reactor cores",
       type: "scatter",
       mode: "lines",
-      fill: "tozerox",
+      fill: "tozeroy",
       marker: { color: "green" },
       line: { width: 0.7 },
       visible: sum(totalCoreSignal) > 0,
@@ -90,7 +90,7 @@ export function NuSpectrumPlot({ cores, geo, detector, reactorLF, xaxisExtra={},
       name: "Geo <sup>238</sup>U",
       type: "scatter",
       mode: "lines",
-      fill: "tozerox",
+      fill: "tozeroy",
       marker: { color: "blue" },
       line: { width: 0.7 },
       visible: geo.total.U238.NIU > 0,
@@ -101,7 +101,7 @@ export function NuSpectrumPlot({ cores, geo, detector, reactorLF, xaxisExtra={},
       name: "Geo <sup>235</sup>U",
       type: "scatter",
       mode: "lines",
-      fill: "tozerox",
+      fill: "tozeroy",
       marker: { color: "purple" },
       line: { width: 0.7 },
       visible: geo.total.U235.NIU > 0,
@@ -112,7 +112,7 @@ export function NuSpectrumPlot({ cores, geo, detector, reactorLF, xaxisExtra={},
       name: "Geo <sup>232</sup>Th",
       type: "scatter",
       mode: "lines",
-      fill: "tozerox",
+      fill: "tozeroy",
       marker: { color: "red" },
       line: { width: 0.7 },
       visible: geo.total.Th232.NIU > 0,
@@ -123,7 +123,7 @@ export function NuSpectrumPlot({ cores, geo, detector, reactorLF, xaxisExtra={},
       name: "Geo <sup>40</sup>K<sub>β</sub>",
       type: "scatter",
       mode: "lines",
-      fill: "tozerox",
+      fill: "tozeroy",
       marker: { color: "yellow" },
       line: { width: 0.7 },
       visible: geo.total.K40Beta.NIU > 0,
@@ -157,7 +157,7 @@ export function NuSpectrumPlot({ cores, geo, detector, reactorLF, xaxisExtra={},
     },
     yaxis: {
       range: [0, ymax * 1.05],
-      title: { text: `Rate dR/dE (NIU/MeV)<br /><sub>${crossSection.crossSection} ${isIBD? "": "(" + crossSection.elasticScatteringTMin.toFixed(1) + " < T < " + crossSection.elasticScatteringTMax.toFixed(1) + " MeV)"}</sub>` },
+      title: { text: `Rate dR/dE (NIU/MeV)<br /><sub>${crossSection.crossSection} ${"(" + crossSection.elasticScatteringTMin.toFixed(2) + " < T<sub>e</sub> < " + crossSection.elasticScatteringTMax.toFixed(2) + " MeV)"}</sub>` },
       ...yaxisExtra
     },
     annotations: [
@@ -172,11 +172,8 @@ export function NuSpectrumPlot({ cores, geo, detector, reactorLF, xaxisExtra={},
     ],
     ...layoutExtra
   };
-  const config = { toImageButtonOptions: { width: 900, height: 500, scale: 2, filename: 'Antineutrino-Spectrum' } }
+  const config = { toImageButtonOptions: { width: 900, height: 500, scale: 2, filename: `Antineutrino-Spectrum_Tmin${crossSection.elasticScatteringTMin.toFixed(2)}_to_Tmax${crossSection.elasticScatteringTMax.toFixed(2)}` } }
 
-  if (!isIBD){
-    config.toImageButtonOptions.filename = `Antineutrino-Spectrum_Tmin${crossSection.elasticScatteringTMin.toFixed(1)}_to_Tmax${crossSection.elasticScatteringTMax.toFixed(1)}`
-  }
   return (
     <Plot
       data={data}

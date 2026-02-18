@@ -1076,7 +1076,7 @@ export const CrossSectionPlots = () => {
     },
   ]
   var layout = {
-    title: `Total Cross Sections- Antineutrinos<br /><sub>${"(eES " + crossSection.elasticScatteringTMin.toFixed(1) + " < T < " + crossSection.elasticScatteringTMax.toFixed(1) + " MeV)"}</sub>`,
+    title: `Total Cross Sections- Antineutrinos<br /><sub>${"(pIBD or eES " + crossSection.elasticScatteringTMin.toFixed(2) + " < T<sub>e</sub> < " + crossSection.elasticScatteringTMax.toFixed(2) + " MeV)"}</sub>`,
     yaxis: {
       title: { text: `Total Cross Section (cm<sup>2</sup>)` },
       type: 'log',
@@ -1104,7 +1104,7 @@ export const CrossSectionPlots = () => {
   };
   var config = {
     toImageButtonOptions: {
-      filename: `Total-Cross-Sections-antinus_Tmin${crossSection.elasticScatteringTMin.toFixed(1)}_to_Tmax${crossSection.elasticScatteringTMax.toFixed(1)}`
+      filename: `Total-Cross-Sections-antinus_Tmin${crossSection.elasticScatteringTMin.toFixed(2)}_to_Tmax${crossSection.elasticScatteringTMax.toFixed(2)}`
     }
   };
   return (
@@ -1290,7 +1290,7 @@ export const CrossSectionPlotsNormal = () => {
     },
   ]
   var layout = {
-    title: `Total Cross Sections- Neutrinos<br /><sub>${"(eES " + crossSection.elasticScatteringTMin.toFixed(1) + " < T < " + crossSection.elasticScatteringTMax.toFixed(1) + " MeV)"}</sub>`,
+    title: `Total Cross Sections- Neutrinos<br /><sub>${"(eES " + crossSection.elasticScatteringTMin.toFixed(2) + " < T<sub>e</sub> < " + crossSection.elasticScatteringTMax.toFixed(2) + " MeV)"}</sub>`,
     yaxis: {
       title: { text: `Total Cross Section (cm<sup>2</sup>)` },
       type: 'log',
@@ -1318,7 +1318,7 @@ export const CrossSectionPlotsNormal = () => {
   };
   var config = {
     toImageButtonOptions: {
-      filename: `Total-Cross-Sections-nus_Tmin${crossSection.elasticScatteringTMin.toFixed(1)}_to_Tmax${crossSection.elasticScatteringTMax.toFixed(1)}`
+      filename: `Total-Cross-Sections-nus_Tmin${crossSection.elasticScatteringTMin.toFixed(2)}_to_Tmax${crossSection.elasticScatteringTMax.toFixed(2)}`
     }
   };
   return (

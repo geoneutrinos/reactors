@@ -44,7 +44,7 @@ export const DownloadButton = ({
   );
 };
 
-export const OutputDownload = ({ cores, geo, detector, boron8 }) => {
+export const OutputDownload = ({ cores, reactorLF, geo, detector, boron8 }) => {
   const { crossSection } = useContext(PhysicsContext);
   const { boron8Rate, boron8Ke } = boron8;
 
@@ -123,20 +123,19 @@ export const OutputDownload = ({ cores, geo, detector, boron8 }) => {
   const downloadFormatters = {
     "bin center (MeV)": (v) => v.toFixed(3),
   };
-  const tMinName = [XSNames.IBDSV2003, XSNames.IBDVB1999].includes(
-    crossSection.crossSection
-  )
-    ? ""
-    : `_Tmin${crossSection.elasticScatteringTMin.toFixed(1)}MeV`;
 
-  const downloadFilename = `AntiNu_spec10keV_${detector.current}_${
-    XSAbrev[crossSection.crossSection]
-  }${tMinName}.csv`
+  const downloadFilename = `ReactorNu_spec10keV_${detector.current}_Avg_LF_${
+    reactorLF.start.toISOString().slice(0, 7)}_thru_${
+    reactorLF.end.toISOString().slice(0, 7)}_${
+    XSAbrev[crossSection.crossSection]}_Tmin_${
+    crossSection.elasticScatteringTMin.toFixed(2)}_to_Tmax_${
+    crossSection.elasticScatteringTMax.toFixed(2)}_MeV.csv`
     .replace(/\s/g, "_")
     .replace(/\(|\)/g, "");
   const downloadGeoFilename = `GeoNu_spec10keV_${detector.current}_${
-    XSAbrev[crossSection.crossSection]
-  }${tMinName}.csv`
+    XSAbrev[crossSection.crossSection]}_Tmin_${
+    crossSection.elasticScatteringTMin.toFixed(2)}_to_Tmax_${
+    crossSection.elasticScatteringTMax.toFixed(2)}_MeV.csv`
     .replace(/\s/g, "_")
     .replace(/\(|\)/g, "");
 
