@@ -707,8 +707,7 @@ export const CoreDirectionSignalPlots = ({ cores, detector, reactorLF }) => {
         : detector.current
     } to ${first.name}<br /><sub>(${reactorLF.start.toISOString().slice(0, 7)} through ${reactorLF.end.toISOString().slice(0, 7)} avg Load Factor)</sub>`,
     yaxis: {
-      title: { text: `Reactor Rate (NIU)<br /><sub>(${crossSection.elasticScatteringTMin.toFixed(2)} 
-        &lt; T<sub>e</sub> &lt; ${crossSection.elasticScatteringTMax.toFixed(2)} MeV)</sub>`},
+      title: { text: `Reactor Rate (NIU)<br /><sub>(${crossSection.elasticScatteringTMin.toFixed(2)} &lt; T<sub>e</sub> &lt; ${crossSection.elasticScatteringTMax.toFixed(2)} MeV)</sub>`},
       type: 'log',
       autorange: true
     },
