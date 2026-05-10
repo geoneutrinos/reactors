@@ -24,7 +24,7 @@ export const PhysicsOscillationPane = memo(() => {
     <Card>
       <Card.Header>Neutrino Oscillation Parameters</Card.Header>
       <Card.Body>
-        <p>Values are from NuFit v6.0 IC24 w/ SK atmos, <a href="https://arxiv.org/abs/2410.05380"> arXiv:2410.05380 </a>, NuFIT 6.0 (2024) <a href="http://www.nu-fit.org"> www.nu-fit.org </a> </p>
+        <p>Values are from NuFit v6.1 IC24 w/ SK atmos, <a href="https://arxiv.org/abs/2410.05380"> arXiv:2410.05380 </a>, NuFIT 6.1 (2025) <a href="http://www.nu-fit.org"> www.nu-fit.org </a> </p>
         <Table {...tableProps} className="text-right">
           <thead>
             <tr>
@@ -52,18 +52,18 @@ export const PhysicsOscillationPane = memo(() => {
           <tbody>
             <tr>
               <td>NO</td>
-              <td>{dmsq21Normal.toExponential(2)}</td>
+              <td>{dmsq21Normal.toExponential(3)}</td>
               <td>{dmsq31Normal.toExponential(4)}</td>
               <td>{dmsq32Normal.toExponential(4)}</td>
-              <td>{s2t12Normal.toFixed(3)}</td>
+              <td>{s2t12Normal.toFixed(4)}</td>
               <td>{s2t13Normal.toFixed(5)}</td>
             </tr>
             <tr>
               <td>IO</td>
-              <td>{dmsq21Inverted.toExponential(2)}</td>
+              <td>{dmsq21Inverted.toExponential(3)}</td>
               <td>{dmsq31Inverted.toExponential(4)}</td>
               <td>{dmsq32Inverted.toExponential(4)}</td>
-              <td>{s2t12Inverted.toFixed(3)}</td>
+              <td>{s2t12Inverted.toFixed(4)}</td>
               <td>{s2t13Inverted.toFixed(5)}</td>
             </tr>
           </tbody>
@@ -83,7 +83,7 @@ export const AverageSurvivalPane = memo(() => {
     <Card>
       <Card.Header>Average Survival Probability</Card.Header>
       <Card.Body>
-        <p>Derived from mixing angles given by NuFit v6.0 IC24 w/ SK atmos, <a href="https://arxiv.org/abs/2410.05380"> arXiv:2410.05380 </a>, NuFIT 6.0 (2024) <a href="http://www.nu-fit.org"> www.nu-fit.org </a> </p>
+        <p>Derived from mixing angles given by NuFit v6.1 IC24 w/ SK atmos, <a href="https://arxiv.org/abs/2410.05380"> arXiv:2410.05380 </a>, NuFIT 6.1 (2025) <a href="http://www.nu-fit.org"> www.nu-fit.org </a> </p>
         <Table {...tableProps} className="text-right">
           <thead>
             <tr>
@@ -109,18 +109,18 @@ export const AverageSurvivalPane = memo(() => {
             <tr>
               <td>NO</td>
               <td>{averageSurvivalProbabilityNormal.toFixed(4)}</td>
-              <td>0.5580</td>
-              <td>1.603</td>
-              <td>0.5400</td>
-              <td>-1.691</td>
+              <td>0.5537</td>
+              <td>1.002</td>
+              <td>0.5427</td>
+              <td>-0.994</td>
             </tr>
             <tr>
               <td>IO</td>
               <td>{averageSurvivalProbabilityInverted.toFixed(4)}</td>
-              <td>0.5578</td>
-              <td>1.599</td>
-              <td>0.5398</td>
-              <td>-1.691</td>
+              <td>0.5535</td>
+              <td>0.996</td>
+              <td>0.5426</td>
+              <td>-0.998</td>
             </tr>
           </tbody>
         </Table>
