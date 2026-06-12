@@ -87,7 +87,7 @@ export const GeoneutrinoResults = memo(() => {
   ];
   
   var layout = {
-    title: `Geo-neutrino Results 2025`,
+    title: `Geo-neutrino Results 2026`,
     yaxis: {
       title: { text: `Rate (TNU)` },
       rangemode: "tozero",
