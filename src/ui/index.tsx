@@ -57,13 +57,24 @@ export {
   GeophysicalResponsePlot,
 } from "./geo-prem-plots";
 export { CelestialBodySwitcher } from "./celestial-body-switcher";
+export { EarthHeatFlux } from "./earth-plots";
+export {
+  EarthCrust238UFlux,
+  EarthCrust232ThFlux,
+  EarthCrust40KFlux,
+} from "./crust-model-flux-plots";
+export {
+  EarthElevationOrtho,
+  EarthElevationGeoid,
+  EarthElevationEllip,
+} from "./earth-elevation-plots";
 export {
   Lunar238UFlux,
   Lunar232ThFlux,
   Lunar40KFlux,
   LunarThickness,
   LunarHeatFLux,
-} from "./lunar-input-plots"
+} from "./lunar-input-plots";
 
 interface VisibleProps {
   children: React.ReactNode
