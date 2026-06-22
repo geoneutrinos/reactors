@@ -122,7 +122,7 @@ export const GeoneutrinoResults = memo(() => {
     },
     autosize: true,
     legend: {
-      x: 1,
+      x: 0.6,
       xanchor: "right",
       y: 1,
     },
