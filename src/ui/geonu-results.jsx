@@ -1,6 +1,6 @@
 import React, {useContext, memo} from 'react';
 
-import { Card } from "react-bootstrap";
+import { Card, Table } from "react-bootstrap";
 import { MathJax } from "better-react-mathjax";
 import Plot from "react-plotly.js";
 
@@ -160,6 +160,42 @@ export const GeoneutrinoResults = memo(() => {
           layout={layout}
           config={config}
         />
+        <div>
+          <Table>
+            <thead>
+              <tr>
+                <th>Rate (TNU) </th>
+                <th>Borexino</th>
+                <th>JUNO</th>
+                <th>KamLAND</th>
+                <th>SNO+</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Observed</td>
+                <td>38.9 - 55.6</td>
+                <td>62 - 84</td>
+                <td>23.8 - 33.7</td>
+                <td>37 - 62</td>
+              </tr>
+              <tr>
+                <td>Predicted Crust</td>
+                <td>22.1 - 34.7</td>
+                <td>25.7 - 40.9</td>
+                <td>18.6 - 27.6</td>
+                <td>30.4 - 44.2</td>
+              </tr>
+              <tr>
+                <td>Allowed Mantle Rate</td>
+                <td>4.2 - 33.5</td>
+                <td>21.1 - 58.3</td>
+                <td>-3.8 - 15.1</td>
+                <td>-7.2 - 31.6</td>
+              </tr>
+            </tbody>
+          </Table>
+        </div>
       </Card.Body>
     </Card>
   );
