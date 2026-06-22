@@ -7,6 +7,30 @@ import Plot from "react-plotly.js";
 export const GeoneutrinoResults = memo(() => {
   const data= [
     {
+      name: `JUNO`,
+      type: "scatter",
+      mode: "markers",
+      x: [6.8],
+      y: [73],
+      marker: {
+        symbol: ["circle"],
+        color: "black",
+        size: 6
+      },
+      error_y: {
+        type: "data",
+        array: [11.0],
+        visible: true,
+        color: "black"
+      },
+      error_x: {
+        type: "data",
+        array: [0.1],
+        visible: true,
+        color: "black"
+     },
+    },
+    {
       name: `SNO+`,
       type: "scatter",
       mode: "markers",
@@ -123,10 +147,10 @@ export const GeoneutrinoResults = memo(() => {
       <Card.Header>Geo-neutrino Results 2026</Card.Header>
       <Card.Body>
         <p>
-          Plot shows the results of geo-neutrino observations as of 2026. Red marks the measurement by <a href="https://arxiv.org/pdf/2604.05746">SNO+</a> at SNOLAB 
-          (plotted exposure is estimated from the reported 685 days of livetime and assuming 780 tonnes of LS with 6x10<sup>28</sup> free-protons per tonne
-          and assigned an arbitrary uncertainty of 0.1 TNU<sup>-1</sup>),
-          green marks the measurement by <a href="https://doi.org/10.1103/PhysRevD.101.012009">Borexino</a> at Gran Sasso (LNGS), 
+          Plot shows the results of geo-neutrino observations as of 2026. Black marks the measurement by <a href="https://sites.uci.edu/neutrino2026/">JUNO</a> at Jiangmen, China. Red marks the measurement by <a href="https://arxiv.org/pdf/2604.05746">SNO+</a> at SNOLAB. 
+          (The plotted exposures for JUNO and SNO+ are estimated from the reported livetimes, 207.2 and 685 days, respectively, assuming 20 kT and 780 tonnes of LS with 6x10<sup>28</sup> free-protons per tonne, repsectively,
+          and assigning an arbitrary uncertainty of 0.1 TNU<sup>-1</sup>).
+          Green marks the measurement by <a href="https://doi.org/10.1103/PhysRevD.101.012009">Borexino</a> at Gran Sasso (LNGS), 
           and blue marks the measurement by <a href="https://doi.org/10.1029/2022GL099566">KamLAND</a> at Kamioka.
        </p>
         <Plot
