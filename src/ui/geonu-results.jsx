@@ -182,8 +182,8 @@ export const GeoneutrinoResults = memo(() => {
               <tr>
                 <td>Predicted Crust</td>
                 <td>27.8<sup>[1]</sup></td>
-                <td>32.3<sup>[1]</sup></td>
-                <td>22.7<sup>[2]</sup></td>
+                <td>32.3<sup>[2]</sup></td>
+                <td>22.7<sup>[1]</sup></td>
                 <td>36.7<sup>[1]</sup></td>
               </tr>
               <tr>
@@ -203,8 +203,8 @@ export const GeoneutrinoResults = memo(() => {
               <tr>
                 <td>Predicted Crust Range</td>
                 <td>22.1 - 34.7<sup>[1]</sup></td>
-                <td>25.7 - 40.9<sup>[1]</sup></td>
-                <td>18.6 - 27.6<sup>[2]</sup></td>
+                <td>25.7 - 40.9<sup>[2]</sup></td>
+                <td>18.6 - 27.6<sup>[1]</sup></td>
                 <td>30.4 - 44.2<sup>[1]</sup></td>
               </tr>
               <tr>
