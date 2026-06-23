@@ -181,10 +181,10 @@ export const GeoneutrinoResults = memo(() => {
               </tr>
               <tr>
                 <td>Predicted Crust</td>
-                <td>27.8</td>
-                <td>32.3</td>
-                <td>22.7</td>
-                <td>36.7</td>
+                <td>27.8<sup>[1]</sup></td>
+                <td>32.3<sup>[1]</sup></td>
+                <td>22.7<sup>[2]</sup></td>
+                <td>36.7<sup>[1]</sup></td>
               </tr>
               <tr>
                 <td>Allowed Mantle</td>
@@ -202,10 +202,10 @@ export const GeoneutrinoResults = memo(() => {
               </tr>
               <tr>
                 <td>Predicted Crust Range</td>
-                <td>22.1 - 34.7</td>
-                <td>25.7 - 40.9</td>
-                <td>18.6 - 27.6</td>
-                <td>30.4 - 44.2</td>
+                <td>22.1 - 34.7<sup>[1]</sup></td>
+                <td>25.7 - 40.9<sup>[1]</sup></td>
+                <td>18.6 - 27.6<sup>[2]</sup></td>
+                <td>30.4 - 44.2<sup>[1]</sup></td>
               </tr>
               <tr>
                 <td>Allowed Mantle Range</td>
@@ -216,6 +216,10 @@ export const GeoneutrinoResults = memo(() => {
               </tr>
             </tbody>
           </Table>
+        </div>
+        <div>
+          [1] Y. Huang et al. (2013), <i>A reference Earth model for the heat producing elements and associated geoneutrino flux</i>, Geochem., Geophys., Geosyst. 14, 2003-2029.
+          [2] T. Adam et al. (2025), <i>Prospects for geoneutrino detection with JUNO</i>, arXiv:2511.07227.
         </div>
       </Card.Body>
     </Card>
