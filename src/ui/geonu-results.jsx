@@ -218,7 +218,7 @@ export const GeoneutrinoResults = memo(() => {
           </Table>
         </div>
         <div>
-          [1] Y. Huang et al. (2013), <i>A reference Earth model for the heat producing elements and associated geoneutrino flux</i>, Geochem., Geophys., Geosyst. 14, 2003-2029. <br>
+          [1] Y. Huang et al. (2013), <i>A reference Earth model for the heat producing elements and associated geoneutrino flux</i>, Geochem., Geophys., Geosyst. 14, 2003-2029. <br />
           [2] T. Adam et al. (2025), <i>Prospects for geoneutrino detection with JUNO</i>, arXiv:2511.07227.
         </div>
       </Card.Body>
