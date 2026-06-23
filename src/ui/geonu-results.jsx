@@ -1,6 +1,6 @@
 import React, {useContext, memo} from 'react';
 
-import { Card } from "react-bootstrap";
+import { Card, Table } from "react-bootstrap";
 import { MathJax } from "better-react-mathjax";
 import Plot from "react-plotly.js";
 
@@ -160,6 +160,67 @@ export const GeoneutrinoResults = memo(() => {
           layout={layout}
           config={config}
         />
+        <div>
+          <Table>
+            <thead>
+              <tr>
+                <th>Rate (TNU) </th>
+                <th>Borexino</th>
+                <th>JUNO</th>
+                <th>KamLAND</th>
+                <th>SNO+</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Observed</td>
+                <td>47</td>
+                <td>73</td>
+                <td>28.6</td>
+                <td>49</td>
+              </tr>
+              <tr>
+                <td>Predicted Crust</td>
+                <td>27.8<sup>[1]</sup></td>
+                <td>32.3<sup>[2]</sup></td>
+                <td>22.7<sup>[1]</sup></td>
+                <td>36.7<sup>[1]</sup></td>
+              </tr>
+              <tr>
+                <td>Allowed Mantle</td>
+                <td>19.2</td>
+                <td>40.7</td>
+                <td>5.9</td>
+                <td>12.3</td>
+              </tr>
+              <tr>
+                <td>Observed Range</td>
+                <td>38.9 - 55.6</td>
+                <td>62 - 84</td>
+                <td>23.8 - 33.7</td>
+                <td>37 - 62</td>
+              </tr>
+              <tr>
+                <td>Predicted Crust Range</td>
+                <td>22.1 - 34.7<sup>[1]</sup></td>
+                <td>25.7 - 40.9<sup>[2]</sup></td>
+                <td>18.6 - 27.6<sup>[1]</sup></td>
+                <td>30.4 - 44.2<sup>[1]</sup></td>
+              </tr>
+              <tr>
+                <td>Allowed Mantle Range</td>
+                <td>4.2 - 33.5</td>
+                <td>21.1 - 58.3</td>
+                <td>-3.8 - 15.1</td>
+                <td>-7.2 - 31.6</td>
+              </tr>
+            </tbody>
+          </Table>
+        </div>
+        <div>
+          [1] Y. Huang et al. (2013), <i>A reference Earth model for the heat producing elements and associated geoneutrino flux</i>, Geochem., Geophys., Geosyst. 14, 2003-2029. <br />
+          [2] T. Adam et al. (2025), <i>Prospects for geoneutrino detection with JUNO</i>, arXiv:2511.07227.
+        </div>
       </Card.Body>
     </Card>
   );
