@@ -219,7 +219,7 @@ export const GeoneutrinoResults = memo(() => {
         </div>
         <div>
           [1] Y. Huang et al. (2013), <i>A reference Earth model for the heat producing elements and associated geoneutrino flux</i>, Geochem., Geophys., Geosyst. 14, 2003-2029. <br />
-          [2] R. Gao et al. (2020), <i>JULOC: A local 3-D high-resolution crustal model in South China for forecasting geoneutrino measurements at JUNO</i>, PEPI 299 (2019) 106409.
+          [2] R. Gao et al. (2019), <i>JULOC: A local 3-D high-resolution crustal model in South China for forecasting geoneutrino measurements at JUNO</i>, PEPI 299, 106409.
         </div>
       </Card.Body>
     </Card>
