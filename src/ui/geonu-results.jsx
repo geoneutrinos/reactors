@@ -181,14 +181,14 @@ export const GeoneutrinoResults = memo(() => {
               </tr>
               <tr>
                 <td>Predicted Crust</td>
-                <td>27.8<sup>[1]</sup></td>
+                <td>31.9<sup>[1]</sup></td>
                 <td>40.4<sup>[2]</sup></td>
                 <td>22.7<sup>[1]</sup></td>
                 <td>36.7<sup>[1]</sup></td>
               </tr>
               <tr>
                 <td>Allowed Mantle</td>
-                <td>19.2</td>
+                <td>15.1</td>
                 <td>32.6</td>
                 <td>5.9</td>
                 <td>12.3</td>
@@ -202,14 +202,14 @@ export const GeoneutrinoResults = memo(() => {
               </tr>
               <tr>
                 <td>Predicted Crust Range</td>
-                <td>22.1 - 34.7<sup>[1]</sup></td>
+                <td>26.1 - 39.2<sup>[1]</sup></td>
                 <td>35.4 - 46.0<sup>[2]</sup></td>
                 <td>18.6 - 27.6<sup>[1]</sup></td>
                 <td>30.4 - 44.2<sup>[1]</sup></td>
               </tr>
               <tr>
                 <td>Allowed Mantle Range</td>
-                <td>4.2 - 33.5</td>
+                <td>-0.3 - 29.5</td>
                 <td>16.0 - 48.6</td>
                 <td>-3.8 - 15.1</td>
                 <td>-7.2 - 31.6</td>
