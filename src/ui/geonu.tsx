@@ -440,7 +440,7 @@ export const MantleFlux = ({ geoFluxRatios, setGeoFluxRatios, geo, celestialBody
             </tbody>
           </Table>
         Mantle Radiogenic Heating: <Num v={heating.U238 + heating.U235 + heating.Th232 + heating.K40Beta + heating.K40Ec} p={3} func={(v) => v / 1e12}/> TW assumes homogeneous element concentrations
-        <br /> •<small>Earth mantle mass (<Num v={MANTLE_MASS} p={4} func={(v) => v * 1e-24} /> x10<sup>24</sup> kg) and geophysical response (<Num v={MANTLE_GEOPHYSICAL_RESPONSE} p={4} func={(v) => v * 1e-3} /> x10<sup>3</sup> kg cm<sup>-2</sup>)</small>, both excluding the LID
+        <br /> •<small>Earth mantle mass (<Num v={MANTLE_MASS} p={4} func={(v) => v * 1e-24} /> x10<sup>24</sup> kg) and geophysical response (<Num v={MANTLE_GEOPHYSICAL_RESPONSE} p={4} func={(v) => v * 1e-3} /> x10<sup>3</sup> kg cm<sup>-2</sup>), both excluding the LID</small>
         <br /> <small>A. M. Dziewonski and D. L. Anderson (1981), <i>Preliminary Reference Earth Model (PREM)</i>, Phys. Earth Planet. Inter. 25, 297-356</small>
         <br /> •<small>Moon mantle mass (<Num v={LUNAR_MANTLE_MASS} p={4} func={(v) => v * 1e-22} /> x10<sup>22</sup> kg) and geophysical response (<Num v={LUNAR_MANTLE_GEOPHYSICAL_RESPONSE} p={4} func={(v) => v * 1e-3} /> x10<sup>3</sup> kg cm<sup>-2</sup>)</small>
         <br /> <small>A. Briaud <i>et al.</i> (2023), <i>The lunar solid inner core and the mantle overturn</i>, Nature 617, 743-746</small>
