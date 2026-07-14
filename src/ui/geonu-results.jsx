@@ -164,6 +164,40 @@ export const GeoneutrinoResults = memo(() => {
           <Table>
             <thead>
               <tr>
+                <th>Rate<sub>U</sub> / Rate<sub>Th</sub> </th>
+                <th>Borexino</th>
+                <th>JUNO</th>
+                <th>KamLAND</th>
+                <th>SNO+</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Observation Constraint</td>
+                <td>3.7</td>
+                <td>3.4</td>
+                <td>3.7</td>
+                <td>3.3</td>
+              </tr>
+              <tr>
+                <td>Crust Prediction</td>
+                <td>3.1<sup>[1]</sup></td>
+                <td>3.3<sup>[2]</sup></td>
+                <td>3.5<sup>[1]</sup></td>
+                <td>3.3<sup>[1]</sup></td>
+              </tr>
+              <tr>
+                <td>Allowed Mantle</td>
+                <td>5.6</td>
+                <td>3.5</td>
+                <td>4.5</td>
+                <td>3.3</td>
+              </tr>
+            </tbody>
+          </Table>
+          <Table>
+            <thead>
+              <tr>
                 <th>Rate (TNU) </th>
                 <th>Borexino</th>
                 <th>JUNO</th>
@@ -180,6 +214,20 @@ export const GeoneutrinoResults = memo(() => {
                 <td>49</td>
               </tr>
               <tr>
+                <td>U Observed</td>
+                <td>37.0</td>
+                <td>56.4</td>
+                <td>22.5</td>
+                <td>37.6</td>
+              </tr>
+              <tr>
+                <td>Th Observed</td>
+                <td>10.0</td>
+                <td>16.6</td>
+                <td>6.1</td>
+                <td>11.4</td>
+              </tr>
+              <tr>
                 <td>Predicted Crust</td>
                 <td>31.9<sup>[1]</sup></td>
                 <td>40.4<sup>[2]</sup></td>
@@ -187,11 +235,39 @@ export const GeoneutrinoResults = memo(() => {
                 <td>36.7<sup>[1]</sup></td>
               </tr>
               <tr>
+                <td>U Predicted Crust</td>
+                <td>23.6<sup>[1]</sup></td>
+                <td>30.3<sup>[2]</sup></td>
+                <td>17.5<sup>[1]</sup></td>
+                <td>27.8<sup>[1]</sup></td>
+              </tr>
+              <tr>
+                <td>Th Predicted Crust</td>
+                <td>7.6<sup>[1]</sup></td>
+                <td>9.2<sup>[2]</sup></td>
+                <td>5.0<sup>[1]</sup></td>
+                <td>8.4<sup>[1]</sup></td>
+              </tr>
+              <tr>
                 <td>Allowed Mantle</td>
                 <td>15.1</td>
                 <td>32.6</td>
                 <td>5.9</td>
                 <td>12.3</td>
+              </tr>
+              <tr>
+                <td>U Allowed Mantle</td>
+                <td>13.4</td>
+                <td>26.1</td>
+                <td>5.0</td>
+                <td>9.8</td>
+              </tr>
+              <tr>
+                <td>Th Allowed Mantle</td>
+                <td>2.4</td>
+                <td>7.4</td>
+                <td>1.1</td>
+                <td>3.0</td>
               </tr>
               <tr>
                 <td>Observed Range</td>
@@ -213,33 +289,6 @@ export const GeoneutrinoResults = memo(() => {
                 <td>16.0 - 48.6</td>
                 <td>-3.8 - 15.1</td>
                 <td>-7.2 - 31.6</td>
-              </tr>
-            </tbody>
-          </Table>
-          <Table>
-            <thead>
-              <tr>
-                <th>R<sub>U</sub> / R<sub>Th</sub> </th>
-                <th>Borexino</th>
-                <th>JUNO</th>
-                <th>KamLAND</th>
-                <th>SNO+</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Observed</td>
-                <td>xx</td>
-                <td>3.4</td>
-                <td>yy</td>
-                <td>3.29</td>
-              </tr>
-              <tr>
-                <td>Crust Prediction</td>
-                <td>3.1<sup>[1]</sup></td>
-                <td>3.3<sup>[2]</sup></td>
-                <td>3.5<sup>[1]</sup></td>
-                <td>3.3<sup>[1]</sup></td>
               </tr>
             </tbody>
           </Table>
