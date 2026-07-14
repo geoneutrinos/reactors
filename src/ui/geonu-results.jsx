@@ -216,6 +216,33 @@ export const GeoneutrinoResults = memo(() => {
               </tr>
             </tbody>
           </Table>
+          <Table>
+            <thead>
+              <tr>
+                <th>R<sub>U</sub> / R<sub>Th</sub> </th>
+                <th>Borexino</th>
+                <th>JUNO</th>
+                <th>KamLAND</th>
+                <th>SNO+</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Observed</td>
+                <td>xx</td>
+                <td>3.4</td>
+                <td>yy</td>
+                <td>3.29</td>
+              </tr>
+              <tr>
+                <td>Crust Prediction</td>
+                <td>3.1<sup>[1]</sup></td>
+                <td>3.3<sup>[2]</sup></td>
+                <td>3.5<sup>[1]</sup></td>
+                <td>3.3<sup>[1]</sup></td>
+              </tr>
+            </tbody>
+          </Table>
         </div>
         <div>
           [1] Y. Huang et al. (2013), <i>A reference Earth model for the heat producing elements and associated geoneutrino flux</i>, Geochem., Geophys., Geosyst. 14, 2003-2029. <br />
