@@ -174,21 +174,21 @@ export const GeoneutrinoResults = memo(() => {
             <tbody>
               <tr>
                 <td>Observation Constraint</td>
-                <td>3.7</td>
+                <td>3.70</td>
                 <td>3.4</td>
                 <td>3.7</td>
                 <td>3.3</td>
               </tr>
               <tr>
                 <td>Crust Prediction</td>
-                <td>3.4<sup>[1]</sup></td>
+                <td>3.45</td>
                 <td>3.3<sup>[3]</sup></td>
                 <td>3.5<sup>[2]</sup></td>
                 <td>3.3<sup>[2]</sup></td>
               </tr>
               <tr>
-                <td>Allowed Mantle</td>
-                <td>5.6</td>
+                <td>Mantle</td>
+                <td>3.85</td>
                 <td>3.5</td>
                 <td>4.5</td>
                 <td>3.3</td>
@@ -249,22 +249,22 @@ export const GeoneutrinoResults = memo(() => {
                 <td>8.4<sup>[2]</sup></td>
               </tr>
               <tr>
-                <td>Allowed Mantle</td>
+                <td>Mantle</td>
                 <td>21.2</td>
                 <td>32.6</td>
                 <td>5.9</td>
                 <td>12.3</td>
               </tr>
               <tr>
-                <td>U Allowed Mantle</td>
-                <td>17.2</td>
+                <td>U Mantle</td>
+                <td>16.8</td>
                 <td>26.1</td>
                 <td>5.0</td>
                 <td>9.8</td>
               </tr>
               <tr>
-                <td>Th Allowed Mantle</td>
-                <td>2.4</td>
+                <td>Th Mantle</td>
+                <td>4.4</td>
                 <td>7.4</td>
                 <td>1.1</td>
                 <td>3.0</td>
@@ -284,7 +284,7 @@ export const GeoneutrinoResults = memo(() => {
                 <td>30.4 - 44.2<sup>[2]</sup></td>
               </tr>
               <tr>
-                <td>Allowed Mantle Range</td>
+                <td>Mantle Range</td>
                 <td>12.2 - 30.8</td>
                 <td>16.0 - 48.6</td>
                 <td>-3.8 - 15.1</td>
