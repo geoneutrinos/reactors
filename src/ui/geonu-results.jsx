@@ -177,21 +177,21 @@ export const GeoneutrinoResults = memo(() => {
                 <td>3.70<sup>[1]</sup></td>
                 <td>3.4<sup>[2]</sup></td>
                 <td>3.72<sup>[3]</sup></td>
-                <td>3.3<sup>[4]</sup></td>
+                <td>3.29<sup>[4]</sup></td>
               </tr>
               <tr>
                 <td>Crust Prediction</td>
                 <td>3.45<sup>[1]</sup></td>
                 <td>3.3<sup>[5]</sup></td>
                 <td>3.78<sup>[6]</sup></td>
-                <td>3.3<sup>[7]</sup></td>
+                <td>3.31<sup>[7]</sup></td>
               </tr>
               <tr>
                 <td>Mantle</td>
                 <td>3.85</td>
                 <td>3.5</td>
                 <td>3.52</td>
-                <td>3.3</td>
+                <td>3.24</td>
               </tr>
             </tbody>
           </Table>
@@ -243,7 +243,7 @@ export const GeoneutrinoResults = memo(() => {
                 <th>Borexino<sup>[1]</sup></th>
                 <th>JUNO<sup>[5]</sup></th>
                 <th>KamLAND<sup>[6]</sup></th>
-                <th>SNO+<sup>[7]</sup></th>
+                <th>SNO+<sup>[8]</sup></th>
               </tr>
             </thead>
             <tbody>
@@ -252,28 +252,28 @@ export const GeoneutrinoResults = memo(() => {
                 <td>25.9</td>
                 <td>40.4</td>
                 <td>26.6</td>
-                <td>36.7</td>
+                <td>34.2</td>
               </tr>
               <tr>
                 <td>U + Th Range</td>
                 <td>21.8 - 30.8</td>
                 <td>35.4 - 46.0</td>
                 <td>18.6 - 27.6</td>
-                <td>30.4 - 44.2</td>
+                <td>28.9 - 43.4</td>
               </tr>
               <tr>
                 <td>U</td>
                 <td>19.8</td>
                 <td>30.3</td>
                 <td>21.0</td>
-                <td>27.8</td>
+                <td>26.3</td>
               </tr>
               <tr>
                 <td>Th</td>
                 <td>5.8</td>
                 <td>9.2</td>
                 <td>5.6</td>
-                <td>8.4</td>
+                <td>7.9</td>
               </tr>
             </tbody>
           </Table>
@@ -287,12 +287,13 @@ export const GeoneutrinoResults = memo(() => {
                 <th>SNO+</th>
               </tr>
             </thead>
-            <tbody>              <tr>
+            <tbody>
+              <tr>
                 <td>U + Th</td>
                 <td>21.2</td>
                 <td>32.6</td>
                 <td>4.1</td>
-                <td>12.3</td>
+                <td>14.8</td>
               </tr>
               <tr>
                 <td>U + Th Range</td>
@@ -319,6 +320,7 @@ export const GeoneutrinoResults = memo(() => {
           </Table>
         </div>
         <div>
+          <small>
           [1] M. Agostini et al. (2020), <i>Comprehensive geoneutrino analysis with Borexino</i>, Phys. Rev. D 101, 012009. <br />
           [2] Y. Wang et al. (2026), <i>JUNO Experiment</i>, talk at Neutrino 2026. <br />
           [3] S. Abe et al. (2022), <i>Abundances of Uranium and Thorium Elements in Earth Estimated by Geoneutrino Spectroscopy</i>, Geophys. Res. Lett. 49, e2022GL099566. <br />
@@ -326,6 +328,8 @@ export const GeoneutrinoResults = memo(() => {
           [5] R. Gao et al. (2019), <i>JULOC: A local 3-D high-resolution crustal model in South China for forecasting geoneutrino measurements at JUNO</i>, PEPI 299, 106409. <br />
           [6] S. Enomoto et al. (2007), <i>Neutrino geophysics with KamLAND and future prospects</i>, Earth Planet. Sci. Lett. 258, 147-159. <br />
           [7] Y. Huang et al. (2013), <i>A reference Earth model for the heat producing elements and associated geoneutrino flux</i>, Geochem., Geophys., Geosyst. 14, 2003-2029. <br />
+          [8] V. Strati et al. (2017), <i>Perceiving the Crust in 3-D: A Model Integrating Geological, Geochemical, and Geophysical Data</i>, Geochem., Geophys., Geosyst. 18, 4326-4341. <br />
+          </small>
         </div>
       </Card.Body>
     </Card>
