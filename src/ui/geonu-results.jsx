@@ -138,7 +138,7 @@ export const GeoneutrinoRates = memo(() => {
     },
     autosize: true,
     legend: {
-      x: 0.4,
+      x: 0.3,
       xanchor: "right",
       y: 1,
     },
