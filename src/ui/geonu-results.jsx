@@ -53,7 +53,7 @@ export const GeoneutrinoRates = memo(() => {
       error_x: {
         type: "data",
         array: [9.2],
-        arrayminus: [5.3];
+        arrayminus: [5.3],
         visible: true,
         color: "red"
      },
