@@ -7,6 +7,18 @@ import Plot from "react-plotly.js";
 export const GeoneutrinoRates = memo(() => {
   const data= [
     {
+      name: `Reality Line`,
+      type: "scatter",
+      mode: "lines",
+      x: [0., 50.],
+      y: [0., 80.],
+      line: {
+        color: "brown",
+        width: 2,
+        dash: "dask"
+      },
+    },
+    {
       name: `JUNO`,
       type: "scatter",
       mode: "markers",
