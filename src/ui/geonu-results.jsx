@@ -10,7 +10,7 @@ export const GeoneutrinoRates = memo(() => {
       name: `Reality Line`,
       type: "scatter",
       mode: "lines",
-      x: [0., 50.],
+      x: [0., 80.],
       y: [0., 80.],
       line: {
         color: "brown",
