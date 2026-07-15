@@ -122,11 +122,11 @@ export const GeoneutrinoRates = memo(() => {
     },
     xaxis: {
       title: { text: `Lithosphere Rate (TNU)` },
-      autorange: true,
+      rangemode: "tozero",
     },
     autosize: true,
     legend: {
-      x: 0.6,
+      x: 0.2,
       xanchor: "right",
       y: 1,
     },
