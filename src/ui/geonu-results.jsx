@@ -111,7 +111,7 @@ export const GeoneutrinoResults = memo(() => {
   ];
   
   var layout = {
-    title: `Geo-neutrino Results 2026`,
+    title: `Geo-neutrino Observations as of 2026`,
     yaxis: {
       title: { text: `Rate (TNU)` },
       rangemode: "tozero",
@@ -147,7 +147,7 @@ export const GeoneutrinoResults = memo(() => {
       <Card.Header>Geo-neutrino Results 2026</Card.Header>
       <Card.Body>
         <p>
-          Plot shows the results of geo-neutrino observations as of 2026. Black marks the measurement by <a href="https://sites.uci.edu/neutrino2026/">JUNO</a> at Jiangmen, China. Red marks the measurement by <a href="https://arxiv.org/pdf/2604.05746">SNO+</a> at SNOLAB. 
+          The reported geo-neutrino observations as of 2026 are plotted as measured rate (TNU) versus detector exposure (TNU<sup>-1</sup>). Black marks the measurement by <a href="https://sites.uci.edu/neutrino2026/">JUNO</a> at Jiangmen, China. Red marks the measurement by <a href="https://arxiv.org/pdf/2604.05746">SNO+</a> at SNOLAB. 
           (The plotted exposures for JUNO and SNO+ are estimated from the reported livetimes, 207.2 and 685 days, respectively, assuming 20 kT and 780 tonnes of LS with 6x10<sup>28</sup> free-protons per tonne, repsectively,
           and assigning an arbitrary uncertainty of 0.1 TNU<sup>-1</sup>).
           Green marks the measurement by <a href="https://doi.org/10.1103/PhysRevD.101.012009">Borexino</a> at Gran Sasso (LNGS), 
