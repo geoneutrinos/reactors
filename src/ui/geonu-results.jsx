@@ -363,7 +363,7 @@ export const GeoneutrinoResults = memo(() => {
                 <td>Mantle</td>
                 <td>3.85</td>
                 <td>3.5</td>
-                <td>3.52</td>
+                <td>3.29</td>
                 <td>3.24</td>
               </tr>
             </tbody>
@@ -383,28 +383,28 @@ export const GeoneutrinoResults = memo(() => {
                 <td>U + Th</td>
                 <td>47.0</td>
                 <td>73</td>
-                <td>30.7</td>
+                <td>28.6</td>
                 <td>49</td>
               </tr>
               <tr>
                 <td>U + Th Range</td>
                 <td>38.9 - 55.6</td>
                 <td>62 - 84</td>
-                <td>26.0 - 35.5</td>
+                <td>23.8 - 33.7</td>
                 <td>37 - 62</td>
               </tr>
               <tr>
                 <td>U</td>
                 <td>36.3</td>
                 <td>56.4</td>
-                <td>24.2</td>
+                <td>19.1</td>
                 <td>37.6</td>
               </tr>
               <tr>
                 <td>Th</td>
                 <td>10.5</td>
                 <td>16.6</td>
-                <td>6.5</td>
+                <td>9.7</td>
                 <td>11.4</td>
               </tr>
             </tbody>
@@ -465,21 +465,21 @@ export const GeoneutrinoResults = memo(() => {
                 <td>U + Th</td>
                 <td>21.2</td>
                 <td>32.6</td>
-                <td>5.6</td>
+                <td>3.5</td>
                 <td>14.8</td>
               </tr>
               <tr>
                 <td>U</td>
                 <td>16.8</td>
                 <td>26.1</td>
-                <td>4.7</td>
+                <td>2.7</td>
                 <td>9.8</td>
               </tr>
               <tr>
                 <td>Th</td>
                 <td>4.4</td>
                 <td>7.4</td>
-                <td>0.9</td>
+                <td>0.8</td>
                 <td>3.0</td>
               </tr>
             </tbody>
