@@ -320,7 +320,7 @@ export const GeoneutrinoResults = memo(() => {
       <Card.Header>Geo-neutrino Results 2026</Card.Header>
       <Card.Body>
         <p>
-          The reported geo-neutrino observations as of 2026 are plotted as measured rate (TNU) versus detector exposure (TNU<sup>-1</sup>). Black marks the measurement by <a href="https://sites.uci.edu/neutrino2026/">JUNO</a> at Jiangmen, China. Red marks the measurement by <a href="https://arxiv.org/pdf/2604.05746">SNO+</a> at SNOLAB. 
+          The reported geo-neutrino observations as of 2026 are plotted as measured rate (TNU) versus detector exposure (TNU<sup>-1</sup>). Black marks the measurement by <a href="https://sites.uci.edu/neutrino2026/">JUNO</a> at Jiangmen, China. Red marks the measurement by <a href="https://arxiv.org/pdf/2511.11856">SNO+</a> at SNOLAB. 
           (The plotted exposures for JUNO and SNO+ are estimated from the reported livetimes, 207.2 and 685 days, respectively, assuming 20 kT and 780 tonnes of LS with 6x10<sup>28</sup> free-protons per tonne, repsectively,
           and assigning an arbitrary uncertainty of 0.1 TNU<sup>-1</sup>).
           Green marks the measurement by <a href="https://doi.org/10.1103/PhysRevD.101.012009">Borexino</a> at Gran Sasso (LNGS), 
@@ -353,7 +353,7 @@ export const GeoneutrinoResults = memo(() => {
                 <td>3.29<sup>[4]</sup></td>
               </tr>
               <tr>
-                <td>Crust Prediction</td>
+                <td>Lithosphere Prediction</td>
                 <td>3.45<sup>[1]</sup></td>
                 <td>3.3<sup>[5]</sup></td>
                 <td>3.78<sup>[3]</sup></td>
@@ -412,7 +412,7 @@ export const GeoneutrinoResults = memo(() => {
           <Table>
             <thead>
               <tr>
-                <th>Crust Rate (TNU) </th>
+                <th>Lithosphere Rate (TNU) </th>
                 <th>Borexino<sup>[1]</sup></th>
                 <th>JUNO<sup>[5]</sup></th>
                 <th>KamLAND<sup>[3]</sup></th>
@@ -490,10 +490,11 @@ export const GeoneutrinoResults = memo(() => {
           [1] M. Agostini et al. (2020), <i>Comprehensive geoneutrino analysis with Borexino</i>, Phys. Rev. D 101, 012009. <br />
           [2] Y. Wang et al. (2026), <i>JUNO Experiment</i>, talk at Neutrino 2026. <br />
           [3] S. Abe et al. (2022), <i>Abundances of Uranium and Thorium Elements in Earth Estimated by Geoneutrino Spectroscopy</i>, Geophys. Res. Lett. 49, e2022GL099566. <br />
-          [4] W. Parker (2026), <i>Reactor Antineutrino Oscillations and Geoneutrinos in SNO+</i>, arXiv:2604.05746v1. <br />
+          [4] M. Abreu (2025), <i>Measurement of reactor antineutrino oscillations with 1.46 ktonne-years of data at SNO+</i>, arXiv:2511.11856v2. <br />
           [5] R. Gao et al. (2019), <i>JULOC: A local 3-D high-resolution crustal model in South China for forecasting geoneutrino measurements at JUNO</i>, PEPI 299, 106409. <br />
           [6] Y. Huang et al. (2013), <i>A reference Earth model for the heat producing elements and associated geoneutrino flux</i>, Geochem., Geophys., Geosyst. 14, 2003-2029. <br />
           [7] V. Strati et al. (2017), <i>Perceiving the Crust in 3-D: A Model Integrating Geological, Geochemical, and Geophysical Data</i>, Geochem., Geophys., Geosyst. 18, 4326-4341. <br />
+          [8] W. Parker (2026), <i>Reactor Antineutrino Oscillations and Geoneutrinos in SNO+</i>, arXiv:2604.05746v1. <br />
           </small>
         </div>
       </Card.Body>
