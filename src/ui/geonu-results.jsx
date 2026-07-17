@@ -4,6 +4,179 @@ import { Card, Table } from "react-bootstrap";
 import { MathJax } from "better-react-mathjax";
 import Plot from "react-plotly.js";
 
+export const GeoneutrinoRates = memo(() => {
+  const data= [
+    {
+      name: `No Mantle Line`,
+      type: "scatter",
+      mode: "lines",
+      x: [0., 80.],
+      y: [0., 80.],
+      line: {
+        color: "brown",
+        width: 2,
+        dash: "dask"
+      },
+    },
+    {
+      name: `JUNO`,
+      type: "scatter",
+      mode: "markers",
+      x: [40.4],
+      y: [73],
+      marker: {
+        symbol: ["circle"],
+        color: "black",
+        size: 6
+      },
+      error_y: {
+        type: "data",
+        array: [11.0],
+        visible: true,
+        color: "black"
+      },
+      error_x: {
+        type: "data",
+        array: [5.6],
+        arrayminus: [5.0],
+        visible: true,
+        color: "black"
+     },
+    },
+    {
+      name: `SNO+`,
+      type: "scatter",
+      mode: "markers",
+      x: [34.2],
+      y: [49],
+      marker: {
+        symbol: ["circle"],
+        color: "red",
+        size: 6
+      },
+      error_y: {
+        type: "data",
+        symmetric: false,
+        array: [13.0],
+        arrayminus: [12.0],
+        visible: true,
+        color: "red"
+      },
+      error_x: {
+        type: "data",
+        array: [9.2],
+        arrayminus: [5.3],
+        visible: true,
+        color: "red"
+     },
+    },
+    {
+      name: `Borexino`,
+      type: "scatter",
+      mode: "markers",
+      x: [25.9],
+      y: [47.0],
+      marker: {
+        symbol: ["circle"],
+        color: "green",
+        size: 6
+      },
+      error_y: {
+        type: "data",
+        symmetric: false,
+        array: [8.6],
+        arrayminus: [8.1],
+        visible: true,
+        color: "green"
+      },
+      error_x: {
+        type: "data",
+        array: [4.9],
+        arrayminus: [4.1],
+        visible: true,
+        color: "green"
+     },
+    },
+    {
+      name: `KamLAND`,
+      type: "scatter",
+      mode: "markers",
+      x: [25.1],
+      y: [28.6],
+      marker: {
+        symbol: ["circle"],
+        color: "blue",
+        size: 6
+      },
+      error_y: {
+        type: "data",
+        symmetric: false,
+        array: [5.1],
+        arrayminus: [4.8],
+        visible: true,
+        color: "blue"
+      },
+      error_x: {
+        type: "data",
+        array: [5.3],
+        arrayminus: [5.3],
+        visible: true,
+        color: "blue"
+     },
+    },
+  ];
+  
+  var layout = {
+    title: `Geo-neutrino Observations as of 2026`,
+    yaxis: {
+      title: { text: `Total Rate (TNU)` },
+      rangemode: "tozero",
+    },
+    xaxis: {
+      title: { text: `Lithosphere Rate (TNU)` },
+      rangemode: "tozero",
+    },
+    autosize: true,
+    legend: {
+      x: 0.3,
+      xanchor: "right",
+      y: 1,
+    },
+    annotations: [
+      {
+        showarrow: false,
+        text: "geoneutrinos.org",
+        x: 1.1,
+        xref: "paper",
+        y: -0.15,
+        yref: "paper",
+      },
+    ],
+  };
+  var config = {
+    toImageButtonOptions: {
+      filename: 'Geonu-rates'
+    }
+  };
+  return (
+    <Card>
+      <Card.Header>Geo-neutrino Results 2026</Card.Header>
+      <Card.Body>
+        <p>
+          The reported geo-neutrino observations as of 2026 are plotted as total rate versus lithosphere rate.
+       </p>
+        <Plot
+          useResizeHandler={true}
+          style={{ width: "100%" }}
+          data={data}
+          layout={layout}
+          config={config}
+        />
+      </Card.Body>
+    </Card>
+  );
+});
+
 export const GeoneutrinoResults = memo(() => {
   const data= [
     {
