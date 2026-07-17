@@ -160,7 +160,7 @@ export const GeoneutrinoRates = memo(() => {
   };
   return (
     <Card>
-      <Card.Header>Geo-neutrino Results 2026</Card.Header>
+      <Card.Header>Geo-neutrino Rates 2026</Card.Header>
       <Card.Body>
         <p>
           The reported geo-neutrino observations as of 2026 are plotted as total rate versus lithosphere rate.
