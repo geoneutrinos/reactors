@@ -4,6 +4,179 @@ import { Card, Table } from "react-bootstrap";
 import { MathJax } from "better-react-mathjax";
 import Plot from "react-plotly.js";
 
+export const GeoneutrinoRates = memo(() => {
+  const data= [
+    {
+      name: `No Mantle Line`,
+      type: "scatter",
+      mode: "lines",
+      x: [0., 80.],
+      y: [0., 80.],
+      line: {
+        color: "brown",
+        width: 2,
+        dash: "dask"
+      },
+    },
+    {
+      name: `JUNO`,
+      type: "scatter",
+      mode: "markers",
+      x: [40.4],
+      y: [73],
+      marker: {
+        symbol: ["circle"],
+        color: "black",
+        size: 6
+      },
+      error_y: {
+        type: "data",
+        array: [11.0],
+        visible: true,
+        color: "black"
+      },
+      error_x: {
+        type: "data",
+        array: [5.6],
+        arrayminus: [5.0],
+        visible: true,
+        color: "black"
+     },
+    },
+    {
+      name: `SNO+`,
+      type: "scatter",
+      mode: "markers",
+      x: [34.2],
+      y: [49],
+      marker: {
+        symbol: ["circle"],
+        color: "red",
+        size: 6
+      },
+      error_y: {
+        type: "data",
+        symmetric: false,
+        array: [13.0],
+        arrayminus: [12.0],
+        visible: true,
+        color: "red"
+      },
+      error_x: {
+        type: "data",
+        array: [9.2],
+        arrayminus: [5.3],
+        visible: true,
+        color: "red"
+     },
+    },
+    {
+      name: `Borexino`,
+      type: "scatter",
+      mode: "markers",
+      x: [25.9],
+      y: [47.0],
+      marker: {
+        symbol: ["circle"],
+        color: "green",
+        size: 6
+      },
+      error_y: {
+        type: "data",
+        symmetric: false,
+        array: [8.6],
+        arrayminus: [8.1],
+        visible: true,
+        color: "green"
+      },
+      error_x: {
+        type: "data",
+        array: [4.9],
+        arrayminus: [4.1],
+        visible: true,
+        color: "green"
+     },
+    },
+    {
+      name: `KamLAND`,
+      type: "scatter",
+      mode: "markers",
+      x: [25.1],
+      y: [28.6],
+      marker: {
+        symbol: ["circle"],
+        color: "blue",
+        size: 6
+      },
+      error_y: {
+        type: "data",
+        symmetric: false,
+        array: [5.1],
+        arrayminus: [4.8],
+        visible: true,
+        color: "blue"
+      },
+      error_x: {
+        type: "data",
+        array: [5.3],
+        arrayminus: [5.3],
+        visible: true,
+        color: "blue"
+     },
+    },
+  ];
+  
+  var layout = {
+    title: `Geo-neutrino Observations as of 2026`,
+    yaxis: {
+      title: { text: `Total Rate (TNU)` },
+      rangemode: "tozero",
+    },
+    xaxis: {
+      title: { text: `Lithosphere Rate (TNU)` },
+      rangemode: "tozero",
+    },
+    autosize: true,
+    legend: {
+      x: 0.3,
+      xanchor: "right",
+      y: 1,
+    },
+    annotations: [
+      {
+        showarrow: false,
+        text: "geoneutrinos.org",
+        x: 1.1,
+        xref: "paper",
+        y: -0.15,
+        yref: "paper",
+      },
+    ],
+  };
+  var config = {
+    toImageButtonOptions: {
+      filename: 'Geonu-rates'
+    }
+  };
+  return (
+    <Card>
+      <Card.Header>Geo-neutrino Rates 2026</Card.Header>
+      <Card.Body>
+        <p>
+          The reported geo-neutrino observations as of 2026 are plotted as total rate versus lithosphere rate.
+       </p>
+        <Plot
+          useResizeHandler={true}
+          style={{ width: "100%" }}
+          data={data}
+          layout={layout}
+          config={config}
+        />
+      </Card.Body>
+    </Card>
+  );
+});
+
 export const GeoneutrinoResults = memo(() => {
   const data= [
     {
@@ -147,7 +320,7 @@ export const GeoneutrinoResults = memo(() => {
       <Card.Header>Geo-neutrino Results 2026</Card.Header>
       <Card.Body>
         <p>
-          Plot shows the results of geo-neutrino observations as of 2026. Black marks the measurement by <a href="https://sites.uci.edu/neutrino2026/">JUNO</a> at Jiangmen, China. Red marks the measurement by <a href="https://arxiv.org/pdf/2604.05746">SNO+</a> at SNOLAB. 
+          Plot shows the results of geo-neutrino observations as of 2026. Black marks the measurement by <a href="https://sites.uci.edu/neutrino2026/">JUNO</a> at Jiangmen, China. Red marks the measurement by <a href="https://arxiv.org/pdf/2511.11856">SNO+</a> at SNOLAB. 
           (The plotted exposures for JUNO and SNO+ are estimated from the reported livetimes, 207.2 and 685 days, respectively, assuming 20 kT and 780 tonnes of LS with 6x10<sup>28</sup> free-protons per tonne, repsectively,
           and assigning an arbitrary uncertainty of 0.1 TNU<sup>-1</sup>).
           Green marks the measurement by <a href="https://doi.org/10.1103/PhysRevD.101.012009">Borexino</a> at Gran Sasso (LNGS), 
@@ -174,24 +347,10 @@ export const GeoneutrinoResults = memo(() => {
             <tbody>
               <tr>
                 <td>Observed</td>
-                <td>47</td>
-                <td>73</td>
-                <td>28.6</td>
-                <td>49</td>
-              </tr>
-              <tr>
-                <td>Predicted Crust</td>
-                <td>31.9<sup>[1]</sup></td>
-                <td>40.4<sup>[2]</sup></td>
-                <td>22.7<sup>[1]</sup></td>
-                <td>36.7<sup>[1]</sup></td>
-              </tr>
-              <tr>
-                <td>Allowed Mantle</td>
-                <td>15.1</td>
-                <td>32.6</td>
-                <td>5.9</td>
-                <td>12.3</td>
+                <td>47<sup>[1]</sup></td>
+                <td>73<sup>[2]</sup></td>
+                <td>28.6<sup>[3]</sup></td>
+                <td>49<sup>[4]</sup></td>
               </tr>
               <tr>
                 <td>Observed Range</td>
@@ -201,25 +360,32 @@ export const GeoneutrinoResults = memo(() => {
                 <td>37 - 62</td>
               </tr>
               <tr>
-                <td>Predicted Crust Range</td>
-                <td>26.1 - 39.2<sup>[1]</sup></td>
-                <td>35.4 - 46.0<sup>[2]</sup></td>
-                <td>18.6 - 27.6<sup>[1]</sup></td>
-                <td>30.4 - 44.2<sup>[1]</sup></td>
+                <td>Lithosphere</td>
+                <td>25.9<sup>[1]</sup></td>
+                <td>40.4<sup>[5]</sup></td>
+                <td>25.1<sup>[6]</sup></td>
+                <td>34.2<sup>[7]</sup></td>
               </tr>
               <tr>
-                <td>Allowed Mantle Range</td>
-                <td>-0.3 - 29.5</td>
-                <td>16.0 - 48.6</td>
-                <td>-3.8 - 15.1</td>
-                <td>-7.2 - 31.6</td>
+                <td>Lithosphere Range</td>
+                <td>21.8 - 30.8</td>
+                <td>35.4 - 46.0</td>
+                <td>19.8 - 30.4</td>
+                <td>28.9 - 43.4</td>
               </tr>
             </tbody>
           </Table>
         </div>
         <div>
-          [1] Y. Huang et al. (2013), <i>A reference Earth model for the heat producing elements and associated geoneutrino flux</i>, Geochem., Geophys., Geosyst. 14, 2003-2029. <br />
-          [2] R. Gao et al. (2019), <i>JULOC: A local 3-D high-resolution crustal model in South China for forecasting geoneutrino measurements at JUNO</i>, PEPI 299, 106409.
+          <small>
+            [1] M. Agostini et al. (2020), <i>Comprehensive geoneutrino analysis with Borexino</i>, Phys. Rev. D 101, 012009. <br />
+            [2] Y. Wang et al. (2026), <i>JUNO Experiment</i>, slides at Neutrino 2026, Irvine. <br />
+            [3] N. Kawada et al. (2025), <i>Geoneutrino observation with KamLAND</i>, slides at Neutrino Geoscience 2025, Kingston. <br />
+            [4] M. Abreu (2025), <i>Measurement of reactor antineutrino oscillations with 1.46 ktonne-years of data at SNO+</i>, arXiv:2511.11856v2. <br />
+            [5] R. Gao et al. (2019), <i>JULOC: A local 3-D high-resolution crustal model in South China for forecasting geoneutrino measurements at JUNO</i>, PEPI 299, 106409. <br />
+            [6] S. Abe et al. (2022), <i>Abundances of Uranium and Thorium Elements in Earth Estimated by Geoneutrino Spectroscopy</i>, Geophys. Res. Lett. 49, e2022GL099566. <br />
+            [7] V. Strati et al. (2017), <i>Perceiving the Crust in 3-D: A Model Integrating Geological, Geochemical, and Geophysical Data</i>, Geochem., Geophys., Geosyst. 18, 4326-4341. <br />
+          </small>
         </div>
       </Card.Body>
     </Card>
