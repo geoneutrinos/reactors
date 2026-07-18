@@ -102,7 +102,7 @@ export const GeoneutrinoRates = memo(() => {
       type: "scatter",
       mode: "markers",
       x: [25.1],
-      y: [28.6],
+      y: [30.7],
       marker: {
         symbol: ["circle"],
         color: "blue",
@@ -111,8 +111,8 @@ export const GeoneutrinoRates = memo(() => {
       error_y: {
         type: "data",
         symmetric: false,
-        array: [5.1],
-        arrayminus: [4.8],
+        array: [4.5],
+        arrayminus: [4.5],
         visible: true,
         color: "blue"
       },
@@ -260,7 +260,7 @@ export const GeoneutrinoResults = memo(() => {
       type: "scatter",
       mode: "markers",
       x: [6.39],
-      y: [28.6],
+      y: [30.7],
       marker: {
         symbol: ["circle"],
         color: "blue",
@@ -269,8 +269,8 @@ export const GeoneutrinoResults = memo(() => {
       error_y: {
         type: "data",
         symmetric: false,
-        array: [5.1],
-        arrayminus: [4.8],
+        array: [4.5],
+        arrayminus: [4.5],
         visible: true,
         color: "blue"
       },
@@ -349,22 +349,22 @@ export const GeoneutrinoResults = memo(() => {
                 <td>Observed</td>
                 <td>47<sup>[1]</sup></td>
                 <td>73<sup>[2]</sup></td>
-                <td>28.6<sup>[3]</sup></td>
+                <td>30.7<sup>[3]</sup></td>
                 <td>49<sup>[4]</sup></td>
               </tr>
               <tr>
                 <td>Observed Range</td>
                 <td>38.9 - 55.6</td>
                 <td>62 - 84</td>
-                <td>23.8 - 33.7</td>
+                <td>26.2 - 35.2</td>
                 <td>37 - 62</td>
               </tr>
               <tr>
                 <td>Lithosphere</td>
                 <td>25.9<sup>[1]</sup></td>
                 <td>40.4<sup>[5]</sup></td>
-                <td>25.1<sup>[6]</sup></td>
-                <td>34.2<sup>[7]</sup></td>
+                <td>25.1<sup>[3]</sup></td>
+                <td>34.2<sup>[6]</sup></td>
               </tr>
               <tr>
                 <td>Lithosphere Range</td>
@@ -380,11 +380,10 @@ export const GeoneutrinoResults = memo(() => {
           <small>
             [1] M. Agostini et al. (2020), <i>Comprehensive geoneutrino analysis with Borexino</i>, Phys. Rev. D 101, 012009. <br />
             [2] Y. Wang et al. (2026), <i>JUNO Experiment</i>, slides at Neutrino 2026, Irvine. <br />
-            [3] N. Kawada et al. (2025), <i>Geoneutrino observation with KamLAND</i>, slides at Neutrino Geoscience 2025, Kingston. <br />
+            [3] S. Abe et al. (2022), <i>Abundances of Uranium and Thorium Elements in Earth Estimated by Geoneutrino Spectroscopy</i>, Geophys. Res. Lett. 49, e2022GL099566. <br />
             [4] M. Abreu (2025), <i>Measurement of reactor antineutrino oscillations with 1.46 ktonne-years of data at SNO+</i>, arXiv:2511.11856v2. <br />
             [5] R. Gao et al. (2019), <i>JULOC: A local 3-D high-resolution crustal model in South China for forecasting geoneutrino measurements at JUNO</i>, PEPI 299, 106409. <br />
-            [6] S. Abe et al. (2022), <i>Abundances of Uranium and Thorium Elements in Earth Estimated by Geoneutrino Spectroscopy</i>, Geophys. Res. Lett. 49, e2022GL099566. <br />
-            [7] V. Strati et al. (2017), <i>Perceiving the Crust in 3-D: A Model Integrating Geological, Geochemical, and Geophysical Data</i>, Geochem., Geophys., Geosyst. 18, 4326-4341. <br />
+            [6] V. Strati et al. (2017), <i>Perceiving the Crust in 3-D: A Model Integrating Geological, Geochemical, and Geophysical Data</i>, Geochem., Geophys., Geosyst. 18, 4326-4341. <br />
           </small>
         </div>
       </Card.Body>
