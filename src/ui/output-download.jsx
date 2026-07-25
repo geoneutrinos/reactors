@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { zip, sum } from "lodash";
+import { zip, sum, get } from "lodash";
 import { XSNames, XSAbrev } from "../physics/neutrino-cross-section";
 import { SECONDS_PER_YEAR } from "../physics/constants";
 import { PhysicsContext } from "../state";
@@ -14,10 +14,17 @@ export const DownloadButton = ({
   formatters = {},
   filename = "output.csv",
   buttonTitle = "Download",
+  cols = undefined,
 }) => {
   const onClick = () => {
-    const columns = Object.keys(data);
+    const columns = cols || Object.keys(data);
 
+    if (Array.isArray(data)){ // assume array of objs
+      let newData = Object.fromEntries(columns.map(key => [key, []]));
+      data.forEach(obj => columns.forEach(col => newData[col].push(get(obj, col,""))));
+      data = newData;
+    }
+    
     const defaultFormatters = Object.fromEntries(
       columns.map((col) => [col, (v) => v])
     );
