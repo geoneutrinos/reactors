@@ -7,19 +7,19 @@ import Plot from "react-plotly.js";
 export const GeoneutrinoRates = memo(() => {
   const data= [
     {
-      name: `No Mantle Line`,
+      name: `No Mantle Signal`,
       type: "scatter",
       mode: "lines",
       x: [0., 80.],
       y: [0., 80.],
       line: {
         color: "brown",
-        width: 2,
-        dash: "dash"
+        width: 1,
+        dash: "solid"
       },
     },
     {
-      name: `Best Fit Line`,
+      name: `Best Fit`,
       type: "scatter",
       mode: "lines",
       x: [0., 60.],
@@ -28,6 +28,30 @@ export const GeoneutrinoRates = memo(() => {
         color: "grey",
         width: 2,
         dash: "dash"
+      },
+    },
+    {
+      name: `Best Fit +1𝜎`,
+      type: "scatter",
+      mode: "lines",
+      x: [0., 60.],
+      y: [17.52, 77.52],
+      line: {
+        color: "grey",
+        width: 2,
+        dash: "dot"
+      },
+    },
+    {
+      name: `Best Fit -1𝜎`,
+      type: "scatter",
+      mode: "lines",
+      x: [0., 60.],
+      y: [8.68, 68.68],
+      line: {
+        color: "grey",
+        width: 2,
+        dash: "dot"
       },
     },
     {
