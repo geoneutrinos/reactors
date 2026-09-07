@@ -10,8 +10,8 @@ export const GeoneutrinoRates = memo(() => {
       name: `No Mantle`,
       type: "scatter",
       mode: "lines",
-      x: [0., 100.],
-      y: [0., 100.],
+      x: [0., 80.],
+      y: [0., 80.],
       line: {
         color: "brown",
         width: 1,
@@ -31,8 +31,9 @@ export const GeoneutrinoRates = memo(() => {
       },
     },
     {
-      name: `Best Fit +1𝜎`,
+      name: `Best Fit +/-1𝜎`,
       type: "scatter",
+      showlegend: true,
       mode: "lines",
       x: [0., 60.],
       y: [17.52, 77.52],
@@ -45,6 +46,7 @@ export const GeoneutrinoRates = memo(() => {
     {
       name: `Best Fit -1𝜎`,
       type: "scatter",
+      showlegend: false,
       mode: "lines",
       x: [0., 60.],
       y: [8.68, 68.68],
@@ -174,7 +176,7 @@ export const GeoneutrinoRates = memo(() => {
     },
     autosize: true,
     legend: {
-      x: 0.3,
+      x: 1,
       xanchor: "right",
       y: 1,
     },
