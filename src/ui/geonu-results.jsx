@@ -350,14 +350,14 @@ export const GeoneutrinoResults = memo(() => {
                 <td>47<sup>[1]</sup></td>
                 <td>73<sup>[2]</sup></td>
                 <td>30.7<sup>[3]</sup></td>
-                <td>49<sup>[4]</sup></td>
+                <td>48<sup>[4]</sup></td>
               </tr>
               <tr>
                 <td>Observed Range</td>
                 <td>38.9 - 55.6</td>
                 <td>62 - 84</td>
                 <td>26.2 - 35.2</td>
-                <td>37 - 62</td>
+                <td>36 - 62</td>
               </tr>
               <tr>
                 <td>Lithosphere</td>
