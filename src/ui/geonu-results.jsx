@@ -15,7 +15,19 @@ export const GeoneutrinoRates = memo(() => {
       line: {
         color: "brown",
         width: 2,
-        dash: "dask"
+        dash: "dash"
+      },
+    },
+    {
+      name: `Best Fit Line`,
+      type: "scatter",
+      mode: "lines",
+      x: [0., 60.],
+      y: [13.10, 73.10],
+      line: {
+        color: "grey",
+        width: 2,
+        dash: "dash"
       },
     },
     {
