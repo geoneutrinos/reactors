@@ -381,7 +381,7 @@ export const GeoneutrinoResults = memo(() => {
             [1] M. Agostini et al. (2020), <i>Comprehensive geoneutrino analysis with Borexino</i>, Phys. Rev. D 101, 012009. <br />
             [2] Y. Wang et al. (2026), <i>JUNO Experiment</i>, slides at Neutrino 2026, Irvine. <br />
             [3] S. Abe et al. (2022), <i>Abundances of Uranium and Thorium Elements in Earth Estimated by Geoneutrino Spectroscopy</i>, Geophys. Res. Lett. 49, e2022GL099566. <br />
-            [4] M. Abreu (2025), <i>Measurement of reactor antineutrino oscillations with 1.46 ktonne-years of data at SNO+</i>, arXiv:2511.11856v2. <br />
+            [4] M. Abreu (2025), <i>Measurement of reactor antineutrino oscillations with 1.46 ktonne-years of data at SNO+</i>, arXiv:2511.11856v4. <br />
             [5] R. Gao et al. (2019), <i>JULOC: A local 3-D high-resolution crustal model in South China for forecasting geoneutrino measurements at JUNO</i>, PEPI 299, 106409. <br />
             [6] V. Strati et al. (2017), <i>Perceiving the Crust in 3-D: A Model Integrating Geological, Geochemical, and Geophysical Data</i>, Geochem., Geophys., Geosyst. 18, 4326-4341. <br />
           </small>
