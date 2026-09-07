@@ -7,11 +7,11 @@ import Plot from "react-plotly.js";
 export const GeoneutrinoRates = memo(() => {
   const data= [
     {
-      name: `No Mantle Signal`,
+      name: `No Mantle`,
       type: "scatter",
       mode: "lines",
-      x: [0., 80.],
-      y: [0., 80.],
+      x: [0., 100.],
+      y: [0., 100.],
       line: {
         color: "brown",
         width: 1,
