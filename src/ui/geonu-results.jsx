@@ -48,7 +48,7 @@ export const GeoneutrinoRates = memo(() => {
       type: "scatter",
       mode: "markers",
       x: [34.2],
-      y: [49],
+      y: [48],
       marker: {
         symbol: ["circle"],
         color: "red",
@@ -57,7 +57,7 @@ export const GeoneutrinoRates = memo(() => {
       error_y: {
         type: "data",
         symmetric: false,
-        array: [13.0],
+        array: [14.0],
         arrayminus: [12.0],
         visible: true,
         color: "red"
