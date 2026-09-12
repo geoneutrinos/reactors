@@ -201,7 +201,7 @@ export const GeoneutrinoRates = memo(() => {
       <Card.Header>Geo-neutrino Rates 2026</Card.Header>
       <Card.Body>
         <p>
-          The reported geo-neutrino observations as of 2026 are plotted as total rate versus lithosphere rate and fitted with a line of unity slope using Minuit2/Migrad. These data resolve a geo-nweutrino rate of 14.8 +/- 4.8 NIU from the homogeneous mantle, establishing a signal significance of 3.1 𝜎. The fit has 𝜒<sup>2</sup>/n<sub>dof</sub> = 4.34/3 and p = 0.2268.  
+          The reported geo-neutrino observations as of 2026 are plotted as total rate versus lithosphere rate and fitted with a line of unity slope using Minuit2/Migrad. These four underground observatories resolve a geo-neutrino rate of 14.8 +/- 4.8 NIU from the homogeneous mantle, establishing a signal significance of 3.1 𝜎. The fit has 𝜒<sup>2</sup>/n<sub>dof</sub> = 4.34/3 and p = 0.2268.  
        </p>
         <Plot
           useResizeHandler={true}
