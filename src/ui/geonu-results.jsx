@@ -23,7 +23,7 @@ export const GeoneutrinoRates = memo(() => {
       type: "scatter",
       mode: "lines",
       x: [0., 60.],
-      y: [13.10, 73.10],
+      y: [14.7629, 74.7629],
       line: {
         color: "grey",
         width: 2,
@@ -36,7 +36,7 @@ export const GeoneutrinoRates = memo(() => {
       showlegend: true,
       mode: "lines",
       x: [0., 60.],
-      y: [17.52, 77.52],
+      y: [19.58173, 79.58173],
       line: {
         color: "grey",
         width: 2,
@@ -49,7 +49,7 @@ export const GeoneutrinoRates = memo(() => {
       showlegend: false,
       mode: "lines",
       x: [0., 60.],
-      y: [8.68, 68.68],
+      y: [9.94407, 69.94407],
       line: {
         color: "grey",
         width: 2,
@@ -201,7 +201,7 @@ export const GeoneutrinoRates = memo(() => {
       <Card.Header>Geo-neutrino Rates 2026</Card.Header>
       <Card.Body>
         <p>
-          The reported geo-neutrino observations as of 2026 are plotted as total rate versus lithosphere rate.
+          The reported geo-neutrino observations as of 2026 are plotted as total rate versus lithosphere rate and fitted with a line of unity slope using Minuit2/Migrad. These data resolve a geo-nweutrino rate of 14.8 +/- 4.8 NIU from the homogeneous mantle, establishing a signal significance of 3.1 𝜎. The fit has 𝜒<sup>2</sup>/n<sub>dof</sub> = 4.34/3 and p = 0.2268.  
        </p>
         <Plot
           useResizeHandler={true}
