@@ -7,15 +7,53 @@ import Plot from "react-plotly.js";
 export const GeoneutrinoRates = memo(() => {
   const data= [
     {
-      name: `No Mantle Line`,
+      name: `No Mantle`,
       type: "scatter",
       mode: "lines",
       x: [0., 80.],
       y: [0., 80.],
       line: {
         color: "brown",
+        width: 1,
+        dash: "solid"
+      },
+    },
+    {
+      name: `Best Fit`,
+      type: "scatter",
+      mode: "lines",
+      x: [0., 60.],
+      y: [14.7629, 74.7629],
+      line: {
+        color: "grey",
         width: 2,
-        dash: "dask"
+        dash: "dash"
+      },
+    },
+    {
+      name: `Best Fit +/-1𝜎`,
+      type: "scatter",
+      showlegend: true,
+      mode: "lines",
+      x: [0., 60.],
+      y: [19.58173, 79.58173],
+      line: {
+        color: "grey",
+        width: 2,
+        dash: "dot"
+      },
+    },
+    {
+      name: `Best Fit -1𝜎`,
+      type: "scatter",
+      showlegend: false,
+      mode: "lines",
+      x: [0., 60.],
+      y: [9.94407, 69.94407],
+      line: {
+        color: "grey",
+        width: 2,
+        dash: "dot"
       },
     },
     {
@@ -138,7 +176,7 @@ export const GeoneutrinoRates = memo(() => {
     },
     autosize: true,
     legend: {
-      x: 0.3,
+      x: 1,
       xanchor: "right",
       y: 1,
     },
@@ -163,7 +201,7 @@ export const GeoneutrinoRates = memo(() => {
       <Card.Header>Geo-neutrino Rates 2026</Card.Header>
       <Card.Body>
         <p>
-          The reported geo-neutrino observations as of 2026 are plotted as total rate versus lithosphere rate.
+          The reported geo-neutrino observations as of 2026 are plotted as total rate versus lithosphere rate and fitted with a line of unity slope using Minuit2/Migrad. These four underground observatories resolve a geo-neutrino rate of 14.8 +/- 4.8 NIU from the homogeneous mantle, establishing a signal significance of 3.1 𝜎. The fit has 𝜒<sup>2</sup>/n<sub>dof</sub> = 4.34/3 and p = 0.2268.  
        </p>
         <Plot
           useResizeHandler={true}
