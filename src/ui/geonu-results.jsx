@@ -204,7 +204,7 @@ export const GeoneutrinoRates = memo(() => {
           The reported geo-neutrino observations as of 2026 are plotted as total rate versus lithosphere rate and fitted with a line of unity slope using Minuit2/Migrad (𝜒<sup>2</sup>/n<sub>dof</sub> = 4.34/3 and p = 0.2268). 
           These four underground observatories resolve a geo-neutrino rate of 14.8 +/- 4.8 NIU from the homogeneous mantle, establishing a signal significance of 3.1 𝜎.
           The radiogenic heating in the homogeneous mantle that corresponds to the rate from this fit depends on the ratios of the mass fraction abundances for Th/U and K/U.
-          Assuming K/U = 1.3e4 and Th/U = 3.9 (2.75) finds 15.2 +/- 5.0 (13.8 +/- 4.5) TW.
+          Assuming K/U = 13,000 and Th/U = 3.9 (2.75) gives 18.6 +/- 6.1 (17.4 +/- 5.7) TW. Assuming K/U = 10,000 and Th/U = 3.9 (2.75) gives 17.8 +/- 5.8 (16.5 +/- 5.4) TW.
        </p>
         <Plot
           useResizeHandler={true}
