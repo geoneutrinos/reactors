@@ -213,6 +213,35 @@ export const GeoneutrinoRates = memo(() => {
           layout={layout}
           config={config}
         />
+        <div>
+          <Table>
+            <thead>
+              <tr>
+                <th>K/U </th>
+                <th>DMM</th>
+                <th>OC</th>
+                <th>Chondrite</th>
+                <th>BCC</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>13,000</td>
+                <td>1.176</td>
+                <td>1.195</td>
+                <td>1.258</td>
+                <td>1.285</td>
+              </tr>
+              <tr>
+                <td>10,000</td>
+                <td>1.120</td>
+                <td>1.140</td>
+                <td>1.206</td>
+                <td>1.234</td>
+              </tr>
+            </tbody>
+          </Table>
+        </div>
       </Card.Body>
     </Card>
   );
