@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { range } from "lodash";
 import { Form, Card } from "react-bootstrap";
 
-const years = range(2003, 2025);
+const years = range(2003, 2026);
 const months = range(1, 13);
 
 export const CoreIAEARange = ({
@@ -97,9 +97,9 @@ export const CoreIAEARange = ({
         </Form>
         <p>
           <br />
-          Monthly load factor (LF) data for the years starting with 2020 are from 
-          <a href="https://pris.iaea.org/pris/home.aspx/"> IAEA - Power Reactor Information System (PRIS) </a> 
-          and for the earlier years 2003 to 2019 from 
+          Monthly load factor (LF) data for the years starting with 2020 are from
+          <a href="https://pris.iaea.org/pris/home.aspx/"> IAEA - Power Reactor Information System (PRIS) </a>
+          and for the earlier years 2003 to 2019 from
           <a href="https://www.fe.infn.it/antineutrino/"> INFN Antineutrinos</a>. If
           selecting the "Use IAEA LF Data" (default) option,
           the thermal power is averaged over the selected Year-Month range.
