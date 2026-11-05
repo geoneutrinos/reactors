@@ -166,8 +166,8 @@ function App(props) {
     ...defaultDetector,
   });
   const [reactorLF, setReactorLF] = useState({
-    start: new Date("2024-01-01T00:00:00Z"),
-    end: new Date("2024-12-01T00:00:00Z"),
+    start: new Date("2025-01-01T00:00:00Z"),
+    end: new Date("2025-12-01T00:00:00Z"),
   });
 
   const [coreMods, setCoreMods] = useState({});
@@ -222,7 +222,7 @@ function App(props) {
 
         const direction = enuProject([
           modCore.x - x,
-          modCore.y - y,  
+          modCore.y - y,
           modCore.z - z,
         ]);
 
@@ -253,7 +253,7 @@ function App(props) {
       geoSpectrum({crossSectionFunction: (_) => 1}, {averageSurvivalProbability: 1e-32}, geoFluxRatios, crustFlux, celestialBody),
     [crossSection, oscillation, geoFluxRatios, crustFlux, celestialBody]
   );
-  
+
   const boron8 = useMemo(() => defaultBoron8.updateRate(crossSection, reactorLF), [
     crossSection, reactorLF
   ]);
