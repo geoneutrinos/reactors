@@ -189,7 +189,7 @@ export const FissionIsotopeSpectraPlotsHK = memo(() => {
     },
   ];
   var layout = {
-    title: "Huber-Kopeikin: Fission Isotope Emission Spectra",
+    title: { text: "Huber-Kopeikin: Fission Isotope Emission Spectra" },
     yaxis: {
       title: { text: `Emission (/fission/MeV)` },
       type: "log",
@@ -434,7 +434,7 @@ export const FissionIsotopeSpectraPlotsHM = memo(() => {
     },
   ];
   var layout = {
-    title: "Huber-Mueller: Fission Isotope Emission Spectra",
+    title: { text: "Huber-Mueller: Fission Isotope Emission Spectra" },
     yaxis: {
       title: { text: `Emission (/fission/MeV)` },
       type: "log",
@@ -552,7 +552,7 @@ export const FissionIsotopeSpectraPlotsES = memo(() => {
     },
   ];
   var layout = {
-    title: "Estienne et al.: Fission Isotope Emission Spectra",
+    title: { text: "Estienne et al.: Fission Isotope Emission Spectra" },
     yaxis: {
       title: { text: `Emission (/fission/MeV)` },
       type: "log",
@@ -701,11 +701,12 @@ export const CoreDirectionSignalPlots = ({ cores, detector, reactorLF }) => {
   ];
   var layout = {
     hovermode: "closest",
-    title: `Core Directions w.r.t. ${
-      ["custom", "follow"].includes(detector.current)
-        ? "Custom Location"
-        : detector.current
-    } to ${first.name}<br /><sub>(${reactorLF.start.toISOString().slice(0, 7)} through ${reactorLF.end.toISOString().slice(0, 7)} avg Load Factor)</sub>`,
+    title: {
+      text: `Core Directions w.r.t. ${["custom", "follow"].includes(detector.current)
+          ? "Custom Location"
+          : detector.current
+        } to ${first.name}<br /><sub>(${reactorLF.start.toISOString().slice(0, 7)} through ${reactorLF.end.toISOString().slice(0, 7)} avg Load Factor)</sub>`
+    },
     yaxis: {
       title: { text: `Reactor Rate (NIU)<br /><sub>${crossSection.crossSection} (${crossSection.elasticScatteringTMin.toFixed(2)} &lt; T<sub>e</sub> &lt; ${crossSection.elasticScatteringTMax.toFixed(2)} MeV)</sub>`},
       type: 'log',

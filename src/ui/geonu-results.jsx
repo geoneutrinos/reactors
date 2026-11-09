@@ -163,9 +163,9 @@ export const GeoneutrinoRates = memo(() => {
      },
     },
   ];
-  
+
   var layout = {
-    title: `Geo-neutrino Observations as of 2026`,
+    title: { text: `Geo-neutrino Observations as of 2026` },
     yaxis: {
       title: { text: `Total Rate (TNU)` },
       rangemode: "tozero",
@@ -201,7 +201,7 @@ export const GeoneutrinoRates = memo(() => {
       <Card.Header>Geo-neutrino Rates 2026</Card.Header>
       <Card.Body>
         <p>
-          The reported geo-neutrino observations as of 2026 are plotted as total rate versus lithosphere rate and fitted with a line of unity slope using Minuit2/Migrad (𝜒<sup>2</sup>/n<sub>dof</sub> = 4.34/3 and p = 0.2268). 
+          The reported geo-neutrino observations as of 2026 are plotted as total rate versus lithosphere rate and fitted with a line of unity slope using Minuit2/Migrad (𝜒<sup>2</sup>/n<sub>dof</sub> = 4.34/3 and p = 0.2268).
           These four underground observatories resolve a geo-neutrino rate of 14.8 +/- 4.8 NIU from the homogeneous mantle, establishing a signal significance of 3.1 𝜎.
           The radiogenic heating in the homogeneous mantle that corresponds to the rate from this fit depends on the ratios of the mass fraction abundances for Th/U and K/U.
           Assuming K/U = 13,000 and Th/U = 3.9 (2.75) gives 18.6 +/- 6.1 (17.4 +/- 5.7) TW. Assuming K/U = 10,000 and Th/U = 3.9 (2.75) gives 17.8 +/- 5.8 (16.5 +/- 5.4) TW.
@@ -323,9 +323,9 @@ export const GeoneutrinoResults = memo(() => {
      },
     },
   ];
-  
+
   var layout = {
-    title: `Geo-neutrino Results 2026`,
+    title: { text: `Geo-neutrino Results 2026` },
     yaxis: {
       title: { text: `Rate (TNU)` },
       rangemode: "tozero",
@@ -361,10 +361,10 @@ export const GeoneutrinoResults = memo(() => {
       <Card.Header>Geo-neutrino Results 2026</Card.Header>
       <Card.Body>
         <p>
-          Plot shows the results of geo-neutrino observations as of 2026. Black marks the measurement by <a href="https://sites.uci.edu/neutrino2026/">JUNO</a> at Jiangmen, China. Red marks the measurement by <a href="https://arxiv.org/pdf/2511.11856">SNO+</a> at SNOLAB. 
+          Plot shows the results of geo-neutrino observations as of 2026. Black marks the measurement by <a href="https://sites.uci.edu/neutrino2026/">JUNO</a> at Jiangmen, China. Red marks the measurement by <a href="https://arxiv.org/pdf/2511.11856">SNO+</a> at SNOLAB.
           (The plotted exposures for JUNO and SNO+ are estimated from the reported livetimes, 207.2 and 685 days, respectively, assuming 20 kT and 780 tonnes of LS with 6x10<sup>28</sup> free-protons per tonne, repsectively,
           and assigning an arbitrary uncertainty of 0.1 TNU<sup>-1</sup>).
-          Green marks the measurement by <a href="https://doi.org/10.1103/PhysRevD.101.012009">Borexino</a> at Gran Sasso (LNGS), 
+          Green marks the measurement by <a href="https://doi.org/10.1103/PhysRevD.101.012009">Borexino</a> at Gran Sasso (LNGS),
           and blue marks the measurement by <a href="https://doi.org/10.1029/2022GL099566">KamLAND</a> at Kamioka.
        </p>
         <Plot

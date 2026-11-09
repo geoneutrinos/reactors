@@ -3,7 +3,7 @@ import { Card, Form, InputGroup,Table } from "react-bootstrap";
 
 import Plot from "react-plotly.js";
 
-import { 
+import {
   depthValues,
   muonFlatIntensity,
   neutronFlatIntensity,
@@ -88,11 +88,11 @@ const MuonsPane = () => {
           <div>
             <p>
               Parameterized depth spectra of the total cosmic-ray muon flux and the associated
-              neutron flux on the Earth are presented following equations given in D.-M. Mei and A. Hime (2006),  
-              <a href=" https://doi.org/10.1103/PhysRevD.73.053004"> <i> Muon-induced background study for underground laboratories</i>, </a> 
-              Phys. Rev. D 73, 053004. The calculator and the plot below give the total muon flux (Eq. 4) and 
-              the neutron flux emerging from the rock into the underground cavern (Eq. 13) as 
-              a function of the equivalent flat overburden. 
+              neutron flux on the Earth are presented following equations given in D.-M. Mei and A. Hime (2006),
+              <a href=" https://doi.org/10.1103/PhysRevD.73.053004"> <i> Muon-induced background study for underground laboratories</i>, </a>
+              Phys. Rev. D 73, 053004. The calculator and the plot below give the total muon flux (Eq. 4) and
+              the neutron flux emerging from the rock into the underground cavern (Eq. 13) as
+              a function of the equivalent flat overburden.
             </p>
           </div>
       </Card.Body>
@@ -128,7 +128,7 @@ const BackgroundFluxes = () => {
     },
   ];
   var layout = {
-    title: "Muon and Neutron Fluxes",
+    title: { text: "Muon and Neutron Fluxes" },
     yaxis: {
       title: { text: `Flux (m<sup>-2</sup>s<sup>-1</sup>)` },
       type: "log",

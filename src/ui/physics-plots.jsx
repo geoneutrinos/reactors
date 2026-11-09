@@ -100,7 +100,7 @@ export const DifferentialCrossSectionPlotsNeutrinos = () => {
     },
   ]
   const layout = {
-    title: "eES Differential Cross Section- T<sub>e</sub>",
+    title: { text: "eES Differential Cross Section- T<sub>e</sub>" },
     yaxis: {
       title: { text: `d𝛔/dT<sub>e</sub> (cm<sup>2</sup>/MeV)` },
       type: 'log',
@@ -138,7 +138,7 @@ export const DifferentialCrossSectionPlotsNeutrinos = () => {
         <Plot
           useResizeHandler={true}
           style={{ width: "100%" }}
-          data={data} 
+          data={data}
           layout={layout}
           config={config}
         />
@@ -227,7 +227,7 @@ export const AngularDifferentialCrossSectionPlotsNeutrinos = () => {
     },
   ]
   const layout = {
-    title: "eES Differential Cross Section- cosθ",
+    title: { text: "eES Differential Cross Section- cosθ" },
     yaxis: {
       title: { text: `d𝛔/dcosθ (cm<sup>2</sup>)` },
       type: 'log',
@@ -265,7 +265,7 @@ export const AngularDifferentialCrossSectionPlotsNeutrinos = () => {
         <Plot
           useResizeHandler={true}
           style={{ width: "100%" }}
-          data={data} 
+          data={data}
           layout={layout}
           config={config}
         />
@@ -354,7 +354,7 @@ export const AngularDifferentialCrossSectionPlots = () => {
     },
   ]
   const layout = {
-    title: "eES Differential Cross Section- cosθ",
+    title: { text: "eES Differential Cross Section- cosθ" },
     yaxis: {
       title: { text: `d𝛔/dcosθ (cm<sup>2</sup>)` },
       type: 'log',
@@ -392,7 +392,7 @@ export const AngularDifferentialCrossSectionPlots = () => {
         <Plot
           useResizeHandler={true}
           style={{ width: "100%" }}
-          data={data} 
+          data={data}
           layout={layout}
           config={config}
         />
@@ -481,7 +481,7 @@ export const CDFAngularDifferentialCrossSectionPlotsNeutrinos = () => {
     },
   ]
   const layout = {
-    title: "eES Cumulative Differential Cross Section- cosθ",
+    title: { text: "eES Cumulative Differential Cross Section- cosθ" },
     yaxis: {
       title: { text: `P(cosθ≤cosϑ)` },
       autorange: true
@@ -518,7 +518,7 @@ export const CDFAngularDifferentialCrossSectionPlotsNeutrinos = () => {
         <Plot
           useResizeHandler={true}
           style={{ width: "100%" }}
-          data={data} 
+          data={data}
           layout={layout}
           config={config}
         />
@@ -607,7 +607,7 @@ export const CDFAngularDifferentialCrossSectionPlots = () => {
     },
   ]
   const layout = {
-    title: "eES Cumulative Differential Cross Section- cosθ",
+    title: { text: "eES Cumulative Differential Cross Section- cosθ" },
     yaxis: {
       title: { text: `P(cosθ≤cosϑ)` },
       autorange: true
@@ -644,7 +644,7 @@ export const CDFAngularDifferentialCrossSectionPlots = () => {
         <Plot
           useResizeHandler={true}
           style={{ width: "100%" }}
-          data={data} 
+          data={data}
           layout={layout}
           config={config}
         />
@@ -733,7 +733,7 @@ export const DifferentialCrossSectionPlots = () => {
     },
   ]
   const layout = {
-    title: "eES Differential Cross Section- T<sub>e</sub>",
+    title: { text: "eES Differential Cross Section- T<sub>e</sub>" },
     yaxis: {
       title: { text: `d𝛔/dT<sub>e</sub> (cm<sup>2</sup>/MeV)` },
       type: 'log',
@@ -771,7 +771,7 @@ export const DifferentialCrossSectionPlots = () => {
         <Plot
           useResizeHandler={true}
           style={{ width: "100%" }}
-          data={data} 
+          data={data}
           layout={layout}
           config={config}
         />
@@ -861,7 +861,7 @@ export const CDFdifferentialCrossSectionPlots = () => {
     },
   ]
   const layout = {
-    title: "eES Cumulative Differential Cross Section- T<sub>e</sub>",
+    title: { text: "eES Cumulative Differential Cross Section- T<sub>e</sub>" },
     yaxis: {
       title: { text: `P(T<sub>e</sub>≤t)` },
       autorange: true
@@ -898,7 +898,7 @@ export const CDFdifferentialCrossSectionPlots = () => {
         <Plot
           useResizeHandler={true}
           style={{ width: "100%" }}
-          data={data} 
+          data={data}
           layout={layout}
           config={config}
         />
@@ -988,7 +988,7 @@ export const CDFdifferentialCrossSectionPlotsNeutrinos = () => {
     },
   ]
   const layout = {
-    title: "eES Cumulative Differential Cross Section- T<sub>e</sub>",
+    title: { text: "eES Cumulative Differential Cross Section- T<sub>e</sub>" },
     yaxis: {
       title: { text: `P(T<sub>e</sub>≤t)` },
       autorange: true
@@ -1025,7 +1025,7 @@ export const CDFdifferentialCrossSectionPlotsNeutrinos = () => {
         <Plot
           useResizeHandler={true}
           style={{ width: "100%" }}
-          data={data} 
+          data={data}
           layout={layout}
           config={config}
         />
@@ -1076,7 +1076,7 @@ export const CrossSectionPlots = () => {
     },
   ]
   var layout = {
-    title: `Total Cross Sections- Antineutrinos<br /><sub>${"(pIBD or eES " + crossSection.elasticScatteringTMin.toFixed(2) + " < T<sub>e</sub> < " + crossSection.elasticScatteringTMax.toFixed(2) + " MeV)"}</sub>`,
+    title: { text: `Total Cross Sections- Antineutrinos<br /><sub>${"(pIBD or eES " + crossSection.elasticScatteringTMin.toFixed(2) + " < T<sub>e</sub> < " + crossSection.elasticScatteringTMax.toFixed(2) + " MeV)"}</sub>` },
     yaxis: {
       title: { text: `Total Cross Section (cm<sup>2</sup>)` },
       type: 'log',
@@ -1113,24 +1113,24 @@ export const CrossSectionPlots = () => {
       <Card.Body>
         <p>
           Two versions of the cross section for free proton inverse beta decay (pIBD- {" "}
-          <MathJax inline>{String.raw`$\overline{\nu}_\mathrm{e} + \mathrm{p} \rightarrow \mathrm{n} + \mathrm{e}^+$`}</MathJax> {" "}) are available for selection. 
+          <MathJax inline>{String.raw`$\overline{\nu}_\mathrm{e} + \mathrm{p} \rightarrow \mathrm{n} + \mathrm{e}^+$`}</MathJax> {" "}) are available for selection.
           Both versions are functions of the scattered positron energy and momentum,{" "}
           <MathJax
             inline
-          >{String.raw`$E_\mathrm{e}$`}</MathJax>{" "} 
+          >{String.raw`$E_\mathrm{e}$`}</MathJax>{" "}
           and{" "}
           <MathJax inline>{String.raw`$p_\mathrm{e}= \sqrt{E^2_\mathrm{e}-m^2_\mathrm{e}}$`}</MathJax>,{" "}
           respectively, where{" "}
           <MathJax inline>{String.raw`$m_\mathrm{e}$`}</MathJax>{" "}
           is the electron (positron) rest mass.
-          Assuming the antineutrino is massless, then the energy of the incident electron antineutrino{" "} 
+          Assuming the antineutrino is massless, then the energy of the incident electron antineutrino{" "}
           <MathJax inline>{String.raw`$E_{\overline{\nu}_\mathrm{e}} = E_\mathrm{e}+E_\mathrm{thr}-m_\mathrm{e},$`}</MathJax>{" "}
           where{" "}
-          <MathJax inline>{String.raw`$E_\mathrm{thr}$`}</MathJax>{" "} 
+          <MathJax inline>{String.raw`$E_\mathrm{thr}$`}</MathJax>{" "}
           is the threshold energy.{" "}
         </p>
         <p>
-          The default version of the pIBD cross section is from 
+          The default version of the pIBD cross section is from
           A. Strumia and F. Vissani (2003), <i>Precise quasielastic neutrino/nucleon cross-section</i>, Phys. Lett. B 564, 42.
           The implemented parameterized equation, estimating the precise cross section, is
         <MathJax>{String.raw`$$
@@ -1142,7 +1142,7 @@ export const CrossSectionPlots = () => {
             <MathJax inline>{String.raw`$1 \%$`}</MathJax>{" "} to the calculated pIBD reaction rates.
         </p>
         <p>
-          The optional version of the pIBD cross section is from 
+          The optional version of the pIBD cross section is from
           P. Vogel and J. F. Beacom (1999), <i>Angular distribution of inverse neutron decay, ν̅<sub>𝑒</sub> + 𝑝 ⭢ 𝑒<sup>+</sup> + 𝑛</i>, Phys. Rev. D 60, 053003.
           This version, which tends to over-predict the cross section at high energy, is
         <MathJax>{String.raw`$$
@@ -1159,13 +1159,13 @@ export const CrossSectionPlots = () => {
           \end{split}
         $$`}</MathJax>{" "}
           where{" "}
-          <MathJax inline>{String.raw`$y_{\mathrm{max}}=T_\mathrm{max}/E_\nu,$`}</MathJax>{" "} 
+          <MathJax inline>{String.raw`$y_{\mathrm{max}}=T_\mathrm{max}/E_\nu,$`}</MathJax>{" "}
           <MathJax inline>{String.raw`$y_\mathrm{min} = T_\mathrm{min}/E_\nu,$`}</MathJax>{" "}
           and the coefficients{" "}
           <MathJax inline>{String.raw`$c_\mathrm{L},$`}</MathJax>{" "}
           <MathJax inline>{String.raw`$c_\mathrm{R},$`}</MathJax>{" "}
           are functions of the vector and axial vector coupling factors{" "}
-          <MathJax inline>{String.raw`$c_V$`}</MathJax>{" "} 
+          <MathJax inline>{String.raw`$c_V$`}</MathJax>{" "}
           and{" "}
           <MathJax inline>{String.raw`$c_A,$`}</MathJax>{" "}
           respectively. Specifically,{" "}
@@ -1175,18 +1175,18 @@ export const CrossSectionPlots = () => {
           Radiative corrections are currently ignored.
         </p>
         <p>
-          The eES cross section equation given above applies to any two-body elastic scattering process. 
+          The eES cross section equation given above applies to any two-body elastic scattering process.
           For neutrino-proton elastic scattering pES simply replace the electron rest mass{" "}
-          <MathJax inline>{String.raw`$m_\mathrm{e}$`}</MathJax>{" "} 
+          <MathJax inline>{String.raw`$m_\mathrm{e}$`}</MathJax>{" "}
           with the proton rest mass{" "}
-          <MathJax inline>{String.raw`$m_\mathrm{p}$`}</MathJax>{" "} 
-          to account for the heavier target and use the vector and axial vector coupling factors given for pES in the table below. 
+          <MathJax inline>{String.raw`$m_\mathrm{p}$`}</MathJax>{" "}
+          to account for the heavier target and use the vector and axial vector coupling factors given for pES in the table below.
           The pES reaction is an important detection channel for supernova burst neutrinos (see the SnNu tab).
         </p>
         <Plot
           useResizeHandler={true}
           style={{ width: "100%" }}
-          data={data} 
+          data={data}
           layout={layout}
           config={config}
         />
@@ -1203,8 +1203,8 @@ export const SV03PercentDifference = memo(() => {
       name: ``,
       type: "scatter",
       mode: "markers",
-      marker: { 
-        color: "red", 
+      marker: {
+        color: "red",
         size: 12,
         line: {
           color: "black",
@@ -1214,7 +1214,7 @@ export const SV03PercentDifference = memo(() => {
     },
   ];
   var layout = {
-    title: `Percent Difference SV03`,
+    title: { text: `Percent Difference SV03` },
     yaxis: {
       title: { text: `% diff` },
       autorange: true,
@@ -1250,9 +1250,9 @@ export const SV03PercentDifference = memo(() => {
       <Card.Header>Percent Difference SV03</Card.Header>
       <Card.Body>
         <p>
-          Plot shows the percent differences between the more precise formulation- see Table 3 in Strumia and Vissani (2003)- and its 
-          parameterized estimate at selected antineutrino energies. This comparison reveals small spectral distortions in the energy 
-          region relevant to reactor antineutrinos and geo-neutrinos. Based on these differences the use of the parameterized cross section 
+          Plot shows the percent differences between the more precise formulation- see Table 3 in Strumia and Vissani (2003)- and its
+          parameterized estimate at selected antineutrino energies. This comparison reveals small spectral distortions in the energy
+          region relevant to reactor antineutrinos and geo-neutrinos. Based on these differences the use of the parameterized cross section
           conservatively contributes an uncertainty of 1 {"%"} to the calculated pIBD reaction rates.
        </p>
         <Plot
@@ -1290,7 +1290,7 @@ export const CrossSectionPlotsNormal = () => {
     },
   ]
   var layout = {
-    title: `Total Cross Sections- Neutrinos<br /><sub>${"(eES " + crossSection.elasticScatteringTMin.toFixed(2) + " < T<sub>e</sub> < " + crossSection.elasticScatteringTMax.toFixed(2) + " MeV)"}</sub>`,
+    title: { text: `Total Cross Sections- Neutrinos<br /><sub>${"(eES " + crossSection.elasticScatteringTMin.toFixed(2) + " < T<sub>e</sub> < " + crossSection.elasticScatteringTMax.toFixed(2) + " MeV)"}</sub>` },
     yaxis: {
       title: { text: `Total Cross Section (cm<sup>2</sup>)` },
       type: 'log',
@@ -1333,7 +1333,7 @@ export const CrossSectionPlotsNormal = () => {
         <Plot
           useResizeHandler={true}
           style={{ width: "100%" }}
-          data={data} 
+          data={data}
           layout={layout}
           config={config}
         />

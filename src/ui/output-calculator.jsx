@@ -93,9 +93,9 @@ export const CalculatorPanel = ({ cores, geo, active}) => {
       marker: { color: "Black" },
     },
   ]
-  
+
   var layout = {
-    title: "pIBD Detection Efficiency",
+    title: { text: "pIBD Detection Efficiency" },
     yaxis: {
       title: { text: `Efficiency` },
       range: [0, 1.05]
@@ -140,7 +140,7 @@ export const CalculatorPanel = ({ cores, geo, active}) => {
   if (!isIBD && eMin === parseFloat(IBD_THRESHOLD.toFixed(3))) {
     setEMin(0);
   }
-  
+
   const UIsetSelect = (event) => {
     var key = event.target.id;
     const value = event.target.value;
@@ -163,7 +163,7 @@ export const CalculatorPanel = ({ cores, geo, active}) => {
       setBkgnuisance(bkg_nuisance);
     }
   };
-  
+
   const UIsetEvtThreshold = (event) => {
     const value = event.target.value;
     let evt_threshold = parseFloat(value);
@@ -176,7 +176,7 @@ export const CalculatorPanel = ({ cores, geo, active}) => {
       setEvtthreshold(evt_threshold);
     }
   };
-  
+
   const UIsetEMin = (event) => {
     const value = event.target.value;
     let stateEmin = parseFloat(IBD_THRESHOLD.toFixed(1)) * isIBD;
@@ -189,7 +189,7 @@ export const CalculatorPanel = ({ cores, geo, active}) => {
        }
       if (e_min > 10) {
         e_min = 10;
-      }      
+      }
       if (e_min < 0) {
         e_min = 0;
       }
@@ -327,7 +327,7 @@ export const CalculatorPanel = ({ cores, geo, active}) => {
   const [totalCoreSignal, totalCoreSignalLow, totalCoreSignalHigh] =
     getCoreSums(coreList, min_i, max_i, low_i);
 
-  const [,totalCoreUncertaintyLow,totalCoreUncertaintyHigh] = 
+  const [,totalCoreUncertaintyLow,totalCoreUncertaintyHigh] =
     getCoreUncertainties(coreList, min_i, max_i, low_i);
   const deltaReactorsHighE = totalCoreSignalHigh > 0? totalCoreUncertaintyHigh / totalCoreSignalHigh: 0;
   const deltaReactorsLowE = totalCoreSignalLow > 0? totalCoreUncertaintyLow / totalCoreSignalLow :0;
@@ -394,14 +394,14 @@ export const CalculatorPanel = ({ cores, geo, active}) => {
     UIsignal = totalCoreSignal;
     UIbackground = geoCalc.total.NIU + bkgNuisanceNIU;
     UIBackgroundUncertainty = Math.hypot(
-      (geoCalc.total.NIUUncertainty), 
+      (geoCalc.total.NIUUncertainty),
       (bkgNuisanceNIU * deltaBkgnuisance)
     );
   }
   if (signal === "antinus") {
     UIsignal = totalCoreSignal + geoCalc.total.NIU;
     UIbackground = bkgNuisanceNIU;
-    UIBackgroundUncertainty = ( 
+    UIBackgroundUncertainty = (
       bkgNuisanceNIU * deltaBkgnuisance
     );
   }
@@ -527,7 +527,7 @@ export const CalculatorPanel = ({ cores, geo, active}) => {
     }
     UISigma = UISigma.toFixed(3);
   }
-  
+
   if (solveFor === "exposure_h0") {
     UITime =
       (sigma ** 2 * UIbackground) /
@@ -570,8 +570,8 @@ export const CalculatorPanel = ({ cores, geo, active}) => {
       <Card.Header>Significance/Exposure Calculator</Card.Header>
       <Card.Body>
           <div>
-            <small>The numbers of detected signal <i>S</i> and background <i>B</i> events are the integrals of the respective rate spectra multiplied by the detector exposure. 
-                   The currently selected cross section is {crossSection.crossSection}. 
+            <small>The numbers of detected signal <i>S</i> and background <i>B</i> events are the integrals of the respective rate spectra multiplied by the detector exposure.
+                   The currently selected cross section is {crossSection.crossSection}.
                    If pIBD, <i>S</i> is modified by the detection efficiency.
                    If eES, <i>S</i> is modified by the selected range of the scattered electron kinetic energy, which is currently from {crossSection.elasticScatteringTMin.toFixed(1)} to {crossSection.elasticScatteringTMax.toFixed(1)} MeV.</small>
             <Table>
@@ -743,7 +743,7 @@ export const CalculatorPanel = ({ cores, geo, active}) => {
                   </InputGroup.Text>
                 </InputGroup.Append>
                 <Form.Control.Feedback type="invalid">
-                  <i>N<sub>σ</sub></i> &lowast; <i>&delta;B &gt; S</i> 
+                  <i>N<sub>σ</sub></i> &lowast; <i>&delta;B &gt; S</i>
                 </Form.Control.Feedback>
               </InputGroup>
             </Form.Group>
@@ -765,13 +765,13 @@ export const CalculatorPanel = ({ cores, geo, active}) => {
                   value={UISigma}
                 />
                 <Form.Control.Feedback type="invalid">
-                  Events below threshold 
+                  Events below threshold
                 </Form.Control.Feedback>
               </InputGroup>
             </Form.Group>
           </Col>
         </Row>
-  
+
         <Row>
           <small>The following parameters modify the pIBD detection efficiency as plotted and described below.</small>
           <br />
@@ -835,13 +835,13 @@ export const CalculatorPanel = ({ cores, geo, active}) => {
             </Form.Group>
           </Col>
         </Row>
-  
+
           </Form>
             <Visible>
             <Plot
               useResizeHandler={true}
               style={{ width: "100%" }}
-              data={plotData} 
+              data={plotData}
               layout={layout}
               config={config}
             />
@@ -853,26 +853,26 @@ export const CalculatorPanel = ({ cores, geo, active}) => {
             <MathJax inline>{String.raw`$\xi$`}</MathJax> the detector exposure,{" "}
             <MathJax inline>{String.raw`$s\; (= S / \xi)$`}</MathJax> the signal rate,{" "}
             <MathJax inline>{String.raw`$b\; (= B / \xi)$`}</MathJax> the background rate, and{" "}
-            <MathJax inline>{String.raw`$\delta b$`}</MathJax> the systematic uncertainty of the background rate. 
+            <MathJax inline>{String.raw`$\delta b$`}</MathJax> the systematic uncertainty of the background rate.
             Reactor antineutrinos and geoneutrinos have systematic uncertainties that depend on the selected input data.
             The nuisance background has a fixed fractional uncertainty of 0.5 and a flat energy spectrum.
             </p>
-            <br /> 
+            <br />
             <i> Null Hypothesis- H<sub>0</sub></i><br />
             <MathJax>{String.raw`$$N_{\sigma} = \frac{ s * \xi }{\sqrt{b * \xi + (\delta b * \xi )^2}}$$`}</MathJax>{" "}
             <br />
-            <i> Alternative Hypothesis- H<sub>1</sub></i><br />  
+            <i> Alternative Hypothesis- H<sub>1</sub></i><br />
             <MathJax>{String.raw`$$N_{\sigma} = \frac{ s * \xi }{\sqrt{(s + b) * \xi + (\delta b * \xi )^2}}$$`}</MathJax>{" "}
             <br />
             <b> pIBD Detection Efficiency</b><br />
             <p> When expressed as a function of antineutrino energy <i>E</i>, the detection efficiency is
             valid for pIBD only. Here it is approximated by a sigmoid curve{" "}
             <MathJax>{String.raw`$$\varepsilon (E) = \frac {\varepsilon_\mathrm{max}} {1 + \exp\big(-\rho * (E - E_\mathrm{HM})\big)},$$`}</MathJax>{" "}
-            where <MathJax inline>{String.raw`$\varepsilon_\mathrm{max}$`}</MathJax> is the asymptote at infinite energy 
+            where <MathJax inline>{String.raw`$\varepsilon_\mathrm{max}$`}</MathJax> is the asymptote at infinite energy
             (maximum detection efficiency),{" "}
-            <MathJax inline>{String.raw`$E_\mathrm{HM}$`}</MathJax> is the inflection point energy 
+            <MathJax inline>{String.raw`$E_\mathrm{HM}$`}</MathJax> is the inflection point energy
             (energy at one-half of the maximum efficiency), and{" "}
-            <MathJax inline>{String.raw`$\rho$`}</MathJax> is the slope 
+            <MathJax inline>{String.raw`$\rho$`}</MathJax> is the slope
             (efficiency ramp-up rate).
             Conversion of the detection efficiency from a function of antineutrino energy to a function of scattered charged particle kinetic energy is a planned upgrade.
             </p>

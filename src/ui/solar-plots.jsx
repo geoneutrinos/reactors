@@ -24,9 +24,9 @@ const plotDef = (cores, color) => {
     mode: "markers",
     marker: {
       size: 3,
+      color: color,
     },
     fill: "none",
-    marker: { color: color },
   };
 };
 
@@ -119,19 +119,20 @@ export const AnalemmaPlot = ({ detector, cores, reactorLF, boron8 }) => {
   data.push(plotDef(PHWRcores, "#ff0000"));
 
   var layout = {
-    title: `Solar Analemma: ${
-      ["custom", "follow"].includes(detector.current)
-        ? "Custom Location"
-        : detector.current
-    } (${detector.lat.toFixed(1)}N, ${detector.lon.toFixed(
-      1
-    )}E, ${detector.elevation.toFixed(0)}m) <br /><sub>(${reactorLF.start
-      .toISOString()
-      .slice(0, 7)} through ${reactorLF.end
-      .toISOString()
-      .slice(0, 7)}, mean solar distance ${boron8.averageSolarDistance.toFixed(
-      4
-    )} AU)</sub>`,
+    title: {
+      text: `Solar Analemma: ${["custom", "follow"].includes(detector.current)
+          ? "Custom Location"
+          : detector.current
+        } (${detector.lat.toFixed(1)}N, ${detector.lon.toFixed(
+          1
+        )}E, ${detector.elevation.toFixed(0)}m) <br /><sub>(${reactorLF.start
+          .toISOString()
+          .slice(0, 7)} through ${reactorLF.end
+            .toISOString()
+            .slice(0, 7)}, mean solar distance ${boron8.averageSolarDistance.toFixed(
+              4
+            )} AU)</sub>`
+    },
     //    title: "Solar Analemma",
     hovermode: "closest",
     autosize: true,
@@ -194,13 +195,14 @@ export const Boron8KEPlot = ({ boron8 }) => {
     },
   ];
   var layout = {
-    title: `<sup>8</sup>B- Scattered Electron Kinetic Energy Spectrum<br /><sub>${
-      "(eES " +
-      crossSection.elasticScatteringTMin.toFixed(2) +
-      " < T < " +
-      crossSection.elasticScatteringTMax.toFixed(2) +
-      " MeV)"
-    }</sub>`,
+    title: {
+      text: `<sup>8</sup>B- Scattered Electron Kinetic Energy Spectrum<br /><sub>${"(eES " +
+        crossSection.elasticScatteringTMin.toFixed(2) +
+        " < T < " +
+        crossSection.elasticScatteringTMax.toFixed(2) +
+        " MeV)"
+        }</sub>`
+    },
     yaxis: {
       title: { text: `dR/dT (NIU/MeV)` },
       autorange: true,
@@ -264,13 +266,14 @@ export const Boron8SpectraPlot = ({ boron8, reactorLF }) => {
     },
   ];
   var layout = {
-    title: `<sup>8</sup>B Solar ν<sub>e</sub>- Interaction Rate Spectrum<br /><sub>${
-      "(eES " +
-      crossSection.elasticScatteringTMin.toFixed(2) +
-      " < T < " +
-      crossSection.elasticScatteringTMax.toFixed(2) +
-      " MeV)"
-    }</sub>`,
+    title: {
+      text: `<sup>8</sup>B Solar ν<sub>e</sub>- Interaction Rate Spectrum<br /><sub>${"(eES " +
+        crossSection.elasticScatteringTMin.toFixed(2) +
+        " < T < " +
+        crossSection.elasticScatteringTMax.toFixed(2) +
+        " MeV)"
+        }</sub>`
+    },
     yaxis: {
       title: { text: `dR/dE (NIU/MeV)` },
       autorange: true,
@@ -325,7 +328,7 @@ export const Boron8SpectraPlot = ({ boron8, reactorLF }) => {
         <p>
           <sup>8</sup>B decay spectrum is from:
           <br />
-          W. T. Winter <i>et al.</i> (2006), <a href="https://doi.org/10.1103/PhysRevC.73.025503"> <i>The <sup>8</sup>B neutrino spectrum</i>, </a> 
+          W. T. Winter <i>et al.</i> (2006), <a href="https://doi.org/10.1103/PhysRevC.73.025503"> <i>The <sup>8</sup>B neutrino spectrum</i>, </a>
           Phys. Rev. C 73, 025503.
         </p>
 
@@ -334,7 +337,7 @@ export const Boron8SpectraPlot = ({ boron8, reactorLF }) => {
           0.036(syst)) x 10<sup>6</sup> cm
           <sup>-2</sup>s<sup>-1</sup>- is from:
           <br />
-          K. Abe <i>et al.</i> (2016), <a href="https://doi.org/10.1103/PhysRevD.94.052010"> <i>Solar neutrino measurements in Super-Kamiokande-IV</i>, </a> 
+          K. Abe <i>et al.</i> (2016), <a href="https://doi.org/10.1103/PhysRevD.94.052010"> <i>Solar neutrino measurements in Super-Kamiokande-IV</i>, </a>
           Phys. Rev. D 94, 052010.
         </p>
 

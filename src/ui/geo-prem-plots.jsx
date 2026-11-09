@@ -47,7 +47,7 @@ export const GeoDensityPlot = memo(() => {
       },
     ]
     const layout = {
-      title: "Density Profiles",
+      title: { text: "Density Profiles" },
       yaxis: {
         title: { text: `Density (g/cm<sup>3</sup>)` },
         autorange: true
@@ -84,7 +84,7 @@ export const GeoDensityPlot = memo(() => {
           <Plot
             useResizeHandler={true}
             style={{ width: "100%" }}
-            data={data} 
+            data={data}
             layout={layout}
             config={config}
           />
@@ -124,7 +124,7 @@ export const GeoMassPlot = memo(() => {
       },
     ]
     const layout = {
-      title: "Mass Profiles",
+      title: { text: "Mass Profiles" },
       yaxis: {
         title: { text: `Mass (g)` },
         autorange: true
@@ -161,7 +161,7 @@ export const GeoMassPlot = memo(() => {
           <Plot
             useResizeHandler={true}
             style={{ width: "100%" }}
-            data={data} 
+            data={data}
             layout={layout}
             config={config}
           />
@@ -192,7 +192,7 @@ export const GeoIntegralPlot = memo(() => {
       },
     ]
     const layout = {
-      title: "Geo Signal Factor",
+      title: { text: "Geo Signal Factor" },
       yaxis: {
         title: { text: `Signal Factor` },
         autorange: true
@@ -229,7 +229,7 @@ export const GeoIntegralPlot = memo(() => {
           <Plot
             useResizeHandler={true}
             style={{ width: "100%" }}
-            data={data} 
+            data={data}
             layout={layout}
             config={config}
           />
@@ -270,7 +270,7 @@ export const GeophysicalResponsePlot = memo(() => {
       },
     ]
     const layout = {
-      title: "Geophysical Response Profiles",
+      title: { text: "Geophysical Response Profiles" },
       yaxis: {
         title: { text: `Response (kg/cm<sup>2</sup>)` },
         autorange: true
@@ -307,7 +307,7 @@ export const GeophysicalResponsePlot = memo(() => {
           <Plot
             useResizeHandler={true}
             style={{ width: "100%" }}
-            data={data} 
+            data={data}
             layout={layout}
             config={config}
           />

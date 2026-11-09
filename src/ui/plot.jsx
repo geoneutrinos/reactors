@@ -36,7 +36,7 @@ export function NuSpectrumPlot({ cores, geo, detector, reactorLF, xaxisExtra={},
       (value, index) => value + current.detectorSignal[index]
     );
   }, new Float64Array(binCount).fill(0));
-  
+
   const selectedCores = coreList.filter((core) => core.outputSignal === true);
   const selectedCoreSignal = selectedCores.reduce((previous, current) => {
     return previous.map(
@@ -64,7 +64,7 @@ export function NuSpectrumPlot({ cores, geo, detector, reactorLF, xaxisExtra={},
       mode: "lines",
       marker: { color: "grey" },
       visible: sum(closestActiveIAEACoreSignal) > 0,
-    },  
+    },
     {
       x: bins,
       y: func(selectedCoreSignal),
@@ -73,7 +73,7 @@ export function NuSpectrumPlot({ cores, geo, detector, reactorLF, xaxisExtra={},
       mode: "lines",
       marker: { color: "black" },
       visible: sum(selectedCoreSignal) > 0,
-    },  
+    },
     {
       x: bins,
       y: func(customCoreSignal),
@@ -136,13 +136,14 @@ export function NuSpectrumPlot({ cores, geo, detector, reactorLF, xaxisExtra={},
   }
 
   const layout = {
-    title: `Antineutrino Spectrum: ${
-      ["custom", "follow"].includes(detector.current)
-        ? "Custom Location"
-        : detector.current
-    } (${detector.lat.toFixed(1)}N, ${detector.lon.toFixed(
-      1
-    )}E, ${detector.elevation.toFixed(0)}m)<br /><sub>NuFit v6.1 ${oscillation.massOrdering}; ${reactorAntineutrinoModel.modelName}; Avg LF ${reactorLF.start.toISOString().slice(0, 7)} thru ${reactorLF.end.toISOString().slice(0, 7)}</sub>`,
+    title: {
+      text: `Antineutrino Spectrum: ${["custom", "follow"].includes(detector.current)
+          ? "Custom Location"
+          : detector.current
+        } (${detector.lat.toFixed(1)}N, ${detector.lon.toFixed(
+          1
+        )}E, ${detector.elevation.toFixed(0)}m)<br /><sub>NuFit v6.1 ${oscillation.massOrdering}; ${reactorAntineutrinoModel.modelName}; Avg LF ${reactorLF.start.toISOString().slice(0, 7)} thru ${reactorLF.end.toISOString().slice(0, 7)}</sub>`,
+    },
     showlegend: true,
     legend: {
       x: 1,
@@ -197,15 +198,16 @@ export function KESpectrumPlot({ cores, spectrum, detector, reactorLF}) {
   spectrum={spectrum}
   reactorLF={reactorLF}
   func={func}
-  layoutExtra={{
-    title: `Kinetic Energy Spectrum: ${
-      ["custom", "follow"].includes(detector.current)
-        ? "Custom Location"
-        : detector.current
-    } (${detector.lat.toFixed(1)}N, ${detector.lon.toFixed(
-      1
-    )}E, ${detector.elevation.toFixed(0)}m)<br /><sub>(${reactorLF.start.toISOString().slice(0, 7)} through ${reactorLF.end.toISOString().slice(0, 7)} avg Load Factor)</sub>`, 
-  }}
+    layoutExtra={{
+      title: {
+        text: `Kinetic Energy Spectrum: ${["custom", "follow"].includes(detector.current)
+            ? "Custom Location"
+            : detector.current
+          } (${detector.lat.toFixed(1)}N, ${detector.lon.toFixed(
+            1
+          )}E, ${detector.elevation.toFixed(0)}m)<br /><sub>(${reactorLF.start.toISOString().slice(0, 7)} through ${reactorLF.end.toISOString().slice(0, 7)} avg Load Factor)</sub>`,
+      }
+    }}
   xaxisExtra={{
       title: { text: `Kinetic Energy T (MeV)` },
   }}
@@ -230,13 +232,14 @@ export function CoreDirectionPlot({ cores, detector, reactorLF }) {
       core.type !== "custom"
   );
   const layout = {
-    title: `Core Directions at ${
-      ["custom", "follow"].includes(detector.current)
-        ? "Custom Location"
-        : detector.current
-    } (${detector.lat.toFixed(1)}N, ${detector.lon.toFixed(
-      1
-    )}E, ${detector.elevation.toFixed(0)}m)<br /><sub>(${reactorLF.start.toISOString().slice(0, 7)} through ${reactorLF.end.toISOString().slice(0, 7)} avg Load Factor)</sub>`,
+    title: {
+      text: `Core Directions at ${["custom", "follow"].includes(detector.current)
+          ? "Custom Location"
+          : detector.current
+        } (${detector.lat.toFixed(1)}N, ${detector.lon.toFixed(
+          1
+        )}E, ${detector.elevation.toFixed(0)}m)<br /><sub>(${reactorLF.start.toISOString().slice(0, 7)} through ${reactorLF.end.toISOString().slice(0, 7)} avg Load Factor)</sub>`
+    },
     showlegend: true,
     autosize: true,
     polar: {

@@ -22,11 +22,11 @@ export const SupernovaPlotsIBDnue16O = ({
   E16OIBDUnoscillatedG4,
   E16OIBDOscillatedNormalG4,
   E16OIBDOscillatedInvertedG4,
-  nueAvgEnrg, 
-  anuAvgEnrg, 
-  nuxAvgEnrg, 
-  nueTotEnrg, 
-  anuTotEnrg, 
+  nueAvgEnrg,
+  anuAvgEnrg,
+  nuxAvgEnrg,
+  nueTotEnrg,
+  anuTotEnrg,
   nuxTotEnrg,
   nueSpectrumShapeParam,
   anuSpectrumShapeParam,
@@ -225,8 +225,10 @@ export const SupernovaPlotsIBDnue16O = ({
     },
   ];
   var layout = {
-    title: `CCSN (10 kpc): ν<sub>e</sub>+<sup>16</sup>O IBD Spectra
-    <br /><sub>ν<sub>e</sub> , ν̅<sub>e</sub> , ν<sub>x</sub> : E<sub>tot</sub> (10<sup>52</sup> erg) / E<sub>avg</sub> (MeV) / β = ${nueTotEnrg.toFixed(1)} / ${nueAvgEnrg.toFixed(1)} / ${nueSpectrumShapeParam.toFixed(0)}, ${anuTotEnrg.toFixed(1)} / ${anuAvgEnrg.toFixed(1)} / ${anuSpectrumShapeParam.toFixed(0)}, ${nuxTotEnrg.toFixed(1)} / ${nuxAvgEnrg.toFixed(1)} / ${nuxSpectrumShapeParam.toFixed(0)}</sub>`,
+    title: {
+      text: `CCSN (10 kpc): ν<sub>e</sub>+<sup>16</sup>O IBD Spectra
+    <br /><sub>ν<sub>e</sub> , ν̅<sub>e</sub> , ν<sub>x</sub> : E<sub>tot</sub> (10<sup>52</sup> erg) / E<sub>avg</sub> (MeV) / β = ${nueTotEnrg.toFixed(1)} / ${nueAvgEnrg.toFixed(1)} / ${nueSpectrumShapeParam.toFixed(0)}, ${anuTotEnrg.toFixed(1)} / ${anuAvgEnrg.toFixed(1)} / ${anuSpectrumShapeParam.toFixed(0)}, ${nuxTotEnrg.toFixed(1)} / ${nuxAvgEnrg.toFixed(1)} / ${nuxSpectrumShapeParam.toFixed(0)}</sub>`
+    },
     yaxis: {
       title: { text: `Events dN/dE (/10<sup>32</sup> targets/MeV)` },
       type: "log",
@@ -285,11 +287,11 @@ export const SupernovaPlotsIBDnuebar16O = ({
   AntiE16OIBDUnoscillatedG4,
   AntiE16OIBDOscillatedNormalG4,
   AntiE16OIBDOscillatedInvertedG4,
-  nueAvgEnrg, 
-  anuAvgEnrg, 
-  nuxAvgEnrg, 
-  nueTotEnrg, 
-  anuTotEnrg, 
+  nueAvgEnrg,
+  anuAvgEnrg,
+  nuxAvgEnrg,
+  nueTotEnrg,
+  anuTotEnrg,
   nuxTotEnrg,
   nueSpectrumShapeParam,
   anuSpectrumShapeParam,
@@ -488,8 +490,10 @@ export const SupernovaPlotsIBDnuebar16O = ({
     },
   ];
   var layout = {
-    title: `CCSN (10 kpc): ν̅<sub>e</sub>+<sup>16</sup>O IBD Spectra
-    <br /><sub>ν<sub>e</sub> , ν̅<sub>e</sub> , ν<sub>x</sub> : E<sub>tot</sub> (10<sup>52</sup> erg) / E<sub>avg</sub> (MeV) / β = ${nueTotEnrg.toFixed(1)} / ${nueAvgEnrg.toFixed(1)} / ${nueSpectrumShapeParam.toFixed(0)}, ${anuTotEnrg.toFixed(1)} / ${anuAvgEnrg.toFixed(1)} / ${anuSpectrumShapeParam.toFixed(0)}, ${nuxTotEnrg.toFixed(1)} / ${nuxAvgEnrg.toFixed(1)} / ${nuxSpectrumShapeParam.toFixed(0)}</sub>`,
+    title: {
+      text: `CCSN (10 kpc): ν̅<sub>e</sub>+<sup>16</sup>O IBD Spectra
+    <br /><sub>ν<sub>e</sub> , ν̅<sub>e</sub> , ν<sub>x</sub> : E<sub>tot</sub> (10<sup>52</sup> erg) / E<sub>avg</sub> (MeV) / β = ${nueTotEnrg.toFixed(1)} / ${nueAvgEnrg.toFixed(1)} / ${nueSpectrumShapeParam.toFixed(0)}, ${anuTotEnrg.toFixed(1)} / ${anuAvgEnrg.toFixed(1)} / ${anuSpectrumShapeParam.toFixed(0)}, ${nuxTotEnrg.toFixed(1)} / ${nuxAvgEnrg.toFixed(1)} / ${nuxSpectrumShapeParam.toFixed(0)}</sub>`
+    },
     yaxis: {
       title: { text: `Events dN/dE (/10<sup>32</sup> targets/MeV)` },
       type: "log",
@@ -533,20 +537,20 @@ export const SupernovaPlotsIBDnuebar16O = ({
 };
 
 export const SupernovaPlotsIBD = ({
-  pIBDUnoscillated, 
-  pIBDOscillatedNormal, 
-  pIBDOscillatedInverted, 
+  pIBDUnoscillated,
+  pIBDOscillatedNormal,
+  pIBDOscillatedInverted,
   AntiE12CIBDUnoscillated,
   AntiE12CIBDOscillatedNormal,
   AntiE12CIBDOscillatedInverted,
   E12CIBDUnoscillated,
   E12CIBDOscillatedNormal,
   E12CIBDOscillatedInverted,
-  nueAvgEnrg, 
-  anuAvgEnrg, 
-  nuxAvgEnrg, 
-  nueTotEnrg, 
-  anuTotEnrg, 
+  nueAvgEnrg,
+  anuAvgEnrg,
+  nuxAvgEnrg,
+  nueTotEnrg,
+  anuTotEnrg,
   nuxTotEnrg,
   nueSpectrumShapeParam,
   anuSpectrumShapeParam,
@@ -669,8 +673,10 @@ export const SupernovaPlotsIBD = ({
     },
   ];
   var layout = {
-    title: `CCSN (10 kpc): ν<sub>e</sub> , ν̅<sub>e</sub> IBD Spectra
-    <br /><sub>ν<sub>e</sub> , ν̅<sub>e</sub> , ν<sub>x</sub> : E<sub>tot</sub> (10<sup>52</sup> erg) / E<sub>avg</sub> (MeV) / β = ${nueTotEnrg.toFixed(1)} / ${nueAvgEnrg.toFixed(1)} / ${nueSpectrumShapeParam.toFixed(0)}, ${anuTotEnrg.toFixed(1)} / ${anuAvgEnrg.toFixed(1)} / ${anuSpectrumShapeParam.toFixed(0)}, ${nuxTotEnrg.toFixed(1)} / ${nuxAvgEnrg.toFixed(1)} / ${nuxSpectrumShapeParam.toFixed(0)}</sub>`,
+    title: {
+      text: `CCSN (10 kpc): ν<sub>e</sub> , ν̅<sub>e</sub> IBD Spectra
+    <br /><sub>ν<sub>e</sub> , ν̅<sub>e</sub> , ν<sub>x</sub> : E<sub>tot</sub> (10<sup>52</sup> erg) / E<sub>avg</sub> (MeV) / β = ${nueTotEnrg.toFixed(1)} / ${nueAvgEnrg.toFixed(1)} / ${nueSpectrumShapeParam.toFixed(0)}, ${anuTotEnrg.toFixed(1)} / ${anuAvgEnrg.toFixed(1)} / ${anuSpectrumShapeParam.toFixed(0)}, ${nuxTotEnrg.toFixed(1)} / ${nuxAvgEnrg.toFixed(1)} / ${nuxSpectrumShapeParam.toFixed(0)}</sub>`
+    },
     yaxis: {
       title: { text: `Events dN/dE (/10<sup>32</sup> targets/MeV)` },
       type: "log",
@@ -714,11 +720,11 @@ export const SupernovaPlotsIBD = ({
 };
 export const SupernovaFluxPlots = ({
   fluxSpectrums,
-  nueAvgEnrg, 
-  anuAvgEnrg, 
-  nuxAvgEnrg, 
-  nueTotEnrg, 
-  anuTotEnrg, 
+  nueAvgEnrg,
+  anuAvgEnrg,
+  nuxAvgEnrg,
+  nueTotEnrg,
+  anuTotEnrg,
   nuxTotEnrg,
   nueSpectrumShapeParam,
   anuSpectrumShapeParam,
@@ -763,8 +769,10 @@ export const SupernovaFluxPlots = ({
     },
   ];
   var layout = {
-    title: `CCSN (10 kpc): Neutrino Fluence Spectra w/o Oscillations
-    <br /><sub>ν<sub>e</sub> , ν̅<sub>e</sub> , ν<sub>x</sub> : E<sub>tot</sub> (10<sup>52</sup> erg) / E<sub>avg</sub> (MeV) / β = ${nueTotEnrg.toFixed(1)} / ${nueAvgEnrg.toFixed(1)} / ${nueSpectrumShapeParam.toFixed(0)}, ${anuTotEnrg.toFixed(1)} / ${anuAvgEnrg.toFixed(1)} / ${anuSpectrumShapeParam.toFixed(0)}, ${nuxTotEnrg.toFixed(1)} / ${nuxAvgEnrg.toFixed(1)} / ${nuxSpectrumShapeParam.toFixed(0)}</sub>`,
+    title: {
+      text: `CCSN (10 kpc): Neutrino Fluence Spectra w/o Oscillations
+    <br /><sub>ν<sub>e</sub> , ν̅<sub>e</sub> , ν<sub>x</sub> : E<sub>tot</sub> (10<sup>52</sup> erg) / E<sub>avg</sub> (MeV) / β = ${nueTotEnrg.toFixed(1)} / ${nueAvgEnrg.toFixed(1)} / ${nueSpectrumShapeParam.toFixed(0)}, ${anuTotEnrg.toFixed(1)} / ${anuAvgEnrg.toFixed(1)} / ${anuSpectrumShapeParam.toFixed(0)}, ${nuxTotEnrg.toFixed(1)} / ${nuxAvgEnrg.toFixed(1)} / ${nuxSpectrumShapeParam.toFixed(0)}</sub>`
+    },
     yaxis: {
       title: { text: `Fluence (/cm<sup>2</sup>/MeV)` },
       autorange: true,
@@ -809,11 +817,11 @@ export const SupernovaFluxPlots = ({
 };
 export const SupernovaOscillatedFluxPlots = ({
   oscillatedFluxSpectrums,
-  nueAvgEnrg, 
-  anuAvgEnrg, 
-  nuxAvgEnrg, 
-  nueTotEnrg, 
-  anuTotEnrg, 
+  nueAvgEnrg,
+  anuAvgEnrg,
+  nuxAvgEnrg,
+  nueTotEnrg,
+  anuTotEnrg,
   nuxTotEnrg,
   nueSpectrumShapeParam,
   anuSpectrumShapeParam,
@@ -861,8 +869,10 @@ export const SupernovaOscillatedFluxPlots = ({
     },
   ];
   var layout = {
-    title: `CCSN (10 kpc): Neutrino Fluence Spectra NO Oscillations
-    <br /><sub>ν<sub>e</sub> , ν̅<sub>e</sub> , ν<sub>x</sub> : E<sub>tot</sub> (10<sup>52</sup> erg) / E<sub>avg</sub> (MeV) / β = ${nueTotEnrg.toFixed(1)} / ${nueAvgEnrg.toFixed(1)} / ${nueSpectrumShapeParam.toFixed(0)}, ${anuTotEnrg.toFixed(1)} / ${anuAvgEnrg.toFixed(1)} / ${anuSpectrumShapeParam.toFixed(0)}, ${nuxTotEnrg.toFixed(1)} / ${nuxAvgEnrg.toFixed(1)} / ${nuxSpectrumShapeParam.toFixed(0)}</sub>`,
+    title: {
+      text: `CCSN (10 kpc): Neutrino Fluence Spectra NO Oscillations
+    <br /><sub>ν<sub>e</sub> , ν̅<sub>e</sub> , ν<sub>x</sub> : E<sub>tot</sub> (10<sup>52</sup> erg) / E<sub>avg</sub> (MeV) / β = ${nueTotEnrg.toFixed(1)} / ${nueAvgEnrg.toFixed(1)} / ${nueSpectrumShapeParam.toFixed(0)}, ${anuTotEnrg.toFixed(1)} / ${anuAvgEnrg.toFixed(1)} / ${anuSpectrumShapeParam.toFixed(0)}, ${nuxTotEnrg.toFixed(1)} / ${nuxAvgEnrg.toFixed(1)} / ${nuxSpectrumShapeParam.toFixed(0)}</sub>`
+    },
     yaxis: {
       title: { text: `Fluence (/cm<sup>2</sup>/MeV)` },
       autorange: true,
@@ -907,11 +917,11 @@ export const SupernovaOscillatedFluxPlots = ({
 };
 export const SupernovaOscillatedInvertedFluxPlots = ({
   oscillatedFluxSpectrums,
-  nueAvgEnrg, 
-  anuAvgEnrg, 
-  nuxAvgEnrg, 
-  nueTotEnrg, 
-  anuTotEnrg, 
+  nueAvgEnrg,
+  anuAvgEnrg,
+  nuxAvgEnrg,
+  nueTotEnrg,
+  anuTotEnrg,
   nuxTotEnrg,
   nueSpectrumShapeParam,
   anuSpectrumShapeParam,
@@ -950,8 +960,10 @@ export const SupernovaOscillatedInvertedFluxPlots = ({
     },
   ];
   var layout = {
-    title: `CCSN (10 kpc): Neutrino Fluence Spectra IO Oscillations
-    <br /><sub>ν<sub>e</sub> , ν̅<sub>e</sub> , ν<sub>x</sub> : E<sub>tot</sub> (10<sup>52</sup> erg) / E<sub>avg</sub> (MeV) / β = ${nueTotEnrg.toFixed(1)} / ${nueAvgEnrg.toFixed(1)} / ${nueSpectrumShapeParam.toFixed(0)}, ${anuTotEnrg.toFixed(1)} / ${anuAvgEnrg.toFixed(1)} / ${anuSpectrumShapeParam.toFixed(0)}, ${nuxTotEnrg.toFixed(1)} / ${nuxAvgEnrg.toFixed(1)} / ${nuxSpectrumShapeParam.toFixed(0)}</sub>`,
+    title: {
+      text: `CCSN (10 kpc): Neutrino Fluence Spectra IO Oscillations
+    <br /><sub>ν<sub>e</sub> , ν̅<sub>e</sub> , ν<sub>x</sub> : E<sub>tot</sub> (10<sup>52</sup> erg) / E<sub>avg</sub> (MeV) / β = ${nueTotEnrg.toFixed(1)} / ${nueAvgEnrg.toFixed(1)} / ${nueSpectrumShapeParam.toFixed(0)}, ${anuTotEnrg.toFixed(1)} / ${anuAvgEnrg.toFixed(1)} / ${anuSpectrumShapeParam.toFixed(0)}, ${nuxTotEnrg.toFixed(1)} / ${nuxAvgEnrg.toFixed(1)} / ${nuxSpectrumShapeParam.toFixed(0)}</sub>`
+    },
     yaxis: {
       title: { text: `Fluence (/cm<sup>2</sup>/MeV)` },
       autorange: true,
@@ -1140,7 +1152,7 @@ export const SupernovaNeutrinoCrossSections = ({
     },
   ];
   var layout = {
-    title: "Neutrino Cross Sections",
+    title: { text: "Neutrino Cross Sections" },
     yaxis: {
       title: { text: `Cross Section (cm<sup>2</sup>)` },
       type: "log",
